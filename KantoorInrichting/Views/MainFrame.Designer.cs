@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.mainScreen1 = new KantoorInrichting.Views.MainScreen();
+            //this.inventoryScreen1 = new KantoorInrichting.Views.InventoryScreen();
             this.SuspendLayout();
             // 
             // mainScreen1
@@ -40,7 +41,6 @@
             this.mainScreen1.Name = "mainScreen1";
             this.mainScreen1.Size = new System.Drawing.Size(742, 113);
             this.mainScreen1.TabIndex = 0;
-            this.mainScreen1.Load += new System.EventHandler(this.mainScreen1_Load);
             // 
             // MainFrame
             // 
@@ -58,5 +58,6 @@
         #endregion
 
         private Views.MainScreen mainScreen1;
+        //private Views.InventoryScreen inventoryScreen1;
     }
 }

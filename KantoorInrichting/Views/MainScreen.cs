@@ -19,7 +19,10 @@ namespace KantoorInrichting.Views
 
         private void VooraadButton_Click(object sender, EventArgs e)
         {
-            // do something
+            //VoorraadScherm.Visible = true;
+            //VoorraadScherm.Enabled = true;
+            this.Visible = false;
+            //VoorraadScherm.BringToFront();
         }
     }
 }
