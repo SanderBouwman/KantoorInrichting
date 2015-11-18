@@ -28,9 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.mainScreen1 = new KantoorInrichting.Views.MainScreen();
-            //this.inventoryScreen1 = new KantoorInrichting.Views.InventoryScreen();
+            this.inventoryScreen1 = new KantoorInrichting.Views.Inventory.InventoryScreen(this);
+            this.mainScreen1 = new KantoorInrichting.Views.MainScreen(this);
             this.SuspendLayout();
+            // 
+            // inventoryScreen1
+            // 
+            this.inventoryScreen1.AutoSize = true;
+            this.inventoryScreen1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.inventoryScreen1.Enabled = false;
+            this.inventoryScreen1.Location = new System.Drawing.Point(0, 0);
+            this.inventoryScreen1.Name = "inventoryScreen1";
+            this.inventoryScreen1.Size = new System.Drawing.Size(464, 95);
+            this.inventoryScreen1.TabIndex = 1;
+            this.inventoryScreen1.Visible = false;
             // 
             // mainScreen1
             // 
@@ -47,6 +58,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(742, 409);
+            this.Controls.Add(this.inventoryScreen1);
             this.Controls.Add(this.mainScreen1);
             this.Name = "MainFrame";
             this.Text = "MainFrame";
@@ -57,7 +69,8 @@
 
         #endregion
 
-        private Views.MainScreen mainScreen1;
+        public Views.MainScreen mainScreen1;
+        public Views.Inventory.InventoryScreen inventoryScreen1;
         //private Views.InventoryScreen inventoryScreen1;
     }
 }

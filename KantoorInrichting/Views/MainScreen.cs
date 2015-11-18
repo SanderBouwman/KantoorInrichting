@@ -12,17 +12,19 @@ namespace KantoorInrichting.Views
 {
     public partial class MainScreen : UserControl
     {
-        public MainScreen()
+        public MainFrame hoofdscherm;
+        public MainScreen(MainFrame hoofdscherm)
         {
+            this.hoofdscherm = hoofdscherm;
             InitializeComponent();
         }
 
         private void VooraadButton_Click(object sender, EventArgs e)
         {
-            //VoorraadScherm.Visible = true;
-            //VoorraadScherm.Enabled = true;
+            hoofdscherm.inventoryScreen1.Visible = true;
+            hoofdscherm.inventoryScreen1.Enabled = true;
             this.Visible = false;
-            //VoorraadScherm.BringToFront();
+            hoofdscherm.inventoryScreen1.BringToFront();
         }
     }
 }
