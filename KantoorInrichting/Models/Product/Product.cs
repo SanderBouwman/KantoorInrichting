@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KantoorInrichting.Controllers.Product
 {
-    class Product
+    public class Product
     {
         private string naam;
         private string merk;

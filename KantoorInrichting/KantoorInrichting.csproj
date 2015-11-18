@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Product\Product.cs" />
     <Compile Include="Views\MainFrame.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -67,6 +68,7 @@
     <Folder Include="Controllers\Inventory\" />
     <Folder Include="Models\Assortment\" />
     <Folder Include="Models\Inventory\" />
+    <Folder Include="Models\Product" />
     <Folder Include="Views\Assortment\" />
     <Folder Include="Views\Inventory\" />
   </ItemGroup>
