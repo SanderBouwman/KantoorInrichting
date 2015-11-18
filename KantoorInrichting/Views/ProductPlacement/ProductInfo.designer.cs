@@ -1,0 +1,177 @@
+﻿namespace KBS_KantoorInrichten_Prototype6
+{
+    partial class ProductInfo
+    {
+        /// <summary> 
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary> 
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Component Designer generated code
+
+        /// <summary> 
+        /// Required method for Designer support - do not modify 
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.lbl_1 = new System.Windows.Forms.Label();
+            this.lbl_2 = new System.Windows.Forms.Label();
+            this.lbl_5 = new System.Windows.Forms.Label();
+            this.lbl_3 = new System.Windows.Forms.Label();
+            this.lbl_4 = new System.Windows.Forms.Label();
+            this.txt_Name = new System.Windows.Forms.TextBox();
+            this.txt_Brand = new System.Windows.Forms.TextBox();
+            this.txt_Type = new System.Windows.Forms.TextBox();
+            this.txt_Category = new System.Windows.Forms.TextBox();
+            this.txt_Dimension = new System.Windows.Forms.TextBox();
+            this.lbl_Image = new System.Windows.Forms.Label();
+            this.SuspendLayout();
+            // 
+            // lbl_1
+            // 
+            this.lbl_1.AutoSize = true;
+            this.lbl_1.Location = new System.Drawing.Point(5, 6);
+            this.lbl_1.Name = "lbl_1";
+            this.lbl_1.Size = new System.Drawing.Size(41, 13);
+            this.lbl_1.TabIndex = 0;
+            this.lbl_1.Text = "Name: ";
+            // 
+            // lbl_2
+            // 
+            this.lbl_2.AutoSize = true;
+            this.lbl_2.Location = new System.Drawing.Point(3, 32);
+            this.lbl_2.Name = "lbl_2";
+            this.lbl_2.Size = new System.Drawing.Size(38, 13);
+            this.lbl_2.TabIndex = 2;
+            this.lbl_2.Text = "Brand:";
+            // 
+            // lbl_5
+            // 
+            this.lbl_5.AutoSize = true;
+            this.lbl_5.Location = new System.Drawing.Point(3, 110);
+            this.lbl_5.Name = "lbl_5";
+            this.lbl_5.Size = new System.Drawing.Size(59, 13);
+            this.lbl_5.TabIndex = 6;
+            this.lbl_5.Text = "Dimension:";
+            // 
+            // lbl_3
+            // 
+            this.lbl_3.AutoSize = true;
+            this.lbl_3.Location = new System.Drawing.Point(3, 58);
+            this.lbl_3.Name = "lbl_3";
+            this.lbl_3.Size = new System.Drawing.Size(34, 13);
+            this.lbl_3.TabIndex = 13;
+            this.lbl_3.Text = "Type:";
+            // 
+            // lbl_4
+            // 
+            this.lbl_4.AutoSize = true;
+            this.lbl_4.Location = new System.Drawing.Point(3, 84);
+            this.lbl_4.Name = "lbl_4";
+            this.lbl_4.Size = new System.Drawing.Size(52, 13);
+            this.lbl_4.TabIndex = 15;
+            this.lbl_4.Text = "Category:";
+            // 
+            // txt_Name
+            // 
+            this.txt_Name.Location = new System.Drawing.Point(61, 3);
+            this.txt_Name.Name = "txt_Name";
+            this.txt_Name.ReadOnly = true;
+            this.txt_Name.Size = new System.Drawing.Size(150, 20);
+            this.txt_Name.TabIndex = 17;
+            // 
+            // txt_Brand
+            // 
+            this.txt_Brand.Location = new System.Drawing.Point(61, 29);
+            this.txt_Brand.Name = "txt_Brand";
+            this.txt_Brand.ReadOnly = true;
+            this.txt_Brand.Size = new System.Drawing.Size(150, 20);
+            this.txt_Brand.TabIndex = 18;
+            // 
+            // txt_Type
+            // 
+            this.txt_Type.Location = new System.Drawing.Point(61, 55);
+            this.txt_Type.Name = "txt_Type";
+            this.txt_Type.ReadOnly = true;
+            this.txt_Type.Size = new System.Drawing.Size(150, 20);
+            this.txt_Type.TabIndex = 19;
+            // 
+            // txt_Category
+            // 
+            this.txt_Category.Location = new System.Drawing.Point(61, 81);
+            this.txt_Category.Name = "txt_Category";
+            this.txt_Category.ReadOnly = true;
+            this.txt_Category.Size = new System.Drawing.Size(150, 20);
+            this.txt_Category.TabIndex = 20;
+            // 
+            // txt_Dimension
+            // 
+            this.txt_Dimension.Location = new System.Drawing.Point(61, 107);
+            this.txt_Dimension.Name = "txt_Dimension";
+            this.txt_Dimension.ReadOnly = true;
+            this.txt_Dimension.Size = new System.Drawing.Size(150, 20);
+            this.txt_Dimension.TabIndex = 21;
+            // 
+            // lbl_Image
+            // 
+            this.lbl_Image.AutoSize = true;
+            this.lbl_Image.Location = new System.Drawing.Point(256, 29);
+            this.lbl_Image.Name = "lbl_Image";
+            this.lbl_Image.Size = new System.Drawing.Size(42, 13);
+            this.lbl_Image.TabIndex = 22;
+            this.lbl_Image.Text = "-Image-";
+            // 
+            // ProductInfo
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
+            this.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Controls.Add(this.lbl_Image);
+            this.Controls.Add(this.txt_Dimension);
+            this.Controls.Add(this.txt_Category);
+            this.Controls.Add(this.txt_Type);
+            this.Controls.Add(this.txt_Brand);
+            this.Controls.Add(this.txt_Name);
+            this.Controls.Add(this.lbl_4);
+            this.Controls.Add(this.lbl_3);
+            this.Controls.Add(this.lbl_5);
+            this.Controls.Add(this.lbl_2);
+            this.Controls.Add(this.lbl_1);
+            this.Name = "ProductInfo";
+            this.Size = new System.Drawing.Size(398, 148);
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.Label lbl_1;
+        private System.Windows.Forms.Label lbl_2;
+        private System.Windows.Forms.Label lbl_5;
+        private System.Windows.Forms.Label lbl_3;
+        private System.Windows.Forms.Label lbl_4;
+        private System.Windows.Forms.TextBox txt_Name;
+        private System.Windows.Forms.TextBox txt_Brand;
+        private System.Windows.Forms.TextBox txt_Type;
+        private System.Windows.Forms.TextBox txt_Category;
+        private System.Windows.Forms.TextBox txt_Dimension;
+        private System.Windows.Forms.Label lbl_Image;
+    }
+}

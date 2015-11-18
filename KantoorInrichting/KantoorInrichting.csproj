@@ -71,6 +71,24 @@
     <Compile Include="Views\MainScreen.Designer.cs">
       <DependentUpon>MainScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\ProductPlacement\ProductAdding.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\ProductPlacement\ProductAdding.designer.cs">
+      <DependentUpon>ProductAdding.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProductPlacement\ProductInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\ProductPlacement\ProductInfo.designer.cs">
+      <DependentUpon>ProductInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProductPlacement\ProductList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\ProductPlacement\ProductList.designer.cs">
+      <DependentUpon>ProductList.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -86,6 +104,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\MainScreen.resx">
       <DependentUpon>MainScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ProductPlacement\ProductAdding.resx">
+      <DependentUpon>ProductAdding.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ProductPlacement\ProductInfo.resx">
+      <DependentUpon>ProductInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ProductPlacement\ProductList.resx">
+      <DependentUpon>ProductList.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
