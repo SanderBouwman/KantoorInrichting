@@ -1,9 +1,11 @@
-﻿using KantoorInrichting.Controllers.Product;
+﻿/*
+using KantoorInrichting.Controllers.Product;
 using KantoorInrichting.Models.Grid;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-
+*/
 namespace KantoorInrichting_Test.Models.Grid {
     public class GridField_Test {
+        /*
         [TestMethod]
         public void CreateGrid_Test() {
             GridField grid = new GridField(10, 10, 0.5f); // the size of the room is given in meters
@@ -43,5 +45,6 @@ namespace KantoorInrichting_Test.Models.Grid {
             }
             Assert.IsTrue(found);
         }
+        */
     }
 }
