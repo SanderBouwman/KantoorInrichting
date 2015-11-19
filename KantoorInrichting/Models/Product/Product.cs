@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KantoorInrichting.Controllers.Product
+namespace KantoorInrichting.Models.Product
 {
     public class Product
     {

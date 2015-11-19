@@ -1,11 +1,11 @@
-﻿using KantoorInrichting.Controllers.Product;
+﻿using KantoorInrichting.Models.Product;
 
 namespace KantoorInrichting.Models.Grid {
     public struct Tile {
 
         public float Width { get; }
         public float Height { get; }
-        public Product Product { get; set; }
+        public Product.Product Product { get; set; }
 
         public Tile( float squareSize ) {
             this.Width = squareSize;

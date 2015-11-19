@@ -76,6 +76,12 @@
     <Folder Include="Controllers\" />
     <Folder Include="Views\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\KantoorInrichting\KantoorInrichting.csproj">
+      <Project>{703650d8-9f61-44f5-83f3-16da7f86c6da}</Project>
+      <Name>KantoorInrichting</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,4 +1,4 @@
-﻿using KantoorInrichting.Controllers.Product;
+﻿using KantoorInrichting.Models.Product;
 
 namespace KantoorInrichting.Models.Grid {
     public class GridField {
@@ -41,7 +41,7 @@ namespace KantoorInrichting.Models.Grid {
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <param name="item"></param>
-        public void AddItem( int x, int y, Product item ) {
+        public void AddItem( int x, int y, Product.Product item ) {
             Rows[ y, x ].Product = item;
         }
     }
