@@ -1,4 +1,4 @@
-﻿namespace KBS_KantoorInrichten_Prototype6
+﻿namespace KantoorInrichting
 {
     partial class ProductList
     {

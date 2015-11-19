@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.productInfo1 = new KBS_KantoorInrichten_Prototype6.ProductInfo();
-            this.productList1 = new KBS_KantoorInrichten_Prototype6.ProductList();
+            this.productInfo1 = new ProductInfo();
+            this.productList1 = new ProductList();
             this.SuspendLayout();
             // 
             // productInfo1

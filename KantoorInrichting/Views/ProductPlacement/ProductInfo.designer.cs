@@ -1,4 +1,4 @@
-﻿namespace KBS_KantoorInrichten_Prototype6
+﻿namespace KantoorInrichting
 {
     partial class ProductInfo
     {
@@ -32,11 +32,9 @@
             this.lbl_2 = new System.Windows.Forms.Label();
             this.lbl_5 = new System.Windows.Forms.Label();
             this.lbl_3 = new System.Windows.Forms.Label();
-            this.lbl_4 = new System.Windows.Forms.Label();
             this.txt_Name = new System.Windows.Forms.TextBox();
             this.txt_Brand = new System.Windows.Forms.TextBox();
             this.txt_Type = new System.Windows.Forms.TextBox();
-            this.txt_Category = new System.Windows.Forms.TextBox();
             this.txt_Dimension = new System.Windows.Forms.TextBox();
             this.lbl_Image = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -77,15 +75,6 @@
             this.lbl_3.TabIndex = 13;
             this.lbl_3.Text = "Type:";
             // 
-            // lbl_4
-            // 
-            this.lbl_4.AutoSize = true;
-            this.lbl_4.Location = new System.Drawing.Point(3, 84);
-            this.lbl_4.Name = "lbl_4";
-            this.lbl_4.Size = new System.Drawing.Size(52, 13);
-            this.lbl_4.TabIndex = 15;
-            this.lbl_4.Text = "Category:";
-            // 
             // txt_Name
             // 
             this.txt_Name.Location = new System.Drawing.Point(61, 3);
@@ -109,14 +98,6 @@
             this.txt_Type.ReadOnly = true;
             this.txt_Type.Size = new System.Drawing.Size(150, 20);
             this.txt_Type.TabIndex = 19;
-            // 
-            // txt_Category
-            // 
-            this.txt_Category.Location = new System.Drawing.Point(61, 81);
-            this.txt_Category.Name = "txt_Category";
-            this.txt_Category.ReadOnly = true;
-            this.txt_Category.Size = new System.Drawing.Size(150, 20);
-            this.txt_Category.TabIndex = 20;
             // 
             // txt_Dimension
             // 
@@ -144,11 +125,9 @@
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.lbl_Image);
             this.Controls.Add(this.txt_Dimension);
-            this.Controls.Add(this.txt_Category);
             this.Controls.Add(this.txt_Type);
             this.Controls.Add(this.txt_Brand);
             this.Controls.Add(this.txt_Name);
-            this.Controls.Add(this.lbl_4);
             this.Controls.Add(this.lbl_3);
             this.Controls.Add(this.lbl_5);
             this.Controls.Add(this.lbl_2);
@@ -166,11 +145,9 @@
         private System.Windows.Forms.Label lbl_2;
         private System.Windows.Forms.Label lbl_5;
         private System.Windows.Forms.Label lbl_3;
-        private System.Windows.Forms.Label lbl_4;
         private System.Windows.Forms.TextBox txt_Name;
         private System.Windows.Forms.TextBox txt_Brand;
         private System.Windows.Forms.TextBox txt_Type;
-        private System.Windows.Forms.TextBox txt_Category;
         private System.Windows.Forms.TextBox txt_Dimension;
         private System.Windows.Forms.Label lbl_Image;
     }

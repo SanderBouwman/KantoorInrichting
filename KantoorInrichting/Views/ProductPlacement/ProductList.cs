@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using KantoorInrichting.Controllers.Product;
 
 namespace KantoorInrichting
 {
@@ -23,10 +24,10 @@ namespace KantoorInrichting
 
             
             listOfProducts = new List<Product>();
-            listOfProducts.Add(new Product("Black Chair", "Chairs'R'Yours", "A", 50, 50, 60, "Chair - Stackable", Color.Black));
-            listOfProducts.Add(new Product("Red Table", "Dem Tables", "A", 100, 300, 100, "Table - Dining", Color.Firebrick));
-            listOfProducts.Add(new Product("Yellow Coffee Table", "Dem Tables", "B", 50, 100, 75, "Table - Coffee", Color.Yellow));
-            listOfProducts.Add(new Product("Blue-Board", "Color Board", "H", 10, 200, 200, "Board - White Board", Color.Blue));
+            listOfProducts.Add(new Product("Black Chair", "Chairs'R'Yours", "A", 50, 50, 60, "Chair - Stackable", 9));
+            listOfProducts.Add(new Product("Red Table", "Dem Tables", "A", 100, 300, 100, "Table - Dining", 0));
+            listOfProducts.Add(new Product("Yellow Coffee Table", "Dem Tables", "B", 50, 100, 75, "Table - Coffee", 6));
+            listOfProducts.Add(new Product("Blue-Board", "Color Board", "H", 10, 200, 200, "Board - White Board", 4));
 
             GenerateTexture();
         }
