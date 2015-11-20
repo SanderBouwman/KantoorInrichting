@@ -1,4 +1,8 @@
-﻿namespace KantoorInrichting
+﻿using KantoorInrichting.Controllers.Grid;
+using KantoorInrichting.Models.Grid;
+using KantoorInrichting.Views.Grid;
+
+namespace KantoorInrichting
 {
     partial class MainFrame
     {
@@ -30,7 +34,19 @@
         {
             this.inventoryScreen1 = new KantoorInrichting.Views.Inventory.InventoryScreen(this);
             this.mainScreen1 = new KantoorInrichting.Views.MainScreen(this);
+            this.gridFieldView = new KantoorInrichting.Views.Grid.GridFieldView(this);
             this.SuspendLayout();
+            //
+            // gridFieldView
+            //
+            this.gridFieldView.AutoSize = true;
+            this.gridFieldView.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.gridFieldView.Enabled = false;
+            this.gridFieldView.Location = new System.Drawing.Point(0, 0);
+            this.gridFieldView.Name = "gridFieldView";
+            this.gridFieldView.Size = new System.Drawing.Size(742, 409);
+            this.gridFieldView.TabIndex = 2;
+            this.gridFieldView.Visible = false;
             // 
             // inventoryScreen1
             // 
@@ -71,6 +87,7 @@
 
         public Views.MainScreen mainScreen1;
         public Views.Inventory.InventoryScreen inventoryScreen1;
+        public Views.Grid.GridFieldView gridFieldView;
         //private Views.InventoryScreen inventoryScreen1;
     }
 }

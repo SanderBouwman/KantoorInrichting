@@ -48,9 +48,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\Grid\GridField.cs" />
+    <Compile Include="Controllers\Grid\GridController.cs" />
+    <Compile Include="Models\Grid\GridFieldModel.cs" />
     <Compile Include="Models\Grid\Tile.cs" />
     <Compile Include="Models\Product\Product.cs" />
+    <Compile Include="Views\Grid\GridFieldView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Grid\GridFieldView.Designer.cs">
+      <DependentUpon>GridFieldView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Inventory\InventoryScreen.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -96,6 +103,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Views\Grid\GridFieldView.resx">
+      <DependentUpon>GridFieldView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Inventory\InventoryScreen.resx">
       <DependentUpon>InventoryScreen.cs</DependentUpon>
     </EmbeddedResource>
