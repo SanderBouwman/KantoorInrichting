@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.DirectoryServices;
 
 namespace KantoorInrichting.Views.Inventory
 {
@@ -16,6 +17,11 @@ namespace KantoorInrichting.Views.Inventory
         public InventoryScreen(MainFrame hoofdscherm)
         {
             this.hoofdscherm = hoofdscherm;
+            InitializeComponent();
+        }
+
+        public InventoryScreen()
+        {
             InitializeComponent();
         }
 

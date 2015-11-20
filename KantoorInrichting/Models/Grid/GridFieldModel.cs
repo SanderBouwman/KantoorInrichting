@@ -1,7 +1,7 @@
 ﻿using KantoorInrichting.Models.Product;
 
 namespace KantoorInrichting.Models.Grid {
-    public class GridModel {
+    public class GridFieldModel {
 
         public Tile[, ] Rows { get; }
 
@@ -16,7 +16,7 @@ namespace KantoorInrichting.Models.Grid {
         /// <param name="width"></param>
         /// <param name="height"></param>
         /// <param name="squareSize"></param>
-        public GridModel( int width, int height, float squareSize ) {
+        public GridFieldModel( int width, int height, float squareSize ) {
             Rows = new Tile[ height, width ];
             InitRows(squareSize);
         }

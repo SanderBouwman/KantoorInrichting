@@ -38,6 +38,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
@@ -61,6 +62,14 @@
     </Compile>
     <Compile Include="Views\Inventory\InventoryRemove.Designer.cs">
       <DependentUpon>InventoryRemove.cs</DependentUpon>
+	</Compile>
+    <Compile Include="Controllers\Grid\GridController.cs" />
+    <Compile Include="Models\Grid\GridFieldModel.cs" />
+    <Compile Include="Views\Grid\GridFieldView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Grid\GridFieldView.Designer.cs">
+      <DependentUpon>GridFieldView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Inventory\InventoryScreen.cs">
       <SubType>UserControl</SubType>
@@ -112,6 +121,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Inventory\InventoryRemove.resx">
       <DependentUpon>InventoryRemove.cs</DependentUpon>
+	</EmbeddedResource>
+    <EmbeddedResource Include="Views\Grid\GridFieldView.resx">
+      <DependentUpon>GridFieldView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Inventory\InventoryScreen.resx">
       <DependentUpon>InventoryScreen.cs</DependentUpon>
