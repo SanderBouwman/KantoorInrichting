@@ -25,7 +25,7 @@ namespace KantoorInrichting_Test.Models.Grid {
         [TestMethod]
         public void AddItem_Test() {
             GridField grid = new GridField(10, 10, 0.5f);
-            Product i1 = new Product("Chair 1", "Atlas", "Chair", 2, 2, 2, "een stoel", 1);
+            Product i1 = new Product("Chair 1", "Atlas", "Chair", "Chair", "Deskchair", 2, 2, 2, "een stoel", 1);
 
             int x = 5; // x and y have to be the tilenumber that the user wants to add an item to.
             int y = 5; //

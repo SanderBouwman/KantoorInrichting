@@ -24,10 +24,10 @@ namespace KantoorInrichting
 
             
             listOfProducts = new List<Product>();
-            listOfProducts.Add(new Product("Black Chair", "Chairs'R'Yours", "A", 50, 50, 60, "Chair - Stackable", 9));
-            listOfProducts.Add(new Product("Red Table", "Dem Tables", "A", 100, 300, 100, "Table - Dining", 0));
-            listOfProducts.Add(new Product("Yellow Coffee Table", "Dem Tables", "B", 50, 100, 75, "Table - Coffee", 6));
-            listOfProducts.Add(new Product("Blue-Board", "Color Board", "H", 10, 200, 200, "Board - White Board", 4));
+            listOfProducts.Add(new Product("Black Chair", "Chairs'R'Yours", "A", "Chair", "Deskchair", 50, 50, 60, "Chair - Stackable", 9));
+            listOfProducts.Add(new Product("Red Table", "Dem Tables", "A", "Tables", "", 100, 300, 100, "Table - Dining", 0));
+            listOfProducts.Add(new Product("Yellow Coffee Table", "Dem Tables", "B", "Tables", "Coffee tables",50, 100, 75, "Table - Coffee", 6));
+            listOfProducts.Add(new Product("Blue-Board", "Color Board", "H","Boards","", 10, 200, 200, "Board - White Board", 4));
 
             GenerateTexture();
         }
