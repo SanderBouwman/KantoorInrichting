@@ -51,6 +51,9 @@
   <ItemGroup>
     <Compile Include="Controllers\Grid\GridController.cs" />
     <Compile Include="Models\Grid\GridFieldModel.cs" />
+    <Compile Include="Views\Grid\GridFieldPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Models\Grid\Tile.cs" />
     <Compile Include="Models\Product\Product.cs" />
     <Compile Include="Views\Grid\GridFieldView.cs">

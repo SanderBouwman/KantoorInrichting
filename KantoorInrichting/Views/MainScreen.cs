@@ -34,8 +34,7 @@ namespace KantoorInrichting.Views {
         private void MapButton_Click( object sender, EventArgs e ) {
             GridController gc = new GridController(hoofdscherm.gridFieldView, new GridFieldModel(10, 10, 0.5f));
 
-            hoofdscherm.Width = hoofdscherm.gridFieldView.Width;
-            hoofdscherm.Height = hoofdscherm.gridFieldView.Height;
+            hoofdscherm.Size = hoofdscherm.gridFieldView.Size;
 
             hoofdscherm.gridFieldView.Visible = true;
             hoofdscherm.gridFieldView.Enabled = true;
