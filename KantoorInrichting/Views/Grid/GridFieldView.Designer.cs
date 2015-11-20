@@ -79,7 +79,6 @@
             this.drawPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
-            System.Console.WriteLine("Test");
         }
 
         #endregion
