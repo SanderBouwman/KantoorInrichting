@@ -81,5 +81,14 @@ namespace KantoorInrichting
             this.Controls.Add(this.gridFieldView);
             this.Controls.Add(this.mainScreen1);
         }
+
+        private void terugNaarHoofdschermToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            mainScreen1.Visible = true;
+            mainScreen1.Enabled = true;
+            inventoryScreen1.Visible = false;
+            gridFieldView.Visible = false;
+            mainScreen1.BringToFront();
+        }
     }
 }

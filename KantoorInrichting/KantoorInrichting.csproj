@@ -49,8 +49,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-
     <Compile Include="Models\Grid\GridFieldModel.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Grid\GridFieldPanel.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -67,9 +71,8 @@
     </Compile>
     <Compile Include="Views\Inventory\InventoryRemove.Designer.cs">
       <DependentUpon>InventoryRemove.cs</DependentUpon>
-	</Compile>
+    </Compile>
     <Compile Include="Controllers\Grid\GridController.cs" />
-    <Compile Include="Models\Grid\GridFieldModel.cs" />
     <Compile Include="Views\Grid\GridFieldView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -121,12 +124,16 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Inventory\InventoryEdit.resx">
       <DependentUpon>InventoryEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Inventory\InventoryRemove.resx">
       <DependentUpon>InventoryRemove.cs</DependentUpon>
-	</EmbeddedResource>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Grid\GridFieldView.resx">
       <DependentUpon>GridFieldView.cs</DependentUpon>
     </EmbeddedResource>
@@ -155,6 +162,9 @@
     <Folder Include="Models\Assortment\" />
     <Folder Include="Models\Inventory\" />
     <Folder Include="Views\Assortment\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\No_Image_Available.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
