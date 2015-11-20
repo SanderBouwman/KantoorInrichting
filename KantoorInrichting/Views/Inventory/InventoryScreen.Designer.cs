@@ -38,17 +38,17 @@
             this.Afbeelding = new System.Windows.Forms.DataGridViewImageColumn();
             this.wijzig = new System.Windows.Forms.DataGridViewButtonColumn();
             this.delete = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.PanelRight = new System.Windows.Forms.Panel();
             this.DropdownCategorie = new System.Windows.Forms.ComboBox();
             this.DropdownLeverancier = new System.Windows.Forms.ComboBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.PanelLeft = new System.Windows.Forms.Panel();
             this.titel = new System.Windows.Forms.Label();
             this.directorySearcher1 = new System.DirectoryServices.DirectorySearcher();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
+            this.PanelRight.SuspendLayout();
+            this.PanelLeft.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -70,12 +70,11 @@
             this.wijzig,
             this.delete});
             this.dataGridView1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.dataGridView1.GridColor = System.Drawing.SystemColors.ControlLight;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 103);
+            this.dataGridView1.Location = new System.Drawing.Point(0, 172);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 50;
-            this.dataGridView1.Size = new System.Drawing.Size(683, 321);
+            this.dataGridView1.Size = new System.Drawing.Size(682, 252);
             this.dataGridView1.TabIndex = 2;
             // 
             // Naam
@@ -125,19 +124,20 @@
             this.delete.Text = "delete";
             this.delete.UseColumnTextForButtonValue = true;
             // 
-            // panel1
+            // PanelRight
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.DropdownCategorie);
-            this.panel1.Controls.Add(this.DropdownLeverancier);
-            this.panel1.Controls.Add(this.checkBox1);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(434, 3);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(249, 100);
-            this.panel1.TabIndex = 1;
+            this.PanelRight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.PanelRight.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.PanelRight.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PanelRight.Controls.Add(this.DropdownCategorie);
+            this.PanelRight.Controls.Add(this.DropdownLeverancier);
+            this.PanelRight.Controls.Add(this.checkBox1);
+            this.PanelRight.Controls.Add(this.label1);
+            this.PanelRight.Location = new System.Drawing.Point(433, 3);
+            this.PanelRight.MinimumSize = new System.Drawing.Size(300, 170);
+            this.PanelRight.Name = "PanelRight";
+            this.PanelRight.Size = new System.Drawing.Size(300, 170);
+            this.PanelRight.TabIndex = 1;
             // 
             // DropdownCategorie
             // 
@@ -171,19 +171,20 @@
             this.label1.Size = new System.Drawing.Size(100, 23);
             this.label1.TabIndex = 3;
             // 
-            // panel2
+            // PanelLeft
             // 
-            this.panel2.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.panel2.Controls.Add(this.titel);
-            this.panel2.Location = new System.Drawing.Point(0, 3);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(435, 100);
-            this.panel2.TabIndex = 0;
+            this.PanelLeft.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.PanelLeft.Controls.Add(this.titel);
+            this.PanelLeft.Location = new System.Drawing.Point(0, 3);
+            this.PanelLeft.MinimumSize = new System.Drawing.Size(400, 170);
+            this.PanelLeft.Name = "PanelLeft";
+            this.PanelLeft.Size = new System.Drawing.Size(435, 170);
+            this.PanelLeft.TabIndex = 0;
             // 
             // titel
             // 
             this.titel.Font = new System.Drawing.Font("Maiandra GD", 28.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.titel.Location = new System.Drawing.Point(42, 27);
+            this.titel.Location = new System.Drawing.Point(64, 43);
             this.titel.Name = "titel";
             this.titel.Size = new System.Drawing.Size(300, 69);
             this.titel.TabIndex = 0;
@@ -199,15 +200,15 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.PanelLeft);
+            this.Controls.Add(this.PanelRight);
             this.Controls.Add(this.dataGridView1);
             this.MinimumSize = new System.Drawing.Size(600, 400);
             this.Name = "InventoryScreen";
-            this.Size = new System.Drawing.Size(683, 424);
+            this.Size = new System.Drawing.Size(682, 424);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
+            this.PanelRight.ResumeLayout(false);
+            this.PanelLeft.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -223,8 +224,8 @@
         private System.Windows.Forms.DataGridViewImageColumn Afbeelding;
         private System.Windows.Forms.DataGridViewButtonColumn wijzig;
         private System.Windows.Forms.DataGridViewButtonColumn delete;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel PanelRight;
+        private System.Windows.Forms.Panel PanelLeft;
         private System.Windows.Forms.Label titel;
         private System.Windows.Forms.ComboBox DropdownCategorie;
         private System.Windows.Forms.ComboBox DropdownLeverancier;
