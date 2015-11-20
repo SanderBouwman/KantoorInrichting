@@ -48,9 +48,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\Grid\GridField.cs" />
     <Compile Include="Models\Grid\Tile.cs" />
     <Compile Include="Models\Product\Product.cs" />
+    <Compile Include="Views\Inventory\InventoryEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Inventory\InventoryEdit.Designer.cs">
+      <DependentUpon>InventoryEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Inventory\InventoryRemove.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Inventory\InventoryRemove.Designer.cs">
+      <DependentUpon>InventoryRemove.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Inventory\InventoryScreen.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -96,6 +107,12 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Views\Inventory\InventoryEdit.resx">
+      <DependentUpon>InventoryEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Inventory\InventoryRemove.resx">
+      <DependentUpon>InventoryRemove.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Inventory\InventoryScreen.resx">
       <DependentUpon>InventoryScreen.cs</DependentUpon>
     </EmbeddedResource>
