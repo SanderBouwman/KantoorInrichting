@@ -153,6 +153,7 @@ namespace KantoorInrichting
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.ClientSize = new System.Drawing.Size(742, 409);
             this.Controls.Add(this.inventoryScreen1);
+            this.Controls.Add(this.gridFieldView);
             this.Controls.Add(this.mainScreen1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
