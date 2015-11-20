@@ -11,8 +11,8 @@ namespace KantoorInrichting.Models.Product
         public string name { get; private set; }
         public string brand { get; private set; }
         public string type { get; private set; }
-        public string category { get; private set; }
-        public string subcategory { get; private set; }
+        public string category { get; set; }
+        public string subcategory { get; set; }
 
         public int length { get; private set; }
         public int width { get; private set; }

@@ -41,23 +41,9 @@ namespace KantoorInrichting
             this.navigatieToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.afsluitenToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.terugNaarHoofdschermToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.inventoryScreen1 = new KantoorInrichting.Views.Inventory.InventoryScreen(this);
-            this.mainScreen1 = new KantoorInrichting.Views.MainScreen(this);
-            this.gridFieldView = new KantoorInrichting.Views.Grid.GridFieldView(this);
-
+            this.inventoryScreen2 = new KantoorInrichting.Views.Inventory.InventoryScreen();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
-            //
-            // gridFieldView
-            //
-            this.gridFieldView.AutoSize = true;
-            this.gridFieldView.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.gridFieldView.Enabled = false;
-            this.gridFieldView.Location = new System.Drawing.Point(0, 0);
-            this.gridFieldView.Name = "gridFieldView";
-            this.gridFieldView.Size = new System.Drawing.Size(742, 409);
-            this.gridFieldView.TabIndex = 3;
-            this.gridFieldView.Visible = false;
             // 
             // menuStrip1
             // 
@@ -123,40 +109,30 @@ namespace KantoorInrichting
             this.terugNaarHoofdschermToolStripMenuItem1.Size = new System.Drawing.Size(245, 26);
             this.terugNaarHoofdschermToolStripMenuItem1.Text = "Terug naar hoofdscherm";
             // 
-            // inventoryScreen1
+            // inventoryScreen2
             // 
-            this.inventoryScreen1.AutoSize = true;
-            this.inventoryScreen1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.inventoryScreen1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.inventoryScreen1.Enabled = false;
-            this.inventoryScreen1.Location = new System.Drawing.Point(0, 28);
-            this.inventoryScreen1.MinimumSize = new System.Drawing.Size(100, 100);
-            this.inventoryScreen1.Name = "inventoryScreen1";
-            this.inventoryScreen1.Size = new System.Drawing.Size(464, 164);
-            this.inventoryScreen1.TabIndex = 1;
-            this.inventoryScreen1.Visible = false;
-            // 
-            // mainScreen1
-            // 
-            this.mainScreen1.AutoSize = true;
-            this.mainScreen1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.mainScreen1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.mainScreen1.Location = new System.Drawing.Point(0, 28);
-            this.mainScreen1.Name = "mainScreen1";
-            this.mainScreen1.Size = new System.Drawing.Size(742, 113);
-            this.mainScreen1.TabIndex = 0;
+            this.inventoryScreen2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.inventoryScreen2.AutoSize = true;
+            this.inventoryScreen2.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.inventoryScreen2.Location = new System.Drawing.Point(0, 30);
+            this.inventoryScreen2.MinimumSize = new System.Drawing.Size(600, 400);
+            this.inventoryScreen2.Name = "inventoryScreen2";
+            this.inventoryScreen2.Size = new System.Drawing.Size(823, 547);
+            this.inventoryScreen2.TabIndex = 3;
+            this.inventoryScreen2.Visible = false;
             // 
             // MainFrame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.ClientSize = new System.Drawing.Size(742, 409);
-            this.Controls.Add(this.inventoryScreen1);
-            this.Controls.Add(this.gridFieldView);
-            this.Controls.Add(this.mainScreen1);
+            this.ClientSize = new System.Drawing.Size(742, 453);
+            this.Controls.Add(this.inventoryScreen2);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
+            this.MinimumSize = new System.Drawing.Size(700, 500);
             this.Name = "MainFrame";
             this.Text = "MainFrame";
             this.menuStrip1.ResumeLayout(false);
@@ -171,7 +147,6 @@ namespace KantoorInrichting
         public Views.MainScreen mainScreen1;
         public Views.Inventory.InventoryScreen inventoryScreen1;
         public Views.Grid.GridFieldView gridFieldView;
-        //private Views.InventoryScreen inventoryScreen1;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem inrichterToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem navigatieToolStripMenuItem;
@@ -181,5 +156,6 @@ namespace KantoorInrichting
         private System.Windows.Forms.ToolStripMenuItem navigatieToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem afsluitenToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem terugNaarHoofdschermToolStripMenuItem1;
+        private Views.Inventory.InventoryScreen inventoryScreen2;
     }
 }

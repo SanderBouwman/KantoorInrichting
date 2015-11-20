@@ -74,7 +74,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(0, 172);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 50;
-            this.dataGridView1.Size = new System.Drawing.Size(682, 252);
+            this.dataGridView1.Size = new System.Drawing.Size(820, 372);
             this.dataGridView1.TabIndex = 2;
             // 
             // Naam
@@ -133,7 +133,7 @@
             this.PanelRight.Controls.Add(this.DropdownLeverancier);
             this.PanelRight.Controls.Add(this.checkBox1);
             this.PanelRight.Controls.Add(this.label1);
-            this.PanelRight.Location = new System.Drawing.Point(433, 3);
+            this.PanelRight.Location = new System.Drawing.Point(523, 0);
             this.PanelRight.MinimumSize = new System.Drawing.Size(300, 170);
             this.PanelRight.Name = "PanelRight";
             this.PanelRight.Size = new System.Drawing.Size(300, 170);
@@ -175,10 +175,10 @@
             // 
             this.PanelLeft.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.PanelLeft.Controls.Add(this.titel);
-            this.PanelLeft.Location = new System.Drawing.Point(0, 3);
+            this.PanelLeft.Location = new System.Drawing.Point(0, 0);
             this.PanelLeft.MinimumSize = new System.Drawing.Size(400, 170);
             this.PanelLeft.Name = "PanelLeft";
-            this.PanelLeft.Size = new System.Drawing.Size(435, 170);
+            this.PanelLeft.Size = new System.Drawing.Size(525, 170);
             this.PanelLeft.TabIndex = 0;
             // 
             // titel
@@ -200,12 +200,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.Controls.Add(this.PanelLeft);
             this.Controls.Add(this.PanelRight);
             this.Controls.Add(this.dataGridView1);
             this.MinimumSize = new System.Drawing.Size(600, 400);
             this.Name = "InventoryScreen";
-            this.Size = new System.Drawing.Size(682, 424);
+            this.Size = new System.Drawing.Size(823, 547);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.PanelRight.ResumeLayout(false);
             this.PanelLeft.ResumeLayout(false);
