@@ -19,6 +19,11 @@ namespace KantoorInrichting.Views
             InitializeComponent();
         }
 
+        public MainScreen()
+        {
+            InitializeComponent();
+        }
+
         private void VooraadButton_Click(object sender, EventArgs e)
         {
             hoofdscherm.inventoryScreen1.Visible = true;
