@@ -25,6 +25,7 @@ namespace KantoorInrichting.Controllers.Grid {
             _tileWidth = _view.GetPanel().Width / _model.Rows.GetLength(0);
             _tileHeight = _view.GetPanel().Height / _model.Rows.GetLength(1);
             Console.WriteLine("Started controller");
+            Resize(this, null);
         }
 
         public void MouseDown( object sender, MouseEventArgs e ) {
@@ -45,7 +46,6 @@ namespace KantoorInrichting.Controllers.Grid {
         }
 
         public void Paint( object sender, PaintEventArgs e ) {
-            PaintModel();
             e.Graphics.DrawImage(_buffer, Point.Empty);
         }
 
