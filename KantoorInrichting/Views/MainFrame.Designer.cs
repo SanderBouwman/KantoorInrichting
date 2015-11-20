@@ -41,7 +41,6 @@ namespace KantoorInrichting
             this.navigatieToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.afsluitenToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.terugNaarHoofdschermToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.inventoryScreen2 = new KantoorInrichting.Views.Inventory.InventoryScreen();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -110,27 +109,12 @@ namespace KantoorInrichting
             this.terugNaarHoofdschermToolStripMenuItem1.Text = "Terug naar hoofdscherm";
             this.terugNaarHoofdschermToolStripMenuItem1.Click += new System.EventHandler(this.terugNaarHoofdschermToolStripMenuItem1_Click);
             // 
-            // inventoryScreen2
-            // 
-            this.inventoryScreen2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.inventoryScreen2.AutoSize = true;
-            this.inventoryScreen2.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.inventoryScreen2.Location = new System.Drawing.Point(0, 30);
-            this.inventoryScreen2.MinimumSize = new System.Drawing.Size(600, 400);
-            this.inventoryScreen2.Name = "inventoryScreen2";
-            this.inventoryScreen2.Size = new System.Drawing.Size(823, 547);
-            this.inventoryScreen2.TabIndex = 3;
-            this.inventoryScreen2.Visible = false;
-            // 
             // MainFrame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.ClientSize = new System.Drawing.Size(742, 453);
-            this.Controls.Add(this.inventoryScreen2);
+            this.ClientSize = new System.Drawing.Size(700, 500);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.MinimumSize = new System.Drawing.Size(700, 500);
@@ -157,6 +141,5 @@ namespace KantoorInrichting
         private System.Windows.Forms.ToolStripMenuItem navigatieToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem afsluitenToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem terugNaarHoofdschermToolStripMenuItem1;
-        private Views.Inventory.InventoryScreen inventoryScreen2;
     }
 }

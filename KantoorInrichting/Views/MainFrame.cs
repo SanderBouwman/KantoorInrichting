@@ -36,9 +36,9 @@ namespace KantoorInrichting
             this.gridFieldView.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.gridFieldView.Enabled = false;
             this.gridFieldView.Location = new System.Drawing.Point(0, 28);
-            this.gridFieldView.MinimumSize = new System.Drawing.Size(600,400);
+            this.gridFieldView.MinimumSize = new System.Drawing.Size(700, 500);
             this.gridFieldView.Name = "gridFieldView";
-            this.gridFieldView.Size = new System.Drawing.Size(600, 400);
+            this.gridFieldView.Size = new System.Drawing.Size(700, 500);
             this.gridFieldView.TabIndex = 3;
             this.gridFieldView.Visible = false;
 
@@ -54,9 +54,9 @@ namespace KantoorInrichting
             this.inventoryScreen1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.inventoryScreen1.Enabled = false;
             this.inventoryScreen1.Location = new System.Drawing.Point(0, 28);
-            this.inventoryScreen1.MinimumSize = new System.Drawing.Size(600,400);
+            this.inventoryScreen1.MinimumSize = new System.Drawing.Size(700, 500);
             this.inventoryScreen1.Name = "inventoryScreen1";
-            this.inventoryScreen1.Size = new System.Drawing.Size(600, 400);
+            this.inventoryScreen1.Size = new System.Drawing.Size(700, 500);
             this.inventoryScreen1.TabIndex = 1;
             this.inventoryScreen1.Visible = false;
 
@@ -71,9 +71,9 @@ namespace KantoorInrichting
             this.mainScreen1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.mainScreen1.Dock = System.Windows.Forms.DockStyle.Top;
             this.mainScreen1.Location = new System.Drawing.Point(0, 28);
-            this.mainScreen1.MinimumSize = new System.Drawing.Size(600, 400);
+            this.mainScreen1.MinimumSize = new System.Drawing.Size(700, 500); 
             this.mainScreen1.Name = "mainScreen1";
-            this.mainScreen1.Size = new System.Drawing.Size(600, 400);
+            this.mainScreen1.Size = new System.Drawing.Size(700, 500);
             this.mainScreen1.TabIndex = 0;
 
 

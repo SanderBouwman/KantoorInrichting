@@ -25,13 +25,5 @@ namespace KantoorInrichting.Views.Inventory
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            this.Visible = false;
-            this.Enabled = false;
-            hoofdscherm.mainScreen1.Visible = true;
-            hoofdscherm.mainScreen1.Enabled = true;
-
-        }
     }
 }
