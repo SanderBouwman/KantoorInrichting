@@ -16,13 +16,13 @@ namespace KantoorInrichting.Views.Grid {
         private MainFrame mainframe;
 
 
-        public GridFieldView(MainFrame mainframe) {
+        public GridFieldView( MainFrame mainframe ) {
             this.mainframe = mainframe;
             InitializeComponent();
             SetEvents();
         }
 
-        public void SetController(GridController controller) {
+        public void SetController( GridController controller ) {
             _controller = controller;
         }
 
@@ -31,6 +31,16 @@ namespace KantoorInrichting.Views.Grid {
             this.drawPanel.Paint += DrawPanel_Paint;
             this.drawPanel.Resize += DrawPanel_Resize;
             this.drawPanel.MouseDown += DrawPanel_MouseDown;
+            this.drawPanel.MouseMove += DrawPanel_MouseMove;
+            this.zoomCheckbox.CheckedChanged += ZoomCheckbox_CheckedChanged;
+        }
+
+        private void ZoomCheckbox_CheckedChanged( object sender, EventArgs e ) {
+            _controller.ZoomCheckboxChanged(this.zoomCheckbox.Checked);
+        }
+
+        private void DrawPanel_MouseMove( object sender, MouseEventArgs e ) {
+            _controller.MouseMove(sender, e);
         }
 
         private void DrawPanel_MouseDown( object sender, MouseEventArgs e ) {

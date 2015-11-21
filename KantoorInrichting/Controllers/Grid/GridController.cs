@@ -14,10 +14,14 @@ namespace KantoorInrichting.Controllers.Grid {
         private Bitmap _buffer;
         private Bitmap _background;
 
+        private Point _mousePosition;
+
         private int _tileWidth,
             _tileHeight,
             _tileX,
             _tileY;
+
+        private bool _zoomRectangleEnabled = false;
 
         public GridController( GridFieldView view, GridFieldModel model ) {
             _view = view;
@@ -54,8 +58,23 @@ namespace KantoorInrichting.Controllers.Grid {
         }
 
         public void Paint( object sender, PaintEventArgs e ) {
+            PaintMouseRectangle();
             PaintModel();
             e.Graphics.DrawImage(_buffer, Point.Empty);
+        }
+
+        private void PaintMouseRectangle() {
+            if( _zoomRectangleEnabled ) {
+                Bitmap tempBuffer = new Bitmap(_view.GetPanel().Width, _view.GetPanel().Height);
+                using( Graphics bufferGraphics = Graphics.FromImage(tempBuffer) ) {
+                    bufferGraphics.DrawRectangle(Pens.Red, _mousePosition.X, _mousePosition.Y, 50, 50);
+                }
+
+                _buffer = tempBuffer;
+            } else {
+                _buffer = null;
+                Resize(this, null);
+            }
         }
 
         /// <summary>
@@ -66,7 +85,7 @@ namespace KantoorInrichting.Controllers.Grid {
                 PaintBackground();
                 _view.GetPanel().BackgroundImage = _background;
             }
-            // TODO Drawing items in model
+            // TODO Drawing items in model (draw on _buffer)
 
             _view.GetPanel().Invalidate();
         }
@@ -94,6 +113,15 @@ namespace KantoorInrichting.Controllers.Grid {
                 }
             }
             _background = _buffer;
+        }
+
+        public void MouseMove( object sender, MouseEventArgs e ) {
+            _mousePosition = e.Location;
+            _view.GetPanel().Invalidate();
+        }
+
+        public void ZoomCheckboxChanged( bool b ) {
+            _zoomRectangleEnabled = b;
         }
     }
 }

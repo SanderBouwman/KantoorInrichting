@@ -28,8 +28,10 @@ namespace KantoorInrichting.Views.Grid {
             this.components = new System.ComponentModel.Container();
             this.listView = new System.Windows.Forms.ListView();
             this.imageList = new System.Windows.Forms.ImageList(this.components);
-            this.drawPanel = new GridFieldPanel();
-            this.drawPanel.SuspendLayout();
+            this.drawPanel = new KantoorInrichting.Models.Grid.GridFieldPanel();
+            this.zoomCheckbox = new System.Windows.Forms.CheckBox();
+            this.trackBar = new System.Windows.Forms.TrackBar();
+            ( ( System.ComponentModel.ISupportInitialize ) ( this.trackBar ) ).BeginInit();
             this.SuspendLayout();
             // 
             // listView
@@ -54,26 +56,47 @@ namespace KantoorInrichting.Views.Grid {
             this.drawPanel.Name = "drawPanel";
             this.drawPanel.Size = new System.Drawing.Size(612, 401);
             this.drawPanel.TabIndex = 1;
-            
+            // 
+            // zoomCheckbox
+            // 
+            this.zoomCheckbox.AutoSize = true;
+            this.zoomCheckbox.Location = new System.Drawing.Point(619, 383);
+            this.zoomCheckbox.Name = "zoomCheckbox";
+            this.zoomCheckbox.Size = new System.Drawing.Size(100, 17);
+            this.zoomCheckbox.TabIndex = 2;
+            this.zoomCheckbox.Text = "Zoom rectangle";
+            this.zoomCheckbox.UseVisualStyleBackColor = true;
+            // 
+            // trackBar
+            // 
+            this.trackBar.Location = new System.Drawing.Point(619, 407);
+            this.trackBar.Name = "trackBar";
+            this.trackBar.Size = new System.Drawing.Size(104, 45);
+            this.trackBar.TabIndex = 3;
             // 
             // GridFieldView
             // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.trackBar);
+            this.Controls.Add(this.zoomCheckbox);
             this.Controls.Add(this.drawPanel);
             this.Controls.Add(this.listView);
             this.Enabled = false;
             this.Name = "GridFieldView";
             this.Size = new System.Drawing.Size(800, 500);
-            this.drawPanel.ResumeLayout(false);
-            this.drawPanel.PerformLayout();
+            ( ( System.ComponentModel.ISupportInitialize ) ( this.trackBar ) ).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         #endregion
 
         private System.Windows.Forms.ListView listView;
         private System.Windows.Forms.ImageList imageList;
-        private System.Windows.Forms.Panel drawPanel;
+        private System.Windows.Forms.CheckBox zoomCheckbox;
+        private GridFieldPanel drawPanel;
+        private System.Windows.Forms.TrackBar trackBar;
     }
 }
