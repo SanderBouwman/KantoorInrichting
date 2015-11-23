@@ -12,6 +12,7 @@ namespace KantoorInrichting
 {
     public partial class MainFrame : Form
     {
+        static List<UserControl> panels = new List<UserControl>();
         public MainFrame()
         {
             AddPanels();
@@ -21,9 +22,11 @@ namespace KantoorInrichting
 
         public void AddPanels()
         {
+            // make the panels
             this.inventoryScreen1 = new KantoorInrichting.Views.Inventory.InventoryScreen(this);
             this.mainScreen1 = new KantoorInrichting.Views.MainScreen(this);
             this.gridFieldView = new KantoorInrichting.Views.Grid.GridFieldView(this);
+
 
             //
             // gridFieldView
@@ -67,15 +70,18 @@ namespace KantoorInrichting
             this.mainScreen1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.mainScreen1.Dock = System.Windows.Forms.DockStyle.Top;
             this.mainScreen1.Location = new System.Drawing.Point(0, 28);
-            this.mainScreen1.MinimumSize = new System.Drawing.Size(700, 500); 
             this.mainScreen1.Name = "mainScreen1";
-            this.mainScreen1.Size = new System.Drawing.Size(700, 500);
             this.mainScreen1.TabIndex = 0;
 
 
             this.Controls.Add(this.inventoryScreen1);
             this.Controls.Add(this.gridFieldView);
             this.Controls.Add(this.mainScreen1);
+
+            panels.Add(inventoryScreen1);
+            panels.Add(gridFieldView);
+            panels.Add(mainScreen1);
+
         }
 
         private void terugNaarHoofdschermToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -92,17 +98,21 @@ namespace KantoorInrichting
             int height = (int)this.Height;
             int width = (int)this.Width;
             height -= 50;
-            width -= 50;
+            width -= 15;
             Point size = new Point(width,height);
             Size panelsize = new Size(size);
 
             // loop trough all panels in this form and resize.
-            foreach(Control control in this.Controls)
+            foreach(UserControl control in panels)
             {
-                if (control is Panel)
-                {
+        
                     control.Size = panelsize;
-                }
+                    control.MaximumSize = panelsize;
+                    control.MinimumSize = panelsize;
+                    control.AutoSize = true;
+                    control.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
+                    control.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+                
             }
 
             //this.mainScreen1.Size = panelsize;

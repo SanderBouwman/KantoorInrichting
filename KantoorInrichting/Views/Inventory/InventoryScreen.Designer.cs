@@ -135,10 +135,10 @@
             this.PanelRight.Controls.Add(this.DropdownLeverancier);
             this.PanelRight.Controls.Add(this.checkBox1);
             this.PanelRight.Controls.Add(this.label1);
-            this.PanelRight.Location = new System.Drawing.Point(350, 0);
-            this.PanelRight.MinimumSize = new System.Drawing.Size(250, 170);
+            this.PanelRight.Location = new System.Drawing.Point(312, 0);
+            this.PanelRight.MinimumSize = new System.Drawing.Size(280, 170);
             this.PanelRight.Name = "PanelRight";
-            this.PanelRight.Size = new System.Drawing.Size(250, 170);
+            this.PanelRight.Size = new System.Drawing.Size(288, 170);
             this.PanelRight.TabIndex = 1;
             // 
             // DropdownCategorie
@@ -159,9 +159,10 @@
             // 
             // checkBox1
             // 
+            this.checkBox1.AutoEllipsis = true;
             this.checkBox1.Location = new System.Drawing.Point(49, 71);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(195, 24);
+            this.checkBox1.Size = new System.Drawing.Size(138, 40);
             this.checkBox1.TabIndex = 2;
             this.checkBox1.Text = "Toon afwezige producten";
             this.checkBox1.UseVisualStyleBackColor = true;
@@ -180,15 +181,17 @@
             this.PanelLeft.Location = new System.Drawing.Point(0, 0);
             this.PanelLeft.MinimumSize = new System.Drawing.Size(300, 170);
             this.PanelLeft.Name = "PanelLeft";
-            this.PanelLeft.Size = new System.Drawing.Size(345, 170);
+            this.PanelLeft.Size = new System.Drawing.Size(306, 170);
             this.PanelLeft.TabIndex = 0;
             // 
             // titel
             // 
+            this.titel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.titel.Font = new System.Drawing.Font("Maiandra GD", 28.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.titel.Location = new System.Drawing.Point(64, 43);
+            this.titel.Location = new System.Drawing.Point(40, 43);
             this.titel.Name = "titel";
-            this.titel.Size = new System.Drawing.Size(262, 69);
+            this.titel.Size = new System.Drawing.Size(263, 69);
             this.titel.TabIndex = 0;
             this.titel.Text = "Inventaris";
             // 

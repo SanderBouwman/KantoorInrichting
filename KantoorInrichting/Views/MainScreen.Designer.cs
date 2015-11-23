@@ -36,10 +36,12 @@
             // 
             this.VooraadButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.VooraadButton.Location = new System.Drawing.Point(33, 39);
+            this.VooraadButton.AutoEllipsis = true;
+            this.VooraadButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.VooraadButton.Location = new System.Drawing.Point(21, 15);
             this.VooraadButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.VooraadButton.Name = "VooraadButton";
-            this.VooraadButton.Size = new System.Drawing.Size(343, 70);
+            this.VooraadButton.Size = new System.Drawing.Size(127, 27);
             this.VooraadButton.TabIndex = 0;
             this.VooraadButton.Text = "Voorraad";
             this.VooraadButton.UseVisualStyleBackColor = true;
@@ -49,10 +51,12 @@
             // 
             this.mapButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.mapButton.Location = new System.Drawing.Point(33, 115);
-            this.mapButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.mapButton.AutoEllipsis = true;
+            this.mapButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.mapButton.Location = new System.Drawing.Point(21, 48);
+            this.mapButton.Margin = new System.Windows.Forms.Padding(4);
             this.mapButton.Name = "mapButton";
-            this.mapButton.Size = new System.Drawing.Size(343, 70);
+            this.mapButton.Size = new System.Drawing.Size(127, 27);
             this.mapButton.TabIndex = 1;
             this.mapButton.Text = "Plattegrond";
             this.mapButton.UseVisualStyleBackColor = true;
@@ -60,14 +64,14 @@
             // 
             // MainScreen
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
+            this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Controls.Add(this.mapButton);
             this.Controls.Add(this.VooraadButton);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "MainScreen";
-            this.Size = new System.Drawing.Size(447, 294);
+            this.Size = new System.Drawing.Size(155, 79);
             this.ResumeLayout(false);
 
         }
