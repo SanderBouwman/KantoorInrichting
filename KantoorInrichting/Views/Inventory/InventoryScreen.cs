@@ -69,6 +69,32 @@ namespace KantoorInrichting.Views.Inventory
             dataGridView1.DataSource = Models.Product.Product.result;
             dataGridView1.Refresh();
         }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var senderGrid = (DataGridView)sender;
+
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0) {
+
+                if (e.ColumnIndex == 8)
+                {
+                    // run edit screen here
+                    DialogResult result = MessageBox.Show("run edit screen here", "Confirmation", MessageBoxButtons.YesNoCancel);
+                    // make an editscreen with current product as argument
+                    InventoryEdit edit = new InventoryEdit(Models.Product.Product.list[e.RowIndex]);
+                }
+
+                if (e.ColumnIndex == 9)
+                {
+                    // run delete screen here
+                    DialogResult result = MessageBox.Show("run delete screen here", "Confirmation", MessageBoxButtons.YesNoCancel);
+                    // make an Removescreen with current product as argument
+                    InventoryRemove remove = new InventoryRemove(Models.Product.Product.list[e.RowIndex]);
+                }
+
+            }
+                  
+        }
     }
     }
 
