@@ -101,6 +101,7 @@ namespace KantoorInrichting
             this.afsluitenToolStripMenuItem1.Name = "afsluitenToolStripMenuItem1";
             this.afsluitenToolStripMenuItem1.Size = new System.Drawing.Size(245, 26);
             this.afsluitenToolStripMenuItem1.Text = "Afsluiten";
+            this.afsluitenToolStripMenuItem1.Click += new System.EventHandler(this.afsluitenToolStripMenuItem1_Click);
             // 
             // terugNaarHoofdschermToolStripMenuItem1
             // 
