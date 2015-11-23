@@ -55,6 +55,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Assortment\AssortmentScreen.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Assortment\AssortmentScreen.Designer.cs">
+      <DependentUpon>AssortmentScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Grid\GridFieldPanel.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -140,6 +146,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Assortment\AssortmentScreen.resx">
+      <DependentUpon>AssortmentScreen.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Inventory\InventoryEdit.resx">
       <DependentUpon>InventoryEdit.cs</DependentUpon>
     </EmbeddedResource>
@@ -179,7 +188,6 @@
     <Folder Include="Controllers\Inventory\" />
     <Folder Include="Models\Assortment\" />
     <Folder Include="Models\Inventory\" />
-    <Folder Include="Views\Assortment\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\No_Image_Available.png" />

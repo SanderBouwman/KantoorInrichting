@@ -18,7 +18,6 @@ namespace KantoorInrichting
             AddPanels();
             InitializeComponent();
             OnBootup();
-
         }
 
 
@@ -28,35 +27,46 @@ namespace KantoorInrichting
             this.inventoryScreen1 = new KantoorInrichting.Views.Inventory.InventoryScreen(this);
             this.mainScreen1 = new KantoorInrichting.Views.MainScreen(this);
             this.gridFieldView = new KantoorInrichting.Views.Grid.GridFieldView(this);
+            this.assortmentScreen = new Views.Assortment.AssortmentScreen(this);
 
+            //
+            // assortmentScreen
+            //
+
+            this.assortmentScreen.Anchor = ((AnchorStyles)((((AnchorStyles.Top | AnchorStyles.Bottom) | AnchorStyles.Left) | AnchorStyles.Right)));
+            this.assortmentScreen.BackColor = SystemColors.GradientInactiveCaption;
+            this.assortmentScreen.AutoSize = true;
+            this.assortmentScreen.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            this.assortmentScreen.BackColor = SystemColors.GradientInactiveCaption;
+            this.assortmentScreen.Enabled = false;
+            this.assortmentScreen.Location = new Point(0, 28);
+            this.assortmentScreen.Name = "inventoryScreen1";
+            this.assortmentScreen.TabIndex = 3;
+            this.assortmentScreen.Visible = false;
 
             //
             // gridFieldView
             //
-            this.gridFieldView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-| System.Windows.Forms.AnchorStyles.Left)
-| System.Windows.Forms.AnchorStyles.Right)));
-            this.gridFieldView.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.gridFieldView.Anchor = ((AnchorStyles)((((AnchorStyles.Top | AnchorStyles.Bottom)|AnchorStyles.Left)|AnchorStyles.Right)));
+            this.gridFieldView.BackColor = SystemColors.GradientInactiveCaption;
             this.gridFieldView.AutoSize = true;
-            this.gridFieldView.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.gridFieldView.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             this.gridFieldView.Enabled = false;
-            this.gridFieldView.Location = new System.Drawing.Point(0, 28);
+            this.gridFieldView.Location = new Point(0, 28);
             this.gridFieldView.Name = "gridFieldView";
-            this.gridFieldView.TabIndex = 3;
+            this.gridFieldView.TabIndex = 2;
             this.gridFieldView.Visible = false;
 
             // 
             // inventoryScreen1
             // 
-            this.inventoryScreen1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-| System.Windows.Forms.AnchorStyles.Left)
-| System.Windows.Forms.AnchorStyles.Right)));
-            this.inventoryScreen1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.inventoryScreen1.Anchor = ((AnchorStyles)((((AnchorStyles.Top | AnchorStyles.Bottom) | AnchorStyles.Left) | AnchorStyles.Right)));
+            this.inventoryScreen1.BackColor = SystemColors.GradientInactiveCaption;
             this.inventoryScreen1.AutoSize = true;
-            this.inventoryScreen1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.inventoryScreen1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.inventoryScreen1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            this.inventoryScreen1.BackColor = SystemColors.GradientInactiveCaption;
             this.inventoryScreen1.Enabled = false;
-            this.inventoryScreen1.Location = new System.Drawing.Point(0, 28);
+            this.inventoryScreen1.Location = new Point(0, 28);
             this.inventoryScreen1.Name = "inventoryScreen1";
             this.inventoryScreen1.TabIndex = 1;
             this.inventoryScreen1.Visible = false;
@@ -75,11 +85,12 @@ namespace KantoorInrichting
             this.mainScreen1.Name = "mainScreen1";
             this.mainScreen1.TabIndex = 0;
 
-
+            this.Controls.Add(this.assortmentScreen);
             this.Controls.Add(this.inventoryScreen1);
             this.Controls.Add(this.gridFieldView);
             this.Controls.Add(this.mainScreen1);
 
+            panels.Add(assortmentScreen);
             panels.Add(inventoryScreen1);
             panels.Add(gridFieldView);
             panels.Add(mainScreen1);
@@ -92,12 +103,13 @@ namespace KantoorInrichting
             mainScreen1.Enabled = true;
             inventoryScreen1.Visible = false;
             gridFieldView.Visible = false;
+            assortmentScreen.Visible = false;
             mainScreen1.BringToFront();
         }
 
         private void OnBootup()
         {
-            MainFrame_Resize(this,null);
+            MainFrame_Resize(this, null);
         }
 
         private void MainFrame_Resize(object sender, EventArgs e)
@@ -106,20 +118,20 @@ namespace KantoorInrichting
             int width = (int)this.Width;
             height -= 50;
             width -= 15;
-            Point size = new Point(width,height);
+            Point size = new Point(width, height);
             Size panelsize = new Size(size);
 
             // loop trough all panels in this form and resize.
-            foreach(UserControl control in panels)
+            foreach (UserControl control in panels)
             {
-        
-                    control.Size = panelsize;
-                    control.MaximumSize = panelsize;
-                    control.MinimumSize = panelsize;
-                    control.AutoSize = true;
-                    control.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
-                    control.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-                
+
+                control.Size = panelsize;
+                control.MaximumSize = panelsize;
+                control.MinimumSize = panelsize;
+                control.AutoSize = true;
+                control.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
+                control.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+
             }
 
             //this.mainScreen1.Size = panelsize;

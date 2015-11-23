@@ -30,6 +30,7 @@
         {
             this.VooraadButton = new System.Windows.Forms.Button();
             this.mapButton = new System.Windows.Forms.Button();
+            this.assortmentButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // VooraadButton
@@ -41,7 +42,7 @@
             this.VooraadButton.Location = new System.Drawing.Point(21, 15);
             this.VooraadButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.VooraadButton.Name = "VooraadButton";
-            this.VooraadButton.Size = new System.Drawing.Size(127, 27);
+            this.VooraadButton.Size = new System.Drawing.Size(572, 27);
             this.VooraadButton.TabIndex = 0;
             this.VooraadButton.Text = "Voorraad";
             this.VooraadButton.UseVisualStyleBackColor = true;
@@ -56,22 +57,38 @@
             this.mapButton.Location = new System.Drawing.Point(21, 48);
             this.mapButton.Margin = new System.Windows.Forms.Padding(4);
             this.mapButton.Name = "mapButton";
-            this.mapButton.Size = new System.Drawing.Size(127, 27);
+            this.mapButton.Size = new System.Drawing.Size(572, 27);
             this.mapButton.TabIndex = 1;
             this.mapButton.Text = "Plattegrond";
             this.mapButton.UseVisualStyleBackColor = true;
             this.mapButton.Click += new System.EventHandler(this.MapButton_Click);
+            // 
+            // assortmentButton
+            // 
+            this.assortmentButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.assortmentButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.assortmentButton.Location = new System.Drawing.Point(21, 82);
+            this.assortmentButton.Margin = new System.Windows.Forms.Padding(4);
+            this.assortmentButton.Name = "assortmentButton";
+            this.assortmentButton.Size = new System.Drawing.Size(572, 27);
+            this.assortmentButton.TabIndex = 2;
+            this.assortmentButton.Text = "Assortiment";
+            this.assortmentButton.UseVisualStyleBackColor = true;
+            this.assortmentButton.Click += new System.EventHandler(this.assortmentButton_Click);
             // 
             // MainScreen
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.Controls.Add(this.assortmentButton);
             this.Controls.Add(this.mapButton);
             this.Controls.Add(this.VooraadButton);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.MinimumSize = new System.Drawing.Size(600, 400);
             this.Name = "MainScreen";
-            this.Size = new System.Drawing.Size(155, 79);
+            this.Size = new System.Drawing.Size(600, 400);
             this.ResumeLayout(false);
 
         }
@@ -80,5 +97,6 @@
 
         private System.Windows.Forms.Button VooraadButton;
         private System.Windows.Forms.Button mapButton;
+        private System.Windows.Forms.Button assortmentButton;
     }
 }

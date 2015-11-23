@@ -10,10 +10,13 @@ using System.Windows.Forms;
 using KantoorInrichting.Controllers.Grid;
 using KantoorInrichting.Models.Grid;
 
-namespace KantoorInrichting.Views {
-    public partial class MainScreen : UserControl {
+namespace KantoorInrichting.Views
+{
+    public partial class MainScreen : UserControl
+    {
         public MainFrame hoofdscherm;
-        public MainScreen( MainFrame hoofdscherm ) {
+        public MainScreen(MainFrame hoofdscherm)
+        {
             this.hoofdscherm = hoofdscherm;
             InitializeComponent();
         }
@@ -31,7 +34,8 @@ namespace KantoorInrichting.Views {
             hoofdscherm.inventoryScreen1.BringToFront();
         }
 
-        private void MapButton_Click( object sender, EventArgs e ) {
+        private void MapButton_Click(object sender, EventArgs e)
+        {
             GridController gc = new GridController(hoofdscherm.gridFieldView, new GridFieldModel(10, 10, 0.5f));
 
             hoofdscherm.Size = hoofdscherm.gridFieldView.Size;
@@ -40,6 +44,14 @@ namespace KantoorInrichting.Views {
             hoofdscherm.gridFieldView.Enabled = true;
             this.Visible = false;
             hoofdscherm.gridFieldView.BringToFront();
+        }
+
+        private void assortmentButton_Click(object sender, EventArgs e)
+        {
+            hoofdscherm.assortmentScreen.Visible = true;
+            hoofdscherm.assortmentScreen.Enabled = true;
+            this.Visible = false;
+            hoofdscherm.assortmentScreen.BringToFront();
         }
     }
 }
