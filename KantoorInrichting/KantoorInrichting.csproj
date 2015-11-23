@@ -214,6 +214,7 @@
     <Folder Include="Models\Inventory\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Properties\DataSources\KantoorInrichting.Models.Product.Product.datasource" />
     <None Include="Resources\No_Image_Available.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

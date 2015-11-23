@@ -34,10 +34,11 @@ namespace KantoorInrichting.Models.Product
         //public Supplier supplier { get; private set; }
 
         public string description { get; private set; }
-        
+        public static int id;
 
         public ProductModel(string n, string b, string t, string c, string s, int l, int w, int h, string d, int a)
         {
+            id = id++;
             name = n;
             brand = b;
             type = t;

@@ -24,10 +24,13 @@ namespace KantoorInrichting.Views.Inventory
             Invalidate();
         }
 
+       
+
         public InventoryScreen()
         {
             InitializeComponent();
             FillData();
+            FillDropdown();
             Invalidate();
         }
 
@@ -37,6 +40,23 @@ namespace KantoorInrichting.Views.Inventory
             dataGridView1.AutoGenerateColumns = false;
             Models.Product.ProductModel.result = Models.Product.ProductModel.list;
             this.dataGridView1.DataSource = Models.Product.ProductModel.result;    
+        }
+
+        public void FillDropdown()
+        {
+
+            var MerkResult = Models.Product.Product.list.GroupBy(product => product.Brand)
+                   .Select(grp => grp.First())
+                   .ToList();
+         
+            foreach(Models.Product.Product product in MerkResult)
+            {
+                DropdownMerk.Items.Add(product);
+            }
+
+
+            //DropdownMerk.DataSource = MerkResult;
+
         }
 
 
@@ -94,6 +114,12 @@ namespace KantoorInrichting.Views.Inventory
 
             }
                   
+        }
+
+        private void DropdownMerk_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //person selectedPerson = comboBox1.SelectedItem as person;
+            //messageBox.Show(selectedPerson.name, "caption goes here");
         }
     }
     }
