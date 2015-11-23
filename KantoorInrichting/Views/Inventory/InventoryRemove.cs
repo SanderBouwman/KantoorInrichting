@@ -13,6 +13,8 @@ namespace KantoorInrichting.Views.Inventory
     public partial class InventoryRemove : Form
     {
         public event EventHandler InventoryEditorScreenClick;
+        private string product = "stoel";
+
 
         public InventoryRemove()
         {
@@ -22,28 +24,18 @@ namespace KantoorInrichting.Views.Inventory
 
         private void InventoryEditor_Load(object sender, EventArgs e)
         {
-            MessageBox.Show("gelukt");
-        }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Verwijderd!");
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Geannuleerd!");
+            Close();
         }
 
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            MessageBox.Show("SQL query: \nDELETE FROM product \nWHERE productnaam = '" + product + "'");
+
+        }
     }
 }

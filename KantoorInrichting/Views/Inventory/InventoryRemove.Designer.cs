@@ -42,7 +42,7 @@
             this.button1.TabIndex = 0;
             this.button1.Text = "Verwijderen";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // button2
             // 
@@ -63,7 +63,6 @@
             this.label1.Size = new System.Drawing.Size(112, 24);
             this.label1.TabIndex = 2;
             this.label1.Text = "Verwijderen";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
@@ -73,9 +72,8 @@
             this.label2.Size = new System.Drawing.Size(256, 36);
             this.label2.TabIndex = 3;
             this.label2.Text = "Weet u zeker dat u het product uit het inventaris wilt verwijderen?";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
-            // InventoryEditor
+            // InventoryRemove
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -84,7 +82,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Name = "InventoryEditor";
+            this.Name = "InventoryRemove";
             this.Text = "InventoryEditor";
             this.Load += new System.EventHandler(this.InventoryEditor_Load);
             this.ResumeLayout(false);
