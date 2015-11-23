@@ -36,9 +36,7 @@ namespace KantoorInrichting
             this.gridFieldView.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.gridFieldView.Enabled = false;
             this.gridFieldView.Location = new System.Drawing.Point(0, 28);
-            this.gridFieldView.MinimumSize = new System.Drawing.Size(700, 500);
             this.gridFieldView.Name = "gridFieldView";
-            this.gridFieldView.Size = new System.Drawing.Size(700, 500);
             this.gridFieldView.TabIndex = 3;
             this.gridFieldView.Visible = false;
 
@@ -54,9 +52,7 @@ namespace KantoorInrichting
             this.inventoryScreen1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.inventoryScreen1.Enabled = false;
             this.inventoryScreen1.Location = new System.Drawing.Point(0, 28);
-            this.inventoryScreen1.MinimumSize = new System.Drawing.Size(700, 500);
             this.inventoryScreen1.Name = "inventoryScreen1";
-            this.inventoryScreen1.Size = new System.Drawing.Size(700, 500);
             this.inventoryScreen1.TabIndex = 1;
             this.inventoryScreen1.Visible = false;
 
@@ -89,6 +85,30 @@ namespace KantoorInrichting
             inventoryScreen1.Visible = false;
             gridFieldView.Visible = false;
             mainScreen1.BringToFront();
+        }
+
+        private void MainFrame_Resize(object sender, EventArgs e)
+        {
+            int height = (int)this.Height;
+            int width = (int)this.Width;
+            height -= 50;
+            width -= 50;
+            Point size = new Point(width,height);
+            Size panelsize = new Size(size);
+
+            // loop trough all panels in this form and resize.
+            foreach(Control control in this.Controls)
+            {
+                if (control is Panel)
+                {
+                    control.Size = panelsize;
+                }
+            }
+
+            //this.mainScreen1.Size = panelsize;
+            //this.inventoryScreen1.Size = panelsize;
+            //this.gridFieldView.Size = panelsize;
+
         }
     }
 }

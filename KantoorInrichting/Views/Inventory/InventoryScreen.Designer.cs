@@ -55,6 +55,8 @@
             // 
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AllowUserToOrderColumns = true;
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -74,7 +76,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(0, 172);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 50;
-            this.dataGridView1.Size = new System.Drawing.Size(820, 372);
+            this.dataGridView1.Size = new System.Drawing.Size(600, 228);
             this.dataGridView1.TabIndex = 2;
             // 
             // Naam
@@ -133,10 +135,10 @@
             this.PanelRight.Controls.Add(this.DropdownLeverancier);
             this.PanelRight.Controls.Add(this.checkBox1);
             this.PanelRight.Controls.Add(this.label1);
-            this.PanelRight.Location = new System.Drawing.Point(523, 0);
-            this.PanelRight.MinimumSize = new System.Drawing.Size(300, 170);
+            this.PanelRight.Location = new System.Drawing.Point(350, 0);
+            this.PanelRight.MinimumSize = new System.Drawing.Size(250, 170);
             this.PanelRight.Name = "PanelRight";
-            this.PanelRight.Size = new System.Drawing.Size(300, 170);
+            this.PanelRight.Size = new System.Drawing.Size(250, 170);
             this.PanelRight.TabIndex = 1;
             // 
             // DropdownCategorie
@@ -176,9 +178,9 @@
             this.PanelLeft.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.PanelLeft.Controls.Add(this.titel);
             this.PanelLeft.Location = new System.Drawing.Point(0, 0);
-            this.PanelLeft.MinimumSize = new System.Drawing.Size(400, 170);
+            this.PanelLeft.MinimumSize = new System.Drawing.Size(300, 170);
             this.PanelLeft.Name = "PanelLeft";
-            this.PanelLeft.Size = new System.Drawing.Size(525, 170);
+            this.PanelLeft.Size = new System.Drawing.Size(345, 170);
             this.PanelLeft.TabIndex = 0;
             // 
             // titel
@@ -186,7 +188,7 @@
             this.titel.Font = new System.Drawing.Font("Maiandra GD", 28.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.titel.Location = new System.Drawing.Point(64, 43);
             this.titel.Name = "titel";
-            this.titel.Size = new System.Drawing.Size(300, 69);
+            this.titel.Size = new System.Drawing.Size(262, 69);
             this.titel.TabIndex = 0;
             this.titel.Text = "Inventaris";
             // 
@@ -200,13 +202,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.Controls.Add(this.PanelLeft);
             this.Controls.Add(this.PanelRight);
+            this.Controls.Add(this.PanelLeft);
             this.Controls.Add(this.dataGridView1);
             this.MinimumSize = new System.Drawing.Size(600, 400);
             this.Name = "InventoryScreen";
-            this.Size = new System.Drawing.Size(823, 547);
+            this.Size = new System.Drawing.Size(600, 400);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.PanelRight.ResumeLayout(false);
             this.PanelLeft.ResumeLayout(false);
