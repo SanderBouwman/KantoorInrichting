@@ -123,6 +123,7 @@
             this.checkBox1.TabIndex = 2;
             this.checkBox1.Text = "Toon afwezige producten";
             this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // label1
             // 
@@ -175,6 +176,7 @@
             this.Merk.DataPropertyName = "Brand";
             this.Merk.HeaderText = "Merk";
             this.Merk.Name = "Merk";
+            this.Merk.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
             // 
             // hoogte
             // 
