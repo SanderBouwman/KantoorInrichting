@@ -13,7 +13,7 @@ namespace KantoorInrichting.Views.Inventory
     public partial class InventoryEdit : Form
     {
         private string productname;
-        private int productamount;
+        private decimal productamount;
 
 
 

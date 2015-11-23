@@ -69,8 +69,13 @@
             // ProductAantal
             // 
             this.ProductAantal.Location = new System.Drawing.Point(135, 124);
+            this.ProductAantal.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
             this.ProductAantal.Name = "ProductAantal";
-            this.ProductAantal.Size = new System.Drawing.Size(70, 22);
+            this.ProductAantal.Size = new System.Drawing.Size(93, 22);
             this.ProductAantal.TabIndex = 4;
             // 
             // AnnulerenButton
