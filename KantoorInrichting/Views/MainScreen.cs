@@ -37,8 +37,11 @@ namespace KantoorInrichting.Views
         private void MapButton_Click(object sender, EventArgs e)
         {
             GridController gc = new GridController(hoofdscherm.gridFieldView, new GridFieldModel(10, 10, 0.5f));
+            
 
-            hoofdscherm.Size = hoofdscherm.gridFieldView.Size;
+            // hoofdscherm overwrites my GridFieldView size, so I have to set the screen size like this
+            hoofdscherm.Width = 800;
+            hoofdscherm.Height = 670;
 
             hoofdscherm.gridFieldView.Visible = true;
             hoofdscherm.gridFieldView.Enabled = true;

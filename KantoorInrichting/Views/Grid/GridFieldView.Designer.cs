@@ -28,17 +28,17 @@ namespace KantoorInrichting.Views.Grid {
             this.components = new System.ComponentModel.Container();
             this.listView = new System.Windows.Forms.ListView();
             this.imageList = new System.Windows.Forms.ImageList(this.components);
-            this.drawPanel = new KantoorInrichting.Models.Grid.GridFieldPanel();
             this.zoomCheckbox = new System.Windows.Forms.CheckBox();
             this.trackBar = new System.Windows.Forms.TrackBar();
-            ( ( System.ComponentModel.ISupportInitialize ) ( this.trackBar ) ).BeginInit();
+            this.drawPanel = new KantoorInrichting.Models.Grid.GridFieldPanel();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar)).BeginInit();
             this.SuspendLayout();
             // 
             // listView
             // 
             this.listView.BackColor = System.Drawing.SystemColors.HotTrack;
             this.listView.LargeImageList = this.imageList;
-            this.listView.Location = new System.Drawing.Point(618, 0);
+            this.listView.Location = new System.Drawing.Point(619, 5);
             this.listView.Name = "listView";
             this.listView.Size = new System.Drawing.Size(124, 340);
             this.listView.TabIndex = 0;
@@ -49,13 +49,6 @@ namespace KantoorInrichting.Views.Grid {
             this.imageList.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
             this.imageList.ImageSize = new System.Drawing.Size(16, 16);
             this.imageList.TransparentColor = System.Drawing.Color.Transparent;
-            // 
-            // drawPanel
-            // 
-            this.drawPanel.Location = new System.Drawing.Point(0, 0);
-            this.drawPanel.Name = "drawPanel";
-            this.drawPanel.Size = new System.Drawing.Size(612, 401);
-            this.drawPanel.TabIndex = 1;
             // 
             // zoomCheckbox
             // 
@@ -69,10 +62,22 @@ namespace KantoorInrichting.Views.Grid {
             // 
             // trackBar
             // 
-            this.trackBar.Location = new System.Drawing.Point(619, 407);
+            this.trackBar.Location = new System.Drawing.Point(615, 406);
+            this.trackBar.Maximum = 300;
+            this.trackBar.Minimum = 50;
+            this.trackBar.TickFrequency = 25;
+            this.trackBar.LargeChange = 25;
+            this.trackBar.SmallChange = 10;
             this.trackBar.Name = "trackBar";
             this.trackBar.Size = new System.Drawing.Size(104, 45);
             this.trackBar.TabIndex = 3;
+            // 
+            // drawPanel
+            // 
+            this.drawPanel.Location = new System.Drawing.Point(5, 5);
+            this.drawPanel.Name = "drawPanel";
+            this.drawPanel.Size = new System.Drawing.Size(601, 601);
+            this.drawPanel.TabIndex = 1;
             // 
             // GridFieldView
             // 
@@ -84,8 +89,8 @@ namespace KantoorInrichting.Views.Grid {
             this.Controls.Add(this.listView);
             this.Enabled = false;
             this.Name = "GridFieldView";
-            this.Size = new System.Drawing.Size(800, 500);
-            ( ( System.ComponentModel.ISupportInitialize ) ( this.trackBar ) ).EndInit();
+            this.Size = new System.Drawing.Size(800, 620);
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

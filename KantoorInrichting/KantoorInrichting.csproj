@@ -66,6 +66,12 @@
     </Compile>
     <Compile Include="Models\Grid\Tile.cs" />
     <Compile Include="Models\Product\Product.cs" />
+    <Compile Include="Views\Grid\ZoomView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Grid\ZoomView.Designer.cs">
+      <DependentUpon>ZoomView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Inventory\InventoryEdit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -148,6 +154,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Assortment\AssortmentScreen.resx">
       <DependentUpon>AssortmentScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Grid\ZoomView.resx">
+      <DependentUpon>ZoomView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Inventory\InventoryEdit.resx">
       <DependentUpon>InventoryEdit.cs</DependentUpon>

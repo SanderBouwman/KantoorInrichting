@@ -32,6 +32,11 @@ namespace KantoorInrichting.Views.Grid {
             drawPanel.MouseDown += DrawPanel_MouseDown;
             drawPanel.MouseMove += DrawPanel_MouseMove;
             zoomCheckbox.CheckedChanged += ZoomCheckbox_CheckedChanged;
+            trackBar.Scroll += TrackBar_Scroll;
+        }
+
+        private void TrackBar_Scroll(object sender, EventArgs e) {
+            _controller.TrackBar_Scroll(sender, e);
         }
 
         private void ZoomCheckbox_CheckedChanged(object sender, EventArgs e) {
@@ -56,6 +61,10 @@ namespace KantoorInrichting.Views.Grid {
 
         public Panel GetPanel() {
             return drawPanel;
+        }
+
+        public TrackBar GeTrackBar() {
+            return trackBar;
         }
     }
 }
