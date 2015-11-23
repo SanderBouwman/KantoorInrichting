@@ -49,7 +49,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\Placement\PolygonPlacementController.cs" />
     <Compile Include="Models\Grid\GridFieldModel.cs" />
+    <Compile Include="Models\Placement\Polygon.cs" />
+    <Compile Include="Models\Placement\Vector.cs" />
+    <Compile Include="Models\Product\PlacedProduct.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
