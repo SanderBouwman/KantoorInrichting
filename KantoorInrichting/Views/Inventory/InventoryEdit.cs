@@ -14,14 +14,16 @@ namespace KantoorInrichting.Views.Inventory
     {
         private string productname;
         private decimal productamount;
+        private UserControl U;
 
 
 
-        public InventoryEdit(Models.Product.Product p)
+        public InventoryEdit(Models.Product.Product p, UserControl u)
         {
             InitializeComponent();
             this.productamount = p.amount;
             this.productname = p.name;
+            this.U = u;
 
             ProductNaam.Text = "productnaam: " + productname;
             ProductAantal.Value = productamount;
@@ -32,11 +34,14 @@ namespace KantoorInrichting.Views.Inventory
         {
             decimal amount = ProductAantal.Value;
             MessageBox.Show("SQL query:\nUPDATE product \nSET aantal = " + amount + " \nWHERE productnaam = '" + productname + "'");
+            this.Close();
+            U.Refresh();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             this.Close();
+            U.Refresh();
         }
     }
 }

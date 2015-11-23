@@ -14,12 +14,14 @@ namespace KantoorInrichting.Views.Inventory
     {
         public event EventHandler InventoryEditorScreenClick;
         private string productname;
+        private UserControl U;
 
 
-        public InventoryRemove(Models.Product.Product p)
+        public InventoryRemove(Models.Product.Product p, UserControl u)
         {
             InitializeComponent();
             this.productname = p.name;
+            this.U = u;
         }
 
 
@@ -31,12 +33,14 @@ namespace KantoorInrichting.Views.Inventory
         private void button2_Click(object sender, EventArgs e)
         {
             this.Close();
+            U.Refresh();
         }
 
         private void button1_Click_1(object sender, EventArgs e)
         {
             MessageBox.Show("SQL query: \nDELETE FROM product \nWHERE productnaam = '" + productname + "'");
-
+            this.Close();
+            U.Refresh();
         }
     }
 }
