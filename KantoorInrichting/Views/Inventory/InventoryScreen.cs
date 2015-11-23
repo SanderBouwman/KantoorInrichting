@@ -80,7 +80,7 @@ namespace KantoorInrichting.Views.Inventory
                 {
                     // run edit screen here
                     // make an editscreen with current product as argument
-                    InventoryEdit edit = new InventoryEdit(Models.Product.Product.list[e.RowIndex]);
+                    InventoryEdit edit = new InventoryEdit(Models.Product.Product.list[e.RowIndex],this);
                     edit.Show();
                 }
 
@@ -88,7 +88,7 @@ namespace KantoorInrichting.Views.Inventory
                 {
                     // run delete screen here
                     // make an Removescreen with current product as argument
-                    InventoryRemove remove = new InventoryRemove(Models.Product.Product.list[e.RowIndex]);
+                    InventoryRemove remove = new InventoryRemove(Models.Product.Product.list[e.RowIndex],this);
                     remove.Show();
                 }
 
