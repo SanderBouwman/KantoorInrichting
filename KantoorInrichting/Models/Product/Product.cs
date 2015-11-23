@@ -58,7 +58,7 @@ namespace KantoorInrichting.Models.Product
         /// <summary>
         /// Return a default Product
         /// </summary>
-        public Product() : this("", "", "", "", "", 0, 0, 0, "", 0) { }
+        public Product() : this("", "", "", "", "", 1, 1, 1, "", 1) { }
 
     }
 }

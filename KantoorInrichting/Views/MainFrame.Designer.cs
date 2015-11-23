@@ -133,6 +133,7 @@ namespace KantoorInrichting
         public Views.MainScreen mainScreen1;
         public Views.Inventory.InventoryScreen inventoryScreen1;
         public Views.Grid.GridFieldView gridFieldView;
+        public Views.Placement.ProductAdding placement;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem inrichterToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem navigatieToolStripMenuItem;

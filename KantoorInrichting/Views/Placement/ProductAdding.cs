@@ -19,6 +19,7 @@ namespace KantoorInrichting.Views.Placement
         //List of all product currently placed on the screen.
         public static ObservableCollection<PlacedProduct> ppList = new ObservableCollection<PlacedProduct>();
 
+        public MainFrame hoofdscherm;
 
 
         private void ppList_CollectionChanged(object sender, EventArgs e)
@@ -28,8 +29,9 @@ namespace KantoorInrichting.Views.Placement
 
         private PlacedProduct placedP;
 
-        public ProductAdding()
+        public ProductAdding(MainFrame hoofdscherm)
         {
+            this.hoofdscherm = hoofdscherm;
             InitializeComponent();
 
             productList1.SelectionChanged += new ProductSelectionChanged(this.changeSelected);

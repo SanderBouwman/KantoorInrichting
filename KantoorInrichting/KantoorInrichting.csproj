@@ -192,7 +192,6 @@
     <Folder Include="Controllers\Inventory\" />
     <Folder Include="Models\Assortment\" />
     <Folder Include="Models\Inventory\" />
-    <Folder Include="Views\ProductPlacement\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\No_Image_Available.png" />

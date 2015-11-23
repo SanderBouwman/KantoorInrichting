@@ -161,7 +161,7 @@ namespace KantoorInrichting.Models.Product
                 fallbackPoints[index] = cornerPoints[index];
             }
 
-            double angle_Even = currentAngle;
+            double angle_Even = (double)currentAngle;
             double angle_Uneven = currentAngle;
             double radius = Math.Sqrt(Math.Pow(0.5 * product.width, 2) + Math.Pow(0.5 * product.length, 2));
 

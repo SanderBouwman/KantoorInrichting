@@ -28,6 +28,15 @@ namespace KantoorInrichting
             this.mainScreen1 = new KantoorInrichting.Views.MainScreen(this);
             this.gridFieldView = new KantoorInrichting.Views.Grid.GridFieldView(this);
             this.assortmentScreen = new Views.Assortment.AssortmentScreen(this);
+            this.placement = new Views.Placement.ProductAdding(this);
+
+
+            //
+            // placement
+            //
+
+            this.placement.Visible = false;
+            this.placement.Location = new Point(0, 28);
 
             //
             // assortmentScreen
@@ -89,11 +98,13 @@ namespace KantoorInrichting
             this.Controls.Add(this.inventoryScreen1);
             this.Controls.Add(this.gridFieldView);
             this.Controls.Add(this.mainScreen1);
+            this.Controls.Add(this.placement);
 
             panels.Add(assortmentScreen);
             panels.Add(inventoryScreen1);
             panels.Add(gridFieldView);
             panels.Add(mainScreen1);
+            panels.Add(placement);
 
         }
 
@@ -104,6 +115,7 @@ namespace KantoorInrichting
             inventoryScreen1.Visible = false;
             gridFieldView.Visible = false;
             assortmentScreen.Visible = false;
+            placement.Visible = false;
             mainScreen1.BringToFront();
         }
 
