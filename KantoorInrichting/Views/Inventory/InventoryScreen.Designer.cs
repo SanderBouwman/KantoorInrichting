@@ -29,15 +29,6 @@
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Naam = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Merk = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.hoogte = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.breedte = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Lengte = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Afbeelding = new System.Windows.Forms.DataGridViewImageColumn();
-            this.wijzig = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.delete = new System.Windows.Forms.DataGridViewButtonColumn();
             this.PanelRight = new System.Windows.Forms.Panel();
             this.DropdownCategorie = new System.Windows.Forms.ComboBox();
             this.DropdownLeverancier = new System.Windows.Forms.ComboBox();
@@ -46,6 +37,16 @@
             this.PanelLeft = new System.Windows.Forms.Panel();
             this.titel = new System.Windows.Forms.Label();
             this.directorySearcher1 = new System.DirectoryServices.DirectorySearcher();
+            this.Naam = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Merk = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.hoogte = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.breedte = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Lengte = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Afbeelding = new System.Windows.Forms.DataGridViewImageColumn();
+            this.wijzig = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.delete = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.PanelRight.SuspendLayout();
             this.PanelLeft.SuspendLayout();
@@ -55,7 +56,8 @@
             // 
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AllowUserToOrderColumns = true;
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.GradientInactiveCaption;
@@ -68,63 +70,18 @@
             this.hoogte,
             this.breedte,
             this.Lengte,
+            this.Amount,
             this.Afbeelding,
             this.wijzig,
             this.delete});
             this.dataGridView1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dataGridView1.GridColor = System.Drawing.SystemColors.ControlLight;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 172);
+            this.dataGridView1.Location = new System.Drawing.Point(0, 156);
+            this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 50;
-            this.dataGridView1.Size = new System.Drawing.Size(600, 228);
+            this.dataGridView1.Size = new System.Drawing.Size(584, 244);
             this.dataGridView1.TabIndex = 2;
-            // 
-            // Naam
-            // 
-            this.Naam.DataPropertyName = "Naam";
-            this.Naam.Name = "Naam";
-            // 
-            // Type
-            // 
-            this.Type.DataPropertyName = "Type";
-            this.Type.Name = "Type";
-            // 
-            // Merk
-            // 
-            this.Merk.DataPropertyName = "Merk";
-            this.Merk.Name = "Merk";
-            // 
-            // hoogte
-            // 
-            this.hoogte.Name = "hoogte";
-            // 
-            // breedte
-            // 
-            this.breedte.Name = "breedte";
-            // 
-            // Lengte
-            // 
-            this.Lengte.Name = "Lengte";
-            // 
-            // Afbeelding
-            // 
-            this.Afbeelding.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.Afbeelding.DataPropertyName = "Image";
-            this.Afbeelding.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Stretch;
-            this.Afbeelding.Name = "Afbeelding";
-            this.Afbeelding.Width = 81;
-            // 
-            // wijzig
-            // 
-            this.wijzig.Name = "wijzig";
-            this.wijzig.Text = "wijzig";
-            this.wijzig.UseColumnTextForButtonValue = true;
-            // 
-            // delete
-            // 
-            this.delete.Name = "delete";
-            this.delete.Text = "delete";
-            this.delete.UseColumnTextForButtonValue = true;
             // 
             // PanelRight
             // 
@@ -136,9 +93,9 @@
             this.PanelRight.Controls.Add(this.checkBox1);
             this.PanelRight.Controls.Add(this.label1);
             this.PanelRight.Location = new System.Drawing.Point(312, 0);
-            this.PanelRight.MinimumSize = new System.Drawing.Size(280, 170);
+            this.PanelRight.MinimumSize = new System.Drawing.Size(280, 150);
             this.PanelRight.Name = "PanelRight";
-            this.PanelRight.Size = new System.Drawing.Size(288, 170);
+            this.PanelRight.Size = new System.Drawing.Size(288, 150);
             this.PanelRight.TabIndex = 1;
             // 
             // DropdownCategorie
@@ -179,9 +136,9 @@
             this.PanelLeft.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.PanelLeft.Controls.Add(this.titel);
             this.PanelLeft.Location = new System.Drawing.Point(0, 0);
-            this.PanelLeft.MinimumSize = new System.Drawing.Size(300, 170);
+            this.PanelLeft.MinimumSize = new System.Drawing.Size(300, 150);
             this.PanelLeft.Name = "PanelLeft";
-            this.PanelLeft.Size = new System.Drawing.Size(306, 170);
+            this.PanelLeft.Size = new System.Drawing.Size(306, 150);
             this.PanelLeft.TabIndex = 0;
             // 
             // titel
@@ -200,6 +157,71 @@
             this.directorySearcher1.ClientTimeout = System.TimeSpan.Parse("-00:00:01");
             this.directorySearcher1.ServerPageTimeLimit = System.TimeSpan.Parse("-00:00:01");
             this.directorySearcher1.ServerTimeLimit = System.TimeSpan.Parse("-00:00:01");
+            // 
+            // Naam
+            // 
+            this.Naam.DataPropertyName = "Name";
+            this.Naam.HeaderText = "Naam";
+            this.Naam.Name = "Naam";
+            // 
+            // Type
+            // 
+            this.Type.DataPropertyName = "Type";
+            this.Type.HeaderText = "Type";
+            this.Type.Name = "Type";
+            // 
+            // Merk
+            // 
+            this.Merk.DataPropertyName = "Brand";
+            this.Merk.HeaderText = "Merk";
+            this.Merk.Name = "Merk";
+            // 
+            // hoogte
+            // 
+            this.hoogte.DataPropertyName = "Height";
+            this.hoogte.HeaderText = "hoogte";
+            this.hoogte.Name = "hoogte";
+            // 
+            // breedte
+            // 
+            this.breedte.DataPropertyName = "Width";
+            this.breedte.HeaderText = "breedte";
+            this.breedte.Name = "breedte";
+            // 
+            // Lengte
+            // 
+            this.Lengte.DataPropertyName = "Length";
+            this.Lengte.HeaderText = "Lengte";
+            this.Lengte.Name = "Lengte";
+            // 
+            // Amount
+            // 
+            this.Amount.DataPropertyName = "Amount";
+            this.Amount.HeaderText = "Aantal";
+            this.Amount.Name = "Amount";
+            // 
+            // Afbeelding
+            // 
+            this.Afbeelding.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Afbeelding.DataPropertyName = "Image";
+            this.Afbeelding.HeaderText = "Afbeelding";
+            this.Afbeelding.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Stretch;
+            this.Afbeelding.Name = "Afbeelding";
+            this.Afbeelding.Width = 81;
+            // 
+            // wijzig
+            // 
+            this.wijzig.HeaderText = "wijzig";
+            this.wijzig.Name = "wijzig";
+            this.wijzig.Text = "wijzig";
+            this.wijzig.UseColumnTextForButtonValue = true;
+            // 
+            // delete
+            // 
+            this.delete.HeaderText = "delete";
+            this.delete.Name = "delete";
+            this.delete.Text = "delete";
+            this.delete.UseColumnTextForButtonValue = true;
             // 
             // InventoryScreen
             // 
@@ -222,15 +244,6 @@
 
         #endregion
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Naam;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Type;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Merk;
-        private System.Windows.Forms.DataGridViewTextBoxColumn hoogte;
-        private System.Windows.Forms.DataGridViewTextBoxColumn breedte;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Lengte;
-        private System.Windows.Forms.DataGridViewImageColumn Afbeelding;
-        private System.Windows.Forms.DataGridViewButtonColumn wijzig;
-        private System.Windows.Forms.DataGridViewButtonColumn delete;
         private System.Windows.Forms.Panel PanelRight;
         private System.Windows.Forms.Panel PanelLeft;
         private System.Windows.Forms.Label titel;
@@ -239,5 +252,15 @@
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Label label1;
         private System.DirectoryServices.DirectorySearcher directorySearcher1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Naam;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Type;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Merk;
+        private System.Windows.Forms.DataGridViewTextBoxColumn hoogte;
+        private System.Windows.Forms.DataGridViewTextBoxColumn breedte;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Lengte;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Amount;
+        private System.Windows.Forms.DataGridViewImageColumn Afbeelding;
+        private System.Windows.Forms.DataGridViewButtonColumn wijzig;
+        private System.Windows.Forms.DataGridViewButtonColumn delete;
     }
 }

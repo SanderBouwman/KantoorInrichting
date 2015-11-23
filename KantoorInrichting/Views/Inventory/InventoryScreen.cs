@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.DirectoryServices;
+using KantoorInrichting.Models.Product;
 
 namespace KantoorInrichting.Views.Inventory
 {
@@ -18,12 +19,23 @@ namespace KantoorInrichting.Views.Inventory
         {
             this.hoofdscherm = hoofdscherm;
             InitializeComponent();
+            FillData();
+            Invalidate();
+
         }
 
         public InventoryScreen()
         {
             InitializeComponent();
+            FillData();
+            Invalidate();
         }
 
+        public void FillData()
+        {
+            dataGridView1.AutoGenerateColumns = false;
+            this.dataGridView1.DataSource = KantoorInrichting.Models.Product.Product.list;
+            
+        }
     }
 }

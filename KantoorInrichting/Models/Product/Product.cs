@@ -10,7 +10,7 @@ namespace KantoorInrichting.Models.Product
     public class Product
     {
 
-        public static List<Product> lijst = new List<Product>();
+        public static List<Product> list = new List<Product>();
 
         public string name;
         public string brand;
@@ -48,7 +48,7 @@ namespace KantoorInrichting.Models.Product
             description = d;
             amount = a;
             this.image = KantoorInrichting.Properties.Resources.No_Image_Available;
-            lijst.Add(this);
+            list.Add(this);
 
         }
 
