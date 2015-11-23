@@ -13,12 +13,13 @@ namespace KantoorInrichting.Views.Inventory
     public partial class InventoryRemove : Form
     {
         public event EventHandler InventoryEditorScreenClick;
-        private string product = "stoel";
+        private string productname;
 
 
-        public InventoryRemove()
+        public InventoryRemove(Models.Product.Product p)
         {
             InitializeComponent();
+            this.productname = p.name;
         }
 
 
@@ -29,12 +30,12 @@ namespace KantoorInrichting.Views.Inventory
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Close();
+            this.Close();
         }
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            MessageBox.Show("SQL query: \nDELETE FROM product \nWHERE productnaam = '" + product + "'");
+            MessageBox.Show("SQL query: \nDELETE FROM product \nWHERE productnaam = '" + productname + "'");
 
         }
     }
