@@ -12,10 +12,11 @@ using KantoorInrichting.Models.Placement;
 using KantoorInrichting.Models.Product;
 using System.Collections.ObjectModel;
 
-namespace KantoorInrichting
+namespace KantoorInrichting.Views.Placement
 {
     public partial class ProductAdding : UserControl
     {
+        //List of all product currently placed on the screen.
         public static ObservableCollection<PlacedProduct> ppList = new ObservableCollection<PlacedProduct>();
 
 
@@ -78,7 +79,7 @@ namespace KantoorInrichting
 
         private void btn_AddProduct_Click(object sender, EventArgs e)
         {
-            ppList.Add(new PlacedProduct(new Product("", "", "", "", "",100, 50, 50, "", 1), new PointF(400, 50)));
+            ppList.Add(new PlacedProduct(new KantoorInrichting.Models.Product.Product("", "", "", "", "",100, 50, 50, "", 1), new PointF(400, 50)));
         }
 
 

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using KantoorInrichting.Controllers.Placement;
 using System.Drawing.Imaging;
 using System.Drawing.Drawing2D;
+using KantoorInrichting.Views.Placement;
 
 namespace KantoorInrichting.Models.Product
 {
@@ -21,6 +22,7 @@ namespace KantoorInrichting.Models.Product
         public Bitmap rotatedMap { get; private set; }
         public int currentAngle { get; private set; }
         public Polygon Poly { get; private set; }
+        
 
 
 

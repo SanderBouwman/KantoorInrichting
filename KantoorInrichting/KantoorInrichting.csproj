@@ -109,22 +109,22 @@
     <Compile Include="Views\MainScreen.Designer.cs">
       <DependentUpon>MainScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\ProductPlacement\ProductAdding.cs">
+    <Compile Include="Views\Placement\ProductAdding.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\ProductPlacement\ProductAdding.designer.cs">
+    <Compile Include="Views\Placement\ProductAdding.designer.cs">
       <DependentUpon>ProductAdding.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\ProductPlacement\ProductInfo.cs">
+    <Compile Include="Views\Placement\ProductInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\ProductPlacement\ProductInfo.designer.cs">
+    <Compile Include="Views\Placement\ProductInfo.designer.cs">
       <DependentUpon>ProductInfo.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\ProductPlacement\ProductList.cs">
+    <Compile Include="Views\Placement\ProductList.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\ProductPlacement\ProductList.designer.cs">
+    <Compile Include="Views\Placement\ProductList.designer.cs">
       <DependentUpon>ProductList.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Product\CategoryManager.cs">
@@ -171,13 +171,13 @@
     <EmbeddedResource Include="Views\MainScreen.resx">
       <DependentUpon>MainScreen.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\ProductPlacement\ProductAdding.resx">
+    <EmbeddedResource Include="Views\Placement\ProductAdding.resx">
       <DependentUpon>ProductAdding.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\ProductPlacement\ProductInfo.resx">
+    <EmbeddedResource Include="Views\Placement\ProductInfo.resx">
       <DependentUpon>ProductInfo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\ProductPlacement\ProductList.resx">
+    <EmbeddedResource Include="Views\Placement\ProductList.resx">
       <DependentUpon>ProductList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Product\CategoryManager.resx">
@@ -192,6 +192,7 @@
     <Folder Include="Controllers\Inventory\" />
     <Folder Include="Models\Assortment\" />
     <Folder Include="Models\Inventory\" />
+    <Folder Include="Views\ProductPlacement\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\No_Image_Available.png" />

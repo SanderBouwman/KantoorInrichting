@@ -10,23 +10,23 @@ using System.Windows.Forms;
 using KantoorInrichting;
 using KantoorInrichting.Models.Product;
 
-namespace KantoorInrichting
+namespace KantoorInrichting.Views.Placement
 {
     public partial class ProductInfo : UserControl
     {
-        public Product product { get; private set; }
+        public KantoorInrichting.Models.Product.Product product { get; private set; }
 
 
         public ProductInfo()
         {
             InitializeComponent();
             
-            setProduct(new Product());
+            setProduct(new KantoorInrichting.Models.Product.Product());
             lbl_Image.Text = "";
         }
        
 
-        public void setProduct(Product p)
+        public void setProduct(KantoorInrichting.Models.Product.Product p)
         {
             product = p;
 

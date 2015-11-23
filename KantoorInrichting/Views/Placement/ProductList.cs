@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using KantoorInrichting.Models.Product;
 
-namespace KantoorInrichting
+namespace KantoorInrichting.Views.Placement
 {
     public delegate void ProductSelectionChanged(ProductInfo sender);
 
     public partial class ProductList : UserControl
     {
-        List<Product> listOfProducts;
+        List<KantoorInrichting.Models.Product.Product> listOfProducts;
         public event ProductSelectionChanged SelectionChanged;
 
         public ProductList()
@@ -23,11 +23,11 @@ namespace KantoorInrichting
             InitializeComponent();
 
             
-            listOfProducts = new List<Product>();
-            listOfProducts.Add(new Product("Black Chair", "Chairs'R'Yours", "A", "Chair", "Deskchair", 50, 50, 60, "Chair - Stackable", 9));
-            listOfProducts.Add(new Product("Red Table", "Dem Tables", "A", "Tables", "", 100, 300, 100, "Table - Dining", 0));
-            listOfProducts.Add(new Product("Yellow Coffee Table", "Dem Tables", "B", "Tables", "Coffee tables",50, 100, 75, "Table - Coffee", 6));
-            listOfProducts.Add(new Product("Blue-Board", "Color Board", "H","Boards","", 10, 200, 200, "Board - White Board", 4));
+            listOfProducts = new List<KantoorInrichting.Models.Product.Product>();
+            listOfProducts.Add(new KantoorInrichting.Models.Product.Product("Black Chair", "Chairs'R'Yours", "A", "Chair", "Deskchair", 50, 50, 60, "Chair - Stackable", 9));
+            listOfProducts.Add(new KantoorInrichting.Models.Product.Product("Red Table", "Dem Tables", "A", "Tables", "", 100, 300, 100, "Table - Dining", 0));
+            listOfProducts.Add(new KantoorInrichting.Models.Product.Product("Yellow Coffee Table", "Dem Tables", "B", "Tables", "Coffee tables",50, 100, 75, "Table - Coffee", 6));
+            listOfProducts.Add(new KantoorInrichting.Models.Product.Product("Blue-Board", "Color Board", "H","Boards","", 10, 200, 200, "Board - White Board", 4));
 
             GenerateTexture();
         }
@@ -35,7 +35,7 @@ namespace KantoorInrichting
         private void GenerateTexture()
         {
             int y = 0;
-            foreach (Product product in listOfProducts)
+            foreach (KantoorInrichting.Models.Product.Product product in listOfProducts)
             {
                 ProductInfo pi = new ProductInfo();
                 pi.Location = new Point(0, y);
