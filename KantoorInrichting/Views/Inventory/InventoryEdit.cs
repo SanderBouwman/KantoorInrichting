@@ -12,19 +12,36 @@ namespace KantoorInrichting.Views.Inventory
 {
     public partial class InventoryEdit : Form
     {
-        public InventoryEdit()
-        {   
+        private string productname;
+        private decimal productamount;
+        private UserControl U;
+
+
+
+        public InventoryEdit(Models.Product.Product p, UserControl u)
+        {
             InitializeComponent();
+            this.productamount = p.amount;
+            this.productname = p.name;
+            this.U = u;
+
+            ProductNaam.Text = "productnaam: " + productname;
+            ProductAantal.Value = productamount;
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Gewijzigd");
+            decimal amount = ProductAantal.Value;
+            MessageBox.Show("SQL query:\nUPDATE product \nSET aantal = " + amount + " \nWHERE productnaam = '" + productname + "'");
+            this.Close();
+            U.Refresh();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Geannuleerd");
+            this.Close();
+            U.Refresh();
         }
     }
 }

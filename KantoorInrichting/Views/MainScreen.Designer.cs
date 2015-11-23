@@ -31,6 +31,7 @@
             this.VooraadButton = new System.Windows.Forms.Button();
             this.mapButton = new System.Windows.Forms.Button();
             this.assortmentButton = new System.Windows.Forms.Button();
+            this.ProductAddingButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // VooraadButton
@@ -77,11 +78,26 @@
             this.assortmentButton.UseVisualStyleBackColor = true;
             this.assortmentButton.Click += new System.EventHandler(this.assortmentButton_Click);
             // 
+            // ProductAddingButton
+            // 
+            this.ProductAddingButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ProductAddingButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ProductAddingButton.Location = new System.Drawing.Point(21, 117);
+            this.ProductAddingButton.Margin = new System.Windows.Forms.Padding(4);
+            this.ProductAddingButton.Name = "ProductAddingButton";
+            this.ProductAddingButton.Size = new System.Drawing.Size(572, 27);
+            this.ProductAddingButton.TabIndex = 3;
+            this.ProductAddingButton.Text = "Product Toevoegen";
+            this.ProductAddingButton.UseVisualStyleBackColor = true;
+            this.ProductAddingButton.Click += new System.EventHandler(this.ProductAddingButton_Click);
+            // 
             // MainScreen
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.Controls.Add(this.ProductAddingButton);
             this.Controls.Add(this.assortmentButton);
             this.Controls.Add(this.mapButton);
             this.Controls.Add(this.VooraadButton);
@@ -98,5 +114,6 @@
         private System.Windows.Forms.Button VooraadButton;
         private System.Windows.Forms.Button mapButton;
         private System.Windows.Forms.Button assortmentButton;
+        private System.Windows.Forms.Button ProductAddingButton;
     }
 }

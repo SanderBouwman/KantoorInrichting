@@ -13,37 +13,34 @@ namespace KantoorInrichting.Views.Inventory
     public partial class InventoryRemove : Form
     {
         public event EventHandler InventoryEditorScreenClick;
+        private string productname;
+        private UserControl U;
 
-        public InventoryRemove()
+
+        public InventoryRemove(Models.Product.Product p, UserControl u)
         {
             InitializeComponent();
+            this.productname = p.name;
+            this.U = u;
         }
 
 
         private void InventoryEditor_Load(object sender, EventArgs e)
         {
-            MessageBox.Show("gelukt");
-        }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Verwijderd!");
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Geannuleerd!");
+            this.Close();
+            U.Refresh();
         }
 
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            MessageBox.Show("SQL query: \nDELETE FROM product \nWHERE productnaam = '" + productname + "'");
+            this.Close();
+            U.Refresh();
+        }
     }
 }

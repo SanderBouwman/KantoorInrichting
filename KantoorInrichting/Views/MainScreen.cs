@@ -56,5 +56,13 @@ namespace KantoorInrichting.Views
             this.Visible = false;
             hoofdscherm.assortmentScreen.BringToFront();
         }
+
+        private void ProductAddingButton_Click(object sender, EventArgs e)
+        {
+            hoofdscherm.placement.Visible = true;
+            hoofdscherm.placement.Enabled = true;
+            this.Visible = false;
+            hoofdscherm.placement.BringToFront();
+        }
     }
 }

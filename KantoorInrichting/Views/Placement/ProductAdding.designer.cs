@@ -1,4 +1,4 @@
-﻿namespace KantoorInrichting
+﻿namespace KantoorInrichting.Views.Placement
 {
     partial class ProductAdding
     {

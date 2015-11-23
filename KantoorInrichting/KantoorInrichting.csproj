@@ -49,7 +49,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\Placement\PolygonPlacementController.cs" />
     <Compile Include="Models\Grid\GridFieldModel.cs" />
+    <Compile Include="Models\Placement\Polygon.cs" />
+    <Compile Include="Models\Placement\Vector.cs" />
+    <Compile Include="Models\Product\PlacedProduct.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -111,22 +115,22 @@
     <Compile Include="Views\MainScreen.Designer.cs">
       <DependentUpon>MainScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\ProductPlacement\ProductAdding.cs">
+    <Compile Include="Views\Placement\ProductAdding.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\ProductPlacement\ProductAdding.designer.cs">
+    <Compile Include="Views\Placement\ProductAdding.designer.cs">
       <DependentUpon>ProductAdding.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\ProductPlacement\ProductInfo.cs">
+    <Compile Include="Views\Placement\ProductInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\ProductPlacement\ProductInfo.designer.cs">
+    <Compile Include="Views\Placement\ProductInfo.designer.cs">
       <DependentUpon>ProductInfo.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\ProductPlacement\ProductList.cs">
+    <Compile Include="Views\Placement\ProductList.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\ProductPlacement\ProductList.designer.cs">
+    <Compile Include="Views\Placement\ProductList.designer.cs">
       <DependentUpon>ProductList.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Product\CategoryManager.cs">
@@ -176,13 +180,13 @@
     <EmbeddedResource Include="Views\MainScreen.resx">
       <DependentUpon>MainScreen.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\ProductPlacement\ProductAdding.resx">
+    <EmbeddedResource Include="Views\Placement\ProductAdding.resx">
       <DependentUpon>ProductAdding.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\ProductPlacement\ProductInfo.resx">
+    <EmbeddedResource Include="Views\Placement\ProductInfo.resx">
       <DependentUpon>ProductInfo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\ProductPlacement\ProductList.resx">
+    <EmbeddedResource Include="Views\Placement\ProductList.resx">
       <DependentUpon>ProductList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Product\CategoryManager.resx">
