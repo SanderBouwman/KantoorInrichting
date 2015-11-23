@@ -1,14 +1,8 @@
-﻿using KantoorInrichting.Models.Product;
+﻿// created by: Robin
+// on: 18-11-2015
 
 namespace KantoorInrichting.Models.Grid {
     public class GridFieldModel {
-
-        public Tile[, ] Rows { get; }
-
-        public Tile this[ int i, int j ] {
-            get { return Rows[ i, j ]; }
-        }
-
         /// <summary>
         /// Initializes the grid based on given parameters.
         /// Width, height and squareSize are in meters for ease of use.
@@ -16,9 +10,15 @@ namespace KantoorInrichting.Models.Grid {
         /// <param name="width"></param>
         /// <param name="height"></param>
         /// <param name="squareSize"></param>
-        public GridFieldModel( int width, int height, float squareSize ) {
-            Rows = new Tile[ height, width ];
+        public GridFieldModel(int width, int height, float squareSize) {
+            Rows = new Tile[height, width];
             InitRows(squareSize);
+        }
+
+        public Tile[,] Rows { get; }
+
+        public Tile this[int i, int j] {
+            get { return Rows[i, j]; }
         }
 
         /// <summary>
@@ -27,10 +27,12 @@ namespace KantoorInrichting.Models.Grid {
         //  by using the GetLength(depth) method provided by the array class.
         /// </summary>
         /// <param name="squareSize"></param>
-        private void InitRows( float squareSize ) {
-            for( int i = 0; i < Rows.GetLength(0); i++ ) { // first dimension (rows)
-                for( int j = 0; j < Rows.GetLength(1); j++ ) { // second dimension (columns)
-                    Rows[ i, j ] = new Tile(squareSize);
+        private void InitRows(float squareSize) {
+            for (int i = 0; i < Rows.GetLength(0); i++) {
+                // first dimension (rows)
+                for (int j = 0; j < Rows.GetLength(1); j++) {
+                    // second dimension (columns)
+                    Rows[i, j] = new Tile(squareSize);
                 }
             }
         }
@@ -41,8 +43,8 @@ namespace KantoorInrichting.Models.Grid {
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <param name="item"></param>
-        public void AddItem( int x, int y, Product.Product item ) {
-            Rows[ y, x ].Product = item;
+        public void AddItem(int x, int y, Product.Product item) {
+            Rows[y, x].Product = item;
         }
     }
 }

@@ -1,9 +1,16 @@
-﻿using System.Windows.Forms;
+﻿// created by: Robin
+// on: 20-11-2015
+
+#region
+
+using System.Windows.Forms;
+
+#endregion
 
 namespace KantoorInrichting.Models.Grid {
     public sealed class GridFieldPanel : Panel {
         public GridFieldPanel() {
-            this.DoubleBuffered = true;
+            DoubleBuffered = true;
         }
     }
 }
