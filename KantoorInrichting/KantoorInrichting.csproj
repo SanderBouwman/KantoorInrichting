@@ -117,6 +117,18 @@
     <Compile Include="Views\ProductPlacement\ProductList.designer.cs">
       <DependentUpon>ProductList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Product\CategoryManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Product\CategoryManager.Designer.cs">
+      <DependentUpon>CategoryManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Product\NewCategory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Product\NewCategory.Designer.cs">
+      <DependentUpon>NewCategory.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -154,6 +166,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\ProductPlacement\ProductList.resx">
       <DependentUpon>ProductList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Product\CategoryManager.resx">
+      <DependentUpon>CategoryManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Product\NewCategory.resx">
+      <DependentUpon>NewCategory.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
