@@ -17,6 +17,8 @@ namespace KantoorInrichting
         {
             AddPanels();
             InitializeComponent();
+            OnBootup();
+
         }
 
 
@@ -91,6 +93,11 @@ namespace KantoorInrichting
             inventoryScreen1.Visible = false;
             gridFieldView.Visible = false;
             mainScreen1.BringToFront();
+        }
+
+        private void OnBootup()
+        {
+            MainFrame_Resize(this,null);
         }
 
         private void MainFrame_Resize(object sender, EventArgs e)
