@@ -44,17 +44,18 @@ namespace KantoorInrichting.Views.Inventory
 
         public void FillDropdown()
         {
+            DropdownMerk.Items.Clear();
 
-            var MerkResult = Models.Product.Product.list.GroupBy(product => product.Brand)
-                   .Select(grp => grp.First())
-                   .ToList();
+            //var MerkResult = ProductModel.list.GroupBy(product => product.Brand)
+            //       .Select(grp => grp.First())
+            //       .ToList();
          
-            foreach(Models.Product.Product product in MerkResult)
-            {
-                DropdownMerk.Items.Add(product);
-            }
+            //foreach(ProductModel product in MerkResult)
+            //{
+            //    DropdownMerk.Items.Add(product);
+            //}
 
-
+            DropdownMerk.Items.Add("test");
             //DropdownMerk.DataSource = MerkResult;
 
         }

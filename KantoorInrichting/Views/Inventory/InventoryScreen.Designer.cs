@@ -43,9 +43,9 @@
             this.PanelRight = new System.Windows.Forms.Panel();
             this.DropdownCategorie = new System.Windows.Forms.ComboBox();
             this.DropdownMerk = new System.Windows.Forms.ComboBox();
-            this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.PanelLeft = new System.Windows.Forms.Panel();
             this.titel = new System.Windows.Forms.Label();
             this.directorySearcher1 = new System.DirectoryServices.DirectorySearcher();
@@ -182,15 +182,15 @@
             // DropdownMerk
             // 
             this.DropdownMerk.FormattingEnabled = true;
+            this.DropdownMerk.Items.AddRange(new object[] {
+            "Ahrend",
+            "MerkA",
+            "MerkB"});
             this.DropdownMerk.Location = new System.Drawing.Point(33, 12);
             this.DropdownMerk.Name = "DropdownMerk";
             this.DropdownMerk.Size = new System.Drawing.Size(161, 24);
             this.DropdownMerk.TabIndex = 1;
             this.DropdownMerk.SelectedIndexChanged += new System.EventHandler(this.DropdownMerk_SelectedIndexChanged);
-            // 
-            // productBindingSource
-            // 
-            this.productBindingSource.DataSource = typeof(KantoorInrichting.Models.Product.Product);
             // 
             // checkBox1
             // 
@@ -236,10 +236,6 @@
             this.directorySearcher1.ClientTimeout = System.TimeSpan.Parse("-00:00:01");
             this.directorySearcher1.ServerPageTimeLimit = System.TimeSpan.Parse("-00:00:01");
             this.directorySearcher1.ServerTimeLimit = System.TimeSpan.Parse("-00:00:01");
-            // 
-            // productBindingSource1
-            // 
-            this.productBindingSource1.DataSource = typeof(KantoorInrichting.Models.Product.Product);
             // 
             // InventoryScreen
             // 
