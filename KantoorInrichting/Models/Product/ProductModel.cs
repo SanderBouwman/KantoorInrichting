@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KantoorInrichting.Controllers;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -10,8 +11,8 @@ namespace KantoorInrichting.Models.Product
     public class ProductModel
     {
 
-        public static List<ProductModel> list = new List<ProductModel>(); 
-        public static List<ProductModel> result = new List<ProductModel>();  // list for filtering data
+        public static SortableBindingList<ProductModel> list = new SortableBindingList<ProductModel>(); 
+        public static SortableBindingList<ProductModel> result = new SortableBindingList<ProductModel>();  // list for filtering data
 
         public string name;
         public string brand;

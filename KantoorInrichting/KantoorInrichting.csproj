@@ -52,6 +52,8 @@
     <Compile Include="Controllers\IController.cs" />
     <Compile Include="Controllers\Placement\PolygonPlacementController.cs" />
     <Compile Include="Controllers\Product\ProductFactory.cs" />
+    <Compile Include="Controllers\PropertyComparer.cs" />
+    <Compile Include="Controllers\SortableBindingList.cs" />
     <Compile Include="Models\Grid\GridFieldModel.cs" />
     <Compile Include="Models\Placement\Polygon.cs" />
     <Compile Include="Models\Placement\Vector.cs" />

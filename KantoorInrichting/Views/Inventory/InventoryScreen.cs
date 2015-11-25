@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.DirectoryServices;
 using KantoorInrichting.Models.Product;
+using KantoorInrichting.Controllers;
 
 namespace KantoorInrichting.Views.Inventory
 {
@@ -23,6 +24,7 @@ namespace KantoorInrichting.Views.Inventory
             FillData();
             FillDropdown();
             Invalidate();
+
         }
 
        
@@ -31,8 +33,9 @@ namespace KantoorInrichting.Views.Inventory
         {
             this.dataGridView1.DataSource = null;
             dataGridView1.AutoGenerateColumns = false;
-            Models.Product.ProductModel.result = Models.Product.ProductModel.list;
-            this.dataGridView1.DataSource = Models.Product.ProductModel.result;    
+            ProductModel.result = ProductModel.list;
+            this.dataGridView1.DataSource = ProductModel.result;
+
         }
 
         public void FillDropdown()
@@ -82,10 +85,13 @@ namespace KantoorInrichting.Views.Inventory
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            // when an cell is clicked
             var senderGrid = (DataGridView)sender;
 
+            // if the clicked cell is an column, and the row is not the header
             if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0) {
 
+                // if thecolumnindex is 8 opens the edit screen
                 if (e.ColumnIndex == 8)
                 {
                     // run edit screen here
@@ -94,6 +100,7 @@ namespace KantoorInrichting.Views.Inventory
                     edit.Show();
                 }
 
+                // if thecolumnindex is 9 opens the delete screen
                 if (e.ColumnIndex == 9)
                 {
                     // run delete screen here
@@ -118,7 +125,10 @@ namespace KantoorInrichting.Views.Inventory
             var filteredProducts = from product in ProductModel.result
                                    where product.Brand == selectedBrand
                                    select product;
-            ProductModel.result = filteredProducts.ToList();
+
+            var filterResult = new List<ProductModel>();
+            filterResult = filteredProducts.ToList();
+            ProductModel.result = new SortableBindingList<ProductModel>(filterResult);
 
 
             dataGridView1.DataSource =ProductModel.result;
