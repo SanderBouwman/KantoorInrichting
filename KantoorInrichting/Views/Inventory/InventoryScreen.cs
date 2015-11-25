@@ -36,6 +36,7 @@ namespace KantoorInrichting.Views.Inventory
             ProductModel.result = ProductModel.list;
             this.dataGridView1.DataSource = ProductModel.result;
 
+
         }
 
         public void FillDropdown()
@@ -49,38 +50,39 @@ namespace KantoorInrichting.Views.Inventory
             foreach (ProductModel product in MerkResult)
             {
                 DropdownMerk.Items.Add(product.Brand);
+
             }
 
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = null;
-            dataGridView1.Refresh();
-
+            // remove all product with amount of less than 1
             if (checkBox1.Checked == true)
             {
-                //foreach (ProductModel product in ProductModel.result)
-                //{
-                //    if (product.amount == 0)
-                //    {
-                //        ProductModel.result.Remove(product);
-                //    }
-                //}
+                foreach (ProductModel product in ProductModel.list)
+                {
+                    if (product.amount < 1)
+                    {
+                        ProductModel.result.Remove(product);
+                    }
+                }
             }
+            // add all product with amount of less than 1
             else if (checkBox1.Checked == false)
             {
-                //foreach (ProductModel product in ProductModel.result)
-                //{
-                //    if (product.amount == 0)
-                //    {
-                //        ProductModel.result.Add(product);
-                //    }
-                //}
+
+                foreach (ProductModel product in ProductModel.list)
+                {
+                    if (product.amount < 1)
+                    {
+                        ProductModel.result.Add(product);
+                    }
+                }
             }
             
-            dataGridView1.DataSource = ProductModel.result;
-            dataGridView1.Refresh();
+                dataGridView1.Refresh();
+            
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)

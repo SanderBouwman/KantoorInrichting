@@ -30,16 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.PanelRight = new System.Windows.Forms.Panel();
-            this.DropdownCategorie = new System.Windows.Forms.ComboBox();
-            this.DropdownMerk = new System.Windows.Forms.ComboBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.PanelLeft = new System.Windows.Forms.Panel();
-            this.titel = new System.Windows.Forms.Label();
-            this.directorySearcher1 = new System.DirectoryServices.DirectorySearcher();
-            this.productBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.nr = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Naam = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -51,6 +41,16 @@
             this.Afbeelding = new System.Windows.Forms.DataGridViewImageColumn();
             this.wijzig = new System.Windows.Forms.DataGridViewButtonColumn();
             this.delete = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.PanelRight = new System.Windows.Forms.Panel();
+            this.DropdownCategorie = new System.Windows.Forms.ComboBox();
+            this.DropdownMerk = new System.Windows.Forms.ComboBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.PanelLeft = new System.Windows.Forms.Panel();
+            this.titel = new System.Windows.Forms.Label();
+            this.directorySearcher1 = new System.DirectoryServices.DirectorySearcher();
+            this.productBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.PanelRight.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).BeginInit();
@@ -90,6 +90,78 @@
             this.dataGridView1.Size = new System.Drawing.Size(584, 244);
             this.dataGridView1.TabIndex = 2;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // nr
+            // 
+            this.nr.DataPropertyName = "Id";
+            this.nr.HeaderText = "nr";
+            this.nr.Name = "nr";
+            // 
+            // Naam
+            // 
+            this.Naam.DataPropertyName = "Name";
+            this.Naam.HeaderText = "Naam";
+            this.Naam.Name = "Naam";
+            // 
+            // Type
+            // 
+            this.Type.DataPropertyName = "Type";
+            this.Type.HeaderText = "Type";
+            this.Type.Name = "Type";
+            // 
+            // Merk
+            // 
+            this.Merk.DataPropertyName = "Brand";
+            this.Merk.HeaderText = "Merk";
+            this.Merk.Name = "Merk";
+            this.Merk.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            // 
+            // hoogte
+            // 
+            this.hoogte.DataPropertyName = "Height";
+            this.hoogte.HeaderText = "hoogte";
+            this.hoogte.Name = "hoogte";
+            // 
+            // breedte
+            // 
+            this.breedte.DataPropertyName = "Width";
+            this.breedte.HeaderText = "breedte";
+            this.breedte.Name = "breedte";
+            // 
+            // Lengte
+            // 
+            this.Lengte.DataPropertyName = "Length";
+            this.Lengte.HeaderText = "Lengte";
+            this.Lengte.Name = "Lengte";
+            // 
+            // Amount
+            // 
+            this.Amount.DataPropertyName = "Amount";
+            this.Amount.HeaderText = "Aantal";
+            this.Amount.Name = "Amount";
+            // 
+            // Afbeelding
+            // 
+            this.Afbeelding.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Afbeelding.DataPropertyName = "Image";
+            this.Afbeelding.HeaderText = "Afbeelding";
+            this.Afbeelding.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Stretch;
+            this.Afbeelding.Name = "Afbeelding";
+            this.Afbeelding.Width = 81;
+            // 
+            // wijzig
+            // 
+            this.wijzig.HeaderText = "wijzig";
+            this.wijzig.Name = "wijzig";
+            this.wijzig.Text = "wijzig";
+            this.wijzig.UseColumnTextForButtonValue = true;
+            // 
+            // delete
+            // 
+            this.delete.HeaderText = "delete";
+            this.delete.Name = "delete";
+            this.delete.Text = "delete";
+            this.delete.UseColumnTextForButtonValue = true;
             // 
             // PanelRight
             // 
@@ -168,78 +240,6 @@
             this.directorySearcher1.ClientTimeout = System.TimeSpan.Parse("-00:00:01");
             this.directorySearcher1.ServerPageTimeLimit = System.TimeSpan.Parse("-00:00:01");
             this.directorySearcher1.ServerTimeLimit = System.TimeSpan.Parse("-00:00:01");
-            // 
-            // nr
-            // 
-            this.nr.DataPropertyName = "Id";
-            this.nr.HeaderText = "nr";
-            this.nr.Name = "nr";
-            // 
-            // Naam
-            // 
-            this.Naam.DataPropertyName = "Name";
-            this.Naam.HeaderText = "Naam";
-            this.Naam.Name = "Naam";
-            // 
-            // Type
-            // 
-            this.Type.DataPropertyName = "Type";
-            this.Type.HeaderText = "Type";
-            this.Type.Name = "Type";
-            // 
-            // Merk
-            // 
-            this.Merk.DataPropertyName = "Brand";
-            this.Merk.HeaderText = "Merk";
-            this.Merk.Name = "Merk";
-            this.Merk.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            // 
-            // hoogte
-            // 
-            this.hoogte.DataPropertyName = "Height";
-            this.hoogte.HeaderText = "hoogte";
-            this.hoogte.Name = "hoogte";
-            // 
-            // breedte
-            // 
-            this.breedte.DataPropertyName = "Width";
-            this.breedte.HeaderText = "breedte";
-            this.breedte.Name = "breedte";
-            // 
-            // Lengte
-            // 
-            this.Lengte.DataPropertyName = "Length";
-            this.Lengte.HeaderText = "Lengte";
-            this.Lengte.Name = "Lengte";
-            // 
-            // Amount
-            // 
-            this.Amount.DataPropertyName = "Amount";
-            this.Amount.HeaderText = "Aantal";
-            this.Amount.Name = "Amount";
-            // 
-            // Afbeelding
-            // 
-            this.Afbeelding.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.Afbeelding.DataPropertyName = "Image";
-            this.Afbeelding.HeaderText = "Afbeelding";
-            this.Afbeelding.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Stretch;
-            this.Afbeelding.Name = "Afbeelding";
-            this.Afbeelding.Width = 81;
-            // 
-            // wijzig
-            // 
-            this.wijzig.HeaderText = "wijzig";
-            this.wijzig.Name = "wijzig";
-            this.wijzig.Text = "wijzig";
-            this.wijzig.UseColumnTextForButtonValue = true;
-            // 
-            // delete
-            // 
-            this.delete.HeaderText = "delete";
-            this.delete.Name = "delete";
-            this.delete.Text = "delete";
-            this.delete.UseColumnTextForButtonValue = true;
             // 
             // InventoryScreen
             // 
