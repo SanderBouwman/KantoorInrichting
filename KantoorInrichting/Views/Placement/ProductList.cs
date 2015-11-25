@@ -15,7 +15,7 @@ namespace KantoorInrichting.Views.Placement
 
     public partial class ProductList : UserControl
     {
-        List<KantoorInrichting.Models.Product.ProductModel> listOfProducts;
+        List<ProductModel> listOfProducts;
         public event ProductSelectionChanged SelectionChanged;
 
         public ProductList()
@@ -23,11 +23,13 @@ namespace KantoorInrichting.Views.Placement
             InitializeComponent();
 
             
-            listOfProducts = new List<KantoorInrichting.Models.Product.ProductModel>();
-            listOfProducts.Add(new KantoorInrichting.Models.Product.ProductModel("Black Chair", "Chairs'R'Yours", "A", "Chair", "Deskchair", 50, 50, 60, "Chair - Stackable", 9));
-            listOfProducts.Add(new KantoorInrichting.Models.Product.ProductModel("Red Table", "Dem Tables", "A", "Tables", "", 100, 300, 100, "Table - Dining", 0));
-            listOfProducts.Add(new KantoorInrichting.Models.Product.ProductModel("Yellow Coffee Table", "Dem Tables", "B", "Tables", "Coffee tables",50, 100, 75, "Table - Coffee", 6));
-            listOfProducts.Add(new KantoorInrichting.Models.Product.ProductModel("Blue-Board", "Color Board", "H","Boards","", 10, 200, 200, "Board - White Board", 4));
+            listOfProducts = new List<ProductModel>();
+
+            foreach (ProductModel product in ProductModel.list)
+            {
+                listOfProducts.Add(product);
+            }
+            
 
             GenerateTexture();
         }
@@ -35,7 +37,7 @@ namespace KantoorInrichting.Views.Placement
         private void GenerateTexture()
         {
             int y = 0;
-            foreach (KantoorInrichting.Models.Product.ProductModel product in listOfProducts)
+            foreach (ProductModel product in listOfProducts)
             {
                 ProductInfo pi = new ProductInfo();
                 pi.Location = new Point(0, y);
