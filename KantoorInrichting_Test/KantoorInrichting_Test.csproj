@@ -58,6 +58,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Models\Grid\GridField_Test.cs" />
+    <Compile Include="Models\Placement\Collision_Tests.cs" />
     <Compile Include="Models\Placement\Rotation_Tests.cs" />
     <Compile Include="Models\Placement\Movement_Tests.cs" />
     <Compile Include="Models\Product\Product_Test.cs" />

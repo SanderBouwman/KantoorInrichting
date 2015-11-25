@@ -9,7 +9,7 @@ namespace KantoorInrichting_Test.Models.Placement
     public class RotationTests
     {
         [TestMethod]
-        public void setRotation_45()
+        public void rotation_setRotation_45()
         {
             //Make
             PointF point = new PointF(200, 200);
@@ -65,7 +65,7 @@ namespace KantoorInrichting_Test.Models.Placement
         }
 
         [TestMethod]
-        public void setRotation_90()
+        public void rotation_setRotation_90()
         {
             //Make
             PointF point = new PointF(200, 200);
@@ -95,7 +95,7 @@ namespace KantoorInrichting_Test.Models.Placement
         }
 
         [TestMethod]
-        public void setRotation_180()
+        public void rotation_setRotation_180()
         {
             //Make
             PointF point = new PointF(200, 200);
@@ -124,7 +124,7 @@ namespace KantoorInrichting_Test.Models.Placement
         }
 
         [TestMethod]
-        public void setRotation_360()
+        public void rotation_setRotation_360()
         {
             //Make
             PointF point = new PointF(200, 200);
@@ -153,7 +153,7 @@ namespace KantoorInrichting_Test.Models.Placement
         }
 
         [TestMethod]
-        public void addRotation_45()
+        public void rotation_addRotation_45()
         {
             //Make
             PointF point = new PointF(200, 200);
@@ -185,7 +185,7 @@ namespace KantoorInrichting_Test.Models.Placement
         }
 
         [TestMethod]
-        public void addRotation_90()
+        public void rotation_addRotation_90()
         {
             //Make
             PointF point = new PointF(200, 200);
@@ -217,7 +217,7 @@ namespace KantoorInrichting_Test.Models.Placement
         }
 
         [TestMethod]
-        public void addRotation_180()
+        public void rotation_addRotation_180()
         {
             //Make
             PointF point = new PointF(200, 200);
@@ -247,7 +247,7 @@ namespace KantoorInrichting_Test.Models.Placement
         }
 
         [TestMethod]
-        public void addRotation_360()
+        public void rotation_addRotation_360()
         {
             //Make
             PointF point = new PointF(200, 200);
