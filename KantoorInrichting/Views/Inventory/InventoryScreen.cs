@@ -33,9 +33,9 @@ namespace KantoorInrichting.Views.Inventory
         {
             this.dataGridView1.DataSource = null;
             dataGridView1.AutoGenerateColumns = false;
-            ProductModel.result = ProductModel.list;
+            List<ProductModel> filterResult = FilterNoAmount();
+            ProductModel.result = new SortableBindingList<ProductModel>(filterResult);
             this.dataGridView1.DataSource = ProductModel.result;
-
 
         }
 
@@ -47,6 +47,8 @@ namespace KantoorInrichting.Views.Inventory
                    .Select(grp => grp.First())
                    .ToList();
 
+            DropdownMerk.Items.Insert(0, "geen merkfilter");
+
             foreach (ProductModel product in MerkResult)
             {
                 DropdownMerk.Items.Add(product.Brand);
@@ -57,6 +59,37 @@ namespace KantoorInrichting.Views.Inventory
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
+            // check if there is an brand filter
+            if (DropdownMerk.SelectedItem != null)
+            {
+                // add all product with amount of less than 1 and filtered on the brand
+                if (checkBox1.Checked == false)
+                {
+                    foreach (ProductModel product in ProductModel.list)
+                    {
+                        if (product.amount < 1 && product.brand == DropdownMerk.SelectedItem.ToString())
+                        {
+                            ProductModel.result.Add(product);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                // add all product with amount of less than 1
+                if (checkBox1.Checked == false)
+                {
+                    foreach (ProductModel product in ProductModel.list)
+                    {
+                        if (product.amount < 1)
+                        {
+
+                            ProductModel.result.Add(product);
+                        }
+                    }
+                }
+            }
+
             // remove all product with amount of less than 1
             if (checkBox1.Checked == true)
             {
@@ -68,21 +101,7 @@ namespace KantoorInrichting.Views.Inventory
                     }
                 }
             }
-            // add all product with amount of less than 1
-            else if (checkBox1.Checked == false)
-            {
-
-                foreach (ProductModel product in ProductModel.list)
-                {
-                    if (product.amount < 1)
-                    {
-                        ProductModel.result.Add(product);
-                    }
-                }
-            }
-            
                 dataGridView1.Refresh();
-            
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -117,26 +136,52 @@ namespace KantoorInrichting.Views.Inventory
 
         private void DropdownMerk_SelectedIndexChanged(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = ProductModel.result = ProductModel.list;
+            FilterBrand();
+        }
+        public void FilterBrand()
+        {
+            List<ProductModel> filterResult1 = FilterNoAmount();
+            ProductModel.result = new SortableBindingList<ProductModel>(filterResult1);
             dataGridView1.DataSource = null;
             dataGridView1.Refresh();
 
-
             string selectedBrand = DropdownMerk.SelectedItem.ToString();
+            
+            // if there is a brand selected and it is not default
+            if (DropdownMerk.SelectedIndex != 0)
+            {
+                // filter on the selected brand
+                var filteredProducts = from product in ProductModel.result
+                                       where product.Brand == selectedBrand
+                                       select product;
 
-            var filteredProducts = from product in ProductModel.result
-                                   where product.Brand == selectedBrand
+                var filterResult2 = new List<ProductModel>();
+                filterResult2 = filteredProducts.ToList();
+                ProductModel.result = new SortableBindingList<ProductModel>(filterResult2);
+            }
+            dataGridView1.DataSource = ProductModel.result;
+            dataGridView1.Refresh();
+
+        }
+        public List<ProductModel> FilterNoAmount()
+        {
+            // filter the data to only view products with an amount
+            var filteredProducts = from product in ProductModel.list
+                                   where product.Amount >= 1
                                    select product;
 
             var filterResult = new List<ProductModel>();
             filterResult = filteredProducts.ToList();
-            ProductModel.result = new SortableBindingList<ProductModel>(filterResult);
+            return filterResult;
+        }
 
-
-            dataGridView1.DataSource =ProductModel.result;
+        private void button1_Click(object sender, EventArgs e)
+        {
+            checkBox1.Checked = true;
+            DropdownMerk.SelectedIndex = 0;
             dataGridView1.Refresh();
-
         }
     }
+
     }
 

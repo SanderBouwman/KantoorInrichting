@@ -51,6 +51,7 @@
             this.titel = new System.Windows.Forms.Label();
             this.directorySearcher1 = new System.DirectoryServices.DirectorySearcher();
             this.productBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.PanelRight.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).BeginInit();
@@ -168,6 +169,7 @@
             this.PanelRight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.PanelRight.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.PanelRight.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PanelRight.Controls.Add(this.button1);
             this.PanelRight.Controls.Add(this.DropdownCategorie);
             this.PanelRight.Controls.Add(this.DropdownMerk);
             this.PanelRight.Controls.Add(this.checkBox1);
@@ -185,7 +187,7 @@
             this.DropdownCategorie.Name = "DropdownCategorie";
             this.DropdownCategorie.Size = new System.Drawing.Size(161, 24);
             this.DropdownCategorie.TabIndex = 0;
-            this.DropdownCategorie.Text = "filter op categorie";
+            this.DropdownCategorie.Text = "Filter op categorie";
             // 
             // DropdownMerk
             // 
@@ -194,16 +196,19 @@
             this.DropdownMerk.Name = "DropdownMerk";
             this.DropdownMerk.Size = new System.Drawing.Size(161, 24);
             this.DropdownMerk.TabIndex = 1;
+            this.DropdownMerk.Text = "Filter op merk";
             this.DropdownMerk.SelectedIndexChanged += new System.EventHandler(this.DropdownMerk_SelectedIndexChanged);
             // 
             // checkBox1
             // 
             this.checkBox1.AutoEllipsis = true;
+            this.checkBox1.Checked = true;
+            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox1.Location = new System.Drawing.Point(33, 72);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(161, 39);
             this.checkBox1.TabIndex = 2;
-            this.checkBox1.Text = "Toon afwezige producten";
+            this.checkBox1.Text = "Verberg afwezige producten";
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
@@ -240,6 +245,19 @@
             this.directorySearcher1.ClientTimeout = System.TimeSpan.Parse("-00:00:01");
             this.directorySearcher1.ServerPageTimeLimit = System.TimeSpan.Parse("-00:00:01");
             this.directorySearcher1.ServerTimeLimit = System.TimeSpan.Parse("-00:00:01");
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.button1.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaption;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Location = new System.Drawing.Point(33, 109);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(161, 32);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "Verwijder filters";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // InventoryScreen
             // 
@@ -285,5 +303,6 @@
         private System.Windows.Forms.DataGridViewImageColumn Afbeelding;
         private System.Windows.Forms.DataGridViewButtonColumn wijzig;
         private System.Windows.Forms.DataGridViewButtonColumn delete;
+        private System.Windows.Forms.Button button1;
     }
 }
