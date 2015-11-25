@@ -13,7 +13,7 @@ namespace KantoorInrichting.Views.Product
 {
     public partial class CategoryManager : Form
     {
-        private Product product;
+        private ProductModel product;
 
         public CategoryManager()
         {
