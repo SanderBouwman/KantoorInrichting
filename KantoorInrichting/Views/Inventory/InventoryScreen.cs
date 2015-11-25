@@ -21,24 +21,36 @@ namespace KantoorInrichting.Views.Inventory
             this.hoofdscherm = hoofdscherm;
             InitializeComponent();
             FillData();
+            FillDropdown();
             Invalidate();
         }
 
-        public InventoryScreen()
-        {
-            InitializeComponent();
-            FillData();
-            Invalidate();
-        }
+       
 
         public void FillData()
         {
             this.dataGridView1.DataSource = null;
             dataGridView1.AutoGenerateColumns = false;
-            Models.Product.Product.result = Models.Product.Product.list;
-            this.dataGridView1.DataSource = Models.Product.Product.result;    
+            Models.Product.ProductModel.result = Models.Product.ProductModel.list;
+            this.dataGridView1.DataSource = Models.Product.ProductModel.result;    
         }
 
+        public void FillDropdown()
+        {
+            DropdownMerk.Items.Clear();
+
+            var MerkResult = ProductModel.list.GroupBy(product => product.Brand)
+                   .Select(grp => grp.First())
+                   .ToList();
+
+            foreach (ProductModel product in MerkResult)
+            {
+                DropdownMerk.Items.Add(product.brand);
+            }
+
+           // DropdownMerk.DataSource = MerkResult;
+
+        }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
@@ -47,26 +59,26 @@ namespace KantoorInrichting.Views.Inventory
 
             if (checkBox1.Checked == true)
             {
-                //foreach (Models.Product.Product product in Models.Product.Product.result)
+                //foreach (ProductModel product in ProductModel.result)
                 //{
                 //    if (product.amount == 0)
                 //    {
-                //        Models.Product.Product.result.Remove(product);
+                //        ProductModel.result.Remove(product);
                 //    }
                 //}
             }
             else if (checkBox1.Checked == false)
             {
-                //foreach (Models.Product.Product product in Models.Product.Product.result)
+                //foreach (ProductModel product in ProductModel.result)
                 //{
                 //    if (product.amount == 0)
                 //    {
-                //        Models.Product.Product.result.Add(product);
+                //        ProductModel.result.Add(product);
                 //    }
                 //}
             }
             
-            dataGridView1.DataSource = Models.Product.Product.result;
+            dataGridView1.DataSource = Models.Product.ProductModel.result;
             dataGridView1.Refresh();
         }
 
@@ -80,7 +92,7 @@ namespace KantoorInrichting.Views.Inventory
                 {
                     // run edit screen here
                     // make an editscreen with current product as argument
-                    InventoryEdit edit = new InventoryEdit(Models.Product.Product.list[e.RowIndex],this);
+                    InventoryEdit edit = new InventoryEdit(Models.Product.ProductModel.list[e.RowIndex],this);
                     edit.Show();
                 }
 
@@ -88,12 +100,18 @@ namespace KantoorInrichting.Views.Inventory
                 {
                     // run delete screen here
                     // make an Removescreen with current product as argument
-                    InventoryRemove remove = new InventoryRemove(Models.Product.Product.list[e.RowIndex],this);
+                    InventoryRemove remove = new InventoryRemove(Models.Product.ProductModel.list[e.RowIndex],this);
                     remove.Show();
                 }
 
             }
                   
+        }
+
+        private void DropdownMerk_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //person selectedPerson = comboBox1.SelectedItem as person;
+            //messageBox.Show(selectedPerson.name, "caption goes here");
         }
     }
     }

@@ -11,14 +11,14 @@ namespace KantoorInrichting_Test.Models.Product_Test
         [TestMethod]
         public void Createproduct_Test()
         {
-            Product p = new Product();
+            ProductModel p = new ProductModel();
             Assert.IsNotNull(p);
         }
 
         [TestMethod]
         public void ChangeProductCategory_Test()
         {
-            Product p = new Product();
+            ProductModel p = new ProductModel();
             p.category = "changed category";
             p.subcategory = "changed subcategory";
 
@@ -29,7 +29,7 @@ namespace KantoorInrichting_Test.Models.Product_Test
         [TestMethod]
         public void DeleteProductCategory_Test()
         {
-            Product p = new Product("", "", "", "category", "subcategory", 0, 0, 0, "", 0);
+            ProductModel p = new ProductModel("", "", "", "category", "subcategory", 0, 0, 0, "", 0);
             p.category = "";
             p.subcategory = "";
 

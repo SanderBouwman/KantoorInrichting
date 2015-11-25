@@ -28,15 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.PanelRight = new System.Windows.Forms.Panel();
             this.DropdownCategorie = new System.Windows.Forms.ComboBox();
-            this.DropdownLeverancier = new System.Windows.Forms.ComboBox();
+            this.DropdownMerk = new System.Windows.Forms.ComboBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.PanelLeft = new System.Windows.Forms.Panel();
             this.titel = new System.Windows.Forms.Label();
             this.directorySearcher1 = new System.DirectoryServices.DirectorySearcher();
+            this.productBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.nr = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Naam = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Merk = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -49,7 +53,9 @@
             this.delete = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.PanelRight.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).BeginInit();
             this.PanelLeft.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.productBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -64,6 +70,7 @@
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.nr,
             this.Naam,
             this.Type,
             this.Merk,
@@ -90,7 +97,7 @@
             this.PanelRight.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.PanelRight.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.PanelRight.Controls.Add(this.DropdownCategorie);
-            this.PanelRight.Controls.Add(this.DropdownLeverancier);
+            this.PanelRight.Controls.Add(this.DropdownMerk);
             this.PanelRight.Controls.Add(this.checkBox1);
             this.PanelRight.Controls.Add(this.label1);
             this.PanelRight.Location = new System.Drawing.Point(312, 0);
@@ -102,25 +109,27 @@
             // DropdownCategorie
             // 
             this.DropdownCategorie.FormattingEnabled = true;
-            this.DropdownCategorie.Location = new System.Drawing.Point(49, 42);
+            this.DropdownCategorie.Location = new System.Drawing.Point(33, 42);
             this.DropdownCategorie.Name = "DropdownCategorie";
-            this.DropdownCategorie.Size = new System.Drawing.Size(121, 24);
+            this.DropdownCategorie.Size = new System.Drawing.Size(161, 24);
             this.DropdownCategorie.TabIndex = 0;
+            this.DropdownCategorie.Text = "filter op categorie";
             // 
-            // DropdownLeverancier
+            // DropdownMerk
             // 
-            this.DropdownLeverancier.FormattingEnabled = true;
-            this.DropdownLeverancier.Location = new System.Drawing.Point(49, 12);
-            this.DropdownLeverancier.Name = "DropdownLeverancier";
-            this.DropdownLeverancier.Size = new System.Drawing.Size(121, 24);
-            this.DropdownLeverancier.TabIndex = 1;
+            this.DropdownMerk.FormattingEnabled = true;
+            this.DropdownMerk.Location = new System.Drawing.Point(33, 12);
+            this.DropdownMerk.Name = "DropdownMerk";
+            this.DropdownMerk.Size = new System.Drawing.Size(161, 24);
+            this.DropdownMerk.TabIndex = 1;
+            this.DropdownMerk.SelectedIndexChanged += new System.EventHandler(this.DropdownMerk_SelectedIndexChanged);
             // 
             // checkBox1
             // 
             this.checkBox1.AutoEllipsis = true;
-            this.checkBox1.Location = new System.Drawing.Point(49, 71);
+            this.checkBox1.Location = new System.Drawing.Point(33, 72);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(138, 40);
+            this.checkBox1.Size = new System.Drawing.Size(161, 39);
             this.checkBox1.TabIndex = 2;
             this.checkBox1.Text = "Toon afwezige producten";
             this.checkBox1.UseVisualStyleBackColor = true;
@@ -159,6 +168,12 @@
             this.directorySearcher1.ClientTimeout = System.TimeSpan.Parse("-00:00:01");
             this.directorySearcher1.ServerPageTimeLimit = System.TimeSpan.Parse("-00:00:01");
             this.directorySearcher1.ServerTimeLimit = System.TimeSpan.Parse("-00:00:01");
+            // 
+            // nr
+            // 
+            this.nr.DataPropertyName = "Id";
+            this.nr.HeaderText = "nr";
+            this.nr.Name = "nr";
             // 
             // Naam
             // 
@@ -240,7 +255,9 @@
             this.Size = new System.Drawing.Size(600, 400);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.PanelRight.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).EndInit();
             this.PanelLeft.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.productBindingSource1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -251,10 +268,13 @@
         private System.Windows.Forms.Panel PanelLeft;
         private System.Windows.Forms.Label titel;
         private System.Windows.Forms.ComboBox DropdownCategorie;
-        private System.Windows.Forms.ComboBox DropdownLeverancier;
+        private System.Windows.Forms.ComboBox DropdownMerk;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Label label1;
         private System.DirectoryServices.DirectorySearcher directorySearcher1;
+        private System.Windows.Forms.BindingSource productBindingSource;
+        private System.Windows.Forms.BindingSource productBindingSource1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nr;
         private System.Windows.Forms.DataGridViewTextBoxColumn Naam;
         private System.Windows.Forms.DataGridViewTextBoxColumn Type;
         private System.Windows.Forms.DataGridViewTextBoxColumn Merk;

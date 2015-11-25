@@ -18,7 +18,7 @@ namespace KantoorInrichting.Views.Inventory
 
 
 
-        public InventoryEdit(Models.Product.Product p, UserControl u)
+        public InventoryEdit(Models.Product.ProductModel p, UserControl u)
         {
             InitializeComponent();
             this.productamount = p.amount;

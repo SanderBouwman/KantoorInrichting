@@ -56,10 +56,17 @@
     <Compile Include="Models\Placement\Polygon.cs" />
     <Compile Include="Models\Placement\Vector.cs" />
     <Compile Include="Models\Product\PlacedProduct.cs" />
+    <Compile Include="Models\Product\ProductModel.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Assortment\AddNewProduct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Assortment\AddNewProduct.Designer.cs">
+      <DependentUpon>AddNewProduct.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Assortment\AssortmentScreen.cs">
       <SubType>UserControl</SubType>
@@ -71,7 +78,6 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Models\Grid\Tile.cs" />
-    <Compile Include="Models\Product\Product.cs" />
     <Compile Include="Views\Grid\ZoomView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -159,6 +165,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Assortment\AddNewProduct.resx">
+      <DependentUpon>AddNewProduct.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Assortment\AssortmentScreen.resx">
       <DependentUpon>AssortmentScreen.cs</DependentUpon>
     </EmbeddedResource>
@@ -206,6 +215,7 @@
     <Folder Include="Models\Inventory\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Properties\DataSources\KantoorInrichting.Models.Product.Product.datasource" />
     <None Include="Resources\No_Image_Available.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
