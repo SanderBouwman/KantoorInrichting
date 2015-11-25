@@ -22,7 +22,8 @@ namespace KantoorInrichting.Views.Assortment
 
         private void addProductButton_Click(object sender, EventArgs e)
         {
-
+            AddNewProduct add = new AddNewProduct();
+            add.Show();
         }
     }
 }

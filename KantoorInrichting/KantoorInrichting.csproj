@@ -60,6 +60,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Assortment\AddNewProduct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Assortment\AddNewProduct.Designer.cs">
+      <DependentUpon>AddNewProduct.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Assortment\AssortmentScreen.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -157,6 +163,9 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Assortment\AddNewProduct.resx">
+      <DependentUpon>AddNewProduct.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Assortment\AssortmentScreen.resx">
       <DependentUpon>AssortmentScreen.cs</DependentUpon>
