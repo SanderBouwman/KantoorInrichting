@@ -35,8 +35,8 @@ namespace KantoorInrichting.Views.Inventory
         {
             this.dataGridView1.DataSource = null;
             dataGridView1.AutoGenerateColumns = false;
-            Models.Product.Product.result = Models.Product.Product.list;
-            this.dataGridView1.DataSource = Models.Product.Product.result;    
+            Models.Product.ProductModel.result = Models.Product.ProductModel.list;
+            this.dataGridView1.DataSource = Models.Product.ProductModel.result;    
         }
 
 
@@ -66,7 +66,7 @@ namespace KantoorInrichting.Views.Inventory
                 //}
             }
             
-            dataGridView1.DataSource = Models.Product.Product.result;
+            dataGridView1.DataSource = Models.Product.ProductModel.result;
             dataGridView1.Refresh();
         }
 
@@ -80,7 +80,7 @@ namespace KantoorInrichting.Views.Inventory
                 {
                     // run edit screen here
                     // make an editscreen with current product as argument
-                    InventoryEdit edit = new InventoryEdit(Models.Product.Product.list[e.RowIndex],this);
+                    InventoryEdit edit = new InventoryEdit(Models.Product.ProductModel.list[e.RowIndex],this);
                     edit.Show();
                 }
 
@@ -88,7 +88,7 @@ namespace KantoorInrichting.Views.Inventory
                 {
                     // run delete screen here
                     // make an Removescreen with current product as argument
-                    InventoryRemove remove = new InventoryRemove(Models.Product.Product.list[e.RowIndex],this);
+                    InventoryRemove remove = new InventoryRemove(Models.Product.ProductModel.list[e.RowIndex],this);
                     remove.Show();
                 }
 

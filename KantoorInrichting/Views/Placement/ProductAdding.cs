@@ -81,7 +81,7 @@ namespace KantoorInrichting.Views.Placement
 
         private void btn_AddProduct_Click(object sender, EventArgs e)
         {
-            ppList.Add(new PlacedProduct(new KantoorInrichting.Models.Product.Product("", "", "", "", "",100, 50, 50, "", 1), new PointF(400, 50)));
+            ppList.Add(new PlacedProduct(new KantoorInrichting.Models.Product.ProductModel("", "", "", "", "",100, 50, 50, "", 1), new PointF(400, 50)));
         }
 
 

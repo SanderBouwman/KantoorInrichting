@@ -43,7 +43,7 @@ namespace KantoorInrichting.Models.Grid {
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <param name="item"></param>
-        public void AddItem(int x, int y, Product.Product item) {
+        public void AddItem(int x, int y, Product.ProductModel item) {
             Rows[y, x].Product = item;
         }
     }

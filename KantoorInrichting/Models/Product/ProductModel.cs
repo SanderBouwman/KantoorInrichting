@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace KantoorInrichting.Models.Product
 {
-    public class Product
+    public class ProductModel
     {
 
-        public static List<Product> list = new List<Product>(); 
-        public static List<Product> result = new List<Product>();  // list for filtering data
+        public static List<ProductModel> list = new List<ProductModel>(); 
+        public static List<ProductModel> result = new List<ProductModel>();  // list for filtering data
 
         public string name;
         public string brand;
@@ -36,7 +36,7 @@ namespace KantoorInrichting.Models.Product
         public string description { get; private set; }
         
 
-        public Product(string n, string b, string t, string c, string s, int l, int w, int h, string d, int a)
+        public ProductModel(string n, string b, string t, string c, string s, int l, int w, int h, string d, int a)
         {
             name = n;
             brand = b;
@@ -58,7 +58,7 @@ namespace KantoorInrichting.Models.Product
         /// <summary>
         /// Return a default Product
         /// </summary>
-        public Product() : this("", "", "", "", "", 1, 1, 1, "", 1) { }
+        public ProductModel() : this("", "", "", "", "", 1, 1, 1, "", 1) { }
 
     }
 }

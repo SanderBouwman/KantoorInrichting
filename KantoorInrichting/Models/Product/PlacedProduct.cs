@@ -15,7 +15,7 @@ namespace KantoorInrichting.Models.Product
 {
     public class PlacedProduct
     {
-        public Product product { get; private set; }
+        public ProductModel product { get; private set; }
         public PointF location { get; private set; }
         public PointF[] cornerPoints { get; private set; }
         private Bitmap defaultBitMap = new Bitmap(Properties.Resources.No_Image_Available);
@@ -31,7 +31,7 @@ namespace KantoorInrichting.Models.Product
         /// </summary>
         /// <param name="product">Give a product that will be presented.</param>
         /// <param name="center">The center location of the item</param>
-        public PlacedProduct(Product product, PointF center) : this(product, center, 0) { }
+        public PlacedProduct(ProductModel product, PointF center) : this(product, center, 0) { }
 
 
 
@@ -41,7 +41,7 @@ namespace KantoorInrichting.Models.Product
         /// <param name="product">Give a product that will be presented.</param>
         /// <param name="center">The center location of the item.</param>
         /// <param name="angle">Give the product a set angle to take.</param>
-        public PlacedProduct(Product product, PointF center, int angle)
+        public PlacedProduct(ProductModel product, PointF center, int angle)
         {
             //Core variables
             this.product = product;

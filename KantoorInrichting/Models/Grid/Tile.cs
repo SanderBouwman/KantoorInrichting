@@ -5,7 +5,7 @@ namespace KantoorInrichting.Models.Grid {
     public struct Tile {
         public float Width { get; }
         public float Height { get; }
-        public Product.Product Product { get; set; }
+        public Product.ProductModel Product { get; set; }
 
         public Tile(float squareSize) {
             Width = squareSize;

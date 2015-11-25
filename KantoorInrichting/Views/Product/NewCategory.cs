@@ -12,9 +12,25 @@ namespace KantoorInrichting.Views.Product
 {
     public partial class NewCategory : Form
     {
+        
         public NewCategory()
         {
             InitializeComponent();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cancelButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void saveButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

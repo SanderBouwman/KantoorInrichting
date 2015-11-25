@@ -14,19 +14,19 @@ namespace KantoorInrichting.Views.Placement
 {
     public partial class ProductInfo : UserControl
     {
-        public KantoorInrichting.Models.Product.Product product { get; private set; }
+        public KantoorInrichting.Models.Product.ProductModel product { get; private set; }
 
 
         public ProductInfo()
         {
             InitializeComponent();
             
-            setProduct(new KantoorInrichting.Models.Product.Product());
+            setProduct(new KantoorInrichting.Models.Product.ProductModel());
             lbl_Image.Text = "";
         }
        
 
-        public void setProduct(KantoorInrichting.Models.Product.Product p)
+        public void setProduct(KantoorInrichting.Models.Product.ProductModel p)
         {
             product = p;
 
