@@ -10,6 +10,7 @@ using KantoorInrichting.Controllers.Placement;
 using System.Drawing.Imaging;
 using System.Drawing.Drawing2D;
 using KantoorInrichting.Views.Placement;
+using System.Windows.Forms;
 
 namespace KantoorInrichting.Models.Product
 {
@@ -23,7 +24,7 @@ namespace KantoorInrichting.Models.Product
         public int currentAngle { get; private set; }
         public Polygon Poly { get; private set; }
         
-
+        public int gridSpace = 50;
 
 
         /// <summary>
@@ -129,6 +130,22 @@ namespace KantoorInrichting.Models.Product
                 if (r.WillIntersect)
                 {
                     playerTranslation = velocity + r.MinimumTranslationVector;
+
+                    if (X_Axis) //Moving the x-axis, so set the y-axis velocity to 0
+                    {
+                        playerTranslation.Y = 0;
+                    }
+                    else //Moving the y-axis, so set the x-axis velocity to 0
+                    {
+                        playerTranslation.X = 0;
+                    }
+
+                    //Round down to the closest 5 pixels
+
+                    playerTranslation.X = ((int)playerTranslation.X / gridSpace) * gridSpace;
+                    playerTranslation.Y = ((int)playerTranslation.Y / gridSpace) * gridSpace;
+                    MessageBox.Show("Test the movement: X=" + playerTranslation.X + "; Y=" + playerTranslation.Y);
+
                     break;
                 }
             }
@@ -142,8 +159,8 @@ namespace KantoorInrichting.Models.Product
                 cornerPoints[index] = new PointF(Poly.Points[index].X, Poly.Points[index].Y);
             }
 
-            //Update the center point            
-            location = new PointF(Poly.Center.X, Poly.Center.Y);
+            //Update the center point
+            location = new PointF(location.X + playerTranslation.X, location.Y + playerTranslation.Y);
 
         }
 
