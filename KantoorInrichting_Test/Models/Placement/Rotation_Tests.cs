@@ -9,7 +9,7 @@ namespace KantoorInrichting_Test.Models.Placement
     public class RotationTests
     {
         [TestMethod]
-        public void rotation_setRotation_45()
+        public void rotation_setAngle_45()
         {
             //Make
             PointF point = new PointF(200, 200);
@@ -61,11 +61,10 @@ namespace KantoorInrichting_Test.Models.Placement
             {
                 Assert.AreEqual(pointCorner[index].ToString(), placedP.cornerPoints[index].ToString(), true, "Corner #" + index + " is in the wrong spot!");
             }
-
         }
 
         [TestMethod]
-        public void rotation_setRotation_90()
+        public void rotation_setAngle_90()
         {
             //Make
             PointF point = new PointF(200, 200);
@@ -95,7 +94,7 @@ namespace KantoorInrichting_Test.Models.Placement
         }
 
         [TestMethod]
-        public void rotation_setRotation_180()
+        public void rotation_setAngle_180()
         {
             //Make
             PointF point = new PointF(200, 200);
@@ -124,7 +123,7 @@ namespace KantoorInrichting_Test.Models.Placement
         }
 
         [TestMethod]
-        public void rotation_setRotation_360()
+        public void rotation_setAngle_360()
         {
             //Make
             PointF point = new PointF(200, 200);
@@ -153,7 +152,7 @@ namespace KantoorInrichting_Test.Models.Placement
         }
 
         [TestMethod]
-        public void rotation_addRotation_45()
+        public void rotation_addAngle_45()
         {
             //Make
             PointF point = new PointF(200, 200);
@@ -181,11 +180,10 @@ namespace KantoorInrichting_Test.Models.Placement
             {
                 Assert.AreEqual(pointCorner[index].ToString(), placedP.cornerPoints[index].ToString(), true, "Corner #" + index + " is in the wrong spot!");
             }
-
         }
 
         [TestMethod]
-        public void rotation_addRotation_90()
+        public void rotation_addAngle_90()
         {
             //Make
             PointF point = new PointF(200, 200);
@@ -217,7 +215,7 @@ namespace KantoorInrichting_Test.Models.Placement
         }
 
         [TestMethod]
-        public void rotation_addRotation_180()
+        public void rotation_addAngle_180()
         {
             //Make
             PointF point = new PointF(200, 200);
@@ -247,7 +245,7 @@ namespace KantoorInrichting_Test.Models.Placement
         }
 
         [TestMethod]
-        public void rotation_addRotation_360()
+        public void rotation_addAngle_360()
         {
             //Make
             PointF point = new PointF(200, 200);
