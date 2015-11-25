@@ -45,10 +45,8 @@ namespace KantoorInrichting.Views.Inventory
 
             foreach (ProductModel product in MerkResult)
             {
-                DropdownMerk.Items.Add(product.brand);
+                DropdownMerk.Items.Add(product.Brand);
             }
-
-           // DropdownMerk.DataSource = MerkResult;
 
         }
 
@@ -78,7 +76,7 @@ namespace KantoorInrichting.Views.Inventory
                 //}
             }
             
-            dataGridView1.DataSource = Models.Product.ProductModel.result;
+            dataGridView1.DataSource = ProductModel.result;
             dataGridView1.Refresh();
         }
 
@@ -110,8 +108,22 @@ namespace KantoorInrichting.Views.Inventory
 
         private void DropdownMerk_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //person selectedPerson = comboBox1.SelectedItem as person;
-            //messageBox.Show(selectedPerson.name, "caption goes here");
+            dataGridView1.DataSource = ProductModel.result = ProductModel.list;
+            dataGridView1.DataSource = null;
+            dataGridView1.Refresh();
+
+
+            string selectedBrand = DropdownMerk.SelectedItem.ToString();
+
+            var filteredProducts = from product in ProductModel.result
+                                   where product.Brand == selectedBrand
+                                   select product;
+            ProductModel.result = filteredProducts.ToList();
+
+
+            dataGridView1.DataSource =ProductModel.result;
+            dataGridView1.Refresh();
+
         }
     }
     }
