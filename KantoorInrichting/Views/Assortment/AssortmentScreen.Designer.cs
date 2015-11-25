@@ -32,20 +32,21 @@
             this.PanelLeft = new System.Windows.Forms.Panel();
             this.addProductButton = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.PanelRight = new System.Windows.Forms.Panel();
+            this.DropdownCategorie = new System.Windows.Forms.ComboBox();
+            this.DropdownLeverancier = new System.Windows.Forms.ComboBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.Naam = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Merk = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.hoogte = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.breedte = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Lengte = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Afbeelding = new System.Windows.Forms.DataGridViewImageColumn();
             this.wijzig = new System.Windows.Forms.DataGridViewButtonColumn();
             this.delete = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.PanelRight = new System.Windows.Forms.Panel();
-            this.DropdownCategorie = new System.Windows.Forms.ComboBox();
-            this.DropdownLeverancier = new System.Windows.Forms.ComboBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.PanelLeft.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.PanelRight.SuspendLayout();
@@ -102,6 +103,7 @@
             this.hoogte,
             this.breedte,
             this.Lengte,
+            this.Amount,
             this.Afbeelding,
             this.wijzig,
             this.delete});
@@ -113,53 +115,6 @@
             this.dataGridView1.RowTemplate.Height = 50;
             this.dataGridView1.Size = new System.Drawing.Size(450, 185);
             this.dataGridView1.TabIndex = 3;
-            // 
-            // Naam
-            // 
-            this.Naam.DataPropertyName = "Naam";
-            this.Naam.Name = "Naam";
-            // 
-            // Type
-            // 
-            this.Type.DataPropertyName = "Type";
-            this.Type.Name = "Type";
-            // 
-            // Merk
-            // 
-            this.Merk.DataPropertyName = "Merk";
-            this.Merk.Name = "Merk";
-            // 
-            // hoogte
-            // 
-            this.hoogte.Name = "hoogte";
-            // 
-            // breedte
-            // 
-            this.breedte.Name = "breedte";
-            // 
-            // Lengte
-            // 
-            this.Lengte.Name = "Lengte";
-            // 
-            // Afbeelding
-            // 
-            this.Afbeelding.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.Afbeelding.DataPropertyName = "Image";
-            this.Afbeelding.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Stretch;
-            this.Afbeelding.Name = "Afbeelding";
-            this.Afbeelding.Width = 63;
-            // 
-            // wijzig
-            // 
-            this.wijzig.Name = "wijzig";
-            this.wijzig.Text = "wijzig";
-            this.wijzig.UseColumnTextForButtonValue = true;
-            // 
-            // delete
-            // 
-            this.delete.Name = "delete";
-            this.delete.Text = "delete";
-            this.delete.UseColumnTextForButtonValue = true;
             // 
             // PanelRight
             // 
@@ -214,6 +169,70 @@
             this.label1.Size = new System.Drawing.Size(75, 19);
             this.label1.TabIndex = 3;
             // 
+            // Naam
+            // 
+            this.Naam.DataPropertyName = "Name";
+            this.Naam.HeaderText = "Naam";
+            this.Naam.Name = "Naam";
+            // 
+            // Type
+            // 
+            this.Type.DataPropertyName = "Type";
+            this.Type.HeaderText = "Type";
+            this.Type.Name = "Type";
+            // 
+            // Merk
+            // 
+            this.Merk.DataPropertyName = "Brand";
+            this.Merk.HeaderText = "Merk";
+            this.Merk.Name = "Merk";
+            // 
+            // hoogte
+            // 
+            this.hoogte.DataPropertyName = "Height";
+            this.hoogte.HeaderText = "hoogte";
+            this.hoogte.Name = "hoogte";
+            // 
+            // breedte
+            // 
+            this.breedte.DataPropertyName = "Width";
+            this.breedte.HeaderText = "breedte";
+            this.breedte.Name = "breedte";
+            // 
+            // Lengte
+            // 
+            this.Lengte.DataPropertyName = "Length";
+            this.Lengte.HeaderText = "Lengte";
+            this.Lengte.Name = "Lengte";
+            // 
+            // Amount
+            // 
+            this.Amount.HeaderText = "Aantal";
+            this.Amount.Name = "Amount";
+            // 
+            // Afbeelding
+            // 
+            this.Afbeelding.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Afbeelding.DataPropertyName = "Image";
+            this.Afbeelding.HeaderText = "Afbeelding";
+            this.Afbeelding.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Stretch;
+            this.Afbeelding.Name = "Afbeelding";
+            this.Afbeelding.Width = 63;
+            // 
+            // wijzig
+            // 
+            this.wijzig.HeaderText = "wijzig";
+            this.wijzig.Name = "wijzig";
+            this.wijzig.Text = "wijzig";
+            this.wijzig.UseColumnTextForButtonValue = true;
+            // 
+            // delete
+            // 
+            this.delete.HeaderText = "delete";
+            this.delete.Name = "delete";
+            this.delete.Text = "delete";
+            this.delete.UseColumnTextForButtonValue = true;
+            // 
             // AssortmentScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -235,20 +254,21 @@
         private System.Windows.Forms.Label titel;
         private System.Windows.Forms.Panel PanelLeft;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Naam;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Type;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Merk;
-        private System.Windows.Forms.DataGridViewTextBoxColumn hoogte;
-        private System.Windows.Forms.DataGridViewTextBoxColumn breedte;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Lengte;
-        private System.Windows.Forms.DataGridViewImageColumn Afbeelding;
-        private System.Windows.Forms.DataGridViewButtonColumn wijzig;
-        private System.Windows.Forms.DataGridViewButtonColumn delete;
         private System.Windows.Forms.Panel PanelRight;
         private System.Windows.Forms.ComboBox DropdownCategorie;
         private System.Windows.Forms.ComboBox DropdownLeverancier;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button addProductButton;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Naam;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Type;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Merk;
+        private System.Windows.Forms.DataGridViewTextBoxColumn hoogte;
+        private System.Windows.Forms.DataGridViewTextBoxColumn breedte;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Lengte;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Amount;
+        private System.Windows.Forms.DataGridViewImageColumn Afbeelding;
+        private System.Windows.Forms.DataGridViewButtonColumn wijzig;
+        private System.Windows.Forms.DataGridViewButtonColumn delete;
     }
 }

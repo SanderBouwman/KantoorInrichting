@@ -27,28 +27,20 @@ namespace KantoorInrichting.Views.Grid {
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
             this.listView = new System.Windows.Forms.ListView();
-            this.imageList = new System.Windows.Forms.ImageList(this.components);
             this.zoomCheckbox = new System.Windows.Forms.CheckBox();
             this.trackBar = new System.Windows.Forms.TrackBar();
             this.drawPanel = new KantoorInrichting.Models.Grid.GridFieldPanel();
+            this.imageList = new System.Windows.Forms.ImageList(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.trackBar)).BeginInit();
             this.SuspendLayout();
             // 
             // listView
             // 
-            this.listView.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.listView.LargeImageList = this.imageList;
             this.listView.Location = new System.Drawing.Point(619, 5);
             this.listView.Name = "listView";
             this.listView.Size = new System.Drawing.Size(124, 340);
             this.listView.TabIndex = 0;
             this.listView.UseCompatibleStateImageBehavior = false;
-            // 
-            // imageList
-            // 
-            this.imageList.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
-            this.imageList.ImageSize = new System.Drawing.Size(16, 16);
-            this.imageList.TransparentColor = System.Drawing.Color.Transparent;
             // 
             // zoomCheckbox
             // 
@@ -62,15 +54,16 @@ namespace KantoorInrichting.Views.Grid {
             // 
             // trackBar
             // 
+            this.trackBar.LargeChange = 25;
             this.trackBar.Location = new System.Drawing.Point(615, 406);
             this.trackBar.Maximum = 300;
             this.trackBar.Minimum = 50;
-            this.trackBar.TickFrequency = 25;
-            this.trackBar.LargeChange = 25;
-            this.trackBar.SmallChange = 10;
             this.trackBar.Name = "trackBar";
             this.trackBar.Size = new System.Drawing.Size(104, 45);
+            this.trackBar.SmallChange = 10;
             this.trackBar.TabIndex = 3;
+            this.trackBar.TickFrequency = 25;
+            this.trackBar.Value = 50;
             // 
             // drawPanel
             // 
@@ -78,6 +71,12 @@ namespace KantoorInrichting.Views.Grid {
             this.drawPanel.Name = "drawPanel";
             this.drawPanel.Size = new System.Drawing.Size(601, 601);
             this.drawPanel.TabIndex = 1;
+            // 
+            // imageList
+            // 
+            this.imageList.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.imageList.ImageSize = new System.Drawing.Size(16, 16);
+            this.imageList.TransparentColor = System.Drawing.Color.Transparent;
             // 
             // GridFieldView
             // 
@@ -99,9 +98,9 @@ namespace KantoorInrichting.Views.Grid {
         #endregion
 
         private System.Windows.Forms.ListView listView;
-        private System.Windows.Forms.ImageList imageList;
         private System.Windows.Forms.CheckBox zoomCheckbox;
         private GridFieldPanel drawPanel;
         private System.Windows.Forms.TrackBar trackBar;
+        private System.Windows.Forms.ImageList imageList;
     }
 }

@@ -40,8 +40,8 @@ namespace KantoorInrichting.Controllers.Grid {
         public GridController(IView view, GridFieldModel model) {
             _view = view;
             _model = model;
-
-            _zoomRectangleWidth = 50; // has to be set by the slider control
+            
+            _zoomRectangleWidth = 50; // initial size of zoom rectangle
             _zoomRectangleHeight = 50;
 
             _view.SetController(this);
@@ -51,7 +51,7 @@ namespace KantoorInrichting.Controllers.Grid {
 
             float tWidth = _panel.Width/_model.Rows.GetLength(1);
             float tHeight = _panel.Height/_model.Rows.GetLength(0);
-            // Doing these check to make sure that we don't have pixels left
+            // Doing these checks to make sure that we don't have pixels left
             _tileWidth = (_panel.Width%_model.Rows.GetLength(1) != 0 ? (int) tWidth++ : (int) tWidth)*
                          _model.Rows[0, 0].Width;
             _tileHeight = (_panel.Width%_model.Rows.GetLength(0) != 0 ? (int) tHeight++ : (int) tHeight)*
@@ -65,7 +65,6 @@ namespace KantoorInrichting.Controllers.Grid {
             // getting the index of the tile in the array which has been clicked on
             _tileX = (int) (e.X/_tileWidth*_model.Rows[0, 0].Width);
             _tileY = (int) (e.Y/_tileHeight*_model.Rows[0, 0].Height);
-            Console.WriteLine("X: {0}, Y: {1}", _tileX, _tileY);
         }
 
         public void Resize(object sender, EventArgs e) {
@@ -80,12 +79,15 @@ namespace KantoorInrichting.Controllers.Grid {
 
                 _buffer = newBuffer;
             }
+
+            Application.DoEvents(); // Handle events in queue
         }
 
         public void Paint(object sender, PaintEventArgs e) {
             PaintMouseRectangle();
             PaintModel();
             e.Graphics.DrawImage(_buffer, Point.Empty);
+
         }
 
         private void PaintMouseRectangle() {
@@ -149,11 +151,15 @@ namespace KantoorInrichting.Controllers.Grid {
         public void CheckboxChanged(bool b) {
             _zoomRectangleEnabled = b;
             if (_zoomRectangleEnabled) {
+                _view.Get("ListView").Enabled = false; // Disable listview when zooming
                 _zoomView = new ZoomView();
                 UpdateZoom();
                 _zoomView.Show();
             }
-            else if (!_zoomRectangleEnabled) _zoomView?.Dispose();
+            else if (!_zoomRectangleEnabled) {
+                _view.Get("ListView").Enabled = true; // Enable listview when not zooming
+                _zoomView?.Dispose();
+            }
         }
 
         private void UpdateZoom() {
