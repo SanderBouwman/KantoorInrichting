@@ -26,7 +26,7 @@ namespace KantoorInrichting
             // make the panels
             this.inventoryScreen1 = new KantoorInrichting.Views.Inventory.InventoryScreen(this);
             this.mainScreen1 = new KantoorInrichting.Views.MainScreen(this);
-            this.gridFieldView = new KantoorInrichting.Views.Grid.GridFieldView(this);
+            this.gridFieldView = new KantoorInrichting.Views.Grid.GridFieldView();
             this.assortmentScreen = new Views.Assortment.AssortmentScreen(this);
             this.placement = new Views.Placement.ProductAdding(this);
 
