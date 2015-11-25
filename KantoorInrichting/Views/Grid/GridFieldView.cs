@@ -5,13 +5,14 @@
 
 using System;
 using System.Windows.Forms;
+using KantoorInrichting.Controllers;
 using KantoorInrichting.Controllers.Grid;
 
 #endregion
 
 namespace KantoorInrichting.Views.Grid {
-    public partial class GridFieldView : UserControl {
-        private GridController _controller;
+    public partial class GridFieldView : UserControl, IView {
+        private IController _controller;
         private MainFrame mainframe;
 
 
@@ -21,8 +22,21 @@ namespace KantoorInrichting.Views.Grid {
             SetEvents();
         }
 
-        public void SetController(GridController controller) {
+        public void SetController(IController controller) {
             _controller = controller;
+        }
+
+        public Control Get(string property) {
+            Control toReturn = null;
+            switch( property ) {
+                case "Panel":
+                    toReturn = this.drawPanel;
+                    break;
+                case "Trackbar":
+                    toReturn = this.trackBar;
+                    break;
+            }
+            return toReturn;
         }
 
         private void SetEvents() {
@@ -36,11 +50,11 @@ namespace KantoorInrichting.Views.Grid {
         }
 
         private void TrackBar_Scroll(object sender, EventArgs e) {
-            _controller.TrackBar_Scroll(sender, e);
+            _controller.TrackbarScroll(sender, e);
         }
 
         private void ZoomCheckbox_CheckedChanged(object sender, EventArgs e) {
-            _controller.ZoomCheckboxChanged(zoomCheckbox.Checked);
+            _controller.CheckboxChanged(zoomCheckbox.Checked);
         }
 
         private void DrawPanel_MouseMove(object sender, MouseEventArgs e) {

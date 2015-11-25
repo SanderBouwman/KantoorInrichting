@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\IController.cs" />
     <Compile Include="Controllers\Placement\PolygonPlacementController.cs" />
     <Compile Include="Models\Grid\GridFieldModel.cs" />
     <Compile Include="Models\Placement\Polygon.cs" />
@@ -101,6 +102,7 @@
     <Compile Include="Views\Inventory\InventoryScreen.Designer.cs">
       <DependentUpon>InventoryScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\IView.cs" />
     <Compile Include="Views\MainFrame.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -8,18 +8,21 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
 using KantoorInrichting.Models.Grid;
+using KantoorInrichting.Views;
 using KantoorInrichting.Views.Grid;
 
 #endregion
 
 namespace KantoorInrichting.Controllers.Grid {
-    public class GridController {
+    public class GridController : IController {
         private readonly GridFieldModel _model;
         private readonly float _tileHeight;
 
         private readonly float _tileWidth;
 
-        private readonly GridFieldView _view;
+        private readonly IView _view;
+        private readonly Panel _panel;
+        private readonly TrackBar _trackBar;
 
         private Bitmap _background;
         private Bitmap _buffer;
@@ -34,7 +37,7 @@ namespace KantoorInrichting.Controllers.Grid {
         private bool _zoomRectangleEnabled;
         private ZoomView _zoomView;
 
-        public GridController(GridFieldView view, GridFieldModel model) {
+        public GridController(IView view, GridFieldModel model) {
             _view = view;
             _model = model;
 
@@ -43,12 +46,15 @@ namespace KantoorInrichting.Controllers.Grid {
 
             _view.SetController(this);
 
-            float tWidth = _view.GetPanel().Width/_model.Rows.GetLength(1);
-            float tHeight = _view.GetPanel().Height/_model.Rows.GetLength(0);
+            _panel = (Panel) _view.Get("Panel");
+            _trackBar = (TrackBar) _view.Get("Trackbar");
+
+            float tWidth = _panel.Width/_model.Rows.GetLength(1);
+            float tHeight = _panel.Height/_model.Rows.GetLength(0);
             // Doing these check to make sure that we don't have pixels left
-            _tileWidth = (_view.GetPanel().Width%_model.Rows.GetLength(1) != 0 ? (int) tWidth++ : (int) tWidth)*
+            _tileWidth = (_panel.Width%_model.Rows.GetLength(1) != 0 ? (int) tWidth++ : (int) tWidth)*
                          _model.Rows[0, 0].Width;
-            _tileHeight = (_view.GetPanel().Width%_model.Rows.GetLength(0) != 0 ? (int) tHeight++ : (int) tHeight)*
+            _tileHeight = (_panel.Width%_model.Rows.GetLength(0) != 0 ? (int) tHeight++ : (int) tHeight)*
                           _model.Rows[0, 0].Height;
 
 
@@ -63,9 +69,9 @@ namespace KantoorInrichting.Controllers.Grid {
         }
 
         public void Resize(object sender, EventArgs e) {
-            if (_buffer == null || _buffer.Width < _view.GetPanel().Width ||
-                _buffer.Height < _view.GetPanel().Height) {
-                Bitmap newBuffer = new Bitmap(_view.GetPanel().Width, _view.GetPanel().Height);
+            if (_buffer == null || _buffer.Width < _panel.Width ||
+                _buffer.Height < _panel.Height) {
+                Bitmap newBuffer = new Bitmap(_panel.Width, _panel.Height);
 
                 if (_buffer != null) {
                     using (Graphics bufferGraphics = Graphics.FromImage(newBuffer))
@@ -84,7 +90,7 @@ namespace KantoorInrichting.Controllers.Grid {
 
         private void PaintMouseRectangle() {
             if (_zoomRectangleEnabled) {
-                Bitmap tempBuffer = new Bitmap(_view.GetPanel().Width, _view.GetPanel().Height);
+                Bitmap tempBuffer = new Bitmap(_panel.Width, _panel.Height);
                 using (Graphics bufferGraphics = Graphics.FromImage(tempBuffer)) {
                     bufferGraphics.DrawRectangle(
                         Pens.Red,
@@ -107,10 +113,10 @@ namespace KantoorInrichting.Controllers.Grid {
         /// 
         /// </summary>
         private void PaintModel() {
-            if (_view.GetPanel().BackgroundImage == null) PaintBackground();
+            if (_panel.BackgroundImage == null) PaintBackground();
             // TODO Drawing items in model (draw on _buffer)
 
-            _view.GetPanel().Invalidate();
+            _panel.Invalidate();
         }
 
         private void PaintBackground() {
@@ -136,11 +142,11 @@ namespace KantoorInrichting.Controllers.Grid {
 
         public void MouseMove(object sender, MouseEventArgs e) {
             _mousePosition = e.Location;
-            _view.GetPanel().Invalidate();
+            _panel.Invalidate();
             if (_zoomView != null) UpdateZoom();
         }
 
-        public void ZoomCheckboxChanged(bool b) {
+        public void CheckboxChanged(bool b) {
             _zoomRectangleEnabled = b;
             if (_zoomRectangleEnabled) {
                 _zoomView = new ZoomView();
@@ -155,11 +161,11 @@ namespace KantoorInrichting.Controllers.Grid {
         }
 
         private Bitmap GetZoomedArea() {
-            int x = (_mousePosition.X < _view.GetPanel().Width - _zoomRectangleWidth/2) &&
+            int x = (_mousePosition.X < _panel.Width - _zoomRectangleWidth/2) &&
                     _mousePosition.X - _zoomRectangleWidth/2 > 0 // if x is not an invalid position
                 ? _mousePosition.X - _zoomRectangleWidth/2 // then set x
                 : 0;
-            int y = (_mousePosition.Y < _view.GetPanel().Height - _zoomRectangleHeight/2) &&
+            int y = (_mousePosition.Y < _panel.Height - _zoomRectangleHeight/2) &&
                     _mousePosition.Y - _zoomRectangleHeight/2 > 0 // if y is not an invalid position
                 ? _mousePosition.Y - _zoomRectangleHeight/2 // then set y
                 : 0;
@@ -168,9 +174,9 @@ namespace KantoorInrichting.Controllers.Grid {
             return _buffer.Clone(cloneRectangle, format);
         }
 
-        public void TrackBar_Scroll(object sender, EventArgs e) {
-            _zoomRectangleWidth = _view.GeTrackBar().Value;
-            _zoomRectangleHeight = _view.GeTrackBar().Value;
+        public void TrackbarScroll(object sender, EventArgs e) {
+            _zoomRectangleWidth = _trackBar.Value;
+            _zoomRectangleHeight = _trackBar.Value;
         }
     }
 }
