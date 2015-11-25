@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Controllers\IController.cs" />
     <Compile Include="Controllers\Placement\PolygonPlacementController.cs" />
+    <Compile Include="Controllers\Product\CategoryManagerController.cs" />
     <Compile Include="Models\Grid\GridFieldModel.cs" />
     <Compile Include="Models\Placement\Polygon.cs" />
     <Compile Include="Models\Placement\Vector.cs" />
