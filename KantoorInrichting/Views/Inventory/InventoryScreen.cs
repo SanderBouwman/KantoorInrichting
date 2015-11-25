@@ -41,26 +41,47 @@ namespace KantoorInrichting.Views.Inventory
 
         public void FillDropdown()
         {
+            // clear both dropdowns
             DropdownMerk.Items.Clear();
+            DropdownCategorie.Items.Clear();
 
-            var MerkResult = ProductModel.list.GroupBy(product => product.Brand)
+            // distinct from all the items in the productlist
+            var BrandResult = ProductModel.list.GroupBy(product => product.Brand)
                    .Select(grp => grp.First())
                    .ToList();
 
+            var CategoryResult = ProductModel.list.GroupBy(product => product.Category)
+                   .Select(grp => grp.First())
+                   .ToList();
+
+            // insert default
             DropdownMerk.Items.Insert(0, "geen merkfilter");
+            DropdownCategorie.Items.Insert(0, "geen categoriefilter");
 
-            foreach (ProductModel product in MerkResult)
+            
+            // add the unique items
+            foreach (ProductModel product in BrandResult)
             {
-                DropdownMerk.Items.Add(product.Brand);
-
+                if (product.Brand != null)
+                {
+                    DropdownMerk.Items.Add(product.Brand);
+                }
             }
+            foreach (ProductModel product in CategoryResult)
+            {
+                if (product.Category != null)
+                {
+                    DropdownCategorie.Items.Add(product.Category);
+                }
+            }
+
 
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             // check if there is an brand filter
-            if (DropdownMerk.SelectedItem != null)
+            if (DropdownMerk.SelectedIndex > 0)
             {
                 // add all product with amount of less than 1 and filtered on the brand
                 if (checkBox1.Checked == false)
@@ -70,6 +91,42 @@ namespace KantoorInrichting.Views.Inventory
                         if (product.amount < 1 && product.brand == DropdownMerk.SelectedItem.ToString())
                         {
                             ProductModel.result.Add(product);
+                        }
+                    }
+                }
+                // remove all product with amount of less than 1 and filtered on the brand
+                if (checkBox1.Checked == true)
+                {
+                    foreach (ProductModel product in ProductModel.list)
+                    {
+                        if (product.amount < 1 && product.brand == DropdownMerk.SelectedItem.ToString())
+                        {
+                            ProductModel.result.Remove(product);
+                        }
+                    }
+                }
+            }
+            // if there is a category filter only
+            else if (DropdownCategorie.SelectedIndex > 0){
+                // add all product with amount of less than 1 and filtered on the brand
+                if (checkBox1.Checked == false)
+                {
+                    foreach (ProductModel product in ProductModel.list)
+                    {
+                        if (product.amount < 1 && product.Category == DropdownCategorie.SelectedItem.ToString())
+                        {
+                            ProductModel.result.Add(product);
+                        }
+                    }
+                }
+                // remove all product with amount of less than 1 and filtered on the brand
+                if (checkBox1.Checked == true)
+                {
+                    foreach (ProductModel product in ProductModel.list)
+                    {
+                        if (product.amount < 1 && product.Category == DropdownCategorie.SelectedItem.ToString())
+                        {
+                            ProductModel.result.Remove(product);
                         }
                     }
                 }
@@ -88,19 +145,19 @@ namespace KantoorInrichting.Views.Inventory
                         }
                     }
                 }
-            }
-
-            // remove all product with amount of less than 1
-            if (checkBox1.Checked == true)
-            {
-                foreach (ProductModel product in ProductModel.list)
+                // remove all product with amount of less than 1
+                if (checkBox1.Checked == true)
                 {
-                    if (product.amount < 1)
+                    foreach (ProductModel product in ProductModel.list)
                     {
-                        ProductModel.result.Remove(product);
+                        if (product.amount < 1)
+                        {
+                            ProductModel.result.Remove(product);
+                        }
                     }
                 }
             }
+
                 dataGridView1.Refresh();
         }
 
@@ -112,8 +169,8 @@ namespace KantoorInrichting.Views.Inventory
             // if the clicked cell is an column, and the row is not the header
             if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0) {
 
-                // if thecolumnindex is 9 opens the edit screen
-                if (e.ColumnIndex == 9)
+                // if thecolumnindex is 11 opens the edit screen
+                if (e.ColumnIndex == 11)
                 {
                     // run edit screen here
                     // make an editscreen with current product as argument
@@ -121,8 +178,8 @@ namespace KantoorInrichting.Views.Inventory
                     edit.Show();
                 }
 
-                // if thecolumnindex is 10 opens the delete screen
-                if (e.ColumnIndex == 10)
+                // if thecolumnindex is 12 opens the delete screen
+                if (e.ColumnIndex == 12)
                 {
                     // run delete screen here
                     // make an Removescreen with current product as argument
@@ -136,8 +193,16 @@ namespace KantoorInrichting.Views.Inventory
 
         private void DropdownMerk_SelectedIndexChanged(object sender, EventArgs e)
         {
+            checkBox1.Checked = true;
             FilterBrand();
         }
+
+        private void DropdownCategorie_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            checkBox1.Checked = true;
+            FilterCategory();
+        }
+
         public void FilterBrand()
         {
             List<ProductModel> filterResult1 = FilterNoAmount();
@@ -163,6 +228,32 @@ namespace KantoorInrichting.Views.Inventory
             dataGridView1.Refresh();
 
         }
+
+        public void FilterCategory()
+        {
+            List<ProductModel> filterResult1 = FilterNoAmount();
+            ProductModel.result = new SortableBindingList<ProductModel>(filterResult1);
+            dataGridView1.DataSource = null;
+            dataGridView1.Refresh();
+
+            string selectedCategory = DropdownCategorie.SelectedItem.ToString();
+
+            // if there is a category selected and it is not default
+            if (DropdownCategorie.SelectedIndex != 0)
+            {
+                // filter on the selected category
+                var filteredProducts = from product in ProductModel.result
+                                       where product.category == selectedCategory
+                                       select product;
+
+                var filterResult2 = new List<ProductModel>();
+                filterResult2 = filteredProducts.ToList();
+                ProductModel.result = new SortableBindingList<ProductModel>(filterResult2);
+            }
+            dataGridView1.DataSource = ProductModel.result;
+            dataGridView1.Refresh();
+        }
+
         public List<ProductModel> FilterNoAmount()
         {
             // filter the data to only view products with an amount
@@ -179,9 +270,11 @@ namespace KantoorInrichting.Views.Inventory
         {
             checkBox1.Checked = true;
             DropdownMerk.SelectedIndex = 0;
+            DropdownCategorie.SelectedIndex = 0;
             dataGridView1.Refresh();
         }
-    }
 
+
+    }
     }
 
