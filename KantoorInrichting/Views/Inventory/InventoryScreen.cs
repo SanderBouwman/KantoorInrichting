@@ -21,18 +21,11 @@ namespace KantoorInrichting.Views.Inventory
             this.hoofdscherm = hoofdscherm;
             InitializeComponent();
             FillData();
+            FillDropdown();
             Invalidate();
         }
 
        
-
-        public InventoryScreen()
-        {
-            InitializeComponent();
-            FillData();
-            FillDropdown();
-            Invalidate();
-        }
 
         public void FillData()
         {
@@ -46,20 +39,18 @@ namespace KantoorInrichting.Views.Inventory
         {
             DropdownMerk.Items.Clear();
 
-            //var MerkResult = ProductModel.list.GroupBy(product => product.Brand)
-            //       .Select(grp => grp.First())
-            //       .ToList();
-         
-            //foreach(ProductModel product in MerkResult)
-            //{
-            //    DropdownMerk.Items.Add(product);
-            //}
+            var MerkResult = ProductModel.list.GroupBy(product => product.Brand)
+                   .Select(grp => grp.First())
+                   .ToList();
 
-            DropdownMerk.Items.Add("test");
-            //DropdownMerk.DataSource = MerkResult;
+            foreach (ProductModel product in MerkResult)
+            {
+                DropdownMerk.Items.Add(product.brand);
+            }
+
+           // DropdownMerk.DataSource = MerkResult;
 
         }
-
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
@@ -68,21 +59,21 @@ namespace KantoorInrichting.Views.Inventory
 
             if (checkBox1.Checked == true)
             {
-                //foreach (Models.Product.Product product in Models.Product.Product.result)
+                //foreach (ProductModel product in ProductModel.result)
                 //{
                 //    if (product.amount == 0)
                 //    {
-                //        Models.Product.Product.result.Remove(product);
+                //        ProductModel.result.Remove(product);
                 //    }
                 //}
             }
             else if (checkBox1.Checked == false)
             {
-                //foreach (Models.Product.Product product in Models.Product.Product.result)
+                //foreach (ProductModel product in ProductModel.result)
                 //{
                 //    if (product.amount == 0)
                 //    {
-                //        Models.Product.Product.result.Add(product);
+                //        ProductModel.result.Add(product);
                 //    }
                 //}
             }
