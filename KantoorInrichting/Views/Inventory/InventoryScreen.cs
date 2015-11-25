@@ -91,8 +91,8 @@ namespace KantoorInrichting.Views.Inventory
             // if the clicked cell is an column, and the row is not the header
             if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0) {
 
-                // if thecolumnindex is 8 opens the edit screen
-                if (e.ColumnIndex == 8)
+                // if thecolumnindex is 9 opens the edit screen
+                if (e.ColumnIndex == 9)
                 {
                     // run edit screen here
                     // make an editscreen with current product as argument
@@ -100,8 +100,8 @@ namespace KantoorInrichting.Views.Inventory
                     edit.Show();
                 }
 
-                // if thecolumnindex is 9 opens the delete screen
-                if (e.ColumnIndex == 9)
+                // if thecolumnindex is 10 opens the delete screen
+                if (e.ColumnIndex == 10)
                 {
                     // run delete screen here
                     // make an Removescreen with current product as argument
