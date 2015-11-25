@@ -55,7 +55,7 @@ namespace KantoorInrichting.Models.Product
             description = d;
             amount = a;
             this.image = KantoorInrichting.Properties.Resources.No_Image_Available;
-            list.Add(this);
+            if (n != "") { list.Add(this); } //If the name if empty, don't add it to the list. This is because the name is part of the primary key in the database.
 
         }
 
