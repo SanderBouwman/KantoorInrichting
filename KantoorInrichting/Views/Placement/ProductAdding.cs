@@ -95,7 +95,8 @@ namespace KantoorInrichting.Views.Placement
 
         private void btn_Move_Click(object sender, EventArgs e)
         {
-            placedP.Move(10, true);
+
+            placedP.Move(50, true);
             Invalidate();
         }
     }

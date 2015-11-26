@@ -31,7 +31,8 @@ namespace KantoorInrichting_Test.Models.Placement
 
 
             //Do
-            placedP.Move(10, true);
+            placedP.gridSpace = 10;
+            placedP.Move(true);
             point.X += move_x;
             point.Y += move_y;
 
