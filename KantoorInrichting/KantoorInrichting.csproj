@@ -52,6 +52,11 @@
     <Compile Include="Controllers\IController.cs" />
     <Compile Include="Controllers\Placement\PolygonPlacementController.cs" />
     <Compile Include="Controllers\Product\ProductFactory.cs" />
+    <Compile Include="KantoorInrichtingDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>KantoorInrichtingDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Models\Grid\GridFieldModel.cs" />
     <Compile Include="Models\Placement\Polygon.cs" />
     <Compile Include="Models\Placement\Vector.cs" />
@@ -62,17 +67,28 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Views\Assortment\AddNewProduct.cs">
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Assortment\AddNewProductScreen.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\Assortment\AddNewProduct.Designer.cs">
-      <DependentUpon>AddNewProduct.cs</DependentUpon>
+    <Compile Include="Views\Assortment\AddNewProductScreen.Designer.cs">
+      <DependentUpon>AddNewProductScreen.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Assortment\AssortmentScreen.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Views\Assortment\AssortmentScreen.Designer.cs">
       <DependentUpon>AssortmentScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Assortment\EditProductScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Assortment\EditProductScreen.Designer.cs">
+      <DependentUpon>EditProductScreen.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Grid\GridFieldPanel.cs">
       <SubType>Component</SubType>
@@ -164,12 +180,16 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\Assortment\AddNewProduct.resx">
-      <DependentUpon>AddNewProduct.cs</DependentUpon>
+    <EmbeddedResource Include="Views\Assortment\AddNewProductScreen.resx">
+      <DependentUpon>AddNewProductScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Assortment\AssortmentScreen.resx">
       <DependentUpon>AssortmentScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Assortment\EditProductScreen.resx">
+      <DependentUpon>EditProductScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Grid\ZoomView.resx">
       <DependentUpon>ZoomView.cs</DependentUpon>
@@ -216,6 +236,21 @@
     <Folder Include="Properties\DataSources\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="KantoorInrichtingDataSet.xsc">
+      <DependentUpon>KantoorInrichtingDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="KantoorInrichtingDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>KantoorInrichtingDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="KantoorInrichtingDataSet.xss">
+      <DependentUpon>KantoorInrichtingDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
     <None Include="Resources\No_Image_Available.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

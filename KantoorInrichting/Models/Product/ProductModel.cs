@@ -10,7 +10,9 @@ namespace KantoorInrichting.Models.Product
     public class ProductModel
     {
 
-        public static List<ProductModel> list = new List<ProductModel>(); 
+        public static List<ProductModel> list = new List<ProductModel>();
+        public static List<ProductModel> list2 = new List<ProductModel>();
+
         public static List<ProductModel> result = new List<ProductModel>();  // list for filtering data
 
         public string name;
@@ -25,6 +27,7 @@ namespace KantoorInrichting.Models.Product
         public int height { get; private set; }
         public int amount { get; private set; }
         public int id { get; private set; }
+        public int product_ID { get; private set; }
 
         public string Name { get { return name; } private set { name = value; } }
         public string Type { get { return type; } private set { type = value; } }
@@ -56,7 +59,25 @@ namespace KantoorInrichting.Models.Product
             amount = a;
             this.image = KantoorInrichting.Properties.Resources.No_Image_Available;
             list.Add(this);
+        }
 
+        public ProductModel(int i, string n, string b, string t, string c, string s, int l, int w, int h, string d, int a)
+        {
+            product_ID = i;
+            name = n;
+            brand = b;
+            type = t;
+            category = c;
+            subcategory = s;
+
+            length = l;
+            width = w;
+            height = h;
+
+            description = d;
+            amount = a;
+            this.image = KantoorInrichting.Properties.Resources.No_Image_Available;
+            list2.Add(this);
         }
 
         /// <summary>
