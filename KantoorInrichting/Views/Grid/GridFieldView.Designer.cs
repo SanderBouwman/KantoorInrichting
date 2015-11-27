@@ -1,4 +1,5 @@
-﻿using KantoorInrichting.Models.Grid;
+﻿using System.Windows.Forms;
+using KantoorInrichting.Models.Grid;
 
 namespace KantoorInrichting.Views.Grid {
     partial class GridFieldView {
@@ -26,21 +27,13 @@ namespace KantoorInrichting.Views.Grid {
         /// </summary>
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
-            this.listView = new System.Windows.Forms.ListView();
             this.zoomCheckbox = new System.Windows.Forms.CheckBox();
             this.trackBar = new System.Windows.Forms.TrackBar();
-            this.drawPanel = new GridFieldPanel();
+            this.drawPanel = new KantoorInrichting.Models.Grid.GridFieldPanel();
             this.imageList = new System.Windows.Forms.ImageList(this.components);
+            this.listView = new System.Windows.Forms.ListView();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar)).BeginInit();
             this.SuspendLayout();
-            // 
-            // listView
-            // 
-            this.listView.Location = new System.Drawing.Point(619, 5);
-            this.listView.Name = "listView";
-            this.listView.Size = new System.Drawing.Size(124, 340);
-            this.listView.TabIndex = 0;
-            this.listView.UseCompatibleStateImageBehavior = false;
             // 
             // zoomCheckbox
             // 
@@ -67,10 +60,10 @@ namespace KantoorInrichting.Views.Grid {
             // 
             // drawPanel
             // 
+            this.drawPanel.AllowDrop = true;
             this.drawPanel.Location = new System.Drawing.Point(5, 5);
             this.drawPanel.Name = "drawPanel";
             this.drawPanel.Size = new System.Drawing.Size(601, 601);
-            this.drawPanel.AllowDrop = true;
             this.drawPanel.TabIndex = 1;
             // 
             // imageList
@@ -79,14 +72,22 @@ namespace KantoorInrichting.Views.Grid {
             this.imageList.ImageSize = new System.Drawing.Size(16, 16);
             this.imageList.TransparentColor = System.Drawing.Color.Transparent;
             // 
+            // listView
+            // 
+            this.listView.Location = new System.Drawing.Point(619, 5);
+            this.listView.Name = "listView";
+            this.listView.Size = new System.Drawing.Size(140, 375);
+            this.listView.TabIndex = 4;
+            this.listView.UseCompatibleStateImageBehavior = false;
+            // 
             // GridFieldView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.listView);
             this.Controls.Add(this.trackBar);
             this.Controls.Add(this.zoomCheckbox);
             this.Controls.Add(this.drawPanel);
-            this.Controls.Add(this.listView);
             this.Enabled = false;
             this.Name = "GridFieldView";
             this.Size = new System.Drawing.Size(800, 620);
@@ -97,11 +98,10 @@ namespace KantoorInrichting.Views.Grid {
         }
 
         #endregion
-
-        private System.Windows.Forms.ListView listView;
         private System.Windows.Forms.CheckBox zoomCheckbox;
         private GridFieldPanel drawPanel;
         private System.Windows.Forms.TrackBar trackBar;
         private System.Windows.Forms.ImageList imageList;
+        private ListView listView;
     }
 }

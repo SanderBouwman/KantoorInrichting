@@ -15,8 +15,8 @@ using KantoorInrichting.Controllers.Product;
 
 namespace KantoorInrichting.Views.Grid {
     public partial class GridFieldView : UserControl, IView {
+        
         private IController _controller;
-
 
         public GridFieldView() {
             InitializeComponent();
@@ -52,7 +52,6 @@ namespace KantoorInrichting.Views.Grid {
                 listView.Items.Add(item);
             }
             listView.LargeImageList = imageList;
-            listView.View = View.LargeIcon;
         }
 
         private void SetEvents() {
