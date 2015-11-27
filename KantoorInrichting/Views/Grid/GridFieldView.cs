@@ -37,7 +37,7 @@ namespace KantoorInrichting.Views.Grid {
                     toReturn = this.trackBar;
                     break;
                 case "ListView":
-                    return this.listView;
+                    toReturn = this.listView;
                     break;
             }
             return toReturn;
