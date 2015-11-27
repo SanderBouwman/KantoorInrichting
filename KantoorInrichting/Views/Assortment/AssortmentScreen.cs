@@ -36,7 +36,7 @@ namespace KantoorInrichting.Views.Assortment
                     product.Category_ID.ToString(), "Stoeltje", product.Length, product.Width, product.Height, product.Description, product.Amount);
             }
             dataGridView1.AutoGenerateColumns = false;
-            dataGridView1.DataSource = Models.Product.ProductModel.list2;
+            dataGridView1.DataSource = Models.Product.ProductModel.list;
         }
 
         //Opens AddNewProductScreen when this button is pressed
@@ -56,7 +56,7 @@ namespace KantoorInrichting.Views.Assortment
                     // run edit screen here
                     // make an editscreen with current product as argument
 
-                    EditProductScreen editProduct =  new EditProductScreen(Models.Product.ProductModel.list2[e.RowIndex]);
+                    EditProductScreen editProduct =  new EditProductScreen(Models.Product.ProductModel.list[e.RowIndex]);
                     editProduct.ShowDialog();
                 }
 

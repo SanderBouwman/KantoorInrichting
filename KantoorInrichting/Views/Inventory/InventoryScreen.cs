@@ -25,6 +25,13 @@ namespace KantoorInrichting.Views.Inventory
             FillDropdown();
             Invalidate();
 
+            // debug tool 
+
+            //foreach (var product in ProductModel.list)
+            //{
+            //    MessageBox.Show(product.Name);
+            //}
+
         }
 
        

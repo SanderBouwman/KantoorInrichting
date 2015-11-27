@@ -33,15 +33,6 @@
             this.PanelLeft = new System.Windows.Forms.Panel();
             this.addProductButton = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.PanelRight = new System.Windows.Forms.Panel();
-            this.DropdownCategorie = new System.Windows.Forms.ComboBox();
-            this.DropdownLeverancier = new System.Windows.Forms.ComboBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.kantoorInrichtingDataSet = new KantoorInrichting.KantoorInrichtingDataSet();
-            this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.productTableAdapter = new KantoorInrichting.KantoorInrichtingDataSetTableAdapters.ProductTableAdapter();
-            this.tableAdapterManager = new KantoorInrichting.KantoorInrichtingDataSetTableAdapters.TableAdapterManager();
             this.Product_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Naam = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,6 +44,15 @@
             this.Afbeelding = new System.Windows.Forms.DataGridViewImageColumn();
             this.wijzig = new System.Windows.Forms.DataGridViewButtonColumn();
             this.delete = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.PanelRight = new System.Windows.Forms.Panel();
+            this.DropdownCategorie = new System.Windows.Forms.ComboBox();
+            this.DropdownLeverancier = new System.Windows.Forms.ComboBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.kantoorInrichtingDataSet = new KantoorInrichting.KantoorInrichtingDataSet();
+            this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.productTableAdapter = new KantoorInrichting.KantoorInrichtingDataSetTableAdapters.ProductTableAdapter();
+            this.tableAdapterManager = new KantoorInrichting.KantoorInrichtingDataSetTableAdapters.TableAdapterManager();
             this.PanelLeft.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.PanelRight.SuspendLayout();
@@ -65,10 +65,9 @@
             this.titel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.titel.Font = new System.Drawing.Font("Microsoft Sans Serif", 26F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.titel.Location = new System.Drawing.Point(2, 35);
-            this.titel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.titel.Location = new System.Drawing.Point(3, 43);
             this.titel.Name = "titel";
-            this.titel.Size = new System.Drawing.Size(372, 41);
+            this.titel.Size = new System.Drawing.Size(496, 50);
             this.titel.TabIndex = 0;
             this.titel.Text = "Assortiment";
             // 
@@ -78,17 +77,18 @@
             this.PanelLeft.Controls.Add(this.addProductButton);
             this.PanelLeft.Controls.Add(this.titel);
             this.PanelLeft.Location = new System.Drawing.Point(0, 0);
-            this.PanelLeft.Margin = new System.Windows.Forms.Padding(2);
-            this.PanelLeft.MinimumSize = new System.Drawing.Size(225, 138);
+            this.PanelLeft.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.PanelLeft.MinimumSize = new System.Drawing.Size(300, 170);
             this.PanelLeft.Name = "PanelLeft";
-            this.PanelLeft.Size = new System.Drawing.Size(378, 331);
+            this.PanelLeft.Size = new System.Drawing.Size(504, 407);
             this.PanelLeft.TabIndex = 1;
             // 
             // addProductButton
             // 
-            this.addProductButton.Location = new System.Drawing.Point(86, 109);
+            this.addProductButton.Location = new System.Drawing.Point(115, 134);
+            this.addProductButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.addProductButton.Name = "addProductButton";
-            this.addProductButton.Size = new System.Drawing.Size(140, 26);
+            this.addProductButton.Size = new System.Drawing.Size(187, 32);
             this.addProductButton.TabIndex = 1;
             this.addProductButton.Text = "Nieuw product toevoegen";
             this.addProductButton.UseVisualStyleBackColor = true;
@@ -98,7 +98,8 @@
             // 
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AllowUserToOrderColumns = true;
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.GradientInactiveCaption;
@@ -118,87 +119,13 @@
             this.delete});
             this.dataGridView1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dataGridView1.GridColor = System.Drawing.SystemColors.ControlLight;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 140);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
+            this.dataGridView1.Location = new System.Drawing.Point(0, 172);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 50;
-            this.dataGridView1.Size = new System.Drawing.Size(450, 185);
+            this.dataGridView1.Size = new System.Drawing.Size(600, 228);
             this.dataGridView1.TabIndex = 3;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
-            // PanelRight
-            // 
-            this.PanelRight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.PanelRight.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.PanelRight.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.PanelRight.Controls.Add(this.DropdownCategorie);
-            this.PanelRight.Controls.Add(this.DropdownLeverancier);
-            this.PanelRight.Controls.Add(this.checkBox1);
-            this.PanelRight.Controls.Add(this.label1);
-            this.PanelRight.Location = new System.Drawing.Point(234, 0);
-            this.PanelRight.Margin = new System.Windows.Forms.Padding(2);
-            this.PanelRight.MinimumSize = new System.Drawing.Size(210, 138);
-            this.PanelRight.Name = "PanelRight";
-            this.PanelRight.Size = new System.Drawing.Size(216, 138);
-            this.PanelRight.TabIndex = 4;
-            // 
-            // DropdownCategorie
-            // 
-            this.DropdownCategorie.FormattingEnabled = true;
-            this.DropdownCategorie.Location = new System.Drawing.Point(37, 34);
-            this.DropdownCategorie.Margin = new System.Windows.Forms.Padding(2);
-            this.DropdownCategorie.Name = "DropdownCategorie";
-            this.DropdownCategorie.Size = new System.Drawing.Size(92, 21);
-            this.DropdownCategorie.TabIndex = 0;
-            // 
-            // DropdownLeverancier
-            // 
-            this.DropdownLeverancier.FormattingEnabled = true;
-            this.DropdownLeverancier.Location = new System.Drawing.Point(37, 10);
-            this.DropdownLeverancier.Margin = new System.Windows.Forms.Padding(2);
-            this.DropdownLeverancier.Name = "DropdownLeverancier";
-            this.DropdownLeverancier.Size = new System.Drawing.Size(92, 21);
-            this.DropdownLeverancier.TabIndex = 1;
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoEllipsis = true;
-            this.checkBox1.Location = new System.Drawing.Point(37, 58);
-            this.checkBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(104, 32);
-            this.checkBox1.TabIndex = 2;
-            this.checkBox1.Text = "Toon afwezige producten";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(75, 19);
-            this.label1.TabIndex = 3;
-            // 
-            // kantoorInrichtingDataSet
-            // 
-            this.kantoorInrichtingDataSet.DataSetName = "KantoorInrichtingDataSet";
-            this.kantoorInrichtingDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // productBindingSource
-            // 
-            this.productBindingSource.DataMember = "Product";
-            this.productBindingSource.DataSource = this.kantoorInrichtingDataSet;
-            // 
-            // productTableAdapter
-            // 
-            this.productTableAdapter.ClearBeforeFill = true;
-            // 
-            // tableAdapterManager
-            // 
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.CategoryTableAdapter = null;
-            this.tableAdapterManager.ProductTableAdapter = this.productTableAdapter;
-            this.tableAdapterManager.UpdateOrder = KantoorInrichting.KantoorInrichtingDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
             // Product_ID
             // 
@@ -256,7 +183,7 @@
             this.Afbeelding.HeaderText = "Afbeelding";
             this.Afbeelding.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Stretch;
             this.Afbeelding.Name = "Afbeelding";
-            this.Afbeelding.Width = 63;
+            this.Afbeelding.Width = 81;
             // 
             // wijzig
             // 
@@ -272,15 +199,89 @@
             this.delete.Text = "delete";
             this.delete.UseColumnTextForButtonValue = true;
             // 
+            // PanelRight
+            // 
+            this.PanelRight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.PanelRight.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.PanelRight.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PanelRight.Controls.Add(this.DropdownCategorie);
+            this.PanelRight.Controls.Add(this.DropdownLeverancier);
+            this.PanelRight.Controls.Add(this.checkBox1);
+            this.PanelRight.Controls.Add(this.label1);
+            this.PanelRight.Location = new System.Drawing.Point(312, 0);
+            this.PanelRight.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.PanelRight.MinimumSize = new System.Drawing.Size(279, 169);
+            this.PanelRight.Name = "PanelRight";
+            this.PanelRight.Size = new System.Drawing.Size(287, 169);
+            this.PanelRight.TabIndex = 4;
+            // 
+            // DropdownCategorie
+            // 
+            this.DropdownCategorie.FormattingEnabled = true;
+            this.DropdownCategorie.Location = new System.Drawing.Point(49, 42);
+            this.DropdownCategorie.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.DropdownCategorie.Name = "DropdownCategorie";
+            this.DropdownCategorie.Size = new System.Drawing.Size(121, 24);
+            this.DropdownCategorie.TabIndex = 0;
+            // 
+            // DropdownLeverancier
+            // 
+            this.DropdownLeverancier.FormattingEnabled = true;
+            this.DropdownLeverancier.Location = new System.Drawing.Point(49, 12);
+            this.DropdownLeverancier.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.DropdownLeverancier.Name = "DropdownLeverancier";
+            this.DropdownLeverancier.Size = new System.Drawing.Size(121, 24);
+            this.DropdownLeverancier.TabIndex = 1;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoEllipsis = true;
+            this.checkBox1.Location = new System.Drawing.Point(49, 71);
+            this.checkBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(139, 39);
+            this.checkBox1.TabIndex = 2;
+            this.checkBox1.Text = "Toon afwezige producten";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(100, 23);
+            this.label1.TabIndex = 3;
+            // 
+            // kantoorInrichtingDataSet
+            // 
+            this.kantoorInrichtingDataSet.DataSetName = "KantoorInrichtingDataSet";
+            this.kantoorInrichtingDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // productBindingSource
+            // 
+            this.productBindingSource.DataMember = "Product";
+            this.productBindingSource.DataSource = this.kantoorInrichtingDataSet;
+            // 
+            // productTableAdapter
+            // 
+            this.productTableAdapter.ClearBeforeFill = true;
+            // 
+            // tableAdapterManager
+            // 
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.CategoryTableAdapter = null;
+            this.tableAdapterManager.ProductTableAdapter = this.productTableAdapter;
+            this.tableAdapterManager.UpdateOrder = KantoorInrichting.KantoorInrichtingDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            // 
             // AssortmentScreen
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.PanelRight);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.PanelLeft);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "AssortmentScreen";
-            this.Size = new System.Drawing.Size(450, 331);
+            this.Size = new System.Drawing.Size(600, 407);
             this.PanelLeft.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.PanelRight.ResumeLayout(false);

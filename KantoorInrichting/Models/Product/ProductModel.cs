@@ -10,11 +10,6 @@ namespace KantoorInrichting.Models.Product
 {
     public class ProductModel
     {
-
-        public static List<ProductModel> list3 = new List<ProductModel>();
-        public static List<ProductModel> list2 = new List<ProductModel>();
-
-        public static List<ProductModel> result3 = new List<ProductModel>();  // list for filtering data
         public static SortableBindingList<ProductModel> list = new SortableBindingList<ProductModel>(); 
         public static SortableBindingList<ProductModel> result = new SortableBindingList<ProductModel>();  // list for filtering data
 
@@ -82,7 +77,7 @@ namespace KantoorInrichting.Models.Product
             description = d;
             amount = a;
             this.image = KantoorInrichting.Properties.Resources.No_Image_Available;
-            list2.Add(this);
+            list.Add(this);
         }
 
         /// <summary>
