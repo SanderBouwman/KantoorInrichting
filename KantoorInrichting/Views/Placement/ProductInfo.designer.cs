@@ -36,7 +36,8 @@
             this.txt_Brand = new System.Windows.Forms.TextBox();
             this.txt_Type = new System.Windows.Forms.TextBox();
             this.txt_Dimension = new System.Windows.Forms.TextBox();
-            this.lbl_Image = new System.Windows.Forms.Label();
+            this.pbx_Image = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pbx_Image)).BeginInit();
             this.SuspendLayout();
             // 
             // lbl_1
@@ -107,23 +108,25 @@
             this.txt_Dimension.Size = new System.Drawing.Size(150, 20);
             this.txt_Dimension.TabIndex = 21;
             // 
-            // lbl_Image
+            // pbx_Image
             // 
-            this.lbl_Image.AutoSize = true;
-            this.lbl_Image.Location = new System.Drawing.Point(256, 29);
-            this.lbl_Image.Name = "lbl_Image";
-            this.lbl_Image.Size = new System.Drawing.Size(42, 13);
-            this.lbl_Image.TabIndex = 22;
-            this.lbl_Image.Text = "-Image-";
+            this.pbx_Image.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pbx_Image.BackColor = System.Drawing.SystemColors.GrayText;
+            this.pbx_Image.Location = new System.Drawing.Point(262, 23);
+            this.pbx_Image.Name = "pbx_Image";
+            this.pbx_Image.Size = new System.Drawing.Size(100, 100);
+            this.pbx_Image.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbx_Image.TabIndex = 23;
+            this.pbx_Image.TabStop = false;
             // 
             // ProductInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Controls.Add(this.lbl_Image);
+            this.Controls.Add(this.pbx_Image);
             this.Controls.Add(this.txt_Dimension);
             this.Controls.Add(this.txt_Type);
             this.Controls.Add(this.txt_Brand);
@@ -132,8 +135,10 @@
             this.Controls.Add(this.lbl_5);
             this.Controls.Add(this.lbl_2);
             this.Controls.Add(this.lbl_1);
+            this.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Name = "ProductInfo";
             this.Size = new System.Drawing.Size(398, 148);
+            ((System.ComponentModel.ISupportInitialize)(this.pbx_Image)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -149,6 +154,6 @@
         private System.Windows.Forms.TextBox txt_Brand;
         private System.Windows.Forms.TextBox txt_Type;
         private System.Windows.Forms.TextBox txt_Dimension;
-        private System.Windows.Forms.Label lbl_Image;
+        private System.Windows.Forms.PictureBox pbx_Image;
     }
 }

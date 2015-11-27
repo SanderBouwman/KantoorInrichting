@@ -98,8 +98,9 @@
             // 
             this.productInfo1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.productInfo1.AutoScroll = true;
-            this.productInfo1.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.productInfo1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.productInfo1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.productInfo1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.productInfo1.Location = new System.Drawing.Point(716, 519);
             this.productInfo1.Name = "productInfo1";
             this.productInfo1.Size = new System.Drawing.Size(398, 148);
