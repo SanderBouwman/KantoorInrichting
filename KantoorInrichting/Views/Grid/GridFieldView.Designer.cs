@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System.Drawing;
+using System.Windows.Forms;
 using KantoorInrichting.Models.Grid;
 
 namespace KantoorInrichting.Views.Grid {
@@ -61,6 +62,7 @@ namespace KantoorInrichting.Views.Grid {
             // drawPanel
             // 
             this.drawPanel.AllowDrop = true;
+            this.drawPanel.BackColor = Color.White;
             this.drawPanel.Location = new System.Drawing.Point(5, 5);
             this.drawPanel.Name = "drawPanel";
             this.drawPanel.Size = new System.Drawing.Size(601, 601);
