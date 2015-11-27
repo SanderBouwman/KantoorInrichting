@@ -46,6 +46,12 @@ namespace KantoorInrichting.Views.Assortment
             }
         }
 
+        //public void fill(List<KantoorInrichtingDataSet> list)
+        //{
+        //    List<KantoorInrichtingDataSet> list = new List<KantoorInrichtingDataSet>();
+        //    list.Add(kantoorInrichtingDataSet);
+        //}
+
         private bool ValitdateUserInput()
         {
             //There are 10 checks the validation has to pass, every check it passes there is -1, 
