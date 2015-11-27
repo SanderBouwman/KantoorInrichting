@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KantoorInrichting.Controllers;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -10,10 +11,12 @@ namespace KantoorInrichting.Models.Product
     public class ProductModel
     {
 
-        public static List<ProductModel> list = new List<ProductModel>();
+        public static List<ProductModel> list3 = new List<ProductModel>();
         public static List<ProductModel> list2 = new List<ProductModel>();
 
-        public static List<ProductModel> result = new List<ProductModel>();  // list for filtering data
+        public static List<ProductModel> result3 = new List<ProductModel>();  // list for filtering data
+        public static SortableBindingList<ProductModel> list = new SortableBindingList<ProductModel>(); 
+        public static SortableBindingList<ProductModel> result = new SortableBindingList<ProductModel>();  // list for filtering data
 
         public string name;
         public string brand;
@@ -35,6 +38,8 @@ namespace KantoorInrichting.Models.Product
         public Image Image { get { return image; } }
         public int Amount { get { return amount; } private set { amount = value; } }
         public int Id { get { return id; } private set { id = value; } }
+        public string Category { get { return category; } private set { category = value; } }
+        public string Subcategory { get { return subcategory; } private set { subcategory = value; } }
 
         //public Supplier supplier { get; private set; }
 
@@ -58,7 +63,7 @@ namespace KantoorInrichting.Models.Product
             description = d;
             amount = a;
             this.image = KantoorInrichting.Properties.Resources.No_Image_Available;
-            list.Add(this);
+            if (n != "") { list.Add(this); } //If the name if empty, don't add it to the list. This is because the name is part of the primary key in the database.
         }
 
         public ProductModel(int i, string n, string b, string t, string c, string s, int l, int w, int h, string d, int a)
