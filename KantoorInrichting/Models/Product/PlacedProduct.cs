@@ -24,7 +24,7 @@ namespace KantoorInrichting.Models.Product
         public int currentAngle { get; private set; }
         public Polygon Poly { get; private set; }
         
-        public int gridSpace = 50;
+        public int gridSpace = 10;
 
 
         /// <summary>
@@ -99,16 +99,22 @@ namespace KantoorInrichting.Models.Product
         }
 
 
-
+        public void Move(int Velocity, bool X_Axis)
+        {
+            gridSpace = Velocity;
+            MessageBox.Show("You are changing the gridSpace. Please use a different method to move the product. \nThank you.", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            Move(X_Axis);
+        }
         /// <summary>
         /// Moves the product a certain amount to a certain direction
         /// </summary>
         /// <param name="Velocity">The distance that the product covers. Can contain a negative value to go left/up</param>
         /// <param name="X_Axis">Chooses the axis that the product moves on. True for X-axis. False for Y-axis</param>
-        public void Move(int Velocity, bool X_Axis)
+        public void Move(bool X_Axis)
         {
             int x = 0;
             int y = 0;
+            int Velocity = gridSpace;
             if (X_Axis) { x += Velocity; }
             else { y += Velocity; }
 
@@ -129,6 +135,7 @@ namespace KantoorInrichting.Models.Product
                 //If it does, alter the speed
                 if (r.WillIntersect)
                 {
+                    //
                     playerTranslation = velocity + r.MinimumTranslationVector;
 
                     if (X_Axis) //Moving the x-axis, so set the y-axis velocity to 0
@@ -140,12 +147,22 @@ namespace KantoorInrichting.Models.Product
                         playerTranslation.X = 0;
                     }
 
-                    //Round down to the closest 5 pixels
+                    //If there is any movement along the Y axis while moving along the X axis, then the polygon collision want to move around the other polygon. Can't let that happen. So set all movement to 0.
+                    if (X_Axis && r.MinimumTranslationVector.Y != 0)
+                    {
+                        playerTranslation.X = 0;
+                        playerTranslation.Y = 0;
+                    }
+                    if (!X_Axis && r.MinimumTranslationVector.X != 0)
+                    {
+                        playerTranslation.X = 0;
+                        playerTranslation.Y = 0;
+                    }
 
+                    //Round down to the closest x pixels
                     playerTranslation.X = ((int)playerTranslation.X / gridSpace) * gridSpace;
                     playerTranslation.Y = ((int)playerTranslation.Y / gridSpace) * gridSpace;
-                    MessageBox.Show("Test the movement: X=" + playerTranslation.X + "; Y=" + playerTranslation.Y);
-
+                    //MessageBox.Show("then " + playerTranslation.X.ToString() + " and " + playerTranslation.Y.ToString());
                     break;
                 }
             }
@@ -211,7 +228,6 @@ namespace KantoorInrichting.Models.Product
             180-269 = 2
             270-359 = 3
             */
-
 
             //Gets the angle nearest to 90, so that the Cos and Sin methods work.
             angle_Even = angle_Even % 90;

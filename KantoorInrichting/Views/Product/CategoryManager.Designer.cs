@@ -40,6 +40,7 @@
             // 
             // saveButton
             // 
+            this.saveButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.saveButton.Location = new System.Drawing.Point(231, 112);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(75, 23);
@@ -81,6 +82,7 @@
             // 
             // categoryComboBox
             // 
+            this.categoryComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.categoryComboBox.FormattingEnabled = true;
             this.categoryComboBox.Location = new System.Drawing.Point(12, 29);
             this.categoryComboBox.Name = "categoryComboBox";
@@ -108,6 +110,7 @@
             // 
             // subcategoryComboBox
             // 
+            this.subcategoryComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.subcategoryComboBox.FormattingEnabled = true;
             this.subcategoryComboBox.Location = new System.Drawing.Point(12, 76);
             this.subcategoryComboBox.Name = "subcategoryComboBox";

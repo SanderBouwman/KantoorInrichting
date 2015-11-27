@@ -40,10 +40,13 @@
             this.titel = new System.Windows.Forms.Label();
             this.directorySearcher1 = new System.DirectoryServices.DirectorySearcher();
             this.productBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.button1 = new System.Windows.Forms.Button();
             this.nr = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Naam = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Merk = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.category = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.subcategory = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.hoogte = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.breedte = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Lengte = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -74,6 +77,8 @@
             this.Naam,
             this.Type,
             this.Merk,
+            this.category,
+            this.subcategory,
             this.hoogte,
             this.breedte,
             this.Lengte,
@@ -96,6 +101,7 @@
             this.PanelRight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.PanelRight.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.PanelRight.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PanelRight.Controls.Add(this.button1);
             this.PanelRight.Controls.Add(this.DropdownCategorie);
             this.PanelRight.Controls.Add(this.DropdownMerk);
             this.PanelRight.Controls.Add(this.checkBox1);
@@ -112,8 +118,9 @@
             this.DropdownCategorie.Location = new System.Drawing.Point(33, 42);
             this.DropdownCategorie.Name = "DropdownCategorie";
             this.DropdownCategorie.Size = new System.Drawing.Size(161, 24);
-            this.DropdownCategorie.TabIndex = 0;
-            this.DropdownCategorie.Text = "filter op categorie";
+            this.DropdownCategorie.TabIndex = 1;
+            this.DropdownCategorie.Text = "Filter op categorie";
+            this.DropdownCategorie.SelectedIndexChanged += new System.EventHandler(this.DropdownCategorie_SelectedIndexChanged);
             // 
             // DropdownMerk
             // 
@@ -122,16 +129,19 @@
             this.DropdownMerk.Name = "DropdownMerk";
             this.DropdownMerk.Size = new System.Drawing.Size(161, 24);
             this.DropdownMerk.TabIndex = 1;
+            this.DropdownMerk.Text = "Filter op merk";
             this.DropdownMerk.SelectedIndexChanged += new System.EventHandler(this.DropdownMerk_SelectedIndexChanged);
             // 
             // checkBox1
             // 
             this.checkBox1.AutoEllipsis = true;
+            this.checkBox1.Checked = true;
+            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox1.Location = new System.Drawing.Point(33, 72);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(161, 39);
             this.checkBox1.TabIndex = 2;
-            this.checkBox1.Text = "Toon afwezige producten";
+            this.checkBox1.Text = "Verberg afwezige producten";
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
@@ -169,6 +179,19 @@
             this.directorySearcher1.ServerPageTimeLimit = System.TimeSpan.Parse("-00:00:01");
             this.directorySearcher1.ServerTimeLimit = System.TimeSpan.Parse("-00:00:01");
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.button1.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaption;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Location = new System.Drawing.Point(33, 109);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(161, 32);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "Verwijder filters";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // nr
             // 
             this.nr.DataPropertyName = "Id";
@@ -193,6 +216,18 @@
             this.Merk.HeaderText = "Merk";
             this.Merk.Name = "Merk";
             this.Merk.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            // 
+            // category
+            // 
+            this.category.DataPropertyName = "Category";
+            this.category.HeaderText = "categorie";
+            this.category.Name = "category";
+            // 
+            // subcategory
+            // 
+            this.subcategory.DataPropertyName = "Subcategory";
+            this.subcategory.HeaderText = "subcategorie";
+            this.subcategory.Name = "subcategory";
             // 
             // hoogte
             // 
@@ -274,10 +309,13 @@
         private System.DirectoryServices.DirectorySearcher directorySearcher1;
         private System.Windows.Forms.BindingSource productBindingSource;
         private System.Windows.Forms.BindingSource productBindingSource1;
+        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridViewTextBoxColumn nr;
         private System.Windows.Forms.DataGridViewTextBoxColumn Naam;
         private System.Windows.Forms.DataGridViewTextBoxColumn Type;
         private System.Windows.Forms.DataGridViewTextBoxColumn Merk;
+        private System.Windows.Forms.DataGridViewTextBoxColumn category;
+        private System.Windows.Forms.DataGridViewTextBoxColumn subcategory;
         private System.Windows.Forms.DataGridViewTextBoxColumn hoogte;
         private System.Windows.Forms.DataGridViewTextBoxColumn breedte;
         private System.Windows.Forms.DataGridViewTextBoxColumn Lengte;
