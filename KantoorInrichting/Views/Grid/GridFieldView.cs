@@ -63,6 +63,28 @@ namespace KantoorInrichting.Views.Grid {
             drawPanel.MouseMove += DrawPanel_MouseMove;
             zoomCheckbox.CheckedChanged += ZoomCheckbox_CheckedChanged;
             trackBar.Scroll += TrackBar_Scroll;
+            // TODO IMPLEMENT EVENTS
+            listView.ItemDrag += ListView_ItemDrag;
+            listView.GiveFeedback += ListView_GiveFeedback;
+            drawPanel.DragEnter += DrawPanel_DragEnter;
+        }
+
+        private void ListView_GiveFeedback( object sender, GiveFeedbackEventArgs e ) {
+            e.UseDefaultCursors = false;
+            if (e.Effect == DragDropEffects.Copy) {
+                Bitmap selected = (Bitmap) imageList.Images[listView.SelectedItems[0].ImageKey];
+                if (selected != null) Cursor.Current = new Cursor(selected.GetHicon());
+            }
+        }
+
+        private void DrawPanel_DragEnter( object sender, DragEventArgs e ) {
+            e.Effect = DragDropEffects.Copy;
+            Console.WriteLine("DragEnter...");
+        }
+
+        private void ListView_ItemDrag( object sender, ItemDragEventArgs e ) {
+            listView.DoDragDrop(listView.SelectedItems, DragDropEffects.Copy);
+            Console.WriteLine("ItemDrag...");
         }
 
         private void TrackBar_Scroll( object sender, EventArgs e ) {

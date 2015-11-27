@@ -29,7 +29,7 @@ namespace KantoorInrichting.Views.Grid {
             this.listView = new System.Windows.Forms.ListView();
             this.zoomCheckbox = new System.Windows.Forms.CheckBox();
             this.trackBar = new System.Windows.Forms.TrackBar();
-            this.drawPanel = new KantoorInrichting.Models.Grid.GridFieldPanel();
+            this.drawPanel = new GridFieldPanel();
             this.imageList = new System.Windows.Forms.ImageList(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.trackBar)).BeginInit();
             this.SuspendLayout();
@@ -70,6 +70,7 @@ namespace KantoorInrichting.Views.Grid {
             this.drawPanel.Location = new System.Drawing.Point(5, 5);
             this.drawPanel.Name = "drawPanel";
             this.drawPanel.Size = new System.Drawing.Size(601, 601);
+            this.drawPanel.AllowDrop = true;
             this.drawPanel.TabIndex = 1;
             // 
             // imageList
