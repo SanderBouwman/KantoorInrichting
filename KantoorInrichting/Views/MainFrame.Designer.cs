@@ -136,6 +136,7 @@ namespace KantoorInrichting
         public Views.Assortment.AssortmentScreen assortmentScreen;
         public Views.MainScreen mainScreen1;
         public Views.Inventory.InventoryScreen inventoryScreen1;
+        public Views.LoginScreen loginScreen1;
         public Views.Grid.GridFieldView gridFieldView;
         public Views.Placement.ProductAdding placement;
         private System.Windows.Forms.MenuStrip menuStrip1;
