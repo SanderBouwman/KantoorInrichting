@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.LoginButton = new System.Windows.Forms.Button();
             this.UsernameTB = new System.Windows.Forms.TextBox();
             this.PasswordTB = new System.Windows.Forms.TextBox();
@@ -37,6 +38,12 @@
             this.UsernameError = new System.Windows.Forms.Label();
             this.PasswordError = new System.Windows.Forms.Label();
             this.GeneralLoginError = new System.Windows.Forms.Label();
+            this.userTableAdapter = new KantoorInrichting.KantoorInrichtingDataSetTableAdapters.UserTableAdapter();
+            this.tableAdapterManager = new KantoorInrichting.KantoorInrichtingDataSetTableAdapters.TableAdapterManager();
+            this.kantoorInrichtingDataSet = new KantoorInrichting.KantoorInrichtingDataSet();
+            this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.kantoorInrichtingDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // LoginButton
@@ -62,6 +69,7 @@
             this.PasswordTB.Name = "PasswordTB";
             this.PasswordTB.Size = new System.Drawing.Size(185, 20);
             this.PasswordTB.TabIndex = 2;
+            this.PasswordTB.TextChanged += new System.EventHandler(this.PasswordTB_TextChanged_1);
             // 
             // label1
             // 
@@ -116,6 +124,28 @@
             this.GeneralLoginError.TabIndex = 8;
             this.GeneralLoginError.Click += new System.EventHandler(this.GeneralLoginError_Click);
             // 
+            // userTableAdapter
+            // 
+            this.userTableAdapter.ClearBeforeFill = true;
+            // 
+            // tableAdapterManager
+            // 
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.CategoryTableAdapter = null;
+            this.tableAdapterManager.ProductTableAdapter = null;
+            this.tableAdapterManager.UpdateOrder = KantoorInrichting.KantoorInrichtingDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            this.tableAdapterManager.UserTableAdapter = this.userTableAdapter;
+            // 
+            // kantoorInrichtingDataSet
+            // 
+            this.kantoorInrichtingDataSet.DataSetName = "KantoorInrichtingDataSet";
+            this.kantoorInrichtingDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // userBindingSource
+            // 
+            this.userBindingSource.DataSource = this.kantoorInrichtingDataSet;
+            this.userBindingSource.Position = 0;
+            // 
             // LoginScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -131,6 +161,9 @@
             this.Controls.Add(this.LoginButton);
             this.Name = "LoginScreen";
             this.Size = new System.Drawing.Size(785, 467);
+            this.Load += new System.EventHandler(this.LoginScreen_Load_1);
+            ((System.ComponentModel.ISupportInitialize)(this.kantoorInrichtingDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -147,5 +180,9 @@
         private System.Windows.Forms.Label UsernameError;
         private System.Windows.Forms.Label PasswordError;
         private System.Windows.Forms.Label GeneralLoginError;
+        private KantoorInrichtingDataSet kantoorInrichtingDataSet;
+        private System.Windows.Forms.BindingSource userBindingSource;
+        private KantoorInrichtingDataSetTableAdapters.UserTableAdapter userTableAdapter;
+        private KantoorInrichtingDataSetTableAdapters.TableAdapterManager tableAdapterManager;
     }
 }

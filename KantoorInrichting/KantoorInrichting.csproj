@@ -129,10 +129,10 @@
       <DependentUpon>InventoryScreen.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\IView.cs" />
-    <Compile Include="Views\LoginScreen.cs">
+    <Compile Include="Views\Login\LoginScreen.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\LoginScreen.Designer.cs">
+    <Compile Include="Views\Login\LoginScreen.Designer.cs">
       <DependentUpon>LoginScreen.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\MainFrame.cs">
@@ -215,7 +215,7 @@
     <EmbeddedResource Include="Views\Inventory\InventoryScreen.resx">
       <DependentUpon>InventoryScreen.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\LoginScreen.resx">
+    <EmbeddedResource Include="Views\Login\LoginScreen.resx">
       <DependentUpon>LoginScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\MainFrame.resx">
@@ -253,7 +253,6 @@
     </None>
     <None Include="KantoorInrichtingDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>KantoorInrichtingDataSet.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
     <None Include="KantoorInrichtingDataSet.xss">
