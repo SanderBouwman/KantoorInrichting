@@ -22,7 +22,6 @@ namespace KantoorInrichting.Views.Placement
             InitializeComponent();
             
             setProduct(new KantoorInrichting.Models.Product.ProductModel());
-            lbl_Image.Text = "";
         }
        
 
@@ -34,6 +33,9 @@ namespace KantoorInrichting.Views.Placement
             txt_Brand.Text = product.Brand;
             txt_Type.Text = product.type;
             txt_Dimension.Text = product.length.ToString() + "x" + product.width.ToString() + "x" + product.height.ToString();
+
+            pbx_Image.Image = Properties.Resources.No_Image_Available;
+            this.Invalidate();
         }
     }
 }

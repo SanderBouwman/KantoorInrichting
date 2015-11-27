@@ -40,6 +40,10 @@ namespace KantoorInrichting.Views.Placement
             ppList.Add(placedP);
 
             ppList.CollectionChanged += ppList_CollectionChanged;
+
+
+            cbx_TurnValue.SelectedIndex = 0;
+            cbx_MoveValue.SelectedIndex = 0;
         }
 
 
@@ -89,15 +93,38 @@ namespace KantoorInrichting.Views.Placement
 
         private void btn_Turn_Click(object sender, EventArgs e)
         {
-            placedP.addAngle(15);
+            int angle = 15;
+
+            if (cbx_TurnValue.Text == "Counter Clockwise") { angle *= -1; }
+
+            placedP.addAngle(angle);
+
             this.Invalidate();
         }
 
         private void btn_Move_Click(object sender, EventArgs e)
         {
+            int speed = 50;
+            bool x_Axis = true;
 
-            placedP.Move(50, true);
+            if(cbx_MoveValue.Text == "Up" || cbx_MoveValue.Text == "Left")
+            {
+                speed *= -1;
+            }
+            if(cbx_MoveValue.Text == "Up" || cbx_MoveValue.Text == "Down")
+            {
+                x_Axis = false;
+            }
+
+            placedP.gridSpace = speed;
+            placedP.Move(x_Axis);
+
             Invalidate();
+        }
+
+        private void cbx_TurnValue_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
