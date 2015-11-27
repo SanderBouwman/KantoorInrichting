@@ -41,11 +41,14 @@ namespace KantoorInrichting.Views.Placement
 
             ppList.CollectionChanged += ppList_CollectionChanged;
 
+            ProductInfo defaultInfo = new ProductInfo();
+            defaultInfo.setProduct(ProductModel.list[0]);
+            changeSelected(defaultInfo);
 
             cbx_TurnValue.SelectedIndex = 0;
             cbx_MoveValue.SelectedIndex = 0;
         }
-
+        
 
         protected override void OnPaint(PaintEventArgs e)
         {

@@ -25,16 +25,17 @@ namespace KantoorInrichting.Views.Placement
             
             listOfProducts = new List<ProductModel>();
 
+            //FUTURE: Get all products from the 'Assortiment'
             foreach (ProductModel product in ProductModel.list)
             {
                 listOfProducts.Add(product);
             }
             
 
-            GenerateTexture();
+            GenerateProducts();
         }
         
-        private void GenerateTexture()
+        private void GenerateProducts()
         {
             int y = 0;
             foreach (ProductModel product in listOfProducts)
