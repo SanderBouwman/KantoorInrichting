@@ -29,6 +29,7 @@ namespace KantoorInrichting
             this.gridFieldView = new KantoorInrichting.Views.Grid.GridFieldView();
             this.assortmentScreen = new Views.Assortment.AssortmentScreen(this);
             this.placement = new Views.Placement.ProductAdding(this);
+            this.loginScreen1 = new Views.LoginScreen(this);
 
 
             //
@@ -37,7 +38,20 @@ namespace KantoorInrichting
 
             this.placement.Visible = false;
             this.placement.Location = new Point(0, 28);
+            //
+            // loginScreen
+            //
 
+            this.loginScreen1.Anchor = ((AnchorStyles)((((AnchorStyles.Top | AnchorStyles.Bottom) | AnchorStyles.Left) | AnchorStyles.Right)));
+            this.loginScreen1.BackColor = SystemColors.GradientInactiveCaption;
+            this.loginScreen1.AutoSize = true;
+            this.loginScreen1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            this.loginScreen1.BackColor = SystemColors.GradientInactiveCaption;
+            this.loginScreen1.Enabled = true;
+            this.loginScreen1.Location = new Point(0, 28);
+            this.loginScreen1.Name = "inventoryScreen1";
+            this.loginScreen1.TabIndex = 3;
+            this.loginScreen1.Visible = true;
             //
             // assortmentScreen
             //
@@ -93,11 +107,13 @@ namespace KantoorInrichting
             this.mainScreen1.Location = new System.Drawing.Point(0, 28);
             this.mainScreen1.Name = "mainScreen1";
             this.mainScreen1.TabIndex = 0;
+            this.mainScreen1.Visible = false;
 
             this.Controls.Add(this.assortmentScreen);
             this.Controls.Add(this.inventoryScreen1);
             this.Controls.Add(this.gridFieldView);
             this.Controls.Add(this.mainScreen1);
+            this.Controls.Add(this.loginScreen1);
             this.Controls.Add(this.placement);
 
             panels.Add(assortmentScreen);
@@ -105,6 +121,7 @@ namespace KantoorInrichting
             panels.Add(gridFieldView);
             panels.Add(mainScreen1);
             panels.Add(placement);
+            panels.Add(loginScreen1);
 
         }
 
