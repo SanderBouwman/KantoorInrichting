@@ -144,10 +144,8 @@ namespace KantoorInrichting.Controllers.Grid {
         /// 
         /// </summary>
         private void PaintModel() {
-            //            PaintBackground();
             // TODO Drawing items in model (draw on _buffer)
-
-            _panel.Invalidate();
+            
         }
 
         private Bitmap PaintBackground() {
