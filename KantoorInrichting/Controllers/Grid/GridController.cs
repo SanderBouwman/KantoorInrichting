@@ -16,13 +16,13 @@ using KantoorInrichting.Views.Grid;
 namespace KantoorInrichting.Controllers.Grid {
     public class GridController : IController {
         private readonly GridFieldModel _model;
+        private readonly Panel _panel;
         private readonly float _tileHeight;
 
         private readonly float _tileWidth;
+        private readonly TrackBar _trackBar;
 
         private readonly IView _view;
-        private readonly Panel _panel;
-        private readonly TrackBar _trackBar;
 
         private Bitmap _background;
         private Bitmap _buffer;
@@ -40,7 +40,7 @@ namespace KantoorInrichting.Controllers.Grid {
         public GridController(IView view, GridFieldModel model) {
             _view = view;
             _model = model;
-            
+
             _zoomRectangleWidth = 50; // initial size of zoom rectangle
             _zoomRectangleHeight = 50;
 
@@ -52,10 +52,15 @@ namespace KantoorInrichting.Controllers.Grid {
             float tWidth = _panel.Width/_model.Rows.GetLength(1);
             float tHeight = _panel.Height/_model.Rows.GetLength(0);
             // Doing these checks to make sure that we don't have pixels left
-            _tileWidth = (_panel.Width%_model.Rows.GetLength(1) != 0 ? (int) tWidth++ : (int) tWidth)*
-                         _model.Rows[0, 0].Width;
-            _tileHeight = (_panel.Width%_model.Rows.GetLength(0) != 0 ? (int) tHeight++ : (int) tHeight)*
-                          _model.Rows[0, 0].Height;
+
+            _tileWidth = (_panel.Width%_model.Rows.GetLength(1) != 0 // if width%length != 0
+                ? (int) tWidth++ // then set to width++
+                : (int) tWidth) // else set to width
+                         *_model.Rows[0, 0].Width; // finally multiply by the tile width
+            _tileHeight = (_panel.Width%_model.Rows.GetLength(0) != 0
+                ? (int) tHeight++
+                : (int) tHeight)
+                          *_model.Rows[0, 0].Height;
 
 
             Resize(this, null);
@@ -87,7 +92,32 @@ namespace KantoorInrichting.Controllers.Grid {
             PaintMouseRectangle();
             PaintModel();
             e.Graphics.DrawImage(_buffer, Point.Empty);
+        }
 
+        public void MouseMove(object sender, MouseEventArgs e) {
+            _mousePosition = e.Location;
+            _panel.Invalidate();
+            if (_zoomView != null)
+                UpdateZoom();
+        }
+
+        public void CheckboxChanged(bool b) {
+            _zoomRectangleEnabled = b;
+            if (_zoomRectangleEnabled) {
+                _view.Get("ListView").Enabled = false; // Disable listview when zooming
+                _zoomView = new ZoomView();
+                UpdateZoom();
+                _zoomView.Show();
+            }
+            else if (!_zoomRectangleEnabled) {
+                _view.Get("ListView").Enabled = true; // Enable listview when not zooming
+                _zoomView?.Dispose();
+            }
+        }
+
+        public void TrackbarScroll(object sender, EventArgs e) {
+            _zoomRectangleWidth = _trackBar.Value;
+            _zoomRectangleHeight = _trackBar.Value;
         }
 
         private void PaintMouseRectangle() {
@@ -115,7 +145,8 @@ namespace KantoorInrichting.Controllers.Grid {
         /// 
         /// </summary>
         private void PaintModel() {
-            if (_panel.BackgroundImage == null) PaintBackground();
+            if (_panel.BackgroundImage == null)
+                PaintBackground();
             // TODO Drawing items in model (draw on _buffer)
 
             _panel.Invalidate();
@@ -128,7 +159,7 @@ namespace KantoorInrichting.Controllers.Grid {
 
                 for (float i = 0; i < _model.Rows.GetLength(0); i += _model.Rows[0, 0].Height) {
                     // first dimension (rows)
-                    for (float j = 0; j < _model.Rows.GetLength(1); j += _model.Rows[0, 0].Height) {
+                    for (float j = 0; j < _model.Rows.GetLength(1); j += _model.Rows[0, 0].Width) {
                         // second dimension (columns)
                         // Painting logic
                         Pen pen = new Pen(Color.Black, 1); // create Pen for drawing lines
@@ -139,26 +170,6 @@ namespace KantoorInrichting.Controllers.Grid {
                     x = 0; // reset x
                     y += _tileHeight; // increment y with _tileHeight to put the next row below the current
                 }
-            }
-        }
-
-        public void MouseMove(object sender, MouseEventArgs e) {
-            _mousePosition = e.Location;
-            _panel.Invalidate();
-            if (_zoomView != null) UpdateZoom();
-        }
-
-        public void CheckboxChanged(bool b) {
-            _zoomRectangleEnabled = b;
-            if (_zoomRectangleEnabled) {
-                _view.Get("ListView").Enabled = false; // Disable listview when zooming
-                _zoomView = new ZoomView();
-                UpdateZoom();
-                _zoomView.Show();
-            }
-            else if (!_zoomRectangleEnabled) {
-                _view.Get("ListView").Enabled = true; // Enable listview when not zooming
-                _zoomView?.Dispose();
             }
         }
 
@@ -178,11 +189,6 @@ namespace KantoorInrichting.Controllers.Grid {
             Rectangle cloneRectangle = new Rectangle(x, y, _zoomRectangleWidth, _zoomRectangleHeight);
             PixelFormat format = _buffer.PixelFormat;
             return _buffer.Clone(cloneRectangle, format);
-        }
-
-        public void TrackbarScroll(object sender, EventArgs e) {
-            _zoomRectangleWidth = _trackBar.Value;
-            _zoomRectangleHeight = _trackBar.Value;
         }
     }
 }
