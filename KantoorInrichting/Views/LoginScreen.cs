@@ -27,6 +27,7 @@ namespace KantoorInrichting.Views
         private void LoginButton_Click(object sender, EventArgs e)
         {
             mainFrame.mainScreen1.Visible = true;
+            mainFrame.mainScreen1.Enabled = true;
             this.Visible = false;
             this.Enabled = false;
         }

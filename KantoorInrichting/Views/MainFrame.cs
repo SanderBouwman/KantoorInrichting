@@ -30,69 +30,26 @@ namespace KantoorInrichting
             this.assortmentScreen = new Views.Assortment.AssortmentScreen(this);
             this.placement = new Views.Placement.ProductAdding(this);
             this.loginScreen1 = new Views.LoginScreen(this);
-
-
-            //
-            // placement
-            //
-
-            this.placement.Visible = false;
-            this.placement.Location = new Point(0, 28);
-            //
-            // loginScreen
-            //
-
-            this.loginScreen1.Anchor = ((AnchorStyles)((((AnchorStyles.Top | AnchorStyles.Bottom) | AnchorStyles.Left) | AnchorStyles.Right)));
-            this.loginScreen1.BackColor = SystemColors.GradientInactiveCaption;
-            this.loginScreen1.AutoSize = true;
-            this.loginScreen1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            this.loginScreen1.BackColor = SystemColors.GradientInactiveCaption;
-            this.loginScreen1.Enabled = true;
-            this.loginScreen1.Location = new Point(0, 28);
-            this.loginScreen1.Name = "inventoryScreen1";
-            this.loginScreen1.TabIndex = 3;
-            this.loginScreen1.Visible = true;
             //
             // assortmentScreen
             //
 
             this.assortmentScreen.Anchor = ((AnchorStyles)((((AnchorStyles.Top | AnchorStyles.Bottom) | AnchorStyles.Left) | AnchorStyles.Right)));
-            this.assortmentScreen.BackColor = SystemColors.GradientInactiveCaption;
-            this.assortmentScreen.AutoSize = true;
-            this.assortmentScreen.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            this.assortmentScreen.BackColor = SystemColors.GradientInactiveCaption;
-            this.assortmentScreen.Enabled = false;
-            this.assortmentScreen.Location = new Point(0, 28);
             this.assortmentScreen.Name = "inventoryScreen1";
             this.assortmentScreen.TabIndex = 3;
-            this.assortmentScreen.Visible = false;
-
-            //
-            // gridFieldView
-            //
-            this.gridFieldView.Anchor = ((AnchorStyles)((((AnchorStyles.Top | AnchorStyles.Bottom)|AnchorStyles.Left)|AnchorStyles.Right)));
-            this.gridFieldView.BackColor = SystemColors.GradientInactiveCaption;
-            this.gridFieldView.AutoSize = true;
-            this.gridFieldView.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            this.gridFieldView.Enabled = false;
-            this.gridFieldView.Location = new Point(0, 28);
-            this.gridFieldView.Name = "gridFieldView";
-            this.gridFieldView.TabIndex = 2;
-            this.gridFieldView.Visible = false;
-
             // 
             // inventoryScreen1
             // 
             this.inventoryScreen1.Anchor = ((AnchorStyles)((((AnchorStyles.Top | AnchorStyles.Bottom) | AnchorStyles.Left) | AnchorStyles.Right)));
-            this.inventoryScreen1.BackColor = SystemColors.GradientInactiveCaption;
-            this.inventoryScreen1.AutoSize = true;
-            this.inventoryScreen1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            this.inventoryScreen1.BackColor = SystemColors.GradientInactiveCaption;
-            this.inventoryScreen1.Enabled = false;
-            this.inventoryScreen1.Location = new Point(0, 28);
             this.inventoryScreen1.Name = "inventoryScreen1";
             this.inventoryScreen1.TabIndex = 1;
-            this.inventoryScreen1.Visible = false;
+
+            //
+            // gridFieldView
+            //
+            this.gridFieldView.Anchor = ((AnchorStyles)((((AnchorStyles.Top | AnchorStyles.Bottom) | AnchorStyles.Left) | AnchorStyles.Right)));
+            this.gridFieldView.Name = "gridFieldView";
+            this.gridFieldView.TabIndex = 2;
 
             // 
             // mainScreen1
@@ -100,29 +57,52 @@ namespace KantoorInrichting
             this.mainScreen1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
 | System.Windows.Forms.AnchorStyles.Left)
 | System.Windows.Forms.AnchorStyles.Right)));
-            this.mainScreen1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.mainScreen1.AutoSize = true;
-            this.mainScreen1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.mainScreen1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.mainScreen1.Location = new System.Drawing.Point(0, 28);
             this.mainScreen1.Name = "mainScreen1";
             this.mainScreen1.TabIndex = 0;
-            this.mainScreen1.Visible = false;
 
-            this.Controls.Add(this.assortmentScreen);
-            this.Controls.Add(this.inventoryScreen1);
-            this.Controls.Add(this.gridFieldView);
-            this.Controls.Add(this.mainScreen1);
-            this.Controls.Add(this.loginScreen1);
-            this.Controls.Add(this.placement);
+            // loginScreen
+            //
+            this.loginScreen1.Anchor = ((AnchorStyles)((((AnchorStyles.Top | AnchorStyles.Bottom) | AnchorStyles.Left) | AnchorStyles.Right)));
+            this.loginScreen1.Name = "inventoryScreen1";
+            this.loginScreen1.TabIndex = 3;
 
-            panels.Add(assortmentScreen);
-            panels.Add(inventoryScreen1);
-            panels.Add(gridFieldView);
-            panels.Add(mainScreen1);
-            panels.Add(placement);
-            panels.Add(loginScreen1);
+           
+            AddPanelToMainscreen(assortmentScreen);
+            AddPanelToMainscreen(inventoryScreen1);
+            AddPanelToMainscreen(gridFieldView);
+            AddPanelToMainscreen(mainScreen1);
+            AddPanelToMainscreen(loginScreen1);
+            AddPanelToMainscreen(placement);
 
+            //after adding the panels make the loginscreen visisble (other then default)
+
+            this.loginScreen1.Enabled = true;
+            this.loginScreen1.Visible = true;
+        }
+
+        private void AddPanelToMainscreen(UserControl panel)
+        {
+            // this method must be used for every panel!!
+            
+            // start after menubar
+            panel.Location = new System.Drawing.Point(0, 25);
+
+            // give the panel our default background color
+            panel.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+
+            // enable autosize for fullscreenmode
+            panel.AutoSize = true;
+            panel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+
+            // default all panels are not visible and disabled
+            panel.Visible = false;
+            panel.Enabled = false;
+
+            // add panels to the controls of MainFrame
+            this.Controls.Add(panel);
+            // add panels to the panellist
+            panels.Add(panel);
         }
 
         private void terugNaarHoofdschermToolStripMenuItem1_Click(object sender, EventArgs e)
