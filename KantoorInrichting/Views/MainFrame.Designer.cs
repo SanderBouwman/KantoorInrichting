@@ -55,13 +55,14 @@ namespace KantoorInrichting
             this.navigatieToolStripMenuItem1});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(782, 28);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(588, 24);
             this.menuStrip1.TabIndex = 2;
             // 
             // inrichterToolStripMenuItem
             // 
             this.inrichterToolStripMenuItem.Name = "inrichterToolStripMenuItem";
-            this.inrichterToolStripMenuItem.Size = new System.Drawing.Size(12, 24);
+            this.inrichterToolStripMenuItem.Size = new System.Drawing.Size(12, 20);
             // 
             // navigatieToolStripMenuItem
             // 
@@ -69,22 +70,22 @@ namespace KantoorInrichting
             this.afsluitenToolStripMenuItem,
             this.terugNaarHoofdschermToolStripMenuItem});
             this.navigatieToolStripMenuItem.Name = "navigatieToolStripMenuItem";
-            this.navigatieToolStripMenuItem.Size = new System.Drawing.Size(12, 24);
+            this.navigatieToolStripMenuItem.Size = new System.Drawing.Size(12, 20);
             // 
             // afsluitenToolStripMenuItem
             // 
             this.afsluitenToolStripMenuItem.Name = "afsluitenToolStripMenuItem";
-            this.afsluitenToolStripMenuItem.Size = new System.Drawing.Size(75, 26);
+            this.afsluitenToolStripMenuItem.Size = new System.Drawing.Size(67, 22);
             // 
             // terugNaarHoofdschermToolStripMenuItem
             // 
             this.terugNaarHoofdschermToolStripMenuItem.Name = "terugNaarHoofdschermToolStripMenuItem";
-            this.terugNaarHoofdschermToolStripMenuItem.Size = new System.Drawing.Size(75, 26);
+            this.terugNaarHoofdschermToolStripMenuItem.Size = new System.Drawing.Size(67, 22);
             // 
             // bestandToolStripMenuItem
             // 
             this.bestandToolStripMenuItem.Name = "bestandToolStripMenuItem";
-            this.bestandToolStripMenuItem.Size = new System.Drawing.Size(74, 24);
+            this.bestandToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.bestandToolStripMenuItem.Text = "Bestand";
             // 
             // navigatieToolStripMenuItem1
@@ -93,33 +94,35 @@ namespace KantoorInrichting
             this.afsluitenToolStripMenuItem1,
             this.terugNaarHoofdschermToolStripMenuItem1});
             this.navigatieToolStripMenuItem1.Name = "navigatieToolStripMenuItem1";
-            this.navigatieToolStripMenuItem1.Size = new System.Drawing.Size(85, 24);
+            this.navigatieToolStripMenuItem1.Size = new System.Drawing.Size(69, 20);
             this.navigatieToolStripMenuItem1.Text = "Navigatie";
             // 
             // afsluitenToolStripMenuItem1
             // 
             this.afsluitenToolStripMenuItem1.Name = "afsluitenToolStripMenuItem1";
-            this.afsluitenToolStripMenuItem1.Size = new System.Drawing.Size(245, 26);
+            this.afsluitenToolStripMenuItem1.Size = new System.Drawing.Size(204, 22);
             this.afsluitenToolStripMenuItem1.Text = "Afsluiten";
             this.afsluitenToolStripMenuItem1.Click += new System.EventHandler(this.afsluitenToolStripMenuItem1_Click);
             // 
             // terugNaarHoofdschermToolStripMenuItem1
             // 
             this.terugNaarHoofdschermToolStripMenuItem1.Name = "terugNaarHoofdschermToolStripMenuItem1";
-            this.terugNaarHoofdschermToolStripMenuItem1.Size = new System.Drawing.Size(245, 26);
+            this.terugNaarHoofdschermToolStripMenuItem1.Size = new System.Drawing.Size(204, 22);
             this.terugNaarHoofdschermToolStripMenuItem1.Text = "Terug naar hoofdscherm";
             this.terugNaarHoofdschermToolStripMenuItem1.Click += new System.EventHandler(this.terugNaarHoofdschermToolStripMenuItem1_Click);
             // 
             // MainFrame
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.ClientSize = new System.Drawing.Size(782, 553);
+            this.ClientSize = new System.Drawing.Size(588, 456);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.MinimumSize = new System.Drawing.Size(800, 600);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.MinimumSize = new System.Drawing.Size(604, 495);
             this.Name = "MainFrame";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MainFrame";
             this.Resize += new System.EventHandler(this.MainFrame_Resize);
             this.menuStrip1.ResumeLayout(false);

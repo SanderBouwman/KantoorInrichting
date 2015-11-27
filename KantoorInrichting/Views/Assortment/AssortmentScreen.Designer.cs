@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.titel = new System.Windows.Forms.Label();
             this.PanelLeft = new System.Windows.Forms.Panel();
             this.addProductButton = new System.Windows.Forms.Button();
@@ -37,6 +38,11 @@
             this.DropdownLeverancier = new System.Windows.Forms.ComboBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.kantoorInrichtingDataSet = new KantoorInrichting.KantoorInrichtingDataSet();
+            this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.productTableAdapter = new KantoorInrichting.KantoorInrichtingDataSetTableAdapters.ProductTableAdapter();
+            this.tableAdapterManager = new KantoorInrichting.KantoorInrichtingDataSetTableAdapters.TableAdapterManager();
+            this.Product_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Naam = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Merk = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -50,6 +56,8 @@
             this.PanelLeft.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.PanelRight.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.kantoorInrichtingDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // titel
@@ -60,7 +68,7 @@
             this.titel.Location = new System.Drawing.Point(2, 35);
             this.titel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.titel.Name = "titel";
-            this.titel.Size = new System.Drawing.Size(224, 41);
+            this.titel.Size = new System.Drawing.Size(372, 41);
             this.titel.TabIndex = 0;
             this.titel.Text = "Assortiment";
             // 
@@ -73,7 +81,7 @@
             this.PanelLeft.Margin = new System.Windows.Forms.Padding(2);
             this.PanelLeft.MinimumSize = new System.Drawing.Size(225, 138);
             this.PanelLeft.Name = "PanelLeft";
-            this.PanelLeft.Size = new System.Drawing.Size(230, 138);
+            this.PanelLeft.Size = new System.Drawing.Size(378, 331);
             this.PanelLeft.TabIndex = 1;
             // 
             // addProductButton
@@ -84,7 +92,7 @@
             this.addProductButton.TabIndex = 1;
             this.addProductButton.Text = "Nieuw product toevoegen";
             this.addProductButton.UseVisualStyleBackColor = true;
-            this.addProductButton.Click += new System.EventHandler(this.addProductButton_Click);
+            this.addProductButton.Click += new System.EventHandler(this.AddProductButton_Click);
             // 
             // dataGridView1
             // 
@@ -97,6 +105,7 @@
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Product_ID,
             this.Naam,
             this.Type,
             this.Merk,
@@ -115,6 +124,7 @@
             this.dataGridView1.RowTemplate.Height = 50;
             this.dataGridView1.Size = new System.Drawing.Size(450, 185);
             this.dataGridView1.TabIndex = 3;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // PanelRight
             // 
@@ -169,6 +179,34 @@
             this.label1.Size = new System.Drawing.Size(75, 19);
             this.label1.TabIndex = 3;
             // 
+            // kantoorInrichtingDataSet
+            // 
+            this.kantoorInrichtingDataSet.DataSetName = "KantoorInrichtingDataSet";
+            this.kantoorInrichtingDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // productBindingSource
+            // 
+            this.productBindingSource.DataMember = "Product";
+            this.productBindingSource.DataSource = this.kantoorInrichtingDataSet;
+            // 
+            // productTableAdapter
+            // 
+            this.productTableAdapter.ClearBeforeFill = true;
+            // 
+            // tableAdapterManager
+            // 
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.CategoryTableAdapter = null;
+            this.tableAdapterManager.ProductTableAdapter = this.productTableAdapter;
+            this.tableAdapterManager.UpdateOrder = KantoorInrichting.KantoorInrichtingDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            // 
+            // Product_ID
+            // 
+            this.Product_ID.DataPropertyName = "Product_ID";
+            this.Product_ID.HeaderText = "Product_ID";
+            this.Product_ID.Name = "Product_ID";
+            this.Product_ID.Visible = false;
+            // 
             // Naam
             // 
             this.Naam.DataPropertyName = "Name";
@@ -207,6 +245,7 @@
             // 
             // Amount
             // 
+            this.Amount.DataPropertyName = "Amount";
             this.Amount.HeaderText = "Aantal";
             this.Amount.Name = "Amount";
             // 
@@ -241,10 +280,12 @@
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.PanelLeft);
             this.Name = "AssortmentScreen";
-            this.Size = new System.Drawing.Size(450, 325);
+            this.Size = new System.Drawing.Size(450, 331);
             this.PanelLeft.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.PanelRight.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.kantoorInrichtingDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -260,6 +301,11 @@
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button addProductButton;
+        private KantoorInrichtingDataSet kantoorInrichtingDataSet;
+        private System.Windows.Forms.BindingSource productBindingSource;
+        private KantoorInrichtingDataSetTableAdapters.ProductTableAdapter productTableAdapter;
+        private KantoorInrichtingDataSetTableAdapters.TableAdapterManager tableAdapterManager;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Product_ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Naam;
         private System.Windows.Forms.DataGridViewTextBoxColumn Type;
         private System.Windows.Forms.DataGridViewTextBoxColumn Merk;
