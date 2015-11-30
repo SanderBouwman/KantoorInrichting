@@ -25,6 +25,9 @@ namespace KantoorInrichting.Views.Assortment
         //Fill the datagridview with data
         public void FillData()
         {
+            //If a new product is added, the data source needs to be empty else it won't 'refresh'the datagridview
+            dataGridView1.DataSource = null;
+
             //Fill the TableAdapter with data from the dataset
             this.productTableAdapter.Fill(this.kantoorInrichtingDataSet.Product);
             var productLijst = kantoorInrichtingDataSet.Product;
@@ -33,7 +36,7 @@ namespace KantoorInrichting.Views.Assortment
             foreach (var product in productLijst)
             {
                 Models.Product.ProductModel p1 = new Models.Product.ProductModel(product.Product_ID, product.Name, product.Brand, product.Type,
-                    product.Category_ID.ToString(), "Stoeltje", product.Length, product.Width, product.Height, product.Description, product.Amount);
+                    product.Category_ID, product.Length, product.Width, product.Height, product.Description, product.Amount, product.Image);
             }
             dataGridView1.AutoGenerateColumns = false;
             dataGridView1.DataSource = Models.Product.ProductModel.list;
@@ -44,6 +47,7 @@ namespace KantoorInrichting.Views.Assortment
         {
             AddNewProductScreen addNewProduct = new AddNewProductScreen();
             addNewProduct.ShowDialog();
+            FillData();
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -64,9 +68,7 @@ namespace KantoorInrichting.Views.Assortment
                 {
                     // run delete screen here
                     // make an Removescreen with current product as argument
-
                 }
-
             }
         }
     }

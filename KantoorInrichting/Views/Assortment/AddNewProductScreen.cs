@@ -9,6 +9,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using KantoorInrichting.Models.Product;
 using KantoorInrichting.Properties;
 
 namespace KantoorInrichting.Views.Assortment
@@ -27,6 +28,7 @@ namespace KantoorInrichting.Views.Assortment
         private string imageSource = "";
         private string imageFileName;
         private string imageDestination;
+        private ProductModel product;
 
         public AddNewProductScreen()
         {
@@ -52,6 +54,7 @@ namespace KantoorInrichting.Views.Assortment
         //    list.Add(kantoorInrichtingDataSet);
         //}
 
+        //Validates the input from the textboxes
         private bool ValitdateUserInput()
         {
             //There are 10 checks the validation has to pass, every check it passes there is -1, 
@@ -167,28 +170,35 @@ namespace KantoorInrichting.Views.Assortment
             }
         }
 
-        //Add a new product to the database
-        private void AddProductToDatabase()
+        //Create a new product
+        private void CreateProductModel()
         {
             //Fill the TableAdapter with data from the dataset, select MAX Product_ID, Create an in with MAX Product_ID + 1
             this.productTableAdapter.Fill((kantoorInrichtingDataSet.Product));
             var maxProduct_ID = kantoorInrichtingDataSet.Product.Select("Product_ID = MAX(Product_ID)");
-            Int32 newMaxProduct_ID = (int)maxProduct_ID[0]["Product_ID"] + 1;
+            Int32 newProduct_ID = (int)maxProduct_ID[0]["Product_ID"] + 1;
 
+            ProductModel product = new ProductModel(newProduct_ID, name, brand, type, category_ID, length, width, height, description, amount, imageFileName);
+            this.product = product;
+        }
+
+        //Add a new product to the database
+        private void AddProductToDatabase()
+        {
             //Create a newProductrow and fill the row for each corresponding column
             KantoorInrichtingDataSet.ProductRow newProduct = kantoorInrichtingDataSet.Product.NewProductRow();
-            newProduct.Name = name;
-            newProduct.Product_ID = newMaxProduct_ID;
+            newProduct.Name = product.name;
+            newProduct.Product_ID = product.product_ID;
             newProduct.Removed = false;
-            newProduct.Type = type;
-            newProduct.Brand = brand;
-            newProduct.Height = height;
-            newProduct.Width = width;
-            newProduct.Length = length;
-            newProduct.Amount = amount;
-            newProduct.Image = imageDestination;
-            newProduct.Category_ID = category_ID;
-            newProduct.Description = description;
+            newProduct.Type = product.type;
+            newProduct.Brand = product.brand;
+            newProduct.Height = product.height;
+            newProduct.Width = product.width;
+            newProduct.Length = product.length;
+            newProduct.Amount = product.amount;
+            newProduct.Image = product.imageFileName;
+            newProduct.Category_ID = product.category_ID;
+            newProduct.Description = product.description;
 
             //Try to add the new product row in the database
             try
@@ -198,33 +208,14 @@ namespace KantoorInrichting.Views.Assortment
                 MessageBox.Show("Update successful");
             }
             //If it fails remove the newly placed image from the resource folder
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show("Update failed" + ex);
                 RemoveImage();
             }
         }
 
-        //Add new product button
-        private void AddButton_Click(object sender, EventArgs e)
-        {
-            if (ValitdateUserInput())
-            {
-                if (CopySelectedImage())
-                {
-                    AddProductToDatabase();
-                    this.Close();
-                }
-            }
-        }
-
-        //Closes this form
-        private void CancelButton_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        //Select an image from a folder and show the image in the form
+       //Select an image from a folder and show the image in the form
         private void SelectImageButton_Click(object sender, EventArgs e)
         {
             //Open new filedialog to select an image
@@ -252,7 +243,7 @@ namespace KantoorInrichting.Views.Assortment
         //Copy the selected image to the resources folder
         private bool CopySelectedImage()
         {
-            imageDestination = Path.GetDirectoryName(Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory())) + @"\Resources\" + imageFileName;
+            imageDestination = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())) + @"\Resources\" + imageFileName;
             try
             {
                 File.Copy(imageSource, imageDestination);
@@ -269,6 +260,26 @@ namespace KantoorInrichting.Views.Assortment
         private void RemoveImage()
         {
             File.Delete(imageDestination);
+        }
+
+        //Add new product button
+        private void AddButton_Click(object sender, EventArgs e)
+        {
+            if (ValitdateUserInput())
+            {
+                if (CopySelectedImage())
+                {
+                    CreateProductModel();
+                    AddProductToDatabase();
+                    this.Close();
+                }
+            }
+        }
+
+        //Closes this form
+        private void CancelButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 
