@@ -1,37 +1,38 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using KantoorInrichting.Models.Product;
 
 namespace KantoorInrichting.Views.Assortment
 {
     public partial class EditProductScreen : Form
     {
-        private string name;
-        private string type;
-        private string brand;
-        private int height;
-        private int width;
-        private int length;
+        private readonly string currentImagePath;
+        private readonly ProductModel product;
         private int amount;
+        private string brand;
         private int category_ID;
         private string description;
-        private string imageSource = "";
-        private string imageFileName;
-        private string imageDestination;
-        private Models.Product.ProductModel product;
+        private int height;
+        private bool isNewImage;
+        private int length;
+        private string name;
+        private Image newImage;
+        private string newImageFileName;
+        private string newImagePath;
+        private string newImageSource = "";
+        private string type;
+        private int width;
 
-        public EditProductScreen(Models.Product.ProductModel product)
+        public EditProductScreen(ProductModel product)
         {
             InitializeComponent();
             this.product = product;
+            currentImagePath = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())) +
+                               @"\Resources\" + product.imageFileName;
+            isNewImage = false;
             FillComboBox();
             FillTextBoxes();
         }
@@ -47,21 +48,22 @@ namespace KantoorInrichting.Views.Assortment
             lengthTextBox.Text = product.length.ToString();
             amountTextBox.Text = product.amount.ToString();
             descriptionTextBox.Text = product.description;
-            //Image <-- need to do this.
+            pictureBox.Image = product.Image;
         }
 
         //Fills the category combobox with categories from the database and selects the category
         public void FillComboBox()
         {
-            this.categoryTableAdapter.Fill(this.kantoorInrichtingDataSet.Category);
+            categoryTableAdapter.Fill(kantoorInrichtingDataSet.Category);
             var categoryList = kantoorInrichtingDataSet.Category;
 
             foreach (var category in categoryList)
             {
-                this.categoryComboBox.Items.Add(category.Name);
-                if (category.Category_ID == Int32.Parse(product.category))
+                categoryComboBox.Items.Add(category.Name);
+                if (category.Category_ID == product.category_ID)
                 {
-                    categoryComboBox.SelectedIndex = category.Category_ID - 1; //Minus 1 to match the category number from the database -->
+                    categoryComboBox.SelectedIndex = category.Category_ID - 1;
+                    //Minus 1 to match the category number from the database -->
                     //this might be needing changes later
                 }
             }
@@ -70,9 +72,9 @@ namespace KantoorInrichting.Views.Assortment
         //This method checks if the user inputs is correct. When everything is correct it will return True
         private bool ValitdateUserInput()
         {
-            //There are 10 checks the validation has to pass, every check it passes there is -1, 
+            //There are 9 checks the validation has to pass, every check it passes there is -1, 
             //when this number reaches 0 it is equal to passing the checks.
-            int validationPassed = 10;
+            var validationPassed = 9;
 
             if (!Regex.IsMatch(nameTextBox.Text, @"^[a-zA-Z0-9_\s]+$"))
             {
@@ -111,7 +113,7 @@ namespace KantoorInrichting.Views.Assortment
             else
             {
                 errorHeightLabel.Text = "";
-                height = Int32.Parse(heightTextBox.Text);
+                height = int.Parse(heightTextBox.Text);
                 validationPassed--;
             }
             if (!Regex.IsMatch(widthTextBox.Text, @"^[0-9]+$"))
@@ -121,7 +123,7 @@ namespace KantoorInrichting.Views.Assortment
             else
             {
                 errorWidthLabel.Text = "";
-                width = Int32.Parse(widthTextBox.Text);
+                width = int.Parse(widthTextBox.Text);
                 validationPassed--;
             }
             if (!Regex.IsMatch(lengthTextBox.Text, @"^[0-9]+$"))
@@ -131,7 +133,7 @@ namespace KantoorInrichting.Views.Assortment
             else
             {
                 errorLengthLabel.Text = "";
-                length = Int32.Parse(lengthTextBox.Text);
+                length = int.Parse(lengthTextBox.Text);
                 validationPassed--;
             }
             if (!Regex.IsMatch(amountTextBox.Text, @"^[0-9]+$"))
@@ -141,7 +143,7 @@ namespace KantoorInrichting.Views.Assortment
             else
             {
                 errorAmountLabel.Text = "";
-                amount = Int32.Parse(amountTextBox.Text);
+                amount = int.Parse(amountTextBox.Text);
                 validationPassed--;
             }
             if (categoryComboBox.SelectedIndex < 0)
@@ -151,7 +153,8 @@ namespace KantoorInrichting.Views.Assortment
             else
             {
                 errorCategoryLabel.Text = "";
-                category_ID = categoryComboBox.SelectedIndex;
+                category_ID = categoryComboBox.SelectedIndex + 1;
+                //Plus 1 to match the category number from the database, this might be needing change later, if changed -> also change in EditProductScreen FillComboBox()
                 validationPassed--;
             }
             if (!Regex.IsMatch(descriptionTextBox.Text, @"^[a-zA-Z0-9\s\p{P}\d]+$"))
@@ -164,90 +167,79 @@ namespace KantoorInrichting.Views.Assortment
                 description = descriptionTextBox.Text;
                 validationPassed--;
             }
-            if (imageSource.Length == 0)
-            {
-                errorImageLabel.Text = "Ongeldige invoer";
-            }
-            else
-            {
-                errorImageLabel.Text = "";
-                validationPassed--;
-            }
             if (validationPassed == 0)
             {
                 return true;
             }
-            else
+            return false;
+        }
+
+        //Update the existing ProductModel
+        private void UpdateProductModel()
+        {
+            product.name = name;
+            product.brand = brand;
+            product.type = type;
+            product.category_ID = category_ID;
+            product.height = height;
+            product.width = width;
+            product.length = length;
+            product.description = description;
+            product.amount = amount;
+            if (isNewImage)
             {
-                return false;
+                product.imageFileName = newImageFileName;
+                product.image = newImage;
             }
         }
 
-        //Add a new product to the database
-        private void AddProductToDatabase()
+        //Update the prodcut in the database
+        private void UpdateProductInDatabase()
         {
-            //Fill the TableAdapter with data from the dataset, select MAX Product_ID, Create an in with MAX Product_ID + 1
-            this.productTableAdapter.Fill((kantoorInrichtingDataSet.Product));
-            var maxProduct_ID = kantoorInrichtingDataSet.Product.Select("Product_ID = MAX(Product_ID)");
-            Int32 newMaxProduct_ID = (int)maxProduct_ID[0]["Product_ID"] + 1;
-
-            //Create a newProductrow and fill the row for each corresponding column
-            KantoorInrichtingDataSet.ProductRow newProduct = kantoorInrichtingDataSet.Product.NewProductRow();
-            newProduct.Name = name;
-            newProduct.Product_ID = newMaxProduct_ID;
-            newProduct.Removed = false;
-            newProduct.Type = type;
-            newProduct.Brand = brand;
-            newProduct.Height = height;
-            newProduct.Width = width;
-            newProduct.Length = length;
-            newProduct.Amount = amount;
-            newProduct.Image = imageDestination;
-            newProduct.Category_ID = category_ID;
-            newProduct.Description = description;
-
-            //Try to add the new product row in the database
+            //Fill the TableAdapter with data from the dataset
+            productTableAdapter.Fill(kantoorInrichtingDataSet.Product);
             try
             {
-                kantoorInrichtingDataSet.Product.Rows.Add(newProduct);
-                this.productTableAdapter.Update(this.kantoorInrichtingDataSet.Product);
+                //Search the tabel Product for a certain ProductID
+                var productRow = kantoorInrichtingDataSet.Product.FindByProduct_ID(product.product_ID);
+                //Assign a new value to the Column Quantity
+                productRow.Name = product.name;
+                productRow.Brand = product.brand;
+                productRow.Type = product.type;
+                productRow.Category_ID = product.category_ID;
+                productRow.Height = product.height;
+                productRow.Width = product.width;
+                productRow.Length = product.length;
+                productRow.Amount = product.amount;
+                productRow.Image = product.imageFileName;
+                productRow.Description = product.description;
+
+                //Update the database with the new Data
+                productTableAdapter.Update(kantoorInrichtingDataSet.Product);
+                if (isNewImage)
+                {
+                    RemoveImage(currentImagePath);
+                }
                 MessageBox.Show("Update successful");
             }
-            //If it fails remove the newly placed image from the resource folder
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
-                MessageBox.Show("Update failed" + ex);
-                RemoveImage();
-            }
-        }
-
-        //Add new product button
-        private void AddButton_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show(product.product_ID.ToString());
-            if (ValitdateUserInput())
-            {
-                if (CopySelectedImage())
+                if (isNewImage)
                 {
-                    AddProductToDatabase();
-                    this.Close();
+                    RemoveImage(newImagePath);
                 }
+                MessageBox.Show("Update failed" + ex);
             }
-        }
-
-        //Closes this form
-        private void CancelButton_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
 
         //Select an image from a folder and show the image in the form
         private void SelectImageButton_Click(object sender, EventArgs e)
         {
             //Open new filedialog to select an image
-            OpenFileDialog ofd = new OpenFileDialog();
+            var ofd = new OpenFileDialog();
             //Only files with these extensions will be visible in the filedialog
-            ofd.Filter = "All Image Formats| *.jpg; *.png; *.bmp; *.gif; *.ico; *.txt | JPG Image | *.jpg | BMP image | *.bmp " +
+            ofd.Filter =
+                "All Image Formats| *.jpg; *.png; *.bmp; *.gif; *.ico; *.txt | JPG Image | *.jpg | BMP image | *.bmp " +
                 "| PNG image | *.png | GIF Image | *.gif | Icon | *.ico";
             //Set the initialdirectory when opening the file dialog
             ofd.InitialDirectory = @"C:\";
@@ -256,37 +248,64 @@ namespace KantoorInrichting.Views.Assortment
             if (ofd.ShowDialog() == DialogResult.OK)
             {
                 //Get the filename of the selected file
-                imageFileName = ofd.SafeFileName;
+                newImageFileName = ofd.SafeFileName;
                 //Get the path and the file selected file
-                imageSource = ofd.FileName;
+                newImageSource = ofd.FileName;
+                newImage = Image.FromStream(new MemoryStream(File.ReadAllBytes(ofd.FileName)));
                 //Resize the picture so it will be shown correctly in the picturebox
                 pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
                 //Load the picture
-                pictureBox.Load(imageSource);
+                pictureBox.Image = newImage;
+                isNewImage = true;
             }
         }
 
         //Copy the selected image to the resources folder
         private bool CopySelectedImage()
         {
-            imageDestination = Path.GetDirectoryName(Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory())) + @"\Resources\" + imageFileName;
-            try
+            if (isNewImage)
             {
-                File.Copy(imageSource, imageDestination);
-                return true;
+                newImagePath = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())) +
+                               @"\Resources\" + newImageFileName;
+                try
+                {
+                    File.Copy(newImageSource, newImagePath);
+                    return true;
+                }
+                catch (IOException ex)
+                {
+                    MessageBox.Show("Er bestaat al een bestand met deze naam");
+                    return false;
+                }
             }
-            catch (IOException ex)
-            {
-                MessageBox.Show("Er bestaat al een bestand met deze naam");
-                return false;
-            }
+            return true;
         }
 
         //Remove image from folder
-        private void RemoveImage()
+        private void RemoveImage(string imagePath)
         {
-            File.Delete(imageDestination);
+            GC.Collect();
+            File.Delete(imagePath);
+        }
+
+        //Add new product button
+        private void AddButton_Click(object sender, EventArgs e)
+        {
+            if (ValitdateUserInput())
+            {
+                if (CopySelectedImage())
+                {
+                    UpdateProductModel();
+                    UpdateProductInDatabase();
+                    Close();
+                }
+            }
+        }
+
+        //Closes this form
+        private void CancelButton_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }
-

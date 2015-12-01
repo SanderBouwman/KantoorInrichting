@@ -1,34 +1,28 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using KantoorInrichting.Models.Product;
-using KantoorInrichting.Properties;
 
 namespace KantoorInrichting.Views.Assortment
 {
     public partial class AddNewProductScreen : Form
     {
-        private string name;
-        private string type;
-        private string brand;
-        private int height;
-        private int width;
-        private int length;
         private int amount;
+        private string brand;
         private int category_ID;
         private string description;
-        private string imageSource = "";
-        private string imageFileName;
-        private string imageDestination;
+        private int height;
+        private int length;
+        private string name;
+        private Image newImage;
+        private string newImageFileName;
+        private string newImagePath;
+        private string newImageSource = "";
         private ProductModel product;
+        private string type;
+        private int width;
 
         public AddNewProductScreen()
         {
@@ -39,12 +33,12 @@ namespace KantoorInrichting.Views.Assortment
         //Fills the category combobox with categories from the database
         public void FillComboBox()
         {
-            this.categoryTableAdapter.Fill(this.kantoorInrichtingDataSet.Category);
+            categoryTableAdapter.Fill(kantoorInrichtingDataSet.Category);
             var categoryList = kantoorInrichtingDataSet.Category;
 
             foreach (var category in categoryList)
             {
-                this.categoryComboBox.Items.Add(category.Name);
+                categoryComboBox.Items.Add(category.Name);
             }
         }
 
@@ -59,7 +53,7 @@ namespace KantoorInrichting.Views.Assortment
         {
             //There are 10 checks the validation has to pass, every check it passes there is -1, 
             //when this number reaches 0 it is equal to passing the checks.
-            int validationPassed = 10;
+            var validationPassed = 10;
 
             if (!Regex.IsMatch(nameTextBox.Text, @"^[a-zA-Z0-9_\s]+$"))
             {
@@ -98,7 +92,7 @@ namespace KantoorInrichting.Views.Assortment
             else
             {
                 errorHeightLabel.Text = "";
-                height = Int32.Parse(heightTextBox.Text);
+                height = int.Parse(heightTextBox.Text);
                 validationPassed--;
             }
             if (!Regex.IsMatch(widthTextBox.Text, @"^[0-9]+$"))
@@ -108,7 +102,7 @@ namespace KantoorInrichting.Views.Assortment
             else
             {
                 errorWidthLabel.Text = "";
-                width = Int32.Parse(widthTextBox.Text);
+                width = int.Parse(widthTextBox.Text);
                 validationPassed--;
             }
             if (!Regex.IsMatch(lengthTextBox.Text, @"^[0-9]+$"))
@@ -118,7 +112,7 @@ namespace KantoorInrichting.Views.Assortment
             else
             {
                 errorLengthLabel.Text = "";
-                length = Int32.Parse(lengthTextBox.Text);
+                length = int.Parse(lengthTextBox.Text);
                 validationPassed--;
             }
             if (!Regex.IsMatch(amountTextBox.Text, @"^[0-9]+$"))
@@ -128,7 +122,7 @@ namespace KantoorInrichting.Views.Assortment
             else
             {
                 errorAmountLabel.Text = "";
-                amount = Int32.Parse(amountTextBox.Text);
+                amount = int.Parse(amountTextBox.Text);
                 validationPassed--;
             }
             if (categoryComboBox.SelectedIndex < 0)
@@ -138,7 +132,8 @@ namespace KantoorInrichting.Views.Assortment
             else
             {
                 errorCategoryLabel.Text = "";
-                category_ID = categoryComboBox.SelectedIndex;
+                category_ID = categoryComboBox.SelectedIndex + 1;
+                //Plus 1 to match the category number from the database, this might be needing change later, if changed -> also change in EditProductScreen FillComboBox() 
                 validationPassed--;
             }
             if (!Regex.IsMatch(descriptionTextBox.Text, @"^[a-zA-Z0-9\s\p{P}\d]+$"))
@@ -151,7 +146,7 @@ namespace KantoorInrichting.Views.Assortment
                 description = descriptionTextBox.Text;
                 validationPassed--;
             }
-            if (imageSource.Length == 0)
+            if (newImageSource.Length == 0)
             {
                 errorImageLabel.Text = "Ongeldige invoer";
             }
@@ -164,21 +159,19 @@ namespace KantoorInrichting.Views.Assortment
             {
                 return true;
             }
-            else
-            {
-                return false;
-            }
+            return false;
         }
 
         //Create a new product
         private void CreateProductModel()
         {
             //Fill the TableAdapter with data from the dataset, select MAX Product_ID, Create an in with MAX Product_ID + 1
-            this.productTableAdapter.Fill((kantoorInrichtingDataSet.Product));
+            productTableAdapter.Fill((kantoorInrichtingDataSet.Product));
             var maxProduct_ID = kantoorInrichtingDataSet.Product.Select("Product_ID = MAX(Product_ID)");
-            Int32 newProduct_ID = (int)maxProduct_ID[0]["Product_ID"] + 1;
+            var newProduct_ID = (int) maxProduct_ID[0]["Product_ID"] + 1;
 
-            ProductModel product = new ProductModel(newProduct_ID, name, brand, type, category_ID, length, width, height, description, amount, imageFileName);
+            var product = new ProductModel(newProduct_ID, name, brand, type, category_ID, length, width, height,
+                description, amount, newImageFileName);
             this.product = product;
         }
 
@@ -186,7 +179,7 @@ namespace KantoorInrichting.Views.Assortment
         private void AddProductToDatabase()
         {
             //Create a newProductrow and fill the row for each corresponding column
-            KantoorInrichtingDataSet.ProductRow newProduct = kantoorInrichtingDataSet.Product.NewProductRow();
+            var newProduct = kantoorInrichtingDataSet.Product.NewProductRow();
             newProduct.Name = product.name;
             newProduct.Product_ID = product.product_ID;
             newProduct.Removed = false;
@@ -204,10 +197,10 @@ namespace KantoorInrichting.Views.Assortment
             try
             {
                 kantoorInrichtingDataSet.Product.Rows.Add(newProduct);
-                this.productTableAdapter.Update(this.kantoorInrichtingDataSet.Product);
+                productTableAdapter.Update(kantoorInrichtingDataSet.Product);
                 MessageBox.Show("Update successful");
             }
-            //If it fails remove the newly placed image from the resource folder
+                //If it fails remove the newly placed image from the resource folder
             catch (Exception ex)
             {
                 MessageBox.Show("Update failed" + ex);
@@ -215,13 +208,14 @@ namespace KantoorInrichting.Views.Assortment
             }
         }
 
-       //Select an image from a folder and show the image in the form
+        //Select an image from a folder and show the image in the form
         private void SelectImageButton_Click(object sender, EventArgs e)
         {
             //Open new filedialog to select an image
-            OpenFileDialog ofd = new OpenFileDialog();
+            var ofd = new OpenFileDialog();
             //Only files with these extensions will be visible in the filedialog
-            ofd.Filter = "All Image Formats| *.jpg; *.png; *.bmp; *.gif; *.ico; *.txt | JPG Image | *.jpg | BMP image | *.bmp " +
+            ofd.Filter =
+                "All Image Formats| *.jpg; *.png; *.bmp; *.gif; *.ico; *.txt | JPG Image | *.jpg | BMP image | *.bmp " +
                 "| PNG image | *.png | GIF Image | *.gif | Icon | *.ico";
             //Set the initialdirectory when opening the file dialog
             ofd.InitialDirectory = @"C:\";
@@ -230,23 +224,25 @@ namespace KantoorInrichting.Views.Assortment
             if (ofd.ShowDialog() == DialogResult.OK)
             {
                 //Get the filename of the selected file
-                imageFileName = ofd.SafeFileName;
+                newImageFileName = ofd.SafeFileName;
                 //Get the path and the file selected file
-                imageSource = ofd.FileName;
+                newImageSource = ofd.FileName;
+                newImage = Image.FromStream(new MemoryStream(File.ReadAllBytes(ofd.FileName)));
                 //Resize the picture so it will be shown correctly in the picturebox
                 pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
                 //Load the picture
-                pictureBox.Load(imageSource);
+                pictureBox.Image = newImage;
             }
         }
 
         //Copy the selected image to the resources folder
         private bool CopySelectedImage()
         {
-            imageDestination = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())) + @"\Resources\" + imageFileName;
+            newImagePath = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())) +
+                           @"\Resources\" + newImageFileName;
             try
             {
-                File.Copy(imageSource, imageDestination);
+                File.Copy(newImageSource, newImagePath);
                 return true;
             }
             catch (IOException ex)
@@ -259,7 +255,7 @@ namespace KantoorInrichting.Views.Assortment
         //Remove image from folder
         private void RemoveImage()
         {
-            File.Delete(imageDestination);
+            File.Delete(newImagePath);
         }
 
         //Add new product button
@@ -271,7 +267,7 @@ namespace KantoorInrichting.Views.Assortment
                 {
                     CreateProductModel();
                     AddProductToDatabase();
-                    this.Close();
+                    Close();
                 }
             }
         }
@@ -279,27 +275,7 @@ namespace KantoorInrichting.Views.Assortment
         //Closes this form
         private void CancelButton_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
     }
-
-    /*
-    //Fill the TableAdapter with data from the dataset
-            this.productTableAdapter.Fill(this.kantoorInrichtingDataSet.Product);
-
-            try
-            {
-                //Search the tabel Product for a certain ProductID
-                KantoorInrichtingDataSet.ProductRow productRow = kantoorInrichtingDataSet.Product.FindByProduct_ID(1);
-                //Assign a new value to the Column Quantity
-                productRow.Amount = 11;
-                //Update the database with the new Data
-                this.productTableAdapter.Update(this.kantoorInrichtingDataSet.Product);
-                MessageBox.Show("Update successful");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Update failed");
-            }
-    */
 }

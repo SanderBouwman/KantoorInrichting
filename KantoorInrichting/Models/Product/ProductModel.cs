@@ -11,7 +11,7 @@ namespace KantoorInrichting.Models.Product
 {
     public class ProductModel
     {
-        public static SortableBindingList<ProductModel> list = new SortableBindingList<ProductModel>(); 
+        public static SortableBindingList<ProductModel> list = new SortableBindingList<ProductModel>();
         public static SortableBindingList<ProductModel> result = new SortableBindingList<ProductModel>();  // list for filtering data
 
         public string name;
@@ -21,14 +21,15 @@ namespace KantoorInrichting.Models.Product
         public string subcategory { get; set; }
         public Image image;
 
-        public int length { get; private set; }
-        public int width { get; private set; }
-        public int height { get; private set; }
-        public int amount { get; private set; }
+        public int length { get; set; }
+        public int width { get; set; }
+        public int height { get; set; }
+        public int amount { get; set; }
         public int id { get; private set; }
         public int product_ID { get; private set; }
-        public int category_ID { get; private set; }
-        public string imageFileName { get; private set; }
+        public int category_ID { get; set; }
+        public string imageFileName { get; set; }
+        public string description { get; set; }
 
         public string Name { get { return name; } private set { name = value; } }
         public string Type { get { return type; } private set { type = value; } }
@@ -41,7 +42,6 @@ namespace KantoorInrichting.Models.Product
 
         //public Supplier supplier { get; private set; }
 
-        public string description { get; private set; }
         public static int IDnumber;
 
         public ProductModel(string n, string b, string t, string c, string s, int l, int w, int h, string d, int a)
@@ -64,7 +64,7 @@ namespace KantoorInrichting.Models.Product
             if (n != "") { list.Add(this); } //If the name if empty, don't add it to the list. This is because the name is part of the primary key in the database.
         }
 
-        public ProductModel(int i, string n, string b, string t, int c, int l, int w, int h, string d, int a, string image)
+        public ProductModel(int i, string n, string b, string t, int c, int l, int w, int h, string d, int a, string im)
         {
             product_ID = i;
             name = n;
@@ -78,19 +78,19 @@ namespace KantoorInrichting.Models.Product
 
             description = d;
             amount = a;
-            imageFileName = image;
+            imageFileName = im;
             SetProductImage();
 
             list.Add(this);
         }
 
         //This methods sets the Product image using the name of the image
-        private void SetProductImage()
+        public void SetProductImage()
         {
             string imagePath = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())) + @"\Resources\" + imageFileName;
             try
             {
-                image = Image.FromFile(imagePath);
+                image = Image.FromStream(new MemoryStream(File.ReadAllBytes(imagePath)));
             }
             catch (Exception ex)
             {
