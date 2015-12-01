@@ -42,13 +42,15 @@
             this.tableAdapterManager = new KantoorInrichting.KantoorInrichtingDataSetTableAdapters.TableAdapterManager();
             this.kantoorInrichtingDataSet = new KantoorInrichting.KantoorInrichtingDataSet();
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.kantoorInrichtingDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // LoginButton
             // 
-            this.LoginButton.Location = new System.Drawing.Point(327, 280);
+            this.LoginButton.Location = new System.Drawing.Point(93, 143);
             this.LoginButton.Name = "LoginButton";
             this.LoginButton.Size = new System.Drawing.Size(75, 23);
             this.LoginButton.TabIndex = 0;
@@ -58,14 +60,14 @@
             // 
             // UsernameTB
             // 
-            this.UsernameTB.Location = new System.Drawing.Point(327, 228);
+            this.UsernameTB.Location = new System.Drawing.Point(93, 88);
             this.UsernameTB.Name = "UsernameTB";
             this.UsernameTB.Size = new System.Drawing.Size(185, 20);
             this.UsernameTB.TabIndex = 1;
             // 
             // PasswordTB
             // 
-            this.PasswordTB.Location = new System.Drawing.Point(327, 254);
+            this.PasswordTB.Location = new System.Drawing.Point(93, 117);
             this.PasswordTB.Name = "PasswordTB";
             this.PasswordTB.Size = new System.Drawing.Size(185, 20);
             this.PasswordTB.TabIndex = 2;
@@ -74,7 +76,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(223, 235);
+            this.label1.Location = new System.Drawing.Point(3, 91);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(84, 13);
             this.label1.TabIndex = 3;
@@ -83,7 +85,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(223, 261);
+            this.label2.Location = new System.Drawing.Point(3, 120);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(68, 13);
             this.label2.TabIndex = 4;
@@ -93,7 +95,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(251, 152);
+            this.label3.Location = new System.Drawing.Point(48, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(280, 73);
             this.label3.TabIndex = 5;
@@ -102,7 +104,7 @@
             // UsernameError
             // 
             this.UsernameError.AutoSize = true;
-            this.UsernameError.Location = new System.Drawing.Point(463, 228);
+            this.UsernameError.Location = new System.Drawing.Point(284, 91);
             this.UsernameError.Name = "UsernameError";
             this.UsernameError.Size = new System.Drawing.Size(0, 13);
             this.UsernameError.TabIndex = 6;
@@ -110,7 +112,7 @@
             // PasswordError
             // 
             this.PasswordError.AutoSize = true;
-            this.PasswordError.Location = new System.Drawing.Point(463, 254);
+            this.PasswordError.Location = new System.Drawing.Point(284, 120);
             this.PasswordError.Name = "PasswordError";
             this.PasswordError.Size = new System.Drawing.Size(0, 13);
             this.PasswordError.TabIndex = 7;
@@ -118,7 +120,7 @@
             // GeneralLoginError
             // 
             this.GeneralLoginError.AutoSize = true;
-            this.GeneralLoginError.Location = new System.Drawing.Point(408, 285);
+            this.GeneralLoginError.Location = new System.Drawing.Point(174, 148);
             this.GeneralLoginError.Name = "GeneralLoginError";
             this.GeneralLoginError.Size = new System.Drawing.Size(0, 13);
             this.GeneralLoginError.TabIndex = 8;
@@ -146,26 +148,36 @@
             this.userBindingSource.DataSource = this.kantoorInrichtingDataSet;
             this.userBindingSource.Position = 0;
             // 
+            // panel1
+            // 
+            this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.GeneralLoginError);
+            this.panel1.Controls.Add(this.LoginButton);
+            this.panel1.Controls.Add(this.PasswordError);
+            this.panel1.Controls.Add(this.UsernameTB);
+            this.panel1.Controls.Add(this.UsernameError);
+            this.panel1.Controls.Add(this.PasswordTB);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Location = new System.Drawing.Point(226, 92);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(323, 203);
+            this.panel1.TabIndex = 0;
+            // 
             // LoginScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.GeneralLoginError);
-            this.Controls.Add(this.PasswordError);
-            this.Controls.Add(this.UsernameError);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.PasswordTB);
-            this.Controls.Add(this.UsernameTB);
-            this.Controls.Add(this.LoginButton);
+            this.Controls.Add(this.panel1);
             this.Name = "LoginScreen";
             this.Size = new System.Drawing.Size(785, 467);
             this.Load += new System.EventHandler(this.LoginScreen_Load_1);
             ((System.ComponentModel.ISupportInitialize)(this.kantoorInrichtingDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -184,5 +196,6 @@
         private System.Windows.Forms.BindingSource userBindingSource;
         private KantoorInrichtingDataSetTableAdapters.UserTableAdapter userTableAdapter;
         private KantoorInrichtingDataSetTableAdapters.TableAdapterManager tableAdapterManager;
+        private System.Windows.Forms.Panel panel1;
     }
 }

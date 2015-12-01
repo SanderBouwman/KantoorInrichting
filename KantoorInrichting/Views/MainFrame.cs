@@ -64,6 +64,8 @@ namespace KantoorInrichting
             // loginScreen
             //
             this.loginScreen1.Anchor = ((AnchorStyles)((((AnchorStyles.Top | AnchorStyles.Bottom) | AnchorStyles.Left) | AnchorStyles.Right)));
+            this.loginScreen1.Dock = System.Windows.Forms.DockStyle.Fill;
+
             this.loginScreen1.Name = "inventoryScreen1";
             this.loginScreen1.TabIndex = 3;
 
