@@ -33,13 +33,15 @@
             this.btn_AddProduct = new System.Windows.Forms.Button();
             this.cbx_MoveValue = new System.Windows.Forms.ComboBox();
             this.cbx_TurnValue = new System.Windows.Forms.ComboBox();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.productInfo1 = new KantoorInrichting.Views.Placement.ProductInfo();
             this.productList1 = new KantoorInrichting.Views.Placement.ProductList();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btn_Turn
             // 
-            this.btn_Turn.Location = new System.Drawing.Point(250, 413);
+            this.btn_Turn.Location = new System.Drawing.Point(127, 3);
             this.btn_Turn.Name = "btn_Turn";
             this.btn_Turn.Size = new System.Drawing.Size(75, 23);
             this.btn_Turn.TabIndex = 2;
@@ -49,7 +51,7 @@
             // 
             // btn_Move
             // 
-            this.btn_Move.Location = new System.Drawing.Point(250, 443);
+            this.btn_Move.Location = new System.Drawing.Point(127, 33);
             this.btn_Move.Name = "btn_Move";
             this.btn_Move.Size = new System.Drawing.Size(75, 23);
             this.btn_Move.TabIndex = 4;
@@ -59,7 +61,7 @@
             // 
             // btn_AddProduct
             // 
-            this.btn_AddProduct.Location = new System.Drawing.Point(250, 473);
+            this.btn_AddProduct.Location = new System.Drawing.Point(127, 63);
             this.btn_AddProduct.Name = "btn_AddProduct";
             this.btn_AddProduct.Size = new System.Drawing.Size(75, 23);
             this.btn_AddProduct.TabIndex = 5;
@@ -76,7 +78,7 @@
             "Down",
             "Left",
             "Right"});
-            this.cbx_MoveValue.Location = new System.Drawing.Point(123, 445);
+            this.cbx_MoveValue.Location = new System.Drawing.Point(0, 35);
             this.cbx_MoveValue.Name = "cbx_MoveValue";
             this.cbx_MoveValue.Size = new System.Drawing.Size(121, 21);
             this.cbx_MoveValue.TabIndex = 3;
@@ -88,11 +90,24 @@
             this.cbx_TurnValue.Items.AddRange(new object[] {
             "Clockwise",
             "Counter Clockwise"});
-            this.cbx_TurnValue.Location = new System.Drawing.Point(123, 413);
+            this.cbx_TurnValue.Location = new System.Drawing.Point(0, 3);
             this.cbx_TurnValue.Name = "cbx_TurnValue";
             this.cbx_TurnValue.Size = new System.Drawing.Size(121, 21);
             this.cbx_TurnValue.TabIndex = 1;
             this.cbx_TurnValue.SelectedIndexChanged += new System.EventHandler(this.cbx_TurnValue_SelectedIndexChanged);
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel1.Controls.Add(this.cbx_TurnValue);
+            this.panel1.Controls.Add(this.btn_Turn);
+            this.panel1.Controls.Add(this.cbx_MoveValue);
+            this.panel1.Controls.Add(this.btn_Move);
+            this.panel1.Controls.Add(this.btn_AddProduct);
+            this.panel1.Location = new System.Drawing.Point(3, 567);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(202, 100);
+            this.panel1.TabIndex = 7;
             // 
             // productInfo1
             // 
@@ -119,15 +134,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.cbx_TurnValue);
-            this.Controls.Add(this.cbx_MoveValue);
-            this.Controls.Add(this.btn_AddProduct);
-            this.Controls.Add(this.btn_Move);
-            this.Controls.Add(this.btn_Turn);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.productInfo1);
             this.Controls.Add(this.productList1);
             this.Name = "ProductAdding";
             this.Size = new System.Drawing.Size(1117, 670);
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -141,5 +153,6 @@
         private System.Windows.Forms.Button btn_AddProduct;
         private System.Windows.Forms.ComboBox cbx_MoveValue;
         private System.Windows.Forms.ComboBox cbx_TurnValue;
+        private System.Windows.Forms.Panel panel1;
     }
 }

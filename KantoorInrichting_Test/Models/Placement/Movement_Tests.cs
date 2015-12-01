@@ -70,7 +70,8 @@ namespace KantoorInrichting_Test.Models.Placement
 
 
             //Do
-            placedP.Move(10, false);
+            placedP.gridSpace = 10;
+            placedP.Move(false);
             point.X += move_x;
             point.Y += move_y;
 
@@ -110,9 +111,10 @@ namespace KantoorInrichting_Test.Models.Placement
 
 
             //Do
-            placedP.Move(10, true);
-            placedP.Move(10, false);
-            placedP.Move(10, true);
+            placedP.gridSpace = 10;
+            placedP.Move(true);
+            placedP.Move(false);
+            placedP.Move(true);
             point.X += move_x;
             point.Y += move_y;
 
@@ -150,7 +152,8 @@ namespace KantoorInrichting_Test.Models.Placement
 
 
             //Do
-            placedP.Move(-10, true);
+            placedP.gridSpace = -10;
+            placedP.Move(true);
             point.X += move_x;
             point.Y += move_y;
 
@@ -188,7 +191,8 @@ namespace KantoorInrichting_Test.Models.Placement
 
 
             //Do
-            placedP.Move(-10, false);
+            placedP.gridSpace = -10;
+            placedP.Move(false);
             point.X += move_x;
             point.Y += move_y;
 
@@ -228,9 +232,10 @@ namespace KantoorInrichting_Test.Models.Placement
 
 
             //Do
-            placedP.Move(-10, true);
-            placedP.Move(-10, false);
-            placedP.Move(-10, true);
+            placedP.gridSpace = -10;
+            placedP.Move(true);
+            placedP.Move(false);
+            placedP.Move(true);
             point.X += move_x;
             point.Y += move_y;
 
@@ -272,11 +277,14 @@ namespace KantoorInrichting_Test.Models.Placement
 
 
             //Do
-            placedP.Move(10, true);
-            placedP.Move(10, false);
-            placedP.Move(-20, true);
-            placedP.Move(-20, true);
-            placedP.Move(-15, false);
+            placedP.gridSpace = 10;
+            placedP.Move(true);
+            placedP.Move(false);
+            placedP.gridSpace = -20;
+            placedP.Move(true);
+            placedP.Move(true);
+            placedP.gridSpace = -15;
+            placedP.Move(false);
             point.X += move_x;
             point.Y += move_y;
 
@@ -315,7 +323,8 @@ namespace KantoorInrichting_Test.Models.Placement
 
 
             //Do
-            placedP.Move(15, false);
+            placedP.gridSpace = 15;
+            placedP.Move(false);
             placedP.addAngle(90);
             point.X += move_x;
             point.Y += move_y;
@@ -354,7 +363,8 @@ namespace KantoorInrichting_Test.Models.Placement
 
             //Do
             placedP.addAngle(90);
-            placedP.Move(15, false);
+            placedP.gridSpace = 15;
+            placedP.Move(false);
             point.X += move_x;
             point.Y += move_y;
 
