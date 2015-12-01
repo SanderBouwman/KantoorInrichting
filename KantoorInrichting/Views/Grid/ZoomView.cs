@@ -13,18 +13,11 @@ namespace KantoorInrichting.Views.Grid {
     public partial class ZoomView : Form {
         public ZoomView() {
             InitializeComponent();
+            this.pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
         }
 
         public void SetArea(Bitmap image) {
-            using (image) {
-                Bitmap tempBitmap = new Bitmap(pictureBox.Width, pictureBox.Height);
-                using (Graphics gfx = Graphics.FromImage(tempBitmap)) {
-                    gfx.InterpolationMode = InterpolationMode.NearestNeighbor;
-                    gfx.DrawImage(image, new Rectangle(Point.Empty, tempBitmap.Size));
-
-                    pictureBox.Image = tempBitmap;
-                }
-            }
+            pictureBox.Image = image;
             pictureBox.Refresh();
         }
     }

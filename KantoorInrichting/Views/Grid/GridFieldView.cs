@@ -49,6 +49,7 @@ namespace KantoorInrichting.Views.Grid {
             foreach( KeyValuePair<string, Image> keyValuePair in possibilities ) {
                 imageList.Images.Add(keyValuePair.Key, keyValuePair.Value);
                 ListViewItem item = new ListViewItem() { ImageKey = keyValuePair.Key, Text = keyValuePair.Key };
+                // TODO SET TAG AS PRODUCTMODEL
                 listView.Items.Add(item);
             }
             listView.LargeImageList = imageList;
@@ -66,6 +67,11 @@ namespace KantoorInrichting.Views.Grid {
             listView.ItemDrag += ListView_ItemDrag;
             listView.GiveFeedback += ListView_GiveFeedback;
             drawPanel.DragEnter += DrawPanel_DragEnter;
+            drawPanel.DragDrop += DrawPanel_DragDrop;
+        }
+
+        private void DrawPanel_DragDrop( object sender, DragEventArgs e ) {
+            _controller.Notify(sender, e);
         }
 
         private void ListView_GiveFeedback( object sender, GiveFeedbackEventArgs e ) {
@@ -78,12 +84,11 @@ namespace KantoorInrichting.Views.Grid {
 
         private void DrawPanel_DragEnter( object sender, DragEventArgs e ) {
             e.Effect = DragDropEffects.Copy;
-            Console.WriteLine("DragEnter...");
         }
 
         private void ListView_ItemDrag( object sender, ItemDragEventArgs e ) {
-            listView.DoDragDrop(listView.SelectedItems, DragDropEffects.Copy);
-            Console.WriteLine("ItemDrag...");
+            _controller.Notify(sender, e);
+            listView.DoDragDrop(listView.SelectedItems[ 0 ], DragDropEffects.Copy);
         }
 
         private void TrackBar_Scroll( object sender, EventArgs e ) {

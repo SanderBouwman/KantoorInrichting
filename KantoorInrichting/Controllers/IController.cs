@@ -13,6 +13,7 @@ namespace KantoorInrichting.Controllers {
         void Paint( object sender, PaintEventArgs e );
         void TrackbarScroll( object sender, EventArgs e );
         void CheckboxChanged( bool b );
+        void Notify(object sender, EventArgs e);
 
     }
 }

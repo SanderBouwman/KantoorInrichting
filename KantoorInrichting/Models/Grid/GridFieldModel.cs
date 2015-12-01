@@ -1,6 +1,9 @@
 ﻿// created by: Robin
 // on: 18-11-2015
 
+using System;
+using System.Drawing;
+
 namespace KantoorInrichting.Models.Grid {
     public class GridFieldModel {
         /// <summary>
@@ -45,6 +48,14 @@ namespace KantoorInrichting.Models.Grid {
         /// <param name="item"></param>
         public void AddItem(int x, int y, Product.ProductModel item) {
             Rows[y, x].Product = item;
+        }
+
+        public void Draw(Graphics g) {
+            for (float i = 0; i < Rows.GetLength(0); i+= Rows[0,0].Height) {
+                for (float j = 0; j < Rows.GetLength(1); j+= Rows[0,0].Width) {
+                    g.FillRectangle(Brushes.Blue, i*50, j*50, 5, 5);
+                }
+            }
         }
     }
 }
