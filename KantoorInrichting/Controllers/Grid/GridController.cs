@@ -16,34 +16,25 @@ using KantoorInrichting.Views.Grid;
 
 namespace KantoorInrichting.Controllers.Grid {
     public class GridController : IController {
+
         private readonly GridFieldModel _model;
         private readonly Panel _panel;
-        private readonly float _tileHeight;
-
-        private readonly float _tileWidth;
         private readonly TrackBar _trackBar;
-
         private readonly IView _view;
-
+        private readonly float _tileHeight,
+            _tileWidth;
+        private ZoomView _zoomView;
         private Bitmap _buffer;
-
+        private Rectangle _rectangle;
         private int _tileX,
             _tileY;
-
         private bool _zoomCheckbox;
-        private Rectangle _rectangle;
-        private ZoomView _zoomView;
 
         public GridController(IView view, GridFieldModel model) {
             _view = view;
             _model = model;
-
-//            _zoomRectangleWidth = 50; // initial size of zoom rectangle
-//            _zoomRectangleHeight = 50;
             _zoomCheckbox = false;
-
             _view.SetController(this);
-
             _panel = (Panel) _view.Get("Panel");
             _trackBar = (TrackBar) _view.Get("Trackbar");
 
@@ -64,26 +55,18 @@ namespace KantoorInrichting.Controllers.Grid {
             _panel.BackgroundImage = PaintBackground();
             _rectangle = new Rectangle(0, 0, 50, 50);
             _buffer = new Bitmap(_panel.Width, _panel.Height);
-//            Resize(this, null);
+            Resize(this, null);
         }
 
 
-        public void Notify( object sender, EventArgs e ) {
+        public void Notify(object sender, EventArgs e) {
             // Made a switch using lambda expressions in a dictionary, since you can not do a switch on types
-            var @switch = new Dictionary<Type, Action>() {
-                { typeof(DragEventArgs), () => Handle_DragDropEvent(sender, (DragEventArgs) e) },
-                { typeof(ItemDragEventArgs), () => Handle_ItemDragEvent(sender, (ItemDragEventArgs) e) }
+            var @switch = new Dictionary<Type, Action> {
+                {typeof (DragEventArgs), () => Handle_DragDropEvent(sender, (DragEventArgs) e)},
+                {typeof (ItemDragEventArgs), () => Handle_ItemDragEvent(sender, (ItemDragEventArgs) e)}
             };
             Type typeToCheck = e.GetType();
-            @switch[ typeToCheck ]();
-        }
-
-        public void Handle_DragDropEvent( object sender, DragEventArgs e ) {
-            Console.WriteLine("DROPPED SOMETHING!");
-        }
-
-        public void Handle_ItemDragEvent( object sender, ItemDragEventArgs e ) {
-            Console.WriteLine("ITEM DRAG");
+            @switch[typeToCheck]();
         }
 
         /// <summary>
@@ -103,17 +86,17 @@ namespace KantoorInrichting.Controllers.Grid {
 //        /// <param name="sender"></param>
 //        /// <param name="e"></param>
         public void Resize(object sender, EventArgs e) {
-//            if (_buffer == null || _buffer.Width < _panel.Width ||
-//                _buffer.Height < _panel.Height) {
-//                Bitmap newBuffer = new Bitmap(_panel.Width, _panel.Height);
-//
-//                if (_buffer != null) {
-//                    using (Graphics bufferGraphics = Graphics.FromImage(newBuffer))
-//                        bufferGraphics.DrawImageUnscaled(_buffer, Point.Empty);
-//                }
-//
-//                _buffer = newBuffer;
-//            }
+            if (_buffer == null || _buffer.Width < _panel.Width ||
+                _buffer.Height < _panel.Height) {
+                Bitmap newBuffer = new Bitmap(_panel.Width, _panel.Height);
+
+                if (_buffer != null) {
+                    using (Graphics bufferGraphics = Graphics.FromImage(newBuffer))
+                        bufferGraphics.DrawImageUnscaled(_buffer, Point.Empty);
+                }
+
+                _buffer = newBuffer;
+            }
         }
 
         /// <summary>
@@ -147,15 +130,15 @@ namespace KantoorInrichting.Controllers.Grid {
         public void CheckboxChanged(bool b) {
             _zoomCheckbox = b;
             if (_zoomCheckbox) {
-//                Console.WriteLine("tet");
                 _view.Get("ListView").Enabled = false; // Disable listview when zooming
                 _zoomView = new ZoomView();
                 UpdateZoom();
                 _zoomView.Show();
             }
             else if (!_zoomCheckbox) {
+                _panel.Invalidate();
                 _view.Get("ListView").Enabled = true; // Enable listview when not zooming
-                _zoomView?.Dispose();
+                _zoomView.Dispose();
             }
         }
 
@@ -173,19 +156,25 @@ namespace KantoorInrichting.Controllers.Grid {
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void Paint( object sender, PaintEventArgs e ) {
-            PaintModel(e.Graphics);
-            if( _zoomCheckbox ) {
-                e.Graphics.DrawRectangle(Pens.Red, _rectangle);
-            }
-            //            e.Graphics.DrawImage(_buffer, Point.Empty);
+        public void Paint(object sender, PaintEventArgs e) {
+            PaintModel(_buffer);
+            if (_zoomCheckbox) e.Graphics.DrawRectangle(Pens.Red, _rectangle);
+            e.Graphics.DrawImage(_buffer, Point.Empty);
+        }
+
+        public void Handle_DragDropEvent(object sender, DragEventArgs e) {
+            Console.WriteLine("DROPPED SOMETHING!");
+        }
+
+        public void Handle_ItemDragEvent(object sender, ItemDragEventArgs e) {
+            Console.WriteLine("ITEM DRAG");
         }
 
         /// <summary>
         /// Paints the model on the screen.
         /// </summary>
-        private void PaintModel(Graphics g) {
-            _model.Draw(g);
+        private void PaintModel(Bitmap b) {
+            _model.Draw(b);
         }
 
         /// <summary>
@@ -220,9 +209,7 @@ namespace KantoorInrichting.Controllers.Grid {
         /// Sets the zoom frame image
         /// </summary>
         private void UpdateZoom() {
-            Bitmap temp = new Bitmap(_panel.Width, _panel.Height);
-            _panel.DrawToBitmap(temp, new Rectangle(Point.Empty, new Size(500, 500)));
-            _zoomView.SetArea(temp);
+            _zoomView.SetArea(GetZoomedArea(_buffer));
         }
 
         /// <summary>
@@ -231,29 +218,9 @@ namespace KantoorInrichting.Controllers.Grid {
         /// </summary>
         /// <returns>Bitmap</returns>
         private Bitmap GetZoomedArea(Bitmap b) {
-//            int x = (_mousePosition.X < _panel.Width - _zoomRectangleWidth/2) &&
-//                    _mousePosition.X - _zoomRectangleWidth/2 > 0 // if x is not an invalid position
-//                ? _mousePosition.X - _zoomRectangleWidth/2 // then set x
-//                : 0;
-//            int y = (_mousePosition.Y < _panel.Height - _zoomRectangleHeight/2) &&
-//                    _mousePosition.Y - _zoomRectangleHeight/2 > 0 // if y is not an invalid position
-//                ? _mousePosition.Y - _zoomRectangleHeight/2 // then set y
-//                : 0;
-//            Rectangle cloneRectangle = new Rectangle(x, y, _zoomRectangleWidth, _zoomRectangleHeight);
-//            PixelFormat format = _buffer.PixelFormat;
-//            Bitmap temp = new Bitmap(_zoomRectangleWidth, _zoomRectangleHeight);
-//            using (Graphics g = Graphics.FromImage(temp)) {
-//                Bitmap backgroundRegion = ((Bitmap) _panel.BackgroundImage).Clone(cloneRectangle, format);
-//                Bitmap bufferRegion = _buffer.Clone(cloneRectangle, format);
-//                g.DrawImage(backgroundRegion, Point.Empty);
-//                g.DrawImage(bufferRegion, Point.Empty);
-//            }
-//            return temp;
             Bitmap temp = new Bitmap(_rectangle.Width, _rectangle.Height);
             PixelFormat format = b.PixelFormat;
-            using (Graphics g = Graphics.FromImage(temp)) {
-                g.DrawImage(b.Clone(_rectangle, format), Point.Empty);
-            }
+            using (Graphics g = Graphics.FromImage(temp)) g.DrawImage(b.Clone(_rectangle, format), Point.Empty);
             return temp;
         }
     }
