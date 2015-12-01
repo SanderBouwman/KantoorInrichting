@@ -20,13 +20,13 @@ namespace KantoorInrichting.Views.Inventory
         public InventoryScreen(MainFrame hoofdscherm)
         {
             this.hoofdscherm = hoofdscherm;
+            // init screen and fill all the data
             InitializeComponent();
             FillData();
             FillDropdown();
             Invalidate();
 
             // debug tool 
-
             //foreach (var product in ProductModel.list)
             //{
             //    MessageBox.Show(product.Name);
@@ -40,8 +40,11 @@ namespace KantoorInrichting.Views.Inventory
         {
             this.dataGridView1.DataSource = null;
             dataGridView1.AutoGenerateColumns = false;
+            // filter default no 0 values
             List<ProductModel> filterResult = FilterNoAmount();
+            // add filterResult to new sortable list
             ProductModel.result = new SortableBindingList<ProductModel>(filterResult);
+            // the datasource of the datagridview is the filterresult
             this.dataGridView1.DataSource = ProductModel.result;
 
         }
@@ -66,7 +69,7 @@ namespace KantoorInrichting.Views.Inventory
             DropdownCategorie.Items.Insert(0, "geen categoriefilter");
 
             
-            // add the unique items
+            // add the unique items to brand dropdown
             foreach (ProductModel product in BrandResult)
             {
                 if (product.Brand != null)
@@ -74,6 +77,7 @@ namespace KantoorInrichting.Views.Inventory
                     DropdownMerk.Items.Add(product.Brand);
                 }
             }
+            // add the unique items to category dropdown
             foreach (ProductModel product in CategoryResult)
             {
                 if (product.Category != null)
@@ -87,6 +91,8 @@ namespace KantoorInrichting.Views.Inventory
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
+            // if the checkbox has changed 
+
             // check if there is an brand filter
             if (DropdownMerk.SelectedIndex > 0)
             {
@@ -113,6 +119,7 @@ namespace KantoorInrichting.Views.Inventory
                     }
                 }
             }
+
             // if there is a category filter only
             else if (DropdownCategorie.SelectedIndex > 0){
                 // add all product with amount of less than 1 and filtered on the brand
@@ -200,23 +207,31 @@ namespace KantoorInrichting.Views.Inventory
 
         private void DropdownMerk_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // if the brand dropdown is changed, the checkbox is set to true.
             checkBox1.Checked = true;
+            // filter the datagridview with the selected brand
             FilterBrand();
         }
 
         private void DropdownCategorie_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // if the category dropdown is changed, the checkbox is set to true.
             checkBox1.Checked = true;
+            // filter the datagridview with the selected category
             FilterCategory();
         }
 
         public void FilterBrand()
         {
+            // filter the data
             List<ProductModel> filterResult1 = FilterNoAmount();
             ProductModel.result = new SortableBindingList<ProductModel>(filterResult1);
+
+            // delete datasource
             dataGridView1.DataSource = null;
             dataGridView1.Refresh();
 
+            // get selected brand
             string selectedBrand = DropdownMerk.SelectedItem.ToString();
             
             // if there is a brand selected and it is not default
@@ -227,10 +242,12 @@ namespace KantoorInrichting.Views.Inventory
                                        where product.Brand == selectedBrand
                                        select product;
 
+                // add filter list to result list
                 var filterResult2 = new List<ProductModel>();
                 filterResult2 = filteredProducts.ToList();
                 ProductModel.result = new SortableBindingList<ProductModel>(filterResult2);
             }
+            // bind the datasource again
             dataGridView1.DataSource = ProductModel.result;
             dataGridView1.Refresh();
 
@@ -238,11 +255,14 @@ namespace KantoorInrichting.Views.Inventory
 
         public void FilterCategory()
         {
+            // filter the data
             List<ProductModel> filterResult1 = FilterNoAmount();
             ProductModel.result = new SortableBindingList<ProductModel>(filterResult1);
+            // delete datasource
             dataGridView1.DataSource = null;
             dataGridView1.Refresh();
 
+            // get selected category
             string selectedCategory = DropdownCategorie.SelectedItem.ToString();
 
             // if there is a category selected and it is not default
@@ -252,11 +272,12 @@ namespace KantoorInrichting.Views.Inventory
                 var filteredProducts = from product in ProductModel.result
                                        where product.category == selectedCategory
                                        select product;
-
+                // add filter list to result list
                 var filterResult2 = new List<ProductModel>();
                 filterResult2 = filteredProducts.ToList();
                 ProductModel.result = new SortableBindingList<ProductModel>(filterResult2);
             }
+            // bind the datasource again
             dataGridView1.DataSource = ProductModel.result;
             dataGridView1.Refresh();
         }
@@ -268,6 +289,7 @@ namespace KantoorInrichting.Views.Inventory
                                    where product.Amount >= 1
                                    select product;
 
+            // return the filtered results.
             var filterResult = new List<ProductModel>();
             filterResult = filteredProducts.ToList();
             return filterResult;
@@ -275,13 +297,12 @@ namespace KantoorInrichting.Views.Inventory
 
         private void button1_Click(object sender, EventArgs e)
         {
+            // if button 1 is clicked, all filters are reset
             checkBox1.Checked = true;
             DropdownMerk.SelectedIndex = 0;
             DropdownCategorie.SelectedIndex = 0;
             dataGridView1.Refresh();
         }
-
-
     }
     }
 
