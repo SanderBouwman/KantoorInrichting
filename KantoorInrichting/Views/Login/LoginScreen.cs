@@ -52,14 +52,14 @@ namespace KantoorInrichting.Views
             this.userTableAdapter.Fill(this.kantoorInrichtingDataSet.User);
             var INLOGGEN = kantoorInrichtingDataSet.User;
             string USERNAME = "";
-            string PASSWORD = "";
+            string PASSWORD = GetSHA1(PasswordField);
             string ROLE = "";
             int attempts = 0;
 
             // Get data only when password and username match
             var linqInloggen =
                        from inloggegevens in INLOGGEN
-                       where inloggegevens.Username == UsernameField && inloggegevens.Password == PasswordField
+                       where inloggegevens.Username == UsernameField && inloggegevens.Password == PASSWORD
                        select inloggegevens;
 
             foreach (var p in linqInloggen)
