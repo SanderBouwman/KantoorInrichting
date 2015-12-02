@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.PanelRight = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.DropdownCategorie = new System.Windows.Forms.ComboBox();
             this.DropdownMerk = new System.Windows.Forms.ComboBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
@@ -40,7 +41,6 @@
             this.titel = new System.Windows.Forms.Label();
             this.directorySearcher1 = new System.DirectoryServices.DirectorySearcher();
             this.productBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.button1 = new System.Windows.Forms.Button();
             this.nr = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Naam = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,7 +53,6 @@
             this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Afbeelding = new System.Windows.Forms.DataGridViewImageColumn();
             this.wijzig = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.delete = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.PanelRight.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).BeginInit();
@@ -84,8 +83,7 @@
             this.Lengte,
             this.Amount,
             this.Afbeelding,
-            this.wijzig,
-            this.delete});
+            this.wijzig});
             this.dataGridView1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dataGridView1.GridColor = System.Drawing.SystemColors.ControlLight;
             this.dataGridView1.Location = new System.Drawing.Point(0, 156);
@@ -111,6 +109,19 @@
             this.PanelRight.Name = "PanelRight";
             this.PanelRight.Size = new System.Drawing.Size(288, 150);
             this.PanelRight.TabIndex = 1;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.button1.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaption;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Location = new System.Drawing.Point(33, 109);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(161, 32);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "Verwijder filters";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // DropdownCategorie
             // 
@@ -179,22 +190,9 @@
             this.directorySearcher1.ServerPageTimeLimit = System.TimeSpan.Parse("-00:00:01");
             this.directorySearcher1.ServerTimeLimit = System.TimeSpan.Parse("-00:00:01");
             // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.button1.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaption;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(33, 109);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(161, 32);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Verwijder filters";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // nr
             // 
-            this.nr.DataPropertyName = "Id";
+            this.nr.DataPropertyName = "product_ID";
             this.nr.HeaderText = "nr";
             this.nr.Name = "nr";
             // 
@@ -269,13 +267,6 @@
             this.wijzig.Text = "wijzig";
             this.wijzig.UseColumnTextForButtonValue = true;
             // 
-            // delete
-            // 
-            this.delete.HeaderText = "delete";
-            this.delete.Name = "delete";
-            this.delete.Text = "delete";
-            this.delete.UseColumnTextForButtonValue = true;
-            // 
             // InventoryScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -322,6 +313,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Amount;
         private System.Windows.Forms.DataGridViewImageColumn Afbeelding;
         private System.Windows.Forms.DataGridViewButtonColumn wijzig;
-        private System.Windows.Forms.DataGridViewButtonColumn delete;
     }
 }

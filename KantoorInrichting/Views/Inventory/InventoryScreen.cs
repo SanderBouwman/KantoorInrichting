@@ -186,21 +186,29 @@ namespace KantoorInrichting.Views.Inventory
                 // if thecolumnindex is 11 opens the edit screen
                 if (e.ColumnIndex == 11)
                 {
+
+                    int selectedrowindex = dataGridView1.SelectedCells[0].RowIndex;
+                    DataGridViewRow selectedRow = dataGridView1.Rows[selectedrowindex];
+
+                    string currentProductId = Convert.ToString(selectedRow.Cells["nr"].Value);
+                    int currentProduct = Int32.Parse(currentProductId);
+                   
+                    ////test
+                    //MessageBox.Show(currentProductId);
+
+ 
+                    // linq select product with the current ID
+                    var selectedproduct1 = ProductModel.list
+                            .Where(t => t.product_ID == currentProduct)
+                            .Select(t => t)
+                            .ToList();
+
+
                     // run edit screen here
                     // make an editscreen with current product as argument
-                    InventoryEdit edit = new InventoryEdit(Models.Product.ProductModel.list[e.RowIndex],this);
+                    InventoryEdit edit = new InventoryEdit(selectedproduct1[0], this);
                     edit.Show();
                 }
-
-                // if thecolumnindex is 12 opens the delete screen
-                if (e.ColumnIndex == 12)
-                {
-                    // run delete screen here
-                    // make an Removescreen with current product as argument
-                    InventoryRemove remove = new InventoryRemove(Models.Product.ProductModel.list[e.RowIndex],this);
-                    remove.Show();
-                }
-
             }
                   
         }

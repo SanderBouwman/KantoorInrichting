@@ -84,6 +84,28 @@ namespace KantoorInrichting.Models.Product
             list.Add(this);
         }
 
+        public ProductModel(int i, string n, string b, string t, string c, int l, int w, int h, string d, int a, string im)
+        {
+            product_ID = i;
+            name = n;
+            brand = b;
+            type = t;
+            category = c;
+
+            length = l;
+            width = w;
+            height = h;
+
+            description = d;
+            amount = a;
+            imageFileName = im;
+            SetProductImage();
+
+            list.Add(this);
+        }
+
+
+
         //This methods sets the Product image using the name of the image
         public void SetProductImage()
         {
