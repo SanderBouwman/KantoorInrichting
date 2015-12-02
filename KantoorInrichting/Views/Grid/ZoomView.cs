@@ -14,6 +14,8 @@ namespace KantoorInrichting.Views.Grid {
         public ZoomView() {
             InitializeComponent();
             this.pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
+            this.MinimumSize = this.Size;
+            this.MaximumSize = this.Size;
         }
 
         public void SetArea(Bitmap image) {
