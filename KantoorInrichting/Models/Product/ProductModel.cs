@@ -31,11 +31,11 @@ namespace KantoorInrichting.Models.Product
         public string imageFileName { get; set; }
         public string description { get; set; }
 
-        public string Name { get { return name; } private set { name = value; } }
-        public string Type { get { return type; } private set { type = value; } }
-        public string Brand { get { return brand; } private set { brand = value; } }
-        public Image Image { get { return image; } }
-        public int Amount { get { return amount; } private set { amount = value; } }
+        public string Name { get { return name; } private set { name = value; } }       // The private set does not do anything, since anyone can edit the fields (class variables) directly.
+        public string Type { get { return type; } private set { type = value; } }       // (All the variables are public)
+        public string Brand { get { return brand; } private set { brand = value; } }    // I would remove all the public variables above and refactor the properties to this:
+        public Image Image { get { return image; } }                                    //  public string Name {get; private set;} 
+        public int Amount { get { return amount; } private set { amount = value; } }    // -Robin
         public int Id { get { return id; } private set { id = value; } }
         public string Category { get { return category; } private set { category = value; } }
         public string Subcategory { get { return subcategory; } private set { subcategory = value; } }

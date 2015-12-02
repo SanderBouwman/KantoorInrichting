@@ -43,6 +43,7 @@ namespace KantoorInrichting.Views.Grid {
             return toReturn;
         }
 
+        // TODO Move this method to controller
         public void SetListView( Dictionary<string, Image> possibilities ) {
 
             listView.Items.Clear();

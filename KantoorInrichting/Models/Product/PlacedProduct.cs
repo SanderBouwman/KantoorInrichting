@@ -126,16 +126,20 @@ namespace KantoorInrichting.Models.Product
             Vector velocity = new Vector(x, y);
             Vector playerTranslation = velocity;
 
-            foreach (PlacedProduct placedP in ProductAdding.ppList)
+            
+
+
+            //Test all polygons for a collision
+            foreach (Polygon placedPoly in PolyList)
             {
                 //Test if the selected polygon is himself
-                if (placedP.Poly == this.Poly)
+                if (placedPoly == this.Poly)
                 {
                     continue;
                 }
 
                 //Test if the polygon collides with others
-                PolygonCollisionController.PolygonCollisionResult r = PolygonCollisionController.PolygonCollision(this.Poly, placedP.Poly, velocity);
+                PolygonCollisionController.PolygonCollisionResult r = PolygonCollisionController.PolygonCollision(this.Poly, placedPoly, velocity);
 
                 //If it does, alter the speed
                 if (r.WillIntersect)
@@ -186,7 +190,62 @@ namespace KantoorInrichting.Models.Product
 
         }
 
+        private List<Polygon> PolyList
+        {
+            get
+            {
+                //Make a polygon list and add all existing products' polygons to it.
+                List<Polygon> list = new List<Polygon>();
+                foreach (PlacedProduct pp in ProductAdding.ppList)
+                {
+                    //Test if the selected polygon is himself
+                    if (pp.Poly == this.Poly)
+                    {
+                        continue;
+                    }
 
+                    list.Add(pp.Poly);
+                }
+
+                //
+                //Add the 4 corners at the end, because the other products have collision priority
+                //
+                Polygon pTop = new Polygon();
+                Polygon pRight = new Polygon();
+                Polygon pBottom = new Polygon();
+                Polygon pLeft = new Polygon();
+
+                //Add points/vectors
+                pTop.Points.Add(new Vector(3,3));
+                pTop.Points.Add(new Vector(680, 3));
+                //
+                pRight.Points.Add(new Vector(680, 3));
+                pRight.Points.Add(new Vector(680, 660));
+                //
+                pBottom.Points.Add(new Vector(680, 660));
+                pBottom.Points.Add(new Vector(3,660));
+                //
+                pLeft.Points.Add(new Vector(3, 660));
+                pLeft.Points.Add(new Vector(3,3));
+
+
+                //Build edges
+                pTop.BuildEdges();
+                pRight.BuildEdges();
+                pBottom.BuildEdges();
+                pLeft.BuildEdges();
+
+
+                //Add to the list
+                list.Add(pTop);
+                list.Add(pRight);
+                list.Add(pBottom);
+                list.Add(pLeft);
+
+
+                return list;
+            }
+        }
 
         /// <summary>
         /// Issues the rotation of the product.
@@ -321,16 +380,16 @@ namespace KantoorInrichting.Models.Product
 
 
             //Testing if turning caused a collision
-            foreach (PlacedProduct placedP in ProductAdding.ppList)
+            foreach (Polygon placedPoly in PolyList)
             {
                 //Test if the selected polygon is himself
-                if (placedP.Poly == this.Poly)
+                if (placedPoly == this.Poly)
                 {
                     continue;
                 }
 
                 //Test if the polygon collides with others
-                PolygonCollisionController.PolygonCollisionResult r = PolygonCollisionController.PolygonCollision(this.Poly, placedP.Poly, new Vector(0, 0));
+                PolygonCollisionController.PolygonCollisionResult r = PolygonCollisionController.PolygonCollision(this.Poly, placedPoly, new Vector(0, 0));
 
                 //If it does, cancel the rotation
                 if (r.WillIntersect)

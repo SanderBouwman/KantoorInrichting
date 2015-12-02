@@ -14,9 +14,9 @@ namespace KantoorInrichting.Views
     public partial class LoginScreen : UserControl
     {
         public MainFrame mainFrame;
-        public LoginScreen(MainFrame mainFrame)
-        {
-
+        public LoginScreen(MainFrame mainFrame)                         // There's not supposed to be any logic in the view, so I'd move most of the methods in here to a controller
+        {                                                               // For an example, look at GridFieldView
+                                                                        // -Robin
             this.mainFrame = mainFrame;
             InitializeComponent();
         }
