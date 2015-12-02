@@ -66,7 +66,7 @@
             // 
             this.btn_AddProduct.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_AddProduct.BackColor = System.Drawing.SystemColors.Control;
-            this.btn_AddProduct.Location = new System.Drawing.Point(716, 421);
+            this.btn_AddProduct.Location = new System.Drawing.Point(716, 417);
             this.btn_AddProduct.Name = "btn_AddProduct";
             this.btn_AddProduct.Size = new System.Drawing.Size(94, 45);
             this.btn_AddProduct.TabIndex = 5;
@@ -115,7 +115,7 @@
             // 
             // productPanel
             // 
-            this.productPanel.BackColor = System.Drawing.SystemColors.Control;
+            this.productPanel.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.productPanel.Location = new System.Drawing.Point(3, 3);
             this.productPanel.Name = "productPanel";
             this.productPanel.Size = new System.Drawing.Size(685, 664);
