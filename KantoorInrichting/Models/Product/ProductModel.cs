@@ -94,7 +94,7 @@ namespace KantoorInrichting.Models.Product
             }
             catch (Exception ex)
             {
-
+                image = Properties.Resources.No_Image_Available;
             }
         }
 

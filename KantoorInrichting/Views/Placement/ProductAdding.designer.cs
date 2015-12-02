@@ -41,32 +41,36 @@
             // 
             // btn_Turn
             // 
+            this.btn_Turn.BackColor = System.Drawing.SystemColors.Control;
             this.btn_Turn.Location = new System.Drawing.Point(127, 3);
             this.btn_Turn.Name = "btn_Turn";
             this.btn_Turn.Size = new System.Drawing.Size(75, 23);
             this.btn_Turn.TabIndex = 2;
             this.btn_Turn.Text = "Turn";
-            this.btn_Turn.UseVisualStyleBackColor = true;
+            this.btn_Turn.UseVisualStyleBackColor = false;
             this.btn_Turn.Click += new System.EventHandler(this.btn_Turn_Click);
             // 
             // btn_Move
             // 
+            this.btn_Move.BackColor = System.Drawing.SystemColors.Control;
             this.btn_Move.Location = new System.Drawing.Point(127, 33);
             this.btn_Move.Name = "btn_Move";
             this.btn_Move.Size = new System.Drawing.Size(75, 23);
             this.btn_Move.TabIndex = 4;
             this.btn_Move.Text = "Move";
-            this.btn_Move.UseVisualStyleBackColor = true;
+            this.btn_Move.UseVisualStyleBackColor = false;
             this.btn_Move.Click += new System.EventHandler(this.btn_Move_Click);
             // 
             // btn_AddProduct
             // 
-            this.btn_AddProduct.Location = new System.Drawing.Point(127, 63);
+            this.btn_AddProduct.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_AddProduct.BackColor = System.Drawing.SystemColors.Control;
+            this.btn_AddProduct.Location = new System.Drawing.Point(635, 570);
             this.btn_AddProduct.Name = "btn_AddProduct";
-            this.btn_AddProduct.Size = new System.Drawing.Size(75, 23);
+            this.btn_AddProduct.Size = new System.Drawing.Size(75, 45);
             this.btn_AddProduct.TabIndex = 5;
-            this.btn_AddProduct.Text = "Add Product";
-            this.btn_AddProduct.UseVisualStyleBackColor = true;
+            this.btn_AddProduct.Text = "Change Product";
+            this.btn_AddProduct.UseVisualStyleBackColor = false;
             this.btn_AddProduct.Click += new System.EventHandler(this.btn_AddProduct_Click);
             // 
             // cbx_MoveValue
@@ -85,6 +89,7 @@
             // 
             // cbx_TurnValue
             // 
+            this.cbx_TurnValue.BackColor = System.Drawing.SystemColors.Window;
             this.cbx_TurnValue.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_TurnValue.FormattingEnabled = true;
             this.cbx_TurnValue.Items.AddRange(new object[] {
@@ -98,15 +103,14 @@
             // 
             // panel1
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.Controls.Add(this.cbx_TurnValue);
             this.panel1.Controls.Add(this.btn_Turn);
             this.panel1.Controls.Add(this.cbx_MoveValue);
             this.panel1.Controls.Add(this.btn_Move);
-            this.panel1.Controls.Add(this.btn_AddProduct);
-            this.panel1.Location = new System.Drawing.Point(3, 567);
+            this.panel1.Location = new System.Drawing.Point(912, 431);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(202, 100);
+            this.panel1.Size = new System.Drawing.Size(202, 63);
             this.panel1.TabIndex = 7;
             // 
             // productInfo1
@@ -123,7 +127,7 @@
             // 
             // productList1
             // 
-            this.productList1.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.productList1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.productList1.AutoScroll = true;
             this.productList1.Location = new System.Drawing.Point(694, 3);
             this.productList1.Name = "productList1";
@@ -134,9 +138,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.productInfo1);
             this.Controls.Add(this.productList1);
+            this.Controls.Add(this.btn_AddProduct);
             this.Name = "ProductAdding";
             this.Size = new System.Drawing.Size(1117, 670);
             this.panel1.ResumeLayout(false);

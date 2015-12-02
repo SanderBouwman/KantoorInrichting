@@ -34,17 +34,30 @@ namespace KantoorInrichting.Views.Placement
             this.hoofdscherm = hoofdscherm;
             InitializeComponent();
 
+            //Make an event when the selection has changed
             productList1.SelectionChanged += new ProductSelectionChanged(this.changeSelected);
 
-            placedP = new PlacedProduct(productInfo1.product, new Vector(200, 200));
-            ppList.Add(placedP);
 
-            ppList.CollectionChanged += ppList_CollectionChanged;
-
+            //Select the first product from the product list
             ProductInfo defaultInfo = new ProductInfo();
             defaultInfo.setProduct(ProductModel.list[0]);
             changeSelected(defaultInfo);
 
+
+            //Add default product
+            placedP = new PlacedProduct(productInfo1.product, new Vector(200, 200));
+            ppList.Add(placedP);
+
+
+            //Add obstacle
+            ppList.Add(new PlacedProduct(new ProductModel("", "", "", "", "", 100, 50, 50, "", 1), new PointF(500, 75)));
+
+
+            //Make an event that triggers when the list is changed, so that it automatically repaints the screen.
+            ppList.CollectionChanged += ppList_CollectionChanged;
+            
+
+            //Default value for the comboboxes
             cbx_TurnValue.SelectedIndex = 0;
             cbx_MoveValue.SelectedIndex = 0;
         }
@@ -79,16 +92,15 @@ namespace KantoorInrichting.Views.Placement
 
         public void changeSelected(ProductInfo sender)
         {
-            productInfo1.setProduct(sender.product);
-            ppList.Remove(placedP);//Removes the old one
-            placedP = new PlacedProduct(sender.product, new Vector(200, 200));
-            ppList.Add(placedP); //Inserts the new one
-            this.Invalidate();
+            productInfo1.setProduct(sender.product); //Sets a new product
         }
 
         private void btn_AddProduct_Click(object sender, EventArgs e)
         {
-            ppList.Add(new PlacedProduct(new KantoorInrichting.Models.Product.ProductModel("", "", "", "", "",100, 50, 50, "", 1), new PointF(400, 50)));
+            ppList.Remove(placedP);//Removes the old one
+            placedP = new PlacedProduct(productInfo1.product, new Vector(200, 200));
+            ppList.Add(placedP); //Inserts the new one
+            this.Invalidate(); //Repaints
         }
 
 
