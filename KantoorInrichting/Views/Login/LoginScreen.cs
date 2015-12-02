@@ -145,8 +145,8 @@ namespace KantoorInrichting.Views
 
         private void LoginScreen_Load_1(object sender, EventArgs e)
         {
-            UsernameTB.Text = "Rick";
-            PasswordTB.Text = "rick";
+           // UsernameTB.Text = "Rick";
+           // PasswordTB.Text = "rick";
         }
 
        
