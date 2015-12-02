@@ -86,7 +86,7 @@
             // addProductButton
             // 
             this.addProductButton.Location = new System.Drawing.Point(115, 134);
-            this.addProductButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.addProductButton.Margin = new System.Windows.Forms.Padding(4);
             this.addProductButton.Name = "addProductButton";
             this.addProductButton.Size = new System.Drawing.Size(187, 32);
             this.addProductButton.TabIndex = 1;
@@ -271,6 +271,7 @@
             this.tableAdapterManager.CategoryTableAdapter = null;
             this.tableAdapterManager.ProductTableAdapter = this.productTableAdapter;
             this.tableAdapterManager.UpdateOrder = KantoorInrichting.KantoorInrichtingDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            this.tableAdapterManager.UserTableAdapter = null;
             // 
             // AssortmentScreen
             // 
@@ -279,7 +280,7 @@
             this.Controls.Add(this.PanelRight);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.PanelLeft);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "AssortmentScreen";
             this.Size = new System.Drawing.Size(600, 407);
             this.PanelLeft.ResumeLayout(false);
