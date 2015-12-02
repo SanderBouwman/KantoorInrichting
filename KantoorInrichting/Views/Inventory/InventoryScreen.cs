@@ -184,7 +184,7 @@ namespace KantoorInrichting.Views.Inventory
             if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0) {
 
                 // if thecolumnindex is 11 opens the edit screen
-                if (e.ColumnIndex == 11)
+                if (e.ColumnIndex == 10)
                 {
 
                     int selectedrowindex = dataGridView1.SelectedCells[0].RowIndex;

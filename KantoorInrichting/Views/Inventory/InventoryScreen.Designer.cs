@@ -85,11 +85,12 @@
             this.wijzig});
             this.dataGridView1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dataGridView1.GridColor = System.Drawing.SystemColors.ControlLight;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 156);
+            this.dataGridView1.Location = new System.Drawing.Point(0, 127);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 50;
-            this.dataGridView1.Size = new System.Drawing.Size(584, 244);
+            this.dataGridView1.Size = new System.Drawing.Size(438, 198);
             this.dataGridView1.TabIndex = 2;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -103,10 +104,11 @@
             this.PanelRight.Controls.Add(this.DropdownMerk);
             this.PanelRight.Controls.Add(this.checkBox1);
             this.PanelRight.Controls.Add(this.label1);
-            this.PanelRight.Location = new System.Drawing.Point(312, 0);
-            this.PanelRight.MinimumSize = new System.Drawing.Size(280, 150);
+            this.PanelRight.Location = new System.Drawing.Point(234, 0);
+            this.PanelRight.Margin = new System.Windows.Forms.Padding(2);
+            this.PanelRight.MinimumSize = new System.Drawing.Size(210, 122);
             this.PanelRight.Name = "PanelRight";
-            this.PanelRight.Size = new System.Drawing.Size(288, 150);
+            this.PanelRight.Size = new System.Drawing.Size(216, 122);
             this.PanelRight.TabIndex = 1;
             // 
             // button1
@@ -114,9 +116,10 @@
             this.button1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.button1.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaption;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(33, 109);
+            this.button1.Location = new System.Drawing.Point(25, 89);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(161, 32);
+            this.button1.Size = new System.Drawing.Size(121, 26);
             this.button1.TabIndex = 4;
             this.button1.Text = "Verwijder filters";
             this.button1.UseVisualStyleBackColor = false;
@@ -125,9 +128,10 @@
             // DropdownCategorie
             // 
             this.DropdownCategorie.FormattingEnabled = true;
-            this.DropdownCategorie.Location = new System.Drawing.Point(33, 42);
+            this.DropdownCategorie.Location = new System.Drawing.Point(25, 34);
+            this.DropdownCategorie.Margin = new System.Windows.Forms.Padding(2);
             this.DropdownCategorie.Name = "DropdownCategorie";
-            this.DropdownCategorie.Size = new System.Drawing.Size(161, 24);
+            this.DropdownCategorie.Size = new System.Drawing.Size(122, 21);
             this.DropdownCategorie.TabIndex = 1;
             this.DropdownCategorie.Text = "Filter op categorie";
             this.DropdownCategorie.SelectedIndexChanged += new System.EventHandler(this.DropdownCategorie_SelectedIndexChanged);
@@ -135,9 +139,10 @@
             // DropdownMerk
             // 
             this.DropdownMerk.FormattingEnabled = true;
-            this.DropdownMerk.Location = new System.Drawing.Point(33, 12);
+            this.DropdownMerk.Location = new System.Drawing.Point(25, 10);
+            this.DropdownMerk.Margin = new System.Windows.Forms.Padding(2);
             this.DropdownMerk.Name = "DropdownMerk";
-            this.DropdownMerk.Size = new System.Drawing.Size(161, 24);
+            this.DropdownMerk.Size = new System.Drawing.Size(122, 21);
             this.DropdownMerk.TabIndex = 1;
             this.DropdownMerk.Text = "Filter op merk";
             this.DropdownMerk.SelectedIndexChanged += new System.EventHandler(this.DropdownMerk_SelectedIndexChanged);
@@ -147,9 +152,10 @@
             this.checkBox1.AutoEllipsis = true;
             this.checkBox1.Checked = true;
             this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Location = new System.Drawing.Point(33, 72);
+            this.checkBox1.Location = new System.Drawing.Point(25, 58);
+            this.checkBox1.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(161, 39);
+            this.checkBox1.Size = new System.Drawing.Size(121, 32);
             this.checkBox1.TabIndex = 2;
             this.checkBox1.Text = "Verberg afwezige producten";
             this.checkBox1.UseVisualStyleBackColor = true;
@@ -158,8 +164,9 @@
             // label1
             // 
             this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(100, 23);
+            this.label1.Size = new System.Drawing.Size(75, 19);
             this.label1.TabIndex = 3;
             // 
             // PanelLeft
@@ -167,9 +174,10 @@
             this.PanelLeft.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.PanelLeft.Controls.Add(this.titel);
             this.PanelLeft.Location = new System.Drawing.Point(0, 0);
-            this.PanelLeft.MinimumSize = new System.Drawing.Size(300, 150);
+            this.PanelLeft.Margin = new System.Windows.Forms.Padding(2);
+            this.PanelLeft.MinimumSize = new System.Drawing.Size(225, 122);
             this.PanelLeft.Name = "PanelLeft";
-            this.PanelLeft.Size = new System.Drawing.Size(306, 150);
+            this.PanelLeft.Size = new System.Drawing.Size(230, 122);
             this.PanelLeft.TabIndex = 0;
             // 
             // titel
@@ -177,9 +185,10 @@
             this.titel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.titel.Font = new System.Drawing.Font("Maiandra GD", 28.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.titel.Location = new System.Drawing.Point(40, 43);
+            this.titel.Location = new System.Drawing.Point(30, 35);
+            this.titel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.titel.Name = "titel";
-            this.titel.Size = new System.Drawing.Size(263, 69);
+            this.titel.Size = new System.Drawing.Size(197, 56);
             this.titel.TabIndex = 0;
             this.titel.Text = "Inventaris";
             // 
@@ -251,7 +260,7 @@
             this.Afbeelding.HeaderText = "Afbeelding";
             this.Afbeelding.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Stretch;
             this.Afbeelding.Name = "Afbeelding";
-            this.Afbeelding.Width = 81;
+            this.Afbeelding.Width = 63;
             // 
             // wijzig
             // 
@@ -262,16 +271,17 @@
             // 
             // InventoryScreen
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.Controls.Add(this.PanelRight);
             this.Controls.Add(this.PanelLeft);
             this.Controls.Add(this.dataGridView1);
-            this.MinimumSize = new System.Drawing.Size(600, 400);
+            this.Margin = new System.Windows.Forms.Padding(2);
+            this.MinimumSize = new System.Drawing.Size(450, 325);
             this.Name = "InventoryScreen";
-            this.Size = new System.Drawing.Size(600, 400);
+            this.Size = new System.Drawing.Size(450, 325);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.PanelRight.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).EndInit();
