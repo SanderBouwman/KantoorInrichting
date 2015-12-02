@@ -137,7 +137,7 @@ namespace KantoorInrichting.Views.Placement
 
         private void btn_Move_Click(object sender, EventArgs e)
         {
-            int speed = 50;
+            int speed = 10;
             bool x_Axis = true;
 
             if(cbx_MoveValue.Text == "Up" || cbx_MoveValue.Text == "Left")
