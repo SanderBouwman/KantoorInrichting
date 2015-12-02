@@ -63,9 +63,8 @@
             // 
             // btn_AddProduct
             // 
-            this.btn_AddProduct.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_AddProduct.BackColor = System.Drawing.SystemColors.Control;
-            this.btn_AddProduct.Location = new System.Drawing.Point(635, 570);
+            this.btn_AddProduct.Location = new System.Drawing.Point(728, 468);
             this.btn_AddProduct.Name = "btn_AddProduct";
             this.btn_AddProduct.Size = new System.Drawing.Size(75, 45);
             this.btn_AddProduct.TabIndex = 5;
@@ -99,11 +98,9 @@
             this.cbx_TurnValue.Name = "cbx_TurnValue";
             this.cbx_TurnValue.Size = new System.Drawing.Size(121, 21);
             this.cbx_TurnValue.TabIndex = 1;
-            this.cbx_TurnValue.SelectedIndexChanged += new System.EventHandler(this.cbx_TurnValue_SelectedIndexChanged);
             // 
             // panel1
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.Controls.Add(this.cbx_TurnValue);
             this.panel1.Controls.Add(this.btn_Turn);
             this.panel1.Controls.Add(this.cbx_MoveValue);
@@ -115,7 +112,6 @@
             // 
             // productInfo1
             // 
-            this.productInfo1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.productInfo1.AutoScroll = true;
             this.productInfo1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.productInfo1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -127,9 +123,8 @@
             // 
             // productList1
             // 
-            this.productList1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.productList1.AutoScroll = true;
-            this.productList1.Location = new System.Drawing.Point(694, 3);
+            this.productList1.Location = new System.Drawing.Point(694, 0);
             this.productList1.Name = "productList1";
             this.productList1.Size = new System.Drawing.Size(420, 374);
             this.productList1.TabIndex = 0;
@@ -143,8 +138,9 @@
             this.Controls.Add(this.productInfo1);
             this.Controls.Add(this.productList1);
             this.Controls.Add(this.btn_AddProduct);
+            this.MinimumSize = new System.Drawing.Size(1120, 670);
             this.Name = "ProductAdding";
-            this.Size = new System.Drawing.Size(1117, 670);
+            this.Size = new System.Drawing.Size(1120, 670);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 

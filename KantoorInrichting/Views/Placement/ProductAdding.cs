@@ -136,10 +136,5 @@ namespace KantoorInrichting.Views.Placement
 
             Invalidate();
         }
-
-        private void cbx_TurnValue_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }
