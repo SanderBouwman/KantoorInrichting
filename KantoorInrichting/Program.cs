@@ -28,7 +28,7 @@ namespace KantoorInrichting {
             ProductModel p9 = new ProductModel(9,"Black Chair", "Chairs'R'Yours", "A", "stoel", 50, 50, 60, "Chair - Stackable", 9, "stoel.jpg");
             ProductModel p10 = new ProductModel(10,"Red Table", "Dem Tables", "A", "tafel",  100, 300, 100, "Table - Dining", 0, "tafel.jpg");
             ProductModel p11 = new ProductModel(11,"Yellow Coffee Table", "Dem Tables", "B",  "koffietafel", 50, 100, 75, "Table - Coffee", 6, "tafel.jpg");
-            ProductModel p12 = new ProductModel(12,"Blue-Board", "Color Board", "H", "whiteboard",  10, 200, 200, "Board - White Board", 4, "No_Image_Available.png");
+            ProductModel p12 = new ProductModel(12,"Blue-Board", "Color Board", "H", "whiteboard",  10, 200, 200, "Board - White Board", 4, null);
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
