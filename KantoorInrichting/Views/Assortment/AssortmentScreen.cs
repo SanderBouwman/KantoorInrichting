@@ -46,9 +46,9 @@ namespace KantoorInrichting.Views.Assortment
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             var senderGrid = (DataGridView) sender;
-            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
-            {
-                if (e.ColumnIndex == 9)
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)               // There's not supposed to be any logic in the view
+            {                                                                                                   // For an example, look at the GridFieldView class
+                if (e.ColumnIndex == 9)                                                                         // -Robin
                 {
                     // run edit screen here
                     // make an editscreen with current product as argument

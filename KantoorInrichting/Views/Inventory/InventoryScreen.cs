@@ -17,9 +17,9 @@ namespace KantoorInrichting.Views.Inventory
     {
 
         public MainFrame hoofdscherm;
-        public InventoryScreen(MainFrame hoofdscherm)
-        {
-            this.hoofdscherm = hoofdscherm;
+        public InventoryScreen(MainFrame hoofdscherm )  // There's not supposed to be any logic in the view, I'd move most of the methods in here to a controller.
+        {                                               // For an example, look at GridFieldView
+            this.hoofdscherm = hoofdscherm;             // -Robin
             // init screen and fill all the data
             InitializeComponent();
             FillData();
