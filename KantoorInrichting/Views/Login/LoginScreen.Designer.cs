@@ -104,6 +104,7 @@
             // UsernameError
             // 
             this.UsernameError.AutoSize = true;
+            this.UsernameError.ForeColor = System.Drawing.Color.Red;
             this.UsernameError.Location = new System.Drawing.Point(284, 91);
             this.UsernameError.Name = "UsernameError";
             this.UsernameError.Size = new System.Drawing.Size(0, 13);
@@ -112,6 +113,7 @@
             // PasswordError
             // 
             this.PasswordError.AutoSize = true;
+            this.PasswordError.ForeColor = System.Drawing.Color.Red;
             this.PasswordError.Location = new System.Drawing.Point(284, 120);
             this.PasswordError.Name = "PasswordError";
             this.PasswordError.Size = new System.Drawing.Size(0, 13);
@@ -120,6 +122,7 @@
             // GeneralLoginError
             // 
             this.GeneralLoginError.AutoSize = true;
+            this.GeneralLoginError.ForeColor = System.Drawing.Color.Red;
             this.GeneralLoginError.Location = new System.Drawing.Point(174, 148);
             this.GeneralLoginError.Name = "GeneralLoginError";
             this.GeneralLoginError.Size = new System.Drawing.Size(0, 13);
@@ -162,7 +165,7 @@
             this.panel1.Controls.Add(this.label2);
             this.panel1.Location = new System.Drawing.Point(226, 92);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(323, 203);
+            this.panel1.Size = new System.Drawing.Size(479, 203);
             this.panel1.TabIndex = 0;
             // 
             // LoginScreen
