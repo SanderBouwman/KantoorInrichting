@@ -55,7 +55,7 @@ namespace KantoorInrichting.Models.Grid {
             using (Graphics g = Graphics.FromImage(b)) {
                 for (float i = 0; i < Rows.GetLength(0); i += Rows[0, 0].Height) {
                     for (float j = 0; j < Rows.GetLength(1); j += Rows[0, 0].Width) {
-                        g.FillRectangle(Brushes.Blue, i*50, j*50, 5, 5);
+//                        g.FillRectangle(Brushes.Blue, i*50, j*50, 5, 5);
                     }
                 }
             }
