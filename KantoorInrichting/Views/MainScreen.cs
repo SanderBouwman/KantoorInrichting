@@ -60,6 +60,8 @@ namespace KantoorInrichting.Views
 
         private void ProductAddingButton_Click(object sender, EventArgs e)
         {
+            hoofdscherm.Width = 1150;
+            hoofdscherm.Height = 750;
             hoofdscherm.placement.Visible = true;
             hoofdscherm.placement.Enabled = true;
             this.Visible = false;
