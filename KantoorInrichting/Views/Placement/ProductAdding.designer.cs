@@ -152,9 +152,6 @@
             this.Controls.Add(this.productInfo1);
             this.Controls.Add(this.productList1);
             this.Controls.Add(this.btn_AddProduct);
-            this.Enabled = false;
-            this.MaximumSize = new System.Drawing.Size(1120, 670);
-            this.MinimumSize = new System.Drawing.Size(1120, 670);
             this.Name = "ProductAdding";
             this.Size = new System.Drawing.Size(1120, 670);
             this.panel1.ResumeLayout(false);
