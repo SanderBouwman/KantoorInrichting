@@ -34,6 +34,7 @@
             this.cbx_MoveValue = new System.Windows.Forms.ComboBox();
             this.cbx_TurnValue = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.productPanel = new System.Windows.Forms.Panel();
             this.productInfo1 = new KantoorInrichting.Views.Placement.ProductInfo();
             this.productList1 = new KantoorInrichting.Views.Placement.ProductList();
             this.panel1.SuspendLayout();
@@ -63,6 +64,7 @@
             // 
             // btn_AddProduct
             // 
+            this.btn_AddProduct.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_AddProduct.BackColor = System.Drawing.SystemColors.Control;
             this.btn_AddProduct.Location = new System.Drawing.Point(728, 468);
             this.btn_AddProduct.Name = "btn_AddProduct";
@@ -101,6 +103,7 @@
             // 
             // panel1
             // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.Controls.Add(this.cbx_TurnValue);
             this.panel1.Controls.Add(this.btn_Turn);
             this.panel1.Controls.Add(this.cbx_MoveValue);
@@ -110,8 +113,16 @@
             this.panel1.Size = new System.Drawing.Size(202, 63);
             this.panel1.TabIndex = 7;
             // 
+            // productPanel
+            // 
+            this.productPanel.Location = new System.Drawing.Point(3, 3);
+            this.productPanel.Name = "productPanel";
+            this.productPanel.Size = new System.Drawing.Size(685, 664);
+            this.productPanel.TabIndex = 8;
+            // 
             // productInfo1
             // 
+            this.productInfo1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.productInfo1.AutoScroll = true;
             this.productInfo1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.productInfo1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -123,6 +134,7 @@
             // 
             // productList1
             // 
+            this.productList1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.productList1.AutoScroll = true;
             this.productList1.Location = new System.Drawing.Point(694, 0);
             this.productList1.Name = "productList1";
@@ -134,6 +146,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.Controls.Add(this.productPanel);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.productInfo1);
             this.Controls.Add(this.productList1);
@@ -156,5 +169,6 @@
         private System.Windows.Forms.ComboBox cbx_MoveValue;
         private System.Windows.Forms.ComboBox cbx_TurnValue;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel productPanel;
     }
 }
