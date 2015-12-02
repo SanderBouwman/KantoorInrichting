@@ -69,13 +69,18 @@ namespace KantoorInrichting
             this.loginScreen1.Name = "inventoryScreen1";
             this.loginScreen1.TabIndex = 3;
 
-           
+
+
             AddPanelToMainscreen(assortmentScreen);
             AddPanelToMainscreen(inventoryScreen1);
             AddPanelToMainscreen(gridFieldView);
             AddPanelToMainscreen(mainScreen1);
             AddPanelToMainscreen(loginScreen1);
             AddPanelToMainscreen(placement);
+
+            this.placement.Anchor = ((AnchorStyles)((((AnchorStyles.Top | AnchorStyles.Bottom) | AnchorStyles.Left) | AnchorStyles.Right)));
+            this.placement.MinimumSize = new Size(1400, 800);
+            this.placement.Size = new Size(1400, 800);
 
             //after adding the panels make the loginscreen visisble (other then default)
 
