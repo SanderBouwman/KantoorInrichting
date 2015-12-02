@@ -37,6 +37,7 @@ namespace KantoorInrichting.Controllers.Grid {
             _view.SetController(this);
             _panel = (Panel) _view.Get("Panel");
             _trackBar = (TrackBar) _view.Get("Trackbar");
+            _trackBar.Enabled = false;
 
             float tWidth = _panel.Width/_model.Rows.GetLength(1);
             float tHeight = _panel.Height/_model.Rows.GetLength(0);
@@ -130,6 +131,7 @@ namespace KantoorInrichting.Controllers.Grid {
         public void CheckboxChanged(bool b) {
             _zoomCheckbox = b;
             if (_zoomCheckbox) {
+                _trackBar.Enabled = true;
                 _view.Get("ListView").Enabled = false; // Disable listview when zooming
                 _zoomView = new ZoomView();
                 UpdateZoom();
@@ -137,6 +139,7 @@ namespace KantoorInrichting.Controllers.Grid {
             }
             else if (!_zoomCheckbox) {
                 _panel.Invalidate();
+                _trackBar.Enabled = false;
                 _view.Get("ListView").Enabled = true; // Enable listview when not zooming
                 _zoomView.Dispose();
             }
