@@ -108,7 +108,7 @@ namespace KantoorInrichting
             // 
             this.terugNaarHoofdschermToolStripMenuItem1.Name = "terugNaarHoofdschermToolStripMenuItem1";
             this.terugNaarHoofdschermToolStripMenuItem1.Size = new System.Drawing.Size(204, 22);
-            this.terugNaarHoofdschermToolStripMenuItem1.Text = "Terug naar hoofdscherm";
+            this.terugNaarHoofdschermToolStripMenuItem1.Text = "Hoofdscherm";
             this.terugNaarHoofdschermToolStripMenuItem1.Click += new System.EventHandler(this.terugNaarHoofdschermToolStripMenuItem1_Click);
             // 
             // MainFrame
