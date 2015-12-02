@@ -46,7 +46,6 @@
             this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Merk = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.category = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.subcategory = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.hoogte = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.breedte = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Lengte = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -62,6 +61,7 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AllowUserToOrderColumns = true;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -77,7 +77,6 @@
             this.Type,
             this.Merk,
             this.category,
-            this.subcategory,
             this.hoogte,
             this.breedte,
             this.Lengte,
@@ -221,12 +220,6 @@
             this.category.HeaderText = "categorie";
             this.category.Name = "category";
             // 
-            // subcategory
-            // 
-            this.subcategory.DataPropertyName = "Subcategory";
-            this.subcategory.HeaderText = "subcategorie";
-            this.subcategory.Name = "subcategory";
-            // 
             // hoogte
             // 
             this.hoogte.DataPropertyName = "Height";
@@ -306,7 +299,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Type;
         private System.Windows.Forms.DataGridViewTextBoxColumn Merk;
         private System.Windows.Forms.DataGridViewTextBoxColumn category;
-        private System.Windows.Forms.DataGridViewTextBoxColumn subcategory;
         private System.Windows.Forms.DataGridViewTextBoxColumn hoogte;
         private System.Windows.Forms.DataGridViewTextBoxColumn breedte;
         private System.Windows.Forms.DataGridViewTextBoxColumn Lengte;
