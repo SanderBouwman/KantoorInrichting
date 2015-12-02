@@ -35,6 +35,9 @@ namespace KantoorInrichting.Views.Placement
             this.hoofdscherm = hoofdscherm;
             InitializeComponent();
 
+            hoofdscherm.Size = new Size(1120, 680);
+
+
             //Make an event when the selection of the ASSORTMENT or INVENTORY has changed
             productList1.SelectionChanged += new ProductSelectionChanged(this.changeSelected);
 

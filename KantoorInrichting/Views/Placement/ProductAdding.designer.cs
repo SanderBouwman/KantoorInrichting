@@ -47,7 +47,7 @@
             this.btn_Turn.Name = "btn_Turn";
             this.btn_Turn.Size = new System.Drawing.Size(75, 23);
             this.btn_Turn.TabIndex = 2;
-            this.btn_Turn.Text = "Turn";
+            this.btn_Turn.Text = "Draai";
             this.btn_Turn.UseVisualStyleBackColor = false;
             this.btn_Turn.Click += new System.EventHandler(this.btn_Turn_Click);
             // 
@@ -58,7 +58,7 @@
             this.btn_Move.Name = "btn_Move";
             this.btn_Move.Size = new System.Drawing.Size(75, 23);
             this.btn_Move.TabIndex = 4;
-            this.btn_Move.Text = "Move";
+            this.btn_Move.Text = "Beweeg";
             this.btn_Move.UseVisualStyleBackColor = false;
             this.btn_Move.Click += new System.EventHandler(this.btn_Move_Click);
             // 
@@ -66,11 +66,11 @@
             // 
             this.btn_AddProduct.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_AddProduct.BackColor = System.Drawing.SystemColors.Control;
-            this.btn_AddProduct.Location = new System.Drawing.Point(728, 468);
+            this.btn_AddProduct.Location = new System.Drawing.Point(716, 421);
             this.btn_AddProduct.Name = "btn_AddProduct";
-            this.btn_AddProduct.Size = new System.Drawing.Size(75, 45);
+            this.btn_AddProduct.Size = new System.Drawing.Size(94, 45);
             this.btn_AddProduct.TabIndex = 5;
-            this.btn_AddProduct.Text = "Change Product";
+            this.btn_AddProduct.Text = "Wijzig meubel naar:";
             this.btn_AddProduct.UseVisualStyleBackColor = false;
             this.btn_AddProduct.Click += new System.EventHandler(this.btn_AddProduct_Click);
             // 
@@ -108,13 +108,14 @@
             this.panel1.Controls.Add(this.btn_Turn);
             this.panel1.Controls.Add(this.cbx_MoveValue);
             this.panel1.Controls.Add(this.btn_Move);
-            this.panel1.Location = new System.Drawing.Point(912, 431);
+            this.panel1.Location = new System.Drawing.Point(912, 399);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(202, 63);
             this.panel1.TabIndex = 7;
             // 
             // productPanel
             // 
+            this.productPanel.BackColor = System.Drawing.SystemColors.Control;
             this.productPanel.Location = new System.Drawing.Point(3, 3);
             this.productPanel.Name = "productPanel";
             this.productPanel.Size = new System.Drawing.Size(685, 664);
@@ -127,7 +128,7 @@
             this.productInfo1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.productInfo1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.productInfo1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.productInfo1.Location = new System.Drawing.Point(716, 519);
+            this.productInfo1.Location = new System.Drawing.Point(716, 468);
             this.productInfo1.Name = "productInfo1";
             this.productInfo1.Size = new System.Drawing.Size(398, 148);
             this.productInfo1.TabIndex = 6;
@@ -151,6 +152,8 @@
             this.Controls.Add(this.productInfo1);
             this.Controls.Add(this.productList1);
             this.Controls.Add(this.btn_AddProduct);
+            this.Enabled = false;
+            this.MaximumSize = new System.Drawing.Size(1120, 670);
             this.MinimumSize = new System.Drawing.Size(1120, 670);
             this.Name = "ProductAdding";
             this.Size = new System.Drawing.Size(1120, 670);
