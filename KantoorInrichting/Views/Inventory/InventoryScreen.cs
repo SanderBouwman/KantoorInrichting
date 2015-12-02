@@ -206,8 +206,9 @@ namespace KantoorInrichting.Views.Inventory
 
                     // run edit screen here
                     // make an editscreen with current product as argument
-                    InventoryEdit edit = new InventoryEdit(selectedproduct1[0], this);
-                    edit.Show();
+                    InventoryEdit edit = new InventoryEdit(selectedproduct1[0]);
+                    edit.ShowDialog();
+                    this.Refresh();
                 }
             }
                   

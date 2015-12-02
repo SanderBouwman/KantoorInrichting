@@ -12,18 +12,12 @@ namespace KantoorInrichting.Views.Inventory
 {
     public partial class InventoryEdit : Form
     {
-        private string productname;
-        private decimal productamount;
         private Models.Product.ProductModel P;
-        private UserControl U;
 
-
-
-        public InventoryEdit(Models.Product.ProductModel p, UserControl u)
+        public InventoryEdit(Models.Product.ProductModel p)
         {
             InitializeComponent();
             P = p;
-            this.U = u;
 
             ProductNaam.Text = "productnaam: " + P.name;
             ProductAantal.Value = P.amount;
@@ -34,13 +28,11 @@ namespace KantoorInrichting.Views.Inventory
         {
             P.amount = Convert.ToInt32(ProductAantal.Value);
             this.Close();
-            U.Refresh();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             this.Close();
-            U.Refresh();
         }
     }
 }
