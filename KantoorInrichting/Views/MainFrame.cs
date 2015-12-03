@@ -1,4 +1,6 @@
-﻿using System;
+﻿using KantoorInrichting.Controllers.Product;
+using KantoorInrichting.Views.Product;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,13 +15,15 @@ namespace KantoorInrichting
     public partial class MainFrame : Form
     {
         static List<UserControl> panels = new List<UserControl>();
+        public CategoryManagerController categoryManagerController;
+        public CategoryManager categoryManager;
+
         public MainFrame()
         {
             AddPanels();
             InitializeComponent();
             OnBootup();
         }
-
 
         public void AddPanels()
         {

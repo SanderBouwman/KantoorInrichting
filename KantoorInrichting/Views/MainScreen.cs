@@ -71,8 +71,8 @@ namespace KantoorInrichting.Views
 
         private void CategoryManager_Click(object sender, EventArgs e)
         {
-            CategoryManager manager = new CategoryManager();
-            manager.Show();
+            hoofdscherm.categoryManagerController = new CategoryManagerController();
+            hoofdscherm.categoryManager = new CategoryManager(hoofdscherm.categoryManagerController);
         }
     }
 }
