@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using KantoorInrichting.Controllers.Grid;
 using KantoorInrichting.Controllers.Product;
 using KantoorInrichting.Models.Grid;
+using KantoorInrichting.Views.Product;
 
 namespace KantoorInrichting.Views
 {
@@ -66,6 +67,12 @@ namespace KantoorInrichting.Views
             hoofdscherm.placement.Enabled = true;
             this.Visible = false;
             hoofdscherm.placement.BringToFront();
+        }
+
+        private void CategoryManager_Click(object sender, EventArgs e)
+        {
+            CategoryManager manager = new CategoryManager();
+            manager.Show();
         }
     }
 }

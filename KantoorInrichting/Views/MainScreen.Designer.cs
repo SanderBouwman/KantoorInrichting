@@ -32,6 +32,7 @@
             this.mapButton = new System.Windows.Forms.Button();
             this.assortmentButton = new System.Windows.Forms.Button();
             this.ProductAddingButton = new System.Windows.Forms.Button();
+            this.CategoryManager = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // VooraadButton
@@ -120,12 +121,34 @@
             this.ProductAddingButton.UseVisualStyleBackColor = false;
             this.ProductAddingButton.Click += new System.EventHandler(this.ProductAddingButton_Click);
             // 
+            // CategoryManager
+            // 
+            this.CategoryManager.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CategoryManager.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.CategoryManager.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.CategoryManager.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.CategoryManager.FlatAppearance.BorderColor = System.Drawing.Color.SteelBlue;
+            this.CategoryManager.FlatAppearance.BorderSize = 2;
+            this.CategoryManager.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.CategoryManager.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CategoryManager.Font = new System.Drawing.Font("Maiandra GD", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CategoryManager.Location = new System.Drawing.Point(21, 285);
+            this.CategoryManager.Margin = new System.Windows.Forms.Padding(4);
+            this.CategoryManager.Name = "CategoryManager";
+            this.CategoryManager.Size = new System.Drawing.Size(549, 50);
+            this.CategoryManager.TabIndex = 4;
+            this.CategoryManager.Text = "Categorie manager";
+            this.CategoryManager.UseVisualStyleBackColor = false;
+            this.CategoryManager.Click += new System.EventHandler(this.CategoryManager_Click);
+            // 
             // MainScreen
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.Controls.Add(this.CategoryManager);
             this.Controls.Add(this.ProductAddingButton);
             this.Controls.Add(this.assortmentButton);
             this.Controls.Add(this.mapButton);
@@ -144,5 +167,6 @@
         private System.Windows.Forms.Button mapButton;
         private System.Windows.Forms.Button assortmentButton;
         private System.Windows.Forms.Button ProductAddingButton;
+        private System.Windows.Forms.Button CategoryManager;
     }
 }
