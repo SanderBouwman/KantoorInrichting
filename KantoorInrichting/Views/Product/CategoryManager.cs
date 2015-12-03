@@ -8,34 +8,28 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using KantoorInrichting.Models.Product;
+using KantoorInrichting.Controllers.Product;
 
 namespace KantoorInrichting.Views.Product
 {
     public partial class CategoryManager : Form
     {
-        private ProductModel product;
+        private CategoryManagerController controller;
         public string tempcat;
         public string tempsubcat;
-        private List<string> allcategories = new List<string>();
-        private List<string> allsubcategories = new List<string>();
+        public KantoorInrichtingDataSet tempdata;
 
-        public CategoryManager(ProductModel product)
+        public CategoryManager(CategoryManagerController controller)
         {
-            this.product = product;
-            allcategories.Add("koek");
-            allsubcategories.Add("jodenkoek");
+            this.controller = controller;
             InitializeComponent();
 
-            foreach (string item in allcategories){
-                categoryComboBox.Items.Add(item);
-            }
-            foreach (string item in allsubcategories)
-            {
-                subcategoryComboBox.Items.Add(item);
-            }
-
-            categoryComboBox.SelectedItem = product.category;
-            subcategoryComboBox.SelectedItem = product.subcategory;
+            this.categoryTableAdapter.Fill(this.kantoorInrichtingDataSet.Category);
+            var categoryList = kantoorInrichtingDataSet.Category;
+            
+            controller.fillcombobox(categoryList, categoryComboBox);
+            //categoryComboBox.SelectedItem = ;
+            //subcategoryComboBox.SelectedItem = ;
 
         }
 
@@ -65,12 +59,12 @@ namespace KantoorInrichting.Views.Product
 
         private void categoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            tempcat = categoryComboBox.SelectedItem.ToString();
+
         }
 
         private void subcategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            tempsubcat = subcategoryComboBox.SelectedItem.ToString();
+
         }
 
         private void saveButton_Click(object sender, EventArgs e)
@@ -83,6 +77,21 @@ namespace KantoorInrichting.Views.Product
         private void cancelButton_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void categoryBindingNavigatorSaveItem_Click(object sender, EventArgs e)
+        {
+            this.Validate();
+            this.categoryBindingSource.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.kantoorInrichtingDataSet);
+
+        }
+
+        private void CategoryManager_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'kantoorInrichtingDataSet.Category' table. You can move, or remove it, as needed.
+            this.categoryTableAdapter.Fill(this.kantoorInrichtingDataSet.Category);
+
         }
     }
 }

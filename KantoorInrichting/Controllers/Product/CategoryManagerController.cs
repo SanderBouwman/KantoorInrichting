@@ -9,21 +9,26 @@ using System.Windows.Forms;
 
 namespace KantoorInrichting.Controllers.Product
 {
-    class CategoryManagerController
+    public class CategoryManagerController
     {
         private CategoryManager catman;
-        private ProductModel product;
 
-        public CategoryManagerController(ProductModel product)
+        public CategoryManagerController()
         {
-            this.product = product;
-            catman = new CategoryManager(product);
+            catman = new CategoryManager(this);
             catman.ShowDialog();
 
             if (catman.DialogResult == DialogResult.OK)
             {
-                product.category = catman.tempcat;
-                product.subcategory = catman.tempsubcat;
+                //update database
+            }
+        }
+
+        public void fillcombobox(KantoorInrichtingDataSet.CategoryDataTable categoryList, ComboBox categoryComboBox)
+        {
+            foreach (var category in categoryList)
+            {
+                categoryComboBox.Items.Add(category.Name);
             }
         }
     }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.saveButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
             this.newCategoryButton = new System.Windows.Forms.Button();
@@ -36,6 +37,12 @@
             this.categoryLabel = new System.Windows.Forms.Label();
             this.subCategoryLabel = new System.Windows.Forms.Label();
             this.subcategoryComboBox = new System.Windows.Forms.ComboBox();
+            this.kantoorInrichtingDataSet = new KantoorInrichting.KantoorInrichtingDataSet();
+            this.categoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.categoryTableAdapter = new KantoorInrichting.KantoorInrichtingDataSetTableAdapters.CategoryTableAdapter();
+            this.tableAdapterManager = new KantoorInrichting.KantoorInrichtingDataSetTableAdapters.TableAdapterManager();
+            ((System.ComponentModel.ISupportInitialize)(this.kantoorInrichtingDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.categoryBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // saveButton
@@ -118,13 +125,34 @@
             this.subcategoryComboBox.TabIndex = 7;
             this.subcategoryComboBox.SelectedIndexChanged += new System.EventHandler(this.subcategoryComboBox_SelectedIndexChanged);
             // 
+            // kantoorInrichtingDataSet
+            // 
+            this.kantoorInrichtingDataSet.DataSetName = "KantoorInrichtingDataSet";
+            this.kantoorInrichtingDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // categoryBindingSource
+            // 
+            this.categoryBindingSource.DataMember = "Category";
+            this.categoryBindingSource.DataSource = this.kantoorInrichtingDataSet;
+            // 
+            // categoryTableAdapter
+            // 
+            this.categoryTableAdapter.ClearBeforeFill = true;
+            // 
+            // tableAdapterManager
+            // 
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.CategoryTableAdapter = this.categoryTableAdapter;
+            this.tableAdapterManager.ProductTableAdapter = null;
+            this.tableAdapterManager.UpdateOrder = KantoorInrichting.KantoorInrichtingDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            // 
             // CategoryManager
             // 
             this.AcceptButton = this.saveButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
-            this.ClientSize = new System.Drawing.Size(318, 147);
+            this.ClientSize = new System.Drawing.Size(351, 159);
             this.ControlBox = false;
             this.Controls.Add(this.subcategoryComboBox);
             this.Controls.Add(this.subCategoryLabel);
@@ -138,6 +166,9 @@
             this.MinimizeBox = false;
             this.Name = "CategoryManager";
             this.Text = "Categoriemanager";
+            this.Load += new System.EventHandler(this.CategoryManager_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.kantoorInrichtingDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.categoryBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -153,5 +184,9 @@
         private System.Windows.Forms.Label categoryLabel;
         private System.Windows.Forms.Label subCategoryLabel;
         private System.Windows.Forms.ComboBox subcategoryComboBox;
+        private KantoorInrichtingDataSet kantoorInrichtingDataSet;
+        private System.Windows.Forms.BindingSource categoryBindingSource;
+        private KantoorInrichtingDataSetTableAdapters.CategoryTableAdapter categoryTableAdapter;
+        private KantoorInrichtingDataSetTableAdapters.TableAdapterManager tableAdapterManager;
     }
 }
