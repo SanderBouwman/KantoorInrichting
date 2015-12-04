@@ -41,15 +41,21 @@
             this.categoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.categoryTableAdapter = new KantoorInrichting.KantoorInrichtingDataSetTableAdapters.CategoryTableAdapter();
             this.tableAdapterManager = new KantoorInrichting.KantoorInrichtingDataSetTableAdapters.TableAdapterManager();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.kantoorInrichtingDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.categoryBindingSource)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // saveButton
             // 
             this.saveButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.saveButton.Location = new System.Drawing.Point(308, 138);
-            this.saveButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.saveButton.Location = new System.Drawing.Point(354, 239);
+            this.saveButton.Margin = new System.Windows.Forms.Padding(4);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(100, 28);
             this.saveButton.TabIndex = 0;
@@ -60,8 +66,8 @@
             // cancelButton
             // 
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelButton.Location = new System.Drawing.Point(16, 138);
-            this.cancelButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cancelButton.Location = new System.Drawing.Point(15, 239);
+            this.cancelButton.Margin = new System.Windows.Forms.Padding(4);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(100, 28);
             this.cancelButton.TabIndex = 1;
@@ -72,7 +78,7 @@
             // newCategoryButton
             // 
             this.newCategoryButton.Location = new System.Drawing.Point(308, 36);
-            this.newCategoryButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.newCategoryButton.Margin = new System.Windows.Forms.Padding(4);
             this.newCategoryButton.Name = "newCategoryButton";
             this.newCategoryButton.Size = new System.Drawing.Size(100, 28);
             this.newCategoryButton.TabIndex = 2;
@@ -83,7 +89,7 @@
             // newSubCategoryButton
             // 
             this.newSubCategoryButton.Location = new System.Drawing.Point(308, 91);
-            this.newSubCategoryButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.newSubCategoryButton.Margin = new System.Windows.Forms.Padding(4);
             this.newSubCategoryButton.Name = "newSubCategoryButton";
             this.newSubCategoryButton.Size = new System.Drawing.Size(100, 28);
             this.newSubCategoryButton.TabIndex = 3;
@@ -96,7 +102,7 @@
             this.categoryComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.categoryComboBox.FormattingEnabled = true;
             this.categoryComboBox.Location = new System.Drawing.Point(16, 36);
-            this.categoryComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.categoryComboBox.Margin = new System.Windows.Forms.Padding(4);
             this.categoryComboBox.Name = "categoryComboBox";
             this.categoryComboBox.Size = new System.Drawing.Size(283, 24);
             this.categoryComboBox.TabIndex = 4;
@@ -127,7 +133,7 @@
             this.subcategoryComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.subcategoryComboBox.FormattingEnabled = true;
             this.subcategoryComboBox.Location = new System.Drawing.Point(16, 94);
-            this.subcategoryComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.subcategoryComboBox.Margin = new System.Windows.Forms.Padding(4);
             this.subcategoryComboBox.Name = "subcategoryComboBox";
             this.subcategoryComboBox.Size = new System.Drawing.Size(283, 24);
             this.subcategoryComboBox.TabIndex = 7;
@@ -155,14 +161,62 @@
             this.tableAdapterManager.UpdateOrder = KantoorInrichting.KantoorInrichtingDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             this.tableAdapterManager.UserTableAdapter = null;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.textBox2);
+            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Location = new System.Drawing.Point(16, 137);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(438, 95);
+            this.groupBox1.TabIndex = 9;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Geselecteerde categorie informatie";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(8, 33);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(119, 17);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "aantal producten:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(8, 59);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(153, 17);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "aantal subcategorieen:";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(167, 31);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(100, 22);
+            this.textBox1.TabIndex = 11;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(167, 59);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
+            this.textBox2.Size = new System.Drawing.Size(100, 22);
+            this.textBox2.TabIndex = 12;
+            // 
             // CategoryManager
             // 
             this.AcceptButton = this.saveButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
-            this.ClientSize = new System.Drawing.Size(468, 196);
+            this.ClientSize = new System.Drawing.Size(468, 275);
             this.ControlBox = false;
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.subcategoryComboBox);
             this.Controls.Add(this.subCategoryLabel);
             this.Controls.Add(this.categoryLabel);
@@ -171,7 +225,7 @@
             this.Controls.Add(this.newCategoryButton);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.saveButton);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "CategoryManager";
@@ -179,6 +233,8 @@
             this.Load += new System.EventHandler(this.CategoryManager_Load);
             ((System.ComponentModel.ISupportInitialize)(this.kantoorInrichtingDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.categoryBindingSource)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -198,5 +254,10 @@
         private System.Windows.Forms.BindingSource categoryBindingSource;
         private KantoorInrichtingDataSetTableAdapters.CategoryTableAdapter categoryTableAdapter;
         private KantoorInrichtingDataSetTableAdapters.TableAdapterManager tableAdapterManager;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
     }
 }
