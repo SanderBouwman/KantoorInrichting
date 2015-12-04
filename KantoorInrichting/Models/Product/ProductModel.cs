@@ -21,6 +21,8 @@ namespace KantoorInrichting.Models.Product
         public string subcategory { get; set; }
         public Image image;
 
+        public Point location;
+
         public int length { get; set; }
         public int width { get; set; }
         public int height { get; set; }
