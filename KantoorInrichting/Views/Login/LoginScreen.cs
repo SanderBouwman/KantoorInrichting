@@ -8,11 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Security.Cryptography;
+using KantoorInrichting.Controllers.Login;
 
 namespace KantoorInrichting.Views
 {
     public partial class LoginScreen : UserControl
     {
+        LoginController controllerLogin = new LoginController();
         public MainFrame mainFrame;
         public LoginScreen(MainFrame mainFrame)                         // There's not supposed to be any logic in the view, so I'd move most of the methods in here to a controller
         {                                                               // For an example, look at GridFieldView
@@ -31,20 +33,7 @@ namespace KantoorInrichting.Views
             LoginMethod(UsernameTB.Text, PasswordTB.Text);
         }
 
-        public string GetSHA1(string Passwordt)
-        {
-            SHA1CryptoServiceProvider sh = new SHA1CryptoServiceProvider();
-            sh.ComputeHash(ASCIIEncoding.ASCII.GetBytes(Passwordt));
-            byte[] re = sh.Hash;
-            StringBuilder sb = new StringBuilder();
-            foreach (byte b in re)
-            {
-                sb.Append(b.ToString("x2"));
-            }
-
-            return sb.ToString();
-
-        }
+       
 
         public void LoginMethod(string UsernameField, string PasswordField)
         {
@@ -55,7 +44,7 @@ namespace KantoorInrichting.Views
             string PASSWORD = "";
             string ROLE = "";
             int attempts = 0;
-            string hash = GetSHA1(PasswordField);
+            string hash = controllerLogin.GetSHA1(PasswordField);
 
             // Get data only when password and username match
             var linqInloggen =
