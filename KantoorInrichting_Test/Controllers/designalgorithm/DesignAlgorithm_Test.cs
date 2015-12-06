@@ -17,7 +17,7 @@ namespace KantoorInrichting_Test.Controllers.designalgorithm {
     }
 
     public interface IDesignAlgorithm {
-        List<ChairTablePair> Design( int people, int width, int height, int margin, DesignOrientation orientation );
+        List<ChairTablePair> Design( ProductModel exampleChair, ProductModel exampleTable, int people, int width, int height, int margin, DesignOrientation orientation );
     }
 
     public class StandardDesign : IDesignAlgorithm {
@@ -29,33 +29,29 @@ namespace KantoorInrichting_Test.Controllers.designalgorithm {
 
         private DesignOrientation _orientation;
 
-        public List<ChairTablePair> Design( int people, int width, int height, int margin, DesignOrientation orientation ) {
-            _maxX = width;
-            _maxY = height;
-            _margin = margin;
-            _amountOfProducts = people * 2; //chairs and tables
-            _orientation = orientation;
-            List<ChairTablePair> design = new List<ChairTablePair>();
-            for( int i = 0; i < people; i++ ) {
-                // Testing chairs and tables
-                ProductModel chair = new ProductModel() {
-                    amount = 1,
-                    brand = "Ahrend",
-                    category = "Chair",
-                    width = 1,
-                    height = 1
-                };
-                ProductModel table = new ProductModel() {
-                    amount = 1,
-                    brand = "TheTableCompany",
-                    category = "table",
-                    width = 2,
-                    height = 1
-                };
-                design.Add(CreatePair(chair, table));
+        public List<ChairTablePair> Design( ProductModel chair, ProductModel table, int people, int width, int height, int margin, DesignOrientation orientation ) {
+            ChairTablePair pair = CreatePair(chair, table);
+            List<PointF> possibilities;
+            if (orientation == DesignOrientation.Right || orientation == DesignOrientation.Left) {
+                possibilities = CalculatePossibilitiesHorizontalOrientation(pair, width, height, margin, orientation);
             }
-            return OrderRoom(design);
+
+            return null;
         }
+
+        public List<PointF> CalculatePossibilitiesHorizontalOrientation(ChairTablePair pair, int width, int height, int margin, DesignOrientation orientation) {
+            List<PointF> possibilities = new List<PointF>();
+            int columns = width/(pair.Size.Width+(margin*2));
+            int rows = height/(pair.Size.Height+(margin*2));
+            for (int i = 0; i < columns; i++) {
+                // TODO get all possibilities (use rectangles to create protected spaces and check if they don't intersect!
+                if (i == 0) {
+                    possibilities.Add(new PointF(width-pair.Size.Width, (height/2)-(pair.Size.Height/2)));
+                    i++;
+                }
+            }
+            return possibilities;
+        } 
 
         private List<ChairTablePair> OrderRoom( List<ChairTablePair> list ) {
             int currentX = 0;
@@ -74,18 +70,24 @@ namespace KantoorInrichting_Test.Controllers.designalgorithm {
         }
 
         private void OrderRoomHorizontal( List<ChairTablePair> list ) {
+
             int incX = ( _orientation == DesignOrientation.Right ) ? -( list[ 0 ].Size.Width + _margin ) : list[ 0 ].Size.Width + _margin;
-            int incY = list[ 0 ].Size.Height;
+            int incY = list[ 0 ].Size.Height + _margin;
             int currentX = (_orientation == DesignOrientation.Right) ? _maxX - list[0].Size.Width : 0;
             int currentY = 0;
-            for( int i = 0; i < list.Count; i++ ) {
-                ChairTablePair current = list[i];
+            int maxPairsOnRow = (_maxX/(list[0].Size.Width+_margin))+1;
+            int maxPairsOnCol = (_maxY/(list[0].Size.Height+_margin))+1;
+            Console.WriteLine("Width = {0} Height = {1}", list[0].Size.Width, list[0].Size.Height);
+            for (int i = 0; i < list.Count; i++) {
                 if (i == 0) {
-                    current.Location = new Point(currentX, _maxY/2);
+                    Console.WriteLine("Setting teacher position");
                 }
-                // TODO SET OTHER PAIRS
-                currentX += incX;
-                currentY += incY;
+                else {
+
+                    Console.WriteLine("Setting student {0} position", i);
+                }
+
+                
             }
         }
 
@@ -128,57 +130,41 @@ namespace KantoorInrichting_Test.Controllers.designalgorithm {
     }
 
     [TestClass]
-    public class DesignAlgorithm_Test {
-
-        private IDesignAlgorithm _algorithm;
+    public class StandardDesign_Test {
 
         [TestMethod]
-        public void ShouldReturnListOfPairs() {
-            _algorithm = new StandardDesign();
-            Assert.IsInstanceOfType(_algorithm.Design(10, 10, 10, 1, DesignOrientation.Top), typeof(List<ChairTablePair>));
+        public void ShouldCreateAPairOfProducts() {
+            StandardDesign algo = new StandardDesign();
+            ProductModel chair = new ProductModel() {
+                brand = "Ahrend",
+                width = 1,
+                height = 1
+            };
+            ProductModel table = new ProductModel() {
+                brand = "TableCompany",
+                width = 2,
+                height = 1
+            };
+            Assert.IsInstanceOfType(algo.CreatePair(chair, table), typeof(ChairTablePair));
         }
 
         [TestMethod]
-        public void ShouldReturnListWithRightAmountOfPairs() {
-            _algorithm = new StandardDesign();
-            int expectedResult = 10; // 10 pairs of tables and chairs
-            int result = _algorithm.Design(10, 10, 10, 1, DesignOrientation.Top).Count;
-            Assert.IsTrue(result == expectedResult);
-        }
-
-        [TestMethod]
-        public void ShouldReturnListWithPairs_WithCorrectSize_TopOrientation() {
-            _algorithm = new StandardDesign();
-            int expectedWidth = 2;
-            int expectedHeight = 2;
-            Size returnedSize = _algorithm.Design(10, 10, 10, 1, DesignOrientation.Top)[ 0 ].Size;
-            int actualWidth = returnedSize.Width;
-            int actualHeight = returnedSize.Height;
-            Assert.IsTrue(actualHeight == expectedHeight && actualWidth == expectedWidth);
-        }
-
-        [TestMethod]
-        public void ShouldReturnListWithPairs_WithCorrectSize_LeftOrientation() {
-            _algorithm = new StandardDesign();
-            int expectedWidth = 2;
-            int expectedHeight = 2;
-            Size returnedSize = _algorithm.Design(10, 10, 10, 1, DesignOrientation.Left)[ 0 ].Size;
-            int actualWidth = returnedSize.Width;
-            int actualHeight = returnedSize.Height;
-
-            Assert.IsTrue(actualHeight == expectedHeight && actualWidth == expectedWidth);
-        }
-
-        [TestMethod]
-        public void ShouldReturnListWithPairs_WithCorrectLocation_OfTeacherChairTablePair() {
-            _algorithm = new StandardDesign();
-            int expectedY = 4;
-            int expectedX = 0;
-            Point location = _algorithm.Design(10, 10, 10, 1, DesignOrientation.Top)[ 0 ].Location;
-            int actualY = location.Y;
-            int actualX = location.X;
-
-            Assert.IsTrue(actualX == expectedX && actualY == expectedY);
+        public void ShouldCalculateAllPossibilitiesInRoom_WithHorizontalOrientation() {
+            // Arrange
+            StandardDesign algo = new StandardDesign();
+            ProductModel chair = new ProductModel() {
+                brand = "Ahrend",
+                width = 1,
+                height = 1
+            };
+            ProductModel table = new ProductModel() {
+                brand = "TableCompany",
+                width = 2,
+                height = 1
+            };
+            ChairTablePair pair = algo.CreatePair(chair, table);
+            List<PointF> result = algo.CalculatePossibilitiesHorizontalOrientation(pair, 10, 10, 1, DesignOrientation.Right);
+            Assert.IsTrue(result.Count > 1);
         }
     }
 }
