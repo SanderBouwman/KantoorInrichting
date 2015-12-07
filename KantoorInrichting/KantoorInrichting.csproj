@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -49,6 +49,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\Algorithm\IDesignAlgorithm.cs" />
+    <Compile Include="Controllers\Algorithm\TestSetup\TestSetupDesign.cs" />
     <Compile Include="Controllers\DatabaseController.cs" />
     <Compile Include="Controllers\IController.cs" />
     <Compile Include="Controllers\Login\LoginController.cs" />
@@ -57,7 +59,7 @@
     <Compile Include="Controllers\Product\ProductFactory.cs" />
     <Compile Include="Controllers\PropertyComparer.cs" />
     <Compile Include="Controllers\SortableBindingList.cs" />
-	<Compile Include="Controllers\Product\CategoryManagerController.cs" />
+    <Compile Include="Controllers\Product\CategoryManagerController.cs" />
     <Compile Include="Controllers\Inventory\InventoryController.cs" />
     <Compile Include="KantoorInrichtingDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -68,6 +70,7 @@
     <Compile Include="Models\Maps\Map.cs" />
     <Compile Include="Models\Placement\Polygon.cs" />
     <Compile Include="Models\Placement\Vector.cs" />
+    <Compile Include="Models\Product\ChairTablePair.cs" />
     <Compile Include="Models\Product\PlacedProduct.cs" />
     <Compile Include="Models\Product\ProductModel.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -265,7 +268,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\Assortment\" />
-    <Folder Include="Controllers\Inventory\" />
     <Folder Include="Models\Assortment\" />
     <Folder Include="Models\Inventory\" />
     <Folder Include="Properties\DataSources\" />
