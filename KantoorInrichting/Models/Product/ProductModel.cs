@@ -118,6 +118,7 @@ namespace KantoorInrichting.Models.Product
             }
             catch (Exception ex)
             {
+                string v = ex.Data.ToString();
                 image = Properties.Resources.No_Image_Available;
             }
         }

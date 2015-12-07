@@ -274,6 +274,7 @@ namespace KantoorInrichting.Views.Assortment
                 }
                 catch (IOException ex)
                 {
+                    string v = ex.Data.ToString();
                     MessageBox.Show("Er bestaat al een bestand met deze naam");
                     return false;
                 }

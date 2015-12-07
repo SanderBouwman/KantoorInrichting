@@ -88,6 +88,7 @@ namespace KantoorInrichting_Test.Controllers.designalgorithm {
                     result.Add(newPair);
                 }
                 catch (ArgumentOutOfRangeException e) {
+                    string v = e.Data.ToString();
                     Console.WriteLine("Does not exist");
                 }
             }

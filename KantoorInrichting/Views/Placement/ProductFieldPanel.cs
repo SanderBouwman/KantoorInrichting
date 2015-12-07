@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace KantoorInrichting.Views.Placement
 {
-    public partial class ProductFieldPanel : UserControl
+    public partial class ProductFieldPanel : Panel
     {
         public ProductFieldPanel()
         {
-            InitializeComponent();
+            DoubleBuffered = true;
+        }
+
+        private void ProductFieldPanel_DragEnter(object sender, DragEventArgs e)
+        {
+
         }
     }
 }

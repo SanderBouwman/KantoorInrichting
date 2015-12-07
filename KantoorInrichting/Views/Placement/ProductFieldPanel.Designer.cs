@@ -33,9 +33,7 @@
             // ProductFieldPanel
             // 
             this.AllowDrop = true;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Name = "ProductFieldPanel";
+            this.DragEnter += new System.Windows.Forms.DragEventHandler(this.ProductFieldPanel_DragEnter);
             this.ResumeLayout(false);
 
         }

@@ -34,7 +34,7 @@
             this.cbx_MoveValue = new System.Windows.Forms.ComboBox();
             this.cbx_TurnValue = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.productPanel = new System.Windows.Forms.Panel();
+            this.productFieldPanel1 = new KantoorInrichting.Views.Placement.ProductFieldPanel();
             this.productInfo1 = new KantoorInrichting.Views.Placement.ProductInfo();
             this.productList1 = new KantoorInrichting.Views.Placement.ProductList();
             this.panel1.SuspendLayout();
@@ -79,13 +79,14 @@
             this.cbx_MoveValue.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_MoveValue.FormattingEnabled = true;
             this.cbx_MoveValue.Items.AddRange(new object[] {
-            "Up",
             "Down",
             "Left",
-            "Right"});
+            "Right",
+            "Up"});
             this.cbx_MoveValue.Location = new System.Drawing.Point(0, 35);
             this.cbx_MoveValue.Name = "cbx_MoveValue";
             this.cbx_MoveValue.Size = new System.Drawing.Size(121, 21);
+            this.cbx_MoveValue.Sorted = true;
             this.cbx_MoveValue.TabIndex = 3;
             // 
             // cbx_TurnValue
@@ -113,13 +114,14 @@
             this.panel1.Size = new System.Drawing.Size(202, 63);
             this.panel1.TabIndex = 7;
             // 
-            // productPanel
+            // productFieldPanel1
             // 
-            this.productPanel.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.productPanel.Location = new System.Drawing.Point(3, 3);
-            this.productPanel.Name = "productPanel";
-            this.productPanel.Size = new System.Drawing.Size(685, 664);
-            this.productPanel.TabIndex = 8;
+            this.productFieldPanel1.AllowDrop = true;
+            this.productFieldPanel1.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.productFieldPanel1.Location = new System.Drawing.Point(3, 3);
+            this.productFieldPanel1.Name = "productFieldPanel1";
+            this.productFieldPanel1.Size = new System.Drawing.Size(707, 664);
+            this.productFieldPanel1.TabIndex = 8;
             // 
             // productInfo1
             // 
@@ -147,7 +149,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.Controls.Add(this.productPanel);
+            this.Controls.Add(this.productFieldPanel1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.productInfo1);
             this.Controls.Add(this.productList1);
@@ -160,15 +162,14 @@
         }
 
         #endregion
-
-        private ProductList productList1;
-        private ProductInfo productInfo1;
         private System.Windows.Forms.Button btn_Turn;
         private System.Windows.Forms.Button btn_Move;
         private System.Windows.Forms.Button btn_AddProduct;
-        private System.Windows.Forms.ComboBox cbx_MoveValue;
-        private System.Windows.Forms.ComboBox cbx_TurnValue;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel productPanel;
+        public ProductInfo productInfo1;
+        public System.Windows.Forms.ComboBox cbx_MoveValue;
+        public System.Windows.Forms.ComboBox cbx_TurnValue;
+        public ProductList productList1;
+        public ProductFieldPanel productFieldPanel1;
     }
 }

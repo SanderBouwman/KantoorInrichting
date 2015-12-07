@@ -196,7 +196,7 @@ namespace KantoorInrichting.Models.Product
             {
                 //Make a polygon list and add all existing products' polygons to it.
                 List<Polygon> list = new List<Polygon>();
-                foreach (PlacedProduct pp in ProductAdding.ppList)
+                foreach (PlacedProduct pp in PlacementController.ppList)
                 {
                     //Test if the selected polygon is himself
                     if (pp.Poly == this.Poly)
