@@ -30,7 +30,6 @@
         {
             this.btn_Turn = new System.Windows.Forms.Button();
             this.btn_Move = new System.Windows.Forms.Button();
-            this.btn_AddProduct = new System.Windows.Forms.Button();
             this.cbx_MoveValue = new System.Windows.Forms.ComboBox();
             this.cbx_TurnValue = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -62,32 +61,19 @@
             this.btn_Move.UseVisualStyleBackColor = false;
             this.btn_Move.Click += new System.EventHandler(this.btn_Move_Click);
             // 
-            // btn_AddProduct
-            // 
-            this.btn_AddProduct.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_AddProduct.BackColor = System.Drawing.SystemColors.Control;
-            this.btn_AddProduct.Location = new System.Drawing.Point(716, 417);
-            this.btn_AddProduct.Name = "btn_AddProduct";
-            this.btn_AddProduct.Size = new System.Drawing.Size(94, 45);
-            this.btn_AddProduct.TabIndex = 5;
-            this.btn_AddProduct.Text = "Wijzig meubel naar:";
-            this.btn_AddProduct.UseVisualStyleBackColor = false;
-            this.btn_AddProduct.Click += new System.EventHandler(this.btn_AddProduct_Click);
-            // 
             // cbx_MoveValue
             // 
             this.cbx_MoveValue.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_MoveValue.FormattingEnabled = true;
             this.cbx_MoveValue.Items.AddRange(new object[] {
+            "Up",
             "Down",
             "Left",
-            "Right",
-            "Up"});
-            this.cbx_MoveValue.Location = new System.Drawing.Point(0, 28);
+            "Right"});
+            this.cbx_MoveValue.Location = new System.Drawing.Point(2, 33);
             this.cbx_MoveValue.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cbx_MoveValue.Name = "cbx_MoveValue";
             this.cbx_MoveValue.Size = new System.Drawing.Size(121, 21);
-            this.cbx_MoveValue.Sorted = true;
             this.cbx_MoveValue.TabIndex = 3;
             // 
             // cbx_TurnValue
@@ -122,8 +108,10 @@
             this.productFieldPanel1.Location = new System.Drawing.Point(2, 2);
             this.productFieldPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.productFieldPanel1.Name = "productFieldPanel1";
-            this.productFieldPanel1.Size = new System.Drawing.Size(530, 540);
+            this.productFieldPanel1.Size = new System.Drawing.Size(600, 600);
             this.productFieldPanel1.TabIndex = 8;
+            this.productFieldPanel1.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDrop_DragDrop);
+            this.productFieldPanel1.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragDrop_DragEnter);
             this.productFieldPanel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Mousedown_Panel);
             // 
             // productInfo1
@@ -158,7 +146,6 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.productInfo1);
             this.Controls.Add(this.productList1);
-            this.Controls.Add(this.btn_AddProduct);
             this.Name = "ProductAdding";
             this.Size = new System.Drawing.Size(1120, 670);
             this.panel1.ResumeLayout(false);
@@ -169,7 +156,6 @@
         #endregion
         private System.Windows.Forms.Button btn_Turn;
         private System.Windows.Forms.Button btn_Move;
-        private System.Windows.Forms.Button btn_AddProduct;
         private System.Windows.Forms.Panel panel1;
         public ProductInfo productInfo1;
         public System.Windows.Forms.ComboBox cbx_MoveValue;

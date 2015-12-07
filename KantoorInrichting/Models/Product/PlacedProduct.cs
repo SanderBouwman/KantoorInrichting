@@ -190,7 +190,46 @@ namespace KantoorInrichting.Models.Product
 
         }
 
-        public List<Polygon> PolyList
+
+
+        public void MoveTo(Point newLocation)
+        {
+            location = newLocation;
+            setAngle(currentAngle);
+        }
+
+        public Polygon getVirtualPolygon(Point newLocation)
+        {
+            Polygon virtualPolygon = new Polygon();
+
+            float deltaX = newLocation.X - location.X;
+            float deltaY = newLocation.Y - location.Y;
+
+            //Make new points/vectors
+            Vector vectorTopLeft =      new Vector(cornerPoints[0].X + deltaX, cornerPoints[0].Y + deltaY);
+            Vector vectorTopRight =     new Vector(cornerPoints[1].X + deltaX, cornerPoints[1].Y + deltaY);
+            Vector vectorBottomRight =  new Vector(cornerPoints[2].X + deltaX, cornerPoints[2].Y + deltaY);
+            Vector vectorBottomLeft =   new Vector(cornerPoints[3].X + deltaX, cornerPoints[3].Y + deltaY);
+
+            //Add the points
+            virtualPolygon.Points.Add(vectorTopLeft);
+            virtualPolygon.Points.Add(vectorTopRight);
+            virtualPolygon.Points.Add(vectorBottomRight);
+            virtualPolygon.Points.Add(vectorBottomLeft);
+            virtualPolygon.Points.Add(vectorTopLeft);
+
+            //Build
+            virtualPolygon.BuildEdges();
+
+            return virtualPolygon;
+        }
+
+
+        //This is only used when moving. It will check if it doesn't run into walls. That is it's only function. WALLS.
+        /// <summary>
+        /// Gives a list of PlacedProduct as well as walls?
+        /// </summary>
+        private List<Polygon> PolyList
         {
             get
             {
@@ -215,18 +254,30 @@ namespace KantoorInrichting.Models.Product
                 Polygon pBottom = new Polygon();
                 Polygon pLeft = new Polygon();
 
+                //Points for corners
+                //Point pointTopLeft = new Point(0, 0);
+                //Point pointTopRight = new Point(ProductAdding.productFieldPanel.Width, 0);
+                //Point pointBottomLeft = new Point(0, ProductAdding.productFieldPanel.Height);
+                //Point pointBottomRight = new Point(ProductAdding.productFieldPanel.Width, ProductAdding.productFieldPanel.Height);
+
+                Point pointTopLeft = new Point(0, 0);
+                Point pointTopRight = new Point(600, 0);
+                Point pointBottomLeft = new Point(0, 600);
+                Point pointBottomRight = new Point(600, 600);
+                
+
                 //Add points/vectors
-                pTop.Points.Add(new Vector(3,3));
-                pTop.Points.Add(new Vector(680, 3));
+                pTop.Points.Add(new Vector(pointTopLeft.X, pointTopLeft.Y));
+                pTop.Points.Add(new Vector(pointTopRight.X, pointTopRight.Y));
                 //
-                pRight.Points.Add(new Vector(680, 3));
-                pRight.Points.Add(new Vector(680, 660));
+                pRight.Points.Add(new Vector(pointTopRight.X, pointTopRight.Y));
+                pRight.Points.Add(new Vector(pointBottomRight.X, pointBottomRight.Y));
                 //
-                pBottom.Points.Add(new Vector(680, 660));
-                pBottom.Points.Add(new Vector(3,660));
+                pBottom.Points.Add(new Vector(pointBottomRight.X, pointBottomRight.Y));
+                pBottom.Points.Add(new Vector(pointBottomLeft.X,pointBottomLeft.Y));
                 //
-                pLeft.Points.Add(new Vector(3, 660));
-                pLeft.Points.Add(new Vector(3,3));
+                pLeft.Points.Add(new Vector(pointBottomLeft.X, pointBottomLeft.Y));
+                pLeft.Points.Add(new Vector(pointTopLeft.X,pointTopLeft.Y));
 
 
                 //Build edges
