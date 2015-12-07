@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using KantoorInrichting.Models.Maps;
 
 namespace KantoorInrichting {
     class Program {
@@ -29,6 +30,13 @@ namespace KantoorInrichting {
             ProductModel p10 = new ProductModel(10,"Red Table", "Dem Tables", "A", "tafel",  100, 300, 100, "Table - Dining", 0, "tafel.jpg");
             ProductModel p11 = new ProductModel(11,"Yellow Coffee Table", "Dem Tables", "B",  "koffietafel", 50, 100, 75, "Table - Coffee", 6, "tafel.jpg");
             ProductModel p12 = new ProductModel(12,"Blue-Board", "Color Board", "H", "whiteboard",  10, 200, 200, "Board - White Board", 4, null);
+
+            Map Plattegrond1 = new Map("T", 4, "T4,44");
+            Map Plattegrond2 = new Map("T", 2, "T2,44");
+            Map Plattegrond3 = new Map("T", 3, "T3,44");
+            Map Plattegrond4 = new Map("T", 1, "T1,44");
+            Map Plattegrond5 = new Map("T", 3, "T3,44");
+            Map Plattegrond6 = new Map("T", 4, "T4,44");
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

@@ -7,16 +7,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using KantoorInrichting.Models.Maps;
 
 namespace KantoorInrichting.Views.Maps
 {
     public partial class MapsScreen : UserControl
     {
         public MainFrame mainFrame;
-        public MapsScreen(MainFrame mainFrame)                        
-        {                                                                                                                                
+        public MapsScreen(MainFrame mainFrame)
+        {
             this.mainFrame = mainFrame;
             InitializeComponent();
+            Map.result = Map.list;
+            this.MapsGridView1.DataSource = Map.result;
+
         }
+
+
     }
 }
