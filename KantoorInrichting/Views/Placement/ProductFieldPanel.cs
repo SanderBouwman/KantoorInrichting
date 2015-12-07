@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using KantoorInrichting.Models.Placement;
+using KantoorInrichting.Models.Product;
+using KantoorInrichting.Controllers.Placement;
 
 namespace KantoorInrichting.Views.Placement
 {
@@ -18,6 +21,11 @@ namespace KantoorInrichting.Views.Placement
         }
 
         private void ProductFieldPanel_DragEnter(object sender, DragEventArgs e)
+        {
+
+        }
+
+        private void Mousedown(object sender, MouseEventArgs e)
         {
 
         }

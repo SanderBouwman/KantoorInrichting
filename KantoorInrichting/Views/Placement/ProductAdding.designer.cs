@@ -83,7 +83,8 @@
             "Left",
             "Right",
             "Up"});
-            this.cbx_MoveValue.Location = new System.Drawing.Point(0, 35);
+            this.cbx_MoveValue.Location = new System.Drawing.Point(0, 28);
+            this.cbx_MoveValue.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cbx_MoveValue.Name = "cbx_MoveValue";
             this.cbx_MoveValue.Size = new System.Drawing.Size(121, 21);
             this.cbx_MoveValue.Sorted = true;
@@ -118,10 +119,12 @@
             // 
             this.productFieldPanel1.AllowDrop = true;
             this.productFieldPanel1.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.productFieldPanel1.Location = new System.Drawing.Point(3, 3);
+            this.productFieldPanel1.Location = new System.Drawing.Point(2, 2);
+            this.productFieldPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.productFieldPanel1.Name = "productFieldPanel1";
-            this.productFieldPanel1.Size = new System.Drawing.Size(707, 664);
+            this.productFieldPanel1.Size = new System.Drawing.Size(530, 540);
             this.productFieldPanel1.TabIndex = 8;
+            this.productFieldPanel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Mousedown_Panel);
             // 
             // productInfo1
             // 
@@ -131,6 +134,7 @@
             this.productInfo1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.productInfo1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.productInfo1.Location = new System.Drawing.Point(716, 468);
+            this.productInfo1.Margin = new System.Windows.Forms.Padding(4);
             this.productInfo1.Name = "productInfo1";
             this.productInfo1.Size = new System.Drawing.Size(398, 148);
             this.productInfo1.TabIndex = 6;
@@ -140,6 +144,7 @@
             this.productList1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.productList1.AutoScroll = true;
             this.productList1.Location = new System.Drawing.Point(694, 0);
+            this.productList1.Margin = new System.Windows.Forms.Padding(4);
             this.productList1.Name = "productList1";
             this.productList1.Size = new System.Drawing.Size(420, 374);
             this.productList1.TabIndex = 0;

@@ -190,7 +190,7 @@ namespace KantoorInrichting.Models.Product
 
         }
 
-        private List<Polygon> PolyList
+        public List<Polygon> PolyList
         {
             get
             {

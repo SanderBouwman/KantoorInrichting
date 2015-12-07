@@ -140,7 +140,7 @@ namespace KantoorInrichting.Controllers.Placement
         {
             int angle = 15;
 
-            if (d == Direction.CLOCKWISE) { angle *= -1; }
+            if (d == Direction.COUNTERCLOCKWISE) { angle *= -1; }
 
             placedP.addAngle(angle);
 

@@ -58,5 +58,25 @@ namespace KantoorInrichting.Views.Placement
             else if (cbx_MoveValue.Text == "Right") direction = PlacementController.Direction.RIGHT;
             controller.btn_Move(direction);
         }
+
+        private void Mousedown_Panel(object sender, MouseEventArgs e)
+        {
+            foreach (PlacedProduct PlacedP in PlacementController.ppList)
+            {
+                var MouseLocation = new Point(e.X, e.Y);
+                MouseLocation = hoofdscherm.PointToClient(MouseLocation);
+                MouseLocation = this.PointToClient(MouseLocation);
+                Polygon P = new Polygon();
+                P.Points.Add(new Vector(e.X, e.Y));
+                P.BuildEdges();
+                PolygonCollisionController.PolygonCollisionResult r = PolygonCollisionController.PolygonCollision(P, PlacedP.Poly, new Vector(0, 0));
+
+                if (r.WillIntersect)
+                {
+                   DoDragDrop(PlacedP, DragDropEffects.Copy);
+                   break;
+                }
+            }
+        }
     }
 }

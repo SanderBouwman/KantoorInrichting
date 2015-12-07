@@ -74,5 +74,13 @@ namespace KantoorInrichting.Views
             hoofdscherm.categoryManagerController = new CategoryManagerController();
             hoofdscherm.categoryManager = new CategoryManager(hoofdscherm.categoryManagerController);
         }
+
+        private void MapsButton_Click(object sender, EventArgs e)
+        {
+            hoofdscherm.MapsScreen.Visible = true;
+            hoofdscherm.MapsScreen.Enabled = true;
+            this.Visible = false;
+            hoofdscherm.MapsScreen.BringToFront();
+        }
     }
 }

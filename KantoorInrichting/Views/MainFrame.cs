@@ -34,6 +34,7 @@ namespace KantoorInrichting
             this.assortmentScreen = new Views.Assortment.AssortmentScreen(this);
             this.placement = new Views.Placement.ProductAdding(this);
             this.loginScreen1 = new Views.LoginScreen(this);
+            this.MapsScreen = new Views.Maps.MapsScreen(this);
             //
             // assortmentScreen
             //
@@ -73,13 +74,22 @@ namespace KantoorInrichting
             this.loginScreen1.Name = "inventoryScreen1";
             this.loginScreen1.TabIndex = 3;
 
-           
+            // 
+            // inventoryScreen1
+            // 
+            this.MapsScreen.Anchor = ((AnchorStyles)((((AnchorStyles.Top | AnchorStyles.Bottom) | AnchorStyles.Left) | AnchorStyles.Right)));
+            this.MapsScreen.Name = "Plattegronden";
+            this.MapsScreen.TabIndex = 1;
+          
+
+
             AddPanelToMainscreen(assortmentScreen);
             AddPanelToMainscreen(inventoryScreen1);
             AddPanelToMainscreen(gridFieldView);
             AddPanelToMainscreen(mainScreen1);
             AddPanelToMainscreen(loginScreen1);
             AddPanelToMainscreen(placement);
+            AddPanelToMainscreen(MapsScreen);
 
             //after adding the panels make the loginscreen visisble (other then default)
 
