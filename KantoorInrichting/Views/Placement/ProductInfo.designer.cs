@@ -118,6 +118,7 @@
             this.pbx_Image.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbx_Image.TabIndex = 23;
             this.pbx_Image.TabStop = false;
+            this.pbx_Image.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbx_Image_MouseDown);
             // 
             // ProductInfo
             // 

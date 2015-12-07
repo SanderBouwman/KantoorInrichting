@@ -14,18 +14,18 @@ namespace KantoorInrichting.Views.Placement
 {
     public partial class ProductInfo : UserControl
     {
-        public KantoorInrichting.Models.Product.ProductModel product { get; private set; }
+        public ProductModel product { get; private set; }
 
 
         public ProductInfo()
         {
             InitializeComponent();
             
-            setProduct(new KantoorInrichting.Models.Product.ProductModel());
+            setProduct(new ProductModel());
         }
        
 
-        public void setProduct(KantoorInrichting.Models.Product.ProductModel p)
+        public void setProduct(ProductModel p)
         {
             product = p;
 
@@ -35,7 +35,11 @@ namespace KantoorInrichting.Views.Placement
             txt_Dimension.Text = product.length.ToString() + "x" + product.width.ToString() + "x" + product.height.ToString();
 
             pbx_Image.Image = product.image;
-            this.Invalidate();
+        }
+
+        private void pbx_Image_MouseDown(object sender, MouseEventArgs e)
+        {
+            pbx_Image.DoDragDrop(product, DragDropEffects.Copy);
         }
     }
 }
