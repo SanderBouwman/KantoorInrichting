@@ -63,10 +63,10 @@
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.kantoorInrichtingDataSet = new KantoorInrichting.KantoorInrichtingDataSet();
             this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.productTableAdapter = new KantoorInrichting.KantoorInrichtingDataSetTableAdapters.ProductTableAdapter();
+            this.productTableAdapter = new KantoorInrichting.KantoorInrichtingDataSetTableAdapters.productTableAdapter();
             this.tableAdapterManager = new KantoorInrichting.KantoorInrichtingDataSetTableAdapters.TableAdapterManager();
             this.categoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.categoryTableAdapter = new KantoorInrichting.KantoorInrichtingDataSetTableAdapters.CategoryTableAdapter();
+            this.categoryTableAdapter = new KantoorInrichting.KantoorInrichtingDataSetTableAdapters.categoryTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kantoorInrichtingDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).BeginInit();
@@ -368,8 +368,8 @@
             // tableAdapterManager
             // 
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.CategoryTableAdapter = null;
-            this.tableAdapterManager.ProductTableAdapter = this.productTableAdapter;
+            this.tableAdapterManager.categoryTableAdapter = null;
+            this.tableAdapterManager.productTableAdapter = this.productTableAdapter;
             this.tableAdapterManager.UpdateOrder = KantoorInrichting.KantoorInrichtingDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
             // categoryBindingSource
@@ -466,9 +466,9 @@
         private System.Windows.Forms.Label nameLabel;
         private KantoorInrichtingDataSet kantoorInrichtingDataSet;
         private System.Windows.Forms.BindingSource productBindingSource;
-        private KantoorInrichtingDataSetTableAdapters.ProductTableAdapter productTableAdapter;
+        private KantoorInrichtingDataSetTableAdapters.productTableAdapter productTableAdapter;
         private KantoorInrichtingDataSetTableAdapters.TableAdapterManager tableAdapterManager;
         private System.Windows.Forms.BindingSource categoryBindingSource;
-        private KantoorInrichtingDataSetTableAdapters.CategoryTableAdapter categoryTableAdapter;
+        private KantoorInrichtingDataSetTableAdapters.categoryTableAdapter categoryTableAdapter;
     }
 }

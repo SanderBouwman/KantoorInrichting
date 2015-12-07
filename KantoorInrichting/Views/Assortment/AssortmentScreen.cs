@@ -20,15 +20,15 @@ namespace KantoorInrichting.Views.Assortment
         public void FillData()
         {
             //Fill the TableAdapter with data from the dataset
-            productTableAdapter.Fill(kantoorInrichtingDataSet.Product);
-            var productLijst = kantoorInrichtingDataSet.Product;
+            productTableAdapter.Fill(kantoorInrichtingDataSet.product);
+            var productLijst = kantoorInrichtingDataSet.product;
 
             //Foreach product in the database create a product object
             foreach (var product in productLijst)
             {
-                var p1 = new ProductModel(product.Product_ID, product.Name, product.Brand, product.Type,
-                    product.Category_ID, product.Length, product.Width, product.Height, product.Description,
-                    product.Amount, product.Image);
+                var p1 = new ProductModel(product.product_id, product.name, product.brand, product.type,
+                    product.category_id, product.length, product.width, product.height, product.description,
+                    product.amount, product.image);
             }
             dataGridView1.AutoGenerateColumns = false;
             dataGridView1.DataSource = ProductModel.list;

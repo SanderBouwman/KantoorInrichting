@@ -39,7 +39,7 @@
             this.subcategoryComboBox = new System.Windows.Forms.ComboBox();
             this.kantoorInrichtingDataSet = new KantoorInrichting.KantoorInrichtingDataSet();
             this.categoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.categoryTableAdapter = new KantoorInrichting.KantoorInrichtingDataSetTableAdapters.CategoryTableAdapter();
+            this.categoryTableAdapter = new KantoorInrichting.KantoorInrichtingDataSetTableAdapters.categoryTableAdapter();
             this.tableAdapterManager = new KantoorInrichting.KantoorInrichtingDataSetTableAdapters.TableAdapterManager();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -156,10 +156,10 @@
             // tableAdapterManager
             // 
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.CategoryTableAdapter = this.categoryTableAdapter;
-            this.tableAdapterManager.ProductTableAdapter = null;
+            this.tableAdapterManager.categoryTableAdapter = this.categoryTableAdapter;
+            this.tableAdapterManager.productTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = KantoorInrichting.KantoorInrichtingDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            this.tableAdapterManager.UserTableAdapter = null;
+            this.tableAdapterManager.userTableAdapter = null;
             // 
             // groupBox1
             // 
@@ -252,7 +252,7 @@
         private System.Windows.Forms.ComboBox subcategoryComboBox;
         private KantoorInrichtingDataSet kantoorInrichtingDataSet;
         private System.Windows.Forms.BindingSource categoryBindingSource;
-        private KantoorInrichtingDataSetTableAdapters.CategoryTableAdapter categoryTableAdapter;
+        private KantoorInrichtingDataSetTableAdapters.categoryTableAdapter categoryTableAdapter;
         private KantoorInrichtingDataSetTableAdapters.TableAdapterManager tableAdapterManager;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox textBox2;

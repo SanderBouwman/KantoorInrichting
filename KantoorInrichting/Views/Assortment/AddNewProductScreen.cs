@@ -33,12 +33,12 @@ namespace KantoorInrichting.Views.Assortment
         //Fills the category combobox with categories from the database
         public void FillComboBox()
         {
-            categoryTableAdapter.Fill(kantoorInrichtingDataSet.Category);
-            var categoryList = kantoorInrichtingDataSet.Category;
+            categoryTableAdapter.Fill(kantoorInrichtingDataSet.category);
+            var categoryList = kantoorInrichtingDataSet.category;
 
             foreach (var category in categoryList)
             {
-                categoryComboBox.Items.Add(category.Name);
+                categoryComboBox.Items.Add(category.name);
             }
         }
 
@@ -166,8 +166,8 @@ namespace KantoorInrichting.Views.Assortment
         private void CreateProductModel()
         {
             //Fill the TableAdapter with data from the dataset, select MAX Product_ID, Create an in with MAX Product_ID + 1
-            productTableAdapter.Fill((kantoorInrichtingDataSet.Product));
-            var maxProduct_ID = kantoorInrichtingDataSet.Product.Select("Product_ID = MAX(Product_ID)");
+            productTableAdapter.Fill((kantoorInrichtingDataSet.product));
+            var maxProduct_ID = kantoorInrichtingDataSet.product.Select("Product_ID = MAX(Product_ID)");
             var newProduct_ID = (int) maxProduct_ID[0]["Product_ID"] + 1;
 
             var product = new ProductModel(newProduct_ID, name, brand, type, category_ID, length, width, height,
@@ -179,25 +179,25 @@ namespace KantoorInrichting.Views.Assortment
         private void AddProductToDatabase()
         {
             //Create a newProductrow and fill the row for each corresponding column
-            var newProduct = kantoorInrichtingDataSet.Product.NewProductRow();
-            newProduct.Name = product.name;
-            newProduct.Product_ID = product.product_ID;
-            newProduct.Removed = false;
-            newProduct.Type = product.type;
-            newProduct.Brand = product.brand;
-            newProduct.Height = product.height;
-            newProduct.Width = product.width;
-            newProduct.Length = product.length;
-            newProduct.Amount = product.amount;
-            newProduct.Image = product.imageFileName;
-            newProduct.Category_ID = product.category_ID;
-            newProduct.Description = product.description;
+            var newProduct = kantoorInrichtingDataSet.product.NewproductRow();
+            newProduct.name = product.name;
+            newProduct.product_id = product.product_ID;
+            newProduct.removed = false;
+            newProduct.type = product.type;
+            newProduct.brand = product.brand;
+            newProduct.height = product.height;
+            newProduct.width = product.width;
+            newProduct.length = product.length;
+            newProduct.amount = product.amount;
+            newProduct.image = product.imageFileName;
+            newProduct.category_id = product.category_ID;
+            newProduct.description = product.description;
 
             //Try to add the new product row in the database
             try
             {
-                kantoorInrichtingDataSet.Product.Rows.Add(newProduct);
-                productTableAdapter.Update(kantoorInrichtingDataSet.Product);
+                kantoorInrichtingDataSet.product.Rows.Add(newProduct);
+                productTableAdapter.Update(kantoorInrichtingDataSet.product);
                 MessageBox.Show("Update successful");
             }
                 //If it fails remove the newly placed image from the resource folder

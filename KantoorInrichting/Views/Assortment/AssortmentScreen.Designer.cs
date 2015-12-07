@@ -51,7 +51,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.kantoorInrichtingDataSet = new KantoorInrichting.KantoorInrichtingDataSet();
             this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.productTableAdapter = new KantoorInrichting.KantoorInrichtingDataSetTableAdapters.ProductTableAdapter();
+            this.productTableAdapter = new KantoorInrichting.KantoorInrichtingDataSetTableAdapters.productTableAdapter();
             this.tableAdapterManager = new KantoorInrichting.KantoorInrichtingDataSetTableAdapters.TableAdapterManager();
             this.PanelLeft.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -269,10 +269,10 @@
             // tableAdapterManager
             // 
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.CategoryTableAdapter = null;
-            this.tableAdapterManager.ProductTableAdapter = this.productTableAdapter;
+            this.tableAdapterManager.categoryTableAdapter = null;
+            this.tableAdapterManager.productTableAdapter = this.productTableAdapter;
             this.tableAdapterManager.UpdateOrder = KantoorInrichting.KantoorInrichtingDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            this.tableAdapterManager.UserTableAdapter = null;
+            this.tableAdapterManager.userTableAdapter = null;
             // 
             // AssortmentScreen
             // 
@@ -306,7 +306,7 @@
         private System.Windows.Forms.Button addProductButton;
         private KantoorInrichtingDataSet kantoorInrichtingDataSet;
         private System.Windows.Forms.BindingSource productBindingSource;
-        private KantoorInrichtingDataSetTableAdapters.ProductTableAdapter productTableAdapter;
+        private KantoorInrichtingDataSetTableAdapters.productTableAdapter productTableAdapter;
         private KantoorInrichtingDataSetTableAdapters.TableAdapterManager tableAdapterManager;
         private System.Windows.Forms.DataGridViewTextBoxColumn Product_ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Naam;
