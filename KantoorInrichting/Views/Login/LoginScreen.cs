@@ -21,7 +21,9 @@ namespace KantoorInrichting.Views
                                                                         // -Robin
             this.mainFrame = mainFrame;
             InitializeComponent();
+           
         }
+
 
         private void GeneralLoginError_Click(object sender, EventArgs e)
         {
@@ -134,8 +136,8 @@ namespace KantoorInrichting.Views
 
         private void LoginScreen_Load_1(object sender, EventArgs e)
         {
-           // UsernameTB.Text = "Rick";
-           // PasswordTB.Text = "rick";
+            UsernameTB.Text = "Rick";
+            PasswordTB.Text = "rick";
         }
 
        
@@ -143,6 +145,17 @@ namespace KantoorInrichting.Views
         private void PasswordTB_TextChanged_1(object sender, EventArgs e)
         {
             PasswordTB.PasswordChar = '*';
+
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Enter)
+            {
+                LoginButton.PerformClick();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
     }
 }
