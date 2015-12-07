@@ -78,7 +78,7 @@ namespace KantoorInrichting.Views.Inventory
                 {
                     foreach (ProductModel product in ProductModel.list)
                     {
-                        if (product.amount < 1 && product.Category == DropdownCategorie.SelectedItem.ToString())
+                        if (product.amount < 1 && product.category == DropdownCategorie.SelectedItem.ToString())
                         {
                             ProductModel.result.Add(product);
                         }
@@ -89,7 +89,7 @@ namespace KantoorInrichting.Views.Inventory
                 {
                     foreach (ProductModel product in ProductModel.list)
                     {
-                        if (product.amount < 1 && product.Category == DropdownCategorie.SelectedItem.ToString())
+                        if (product.amount < 1 && product.category == DropdownCategorie.SelectedItem.ToString())
                         {
                             ProductModel.result.Remove(product);
                         }

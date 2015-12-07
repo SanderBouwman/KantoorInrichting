@@ -18,7 +18,6 @@ namespace KantoorInrichting {
         {
 
             ProductModel p1 = new ProductModel(1, "stoel henk", "Ahrend", "A1", "kantoorstoel", 140, 40, 40, "hele fijne stoel", 0,"stoel.jpg");
-             
             ProductModel p2 = new ProductModel(2,"stoel piet", "Quantore", "B1", "stoel",  140, 40, 40, "hele fijne stoel", 124, "stoel.jpg");
             ProductModel p3 = new ProductModel(3,"tafel anna", "Ahrend", "243A1",  "bureaustoel", 100, 140, 40, "hele fijne tafel", 0, "tafel.jpg");
             ProductModel p4 = new ProductModel(4,"tafel grietje", "Ahrend", "A4521", "tafel", 140, 200, 140, "hele fijne tafel", 124, "tafel.jpg");

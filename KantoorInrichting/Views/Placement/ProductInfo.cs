@@ -30,7 +30,7 @@ namespace KantoorInrichting.Views.Placement
             product = p;
 
             txt_Name.Text = product.name;
-            txt_Brand.Text = product.Brand;
+            txt_Brand.Text = product.brand;
             txt_Type.Text = product.type;
             txt_Dimension.Text = product.length.ToString() + "x" + product.width.ToString() + "x" + product.height.ToString();
 

@@ -51,7 +51,7 @@ namespace KantoorInrichting.Models.Product
 
             //Corner and image
             cornerPoints = new PointF[5];
-            defaultBitMap = new Bitmap(product.Image);
+            defaultBitMap = new Bitmap(product.image);
             defaultBitMap = new Bitmap(RezizeImage(Properties.Resources.No_Image_Available, product.width, product.length));
             rotatedMap = defaultBitMap;
 

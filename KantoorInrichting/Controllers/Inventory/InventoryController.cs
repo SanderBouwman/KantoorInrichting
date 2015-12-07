@@ -35,7 +35,7 @@ namespace KantoorInrichting.Controllers.Inventory
         {
             // filter the data to only view products with an amount
             var filteredProducts = from product in ProductModel.list
-                                   where product.Amount >= 1
+                                   where product.amount >= 1
                                    select product;
 
             // return the filtered results.
@@ -51,11 +51,11 @@ namespace KantoorInrichting.Controllers.Inventory
             inventoryScreen.DropdownCategorie.Items.Clear();
 
             // distinct from all the items in the productlist
-            var BrandResult = ProductModel.list.GroupBy(product => product.Brand)
+            var BrandResult = ProductModel.list.GroupBy(product => product.brand)
                    .Select(grp => grp.First())
                    .ToList();
 
-            var CategoryResult = ProductModel.list.GroupBy(product => product.Category)
+            var CategoryResult = ProductModel.list.GroupBy(product => product.category)
                    .Select(grp => grp.First())
                    .ToList();
 
@@ -66,17 +66,17 @@ namespace KantoorInrichting.Controllers.Inventory
             // add the unique items to brand dropdown
             foreach (ProductModel product in BrandResult)
             {
-                if (product.Brand != null)
+                if (product.brand != null)
                 {
-                    inventoryScreen.DropdownMerk.Items.Add(product.Brand);
+                    inventoryScreen.DropdownMerk.Items.Add(product.brand);
                 }
             }
             // add the unique items to category dropdown
             foreach (ProductModel product in CategoryResult)
             {
-                if (product.Category != null)
+                if (product.category != null)
                 {
-                    inventoryScreen.DropdownCategorie.Items.Add(product.Category);
+                    inventoryScreen.DropdownCategorie.Items.Add(product.category);
                 }
             }
 
@@ -101,7 +101,7 @@ namespace KantoorInrichting.Controllers.Inventory
             {
                 // filter on the selected brand
                 var filteredProducts = from product in ProductModel.result
-                                       where product.Brand == selectedBrand
+                                       where product.brand == selectedBrand
                                        select product;
 
                 // add filter list to result list
