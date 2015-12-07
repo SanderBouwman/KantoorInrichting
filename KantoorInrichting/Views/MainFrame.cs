@@ -21,10 +21,10 @@ namespace KantoorInrichting
 
         public MainFrame()
         {
+            DatabaseController dbc = new DatabaseController();
             AddPanels();
             InitializeComponent();
             OnBootup();
-            DatabaseController dbc = new DatabaseController();
         }
 
         public void AddPanels()
