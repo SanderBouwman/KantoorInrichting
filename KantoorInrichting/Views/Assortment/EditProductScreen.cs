@@ -48,21 +48,21 @@ namespace KantoorInrichting.Views.Assortment
             lengthTextBox.Text = product.length.ToString();
             amountTextBox.Text = product.amount.ToString();
             descriptionTextBox.Text = product.description;
-            pictureBox.Image = product.Image;
+            pictureBox.Image = product.image;
         }
 
         //Fills the category combobox with categories from the database and selects the category
         public void FillComboBox()
         {
-            categoryTableAdapter.Fill(kantoorInrichtingDataSet.Category);
-            var categoryList = kantoorInrichtingDataSet.Category;
+            categoryTableAdapter.Fill(kantoorInrichtingDataSet.category);
+            var categoryList = kantoorInrichtingDataSet.category;
 
             foreach (var category in categoryList)
             {
-                categoryComboBox.Items.Add(category.Name);
-                if (category.Category_ID == product.category_ID)
+                categoryComboBox.Items.Add(category.name);
+                if (category.category_id == product.category_ID)
                 {
-                    categoryComboBox.SelectedIndex = category.Category_ID - 1;
+                    categoryComboBox.SelectedIndex = category.category_id - 1;
                     //Minus 1 to match the category number from the database -->
                     //this might be needing changes later
                 }
@@ -197,25 +197,25 @@ namespace KantoorInrichting.Views.Assortment
         private void UpdateProductInDatabase()
         {
             //Fill the TableAdapter with data from the dataset
-            productTableAdapter.Fill(kantoorInrichtingDataSet.Product);
+            productTableAdapter.Fill(kantoorInrichtingDataSet.product);
             try
             {
                 //Search the tabel Product for a certain ProductID
-                var productRow = kantoorInrichtingDataSet.Product.FindByProduct_ID(product.product_ID);
+                var productRow = kantoorInrichtingDataSet.product.FindByproduct_id(product.product_ID);
                 //Assign a new value to the Column Quantity
-                productRow.Name = product.name;
-                productRow.Brand = product.brand;
-                productRow.Type = product.type;
-                productRow.Category_ID = product.category_ID;
-                productRow.Height = product.height;
-                productRow.Width = product.width;
-                productRow.Length = product.length;
-                productRow.Amount = product.amount;
-                productRow.Image = product.imageFileName;
-                productRow.Description = product.description;
+                productRow.name = product.name;
+                productRow.brand = product.brand;
+                productRow.type = product.type;
+                productRow.category_id = product.category_ID;
+                productRow.height = product.height;
+                productRow.width = product.width;
+                productRow.length = product.length;
+                productRow.amount = product.amount;
+                productRow.image = product.imageFileName;
+                productRow.description = product.description;
 
                 //Update the database with the new Data
-                productTableAdapter.Update(kantoorInrichtingDataSet.Product);
+                productTableAdapter.Update(kantoorInrichtingDataSet.product);
                 if (isNewImage)
                 {
                     RemoveImage(currentImagePath);

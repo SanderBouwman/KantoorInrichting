@@ -19,15 +19,5 @@ namespace KantoorInrichting.Views.Placement
         {
             DoubleBuffered = true;
         }
-
-        private void ProductFieldPanel_DragEnter(object sender, DragEventArgs e)
-        {
-
-        }
-
-        private void Mousedown(object sender, MouseEventArgs e)
-        {
-
-        }
     }
 }

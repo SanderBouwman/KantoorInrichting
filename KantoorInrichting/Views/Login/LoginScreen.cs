@@ -21,7 +21,9 @@ namespace KantoorInrichting.Views
                                                                         // -Robin
             this.mainFrame = mainFrame;
             InitializeComponent();
+           
         }
+
 
         private void GeneralLoginError_Click(object sender, EventArgs e)
         {
@@ -38,26 +40,26 @@ namespace KantoorInrichting.Views
         public void LoginMethod(string UsernameField, string PasswordField)
         {
             // TODO: This line of code loads data into the 'kantoorInrichtingDataSet.User' table. You can move, or remove it, as needed.
-            this.userTableAdapter.Fill(this.kantoorInrichtingDataSet.User);
-            var INLOGGEN = kantoorInrichtingDataSet.User;
+            this.userTableAdapter.Fill(this.kantoorInrichtingDataSet.user);
+            var INLOGGEN = kantoorInrichtingDataSet.user;
             string USERNAME = "";
             string PASSWORD = "";
-            string ROLE = "";
+            int ROLE;
             int attempts = 0;
             string hash = controllerLogin.GetSHA1(PasswordField);
 
             // Get data only when password and username match
             var linqInloggen =
                        from inloggegevens in INLOGGEN
-                       where inloggegevens.Username == UsernameField && inloggegevens.Password == hash
+                       where inloggegevens.username == UsernameField && inloggegevens.password == hash
                        select inloggegevens;
 
             foreach (var p in linqInloggen)
             {
-                USERNAME = p.Username;
-                PASSWORD = p.Password;
-                attempts = p.Attempts;
-                ROLE = p.Role;
+                USERNAME = p.username;
+                PASSWORD = p.password;
+                attempts = p.attempts;
+                ROLE = p.role_id;
             }
 
             // UsernameField is empty
@@ -79,13 +81,13 @@ namespace KantoorInrichting.Views
             {
                 var linq =
                        from inloggegevens in INLOGGEN
-                       where inloggegevens.Username == UsernameField
+                       where inloggegevens.username == UsernameField
                        select inloggegevens;
 
                 foreach (var p in linq)
                 {
-                    attempts = p.Attempts;
-                    USERNAME = p.Username;
+                    attempts = p.attempts;
+                    USERNAME = p.username;
                 }
 
                 if (attempts < 3)
@@ -95,11 +97,11 @@ namespace KantoorInrichting.Views
                     {
                         GeneralLoginError.Text = "Deze inlogcombinatie is onjuist";
 
-                        KantoorInrichtingDataSet.UserRow UserRow = kantoorInrichtingDataSet.User.FindByUsername(UsernameField);
+                        KantoorInrichtingDataSet.userRow UserRow = kantoorInrichtingDataSet.user.FindByusername(UsernameField);
                         if (USERNAME != "")
                         {
-                            UserRow.Attempts++;
-                            this.userTableAdapter.Update(this.kantoorInrichtingDataSet.User);
+                            UserRow.attempts++;
+                            this.userTableAdapter.Update(this.kantoorInrichtingDataSet.user);
                         }
                     }
                     // Username and password are correct
@@ -112,9 +114,9 @@ namespace KantoorInrichting.Views
                         this.Enabled = false;
 
                         //IF EVERYTHING IS CORRECT RESET ATTEMPTS TO 0
-                        KantoorInrichtingDataSet.UserRow UserRow = kantoorInrichtingDataSet.User.FindByUsername(UsernameField);
-                        UserRow.Attempts = 0;
-                        this.userTableAdapter.Update(this.kantoorInrichtingDataSet.User);
+                        KantoorInrichtingDataSet.userRow UserRow = kantoorInrichtingDataSet.user.FindByusername(UsernameField);
+                        UserRow.attempts = 0;
+                        this.userTableAdapter.Update(this.kantoorInrichtingDataSet.user);
                     }
                 }
                 else
@@ -134,8 +136,8 @@ namespace KantoorInrichting.Views
 
         private void LoginScreen_Load_1(object sender, EventArgs e)
         {
-           // UsernameTB.Text = "Rick";
-           // PasswordTB.Text = "rick";
+            UsernameTB.Text = "Rick";
+            PasswordTB.Text = "rick";
         }
 
        
@@ -143,6 +145,17 @@ namespace KantoorInrichting.Views
         private void PasswordTB_TextChanged_1(object sender, EventArgs e)
         {
             PasswordTB.PasswordChar = '*';
+
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Enter)
+            {
+                LoginButton.PerformClick();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
     }
 }

@@ -31,10 +31,6 @@ namespace KantoorInrichting.Views.Placement
             controller = new PlacementController(hoofdscherm, this);
         }
         
-        private void btn_AddProduct_Click(object sender, EventArgs e)
-        {
-            controller.btn_ReplaceProduct(productInfo1.product);
-        }
 
         protected override void OnPaint(PaintEventArgs e)
         {
@@ -47,7 +43,7 @@ namespace KantoorInrichting.Views.Placement
         {
             PlacementController.Direction direction = PlacementController.Direction.CLOCKWISE;
             if (cbx_TurnValue.Text == "Counter Clockwise") direction = PlacementController.Direction.COUNTERCLOCKWISE; 
-            controller.btn_Turn(direction);
+            controller.button_Turn(direction);
         }
 
         private void btn_Move_Click(object sender, EventArgs e)
@@ -56,27 +52,24 @@ namespace KantoorInrichting.Views.Placement
             if (cbx_MoveValue.Text == "Down") direction = PlacementController.Direction.DOWN;
             else if (cbx_MoveValue.Text == "Left") direction = PlacementController.Direction.LEFT;
             else if (cbx_MoveValue.Text == "Right") direction = PlacementController.Direction.RIGHT;
-            controller.btn_Move(direction);
+            controller.button_Move(direction);
         }
 
         private void Mousedown_Panel(object sender, MouseEventArgs e)
         {
-            foreach (PlacedProduct PlacedP in PlacementController.ppList)
-            {
-                var MouseLocation = new Point(e.X, e.Y);
-                MouseLocation = hoofdscherm.PointToClient(MouseLocation);
-                MouseLocation = this.PointToClient(MouseLocation);
-                Polygon P = new Polygon();
-                P.Points.Add(new Vector(e.X, e.Y));
-                P.BuildEdges();
-                PolygonCollisionController.PolygonCollisionResult r = PolygonCollisionController.PolygonCollision(P, PlacedP.Poly, new Vector(0, 0));
+            controller.event_PanelMouseDown(sender, e);
+        }
+            
 
-                if (r.WillIntersect)
-                {
-                   DoDragDrop(PlacedP, DragDropEffects.Copy);
-                   break;
-                }
-            }
+
+        private void DragDrop_DragEnter(object sender, DragEventArgs e)
+        {
+            controller.event_DragEnter(sender, e);
+        }
+
+        private void DragDrop_DragDrop(object sender, DragEventArgs e)
+        {
+            controller.event_DragDrop(sender, e);
         }
     }
 }

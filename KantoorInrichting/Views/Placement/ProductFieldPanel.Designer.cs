@@ -29,11 +29,6 @@
         private void InitializeComponent()
         {
             this.SuspendLayout();
-            // 
-            // ProductFieldPanel
-            // 
-            this.AllowDrop = true;
-            this.DragEnter += new System.Windows.Forms.DragEventHandler(this.ProductFieldPanel_DragEnter);
             this.ResumeLayout(false);
 
         }

@@ -14,33 +14,24 @@ namespace KantoorInrichting.Models.Product
         public static SortableBindingList<ProductModel> list = new SortableBindingList<ProductModel>();
         public static SortableBindingList<ProductModel> result = new SortableBindingList<ProductModel>();  // list for filtering data
 
-        public string name;
-        public string brand;
-        public string type;
-        public string category { get; set; }
-        public string subcategory { get; set; }
-        public Image image;
-
         public Point location;
 
         public int length { get; set; }
         public int width { get; set; }
         public int height { get; set; }
-        public int amount { get; set; }
-        public int id { get; private set; }
-        public int product_ID { get; private set; }
+        public int product_ID { get; }
         public int category_ID { get; set; }
         public string imageFileName { get; set; }
         public string description { get; set; }
 
-        public string Name { get { return name; } private set { name = value; } }       // The private set does not do anything, since anyone can edit the fields (class variables) directly.
-        public string Type { get { return type; } private set { type = value; } }       // (All the variables are public)
-        public string Brand { get { return brand; } private set { brand = value; } }    // I would remove all the public variables above and refactor the properties to this:
-        public Image Image { get { return image; } }                                    //  public string Name {get; private set;} 
-        public int Amount { get { return amount; } private set { amount = value; } }    // -Robin
-        public int Id { get { return id; } private set { id = value; } }
-        public string Category { get { return category; } private set { category = value; } }
-        public string Subcategory { get { return subcategory; } private set { subcategory = value; } }
+        public string name { get; set; }      
+        public string type { get; set; }      
+        public string brand { get; set; }   
+        public Image image { get; set; }   
+        public int amount { get; set; }    
+        public int id { get; }
+        public string category { get; set; }
+        public string subcategory { get; set; }
 
         //public Supplier supplier { get; private set; }
 

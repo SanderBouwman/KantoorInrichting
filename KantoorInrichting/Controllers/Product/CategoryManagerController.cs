@@ -24,11 +24,11 @@ namespace KantoorInrichting.Controllers.Product
             }
         }
 
-        public void fillcombobox(KantoorInrichtingDataSet.CategoryDataTable categoryList, ComboBox categoryComboBox)
+        public void fillcombobox(KantoorInrichtingDataSet.categoryDataTable categoryList, ComboBox categoryComboBox)
         {
             foreach (var category in categoryList)
             {
-                categoryComboBox.Items.Add(category.Name);
+                categoryComboBox.Items.Add(category.name);
             }
         }
     }

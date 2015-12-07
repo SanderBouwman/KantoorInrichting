@@ -100,14 +100,14 @@ namespace KantoorInrichting
             // afsluitenToolStripMenuItem1
             // 
             this.afsluitenToolStripMenuItem1.Name = "afsluitenToolStripMenuItem1";
-            this.afsluitenToolStripMenuItem1.Size = new System.Drawing.Size(204, 22);
+            this.afsluitenToolStripMenuItem1.Size = new System.Drawing.Size(147, 22);
             this.afsluitenToolStripMenuItem1.Text = "Afsluiten";
             this.afsluitenToolStripMenuItem1.Click += new System.EventHandler(this.afsluitenToolStripMenuItem1_Click);
             // 
             // terugNaarHoofdschermToolStripMenuItem1
             // 
             this.terugNaarHoofdschermToolStripMenuItem1.Name = "terugNaarHoofdschermToolStripMenuItem1";
-            this.terugNaarHoofdschermToolStripMenuItem1.Size = new System.Drawing.Size(204, 22);
+            this.terugNaarHoofdschermToolStripMenuItem1.Size = new System.Drawing.Size(147, 22);
             this.terugNaarHoofdschermToolStripMenuItem1.Text = "Hoofdscherm";
             this.terugNaarHoofdschermToolStripMenuItem1.Click += new System.EventHandler(this.terugNaarHoofdschermToolStripMenuItem1_Click);
             // 
@@ -119,7 +119,7 @@ namespace KantoorInrichting
             this.ClientSize = new System.Drawing.Size(588, 456);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MinimumSize = new System.Drawing.Size(604, 495);
             this.Name = "MainFrame";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -140,7 +140,6 @@ namespace KantoorInrichting
         public Views.Maps.MapsScreen MapsScreen;
         public Views.Grid.GridFieldView gridFieldView;
         public Views.Placement.ProductAdding placement;
-        private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem inrichterToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem navigatieToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem afsluitenToolStripMenuItem;
@@ -149,5 +148,6 @@ namespace KantoorInrichting
         private System.Windows.Forms.ToolStripMenuItem navigatieToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem afsluitenToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem terugNaarHoofdschermToolStripMenuItem1;
+        public System.Windows.Forms.MenuStrip menuStrip1;
     }
 }

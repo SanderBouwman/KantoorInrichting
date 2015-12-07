@@ -1,4 +1,5 @@
-﻿using KantoorInrichting.Controllers.Product;
+﻿using KantoorInrichting.Controllers;
+using KantoorInrichting.Controllers.Product;
 using KantoorInrichting.Views.Product;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,7 @@ namespace KantoorInrichting
             AddPanels();
             InitializeComponent();
             OnBootup();
+            DatabaseController dbc = new DatabaseController();
         }
 
         public void AddPanels()

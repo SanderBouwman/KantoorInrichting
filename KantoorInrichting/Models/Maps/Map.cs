@@ -1,4 +1,5 @@
 ﻿using KantoorInrichting.Controllers;
+using KantoorInrichting.Controllers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,12 +16,14 @@ namespace KantoorInrichting.Models.Maps
         public string Building { get; private set; }
         public int Floor { get; private set; }
         public string Room { get; private set; }
+        public int Roomnumber { get; private set; }
 
-        public Map(string Gebouw, int Verdieping, string Lokaal)
+        public Map(string Gebouw, int Verdieping, int Kamernumber, string Lokaal)
         {
             Building = Gebouw;
             Floor = Verdieping;
             Room = Lokaal;
+            Roomnumber = Kamernumber;
 
             list.Add(this);
         }

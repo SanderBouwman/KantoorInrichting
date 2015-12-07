@@ -195,7 +195,7 @@ namespace KantoorInrichting_Test.Controllers.designalgorithm {
         }
 
         public override string ToString() {
-            return "{Chair=" + Chair.Brand + " Table=" + Table.Brand + "Rectangle=" + Representation + " }";
+            return "{Chair=" + Chair.brand + " Table=" + Table.brand + "Rectangle=" + Representation + " }";
         }
     }
     

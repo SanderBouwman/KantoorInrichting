@@ -38,7 +38,7 @@
             this.UsernameError = new System.Windows.Forms.Label();
             this.PasswordError = new System.Windows.Forms.Label();
             this.GeneralLoginError = new System.Windows.Forms.Label();
-            this.userTableAdapter = new KantoorInrichting.KantoorInrichtingDataSetTableAdapters.UserTableAdapter();
+            this.userTableAdapter = new KantoorInrichting.KantoorInrichtingDataSetTableAdapters.userTableAdapter();
             this.tableAdapterManager = new KantoorInrichting.KantoorInrichtingDataSetTableAdapters.TableAdapterManager();
             this.kantoorInrichtingDataSet = new KantoorInrichting.KantoorInrichtingDataSet();
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -136,10 +136,10 @@
             // tableAdapterManager
             // 
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.CategoryTableAdapter = null;
-            this.tableAdapterManager.ProductTableAdapter = null;
+            this.tableAdapterManager.categoryTableAdapter = null;
+            this.tableAdapterManager.productTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = KantoorInrichting.KantoorInrichtingDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            this.tableAdapterManager.UserTableAdapter = this.userTableAdapter;
+            this.tableAdapterManager.userTableAdapter = this.userTableAdapter;
             // 
             // kantoorInrichtingDataSet
             // 
@@ -197,7 +197,7 @@
         private System.Windows.Forms.Label GeneralLoginError;
         private KantoorInrichtingDataSet kantoorInrichtingDataSet;
         private System.Windows.Forms.BindingSource userBindingSource;
-        private KantoorInrichtingDataSetTableAdapters.UserTableAdapter userTableAdapter;
+        private KantoorInrichtingDataSetTableAdapters.userTableAdapter userTableAdapter;
         private KantoorInrichtingDataSetTableAdapters.TableAdapterManager tableAdapterManager;
         private System.Windows.Forms.Panel panel1;
     }

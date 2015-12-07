@@ -24,8 +24,8 @@ namespace KantoorInrichting.Views.Product
             this.controller = controller;
             InitializeComponent();
 
-            this.categoryTableAdapter.Fill(this.kantoorInrichtingDataSet.Category);
-            var categoryList = kantoorInrichtingDataSet.Category;
+            this.categoryTableAdapter.Fill(this.kantoorInrichtingDataSet.category);
+            var categoryList = kantoorInrichtingDataSet.category;
             
             controller.fillcombobox(categoryList, categoryComboBox);
             //categoryComboBox.SelectedItem = ;
@@ -90,7 +90,7 @@ namespace KantoorInrichting.Views.Product
         private void CategoryManager_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'kantoorInrichtingDataSet.Category' table. You can move, or remove it, as needed.
-            this.categoryTableAdapter.Fill(this.kantoorInrichtingDataSet.Category);
+            this.categoryTableAdapter.Fill(this.kantoorInrichtingDataSet.category);
 
         }
     }

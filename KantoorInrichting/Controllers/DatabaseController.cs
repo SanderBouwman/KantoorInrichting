@@ -1,5 +1,5 @@
 ﻿
-﻿using KantoorInrichting.Models.Product;
+using KantoorInrichting.Models.Product;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,32 +8,40 @@ using System.Threading.Tasks;
 
 namespace KantoorInrichting.Controllers
 {
-    static class DatabaseController
+    public class DatabaseController
     {
+        private KantoorInrichtingDataSet dataset;
+        private KantoorInrichtingDataSetTableAdapters.TableAdapterManager tableAdapterManager;
+        private KantoorInrichtingDataSetTableAdapters.productTableAdapter productTableAdapter;
+        private KantoorInrichtingDataSetTableAdapters.categoryTableAdapter categoryTableAdapter;
+
         // this class is used to create objects from the data in the database, using the dataset
-        public static void boot()
+        public DatabaseController()
         {
-            //Fill the TableAdapter with data from the dataset
+            this.dataset = new KantoorInrichtingDataSet();
+            this.tableAdapterManager = new KantoorInrichtingDataSetTableAdapters.TableAdapterManager();
+            this.productTableAdapter = new KantoorInrichtingDataSetTableAdapters.productTableAdapter();
+            this.categoryTableAdapter = new KantoorInrichtingDataSetTableAdapters.categoryTableAdapter();
 
-            //productTableAdapter.Fill(kantoorInrichtingDataSet.Product);
-            //     var productLijst = kantoorInrichtingDataSet.Product;
+            categoryTableAdapter.Fill(dataset.category);
+            productTableAdapter.Fill(dataset.product);
 
-            fillProducts();
+            FillProducts();
         }
 
-
-
-        public static void fillProducts()
+        public KantoorInrichtingDataSetTableAdapters.productTableAdapter GetProductTable()
         {
-            // var productLijst = kantoorInrichtingDataSet.Product
+            return this.productTableAdapter;
+        }
 
-            ////Foreach product in the database create a product object
-            //        foreach (var product in productLijst)
-            //{
-            //    var p1 = new ProductModel(product.Product_ID, product.Name, product.Brand, product.Type,
-            //        product.Category_ID, product.Length, product.Width, product.Height, product.Description,
-            //        product.Amount, product.Image);
-            //}
+        public void FillProducts()
+        {
+                    foreach (var product in this.dataset.product)
+            {
+                var p1 = new ProductModel(product.product_id, product.name, product.brand, product.type,
+                    product.category_id, product.length, product.width, product.height, product.description,
+                    product.amount, product.image);
+            }
         }
 
 

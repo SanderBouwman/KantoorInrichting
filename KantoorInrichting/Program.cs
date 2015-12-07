@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using KantoorInrichting.Models.Maps;
+using KantoorInrichting.Controllers;
 
 namespace KantoorInrichting {
     class Program {
@@ -18,7 +19,6 @@ namespace KantoorInrichting {
         {
 
             ProductModel p1 = new ProductModel(1, "stoel henk", "Ahrend", "A1", "kantoorstoel", 140, 40, 40, "hele fijne stoel", 0,"stoel.jpg");
-             
             ProductModel p2 = new ProductModel(2,"stoel piet", "Quantore", "B1", "stoel",  140, 40, 40, "hele fijne stoel", 124, "stoel.jpg");
             ProductModel p3 = new ProductModel(3,"tafel anna", "Ahrend", "243A1",  "bureaustoel", 100, 140, 40, "hele fijne tafel", 0, "tafel.jpg");
             ProductModel p4 = new ProductModel(4,"tafel grietje", "Ahrend", "A4521", "tafel", 140, 200, 140, "hele fijne tafel", 124, "tafel.jpg");
@@ -31,12 +31,12 @@ namespace KantoorInrichting {
             ProductModel p11 = new ProductModel(11,"Yellow Coffee Table", "Dem Tables", "B",  "koffietafel", 50, 100, 75, "Table - Coffee", 6, "tafel.jpg");
             ProductModel p12 = new ProductModel(12,"Blue-Board", "Color Board", "H", "whiteboard",  10, 200, 200, "Board - White Board", 4, null);
 
-            Map Plattegrond1 = new Map("T", 4, "T4,44");
-            Map Plattegrond2 = new Map("T", 2, "T2,44");
-            Map Plattegrond3 = new Map("T", 3, "T3,44");
-            Map Plattegrond4 = new Map("T", 1, "T1,44");
-            Map Plattegrond5 = new Map("T", 3, "T3,44");
-            Map Plattegrond6 = new Map("T", 4, "T4,44");
+            Map Plattegrond1 = new Map("T", 4, 15, "T4,15");
+            Map Plattegrond2 = new Map("T", 2, 8, "T2,8");
+            Map Plattegrond3 = new Map("T", 3, 22, "T3,22");
+            Map Plattegrond4 = new Map("T", 1, 29, "T1,29");
+            Map Plattegrond5 = new Map("T", 3, 17, "T3,17");
+            Map Plattegrond6 = new Map("T", 4, 11, "T4,11");
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

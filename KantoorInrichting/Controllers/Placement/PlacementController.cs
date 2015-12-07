@@ -8,6 +8,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace KantoorInrichting.Controllers.Placement
 {
@@ -30,6 +31,8 @@ namespace KantoorInrichting.Controllers.Placement
         public MainFrame motherFrame;
         private ProductAdding productAdding;
         private Graphics g;
+        private PlacedProduct currentProduct;
+        private Point clickLocation;
 
         private void ppList_CollectionChanged(object sender, EventArgs e)
         {
@@ -37,13 +40,12 @@ namespace KantoorInrichting.Controllers.Placement
             redrawPanel();
         }
 
-        private PlacedProduct placedP;
-
         public PlacementController(MainFrame motherFrame, ProductAdding pa)
         {
             this.motherFrame = motherFrame;
             productAdding = pa;
             motherFrame.Size = new Size(1500, 800);
+            clickLocation = new Point(0, 0);
 
             //Make an event when the selection of the ASSORTMENT or INVENTORY has changed
             productAdding.productList1.SelectionChanged += new ProductSelectionChanged(this.changeSelected);
@@ -53,16 +55,7 @@ namespace KantoorInrichting.Controllers.Placement
             ProductInfo defaultInfo = new ProductInfo();
             defaultInfo.setProduct(ProductModel.list[0]);
             changeSelected(defaultInfo);
-
-
-            //Add default product
-            placedP = new PlacedProduct(productAdding.productInfo1.product, new Vector(200, 200));
-            ppList.Add(placedP);
-
-
-            //Add obstacle !!DELETE LATER!!
-            ppList.Add(new PlacedProduct(new ProductModel("", "", "", "", "", 100, 50, 50, "", 1), new PointF(500, 100)));
-
+            
 
             //Make an event that triggers when the list is changed, so that it automatically repaints the screen.
             ppList.CollectionChanged += ppList_CollectionChanged;
@@ -70,9 +63,6 @@ namespace KantoorInrichting.Controllers.Placement
 
             productAdding.cbx_TurnValue.SelectedIndex = 0;
             productAdding.cbx_MoveValue.SelectedIndex = 0;
-
-
-            //redrawPanel();
         }
 
 
@@ -114,35 +104,21 @@ namespace KantoorInrichting.Controllers.Placement
 
 
 
-
-
-
-
-        /// <summary>
-        /// Replace the current object (OLD)
-        /// </summary>
-        /// <param name="product">Product to be preplaced with</param>
-        public void btn_ReplaceProduct(ProductModel product)
-        {
-            ppList.Remove(placedP);//Removes the old one
-            placedP = new PlacedProduct(product, new Vector(200, 200));
-            ppList.Add(placedP); //Inserts the new one
-            redrawPanel(); //Repaints
-        }
-
-
+        
 
         /// <summary>
         /// Turn a product
         /// </summary>
         /// <param name="d">Give a clockwise of counter clockwise direction for the product to turn to</param>
-        public void btn_Turn(Direction d)
+        public void button_Turn(Direction d)
         {
+            if (currentProduct == null) { return; }
+
             int angle = 15;
 
             if (d == Direction.COUNTERCLOCKWISE) { angle *= -1; }
 
-            placedP.addAngle(angle);
+            currentProduct.addAngle(angle);
 
             redrawPanel();
         }
@@ -152,18 +128,167 @@ namespace KantoorInrichting.Controllers.Placement
         /// Move a product
         /// </summary>
         /// <param name="d">Give a direction for the product to move</param>
-        public void btn_Move(Direction d)
+        public void button_Move(Direction d)
         {
+            if (currentProduct == null) { return; }
+
             int speed = 10;
             bool x_Axis = true;
             
             if(d == Direction.UP || d == Direction.LEFT){ speed *= -1; }
             if(d == Direction.UP || d == Direction.DOWN){ x_Axis = false; }
 
-            placedP.gridSpace = speed;
-            placedP.Move(x_Axis);
+            currentProduct.gridSpace = speed;
+            currentProduct.Move(x_Axis);
 
             redrawPanel();
         }
+
+        /// <summary>
+        /// Event that allows the object to be dropped
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void event_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(typeof(PlacedProduct)) || e.Data.GetDataPresent(typeof(ProductModel)))
+            {
+                e.Effect = e.AllowedEffect; //Allows to drop (kinda validating the data)
+            }
+            else
+            {
+                e.Effect = DragDropEffects.None;
+            }
+        }
+
+        /// <summary>
+        /// Event for when the object is dropped
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void event_DragDrop(object sender, DragEventArgs e)
+        {
+            //Returns if the data isn't a PlacedProduct or a ProductModel
+            if (e.Data.GetDataPresent(typeof(ProductModel)))
+            {
+                NewProduct(sender, e);
+            }
+            
+            if(e.Data.GetDataPresent(typeof(PlacedProduct)))
+            {
+                MoveProduct(sender, e);
+            }
+            
+            return;   
+        }
+
+        public void event_PanelMouseDown(object sender, MouseEventArgs e)
+        {
+            foreach (PlacedProduct PlacedP in PlacementController.ppList)
+            {
+                //Get the mouse location
+                var MouseLocation = new Point(e.X, e.Y);
+                Polygon P = new Polygon();
+                P.Points.Add(new Vector(MouseLocation.X, MouseLocation.Y));
+                P.BuildEdges();
+
+                //And compare it to all possible polygons, so that when one collides, you know which one the user has clicked on.
+                PolygonCollisionController.PolygonCollisionResult r = PolygonCollisionController.PolygonCollision(P, PlacedP.Poly, new Vector(0, 0));
+
+                if (r.WillIntersect)
+                {
+                    //Do DragDrop
+                    clickLocation = MouseLocation;
+                    productAdding.DoDragDrop(PlacedP, DragDropEffects.Copy);
+                    //Set as current product
+                    productAdding.productInfo1.setProduct(PlacedP.product);
+                    currentProduct = PlacedP;
+                    break;
+                }
+            }
+        }
+
+        private void NewProduct(object sender, DragEventArgs e)
+        {
+            ProductModel model = (ProductModel)e.Data.GetData(typeof(ProductModel));
+            
+            //Get the correct location
+            Point newLocation = new Point(e.X, e.Y);
+            newLocation = motherFrame.PointToClient(newLocation);
+            newLocation.X -= productAdding.productFieldPanel1.Left;
+            newLocation.Y -= productAdding.productFieldPanel1.Top;
+            newLocation.Y -= motherFrame.menuStrip1.Height;
+            PlacedProduct product = new PlacedProduct(model, newLocation);
+
+            //Collision Loop
+            foreach (PlacedProduct placedP in ppList)
+            {
+                PolygonCollisionController.PolygonCollisionResult r = PolygonCollisionController.PolygonCollision(product.Poly, placedP.Poly, new Vector(0, 0));
+
+                if (r.WillIntersect)
+                {
+                    //At the collision, quit the method
+                    return;
+                }
+            }
+
+            //The adding of the product
+            ppList.Add(product);
+            //Set as current product
+            productAdding.productInfo1.setProduct(product.product);
+            currentProduct = product;
+            //Redraw
+            redrawPanel();
+        }
+
+        private void MoveProduct(object sender, DragEventArgs e)
+        {
+            PlacedProduct product = (PlacedProduct)e.Data.GetData(typeof(PlacedProduct));
+
+            Point newLocation = new Point(e.X, e.Y);
+            newLocation = motherFrame.PointToClient(newLocation);
+            newLocation.X -= productAdding.productFieldPanel1.Left;
+            newLocation.Y -= productAdding.productFieldPanel1.Top;
+            newLocation.Y -= motherFrame.menuStrip1.Height;
+
+            
+           
+            //Failsafe if user clicks the item and doesn't want to move it.
+            if (Math.Abs(clickLocation.X - newLocation.X) == 0 || Math.Abs(clickLocation.Y - newLocation.Y) == 0)
+            {
+                return;
+            }
+
+            
+            int deltaX = newLocation.X - clickLocation.X;
+            int deltaY = newLocation.Y - clickLocation.Y;
+            Point delta = new Point((int)(product.location.X + deltaX), (int)(product.location.Y + deltaY));
+            Polygon movedProduct = product.getVirtualPolygon(delta);
+
+
+            foreach (PlacedProduct placedP in ppList)
+            {
+                //Looks to see if the current loop has itself
+                if (placedP == product)
+                {
+                    continue;
+                }
+
+                PolygonCollisionController.PolygonCollisionResult r = PolygonCollisionController.PolygonCollision(movedProduct, placedP.Poly, new Vector(0, 0));
+                
+                if (r.WillIntersect)
+                {
+                    //At the collision, quit the method
+                    return;
+                }
+
+            }
+
+            //The moving of the product
+            product.MoveTo(delta);
+            redrawPanel();
+        }
+
+        
     }
 }
