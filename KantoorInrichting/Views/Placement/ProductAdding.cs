@@ -12,6 +12,7 @@ using KantoorInrichting.Models.Placement;
 using KantoorInrichting.Models.Product;
 using System.Collections.ObjectModel;
 using System.Drawing.Drawing2D;
+using KantoorInrichting.Controllers.Placement;
 
 namespace KantoorInrichting.Views.Placement
 {
@@ -153,6 +154,29 @@ namespace KantoorInrichting.Views.Placement
             placedP.Move(x_Axis);
 
             redrawPanel();
+        }
+
+        private void Mousedown(object sender, MouseEventArgs e)
+        {
+            foreach (PlacedProduct PlacedP in ppList)
+            {
+                var MouseLocation = new Point(e.X, e.Y);
+                MouseLocation = hoofdscherm.PointToClient(MouseLocation);
+                MouseLocation = this.PointToClient(MouseLocation);
+                Polygon P = new Polygon();
+                P.Points.Add(new Vector(e.X, e.Y));
+                P.BuildEdges();
+                PolygonCollisionController.PolygonCollisionResult r = PolygonCollisionController.PolygonCollision(P, PlacedP.Poly, new Vector(0, 0));
+                if (r.WillIntersect)
+                {
+                    MessageBox.Show("Item found");
+                    break;
+                }
+                else
+                {
+                    MessageBox.Show("Item not found\nX:" + e.X + " Y:" + e.Y);
+                }
+            }
         }
     }
 }
