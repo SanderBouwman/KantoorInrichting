@@ -181,7 +181,7 @@ namespace KantoorInrichting.Views.Assortment
             //Create a newProductrow and fill the row for each corresponding column
             var newProduct = kantoorInrichtingDataSet.product.NewproductRow();
             newProduct.name = product.name;
-            newProduct.product_id = product.product_ID;
+            newProduct.product_id = product.product_id;
             newProduct.removed = false;
             newProduct.type = product.type;
             newProduct.brand = product.brand;
@@ -190,7 +190,7 @@ namespace KantoorInrichting.Views.Assortment
             newProduct.length = product.length;
             newProduct.amount = product.amount;
             newProduct.image = product.imageFileName;
-            newProduct.category_id = product.category_ID;
+            newProduct.category_id = product.category_id;
             newProduct.description = product.description;
 
             //Try to add the new product row in the database

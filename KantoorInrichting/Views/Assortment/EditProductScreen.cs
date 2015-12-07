@@ -4,16 +4,18 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using KantoorInrichting.Models.Product;
+using KantoorInrichting.Controllers;
 
 namespace KantoorInrichting.Views.Assortment
 {
     public partial class EditProductScreen : Form
     {
+        private DatabaseController dbc;
         private readonly string currentImagePath;
         private readonly ProductModel product;
         private int amount;
         private string brand;
-        private int category_ID;
+        private int category_id;
         private string description;
         private int height;
         private bool isNewImage;
@@ -30,6 +32,7 @@ namespace KantoorInrichting.Views.Assortment
         {
             InitializeComponent();
             this.product = product;
+            dbc = DatabaseController.Instance;
             currentImagePath = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())) +
                                @"\Resources\" + product.imageFileName;
             isNewImage = false;
@@ -54,15 +57,14 @@ namespace KantoorInrichting.Views.Assortment
         //Fills the category combobox with categories from the database and selects the category
         public void FillComboBox()
         {
-            categoryTableAdapter.Fill(kantoorInrichtingDataSet.category);
-            var categoryList = kantoorInrichtingDataSet.category;
+            var categoryList = dbc.Dataset.category;
 
             foreach (var category in categoryList)
             {
                 categoryComboBox.Items.Add(category.name);
-                if (category.category_id == product.category_ID)
+                if (category.category_id == product.category_id)
                 {
-                    categoryComboBox.SelectedIndex = category.category_id - 1;
+                    categoryComboBox.SelectedIndex = category.category_id;
                     //Minus 1 to match the category number from the database -->
                     //this might be needing changes later
                 }
@@ -153,7 +155,7 @@ namespace KantoorInrichting.Views.Assortment
             else
             {
                 errorCategoryLabel.Text = "";
-                category_ID = categoryComboBox.SelectedIndex + 1;
+                category_id = categoryComboBox.SelectedIndex + 1;
                 //Plus 1 to match the category number from the database, this might be needing change later, if changed -> also change in EditProductScreen FillComboBox()
                 validationPassed--;
             }
@@ -180,7 +182,7 @@ namespace KantoorInrichting.Views.Assortment
             product.name = name;
             product.brand = brand;
             product.type = type;
-            product.category_ID = category_ID;
+            product.category_id = category_id;
             product.height = height;
             product.width = width;
             product.length = length;
@@ -201,12 +203,12 @@ namespace KantoorInrichting.Views.Assortment
             try
             {
                 //Search the tabel Product for a certain ProductID
-                var productRow = kantoorInrichtingDataSet.product.FindByproduct_id(product.product_ID);
+                var productRow = kantoorInrichtingDataSet.product.FindByproduct_id(product.product_id);
                 //Assign a new value to the Column Quantity
                 productRow.name = product.name;
                 productRow.brand = product.brand;
                 productRow.type = product.type;
-                productRow.category_id = product.category_ID;
+                productRow.category_id = product.category_id;
                 productRow.height = product.height;
                 productRow.width = product.width;
                 productRow.length = product.length;

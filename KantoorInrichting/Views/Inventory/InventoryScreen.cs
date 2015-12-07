@@ -145,7 +145,7 @@ namespace KantoorInrichting.Views.Inventory
  
                     // linq select product with the current ID
                     var selectedproduct1 = ProductModel.list
-                            .Where(t => t.product_ID == currentProduct)
+                            .Where(t => t.product_id == currentProduct)
                             .Select(t => t)
                             .ToList();
 
