@@ -296,8 +296,8 @@
         private System.Windows.Forms.Panel PanelRight;
         private System.Windows.Forms.Panel PanelLeft;
         private System.Windows.Forms.Label titel;
-        private System.Windows.Forms.ComboBox DropdownCategorie;
-        private System.Windows.Forms.ComboBox DropdownMerk;
+        public System.Windows.Forms.ComboBox DropdownCategorie;
+        public System.Windows.Forms.ComboBox DropdownMerk;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Label label1;
         private System.DirectoryServices.DirectorySearcher directorySearcher1;
