@@ -33,6 +33,7 @@
             this.assortmentButton = new System.Windows.Forms.Button();
             this.ProductAddingButton = new System.Windows.Forms.Button();
             this.CategoryManager = new System.Windows.Forms.Button();
+            this.MapsButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // VooraadButton
@@ -142,12 +143,34 @@
             this.CategoryManager.UseVisualStyleBackColor = false;
             this.CategoryManager.Click += new System.EventHandler(this.CategoryManager_Click);
             // 
+            // MapsButton
+            // 
+            this.MapsButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.MapsButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.MapsButton.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.MapsButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.MapsButton.FlatAppearance.BorderColor = System.Drawing.Color.SteelBlue;
+            this.MapsButton.FlatAppearance.BorderSize = 2;
+            this.MapsButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.MapsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.MapsButton.Font = new System.Drawing.Font("Maiandra GD", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MapsButton.Location = new System.Drawing.Point(21, 346);
+            this.MapsButton.Margin = new System.Windows.Forms.Padding(4);
+            this.MapsButton.Name = "MapsButton";
+            this.MapsButton.Size = new System.Drawing.Size(549, 50);
+            this.MapsButton.TabIndex = 5;
+            this.MapsButton.Text = "Overzicht Plattegronden";
+            this.MapsButton.UseVisualStyleBackColor = false;
+            this.MapsButton.Click += new System.EventHandler(this.MapsButton_Click);
+            // 
             // MainScreen
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.Controls.Add(this.MapsButton);
             this.Controls.Add(this.CategoryManager);
             this.Controls.Add(this.ProductAddingButton);
             this.Controls.Add(this.assortmentButton);
@@ -168,5 +191,6 @@
         private System.Windows.Forms.Button assortmentButton;
         private System.Windows.Forms.Button ProductAddingButton;
         private System.Windows.Forms.Button CategoryManager;
+        private System.Windows.Forms.Button MapsButton;
     }
 }

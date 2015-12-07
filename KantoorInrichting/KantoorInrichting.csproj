@@ -150,6 +150,12 @@
     <Compile Include="Views\MainScreen.Designer.cs">
       <DependentUpon>MainScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Maps\MapsScreen.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Maps\MapsScreen.Designer.cs">
+      <DependentUpon>MapsScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Placement\ProductAdding.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -230,6 +236,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\MainScreen.resx">
       <DependentUpon>MainScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Maps\MapsScreen.resx">
+      <DependentUpon>MapsScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Placement\ProductAdding.resx">
       <DependentUpon>ProductAdding.cs</DependentUpon>
