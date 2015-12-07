@@ -19,6 +19,7 @@ namespace KantoorInrichting.Views.Assortment
         //Fill the datagridview with data
         public void FillData()
         {
+            /*
             //Fill the TableAdapter with data from the dataset
             productTableAdapter.Fill(kantoorInrichtingDataSet.product);
             var productLijst = kantoorInrichtingDataSet.product;
@@ -30,6 +31,7 @@ namespace KantoorInrichting.Views.Assortment
                     product.category_id, product.length, product.width, product.height, product.description,
                     product.amount, product.image);
             }
+            */
             dataGridView1.AutoGenerateColumns = false;
             dataGridView1.DataSource = ProductModel.list;
         }
