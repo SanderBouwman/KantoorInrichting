@@ -71,7 +71,7 @@
             "Left",
             "Right"});
             this.cbx_MoveValue.Location = new System.Drawing.Point(2, 33);
-            this.cbx_MoveValue.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbx_MoveValue.Margin = new System.Windows.Forms.Padding(2);
             this.cbx_MoveValue.Name = "cbx_MoveValue";
             this.cbx_MoveValue.Size = new System.Drawing.Size(121, 21);
             this.cbx_MoveValue.TabIndex = 3;

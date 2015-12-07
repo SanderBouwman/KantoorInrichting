@@ -32,6 +32,7 @@ namespace KantoorInrichting.Controllers.Placement
         private ProductAdding productAdding;
         private Graphics g;
         private PlacedProduct currentProduct;
+        private Point clickLocation;
 
         private void ppList_CollectionChanged(object sender, EventArgs e)
         {
@@ -44,6 +45,7 @@ namespace KantoorInrichting.Controllers.Placement
             this.motherFrame = motherFrame;
             productAdding = pa;
             motherFrame.Size = new Size(1500, 800);
+            clickLocation = new Point(0, 0);
 
             //Make an event when the selection of the ASSORTMENT or INVENTORY has changed
             productAdding.productList1.SelectionChanged += new ProductSelectionChanged(this.changeSelected);
@@ -186,10 +188,8 @@ namespace KantoorInrichting.Controllers.Placement
             {
                 //Get the mouse location
                 var MouseLocation = new Point(e.X, e.Y);
-                MouseLocation = motherFrame.PointToClient(MouseLocation);
-                MouseLocation = productAdding.PointToClient(MouseLocation);
                 Polygon P = new Polygon();
-                P.Points.Add(new Vector(e.X, e.Y));
+                P.Points.Add(new Vector(MouseLocation.X, MouseLocation.Y));
                 P.BuildEdges();
 
                 //And compare it to all possible polygons, so that when one collides, you know which one the user has clicked on.
@@ -198,6 +198,7 @@ namespace KantoorInrichting.Controllers.Placement
                 if (r.WillIntersect)
                 {
                     //Do DragDrop
+                    clickLocation = MouseLocation;
                     productAdding.DoDragDrop(PlacedP, DragDropEffects.Copy);
                     //Set as current product
                     productAdding.productInfo1.setProduct(PlacedP.product);
@@ -250,7 +251,20 @@ namespace KantoorInrichting.Controllers.Placement
             newLocation.Y -= productAdding.productFieldPanel1.Top;
             newLocation.Y -= motherFrame.menuStrip1.Height;
 
-            Polygon movedProduct = product.getVirtualPolygon(newLocation);
+            
+           
+            //Failsafe if user clicks the item and doesn't want to move it.
+            if (Math.Abs(clickLocation.X - newLocation.X) == 0 || Math.Abs(clickLocation.Y - newLocation.Y) == 0)
+            {
+                return;
+            }
+
+            
+            int deltaX = newLocation.X - clickLocation.X;
+            int deltaY = newLocation.Y - clickLocation.Y;
+            Point delta = new Point((int)(product.location.X + deltaX), (int)(product.location.Y + deltaY));
+            Polygon movedProduct = product.getVirtualPolygon(delta);
+
 
             foreach (PlacedProduct placedP in ppList)
             {
@@ -271,7 +285,7 @@ namespace KantoorInrichting.Controllers.Placement
             }
 
             //The moving of the product
-            product.MoveTo(newLocation);
+            product.MoveTo(delta);
             redrawPanel();
         }
 
