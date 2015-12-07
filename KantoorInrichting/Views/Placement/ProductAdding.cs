@@ -167,15 +167,14 @@ namespace KantoorInrichting.Views.Placement
                 P.Points.Add(new Vector(e.X, e.Y));
                 P.BuildEdges();
                 PolygonCollisionController.PolygonCollisionResult r = PolygonCollisionController.PolygonCollision(P, PlacedP.Poly, new Vector(0, 0));
+
                 if (r.WillIntersect)
                 {
-                    MessageBox.Show("Item found");
-                    break;
+                   DoDragDrop(PlacedP, DragDropEffects.Copy);
+                   break;
                 }
-                else
-                {
-                    MessageBox.Show("Item not found\nX:" + e.X + " Y:" + e.Y);
-                }
+                
+
             }
         }
     }
