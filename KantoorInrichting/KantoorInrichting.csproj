@@ -54,20 +54,16 @@
     <Compile Include="Controllers\Login\LoginController.cs" />
     <Compile Include="Controllers\Placement\PlacementController.cs" />
     <Compile Include="Controllers\Placement\PolygonPlacementController.cs" />
-    <Compile Include="Controllers\Product\CategoryManagerController.cs" />
     <Compile Include="Controllers\Product\ProductFactory.cs" />
     <Compile Include="Controllers\PropertyComparer.cs" />
     <Compile Include="Controllers\SortableBindingList.cs" />
+	<Compile Include="Controllers\Product\CategoryManagerController.cs" />
+    <Compile Include="Controllers\Inventory\InventoryController.cs" />
     <Compile Include="KantoorInrichtingDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>KantoorInrichtingDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Product\CategoryManagerController.cs" />
-    <Compile Include="Controllers\Product\ProductFactory.cs" />
-    <Compile Include="Controllers\Inventory\InventoryController.cs" />
-    <Compile Include="Controllers\PropertyComparer.cs" />
-    <Compile Include="Controllers\SortableBindingList.cs" />
     <Compile Include="Models\Grid\GridFieldModel.cs" />
     <Compile Include="Models\Maps\Map.cs" />
     <Compile Include="Models\Placement\Polygon.cs" />
