@@ -20,24 +20,19 @@ namespace KantoorInrichting.Views.Inventory
         public MainFrame hoofdscherm;
 
 
-        public InventoryScreen(MainFrame hoofdscherm )  // There's not supposed to be any logic in the view, I'd move most of the methods in here to a controller.
+        public InventoryScreen(MainFrame hoofdscherm ) 
         {
             //create new controller for this screen
             this.controller = new InventoryController(this);                          
-            // For an example, look at GridFieldView
-            this.hoofdscherm = hoofdscherm;             // -Robin
+  
+            this.hoofdscherm = hoofdscherm;             
             // init screen and fill all the data
             InitializeComponent();
             controller.FillData();
             controller.FillDropdown();
             Invalidate();
 
-            // debug tool 
-            //foreach (var product in ProductModel.list)
-            //{
-            //    MessageBox.Show(product.Name);
-            //}
-
+       
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
