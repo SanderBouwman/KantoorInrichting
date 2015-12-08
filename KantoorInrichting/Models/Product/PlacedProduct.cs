@@ -24,7 +24,7 @@ namespace KantoorInrichting.Models.Product
         public int currentAngle { get; private set; }
         public Polygon Poly { get; private set; }
         
-        public int gridSpace = 10;
+        public int gridSpace = 5;
 
 
         /// <summary>
@@ -119,14 +119,14 @@ namespace KantoorInrichting.Models.Product
         {
             int x = 0;
             int y = 0;
-            int Velocity = gridSpace;
-            if (X_Axis) { x += Velocity; }
-            else { y += Velocity; }
+            if (X_Axis) { x += gridSpace; }
+            else { y += gridSpace; }
 
             Vector velocity = new Vector(x, y);
             Vector playerTranslation = velocity;
 
-            
+            //Resets the speed, after the velocity has been assigned.
+            if (gridSpace < 0) { gridSpace *= -1; }
 
 
             //Test all polygons for a collision
@@ -229,7 +229,7 @@ namespace KantoorInrichting.Models.Product
         /// <summary>
         /// Gives a list of PlacedProduct as well as walls?
         /// </summary>
-        private List<Polygon> PolyList
+        public List<Polygon> PolyList
         {
             get
             {
