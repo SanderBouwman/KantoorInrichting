@@ -218,6 +218,24 @@ namespace KantoorInrichting.Controllers.Placement
             }
         }
 
+        public void event_PanelKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.W || e.KeyCode == Keys.Up)
+            { button_Move(Direction.UP); }
+            if (e.KeyCode == Keys.A || e.KeyCode == Keys.Left)
+            { button_Move(Direction.LEFT); }
+            if (e.KeyCode == Keys.S || e.KeyCode == Keys.Down)
+            { button_Move(Direction.DOWN); }
+            if (e.KeyCode == Keys.D || e.KeyCode == Keys.Right)
+            { button_Move(Direction.RIGHT); }
+
+            if (e.KeyCode == Keys.Q)
+            { button_Turn(Direction.COUNTERCLOCKWISE); }
+            if (e.KeyCode == Keys.E)
+            { button_Turn(Direction.CLOCKWISE); }
+        }
+
+
         private void NewProduct(object sender, DragEventArgs e)
         {
             ProductModel model = (ProductModel)e.Data.GetData(typeof(ProductModel));
@@ -307,6 +325,7 @@ namespace KantoorInrichting.Controllers.Placement
             product.MoveTo(delta);
             redrawPanel();
         }
+
 
         
     }
