@@ -12,7 +12,7 @@ namespace KantoorInrichting.Controllers
     public class DatabaseController
     {
         private static DatabaseController instance;
-        public KantoorInrichtingDataSet Dataset { get; }
+        public KantoorInrichtingDataSet DataSet { get; }
         public KantoorInrichtingDataSetTableAdapters.TableAdapterManager TableAdapterManager { get; set; }
         public KantoorInrichtingDataSetTableAdapters.categoryTableAdapter CategoryTableAdapter { get; set; }
         public KantoorInrichtingDataSetTableAdapters.productTableAdapter ProductTableAdapter { get; set; }
@@ -26,7 +26,7 @@ namespace KantoorInrichting.Controllers
         // this class is used to create objects from the data in the database, using the dataset
         private DatabaseController()
         {
-            this.Dataset = new KantoorInrichtingDataSet();
+            this.DataSet = new KantoorInrichtingDataSet();
             this.TableAdapterManager = new KantoorInrichtingDataSetTableAdapters.TableAdapterManager();
             this.CategoryTableAdapter = new KantoorInrichtingDataSetTableAdapters.categoryTableAdapter();
             this.ProductTableAdapter = new KantoorInrichtingDataSetTableAdapters.productTableAdapter();
@@ -37,18 +37,19 @@ namespace KantoorInrichting.Controllers
             this.Static_productTableAdapter = new KantoorInrichtingDataSetTableAdapters.static_productTableAdapter();
             this.UserTableAdapter = new KantoorInrichtingDataSetTableAdapters.userTableAdapter();
 
-            CategoryTableAdapter.Fill(Dataset.category);
-            ProductTableAdapter.Fill(Dataset.product);
-            PlacementTableAdapter.Fill(Dataset.placement);
-            RoleTableAdapter.Fill(Dataset.role);
-            SpaceTableAdapter.Fill(Dataset.space);
-            Static_placementTableAdapter.Fill(Dataset.static_placement);
-            Static_productTableAdapter.Fill(Dataset.static_product);
-            UserTableAdapter.Fill(Dataset.user);
+            CategoryTableAdapter.Fill(DataSet.category);
+            ProductTableAdapter.Fill(DataSet.product);
+            PlacementTableAdapter.Fill(DataSet.placement);
+            RoleTableAdapter.Fill(DataSet.role);
+            SpaceTableAdapter.Fill(DataSet.space);
+            Static_placementTableAdapter.Fill(DataSet.static_placement);
+            Static_productTableAdapter.Fill(DataSet.static_product);
+            UserTableAdapter.Fill(DataSet.user);
 
-            FillProducts();
-            FillSpaces();
+
             FillCategory();
+            GetProducts_FromDatabase();
+            GetSpaces_FromDatabase();
         }
 
         //This method makes sure there can only be one Instance of this Class, aka Singleton.
@@ -64,9 +65,9 @@ namespace KantoorInrichting.Controllers
             }
         }
 
-        public void FillProducts()
+        public void GetProducts_FromDatabase()
         {
-            foreach (var product in this.Dataset.product)
+            foreach (var product in this.DataSet.product)
             {
                 var p1 = new ProductModel(product.product_id, product.name, product.brand, product.type,
                     product.category_id, product.length, product.width, product.height, product.description,
@@ -74,16 +75,16 @@ namespace KantoorInrichting.Controllers
             }
         }
 
-        public void FillSpaces()
+        public void GetSpaces_FromDatabase()
         {
-            foreach (var space in this.Dataset.space)
+            foreach (var space in this.DataSet.space)
             {
                 var s1 = new Space(space.space_number, space.floor, space.building, space.roomnumber);
             }
         }
         public void FillCategory()
         {
-            foreach (var category in this.Dataset.category)
+            foreach (var category in this.DataSet.category)
             {
                 var c1 = new CategoryModel(category.category_id, category.name, category.subcategory_of, "0x78FF0000");
             }
