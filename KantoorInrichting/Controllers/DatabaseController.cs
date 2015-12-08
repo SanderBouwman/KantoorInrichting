@@ -86,7 +86,7 @@ namespace KantoorInrichting.Controllers
         {
             foreach (var category in this.DataSet.category)
             {
-                var c1 = new CategoryModel(category.category_id, category.name, category.subcategory_of, "0x78FF0000");
+                var c1 = new CategoryModel(category.category_id, category.name, category.subcategory_of, category.color);
             }
         }
 
