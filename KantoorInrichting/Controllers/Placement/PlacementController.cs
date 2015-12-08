@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,6 +34,7 @@ namespace KantoorInrichting.Controllers.Placement
         private Graphics g;
         private PlacedProduct currentProduct;
         private Point clickLocation;
+        private int MovementSpeed = 5;
 
         private void ppList_CollectionChanged(object sender, EventArgs e)
         {
@@ -59,10 +61,6 @@ namespace KantoorInrichting.Controllers.Placement
 
             //Make an event that triggers when the list is changed, so that it automatically repaints the screen.
             ppList.CollectionChanged += ppList_CollectionChanged;
-
-
-            productAdding.cbx_TurnValue.SelectedIndex = 0;
-            productAdding.cbx_MoveValue.SelectedIndex = 0;
         }
 
 
@@ -76,12 +74,24 @@ namespace KantoorInrichting.Controllers.Placement
 
         public void redrawPanel()
         {
-            g = productAdding.productFieldPanel1.CreateGraphics();
-            //TODO: ADD Grid Brush
-            //TODO: ADD Border
-            g.Clear(productAdding.productFieldPanel1.BackColor);
+            g = productAdding.productPanel.CreateGraphics();
+            //TODO: ADD Grid Brush            
+            g.Clear(productAdding.productPanel.BackColor);
 
-            g.DrawRectangle(new Pen(Color.Black, 1), new Rectangle(0, 0, productAdding.productFieldPanel1.Width - 1, productAdding.productFieldPanel1.Height - 1));
+            
+            Pen p = new Pen(Brushes.Gray, 1);
+            for (int y = 0; y < productAdding.productPanel.Height; y += MovementSpeed)
+            {
+                g.DrawLine(p, 0, y, productAdding.productPanel.Width, y);
+            }
+
+            for (int x = 0; x < productAdding.productPanel.Width; x += MovementSpeed)
+            {
+                g.DrawLine(p, x, 0, x, productAdding.productPanel.Height);
+            }
+
+
+            //g.DrawRectangle(new Pen(Color.Black, 1), new Rectangle(0, 0, productAdding.productPanel.Width - 1, productAdding.productPanel.Height - 1));
 
             Vector p1;
             Vector p2;
@@ -112,7 +122,7 @@ namespace KantoorInrichting.Controllers.Placement
         /// <param name="d">Give a clockwise of counter clockwise direction for the product to turn to</param>
         public void button_Turn(Direction d)
         {
-            if (currentProduct == null) { return; }
+            if (currentProduct == null || (d != Direction.CLOCKWISE && d != Direction.COUNTERCLOCKWISE)) { return; }
 
             int angle = 15;
 
@@ -130,11 +140,11 @@ namespace KantoorInrichting.Controllers.Placement
         /// <param name="d">Give a direction for the product to move</param>
         public void button_Move(Direction d)
         {
-            if (currentProduct == null) { return; }
-
-            int speed = 10;
-            bool x_Axis = true;
+            if (currentProduct == null || (d != Direction.UP && d != Direction.DOWN && d != Direction.LEFT && d != Direction.RIGHT)) { return; }
             
+            bool x_Axis = true;
+            int speed = MovementSpeed;
+
             if(d == Direction.UP || d == Direction.LEFT){ speed *= -1; }
             if(d == Direction.UP || d == Direction.DOWN){ x_Axis = false; }
 
@@ -215,10 +225,15 @@ namespace KantoorInrichting.Controllers.Placement
             //Get the correct location
             Point newLocation = new Point(e.X, e.Y);
             newLocation = motherFrame.PointToClient(newLocation);
-            newLocation.X -= productAdding.productFieldPanel1.Left;
-            newLocation.Y -= productAdding.productFieldPanel1.Top;
+            newLocation.X -= productAdding.productPanel.Left;
+            newLocation.Y -= productAdding.productPanel.Top;
             newLocation.Y -= motherFrame.menuStrip1.Height;
+
+            newLocation.X /= MovementSpeed; newLocation.X *= MovementSpeed; //Round down to the movement speed.
+            newLocation.Y /= MovementSpeed; newLocation.Y *= MovementSpeed; //Round down to the movement speed.
+
             PlacedProduct product = new PlacedProduct(model, newLocation);
+
 
             //Collision Loop
             foreach (PlacedProduct placedP in ppList)
@@ -245,14 +260,13 @@ namespace KantoorInrichting.Controllers.Placement
         {
             PlacedProduct product = (PlacedProduct)e.Data.GetData(typeof(PlacedProduct));
 
+            //Get the location of the mouse
             Point newLocation = new Point(e.X, e.Y);
             newLocation = motherFrame.PointToClient(newLocation);
-            newLocation.X -= productAdding.productFieldPanel1.Left;
-            newLocation.Y -= productAdding.productFieldPanel1.Top;
+            newLocation.X -= productAdding.productPanel.Left;
+            newLocation.Y -= productAdding.productPanel.Top;
             newLocation.Y -= motherFrame.menuStrip1.Height;
-
             
-           
             //Failsafe if user clicks the item and doesn't want to move it.
             if (Math.Abs(clickLocation.X - newLocation.X) == 0 || Math.Abs(clickLocation.Y - newLocation.Y) == 0)
             {
@@ -262,19 +276,24 @@ namespace KantoorInrichting.Controllers.Placement
             
             int deltaX = newLocation.X - clickLocation.X;
             int deltaY = newLocation.Y - clickLocation.Y;
+
+            deltaX = ((deltaX / MovementSpeed) * MovementSpeed);
+            deltaY = ((deltaY / MovementSpeed) * MovementSpeed);
+
+
             Point delta = new Point((int)(product.location.X + deltaX), (int)(product.location.Y + deltaY));
             Polygon movedProduct = product.getVirtualPolygon(delta);
 
 
-            foreach (PlacedProduct placedP in ppList)
+            foreach (Polygon placedP in product.PolyList)
             {
                 //Looks to see if the current loop has itself
-                if (placedP == product)
+                if (placedP == product.Poly)
                 {
                     continue;
                 }
 
-                PolygonCollisionController.PolygonCollisionResult r = PolygonCollisionController.PolygonCollision(movedProduct, placedP.Poly, new Vector(0, 0));
+                PolygonCollisionController.PolygonCollisionResult r = PolygonCollisionController.PolygonCollision(movedProduct, placedP, new Vector(0, 0));
                 
                 if (r.WillIntersect)
                 {
