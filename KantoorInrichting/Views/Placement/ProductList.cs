@@ -44,17 +44,31 @@ namespace KantoorInrichting.Views.Placement
                 ProductInfo pi = new ProductInfo();
                 pi.Location = new Point(0, y);
                 pi.setProduct(product);
-                pi.Click += new EventHandler(product_Selected); //The event
+                pi.MouseClick += new MouseEventHandler(product_Selected); //The event
+                pi.pbx_Image.MouseDown += new MouseEventHandler(product_Selected); //The event
                 this.Controls.Add(pi);
                 y += pi.Height;
             }
             
         }
 
-        private void product_Selected(object sender, EventArgs e)
+        private void product_Selected(object sender, MouseEventArgs e)
         {
-            //If the ProductInfo has been clicked, change the 
-            try { SelectionChanged((ProductInfo)sender); }
+            try
+            {
+                //If the ProductInfo has been clicked, change the product
+                ProductInfo pi = (ProductInfo)sender;
+                SelectionChanged(pi);
+            }
+            catch { }
+            
+               
+            try
+            {
+                //If the immage was selected
+                PictureBox pb = (PictureBox)sender;
+                product_Selected(pb.Parent, e);
+            }
             catch { }
         }
     }

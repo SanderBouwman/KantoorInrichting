@@ -16,20 +16,21 @@ namespace KantoorInrichting.Models.Product
 
         public Point location;
 
-        public int length { get; set; }
-        public int width { get; set; }
-        public int height { get; set; }
-        public int product_id { get; }
-        public int category_id { get; set; }
-        public string imageFileName { get; set; }
-        public string description { get; set; }
+        public int Length { get; set; }
+        public int Width { get; set; }
+        public int Height { get; set; }
+        public int Product_id { get; }
+        public int Category_id { get; set; }
+        public string ImageFileName { get; set; }
+        public string Description { get; set; }
+        public CategoryModel ProductCategory { get; set; }
 
-        public string name { get; set; }      
-        public string type { get; set; }      
-        public string brand { get; set; }   
-        public Image image { get; set; }   
-        public int amount { get; set; }    
-        public int id { get; }
+        public string Name { get; set; }      
+        public string Type { get; set; }      
+        public string Brand { get; set; }   
+        public Image Image { get; set; }   
+        public int Amount { get; set; }    
+        public int Id { get; }
         public string category { get; set; }
         public string subcategory { get; set; }
 
@@ -40,37 +41,41 @@ namespace KantoorInrichting.Models.Product
 
         public ProductModel(string n, string b, string t, string c, string s, int l, int w, int h, string d, int a)
         {
-            id = IDnumber;
+            Id = IDnumber;
             IDnumber++;
-            name = n;
-            brand = b;
-            type = t;
+            Name = n;
+            Brand = b;
+            Type = t;
 
-            length = l;
-            width = w;
-            height = h;
+            Length = l;
+            Width = w;
+            Height = h;
 
-            description = d;
-            amount = a;
-            this.image = KantoorInrichting.Properties.Resources.No_Image_Available;
+            Description = d;
+            Amount = a;
+            this.Image = KantoorInrichting.Properties.Resources.No_Image_Available;
             if (n != "") { list.Add(this); } //If the name if empty, don't add it to the list. This is because the name is part of the primary key in the database.
         }
 
         public ProductModel(int i, string n, string b, string t, int c, int l, int w, int h, string d, int a, string im)
         {
-            product_id = i;
-            name = n;
-            brand = b;
-            type = t;
-            category_id = c;
+            Product_id = i;
+            Name = n;
+            Brand = b;
+            Type = t;
+            Category_id = c;
 
-            length = l;
-            width = w;
-            height = h;
+            this.ProductCategory = CategoryModel.list[Category_id];
 
-            description = d;
-            amount = a;
-            imageFileName = im;
+            this.category = ProductCategory.name;
+
+            Length = l;
+            Width = w;
+            Height = h;
+
+            Description = d;
+            Amount = a;
+            ImageFileName = im;
             SetProductImage();
 
             list.Add(this);
@@ -78,19 +83,18 @@ namespace KantoorInrichting.Models.Product
 
 
 
-
         //This methods sets the Product image using the name of the image
         public void SetProductImage()
         {
-            string imagePath = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())) + @"\Resources\" + imageFileName;
+            string imagePath = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())) + @"\Resources\" + ImageFileName;
             try
             {
-                image = Image.FromStream(new MemoryStream(File.ReadAllBytes(imagePath)));
+                Image = Image.FromStream(new MemoryStream(File.ReadAllBytes(imagePath)));
             }
             catch (Exception ex)
             {
                 string v = ex.Data.ToString();
-                image = Properties.Resources.No_Image_Available;
+                Image = Properties.Resources.No_Image_Available;
             }
         }
 

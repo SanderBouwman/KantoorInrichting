@@ -23,8 +23,8 @@ namespace KantoorInrichting.Models.Product {
 
         public static Rectangle DetermineSize(ChairTablePair pair, float margin) {
             Rectangle rectangle = new Rectangle();
-            rectangle.Height = (int) (pair.Table.width + margin*2);
-            rectangle.Width = (int) (pair.Chair.height + pair.Table.height + margin*2);
+            rectangle.Height = (int) (pair.Table.Width + margin*2);
+            rectangle.Width = (int) (pair.Chair.Height + pair.Table.Height + margin*2);
             return rectangle;
         }
 
@@ -37,7 +37,7 @@ namespace KantoorInrichting.Models.Product {
         }
 
         public override string ToString() {
-            return "{Chair=" + Chair.brand + " Table=" + Table.brand + "Rectangle=" + Representation + " }";
+            return "{Chair=" + Chair.Brand + " Table=" + Table.Brand + "Rectangle=" + Representation + " }";
         }
     }
 }

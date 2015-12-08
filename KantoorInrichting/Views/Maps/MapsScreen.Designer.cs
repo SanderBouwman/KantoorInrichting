@@ -72,7 +72,7 @@
             this.MapsGridView1.Location = new System.Drawing.Point(0, 140);
             this.MapsGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.MapsGridView1.Name = "MapsGridView1";
-            this.MapsGridView1.RowTemplate.Height = 200;
+            this.MapsGridView1.RowTemplate.Height = 50;
             this.MapsGridView1.Size = new System.Drawing.Size(701, 290);
             this.MapsGridView1.TabIndex = 3;
             // 

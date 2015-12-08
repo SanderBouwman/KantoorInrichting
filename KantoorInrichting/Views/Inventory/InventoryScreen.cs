@@ -47,7 +47,7 @@ namespace KantoorInrichting.Views.Inventory
                 {
                     foreach (ProductModel product in ProductModel.list)
                     {
-                        if (product.amount < 1 && product.brand == DropdownMerk.SelectedItem.ToString())
+                        if (product.Amount < 1 && product.Brand == DropdownMerk.SelectedItem.ToString())
                         {
                             ProductModel.result.Add(product);
                         }
@@ -58,7 +58,7 @@ namespace KantoorInrichting.Views.Inventory
                 {
                     foreach (ProductModel product in ProductModel.list)
                     {
-                        if (product.amount < 1 && product.brand == DropdownMerk.SelectedItem.ToString())
+                        if (product.Amount < 1 && product.Brand == DropdownMerk.SelectedItem.ToString())
                         {
                             ProductModel.result.Remove(product);
                         }
@@ -73,7 +73,7 @@ namespace KantoorInrichting.Views.Inventory
                 {
                     foreach (ProductModel product in ProductModel.list)
                     {
-                        if (product.amount < 1 && product.category == DropdownCategorie.SelectedItem.ToString())
+                        if (product.Amount < 1 && product.category == DropdownCategorie.SelectedItem.ToString())
                         {
                             ProductModel.result.Add(product);
                         }
@@ -84,7 +84,7 @@ namespace KantoorInrichting.Views.Inventory
                 {
                     foreach (ProductModel product in ProductModel.list)
                     {
-                        if (product.amount < 1 && product.category == DropdownCategorie.SelectedItem.ToString())
+                        if (product.Amount < 1 && product.category == DropdownCategorie.SelectedItem.ToString())
                         {
                             ProductModel.result.Remove(product);
                         }
@@ -98,7 +98,7 @@ namespace KantoorInrichting.Views.Inventory
                 {
                     foreach (ProductModel product in ProductModel.list)
                     {
-                        if (product.amount < 1)
+                        if (product.Amount < 1)
                         {
 
                             ProductModel.result.Add(product);
@@ -110,7 +110,7 @@ namespace KantoorInrichting.Views.Inventory
                 {
                     foreach (ProductModel product in ProductModel.list)
                     {
-                        if (product.amount < 1)
+                        if (product.Amount < 1)
                         {
                             ProductModel.result.Remove(product);
                         }
@@ -145,7 +145,7 @@ namespace KantoorInrichting.Views.Inventory
  
                     // linq select product with the current ID
                     var selectedproduct1 = ProductModel.list
-                            .Where(t => t.product_id == currentProduct)
+                            .Where(t => t.Product_id == currentProduct)
                             .Select(t => t)
                             .ToList();
 

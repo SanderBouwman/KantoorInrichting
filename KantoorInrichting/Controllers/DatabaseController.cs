@@ -46,6 +46,8 @@ namespace KantoorInrichting.Controllers
             Static_productTableAdapter.Fill(DataSet.static_product);
             UserTableAdapter.Fill(DataSet.user);
 
+
+            GetCategories_FromDatabase();
             GetProducts_FromDatabase();
             GetSpaces_FromDatabase();
         }
@@ -80,10 +82,13 @@ namespace KantoorInrichting.Controllers
                 var s1 = new Space(space.space_number, space.floor, space.building, space.roomnumber);
             }
         }
-
-
-
-
+        public void GetCategories_FromDatabase()
+        {
+            foreach (var category in this.DataSet.category)
+            {
+                var c1 = new CategoryModel(category.category_id, category.name, category.subcategory_of, "0x78FF0000");
+            }
+        }
 
     }
 }

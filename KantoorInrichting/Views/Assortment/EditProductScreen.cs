@@ -34,7 +34,7 @@ namespace KantoorInrichting.Views.Assortment
             this.product = product;
             dbc = DatabaseController.Instance; ;
             currentImagePath = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())) +
-                               @"\Resources\" + product.imageFileName;
+                               @"\Resources\" + product.ImageFileName;
             isNewImage = false;
             FillComboBox();
             FillTextBoxes();
@@ -43,15 +43,15 @@ namespace KantoorInrichting.Views.Assortment
         //Fills the textboxes with the values from the corresponding product object
         public void FillTextBoxes()
         {
-            nameTextBox.Text = product.name;
-            typeTextBox.Text = product.type;
-            brandTextBox.Text = product.brand;
-            heightTextBox.Text = product.height.ToString();
-            widthTextBox.Text = product.width.ToString();
-            lengthTextBox.Text = product.length.ToString();
-            amountTextBox.Text = product.amount.ToString();
-            descriptionTextBox.Text = product.description;
-            pictureBox.Image = product.image;
+            nameTextBox.Text = product.Name;
+            typeTextBox.Text = product.Type;
+            brandTextBox.Text = product.Brand;
+            heightTextBox.Text = product.Height.ToString();
+            widthTextBox.Text = product.Width.ToString();
+            lengthTextBox.Text = product.Length.ToString();
+            amountTextBox.Text = product.Amount.ToString();
+            descriptionTextBox.Text = product.Description;
+            pictureBox.Image = product.Image;
         }
 
         //Fills the category combobox with categories from the database and selects the category
@@ -60,7 +60,7 @@ namespace KantoorInrichting.Views.Assortment
             foreach (var category in dbc.DataSet.category)
             {
                 categoryComboBox.Items.Add(category.name);
-                if (category.category_id == product.category_id)
+                if (category.category_id == product.Category_id)
                 {
                     categoryComboBox.SelectedIndex = category.category_id;
                 }
@@ -175,19 +175,19 @@ namespace KantoorInrichting.Views.Assortment
         //Update the existing ProductModel
         private void UpdateProductModel()
         {
-            product.name = name;
-            product.brand = brand;
-            product.type = type;
-            product.category_id = category_id;
-            product.height = height;
-            product.width = width;
-            product.length = length;
-            product.description = description;
-            product.amount = amount;
+            product.Name = name;
+            product.Brand = brand;
+            product.Type = type;
+            product.Category_id = category_id;
+            product.Height = height;
+            product.Width = width;
+            product.Length = length;
+            product.Description = description;
+            product.Amount = amount;
             if (isNewImage)
             {
-                product.imageFileName = newImageFileName;
-                product.image = newImage;
+                product.ImageFileName = newImageFileName;
+                product.Image = newImage;
             }
         }
 
@@ -198,18 +198,18 @@ namespace KantoorInrichting.Views.Assortment
             try
             {
                 //Search the tabel Product for a certain ProductID
-                var productRow = dbc.DataSet.product.FindByproduct_id(product.product_id);
+                var productRow = dbc.DataSet.product.FindByproduct_id(product.Product_id);
                 //Assign a new value to the Column Quantity
-                productRow.name = product.name;
-                productRow.brand = product.brand;
-                productRow.type = product.type;
-                productRow.category_id = product.category_id;
-                productRow.height = product.height;
-                productRow.width = product.width;
-                productRow.length = product.length;
-                productRow.amount = product.amount;
-                productRow.image = product.imageFileName;
-                productRow.description = product.description;
+                productRow.name = product.Name;
+                productRow.brand = product.Brand;
+                productRow.type = product.Type;
+                productRow.category_id = product.Category_id;
+                productRow.height = product.Height;
+                productRow.width = product.Width;
+                productRow.length = product.Length;
+                productRow.amount = product.Amount;
+                productRow.image = product.ImageFileName;
+                productRow.description = product.Description;
 
                 //Update the database with the new Data
                 dbc.ProductTableAdapter.Update(dbc.DataSet.product);
