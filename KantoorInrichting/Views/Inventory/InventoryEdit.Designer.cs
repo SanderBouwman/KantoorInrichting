@@ -28,90 +28,97 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.WijzigenButton = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.ProductAantal = new System.Windows.Forms.NumericUpDown();
-            this.AnnulerenButton = new System.Windows.Forms.Button();
-            this.ProductNaam = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.ProductAantal)).BeginInit();
+            this.editButton = new System.Windows.Forms.Button();
+            this.changeLabel = new System.Windows.Forms.Label();
+            this.amountLabel = new System.Windows.Forms.Label();
+            this.productAmount = new System.Windows.Forms.NumericUpDown();
+            this.cancelButton = new System.Windows.Forms.Button();
+            this.productNameLabel = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.productAmount)).BeginInit();
             this.SuspendLayout();
             // 
-            // WijzigenButton
+            // editButton
             // 
-            this.WijzigenButton.Location = new System.Drawing.Point(27, 182);
-            this.WijzigenButton.Name = "WijzigenButton";
-            this.WijzigenButton.Size = new System.Drawing.Size(102, 36);
-            this.WijzigenButton.TabIndex = 0;
-            this.WijzigenButton.Text = "Wijzigen";
-            this.WijzigenButton.UseVisualStyleBackColor = true;
-            this.WijzigenButton.Click += new System.EventHandler(this.button1_Click);
+            this.editButton.Location = new System.Drawing.Point(20, 148);
+            this.editButton.Margin = new System.Windows.Forms.Padding(2);
+            this.editButton.Name = "editButton";
+            this.editButton.Size = new System.Drawing.Size(76, 29);
+            this.editButton.TabIndex = 0;
+            this.editButton.Text = "Wijzigen";
+            this.editButton.UseVisualStyleBackColor = true;
+            this.editButton.Click += new System.EventHandler(this.editButton_Click);
             // 
-            // label1
+            // changeLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.label1.Location = new System.Drawing.Point(93, 24);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(82, 24);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Wijzigen";
+            this.changeLabel.AutoSize = true;
+            this.changeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.changeLabel.Location = new System.Drawing.Point(70, 20);
+            this.changeLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.changeLabel.Name = "changeLabel";
+            this.changeLabel.Size = new System.Drawing.Size(64, 18);
+            this.changeLabel.TabIndex = 1;
+            this.changeLabel.Text = "Wijzigen";
             // 
-            // label2
+            // amountLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(73, 126);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(56, 17);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Aantal :";
+            this.amountLabel.AutoSize = true;
+            this.amountLabel.Location = new System.Drawing.Point(55, 102);
+            this.amountLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.amountLabel.Name = "amountLabel";
+            this.amountLabel.Size = new System.Drawing.Size(43, 13);
+            this.amountLabel.TabIndex = 2;
+            this.amountLabel.Text = "Aantal :";
             // 
-            // ProductAantal
+            // productAmount
             // 
-            this.ProductAantal.Location = new System.Drawing.Point(135, 124);
-            this.ProductAantal.Maximum = new decimal(new int[] {
+            this.productAmount.Location = new System.Drawing.Point(101, 101);
+            this.productAmount.Margin = new System.Windows.Forms.Padding(2);
+            this.productAmount.Maximum = new decimal(new int[] {
             1000000,
             0,
             0,
             0});
-            this.ProductAantal.Name = "ProductAantal";
-            this.ProductAantal.Size = new System.Drawing.Size(93, 22);
-            this.ProductAantal.TabIndex = 4;
+            this.productAmount.Name = "productAmount";
+            this.productAmount.Size = new System.Drawing.Size(70, 20);
+            this.productAmount.TabIndex = 4;
             // 
-            // AnnulerenButton
+            // cancelButton
             // 
-            this.AnnulerenButton.Location = new System.Drawing.Point(153, 182);
-            this.AnnulerenButton.Name = "AnnulerenButton";
-            this.AnnulerenButton.Size = new System.Drawing.Size(102, 36);
-            this.AnnulerenButton.TabIndex = 5;
-            this.AnnulerenButton.Text = "Annuleren";
-            this.AnnulerenButton.UseVisualStyleBackColor = true;
-            this.AnnulerenButton.Click += new System.EventHandler(this.button2_Click);
+            this.cancelButton.Location = new System.Drawing.Point(115, 148);
+            this.cancelButton.Margin = new System.Windows.Forms.Padding(2);
+            this.cancelButton.Name = "cancelButton";
+            this.cancelButton.Size = new System.Drawing.Size(76, 29);
+            this.cancelButton.TabIndex = 5;
+            this.cancelButton.Text = "Annuleren";
+            this.cancelButton.UseVisualStyleBackColor = true;
+            this.cancelButton.Click += new System.EventHandler(this.button2_Click);
             // 
-            // ProductNaam
+            // productNameLabel
             // 
-            this.ProductNaam.AutoEllipsis = true;
-            this.ProductNaam.AutoSize = true;
-            this.ProductNaam.Location = new System.Drawing.Point(61, 78);
-            this.ProductNaam.Name = "ProductNaam";
-            this.ProductNaam.Size = new System.Drawing.Size(68, 17);
-            this.ProductNaam.TabIndex = 6;
-            this.ProductNaam.Text = "Error 404";
+            this.productNameLabel.AutoEllipsis = true;
+            this.productNameLabel.AutoSize = true;
+            this.productNameLabel.Location = new System.Drawing.Point(46, 63);
+            this.productNameLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.productNameLabel.Name = "productNameLabel";
+            this.productNameLabel.Size = new System.Drawing.Size(50, 13);
+            this.productNameLabel.TabIndex = 6;
+            this.productNameLabel.Text = "Error 404";
             // 
             // InventoryEdit
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(282, 253);
-            this.Controls.Add(this.ProductNaam);
-            this.Controls.Add(this.AnnulerenButton);
-            this.Controls.Add(this.ProductAantal);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.WijzigenButton);
+            this.ClientSize = new System.Drawing.Size(212, 206);
+            this.Controls.Add(this.productNameLabel);
+            this.Controls.Add(this.cancelButton);
+            this.Controls.Add(this.productAmount);
+            this.Controls.Add(this.amountLabel);
+            this.Controls.Add(this.changeLabel);
+            this.Controls.Add(this.editButton);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "InventoryEdit";
             this.Text = "InventoryEdit";
-            ((System.ComponentModel.ISupportInitialize)(this.ProductAantal)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productAmount)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -119,11 +126,11 @@
 
         #endregion
 
-        private System.Windows.Forms.Button WijzigenButton;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.NumericUpDown ProductAantal;
-        private System.Windows.Forms.Button AnnulerenButton;
-        private System.Windows.Forms.Label ProductNaam;
+        public System.Windows.Forms.Button editButton;
+        public System.Windows.Forms.Label changeLabel;
+        public System.Windows.Forms.Label amountLabel;
+        public System.Windows.Forms.NumericUpDown productAmount;
+        public System.Windows.Forms.Button cancelButton;
+        public System.Windows.Forms.Label productNameLabel;
     }
 }

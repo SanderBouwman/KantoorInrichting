@@ -1,13 +1,9 @@
 ﻿using KantoorInrichting.Models.Product;
 using KantoorInrichting.Views.Assortment;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace KantoorInrichting.Controllers.Assortment
@@ -155,8 +151,7 @@ namespace KantoorInrichting.Controllers.Assortment
             else
             {
                 screen.errorCategoryLabel.Text = "";
-                category_id = screen.categoryComboBox.SelectedIndex + 1;
-                //Plus 1 to match the category number from the database, this might be needing change later, if changed -> also change in EditProductScreen FillComboBox()
+                category_id = screen.categoryComboBox.SelectedIndex;
                 validationPassed--;
             }
             if (!Regex.IsMatch(screen.descriptionTextBox.Text, @"^[a-zA-Z0-9\s\p{P}\d]+$"))

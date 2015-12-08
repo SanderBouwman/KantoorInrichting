@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
-using KantoorInrichting.Models.Product;
 using KantoorInrichting.Controllers.Assortment;
+using KantoorInrichting.Models.Product;
 
 namespace KantoorInrichting.Views.Assortment
 {
@@ -9,13 +9,12 @@ namespace KantoorInrichting.Views.Assortment
     {
         public MainFrame hoofdscherm;
         private AssortmentController controller;
- 
+
         public AssortmentScreen(MainFrame hoofdscherm)
         {
-            controller = new AssortmentController(this);
-            this.hoofdscherm = hoofdscherm;
             InitializeComponent();
-            controller.FillData();
+            this.hoofdscherm = hoofdscherm;
+            controller = new AssortmentController(this);
             Invalidate();
         }
 
@@ -28,6 +27,7 @@ namespace KantoorInrichting.Views.Assortment
         private void dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             controller.dataGridView_CellContentClick(sender, e);
+
         }
     }
 }

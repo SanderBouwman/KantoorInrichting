@@ -128,7 +128,6 @@ namespace KantoorInrichting.Controllers.Assortment
             {
                 screen.errorCategoryLabel.Text = "";
                 category_ID = screen.categoryComboBox.SelectedIndex;
-                //Plus 1 to match the category number from the database, this might be needing change later, if changed -> also change in EditProductScreen FillComboBox() 
                 validationPassed--;
             }
             if (!Regex.IsMatch(screen.descriptionTextBox.Text, @"^[a-zA-Z0-9\s\p{P}\d]+$"))

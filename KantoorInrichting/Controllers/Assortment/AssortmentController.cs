@@ -1,10 +1,5 @@
 ﻿using KantoorInrichting.Models.Product;
 using KantoorInrichting.Views.Assortment;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace KantoorInrichting.Controllers.Assortment
@@ -16,11 +11,11 @@ namespace KantoorInrichting.Controllers.Assortment
         public AssortmentController(AssortmentScreen assortment)
         {
             this.screen = assortment;
-
+            FillData();
         }
 
         //Fill the datagridview with data
-        public void FillData()
+        private void FillData()
         {
             screen.assortmentGridView.AutoGenerateColumns = false;
             screen.assortmentGridView.DataSource = ProductModel.list;
@@ -31,8 +26,9 @@ namespace KantoorInrichting.Controllers.Assortment
         {
             var addNewProduct = new AddNewProductScreen();
             addNewProduct.ShowDialog();
+            screen.assortmentGridView.DataSource = null;
             screen.assortmentGridView.DataSource = ProductModel.list;
-            screen.Refresh();
+            screen.assortmentGridView.Refresh();
         }
 
 
@@ -48,8 +44,9 @@ namespace KantoorInrichting.Controllers.Assortment
                     // make an editscreen with current product as argument
                     var editProduct = new EditProductScreen(ProductModel.list[e.RowIndex]);
                     editProduct.ShowDialog();
+                    screen.assortmentGridView.DataSource = null;
                     screen.assortmentGridView.DataSource = ProductModel.list;
-                    screen.Refresh();
+                    screen.assortmentGridView.Refresh();
                 }
 
                 if (e.ColumnIndex == 11)
