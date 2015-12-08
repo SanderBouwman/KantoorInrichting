@@ -51,13 +51,13 @@ namespace KantoorInrichting.Models.Product
 
             //Corner and image
             cornerPoints = new PointF[5];
-            defaultBitMap = new Bitmap(1, 1);
-            using (Graphics gfx = Graphics.FromImage(defaultBitMap))
-            using (SolidBrush brush = new SolidBrush(Color.FromArgb(0xFF0000)))
-            // will use product.category.colour as soon as it's ready
-            {
-                gfx.FillRectangle(brush, 0, 0, 1, 1);
-            }
+            defaultBitMap = new Bitmap(product.width, product.length);
+            Graphics gfx = Graphics.FromImage(defaultBitMap);
+
+            Color color = ColorTranslator.FromHtml(product.category.colour);
+            SolidBrush brush = new SolidBrush(color);
+            gfx.FillRectangle(brush, 0, 0, product.width, product.length);
+            
             defaultBitMap = new Bitmap(RezizeImage(defaultBitMap, product.width, product.length));
             rotatedMap = defaultBitMap;
 
