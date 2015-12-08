@@ -18,14 +18,14 @@ namespace KantoorInrichting.Models.Product
         public int catID;
         public string name;
         public int isSubcategoryFrom;
-        public string colour;
+        public Color colour;
 
         public CategoryModel(int catID, string name, int issub, string colour)
         {
             this.catID = catID;
             this.name = name;
             this.isSubcategoryFrom = issub;
-            this.colour = colour;
+            this.colour = System.Drawing.ColorTranslator.FromHtml(colour);
 
             list.Add(this);
         }
