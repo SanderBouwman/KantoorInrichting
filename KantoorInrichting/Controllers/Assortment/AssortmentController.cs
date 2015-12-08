@@ -42,7 +42,7 @@ namespace KantoorInrichting.Controllers.Assortment
             var senderGrid = (DataGridView)sender;
             if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
             {
-                if (e.ColumnIndex == 9)
+                if (e.ColumnIndex == 10)
                 {
                     // run edit screen here
                     // make an editscreen with current product as argument
@@ -52,7 +52,7 @@ namespace KantoorInrichting.Controllers.Assortment
                     screen.Refresh();
                 }
 
-                if (e.ColumnIndex == 10)
+                if (e.ColumnIndex == 11)
                 {
                     // run delete screen here
                     // make an Removescreen with current product as argument

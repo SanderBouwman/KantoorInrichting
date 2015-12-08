@@ -3304,7 +3304,7 @@ namespace KantoorInrichting {
             public int subcategory_of {
                 get {
                     if (this.Issubcategory_ofNull()) {
-                        return 0;
+                        return -1;
                     }
                     else {
                         return ((int)(this[this.tablecategory.subcategory_ofColumn]));

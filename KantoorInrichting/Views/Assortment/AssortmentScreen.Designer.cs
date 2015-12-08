@@ -32,10 +32,16 @@
             this.PanelLeft = new System.Windows.Forms.Panel();
             this.addProductButton = new System.Windows.Forms.Button();
             this.assortmentGridView = new System.Windows.Forms.DataGridView();
+            this.PanelRight = new System.Windows.Forms.Panel();
+            this.DropdownCategorie = new System.Windows.Forms.ComboBox();
+            this.DropdownLeverancier = new System.Windows.Forms.ComboBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.Product_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Naam = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Merk = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Category = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.hoogte = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.breedte = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Lengte = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -43,11 +49,6 @@
             this.Afbeelding = new System.Windows.Forms.DataGridViewImageColumn();
             this.wijzig = new System.Windows.Forms.DataGridViewButtonColumn();
             this.delete = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.PanelRight = new System.Windows.Forms.Panel();
-            this.DropdownCategorie = new System.Windows.Forms.ComboBox();
-            this.DropdownLeverancier = new System.Windows.Forms.ComboBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.PanelLeft.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.assortmentGridView)).BeginInit();
             this.PanelRight.SuspendLayout();
@@ -104,6 +105,7 @@
             this.Naam,
             this.Type,
             this.Merk,
+            this.Category,
             this.hoogte,
             this.breedte,
             this.Lengte,
@@ -120,78 +122,6 @@
             this.assortmentGridView.Size = new System.Drawing.Size(450, 185);
             this.assortmentGridView.TabIndex = 3;
             this.assortmentGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellContentClick);
-            // 
-            // Product_ID
-            // 
-            this.Product_ID.DataPropertyName = "product_ID";
-            this.Product_ID.HeaderText = "Product_ID";
-            this.Product_ID.Name = "Product_ID";
-            this.Product_ID.Visible = false;
-            // 
-            // Naam
-            // 
-            this.Naam.DataPropertyName = "name";
-            this.Naam.HeaderText = "Naam";
-            this.Naam.Name = "Naam";
-            // 
-            // Type
-            // 
-            this.Type.DataPropertyName = "type";
-            this.Type.HeaderText = "Type";
-            this.Type.Name = "Type";
-            // 
-            // Merk
-            // 
-            this.Merk.DataPropertyName = "brand";
-            this.Merk.HeaderText = "Merk";
-            this.Merk.Name = "Merk";
-            // 
-            // hoogte
-            // 
-            this.hoogte.DataPropertyName = "height";
-            this.hoogte.HeaderText = "hoogte";
-            this.hoogte.Name = "hoogte";
-            // 
-            // breedte
-            // 
-            this.breedte.DataPropertyName = "width";
-            this.breedte.HeaderText = "breedte";
-            this.breedte.Name = "breedte";
-            // 
-            // Lengte
-            // 
-            this.Lengte.DataPropertyName = "length";
-            this.Lengte.HeaderText = "Lengte";
-            this.Lengte.Name = "Lengte";
-            // 
-            // Amount
-            // 
-            this.Amount.DataPropertyName = "amount";
-            this.Amount.HeaderText = "Aantal";
-            this.Amount.Name = "Amount";
-            // 
-            // Afbeelding
-            // 
-            this.Afbeelding.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.Afbeelding.DataPropertyName = "image";
-            this.Afbeelding.HeaderText = "Afbeelding";
-            this.Afbeelding.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Stretch;
-            this.Afbeelding.Name = "Afbeelding";
-            this.Afbeelding.Width = 63;
-            // 
-            // wijzig
-            // 
-            this.wijzig.HeaderText = "wijzig";
-            this.wijzig.Name = "wijzig";
-            this.wijzig.Text = "wijzig";
-            this.wijzig.UseColumnTextForButtonValue = true;
-            // 
-            // delete
-            // 
-            this.delete.HeaderText = "delete";
-            this.delete.Name = "delete";
-            this.delete.Text = "delete";
-            this.delete.UseColumnTextForButtonValue = true;
             // 
             // PanelRight
             // 
@@ -246,6 +176,85 @@
             this.label1.Size = new System.Drawing.Size(75, 19);
             this.label1.TabIndex = 3;
             // 
+            // Product_ID
+            // 
+            this.Product_ID.DataPropertyName = "product_ID";
+            this.Product_ID.HeaderText = "Product_ID";
+            this.Product_ID.Name = "Product_ID";
+            this.Product_ID.Visible = false;
+            // 
+            // Naam
+            // 
+            this.Naam.DataPropertyName = "name";
+            this.Naam.HeaderText = "Naam";
+            this.Naam.Name = "Naam";
+            // 
+            // Type
+            // 
+            this.Type.DataPropertyName = "type";
+            this.Type.HeaderText = "Type";
+            this.Type.Name = "Type";
+            // 
+            // Merk
+            // 
+            this.Merk.DataPropertyName = "brand";
+            this.Merk.HeaderText = "Merk";
+            this.Merk.Name = "Merk";
+            // 
+            // Category
+            // 
+            this.Category.DataPropertyName = "category";
+            this.Category.HeaderText = "Categorie";
+            this.Category.Name = "Category";
+            // 
+            // hoogte
+            // 
+            this.hoogte.DataPropertyName = "height";
+            this.hoogte.HeaderText = "Hoogte";
+            this.hoogte.Name = "hoogte";
+            // 
+            // breedte
+            // 
+            this.breedte.DataPropertyName = "width";
+            this.breedte.HeaderText = "Breedte";
+            this.breedte.Name = "breedte";
+            // 
+            // Lengte
+            // 
+            this.Lengte.DataPropertyName = "length";
+            this.Lengte.HeaderText = "Lengte";
+            this.Lengte.Name = "Lengte";
+            // 
+            // Amount
+            // 
+            this.Amount.DataPropertyName = "amount";
+            this.Amount.HeaderText = "Aantal";
+            this.Amount.Name = "Amount";
+            // 
+            // Afbeelding
+            // 
+            this.Afbeelding.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Afbeelding.DataPropertyName = "image";
+            this.Afbeelding.HeaderText = "Afbeelding";
+            this.Afbeelding.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Stretch;
+            this.Afbeelding.Name = "Afbeelding";
+            this.Afbeelding.Width = 63;
+            // 
+            // wijzig
+            // 
+            this.wijzig.DataPropertyName = "Wijzig";
+            this.wijzig.HeaderText = "Wijzig";
+            this.wijzig.Name = "wijzig";
+            this.wijzig.Text = "Wijzig";
+            this.wijzig.UseColumnTextForButtonValue = true;
+            // 
+            // delete
+            // 
+            this.delete.HeaderText = "Delete";
+            this.delete.Name = "delete";
+            this.delete.Text = "Delete";
+            this.delete.UseColumnTextForButtonValue = true;
+            // 
             // AssortmentScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -272,10 +281,12 @@
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button addProductButton;
+        public System.Windows.Forms.DataGridView assortmentGridView;
         private System.Windows.Forms.DataGridViewTextBoxColumn Product_ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Naam;
         private System.Windows.Forms.DataGridViewTextBoxColumn Type;
         private System.Windows.Forms.DataGridViewTextBoxColumn Merk;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Category;
         private System.Windows.Forms.DataGridViewTextBoxColumn hoogte;
         private System.Windows.Forms.DataGridViewTextBoxColumn breedte;
         private System.Windows.Forms.DataGridViewTextBoxColumn Lengte;
@@ -283,6 +294,5 @@
         private System.Windows.Forms.DataGridViewImageColumn Afbeelding;
         private System.Windows.Forms.DataGridViewButtonColumn wijzig;
         private System.Windows.Forms.DataGridViewButtonColumn delete;
-        public System.Windows.Forms.DataGridView assortmentGridView;
     }
 }
