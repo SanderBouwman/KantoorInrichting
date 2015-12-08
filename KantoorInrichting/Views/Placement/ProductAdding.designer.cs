@@ -28,91 +28,110 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btn_Turn = new System.Windows.Forms.Button();
-            this.btn_Move = new System.Windows.Forms.Button();
-            this.cbx_MoveValue = new System.Windows.Forms.ComboBox();
-            this.cbx_TurnValue = new System.Windows.Forms.ComboBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.productFieldPanel1 = new KantoorInrichting.Views.Placement.ProductFieldPanel();
+            this.ButtonControlPanel = new System.Windows.Forms.Panel();
+            this.productPanel = new System.Windows.Forms.Panel();
+            this.btn_Right = new System.Windows.Forms.Button();
+            this.btn_Down = new System.Windows.Forms.Button();
+            this.btn_Left = new System.Windows.Forms.Button();
+            this.btn_CCW = new System.Windows.Forms.Button();
+            this.btn_Up = new System.Windows.Forms.Button();
+            this.btn_CW = new System.Windows.Forms.Button();
             this.productInfo1 = new KantoorInrichting.Views.Placement.ProductInfo();
             this.productList1 = new KantoorInrichting.Views.Placement.ProductList();
-            this.panel1.SuspendLayout();
+            this.ButtonControlPanel.SuspendLayout();
             this.SuspendLayout();
             // 
-            // btn_Turn
+            // ButtonControlPanel
             // 
-            this.btn_Turn.BackColor = System.Drawing.SystemColors.Control;
-            this.btn_Turn.Location = new System.Drawing.Point(127, 3);
-            this.btn_Turn.Name = "btn_Turn";
-            this.btn_Turn.Size = new System.Drawing.Size(75, 23);
-            this.btn_Turn.TabIndex = 2;
-            this.btn_Turn.Text = "Draai";
-            this.btn_Turn.UseVisualStyleBackColor = false;
-            this.btn_Turn.Click += new System.EventHandler(this.btn_Turn_Click);
+            this.ButtonControlPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ButtonControlPanel.Controls.Add(this.btn_CW);
+            this.ButtonControlPanel.Controls.Add(this.btn_Up);
+            this.ButtonControlPanel.Controls.Add(this.btn_CCW);
+            this.ButtonControlPanel.Controls.Add(this.btn_Left);
+            this.ButtonControlPanel.Controls.Add(this.btn_Down);
+            this.ButtonControlPanel.Controls.Add(this.btn_Right);
+            this.ButtonControlPanel.Location = new System.Drawing.Point(970, 380);
+            this.ButtonControlPanel.Name = "ButtonControlPanel";
+            this.ButtonControlPanel.Size = new System.Drawing.Size(123, 81);
+            this.ButtonControlPanel.TabIndex = 7;
             // 
-            // btn_Move
+            // productPanel
             // 
-            this.btn_Move.BackColor = System.Drawing.SystemColors.Control;
-            this.btn_Move.Location = new System.Drawing.Point(127, 33);
-            this.btn_Move.Name = "btn_Move";
-            this.btn_Move.Size = new System.Drawing.Size(75, 23);
-            this.btn_Move.TabIndex = 4;
-            this.btn_Move.Text = "Beweeg";
-            this.btn_Move.UseVisualStyleBackColor = false;
-            this.btn_Move.Click += new System.EventHandler(this.btn_Move_Click);
+            this.productPanel.AllowDrop = true;
+            this.productPanel.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.productPanel.Location = new System.Drawing.Point(3, 3);
+            this.productPanel.Name = "productPanel";
+            this.productPanel.Size = new System.Drawing.Size(600, 600);
+            this.productPanel.TabIndex = 8;
+            this.productPanel.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDrop_DragDrop);
+            this.productPanel.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragDrop_DragEnter);
+            this.productPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Mousedown_Panel);
             // 
-            // cbx_MoveValue
+            // btn_Right
             // 
-            this.cbx_MoveValue.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbx_MoveValue.FormattingEnabled = true;
-            this.cbx_MoveValue.Items.AddRange(new object[] {
-            "Up",
-            "Down",
-            "Left",
-            "Right"});
-            this.cbx_MoveValue.Location = new System.Drawing.Point(2, 33);
-            this.cbx_MoveValue.Margin = new System.Windows.Forms.Padding(2);
-            this.cbx_MoveValue.Name = "cbx_MoveValue";
-            this.cbx_MoveValue.Size = new System.Drawing.Size(121, 21);
-            this.cbx_MoveValue.TabIndex = 3;
+            this.btn_Right.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Right.Location = new System.Drawing.Point(85, 43);
+            this.btn_Right.Name = "btn_Right";
+            this.btn_Right.Size = new System.Drawing.Size(35, 35);
+            this.btn_Right.TabIndex = 5;
+            this.btn_Right.Text = "→";
+            this.btn_Right.UseVisualStyleBackColor = true;
+            this.btn_Right.Click += new System.EventHandler(this.btn_Right_Click);
             // 
-            // cbx_TurnValue
+            // btn_Down
             // 
-            this.cbx_TurnValue.BackColor = System.Drawing.SystemColors.Window;
-            this.cbx_TurnValue.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbx_TurnValue.FormattingEnabled = true;
-            this.cbx_TurnValue.Items.AddRange(new object[] {
-            "Clockwise",
-            "Counter Clockwise"});
-            this.cbx_TurnValue.Location = new System.Drawing.Point(0, 3);
-            this.cbx_TurnValue.Name = "cbx_TurnValue";
-            this.cbx_TurnValue.Size = new System.Drawing.Size(121, 21);
-            this.cbx_TurnValue.TabIndex = 1;
+            this.btn_Down.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Down.Location = new System.Drawing.Point(44, 43);
+            this.btn_Down.Name = "btn_Down";
+            this.btn_Down.Size = new System.Drawing.Size(35, 35);
+            this.btn_Down.TabIndex = 6;
+            this.btn_Down.Text = "↓";
+            this.btn_Down.UseVisualStyleBackColor = true;
+            this.btn_Down.Click += new System.EventHandler(this.btn_Down_Click);
             // 
-            // panel1
+            // btn_Left
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.Controls.Add(this.cbx_TurnValue);
-            this.panel1.Controls.Add(this.btn_Turn);
-            this.panel1.Controls.Add(this.cbx_MoveValue);
-            this.panel1.Controls.Add(this.btn_Move);
-            this.panel1.Location = new System.Drawing.Point(912, 399);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(202, 63);
-            this.panel1.TabIndex = 7;
+            this.btn_Left.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Left.Location = new System.Drawing.Point(3, 43);
+            this.btn_Left.Name = "btn_Left";
+            this.btn_Left.Size = new System.Drawing.Size(35, 35);
+            this.btn_Left.TabIndex = 7;
+            this.btn_Left.Text = "←";
+            this.btn_Left.UseVisualStyleBackColor = true;
+            this.btn_Left.Click += new System.EventHandler(this.btn_Left_Click);
             // 
-            // productFieldPanel1
+            // btn_CCW
             // 
-            this.productFieldPanel1.AllowDrop = true;
-            this.productFieldPanel1.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.productFieldPanel1.Location = new System.Drawing.Point(2, 2);
-            this.productFieldPanel1.Margin = new System.Windows.Forms.Padding(2);
-            this.productFieldPanel1.Name = "productFieldPanel1";
-            this.productFieldPanel1.Size = new System.Drawing.Size(600, 600);
-            this.productFieldPanel1.TabIndex = 8;
-            this.productFieldPanel1.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDrop_DragDrop);
-            this.productFieldPanel1.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragDrop_DragEnter);
-            this.productFieldPanel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Mousedown_Panel);
+            this.btn_CCW.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_CCW.Location = new System.Drawing.Point(3, 3);
+            this.btn_CCW.Name = "btn_CCW";
+            this.btn_CCW.Size = new System.Drawing.Size(35, 35);
+            this.btn_CCW.TabIndex = 8;
+            this.btn_CCW.Text = "↶";
+            this.btn_CCW.UseVisualStyleBackColor = true;
+            this.btn_CCW.Click += new System.EventHandler(this.btn_CCW_Click);
+            // 
+            // btn_Up
+            // 
+            this.btn_Up.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Up.Location = new System.Drawing.Point(44, 3);
+            this.btn_Up.Name = "btn_Up";
+            this.btn_Up.Size = new System.Drawing.Size(35, 35);
+            this.btn_Up.TabIndex = 9;
+            this.btn_Up.Text = "↑";
+            this.btn_Up.UseVisualStyleBackColor = true;
+            this.btn_Up.Click += new System.EventHandler(this.btn_Up_Click);
+            // 
+            // btn_CW
+            // 
+            this.btn_CW.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_CW.Location = new System.Drawing.Point(85, 3);
+            this.btn_CW.Name = "btn_CW";
+            this.btn_CW.Size = new System.Drawing.Size(35, 35);
+            this.btn_CW.TabIndex = 10;
+            this.btn_CW.Text = "↷";
+            this.btn_CW.UseVisualStyleBackColor = true;
+            this.btn_CW.Click += new System.EventHandler(this.btn_CW_Click);
             // 
             // productInfo1
             // 
@@ -142,25 +161,27 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.Controls.Add(this.productFieldPanel1);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.productPanel);
+            this.Controls.Add(this.ButtonControlPanel);
             this.Controls.Add(this.productInfo1);
             this.Controls.Add(this.productList1);
             this.Name = "ProductAdding";
             this.Size = new System.Drawing.Size(1120, 670);
-            this.panel1.ResumeLayout(false);
+            this.ButtonControlPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.Button btn_Turn;
-        private System.Windows.Forms.Button btn_Move;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel ButtonControlPanel;
         public ProductInfo productInfo1;
-        public System.Windows.Forms.ComboBox cbx_MoveValue;
-        public System.Windows.Forms.ComboBox cbx_TurnValue;
         public ProductList productList1;
-        public ProductFieldPanel productFieldPanel1;
+        public System.Windows.Forms.Panel productPanel;
+        private System.Windows.Forms.Button btn_CW;
+        private System.Windows.Forms.Button btn_Up;
+        private System.Windows.Forms.Button btn_CCW;
+        private System.Windows.Forms.Button btn_Left;
+        private System.Windows.Forms.Button btn_Down;
+        private System.Windows.Forms.Button btn_Right;
     }
 }

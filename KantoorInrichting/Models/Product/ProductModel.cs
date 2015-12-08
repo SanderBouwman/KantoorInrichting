@@ -31,7 +31,8 @@ namespace KantoorInrichting.Models.Product
         public Image image { get; set; }   
         public int amount { get; set; }    
         public int id { get; }
-        public string category { get; }
+        public string category { get; set; }
+        public string subcategory { get; set; }
 
 
         //public Supplier supplier { get; private set; }

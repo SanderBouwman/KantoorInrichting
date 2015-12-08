@@ -32,7 +32,7 @@ namespace KantoorInrichting.Views.Assortment
         {
             InitializeComponent();
             this.product = product;
-            dbc = DatabaseController.Instance;
+            dbc = DatabaseController.Instance; ;
             currentImagePath = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())) +
                                @"\Resources\" + product.imageFileName;
             isNewImage = false;
@@ -57,16 +57,12 @@ namespace KantoorInrichting.Views.Assortment
         //Fills the category combobox with categories from the database and selects the category
         public void FillComboBox()
         {
-            var categoryList = dbc.Dataset.category;
-
-            foreach (var category in categoryList)
+            foreach (var category in dbc.DataSet.category)
             {
                 categoryComboBox.Items.Add(category.name);
                 if (category.category_id == product.category_id)
                 {
                     categoryComboBox.SelectedIndex = category.category_id;
-                    //Minus 1 to match the category number from the database -->
-                    //this might be needing changes later
                 }
             }
         }
@@ -199,11 +195,10 @@ namespace KantoorInrichting.Views.Assortment
         private void UpdateProductInDatabase()
         {
             //Fill the TableAdapter with data from the dataset
-            productTableAdapter.Fill(kantoorInrichtingDataSet.product);
             try
             {
                 //Search the tabel Product for a certain ProductID
-                var productRow = kantoorInrichtingDataSet.product.FindByproduct_id(product.product_id);
+                var productRow = dbc.DataSet.product.FindByproduct_id(product.product_id);
                 //Assign a new value to the Column Quantity
                 productRow.name = product.name;
                 productRow.brand = product.brand;
@@ -217,7 +212,7 @@ namespace KantoorInrichting.Views.Assortment
                 productRow.description = product.description;
 
                 //Update the database with the new Data
-                productTableAdapter.Update(kantoorInrichtingDataSet.product);
+                dbc.ProductTableAdapter.Update(dbc.DataSet.product);
                 if (isNewImage)
                 {
                     RemoveImage(currentImagePath);

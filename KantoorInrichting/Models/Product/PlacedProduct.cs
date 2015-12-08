@@ -19,12 +19,12 @@ namespace KantoorInrichting.Models.Product
         public ProductModel product { get; private set; }
         public PointF location { get; private set; }
         public PointF[] cornerPoints { get; private set; }
-        private Bitmap defaultBitMap = new Bitmap(Properties.Resources.No_Image_Available);
+        private Bitmap defaultBitMap;
         public Bitmap rotatedMap { get; private set; }
         public int currentAngle { get; private set; }
         public Polygon Poly { get; private set; }
         
-        public int gridSpace = 10;
+        public int gridSpace = 5;
 
 
         /// <summary>
@@ -51,8 +51,14 @@ namespace KantoorInrichting.Models.Product
 
             //Corner and image
             cornerPoints = new PointF[5];
-            defaultBitMap = new Bitmap(product.image);
-            defaultBitMap = new Bitmap(RezizeImage(Properties.Resources.No_Image_Available, product.width, product.length));
+            defaultBitMap = new Bitmap(1, 1);
+            using (Graphics gfx = Graphics.FromImage(defaultBitMap))
+            using (SolidBrush brush = new SolidBrush(Color.FromArgb(0xFF0000)))
+            // will use product.category.colour as soon as it's ready
+            {
+                gfx.FillRectangle(brush, 0, 0, 1, 1);
+            }
+            defaultBitMap = new Bitmap(RezizeImage(defaultBitMap, product.width, product.length));
             rotatedMap = defaultBitMap;
 
             //Must be last. Set the angle and reset the points
@@ -119,14 +125,14 @@ namespace KantoorInrichting.Models.Product
         {
             int x = 0;
             int y = 0;
-            int Velocity = gridSpace;
-            if (X_Axis) { x += Velocity; }
-            else { y += Velocity; }
+            if (X_Axis) { x += gridSpace; }
+            else { y += gridSpace; }
 
             Vector velocity = new Vector(x, y);
             Vector playerTranslation = velocity;
 
-            
+            //Resets the speed, after the velocity has been assigned.
+            if (gridSpace < 0) { gridSpace *= -1; }
 
 
             //Test all polygons for a collision
@@ -229,7 +235,7 @@ namespace KantoorInrichting.Models.Product
         /// <summary>
         /// Gives a list of PlacedProduct as well as walls?
         /// </summary>
-        private List<Polygon> PolyList
+        public List<Polygon> PolyList
         {
             get
             {

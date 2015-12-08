@@ -37,39 +37,39 @@ namespace KantoorInrichting.Views.Placement
             //Automatically redraws the pannel when it's the form needs to paint            
             controller.redrawPanel();
         }
-
-
-        private void btn_Turn_Click(object sender, EventArgs e)
-        {
-            PlacementController.Direction direction = PlacementController.Direction.CLOCKWISE;
-            if (cbx_TurnValue.Text == "Counter Clockwise") direction = PlacementController.Direction.COUNTERCLOCKWISE; 
-            controller.button_Turn(direction);
-        }
-
-        private void btn_Move_Click(object sender, EventArgs e)
-        {
-            PlacementController.Direction direction = PlacementController.Direction.UP;
-            if (cbx_MoveValue.Text == "Down") direction = PlacementController.Direction.DOWN;
-            else if (cbx_MoveValue.Text == "Left") direction = PlacementController.Direction.LEFT;
-            else if (cbx_MoveValue.Text == "Right") direction = PlacementController.Direction.RIGHT;
-            controller.button_Move(direction);
-        }
+        
 
         private void Mousedown_Panel(object sender, MouseEventArgs e)
-        {
-            controller.event_PanelMouseDown(sender, e);
-        }
-            
+        { controller.event_PanelMouseDown(sender, e); }
+
 
 
         private void DragDrop_DragEnter(object sender, DragEventArgs e)
-        {
-            controller.event_DragEnter(sender, e);
-        }
+        { controller.event_DragEnter(sender, e); }
 
         private void DragDrop_DragDrop(object sender, DragEventArgs e)
-        {
-            controller.event_DragDrop(sender, e);
-        }
+        { controller.event_DragDrop(sender, e); }
+
+
+
+
+        private void btn_CCW_Click(object sender, EventArgs e)
+        { controller.button_Turn(PlacementController.Direction.COUNTERCLOCKWISE); }
+
+        private void btn_CW_Click(object sender, EventArgs e)
+        { controller.button_Turn(PlacementController.Direction.CLOCKWISE); }
+
+
+        private void btn_Up_Click(object sender, EventArgs e)
+        { controller.button_Move(PlacementController.Direction.UP); }
+
+        private void btn_Left_Click(object sender, EventArgs e)
+        { controller.button_Move(PlacementController.Direction.LEFT); }
+
+        private void btn_Down_Click(object sender, EventArgs e)
+        { controller.button_Move(PlacementController.Direction.DOWN); }
+
+        private void btn_Right_Click(object sender, EventArgs e)
+        { controller.button_Move(PlacementController.Direction.RIGHT); }
     }
 }
