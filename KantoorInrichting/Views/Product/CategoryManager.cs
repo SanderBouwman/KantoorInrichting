@@ -32,7 +32,7 @@ namespace KantoorInrichting.Views.Product
             //subcategoryComboBox.SelectedItem = ;
 
         }
-
+        //uses the given data to create a new category
         private void newCategoryButton_Click(object sender, EventArgs e)
         {
             NewCategory newcat = new NewCategory(this);
@@ -45,6 +45,7 @@ namespace KantoorInrichting.Views.Product
             }
         }
 
+        //uses the given data to create a new subcategory
         private void newSubCategoryButton_Click(object sender, EventArgs e)
         {
             NewCategory newsubcat = new NewCategory(this);
@@ -67,6 +68,7 @@ namespace KantoorInrichting.Views.Product
 
         }
 
+        //saves the created categories
         private void saveButton_Click(object sender, EventArgs e)
         {
             tempcat = categoryComboBox.SelectedItem.ToString();
@@ -74,6 +76,7 @@ namespace KantoorInrichting.Views.Product
             this.Close();
         }
 
+        //closes the screen
         private void cancelButton_Click(object sender, EventArgs e)
         {
             this.Close();

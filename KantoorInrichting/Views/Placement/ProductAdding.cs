@@ -52,7 +52,7 @@ namespace KantoorInrichting.Views.Placement
 
 
 
-
+        //says which buttons are being pressed and sends that info the controller
         private void btn_CCW_Click(object sender, EventArgs e)
         { controller.button_Turn(PlacementController.Direction.COUNTERCLOCKWISE); }
 

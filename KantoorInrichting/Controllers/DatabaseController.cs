@@ -62,7 +62,7 @@ namespace KantoorInrichting.Controllers
                 return instance;
             }
         }
-
+        //all products are collected from the database
         public void GetProducts_FromDatabase()
         {
             foreach (var product in this.DataSet.product)
@@ -72,7 +72,7 @@ namespace KantoorInrichting.Controllers
                     product.amount, product.image);
             }
         }
-
+        //all spaces are collected from the database
         public void GetSpaces_FromDatabase()
         {
             foreach (var space in this.DataSet.space)

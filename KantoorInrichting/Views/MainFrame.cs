@@ -123,6 +123,7 @@ namespace KantoorInrichting
             panels.Add(panel);
         }
 
+        //takes you back to the main screen
         private void terugNaarHoofdschermToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             mainScreen1.Visible = true;

@@ -14,6 +14,7 @@ namespace KantoorInrichting.Views.Inventory
     {
         private Models.Product.ProductModel P;
 
+        //makes sure the productnaam and amount are filled in correctly in the screen
         public InventoryEdit(Models.Product.ProductModel p)
         {
             InitializeComponent();
@@ -23,7 +24,7 @@ namespace KantoorInrichting.Views.Inventory
             ProductAantal.Value = P.amount;
             
         }
-
+        //sets the amount from the product to the given value
         private void button1_Click(object sender, EventArgs e)
         {
             P.amount = Convert.ToInt32(ProductAantal.Value);
