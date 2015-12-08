@@ -17,7 +17,7 @@ namespace KantoorInrichting.Models.Product
 
         public int catID;
         public string name;
-        public int isSubcategoryFrom;
+        public int? isSubcategoryFrom;
         public Color colour;
 
         public CategoryModel(int catID, string name, int issub, string colour)
@@ -25,11 +25,32 @@ namespace KantoorInrichting.Models.Product
             this.catID = catID;
             this.name = name;
             this.isSubcategoryFrom = issub;
+
             this.colour = System.Drawing.ColorTranslator.FromHtml(colour);
 
             list.Add(this);
+
+            if (this.isSubcategoryFrom >= 0)
+            { 
+                SubcategoryList.Add(this);
+            }
+            else
+            {
+                CategoryList.Add(this);
+            }
+
+            
+
         }
 
-
+        System.Collections.Generic.IDictionary<string, string> queries;
+        public string this[string name]
+        {
+            get
+            {
+                return this.queries[name];
+            }
+        }
     }
+
 }

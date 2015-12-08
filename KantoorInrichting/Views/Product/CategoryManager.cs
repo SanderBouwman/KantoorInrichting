@@ -27,10 +27,12 @@ namespace KantoorInrichting.Views.Product
             this.categoryTableAdapter.Fill(this.kantoorInrichtingDataSet.category);
             var categoryList = kantoorInrichtingDataSet.category;
             
-            controller.fillcombobox(categoryList, categoryComboBox);
+            controller.fillcombobox(CategoryModel.CategoryList, categoryComboBox);
+
+            controller.fillcombobox(CategoryModel.SubcategoryList, subcategoryComboBox);
             //categoryComboBox.SelectedItem = ;
             //subcategoryComboBox.SelectedItem = ;
-
+            
         }
         //uses the given data to create a new category
         private void newCategoryButton_Click(object sender, EventArgs e)

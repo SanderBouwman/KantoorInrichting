@@ -24,7 +24,7 @@ namespace KantoorInrichting.Controllers.Product
             }
         }
 
-        public void fillcombobox(KantoorInrichtingDataSet.categoryDataTable categoryList, ComboBox categoryComboBox)
+        public void fillcombobox(SortableBindingList<CategoryModel> categoryList, ComboBox categoryComboBox)
         {
             foreach (var category in categoryList)
             {
