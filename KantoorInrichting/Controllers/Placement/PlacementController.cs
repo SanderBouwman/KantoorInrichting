@@ -54,9 +54,13 @@ namespace KantoorInrichting.Controllers.Placement
 
 
             //Select the first product from the product list, and display it in the default info
-            ProductInfo defaultInfo = new ProductInfo();
-            defaultInfo.setProduct(ProductModel.list[0]);
-            changeSelected(defaultInfo);
+            try
+            {
+                ProductInfo defaultInfo = new ProductInfo();
+                defaultInfo.setProduct(ProductModel.list[0]);
+                changeSelected(defaultInfo);
+            }
+            catch { }
             
 
             //Make an event that triggers when the list is changed, so that it automatically repaints the screen.
