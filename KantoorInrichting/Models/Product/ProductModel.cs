@@ -30,8 +30,8 @@ namespace KantoorInrichting.Models.Product
         public Image image { get; set; }   
         public int amount { get; set; }    
         public int id { get; }
-        public string category { get; set; }
-        public string subcategory { get; set; }
+        public string category { get; }
+
 
         //public Supplier supplier { get; private set; }
 
@@ -44,8 +44,6 @@ namespace KantoorInrichting.Models.Product
             name = n;
             brand = b;
             type = t;
-            category = c;
-            subcategory = s;
 
             length = l;
             width = w;
@@ -77,25 +75,6 @@ namespace KantoorInrichting.Models.Product
             list.Add(this);
         }
 
-        public ProductModel(int i, string n, string b, string t, string c, int l, int w, int h, string d, int a, string im)
-        {
-            product_id = i;
-            name = n;
-            brand = b;
-            type = t;
-            category = c;
-
-            length = l;
-            width = w;
-            height = h;
-
-            description = d;
-            amount = a;
-            imageFileName = im;
-            SetProductImage();
-
-            list.Add(this);
-        }
 
 
 
