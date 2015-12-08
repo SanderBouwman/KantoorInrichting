@@ -29,10 +29,10 @@ namespace KantoorInrichting.Views.Maps
             if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
             {
               
-                var hoi = MapsGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
-                MessageBox.Show(hoi);
-                ShowSpaceScreen adsfasdf = new ShowSpaceScreen();
-                adsfasdf.Show();
+                var space = MapsGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
+                ShowSpaceScreen spacescreen = new ShowSpaceScreen();
+                spacescreen.Text = "Plattegrond van ruimte: " + space ;
+                spacescreen.Show();
             } 
         }
     }
