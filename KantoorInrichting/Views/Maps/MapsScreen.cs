@@ -18,8 +18,8 @@ namespace KantoorInrichting.Views.Maps
         {
             this.mainFrame = mainFrame;
             InitializeComponent();
-            Map.result = Map.list;
-            this.MapsGridView1.DataSource = Map.result;
+            Space.result = Space.list;
+            this.MapsGridView1.DataSource = Space.result;
 
         }
 

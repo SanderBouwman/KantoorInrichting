@@ -1,4 +1,5 @@
 ﻿
+using KantoorInrichting.Models.Maps;
 using KantoorInrichting.Models.Product;
 using System;
 using System.Collections.Generic;
@@ -46,6 +47,7 @@ namespace KantoorInrichting.Controllers
             UserTableAdapter.Fill(Dataset.user);
 
             FillProducts();
+            FillSpaces();
         }
 
         //This method makes sure there can only be one Instance of this Class, aka Singleton.
@@ -69,6 +71,16 @@ namespace KantoorInrichting.Controllers
                     product.category_id, product.length, product.width, product.height, product.description,
                     product.amount, product.image);
             }
+        }
+
+        public void FillSpaces()
+        {
+            foreach (var space in this.Dataset.space)
+            {
+                var s1 = new Space(space.space_number, space.floor, space.building, space.roomnumber);
+            }
+        {
+        }
         }
 
 
