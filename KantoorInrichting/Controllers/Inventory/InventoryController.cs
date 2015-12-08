@@ -55,7 +55,7 @@ namespace KantoorInrichting.Controllers.Inventory
                    .Select(grp => grp.First())
                    .ToList();
 
-            var CategoryResult = ProductModel.list.GroupBy(product => product.Category)
+            var CategoryResult = ProductModel.list.GroupBy(product => product.category)
                    .Select(grp => grp.First())
                    .ToList();
 
@@ -74,9 +74,9 @@ namespace KantoorInrichting.Controllers.Inventory
             // add the unique items to category dropdown
             foreach (ProductModel product in CategoryResult)
             {
-                if (product.Category != null)
+                if (product.category != null)
                 {
-                    inventoryScreen.DropdownCategorie.Items.Add(product.Category);
+                    inventoryScreen.DropdownCategorie.Items.Add(product.category);
                 }
             }
 
@@ -132,7 +132,7 @@ namespace KantoorInrichting.Controllers.Inventory
             {
                 // filter on the selected category
                 var filteredProducts = from product in ProductModel.result
-                                       where product.Category == selectedCategory
+                                       where product.category == selectedCategory
                                        select product;
                 // add filter list to result list
                 var filterResult2 = new List<ProductModel>();

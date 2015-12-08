@@ -34,7 +34,7 @@ namespace KantoorInrichting.Views.Placement
             txt_Type.Text = product.Type;
             txt_Dimension.Text = product.Length.ToString() + "x" + product.Width.ToString() + "x" + product.Height.ToString();
 
-            pbx_Image.Image = product.image;
+            pbx_Image.Image = product.Image;
         }
 
         private void pbx_Image_MouseDown(object sender, MouseEventArgs e)

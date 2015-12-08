@@ -31,8 +31,8 @@ namespace KantoorInrichting.Models.Product
         public Image Image { get; set; }   
         public int Amount { get; set; }    
         public int Id { get; }
-        public string Category { get; set; }
-        public string Subcategory { get; set; }
+        public string category { get; set; }
+        public string subcategory { get; set; }
 
 
         //public Supplier supplier { get; private set; }
@@ -53,7 +53,7 @@ namespace KantoorInrichting.Models.Product
 
             Description = d;
             Amount = a;
-            this.image = KantoorInrichting.Properties.Resources.No_Image_Available;
+            this.Image = KantoorInrichting.Properties.Resources.No_Image_Available;
             if (n != "") { list.Add(this); } //If the name if empty, don't add it to the list. This is because the name is part of the primary key in the database.
         }
 
@@ -67,7 +67,7 @@ namespace KantoorInrichting.Models.Product
 
             this.ProductCategory = CategoryModel.list[Category_id];
 
-            this.Category = ProductCategory.name;
+            this.category = ProductCategory.name;
 
             Length = l;
             Width = w;
@@ -89,12 +89,12 @@ namespace KantoorInrichting.Models.Product
             string imagePath = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())) + @"\Resources\" + ImageFileName;
             try
             {
-                image = Image.FromStream(new MemoryStream(File.ReadAllBytes(imagePath)));
+                Image = Image.FromStream(new MemoryStream(File.ReadAllBytes(imagePath)));
             }
             catch (Exception ex)
             {
                 string v = ex.Data.ToString();
-                image = Properties.Resources.No_Image_Available;
+                Image = Properties.Resources.No_Image_Available;
             }
         }
 

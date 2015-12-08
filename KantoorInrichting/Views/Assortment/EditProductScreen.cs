@@ -51,7 +51,7 @@ namespace KantoorInrichting.Views.Assortment
             lengthTextBox.Text = product.Length.ToString();
             amountTextBox.Text = product.Amount.ToString();
             descriptionTextBox.Text = product.Description;
-            pictureBox.Image = product.image;
+            pictureBox.Image = product.Image;
         }
 
         //Fills the category combobox with categories from the database and selects the category
@@ -187,7 +187,7 @@ namespace KantoorInrichting.Views.Assortment
             if (isNewImage)
             {
                 product.ImageFileName = newImageFileName;
-                product.image = newImage;
+                product.Image = newImage;
             }
         }
 
