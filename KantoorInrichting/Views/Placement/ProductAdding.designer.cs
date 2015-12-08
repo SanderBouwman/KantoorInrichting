@@ -35,7 +35,7 @@
             this.btn_Left = new System.Windows.Forms.Button();
             this.btn_Down = new System.Windows.Forms.Button();
             this.btn_Right = new System.Windows.Forms.Button();
-            this.productPanel = new System.Windows.Forms.Panel();
+            this.productPanel = new KantoorInrichting.Views.Placement.ProductFieldPanel();
             this.productInfo1 = new KantoorInrichting.Views.Placement.ProductInfo();
             this.productList1 = new KantoorInrichting.Views.Placement.ProductList();
             this.ButtonControlPanel.SuspendLayout();
@@ -125,9 +125,10 @@
             // 
             this.productPanel.AllowDrop = true;
             this.productPanel.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.productPanel.BackgroundImage = global::KantoorInrichting.Properties.Resources.Grid;
             this.productPanel.Location = new System.Drawing.Point(3, 3);
             this.productPanel.Name = "productPanel";
-            this.productPanel.Size = new System.Drawing.Size(600, 600);
+            this.productPanel.Size = new System.Drawing.Size(601, 601);
             this.productPanel.TabIndex = 8;
             this.productPanel.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDrop_DragDrop);
             this.productPanel.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragDrop_DragEnter);
@@ -176,12 +177,12 @@
         private System.Windows.Forms.Panel ButtonControlPanel;
         public ProductInfo productInfo1;
         public ProductList productList1;
-        public System.Windows.Forms.Panel productPanel;
         private System.Windows.Forms.Button btn_CW;
         private System.Windows.Forms.Button btn_Up;
         private System.Windows.Forms.Button btn_CCW;
         private System.Windows.Forms.Button btn_Left;
         private System.Windows.Forms.Button btn_Down;
         private System.Windows.Forms.Button btn_Right;
+        public ProductFieldPanel productPanel;
     }
 }

@@ -35,6 +35,7 @@ namespace KantoorInrichting.Controllers.Placement
         private PlacedProduct currentProduct;
         private Point clickLocation;
         private int MovementSpeed = 5;
+        private Bitmap BackgroundGrid;
 
         private void ppList_CollectionChanged(object sender, EventArgs e)
         {
@@ -65,6 +66,26 @@ namespace KantoorInrichting.Controllers.Placement
 
             //Make an event that triggers when the list is changed, so that it automatically repaints the screen.
             ppList.CollectionChanged += ppList_CollectionChanged;
+
+
+            //Create the grid
+            //g = productAdding.productPanel.CreateGraphics();
+            //g.Clear(productAdding.productPanel.BackColor);
+            ////
+            //Pen p = new Pen(Brushes.Gray, 1);
+            //for (int y = 0; y < productAdding.productPanel.Height; y += MovementSpeed)
+            //{
+            //    g.DrawLine(p, 0, y, productAdding.productPanel.Width, y);
+            //}
+            //for (int x = 0; x < productAdding.productPanel.Width; x += MovementSpeed)
+            //{
+            //    g.DrawLine(p, x, 0, x, productAdding.productPanel.Height);
+            //}
+            ////Transfer the graphics to an image
+            //BackgroundGrid = new Bitmap(productAdding.productPanel.Width, productAdding.productPanel.Height, g);
+            ////Clear and drag an image
+            //g.Clear(productAdding.productPanel.BackColor);
+            //g.DrawImage(BackgroundGrid, 0, 0);
         }
 
 
@@ -79,20 +100,9 @@ namespace KantoorInrichting.Controllers.Placement
         public void redrawPanel()
         {
             g = productAdding.productPanel.CreateGraphics();
-            //TODO: ADD Grid Brush            
             g.Clear(productAdding.productPanel.BackColor);
+            g.DrawImage(Properties.Resources.Grid, 0, 0);
 
-            
-            Pen p = new Pen(Brushes.Gray, 1);
-            for (int y = 0; y < productAdding.productPanel.Height; y += MovementSpeed)
-            {
-                g.DrawLine(p, 0, y, productAdding.productPanel.Width, y);
-            }
-
-            for (int x = 0; x < productAdding.productPanel.Width; x += MovementSpeed)
-            {
-                g.DrawLine(p, x, 0, x, productAdding.productPanel.Height);
-            }
 
 
             //g.DrawRectangle(new Pen(Color.Black, 1), new Rectangle(0, 0, productAdding.productPanel.Width - 1, productAdding.productPanel.Height - 1));
@@ -114,6 +124,8 @@ namespace KantoorInrichting.Controllers.Placement
                 g.DrawImage(pp.rotatedMap, pp.location.X - (pp.rotatedMap.Width / 2), pp.location.Y - (pp.rotatedMap.Height / 2));
             }
 
+
+            
         }
 
 

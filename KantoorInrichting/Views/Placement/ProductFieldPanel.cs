@@ -18,6 +18,7 @@ namespace KantoorInrichting.Views.Placement
         public ProductFieldPanel()
         {
             DoubleBuffered = true;
+            Invalidate();
         }
     }
 }
