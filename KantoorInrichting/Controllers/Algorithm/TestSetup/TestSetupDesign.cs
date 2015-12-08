@@ -15,12 +15,14 @@ namespace KantoorInrichting.Controllers.Algorithm.TestSetup {
         private int _columns;
         private int _rows;
 
-        public List<ChairTablePair> Design(ProductModel chair, ProductModel table,
+        public List<ProductModel> Design(ProductModel chair, ProductModel table,
                                             int people, int width, int height, float margin) {
             ChairTablePair pair = ChairTablePair.CreatePair(chair, table, margin);
             List<Rectangle> possibilities = CalculatePossibilities(pair, width, height, margin);
             List<ChairTablePair> result = FillRoom(people, pair, possibilities);
-            return result;
+            List<ProductModel> finalResult = CreateModelList(result);
+            
+            return finalResult;
         }
 
         public List<Rectangle> CalculatePossibilities(ChairTablePair pair, int width,
@@ -39,7 +41,7 @@ namespace KantoorInrichting.Controllers.Algorithm.TestSetup {
             return possibilities;
         }
 
-        private List<ChairTablePair> FillRoom(int people, ChairTablePair pair,
+        public List<ChairTablePair> FillRoom(int people, ChairTablePair pair,
                                                 List<Rectangle> possibilities) {
             List<ChairTablePair> result = new List<ChairTablePair>();
             int currentPossibility = 0;
@@ -72,6 +74,51 @@ namespace KantoorInrichting.Controllers.Algorithm.TestSetup {
                 }
             }
             return result;
+        }
+
+        public List<ProductModel> CreateModelList(List<ChairTablePair> pairs) {
+            List<ProductModel> result = new List<ProductModel>();
+            for (int i = 0; i < pairs.Count; i++) {
+                Point chairPoint, tablePoint;
+                ChairTablePair current = pairs[i];
+
+                ProductModel newChair = new ProductModel() {
+                    Brand = current.Chair.Brand,
+                    Width = current.Chair.Width,
+                    Height = current.Chair.Height
+                };
+                ProductModel newTable = new ProductModel() {
+                    Brand = current.Table.Brand,
+                    Width = current.Table.Width,
+                    Height = current.Table.Height
+                };
+
+                int chairX, chairY,
+                    tableX, tableY;
+                if (i == 0) {
+                    chairX = 0;
+                    tableX = current.Representation.X + newChair.Width;
+                    chairY = current.Representation.Y + newChair.Height;
+                    tableY = current.Representation.Y;
+                    
+                }
+                else {
+                    chairX = current.Representation.X + newTable.Height;
+                    chairY = current.Representation.Y + (newTable.Width/2);
+                    tableX = current.Representation.X;
+                    tableY = current.Representation.Y;
+                }
+                SetLocation(newChair, chairX, chairY);
+                SetLocation(newTable, tableX, tableY);
+                result.Add(newChair);
+                result.Add(newTable);
+            }
+            return result;
+        }
+
+        public void SetLocation(ProductModel p, int x, int y) {
+            Point point = new Point(x, y);
+            p.location = point;
         }
     }
 }

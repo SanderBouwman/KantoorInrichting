@@ -39,6 +39,9 @@ namespace KantoorInrichting.Views.Grid {
                 case "ListView":
                     toReturn = this.listView;
                     break;
+                case "ComboBox":
+                    toReturn = this.algoSelector;
+                    break;
             }
             return toReturn;
         }
@@ -64,11 +67,20 @@ namespace KantoorInrichting.Views.Grid {
             drawPanel.MouseMove += DrawPanel_MouseMove;
             zoomCheckbox.CheckedChanged += ZoomCheckbox_CheckedChanged;
             trackBar.Scroll += TrackBar_Scroll;
-            // TODO IMPLEMENT EVENTS
             listView.ItemDrag += ListView_ItemDrag;
             listView.GiveFeedback += ListView_GiveFeedback;
             drawPanel.DragEnter += DrawPanel_DragEnter;
             drawPanel.DragDrop += DrawPanel_DragDrop;
+            algoButton.Click += AlgoButton_Click;
+            clearFieldButton.Click += ClearFieldButton_Click;
+        }
+
+        private void ClearFieldButton_Click( object sender, EventArgs e ) {
+            _controller.ButtonClick(sender, e);
+        }
+
+        private void AlgoButton_Click( object sender, EventArgs e ) {
+            _controller.ButtonClick(sender, e);
         }
 
         private void DrawPanel_DragDrop( object sender, DragEventArgs e ) {

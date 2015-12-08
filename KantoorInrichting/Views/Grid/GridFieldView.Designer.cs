@@ -30,16 +30,19 @@ namespace KantoorInrichting.Views.Grid {
             this.components = new System.ComponentModel.Container();
             this.zoomCheckbox = new System.Windows.Forms.CheckBox();
             this.trackBar = new System.Windows.Forms.TrackBar();
-            this.drawPanel = new KantoorInrichting.Models.Grid.GridFieldPanel();
             this.imageList = new System.Windows.Forms.ImageList(this.components);
             this.listView = new System.Windows.Forms.ListView();
+            this.algoSelector = new System.Windows.Forms.ComboBox();
+            this.algoButton = new System.Windows.Forms.Button();
+            this.drawPanel = new KantoorInrichting.Models.Grid.GridFieldPanel();
+            this.clearFieldButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar)).BeginInit();
             this.SuspendLayout();
             // 
             // zoomCheckbox
             // 
             this.zoomCheckbox.AutoSize = true;
-            this.zoomCheckbox.Location = new System.Drawing.Point(619, 383);
+            this.zoomCheckbox.Location = new System.Drawing.Point(619, 478);
             this.zoomCheckbox.Name = "zoomCheckbox";
             this.zoomCheckbox.Size = new System.Drawing.Size(100, 17);
             this.zoomCheckbox.TabIndex = 2;
@@ -49,7 +52,7 @@ namespace KantoorInrichting.Views.Grid {
             // trackBar
             // 
             this.trackBar.LargeChange = 25;
-            this.trackBar.Location = new System.Drawing.Point(615, 406);
+            this.trackBar.Location = new System.Drawing.Point(619, 501);
             this.trackBar.Maximum = 300;
             this.trackBar.Minimum = 50;
             this.trackBar.Name = "trackBar";
@@ -58,15 +61,6 @@ namespace KantoorInrichting.Views.Grid {
             this.trackBar.TabIndex = 3;
             this.trackBar.TickFrequency = 25;
             this.trackBar.Value = 50;
-            // 
-            // drawPanel
-            // 
-            this.drawPanel.AllowDrop = true;
-            this.drawPanel.BackColor = Color.White;
-            this.drawPanel.Location = new System.Drawing.Point(5, 5);
-            this.drawPanel.Name = "drawPanel";
-            this.drawPanel.Size = new System.Drawing.Size(601, 601);
-            this.drawPanel.TabIndex = 1;
             // 
             // imageList
             // 
@@ -82,10 +76,49 @@ namespace KantoorInrichting.Views.Grid {
             this.listView.TabIndex = 4;
             this.listView.UseCompatibleStateImageBehavior = false;
             // 
+            // algoSelector
+            // 
+            this.algoSelector.FormattingEnabled = true;
+            this.algoSelector.Location = new System.Drawing.Point(619, 410);
+            this.algoSelector.Name = "algoSelector";
+            this.algoSelector.Size = new System.Drawing.Size(104, 21);
+            this.algoSelector.TabIndex = 5;
+            this.algoSelector.Text = "None";
+            // 
+            // algoButton
+            // 
+            this.algoButton.Location = new System.Drawing.Point(729, 410);
+            this.algoButton.Name = "algoButton";
+            this.algoButton.Size = new System.Drawing.Size(50, 21);
+            this.algoButton.TabIndex = 6;
+            this.algoButton.Text = "Go";
+            this.algoButton.UseVisualStyleBackColor = true;
+            // 
+            // drawPanel
+            // 
+            this.drawPanel.AllowDrop = true;
+            this.drawPanel.BackColor = System.Drawing.Color.White;
+            this.drawPanel.Location = new System.Drawing.Point(5, 5);
+            this.drawPanel.Name = "drawPanel";
+            this.drawPanel.Size = new System.Drawing.Size(601, 601);
+            this.drawPanel.TabIndex = 1;
+            // 
+            // clearFieldButton
+            // 
+            this.clearFieldButton.Location = new System.Drawing.Point(619, 449);
+            this.clearFieldButton.Name = "clearFieldButton";
+            this.clearFieldButton.Size = new System.Drawing.Size(75, 23);
+            this.clearFieldButton.TabIndex = 7;
+            this.clearFieldButton.Text = "Clear field";
+            this.clearFieldButton.UseVisualStyleBackColor = true;
+            // 
             // GridFieldView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.clearFieldButton);
+            this.Controls.Add(this.algoButton);
+            this.Controls.Add(this.algoSelector);
             this.Controls.Add(this.listView);
             this.Controls.Add(this.trackBar);
             this.Controls.Add(this.zoomCheckbox);
@@ -105,5 +138,8 @@ namespace KantoorInrichting.Views.Grid {
         private System.Windows.Forms.TrackBar trackBar;
         private System.Windows.Forms.ImageList imageList;
         private ListView listView;
+        private ComboBox algoSelector;
+        private Button algoButton;
+        private Button clearFieldButton;
     }
 }

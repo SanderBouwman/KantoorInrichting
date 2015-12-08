@@ -14,6 +14,7 @@ namespace KantoorInrichting.Controllers {
         void TrackbarScroll( object sender, EventArgs e );
         void CheckboxChanged( bool b );
         void Notify(object sender, EventArgs e);
+        void ButtonClick(object sender, EventArgs e);
 
     }
 }

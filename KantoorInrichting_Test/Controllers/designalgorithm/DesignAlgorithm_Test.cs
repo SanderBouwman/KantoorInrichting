@@ -32,7 +32,6 @@ namespace KantoorInrichting_Test.Controllers.designalgorithm {
 
         [TestMethod]
         public void ShouldCalculateAllPossibilitiesInRoom_WithHorizontalOrientation() {
-            // Arrange
             TestSetupDesign algo = new TestSetupDesign();
             ProductModel chair = new ProductModel {
                 Brand = "Ahrend",
@@ -52,7 +51,7 @@ namespace KantoorInrichting_Test.Controllers.designalgorithm {
 
         [TestMethod]
         public void PairShouldBeCorrectSize() {
-            IDesignAlgorithm algo = new TestSetupDesign();
+            TestSetupDesign algo = new TestSetupDesign();
             ProductModel chair = new ProductModel {
                 Brand = "Ahrend",
                 Width = 1,
@@ -67,7 +66,11 @@ namespace KantoorInrichting_Test.Controllers.designalgorithm {
             int expectedWidth = (int) (chair.Height + table.Height + margin*2);
             int expectedHeight = (int) (table.Width + margin*2);
 
-            List<ChairTablePair> designResult = algo.Design(chair, table, 7, 10, 10, margin);
+            int width = 10;
+            int height = 10;
+            ChairTablePair pair = ChairTablePair.CreatePair(chair, table, 0.5f);
+            List<Rectangle> possibilities = algo.CalculatePossibilities(pair, width, height, 0.5f);
+            List<ChairTablePair> designResult = algo.FillRoom(7, pair, possibilities);
             ChairTablePair teacher = designResult[0];
             Rectangle teacherRectangle = teacher.Representation;
             int actualWidth = teacherRectangle.Width;
@@ -77,7 +80,7 @@ namespace KantoorInrichting_Test.Controllers.designalgorithm {
 
         [TestMethod]
         public void ShouldReturnAllPairsWithCorrectColAndRows_Teacher_X0_YHalfHeight() {
-            IDesignAlgorithm algo = new TestSetupDesign();
+            TestSetupDesign algo = new TestSetupDesign();
             ProductModel chair = new ProductModel {
                 Brand = "Ahrend",
                 Width = 1,
@@ -93,7 +96,9 @@ namespace KantoorInrichting_Test.Controllers.designalgorithm {
             int height = 10;
             int people = 7;
             float margin = 0.5f;
-            List<ChairTablePair> result = algo.Design(chair, table, people, width, height, margin);
+            ChairTablePair pair = ChairTablePair.CreatePair(chair, table, margin);
+            List<Rectangle> possibilities = algo.CalculatePossibilities(pair, width, height, margin);
+            List<ChairTablePair> result = algo.FillRoom(7, pair, possibilities);
             Rectangle teacher = result[0].Representation;
             int rectanglewidth = (int) (chair.Height + table.Height + margin*2); // 3
             int columns = width/rectanglewidth; // 3 (col 0, col 1, col 2)

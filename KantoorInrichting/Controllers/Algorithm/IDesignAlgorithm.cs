@@ -10,7 +10,7 @@ using KantoorInrichting.Models.Product;
 
 namespace KantoorInrichting.Controllers.Algorithm {
     public interface IDesignAlgorithm {
-        List<ChairTablePair> Design(ProductModel exampleChair, ProductModel exampleTable,
+        List<ProductModel> Design(ProductModel exampleChair, ProductModel exampleTable,
                                     int people, int width, int height, float margin);
     }
 }

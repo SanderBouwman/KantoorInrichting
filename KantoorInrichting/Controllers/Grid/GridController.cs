@@ -8,7 +8,10 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
+using KantoorInrichting.Controllers.Algorithm;
+using KantoorInrichting.Controllers.Algorithm.TestSetup;
 using KantoorInrichting.Models.Grid;
+using KantoorInrichting.Models.Product;
 using KantoorInrichting.Views;
 using KantoorInrichting.Views.Grid;
 
@@ -20,6 +23,7 @@ namespace KantoorInrichting.Controllers.Grid {
         private readonly GridFieldModel _model;
         private readonly Panel _panel;
         private readonly TrackBar _trackBar;
+        private ComboBox _comboBox;
         private readonly IView _view;
         private readonly float _tileHeight,
             _tileWidth;
@@ -30,6 +34,10 @@ namespace KantoorInrichting.Controllers.Grid {
             _tileY;
         private bool _zoomCheckbox;
 
+        private IDesignAlgorithm _algorithm;
+
+        private List<ProductModel> _products;
+
         public GridController(IView view, GridFieldModel model) {
             _view = view;
             _model = model;
@@ -38,6 +46,7 @@ namespace KantoorInrichting.Controllers.Grid {
             _panel = (Panel) _view.Get("Panel");
             _trackBar = (TrackBar) _view.Get("Trackbar");
             _trackBar.Enabled = false;
+            _comboBox = (ComboBox) _view.Get("ComboBox");
 
             float tWidth = _panel.Width/_model.Rows.GetLength(1);
             float tHeight = _panel.Height/_model.Rows.GetLength(0);
@@ -56,6 +65,8 @@ namespace KantoorInrichting.Controllers.Grid {
             _panel.BackgroundImage = PaintBackground();
             _rectangle = new Rectangle(0, 0, 50, 50);
             _buffer = new Bitmap(_panel.Width, _panel.Height);
+
+            PopulateCombobox();
             Resize(this, null);
         }
 
@@ -68,6 +79,17 @@ namespace KantoorInrichting.Controllers.Grid {
             };
             Type typeToCheck = e.GetType();
             @switch[typeToCheck]();
+        }
+
+        public void ButtonClick(object sender, EventArgs e) {
+            switch( ( ( Button ) sender ).Text ) {
+                case "Go":
+                    AlgorithmClick(sender, e);
+                    break;
+                case "Clear field":
+                    ClearField();
+                    break;
+            }
         }
 
         /// <summary>
@@ -177,8 +199,26 @@ namespace KantoorInrichting.Controllers.Grid {
         /// Paints the model on the screen.
         /// </summary>
         private void PaintModel(Bitmap b) {
-            _model.Draw(b);
+//            _model.Draw(b);
+
+            if (this._products != null) {
+                using (Graphics g = Graphics.FromImage(b)) {
+                    foreach (ProductModel product in _products) {
+
+                        Rectangle rect = new Rectangle() {
+                            X = ( int ) ( ( product.location.X / _model.Rows[ 0, 0 ].Width ) * _tileWidth ),
+                            Y = ( int ) ( ( product.location.Y / _model.Rows[ 0, 0 ].Height ) * _tileHeight ),
+                            Width = ( int ) ( ( product.Height / _model.Rows[ 0, 0 ].Height ) * _tileWidth ),
+                            Height = ( int ) ( ( product.Width / _model.Rows[ 0, 0 ].Width ) * _tileHeight )
+                        };
+                        Pen pen = new Pen(Color.DarkBlue, 3f);
+                        g.DrawRectangle(pen, rect);
+                    }
+                }
+            }
         }
+
+        
 
         /// <summary>
         /// Creates the background image using the dimensions given to the model.
@@ -226,5 +266,46 @@ namespace KantoorInrichting.Controllers.Grid {
             using (Graphics g = Graphics.FromImage(temp)) g.DrawImage(b.Clone(_rectangle, format), Point.Empty);
             return temp;
         }
+
+        private void PopulateCombobox() {
+            var dataSource = new List<Algorithm>();
+            dataSource.Add(new Algorithm() {Name = "Toets lokaal", Value = typeof(TestSetupDesign)});
+
+            _comboBox.DataSource = dataSource;
+            _comboBox.DisplayMember = "Name";
+            _comboBox.ValueMember = "Value";
+
+            _comboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+        }
+
+        public void AlgorithmClick( object sender, EventArgs e ) {
+            Type selectedType = ((Algorithm) _comboBox.SelectedItem).Value;
+            _algorithm = (IDesignAlgorithm) Activator.CreateInstance(selectedType);
+            // testing code
+            ProductModel chair = new ProductModel {
+                Brand = "Ahrend",
+                Width = 1,
+                Height = 1
+            };
+            ProductModel table = new ProductModel {
+                Brand = "TableCompany",
+                Width = 2,
+                Height = 1
+            };
+            _products = _algorithm.Design(chair, table, 7, _model.Rows.GetLength(0), _model.Rows.GetLength(1), 0.5f);
+            _panel.Invalidate();
+        }
+
+        public void ClearField() {
+            this._products = null;
+            _buffer = null;
+            Resize(this, null);
+            _panel.Invalidate();
+        }
+    }
+
+    public class Algorithm {
+        public string Name { get; set; }
+        public Type Value { get; set; }
     }
 }
