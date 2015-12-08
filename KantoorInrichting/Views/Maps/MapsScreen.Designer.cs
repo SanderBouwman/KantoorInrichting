@@ -59,10 +59,8 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MapsGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.MapsGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.MapsGridView1.BackgroundColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.MapsGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.MapsGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.MapsGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Building,
             this.Floor,
@@ -74,9 +72,9 @@
             this.MapsGridView1.Location = new System.Drawing.Point(0, 140);
             this.MapsGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.MapsGridView1.Name = "MapsGridView1";
+            this.MapsGridView1.RowTemplate.Height = 200;
             this.MapsGridView1.Size = new System.Drawing.Size(701, 290);
             this.MapsGridView1.TabIndex = 3;
-            this.MapsGridView1.RowTemplate.Height = 50;
             // 
             // Building
             // 
