@@ -40,7 +40,7 @@ namespace KantoorInrichting.Controllers.Placement
         private void ppList_CollectionChanged(object sender, EventArgs e)
         {
             //The method to repaint the panel if the information stored inside the list has changed (ie. a product has moved).
-            redrawPanel();
+            productAdding.productPanel.Repaint();
         }
 
         public PlacementController(MainFrame motherFrame, ProductAdding pa)
@@ -49,6 +49,7 @@ namespace KantoorInrichting.Controllers.Placement
             productAdding = pa;
             motherFrame.Size = new Size(1500, 800);
             clickLocation = new Point(0, 0);
+            productAdding.productPanel.knowYourController(this);
 
             //Make an event when the selection of the ASSORTMENT or INVENTORY has changed
             productAdding.productList1.SelectionChanged += new ProductSelectionChanged(this.changeSelected);
@@ -66,26 +67,6 @@ namespace KantoorInrichting.Controllers.Placement
 
             //Make an event that triggers when the list is changed, so that it automatically repaints the screen.
             ppList.CollectionChanged += ppList_CollectionChanged;
-
-
-            //Create the grid
-            //g = productAdding.productPanel.CreateGraphics();
-            //g.Clear(productAdding.productPanel.BackColor);
-            ////
-            //Pen p = new Pen(Brushes.Gray, 1);
-            //for (int y = 0; y < productAdding.productPanel.Height; y += MovementSpeed)
-            //{
-            //    g.DrawLine(p, 0, y, productAdding.productPanel.Width, y);
-            //}
-            //for (int x = 0; x < productAdding.productPanel.Width; x += MovementSpeed)
-            //{
-            //    g.DrawLine(p, x, 0, x, productAdding.productPanel.Height);
-            //}
-            ////Transfer the graphics to an image
-            //BackgroundGrid = new Bitmap(productAdding.productPanel.Width, productAdding.productPanel.Height, g);
-            ////Clear and drag an image
-            //g.Clear(productAdding.productPanel.BackColor);
-            //g.DrawImage(BackgroundGrid, 0, 0);
         }
 
 
@@ -97,16 +78,8 @@ namespace KantoorInrichting.Controllers.Placement
 
 
 
-        public void redrawPanel()
+        public void redrawPanel(Graphics g)
         {
-            g = productAdding.productPanel.CreateGraphics();
-            g.Clear(productAdding.productPanel.BackColor);
-            g.DrawImage(Properties.Resources.Grid, 0, 0);
-
-
-
-            //g.DrawRectangle(new Pen(Color.Black, 1), new Rectangle(0, 0, productAdding.productPanel.Width - 1, productAdding.productPanel.Height - 1));
-
             Vector p1;
             Vector p2;
             foreach (PlacedProduct pp in ppList)
@@ -123,9 +96,6 @@ namespace KantoorInrichting.Controllers.Placement
                 //Draw the image
                 g.DrawImage(pp.rotatedMap, pp.location.X - (pp.rotatedMap.Width / 2), pp.location.Y - (pp.rotatedMap.Height / 2));
             }
-
-
-            
         }
 
 
@@ -146,7 +116,7 @@ namespace KantoorInrichting.Controllers.Placement
 
             currentProduct.addAngle(angle);
 
-            redrawPanel();
+            productAdding.productPanel.Repaint();
         }
 
 
@@ -167,7 +137,7 @@ namespace KantoorInrichting.Controllers.Placement
             currentProduct.gridSpace = speed;
             currentProduct.Move(x_Axis);
 
-            redrawPanel();
+            productAdding.productPanel.Repaint();
         }
 
         /// <summary>
@@ -287,7 +257,7 @@ namespace KantoorInrichting.Controllers.Placement
             productAdding.productInfo1.setProduct(product.product);
             currentProduct = product;
             //Redraw
-            redrawPanel();
+            productAdding.productPanel.Repaint();
         }
 
         private void MoveProduct(object sender, DragEventArgs e)
@@ -339,7 +309,7 @@ namespace KantoorInrichting.Controllers.Placement
 
             //The moving of the product
             product.MoveTo(delta);
-            redrawPanel();
+            productAdding.productPanel.Repaint();
         }
 
 

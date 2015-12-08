@@ -29,14 +29,10 @@ namespace KantoorInrichting.Views.Placement
 
             //Needs to be after initializeComponents to prevent NULL errors
             controller = new PlacementController(hoofdscherm, this);
+
+            //Invalidate();
         }
         
-
-        protected override void OnPaint(PaintEventArgs e)
-        {
-            //Automatically redraws the pannel when it's the form needs to paint            
-            controller.redrawPanel();
-        }
         
         //When mouse is down on the panel
         private void Mousedown_Panel(object sender, MouseEventArgs e)

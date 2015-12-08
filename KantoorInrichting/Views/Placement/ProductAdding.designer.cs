@@ -50,7 +50,7 @@
             this.ButtonControlPanel.Controls.Add(this.btn_Left);
             this.ButtonControlPanel.Controls.Add(this.btn_Down);
             this.ButtonControlPanel.Controls.Add(this.btn_Right);
-            this.ButtonControlPanel.Location = new System.Drawing.Point(970, 380);
+            this.ButtonControlPanel.Location = new System.Drawing.Point(970, 430);
             this.ButtonControlPanel.Name = "ButtonControlPanel";
             this.ButtonControlPanel.Size = new System.Drawing.Size(123, 81);
             this.ButtonControlPanel.TabIndex = 7;
@@ -141,7 +141,7 @@
             this.productInfo1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.productInfo1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.productInfo1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.productInfo1.Location = new System.Drawing.Point(716, 468);
+            this.productInfo1.Location = new System.Drawing.Point(716, 518);
             this.productInfo1.Margin = new System.Windows.Forms.Padding(4);
             this.productInfo1.Name = "productInfo1";
             this.productInfo1.Size = new System.Drawing.Size(398, 148);
