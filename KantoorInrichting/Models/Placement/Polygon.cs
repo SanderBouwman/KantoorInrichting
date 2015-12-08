@@ -12,6 +12,7 @@ namespace KantoorInrichting.Models.Placement
         private List<Vector> points = new List<Vector>();
         private List<Vector> edges = new List<Vector>();
 
+        //Constructs edges between given points.
         public void BuildEdges()
         {
             Vector p1;
@@ -42,6 +43,7 @@ namespace KantoorInrichting.Models.Placement
             get { return points; }
         }
 
+        //gets the middle of all points in the vector.
         public Vector Center
         {
             get
@@ -58,6 +60,7 @@ namespace KantoorInrichting.Models.Placement
             }
         }
 
+        //makes the points move.
         public void Offset(Vector v)
         {
             Offset(v.X, v.Y);

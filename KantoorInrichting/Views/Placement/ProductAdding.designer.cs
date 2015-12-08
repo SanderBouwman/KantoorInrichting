@@ -35,24 +35,26 @@
             this.btn_Left = new System.Windows.Forms.Button();
             this.btn_Down = new System.Windows.Forms.Button();
             this.btn_Right = new System.Windows.Forms.Button();
-            this.productPanel = new System.Windows.Forms.Panel();
+            this.productPanel = new KantoorInrichting.Views.Placement.ProductFieldPanel();
             this.productInfo1 = new KantoorInrichting.Views.Placement.ProductInfo();
             this.productList1 = new KantoorInrichting.Views.Placement.ProductList();
+            this.btn_Delete = new System.Windows.Forms.Button();
             this.ButtonControlPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // ButtonControlPanel
             // 
             this.ButtonControlPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ButtonControlPanel.Controls.Add(this.btn_Delete);
             this.ButtonControlPanel.Controls.Add(this.btn_CW);
             this.ButtonControlPanel.Controls.Add(this.btn_Up);
             this.ButtonControlPanel.Controls.Add(this.btn_CCW);
             this.ButtonControlPanel.Controls.Add(this.btn_Left);
             this.ButtonControlPanel.Controls.Add(this.btn_Down);
             this.ButtonControlPanel.Controls.Add(this.btn_Right);
-            this.ButtonControlPanel.Location = new System.Drawing.Point(970, 380);
+            this.ButtonControlPanel.Location = new System.Drawing.Point(877, 430);
             this.ButtonControlPanel.Name = "ButtonControlPanel";
-            this.ButtonControlPanel.Size = new System.Drawing.Size(123, 81);
+            this.ButtonControlPanel.Size = new System.Drawing.Size(216, 81);
             this.ButtonControlPanel.TabIndex = 7;
             // 
             // btn_CW
@@ -125,9 +127,10 @@
             // 
             this.productPanel.AllowDrop = true;
             this.productPanel.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.productPanel.BackgroundImage = global::KantoorInrichting.Properties.Resources.Grid;
             this.productPanel.Location = new System.Drawing.Point(3, 3);
             this.productPanel.Name = "productPanel";
-            this.productPanel.Size = new System.Drawing.Size(600, 600);
+            this.productPanel.Size = new System.Drawing.Size(601, 601);
             this.productPanel.TabIndex = 8;
             this.productPanel.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDrop_DragDrop);
             this.productPanel.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragDrop_DragEnter);
@@ -140,7 +143,7 @@
             this.productInfo1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.productInfo1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.productInfo1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.productInfo1.Location = new System.Drawing.Point(716, 468);
+            this.productInfo1.Location = new System.Drawing.Point(716, 518);
             this.productInfo1.Margin = new System.Windows.Forms.Padding(4);
             this.productInfo1.Name = "productInfo1";
             this.productInfo1.Size = new System.Drawing.Size(398, 148);
@@ -155,6 +158,20 @@
             this.productList1.Name = "productList1";
             this.productList1.Size = new System.Drawing.Size(420, 374);
             this.productList1.TabIndex = 0;
+            // 
+            // btn_Delete
+            // 
+            this.btn_Delete.AllowDrop = true;
+            this.btn_Delete.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Delete.Location = new System.Drawing.Point(126, 3);
+            this.btn_Delete.Name = "btn_Delete";
+            this.btn_Delete.Size = new System.Drawing.Size(87, 75);
+            this.btn_Delete.TabIndex = 11;
+            this.btn_Delete.Text = "🗑";
+            this.btn_Delete.UseVisualStyleBackColor = true;
+            this.btn_Delete.Click += new System.EventHandler(this.btn_Delete_Click);
+            this.btn_Delete.DragDrop += new System.Windows.Forms.DragEventHandler(this.Delete_DragDrop);
+            this.btn_Delete.DragEnter += new System.Windows.Forms.DragEventHandler(this.Delete_DragEnter);
             // 
             // ProductAdding
             // 
@@ -176,12 +193,13 @@
         private System.Windows.Forms.Panel ButtonControlPanel;
         public ProductInfo productInfo1;
         public ProductList productList1;
-        public System.Windows.Forms.Panel productPanel;
         private System.Windows.Forms.Button btn_CW;
         private System.Windows.Forms.Button btn_Up;
         private System.Windows.Forms.Button btn_CCW;
         private System.Windows.Forms.Button btn_Left;
         private System.Windows.Forms.Button btn_Down;
         private System.Windows.Forms.Button btn_Right;
+        public ProductFieldPanel productPanel;
+        private System.Windows.Forms.Button btn_Delete;
     }
 }

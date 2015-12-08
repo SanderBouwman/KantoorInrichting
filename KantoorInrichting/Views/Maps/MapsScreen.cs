@@ -22,5 +22,18 @@ namespace KantoorInrichting.Views.Maps
             this.MapsGridView1.DataSource = Space.result;
 
         }
+
+        private void MapsGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var senderGrid = (DataGridView)sender;
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
+            {
+              
+                var space = MapsGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
+                ShowSpaceScreen spacescreen = new ShowSpaceScreen();
+                spacescreen.Text = "Plattegrond van ruimte: " + space ;
+                spacescreen.Show();
+            } 
+        }
     }
 }

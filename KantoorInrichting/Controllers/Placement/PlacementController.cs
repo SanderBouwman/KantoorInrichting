@@ -39,7 +39,7 @@ namespace KantoorInrichting.Controllers.Placement
         private void ppList_CollectionChanged(object sender, EventArgs e)
         {
             //The method to repaint the panel if the information stored inside the list has changed (ie. a product has moved).
-            redrawPanel();
+            productAdding.productPanel.Repaint();
         }
 
         public PlacementController(MainFrame motherFrame, ProductAdding pa)
@@ -48,6 +48,7 @@ namespace KantoorInrichting.Controllers.Placement
             productAdding = pa;
             motherFrame.Size = new Size(1500, 800);
             clickLocation = new Point(0, 0);
+            productAdding.productPanel.knowYourController(this);
 
             //Make an event when the selection of the ASSORTMENT or INVENTORY has changed
             productAdding.productList1.SelectionChanged += new ProductSelectionChanged(this.changeSelected);
@@ -71,32 +72,14 @@ namespace KantoorInrichting.Controllers.Placement
         public void changeSelected(ProductInfo sender)
         {
             productAdding.productInfo1.setProduct(sender.product); //Sets a new product
+            currentProduct = null;
         }
 
 
 
 
-        public void redrawPanel()
+        public void redrawPanel(Graphics g)
         {
-            g = productAdding.productPanel.CreateGraphics();
-            //TODO: ADD Grid Brush            
-            g.Clear(productAdding.productPanel.BackColor);
-
-            
-            Pen p = new Pen(Brushes.Gray, 1);
-            for (int y = 0; y < productAdding.productPanel.Height; y += MovementSpeed)
-            {
-                g.DrawLine(p, 0, y, productAdding.productPanel.Width, y);
-            }
-
-            for (int x = 0; x < productAdding.productPanel.Width; x += MovementSpeed)
-            {
-                g.DrawLine(p, x, 0, x, productAdding.productPanel.Height);
-            }
-
-
-            //g.DrawRectangle(new Pen(Color.Black, 1), new Rectangle(0, 0, productAdding.productPanel.Width - 1, productAdding.productPanel.Height - 1));
-
             Vector p1;
             Vector p2;
             foreach (PlacedProduct pp in ppList)
@@ -113,7 +96,6 @@ namespace KantoorInrichting.Controllers.Placement
                 //Draw the image
                 g.DrawImage(pp.rotatedMap, pp.location.X - (pp.rotatedMap.Width / 2), pp.location.Y - (pp.rotatedMap.Height / 2));
             }
-
         }
 
 
@@ -134,7 +116,7 @@ namespace KantoorInrichting.Controllers.Placement
 
             currentProduct.addAngle(angle);
 
-            redrawPanel();
+            productAdding.productPanel.Repaint();
         }
 
 
@@ -155,7 +137,7 @@ namespace KantoorInrichting.Controllers.Placement
             currentProduct.gridSpace = speed;
             currentProduct.Move(x_Axis);
 
-            redrawPanel();
+            productAdding.productPanel.Repaint();
         }
 
         /// <summary>
@@ -196,6 +178,36 @@ namespace KantoorInrichting.Controllers.Placement
             return;   
         }
 
+
+        public void btn_Delete()
+        {
+            try
+            { ppList.Remove(currentProduct); }
+            catch { }
+        }
+
+
+        public void event_DeleteEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(typeof(PlacedProduct)))
+            {
+                e.Effect = e.AllowedEffect;
+            }
+            else
+            {
+                e.Effect = DragDropEffects.None;
+            }
+        }
+
+
+
+        public void event_DeleteDrop(object sender, DragEventArgs e)
+        {
+            try
+            { ppList.Remove((PlacedProduct)e.Data.GetData(typeof(PlacedProduct))); }
+            catch { }
+        }
+
         public void event_PanelMouseDown(object sender, MouseEventArgs e)
         {
             foreach (PlacedProduct PlacedP in PlacementController.ppList)
@@ -221,7 +233,6 @@ namespace KantoorInrichting.Controllers.Placement
                 }
             }
         }
-
         public void event_PanelKeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.W || e.KeyCode == Keys.Up)
@@ -258,9 +269,9 @@ namespace KantoorInrichting.Controllers.Placement
 
 
             //Collision Loop
-            foreach (PlacedProduct placedP in ppList)
+            foreach (Polygon placedP in product.PolyList)
             {
-                PolygonCollisionController.PolygonCollisionResult r = PolygonCollisionController.PolygonCollision(product.Poly, placedP.Poly, new Vector(0, 0));
+                PolygonCollisionController.PolygonCollisionResult r = PolygonCollisionController.PolygonCollision(product.Poly, placedP, new Vector(0, 0));
 
                 if (r.WillIntersect)
                 {
@@ -275,9 +286,8 @@ namespace KantoorInrichting.Controllers.Placement
             productAdding.productInfo1.setProduct(product.product);
             currentProduct = product;
             //Redraw
-            redrawPanel();
+            productAdding.productPanel.Repaint();
         }
-
         private void MoveProduct(object sender, DragEventArgs e)
         {
             PlacedProduct product = (PlacedProduct)e.Data.GetData(typeof(PlacedProduct));
@@ -327,10 +337,7 @@ namespace KantoorInrichting.Controllers.Placement
 
             //The moving of the product
             product.MoveTo(delta);
-            redrawPanel();
+            productAdding.productPanel.Repaint();
         }
-
-
-        
     }
 }

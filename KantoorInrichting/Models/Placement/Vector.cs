@@ -13,7 +13,7 @@ namespace KantoorInrichting.Models.Placement
 
         public float X;
         public float Y;
-
+        
         static public Vector FromPoint(Point p)
         {
             return Vector.FromPoint(p.X, p.Y);

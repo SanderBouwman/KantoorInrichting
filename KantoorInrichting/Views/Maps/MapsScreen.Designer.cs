@@ -30,11 +30,11 @@
         {
             this.Titel = new System.Windows.Forms.Label();
             this.MapsGridView1 = new System.Windows.Forms.DataGridView();
+            this.Show = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Building = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Floor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Room = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Roomnumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Show = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Room = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.MapsGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -62,11 +62,11 @@
             this.MapsGridView1.BackgroundColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.MapsGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.MapsGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Show,
             this.Building,
             this.Floor,
-            this.Room,
             this.Roomnumber,
-            this.Show});
+            this.Room});
             this.MapsGridView1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.MapsGridView1.GridColor = System.Drawing.SystemColors.ControlLight;
             this.MapsGridView1.Location = new System.Drawing.Point(0, 140);
@@ -75,6 +75,18 @@
             this.MapsGridView1.RowTemplate.Height = 50;
             this.MapsGridView1.Size = new System.Drawing.Size(701, 290);
             this.MapsGridView1.TabIndex = 3;
+            this.MapsGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MapsGridView1_CellContentClick);
+            // 
+            // Show
+            // 
+            this.Show.DataPropertyName = "Show";
+            this.Show.HeaderText = "Toon";
+            this.Show.Name = "Show";
+            this.Show.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Show.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Show.Text = "Toon";
+            this.Show.ToolTipText = "Toon";
+            this.Show.UseColumnTextForButtonValue = true;
             // 
             // Building
             // 
@@ -88,28 +100,17 @@
             this.Floor.HeaderText = "Verdieping";
             this.Floor.Name = "Floor";
             // 
-            // Room
-            // 
-            this.Room.DataPropertyName = "Room";
-            this.Room.HeaderText = "Lokaal";
-            this.Room.Name = "Room";
-            // 
             // Roomnumber
             // 
             this.Roomnumber.DataPropertyName = "Roomnumber";
             this.Roomnumber.HeaderText = "Kamernummer";
             this.Roomnumber.Name = "Roomnumber";
             // 
-            // Show
+            // Room
             // 
-            this.Show.DataPropertyName = "Show";
-            this.Show.HeaderText = "Toon";
-            this.Show.Name = "Show";
-            this.Show.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Show.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Show.Text = "Toon";
-            this.Show.ToolTipText = "Toon";
-            this.Show.UseColumnTextForButtonValue = true;
+            this.Room.DataPropertyName = "Room";
+            this.Room.HeaderText = "Lokaal";
+            this.Room.Name = "Room";
             // 
             // MapsScreen
             // 
@@ -128,10 +129,10 @@
         #endregion
         private System.Windows.Forms.Label Titel;
         private System.Windows.Forms.DataGridView MapsGridView1;
+        private System.Windows.Forms.DataGridViewButtonColumn Show;
         private System.Windows.Forms.DataGridViewTextBoxColumn Building;
         private System.Windows.Forms.DataGridViewTextBoxColumn Floor;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Room;
         private System.Windows.Forms.DataGridViewTextBoxColumn Roomnumber;
-        private System.Windows.Forms.DataGridViewButtonColumn Show;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Room;
     }
 }

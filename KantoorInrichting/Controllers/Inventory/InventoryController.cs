@@ -69,10 +69,13 @@ namespace KantoorInrichting.Controllers.Inventory
             }
             // other method to add every category
             DatabaseController dbc = DatabaseController.Instance;
-            foreach (var category in dbc.DataSet.category)
+            foreach (var category in CategoryModel.list)
             {
                 inventoryScreen.DropdownCategorie.Items.Add(category.name);
             }
+
+
+
 
         }
 
@@ -119,18 +122,56 @@ namespace KantoorInrichting.Controllers.Inventory
 
             // get selected category
             string selectedCategory = inventoryScreen.DropdownCategorie.SelectedItem.ToString();
+            CategoryModel currentCategory;
+            int CurrentID = -1;
 
             // if there is a category selected and it is not default
             if (inventoryScreen.DropdownCategorie.SelectedIndex != 0)
             {
+
                 // filter on the selected category
                 var filteredProducts = from product in ProductModel.result
                                        where product.category == selectedCategory
                                        select product;
+
                 // add filter list to result list
-                var filterResult2 = new List<ProductModel>();
-                filterResult2 = filteredProducts.ToList();
-                ProductModel.result = new SortableBindingList<ProductModel>(filterResult2);
+                List<ProductModel> filterResult = new List<ProductModel>();
+                filterResult = filteredProducts.ToList();
+
+                // get the current category object
+                foreach (CategoryModel cat in CategoryModel.list)
+                {
+                    if (cat.name == selectedCategory)
+                    {
+                        currentCategory = cat;
+                        CurrentID = currentCategory.catID;
+                    }
+                }
+
+                // check if there are subcategories
+                foreach (CategoryModel cat in CategoryModel.list)
+                    {
+                    if (cat.isSubcategoryFrom == CurrentID)
+                    {
+                        // if there are categories wich their "issubcategoryfrom"contains current ID
+                        var filteredSubProducts =   from product in ProductModel.result
+                                                    where product.Category_id == cat.catID
+                                                    select product;
+
+                        foreach (var cari in filteredSubProducts)
+                        {
+                            filterResult.Add(cari);
+                        }
+                    }
+                    
+                }
+
+
+
+                // if there are subcategories, add the items from sub also
+
+
+                ProductModel.result = new SortableBindingList<ProductModel>(filterResult);
             }
             // bind the datasource again
             inventoryScreen.dataGridView1.DataSource = ProductModel.result;

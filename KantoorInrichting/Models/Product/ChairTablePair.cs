@@ -13,6 +13,7 @@ namespace KantoorInrichting.Models.Product {
         public ProductModel Table { get; set; }
         public Rectangle Representation { get; set; }
 
+        //creates a product where a table and chair are combined.
         public static ChairTablePair CreatePair(ProductModel chair, ProductModel table, float margin) {
             ChairTablePair pair = new ChairTablePair();
             pair.Chair = chair;
@@ -21,6 +22,7 @@ namespace KantoorInrichting.Models.Product {
             return pair;
         }
 
+        //checks how large the pair will be.
         public static Rectangle DetermineSize(ChairTablePair pair, float margin) {
             Rectangle rectangle = new Rectangle();
             rectangle.Height = (int) (pair.Table.Width + margin*2);
@@ -28,6 +30,7 @@ namespace KantoorInrichting.Models.Product {
             return rectangle;
         }
 
+        //creates a new instance of an already existing pair.
         public ChairTablePair Clone() {
             return new ChairTablePair {
                 Chair = Chair,

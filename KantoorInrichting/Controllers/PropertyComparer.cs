@@ -47,5 +47,6 @@ namespace KantoorInrichting.Controllers.Product
             this.SetPropertyDescriptor(descriptor);
             this.SetListSortDirection(direction);
         }
+        //it is not clear to me what this class does - Thijs -
     }
 }

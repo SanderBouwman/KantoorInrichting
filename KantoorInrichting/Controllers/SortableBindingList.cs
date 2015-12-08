@@ -52,6 +52,7 @@ namespace KantoorInrichting.Controllers
             get { return true; }
         }
 
+        //allows a list of items to be sorted
         protected override void ApplySortCore(PropertyDescriptor property, ListSortDirection direction)
         {
             List<T> itemsList = (List<T>)this.Items;
@@ -74,6 +75,7 @@ namespace KantoorInrichting.Controllers
             this.OnListChanged(new ListChangedEventArgs(ListChangedType.Reset, -1));
         }
 
+        //removes the capability to sort the items.
         protected override void RemoveSortCore()
         {
             this.isSorted = false;
@@ -99,3 +101,4 @@ namespace KantoorInrichting.Controllers
         }
     }
 }
+

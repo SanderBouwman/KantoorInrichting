@@ -64,7 +64,7 @@ namespace KantoorInrichting.Controllers
                 return instance;
             }
         }
-
+        //all products are collected from the database
         public void GetProducts_FromDatabase()
         {
             foreach (var product in this.DataSet.product)
@@ -74,7 +74,7 @@ namespace KantoorInrichting.Controllers
                     product.amount, product.image);
             }
         }
-
+        //all spaces are collected from the database
         public void GetSpaces_FromDatabase()
         {
             foreach (var space in this.DataSet.space)
@@ -86,7 +86,7 @@ namespace KantoorInrichting.Controllers
         {
             foreach (var category in this.DataSet.category)
             {
-                var c1 = new CategoryModel(category.category_id, category.name, category.subcategory_of, "0x78FF0000");
+                var c1 = new CategoryModel(category.category_id, category.name, category.subcategory_of, category.color);
             }
         }
 

@@ -29,14 +29,10 @@ namespace KantoorInrichting.Views.Placement
 
             //Needs to be after initializeComponents to prevent NULL errors
             controller = new PlacementController(hoofdscherm, this);
+
+            //Invalidate();
         }
         
-
-        protected override void OnPaint(PaintEventArgs e)
-        {
-            //Automatically redraws the pannel when it's the form needs to paint            
-            controller.redrawPanel();
-        }
         
         //When mouse is down on the panel
         private void Mousedown_Panel(object sender, MouseEventArgs e)
@@ -51,6 +47,12 @@ namespace KantoorInrichting.Views.Placement
         { controller.event_DragDrop(sender, e); }
 
 
+        //DragEnter Event
+        private void Delete_DragEnter(object sender, DragEventArgs e)
+        { controller.event_DeleteEnter(sender, e); }
+        //DragDrop Event
+        private void Delete_DragDrop(object sender, DragEventArgs e)
+        { controller.event_DeleteDrop(sender, e); }
 
         //Turn Couter Clockwise
         private void btn_CCW_Click(object sender, EventArgs e)
@@ -74,6 +76,10 @@ namespace KantoorInrichting.Views.Placement
 
         //When a key is pressed
         private void ProductAdding_KeyDown(object sender, KeyEventArgs e)
-        { controller.event_PanelKeyDown(sender, e); MessageBox.Show("Test"); }
+        { controller.event_PanelKeyDown(sender, e); MessageBox.Show("This is the keypress test. You found it, good job!\nI would like to give you a cookie, but I'm just a message box. :c"); }
+
+        //Deletes the current selected product
+        private void btn_Delete_Click(object sender, EventArgs e)
+        { controller.btn_Delete(); }
     }
 }
