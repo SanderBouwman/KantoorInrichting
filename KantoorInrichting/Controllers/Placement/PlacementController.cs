@@ -264,9 +264,9 @@ namespace KantoorInrichting.Controllers.Placement
 
 
             //Collision Loop
-            foreach (PlacedProduct placedP in ppList)
+            foreach (Polygon placedP in product.PolyList)
             {
-                PolygonCollisionController.PolygonCollisionResult r = PolygonCollisionController.PolygonCollision(product.Poly, placedP.Poly, new Vector(0, 0));
+                PolygonCollisionController.PolygonCollisionResult r = PolygonCollisionController.PolygonCollision(product.Poly, placedP, new Vector(0, 0));
 
                 if (r.WillIntersect)
                 {
