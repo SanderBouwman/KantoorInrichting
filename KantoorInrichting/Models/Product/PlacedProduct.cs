@@ -19,7 +19,7 @@ namespace KantoorInrichting.Models.Product
         public ProductModel product { get; private set; }
         public PointF location { get; private set; }
         public PointF[] cornerPoints { get; private set; }
-        private Bitmap defaultBitMap = new Bitmap(Properties.Resources.No_Image_Available);
+        private Bitmap defaultBitMap;
         public Bitmap rotatedMap { get; private set; }
         public int currentAngle { get; private set; }
         public Polygon Poly { get; private set; }
@@ -51,8 +51,14 @@ namespace KantoorInrichting.Models.Product
 
             //Corner and image
             cornerPoints = new PointF[5];
-            defaultBitMap = new Bitmap(product.image);
-            defaultBitMap = new Bitmap(RezizeImage(Properties.Resources.No_Image_Available, product.width, product.length));
+            defaultBitMap = new Bitmap(1, 1);
+            using (Graphics gfx = Graphics.FromImage(defaultBitMap))
+            using (SolidBrush brush = new SolidBrush(Color.FromArgb(0xFF0000)))
+            // will use product.category.colour as soon as it's ready
+            {
+                gfx.FillRectangle(brush, 0, 0, 1, 1);
+            }
+            defaultBitMap = new Bitmap(RezizeImage(defaultBitMap, product.width, product.length));
             rotatedMap = defaultBitMap;
 
             //Must be last. Set the angle and reset the points
