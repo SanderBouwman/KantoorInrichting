@@ -28,9 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.errorCategoryLabel = new System.Windows.Forms.Label();
-            this.categoryComboBox = new System.Windows.Forms.ComboBox();
             this.errorImageLabel = new System.Windows.Forms.Label();
             this.errorDescriptionLabel = new System.Windows.Forms.Label();
             this.selectImageButton = new System.Windows.Forms.Button();
@@ -61,35 +58,10 @@
             this.typeLabel = new System.Windows.Forms.Label();
             this.nameLabel = new System.Windows.Forms.Label();
             this.pictureBox = new System.Windows.Forms.PictureBox();
-            this.kantoorInrichtingDataSet = new KantoorInrichting.KantoorInrichtingDataSet();
-            this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.productTableAdapter = new KantoorInrichting.KantoorInrichtingDataSetTableAdapters.productTableAdapter();
-            this.tableAdapterManager = new KantoorInrichting.KantoorInrichtingDataSetTableAdapters.TableAdapterManager();
-            this.categoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.categoryTableAdapter = new KantoorInrichting.KantoorInrichtingDataSetTableAdapters.categoryTableAdapter();
+            this.categoryComboBox = new System.Windows.Forms.ComboBox();
+            this.errorCategoryLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.kantoorInrichtingDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.categoryBindingSource)).BeginInit();
             this.SuspendLayout();
-            // 
-            // errorCategoryLabel
-            // 
-            this.errorCategoryLabel.AutoSize = true;
-            this.errorCategoryLabel.ForeColor = System.Drawing.Color.Red;
-            this.errorCategoryLabel.Location = new System.Drawing.Point(189, 193);
-            this.errorCategoryLabel.Name = "errorCategoryLabel";
-            this.errorCategoryLabel.Size = new System.Drawing.Size(0, 13);
-            this.errorCategoryLabel.TabIndex = 65;
-            // 
-            // categoryComboBox
-            // 
-            this.categoryComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.categoryComboBox.FormattingEnabled = true;
-            this.categoryComboBox.Location = new System.Drawing.Point(83, 190);
-            this.categoryComboBox.Name = "categoryComboBox";
-            this.categoryComboBox.Size = new System.Drawing.Size(100, 21);
-            this.categoryComboBox.TabIndex = 48;
             // 
             // errorImageLabel
             // 
@@ -351,35 +323,23 @@
             this.pictureBox.TabIndex = 62;
             this.pictureBox.TabStop = false;
             // 
-            // kantoorInrichtingDataSet
+            // categoryComboBox
             // 
-            this.kantoorInrichtingDataSet.DataSetName = "KantoorInrichtingDataSet";
-            this.kantoorInrichtingDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.categoryComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.categoryComboBox.FormattingEnabled = true;
+            this.categoryComboBox.Location = new System.Drawing.Point(83, 190);
+            this.categoryComboBox.Name = "categoryComboBox";
+            this.categoryComboBox.Size = new System.Drawing.Size(100, 21);
+            this.categoryComboBox.TabIndex = 48;
             // 
-            // productBindingSource
+            // errorCategoryLabel
             // 
-            this.productBindingSource.DataMember = "Product";
-            this.productBindingSource.DataSource = this.kantoorInrichtingDataSet;
-            // 
-            // productTableAdapter
-            // 
-            this.productTableAdapter.ClearBeforeFill = true;
-            // 
-            // tableAdapterManager
-            // 
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.categoryTableAdapter = null;
-            this.tableAdapterManager.productTableAdapter = this.productTableAdapter;
-            this.tableAdapterManager.UpdateOrder = KantoorInrichting.KantoorInrichtingDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            // 
-            // categoryBindingSource
-            // 
-            this.categoryBindingSource.DataMember = "Category";
-            this.categoryBindingSource.DataSource = this.kantoorInrichtingDataSet;
-            // 
-            // categoryTableAdapter
-            // 
-            this.categoryTableAdapter.ClearBeforeFill = true;
+            this.errorCategoryLabel.AutoSize = true;
+            this.errorCategoryLabel.ForeColor = System.Drawing.Color.Red;
+            this.errorCategoryLabel.Location = new System.Drawing.Point(189, 193);
+            this.errorCategoryLabel.Name = "errorCategoryLabel";
+            this.errorCategoryLabel.Size = new System.Drawing.Size(0, 13);
+            this.errorCategoryLabel.TabIndex = 65;
             // 
             // EditProductScreen
             // 
@@ -422,18 +382,12 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "EditProductScreen";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.kantoorInrichtingDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.categoryBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Label errorCategoryLabel;
-        private System.Windows.Forms.ComboBox categoryComboBox;
         private System.Windows.Forms.Label errorImageLabel;
         private System.Windows.Forms.Label errorDescriptionLabel;
         private System.Windows.Forms.PictureBox pictureBox;
@@ -464,11 +418,7 @@
         private System.Windows.Forms.Label brandLabel;
         private System.Windows.Forms.Label typeLabel;
         private System.Windows.Forms.Label nameLabel;
-        private KantoorInrichtingDataSet kantoorInrichtingDataSet;
-        private System.Windows.Forms.BindingSource productBindingSource;
-        private KantoorInrichtingDataSetTableAdapters.productTableAdapter productTableAdapter;
-        private KantoorInrichtingDataSetTableAdapters.TableAdapterManager tableAdapterManager;
-        private System.Windows.Forms.BindingSource categoryBindingSource;
-        private KantoorInrichtingDataSetTableAdapters.categoryTableAdapter categoryTableAdapter;
+        private System.Windows.Forms.ComboBox categoryComboBox;
+        private System.Windows.Forms.Label errorCategoryLabel;
     }
 }

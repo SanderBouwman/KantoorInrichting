@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.LoginButton = new System.Windows.Forms.Button();
             this.UsernameTB = new System.Windows.Forms.TextBox();
             this.PasswordTB = new System.Windows.Forms.TextBox();
@@ -38,13 +37,7 @@
             this.UsernameError = new System.Windows.Forms.Label();
             this.PasswordError = new System.Windows.Forms.Label();
             this.GeneralLoginError = new System.Windows.Forms.Label();
-            this.userTableAdapter = new KantoorInrichting.KantoorInrichtingDataSetTableAdapters.userTableAdapter();
-            this.tableAdapterManager = new KantoorInrichting.KantoorInrichtingDataSetTableAdapters.TableAdapterManager();
-            this.kantoorInrichtingDataSet = new KantoorInrichting.KantoorInrichtingDataSet();
-            this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
-            ((System.ComponentModel.ISupportInitialize)(this.kantoorInrichtingDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -127,29 +120,6 @@
             this.GeneralLoginError.Name = "GeneralLoginError";
             this.GeneralLoginError.Size = new System.Drawing.Size(0, 13);
             this.GeneralLoginError.TabIndex = 8;
-            this.GeneralLoginError.Click += new System.EventHandler(this.GeneralLoginError_Click);
-            // 
-            // userTableAdapter
-            // 
-            this.userTableAdapter.ClearBeforeFill = true;
-            // 
-            // tableAdapterManager
-            // 
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.categoryTableAdapter = null;
-            this.tableAdapterManager.productTableAdapter = null;
-            this.tableAdapterManager.UpdateOrder = KantoorInrichting.KantoorInrichtingDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            this.tableAdapterManager.userTableAdapter = this.userTableAdapter;
-            // 
-            // kantoorInrichtingDataSet
-            // 
-            this.kantoorInrichtingDataSet.DataSetName = "KantoorInrichtingDataSet";
-            this.kantoorInrichtingDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // userBindingSource
-            // 
-            this.userBindingSource.DataSource = this.kantoorInrichtingDataSet;
-            this.userBindingSource.Position = 0;
             // 
             // panel1
             // 
@@ -176,8 +146,6 @@
             this.Name = "LoginScreen";
             this.Size = new System.Drawing.Size(785, 467);
             this.Load += new System.EventHandler(this.LoginScreen_Load_1);
-            ((System.ComponentModel.ISupportInitialize)(this.kantoorInrichtingDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -195,10 +163,6 @@
         private System.Windows.Forms.Label UsernameError;
         private System.Windows.Forms.Label PasswordError;
         private System.Windows.Forms.Label GeneralLoginError;
-        private KantoorInrichtingDataSet kantoorInrichtingDataSet;
-        private System.Windows.Forms.BindingSource userBindingSource;
-        private KantoorInrichtingDataSetTableAdapters.userTableAdapter userTableAdapter;
-        private KantoorInrichtingDataSetTableAdapters.TableAdapterManager tableAdapterManager;
         private System.Windows.Forms.Panel panel1;
     }
 }

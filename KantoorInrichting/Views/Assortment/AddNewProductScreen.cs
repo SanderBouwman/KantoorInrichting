@@ -4,11 +4,13 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using KantoorInrichting.Models.Product;
+using KantoorInrichting.Controllers;
 
 namespace KantoorInrichting.Views.Assortment
 {
     public partial class AddNewProductScreen : Form
     {
+        private DatabaseController dbc;
         private int amount;
         private string brand;
         private int category_ID;
@@ -27,14 +29,15 @@ namespace KantoorInrichting.Views.Assortment
         public AddNewProductScreen()
         {
             InitializeComponent();
+            dbc = DatabaseController.Instance;
             FillComboBox();
         }
 
         //Fills the category combobox with categories from the database
         public void FillComboBox()
         {
-            categoryTableAdapter.Fill(kantoorInrichtingDataSet.category);
-            var categoryList = kantoorInrichtingDataSet.category;
+            dbc.CategoryTableAdapter.Fill(dbc.DataSet.category);
+            var categoryList = dbc.DataSet.category;
 
             foreach (var category in categoryList)
             {
@@ -166,8 +169,8 @@ namespace KantoorInrichting.Views.Assortment
         private void CreateProductModel()
         {
             //Fill the TableAdapter with data from the dataset, select MAX Product_ID, Create an in with MAX Product_ID + 1
-            productTableAdapter.Fill((kantoorInrichtingDataSet.product));
-            var maxProduct_ID = kantoorInrichtingDataSet.product.Select("Product_ID = MAX(Product_ID)");
+            dbc.ProductTableAdapter.Fill((dbc.DataSet.product));
+            var maxProduct_ID = dbc.DataSet.product.Select("Product_ID = MAX(Product_ID)");
             var newProduct_ID = (int) maxProduct_ID[0]["Product_ID"] + 1;
 
             var product = new ProductModel(newProduct_ID, name, brand, type, category_ID, length, width, height,
@@ -179,7 +182,7 @@ namespace KantoorInrichting.Views.Assortment
         private void AddProductToDatabase()
         {
             //Create a newProductrow and fill the row for each corresponding column
-            var newProduct = kantoorInrichtingDataSet.product.NewproductRow();
+            var newProduct = dbc.DataSet.product.NewproductRow();
             newProduct.name = product.name;
             newProduct.product_id = product.product_id;
             newProduct.removed = false;
@@ -196,8 +199,8 @@ namespace KantoorInrichting.Views.Assortment
             //Try to add the new product row in the database
             try
             {
-                kantoorInrichtingDataSet.product.Rows.Add(newProduct);
-                productTableAdapter.Update(kantoorInrichtingDataSet.product);
+                dbc.DataSet.product.Rows.Add(newProduct);
+                dbc.ProductTableAdapter.Update(dbc.DataSet.product);
                 MessageBox.Show("Update successful");
             }
                 //If it fails remove the newly placed image from the resource folder
