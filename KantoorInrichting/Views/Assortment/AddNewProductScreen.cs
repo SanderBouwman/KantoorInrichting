@@ -36,10 +36,7 @@ namespace KantoorInrichting.Views.Assortment
         //Fills the category combobox with categories from the database
         public void FillComboBox()
         {
-            dbc.CategoryTableAdapter.Fill(dbc.DataSet.category);
-            var categoryList = dbc.DataSet.category;
-
-            foreach (var category in categoryList)
+            foreach (var category in dbc.DataSet.category)
             {
                 categoryComboBox.Items.Add(category.name);
             }

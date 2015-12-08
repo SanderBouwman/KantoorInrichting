@@ -18,7 +18,7 @@ namespace KantoorInrichting.Views.Maps
         {
             this.mainFrame = mainFrame;
             InitializeComponent();
-
+            MapsGridView1.RowTemplate.Height = 200;
             Space.result = Space.list;
             this.MapsGridView1.DataSource = Space.result;
 

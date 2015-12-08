@@ -32,7 +32,7 @@ namespace KantoorInrichting.Views.Assortment
         {
             InitializeComponent();
             this.product = product;
-            dbc = DatabaseController.Instance;
+            dbc = DatabaseController.Instance; ;
             currentImagePath = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())) +
                                @"\Resources\" + product.imageFileName;
             isNewImage = false;
@@ -57,16 +57,12 @@ namespace KantoorInrichting.Views.Assortment
         //Fills the category combobox with categories from the database and selects the category
         public void FillComboBox()
         {
-            var categoryList = dbc.DataSet.category;
-
-            foreach (var category in categoryList)
+            foreach (var category in dbc.DataSet.category)
             {
                 categoryComboBox.Items.Add(category.name);
                 if (category.category_id == product.category_id)
                 {
                     categoryComboBox.SelectedIndex = category.category_id;
-                    //Minus 1 to match the category number from the database -->
-                    //this might be needing changes later
                 }
             }
         }
