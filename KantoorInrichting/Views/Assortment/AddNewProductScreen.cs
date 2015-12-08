@@ -36,10 +36,7 @@ namespace KantoorInrichting.Views.Assortment
         //Fills the category combobox with categories from the database
         public void FillComboBox()
         {
-            dbc.CategoryTableAdapter.Fill(dbc.DataSet.category);
-            var categoryList = dbc.DataSet.category;
-
-            foreach (var category in categoryList)
+            foreach (var category in dbc.DataSet.category)
             {
                 categoryComboBox.Items.Add(category.name);
             }
@@ -183,18 +180,18 @@ namespace KantoorInrichting.Views.Assortment
         {
             //Create a newProductrow and fill the row for each corresponding column
             var newProduct = dbc.DataSet.product.NewproductRow();
-            newProduct.name = product.name;
-            newProduct.product_id = product.product_id;
+            newProduct.name = product.Name;
+            newProduct.product_id = product.Product_id;
             newProduct.removed = false;
-            newProduct.type = product.type;
-            newProduct.brand = product.brand;
-            newProduct.height = product.height;
-            newProduct.width = product.width;
-            newProduct.length = product.length;
-            newProduct.amount = product.amount;
-            newProduct.image = product.imageFileName;
-            newProduct.category_id = product.category_id;
-            newProduct.description = product.description;
+            newProduct.type = product.Type;
+            newProduct.brand = product.Brand;
+            newProduct.height = product.Height;
+            newProduct.width = product.Width;
+            newProduct.length = product.Length;
+            newProduct.amount = product.Amount;
+            newProduct.image = product.ImageFileName;
+            newProduct.category_id = product.Category_id;
+            newProduct.description = product.Description;
 
             //Try to add the new product row in the database
             try

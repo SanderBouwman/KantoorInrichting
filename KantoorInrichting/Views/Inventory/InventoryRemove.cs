@@ -20,7 +20,7 @@ namespace KantoorInrichting.Views.Inventory
         public InventoryRemove(Models.Product.ProductModel p, UserControl u)
         {
             InitializeComponent();
-            this.productname = p.name;
+            this.productname = p.Name;
             this.U = u;
         }
 

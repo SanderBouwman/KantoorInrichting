@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KantoorInrichting.Controllers;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -7,19 +8,28 @@ using System.Threading.Tasks;
 
 namespace KantoorInrichting.Models.Product
 {
-    class CategoryModel
+    public class CategoryModel
     {
+        public static SortableBindingList<CategoryModel> list = new SortableBindingList<CategoryModel>();
+
+        public static SortableBindingList<CategoryModel> SubcategoryList = new SortableBindingList<CategoryModel>();
+        public static SortableBindingList<CategoryModel> CategoryList = new SortableBindingList<CategoryModel>();
+
         public int catID;
         public string name;
-        public bool issub;
-        public Color colour;
+        public int isSubcategoryFrom;
+        public string colour;
 
-        public CategoryModel(int catID, string name, bool issub, string colour)
+        public CategoryModel(int catID, string name, int issub, string colour)
         {
             this.catID = catID;
             this.name = name;
-            this.issub = issub;
-            this.colour = Color.FromArgb(Int32.Parse(colour));
+            this.isSubcategoryFrom = issub;
+            this.colour = colour;
+
+            list.Add(this);
         }
+
+
     }
 }

@@ -15,26 +15,26 @@ namespace KantoorInrichting_Test.Models.Product_Test
             Assert.IsNotNull(p);
         }
 
-        [TestMethod]
-        public void ChangeProductCategory_Test()
-        {
-            ProductModel p = new ProductModel();
-            p.category = "changed category";
-            p.subcategory = "changed subcategory";
+        //[TestMethod]
+        //public void ChangeProductCategory_Test()
+        //{
+        //    ProductModel p = new ProductModel();
+        //    p.category = "changed category";
+        //    p.subcategory = "changed subcategory";
 
-            Assert.AreEqual(p.category, "changed category");
-            Assert.AreEqual(p.subcategory, "changed subcategory");
-        }
+        //    Assert.AreEqual(p.category, "changed category");
+        //    Assert.AreEqual(p.subcategory, "changed subcategory");
+        //}
 
-        [TestMethod]
-        public void DeleteProductCategory_Test()
-        {
-            ProductModel p = new ProductModel("", "", "", "category", "subcategory", 0, 0, 0, "", 0);
-            p.category = "";
-            p.subcategory = "";
+        //[TestMethod]
+        //public void DeleteProductCategory_Test()
+        //{
+        //    ProductModel p = new ProductModel("", "", "", "category", "subcategory", 0, 0, 0, "", 0);
+        //    p.category = "";
+        //    p.subcategory = "";
 
-            Assert.AreEqual(p.category, "");
-            Assert.AreEqual(p.subcategory, "");
-        }
+        //    Assert.AreEqual(p.category, "");
+        //    Assert.AreEqual(p.subcategory, "");
+        //}
     }
 }

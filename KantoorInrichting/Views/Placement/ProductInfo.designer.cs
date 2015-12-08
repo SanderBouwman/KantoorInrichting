@@ -43,91 +43,82 @@
             // lbl_1
             // 
             this.lbl_1.AutoSize = true;
-            this.lbl_1.Location = new System.Drawing.Point(7, 7);
-            this.lbl_1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_1.Location = new System.Drawing.Point(5, 6);
             this.lbl_1.Name = "lbl_1";
-            this.lbl_1.Size = new System.Drawing.Size(53, 17);
+            this.lbl_1.Size = new System.Drawing.Size(41, 13);
             this.lbl_1.TabIndex = 0;
             this.lbl_1.Text = "Name: ";
             // 
             // lbl_2
             // 
             this.lbl_2.AutoSize = true;
-            this.lbl_2.Location = new System.Drawing.Point(4, 39);
-            this.lbl_2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_2.Location = new System.Drawing.Point(3, 32);
             this.lbl_2.Name = "lbl_2";
-            this.lbl_2.Size = new System.Drawing.Size(50, 17);
+            this.lbl_2.Size = new System.Drawing.Size(38, 13);
             this.lbl_2.TabIndex = 2;
             this.lbl_2.Text = "Brand:";
             // 
             // lbl_5
             // 
             this.lbl_5.AutoSize = true;
-            this.lbl_5.Location = new System.Drawing.Point(4, 135);
-            this.lbl_5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_5.Location = new System.Drawing.Point(3, 110);
             this.lbl_5.Name = "lbl_5";
-            this.lbl_5.Size = new System.Drawing.Size(78, 17);
+            this.lbl_5.Size = new System.Drawing.Size(59, 13);
             this.lbl_5.TabIndex = 6;
             this.lbl_5.Text = "Dimension:";
             // 
             // lbl_3
             // 
             this.lbl_3.AutoSize = true;
-            this.lbl_3.Location = new System.Drawing.Point(4, 71);
-            this.lbl_3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_3.Location = new System.Drawing.Point(3, 58);
             this.lbl_3.Name = "lbl_3";
-            this.lbl_3.Size = new System.Drawing.Size(44, 17);
+            this.lbl_3.Size = new System.Drawing.Size(34, 13);
             this.lbl_3.TabIndex = 13;
             this.lbl_3.Text = "Type:";
             // 
             // txt_Name
             // 
             this.txt_Name.Enabled = false;
-            this.txt_Name.Location = new System.Drawing.Point(81, 4);
-            this.txt_Name.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_Name.Location = new System.Drawing.Point(61, 3);
             this.txt_Name.Name = "txt_Name";
             this.txt_Name.ReadOnly = true;
-            this.txt_Name.Size = new System.Drawing.Size(199, 22);
+            this.txt_Name.Size = new System.Drawing.Size(150, 20);
             this.txt_Name.TabIndex = 17;
             // 
             // txt_Brand
             // 
             this.txt_Brand.Enabled = false;
-            this.txt_Brand.Location = new System.Drawing.Point(81, 36);
-            this.txt_Brand.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_Brand.Location = new System.Drawing.Point(61, 29);
             this.txt_Brand.Name = "txt_Brand";
             this.txt_Brand.ReadOnly = true;
-            this.txt_Brand.Size = new System.Drawing.Size(199, 22);
+            this.txt_Brand.Size = new System.Drawing.Size(150, 20);
             this.txt_Brand.TabIndex = 18;
             // 
             // txt_Type
             // 
             this.txt_Type.Enabled = false;
-            this.txt_Type.Location = new System.Drawing.Point(81, 68);
-            this.txt_Type.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_Type.Location = new System.Drawing.Point(61, 55);
             this.txt_Type.Name = "txt_Type";
             this.txt_Type.ReadOnly = true;
-            this.txt_Type.Size = new System.Drawing.Size(199, 22);
+            this.txt_Type.Size = new System.Drawing.Size(150, 20);
             this.txt_Type.TabIndex = 19;
             // 
             // txt_Dimension
             // 
             this.txt_Dimension.Enabled = false;
-            this.txt_Dimension.Location = new System.Drawing.Point(81, 132);
-            this.txt_Dimension.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_Dimension.Location = new System.Drawing.Point(61, 107);
             this.txt_Dimension.Name = "txt_Dimension";
             this.txt_Dimension.ReadOnly = true;
-            this.txt_Dimension.Size = new System.Drawing.Size(199, 22);
+            this.txt_Dimension.Size = new System.Drawing.Size(150, 20);
             this.txt_Dimension.TabIndex = 21;
             // 
             // pbx_Image
             // 
             this.pbx_Image.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pbx_Image.BackColor = System.Drawing.SystemColors.GrayText;
-            this.pbx_Image.Location = new System.Drawing.Point(349, 28);
-            this.pbx_Image.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pbx_Image.Location = new System.Drawing.Point(262, 23);
             this.pbx_Image.Name = "pbx_Image";
-            this.pbx_Image.Size = new System.Drawing.Size(133, 123);
+            this.pbx_Image.Size = new System.Drawing.Size(100, 100);
             this.pbx_Image.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbx_Image.TabIndex = 23;
             this.pbx_Image.TabStop = false;
@@ -135,7 +126,7 @@
             // 
             // ProductInfo
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
@@ -150,9 +141,8 @@
             this.Controls.Add(this.lbl_2);
             this.Controls.Add(this.lbl_1);
             this.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "ProductInfo";
-            this.Size = new System.Drawing.Size(531, 182);
+            this.Size = new System.Drawing.Size(398, 148);
             ((System.ComponentModel.ISupportInitialize)(this.pbx_Image)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -169,6 +159,6 @@
         private System.Windows.Forms.TextBox txt_Brand;
         private System.Windows.Forms.TextBox txt_Type;
         private System.Windows.Forms.TextBox txt_Dimension;
-        private System.Windows.Forms.PictureBox pbx_Image;
+        public System.Windows.Forms.PictureBox pbx_Image;
     }
 }

@@ -36,10 +36,10 @@ namespace KantoorInrichting_Test.Models.Placement
             int move_y = 0; 
 
             PointF[] pointCorner = new PointF[4];
-            pointCorner[0] = new PointF(point.X - (product.width / 2) + move_x, point.Y - (product.length / 2) + move_y);   //{205 ; 195}
-            pointCorner[1] = new PointF(point.X + (product.width / 2) + move_x, point.Y - (product.length / 2) + move_y);   //{215 ; 195}
-            pointCorner[2] = new PointF(point.X + (product.width / 2) + move_x, point.Y + (product.length / 2) + move_y);   //{215 ; 205}
-            pointCorner[3] = new PointF(point.X - (product.width / 2) + move_x, point.Y + (product.length / 2) + move_y);   //{205 ; 205}
+            pointCorner[0] = new PointF(point.X - (product.Width / 2) + move_x, point.Y - (product.Length / 2) + move_y);   //{205 ; 195}
+            pointCorner[1] = new PointF(point.X + (product.Width / 2) + move_x, point.Y - (product.Length / 2) + move_y);   //{215 ; 195}
+            pointCorner[2] = new PointF(point.X + (product.Width / 2) + move_x, point.Y + (product.Length / 2) + move_y);   //{215 ; 205}
+            pointCorner[3] = new PointF(point.X - (product.Width / 2) + move_x, point.Y + (product.Length / 2) + move_y);   //{205 ; 205}
 
 
 
@@ -88,8 +88,8 @@ namespace KantoorInrichting_Test.Models.Placement
             PlacementController.ppList.Add(placedWall);
             
 
-            double radius = Math.Sqrt(Math.Pow(product.width/2, 2) + Math.Pow(product.length/2, 2));
-            double initialAngle = (Math.Atan((0.5 * product.length) / (0.5 * product.width)) * 180 / Math.PI);
+            double radius = Math.Sqrt(Math.Pow(product.Width/2, 2) + Math.Pow(product.Length/2, 2));
+            double initialAngle = (Math.Atan((0.5 * product.Length) / (0.5 * product.Width)) * 180 / Math.PI);
             
             double angle_Even = 45 + initialAngle;
             double angle_Uneven = 45 - initialAngle;            
@@ -149,8 +149,8 @@ namespace KantoorInrichting_Test.Models.Placement
             PlacementController.ppList.Add(placedWall);
 
 
-            double radius = Math.Sqrt(Math.Pow(product.width / 2, 2) + Math.Pow(product.length / 2, 2));
-            double initialAngle = (Math.Atan((0.5 * product.length) / (0.5 * product.width)) * 180 / Math.PI);
+            double radius = Math.Sqrt(Math.Pow(product.Width / 2, 2) + Math.Pow(product.Length / 2, 2));
+            double initialAngle = (Math.Atan((0.5 * product.Length) / (0.5 * product.Width)) * 180 / Math.PI);
 
             double angle_Even = 45 + initialAngle;
             double angle_Uneven = 45 - initialAngle;
@@ -216,8 +216,8 @@ namespace KantoorInrichting_Test.Models.Placement
             PlacementController.ppList.Add(placedWall);
 
 
-            double radius = Math.Sqrt(Math.Pow(product.width / 2, 2) + Math.Pow(product.length / 2, 2));
-            double initialAngle = (Math.Atan((0.5 * product.length) / (0.5 * product.width)) * 180 / Math.PI);
+            double radius = Math.Sqrt(Math.Pow(product.Width / 2, 2) + Math.Pow(product.Length / 2, 2));
+            double initialAngle = (Math.Atan((0.5 * product.Length) / (0.5 * product.Width)) * 180 / Math.PI);
 
             double angle_Even = 45 + initialAngle;
             double angle_Uneven = 45 - initialAngle;

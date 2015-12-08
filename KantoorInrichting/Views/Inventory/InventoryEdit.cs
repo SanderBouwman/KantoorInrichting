@@ -20,14 +20,14 @@ namespace KantoorInrichting.Views.Inventory
             InitializeComponent();
             P = p;
 
-            ProductNaam.Text = "productnaam: " + P.name;
-            ProductAantal.Value = P.amount;
+            ProductNaam.Text = "productnaam: " + P.Name;
+            ProductAantal.Value = P.Amount;
             
         }
         //sets the amount from the product to the given value
         private void button1_Click(object sender, EventArgs e)
         {
-            P.amount = Convert.ToInt32(ProductAantal.Value);
+            P.Amount = Convert.ToInt32(ProductAantal.Value);
             this.Close();
         }
 

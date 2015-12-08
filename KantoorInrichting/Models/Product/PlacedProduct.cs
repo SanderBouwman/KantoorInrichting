@@ -19,7 +19,7 @@ namespace KantoorInrichting.Models.Product
         public ProductModel product { get; private set; }
         public PointF location { get; private set; }
         public PointF[] cornerPoints { get; private set; }
-        private Bitmap defaultBitMap = new Bitmap(Properties.Resources.No_Image_Available);
+        private Bitmap defaultBitMap;
         public Bitmap rotatedMap { get; private set; }
         public int currentAngle { get; private set; }
         public Polygon Poly { get; private set; }
@@ -51,8 +51,14 @@ namespace KantoorInrichting.Models.Product
 
             //Corner and image
             cornerPoints = new PointF[5];
-            defaultBitMap = new Bitmap(product.image);
-            defaultBitMap = new Bitmap(RezizeImage(Properties.Resources.No_Image_Available, product.width, product.length));
+            defaultBitMap = new Bitmap(product.Width, product.Length);
+            Graphics gfx = Graphics.FromImage(defaultBitMap);
+            Color color = product.ProductCategory.colour;
+            SolidBrush brush = new SolidBrush(color);
+            gfx.FillRectangle(brush, 0, 0, product.Width, product.Length);
+            
+            defaultBitMap = new Bitmap(RezizeImage(defaultBitMap, product.Width, product.Length));
+
             rotatedMap = defaultBitMap;
 
             //Must be last. Set the angle and reset the points
@@ -312,13 +318,13 @@ namespace KantoorInrichting.Models.Product
 
             double angle_Even = (double)currentAngle;
             double angle_Uneven = currentAngle;
-            double radius = Math.Sqrt(Math.Pow(0.5 * product.width, 2) + Math.Pow(0.5 * product.length, 2));
+            double radius = Math.Sqrt(Math.Pow(0.5 * product.Width, 2) + Math.Pow(0.5 * product.Length, 2));
 
 
             //Tan^-1 ( (1/2H) / (1/2W) )
             //This is to get the angle of the center of the rectangle relevant to the sides. (To get the angle inside the rectangle)
-            angle_Even += (Math.Atan((0.5 * product.length) / (0.5 * product.width)) * 180 / Math.PI);
-            angle_Uneven -= 90 - (Math.Atan((0.5 * product.width) / (0.5 * product.length)) * 180 / Math.PI);
+            angle_Even += (Math.Atan((0.5 * product.Length) / (0.5 * product.Width)) * 180 / Math.PI);
+            angle_Uneven -= 90 - (Math.Atan((0.5 * product.Width) / (0.5 * product.Length)) * 180 / Math.PI);
             //If the angle is negative, add 360 to it to get the positive version
             while (angle_Uneven < 0)
             {

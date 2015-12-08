@@ -18,9 +18,9 @@ namespace KantoorInrichting.Views.Maps
         {
             this.mainFrame = mainFrame;
             InitializeComponent();
-
             Space.result = Space.list;
             this.MapsGridView1.DataSource = Space.result;
+
         }
     }
 }

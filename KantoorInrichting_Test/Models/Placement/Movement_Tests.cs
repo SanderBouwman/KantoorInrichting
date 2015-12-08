@@ -22,10 +22,10 @@ namespace KantoorInrichting_Test.Models.Placement
             int move_y = 0;
 
             PointF[] pointCorner = new PointF[4];
-            pointCorner[0] = new PointF(point.X - (product.width / 2) + move_x, point.Y - (product.length / 2) + move_y);   //{205 ; 195}
-            pointCorner[1] = new PointF(point.X + (product.width / 2) + move_x, point.Y - (product.length / 2) + move_y);   //{215 ; 195}
-            pointCorner[2] = new PointF(point.X + (product.width / 2) + move_x, point.Y + (product.length / 2) + move_y);   //{215 ; 205}
-            pointCorner[3] = new PointF(point.X - (product.width / 2) + move_x, point.Y + (product.length / 2) + move_y);   //{205 ; 205}
+            pointCorner[0] = new PointF(point.X - (product.Width / 2) + move_x, point.Y - (product.Length / 2) + move_y);   //{205 ; 195}
+            pointCorner[1] = new PointF(point.X + (product.Width / 2) + move_x, point.Y - (product.Length / 2) + move_y);   //{215 ; 195}
+            pointCorner[2] = new PointF(point.X + (product.Width / 2) + move_x, point.Y + (product.Length / 2) + move_y);   //{215 ; 205}
+            pointCorner[3] = new PointF(point.X - (product.Width / 2) + move_x, point.Y + (product.Length / 2) + move_y);   //{205 ; 205}
 
 
 
@@ -61,10 +61,10 @@ namespace KantoorInrichting_Test.Models.Placement
             int move_y = 10;
 
             PointF[] pointCorner = new PointF[4];
-            pointCorner[0] = new PointF(point.X - (product.width / 2) + move_x, point.Y - (product.length / 2) + move_y);   //{195 ; 205}
-            pointCorner[1] = new PointF(point.X + (product.width / 2) + move_x, point.Y - (product.length / 2) + move_y);   //{205 ; 205}
-            pointCorner[2] = new PointF(point.X + (product.width / 2) + move_x, point.Y + (product.length / 2) + move_y);   //{205 ; 215}
-            pointCorner[3] = new PointF(point.X - (product.width / 2) + move_x, point.Y + (product.length / 2) + move_y);   //{195 ; 215}
+            pointCorner[0] = new PointF(point.X - (product.Width / 2) + move_x, point.Y - (product.Length / 2) + move_y);   //{195 ; 205}
+            pointCorner[1] = new PointF(point.X + (product.Width / 2) + move_x, point.Y - (product.Length / 2) + move_y);   //{205 ; 205}
+            pointCorner[2] = new PointF(point.X + (product.Width / 2) + move_x, point.Y + (product.Length / 2) + move_y);   //{205 ; 215}
+            pointCorner[3] = new PointF(point.X - (product.Width / 2) + move_x, point.Y + (product.Length / 2) + move_y);   //{195 ; 215}
 
 
 
@@ -102,10 +102,10 @@ namespace KantoorInrichting_Test.Models.Placement
             int move_y = 10;
 
             PointF[] pointCorner = new PointF[4];
-            pointCorner[0] = new PointF(point.X - (product.width / 2) + move_x, point.Y - (product.length / 2) + move_y);   //{195 ; 205}
-            pointCorner[1] = new PointF(point.X + (product.width / 2) + move_x, point.Y - (product.length / 2) + move_y);   //{205 ; 205}
-            pointCorner[2] = new PointF(point.X + (product.width / 2) + move_x, point.Y + (product.length / 2) + move_y);   //{205 ; 215}
-            pointCorner[3] = new PointF(point.X - (product.width / 2) + move_x, point.Y + (product.length / 2) + move_y);   //{195 ; 215}
+            pointCorner[0] = new PointF(point.X - (product.Width / 2) + move_x, point.Y - (product.Length / 2) + move_y);   //{195 ; 205}
+            pointCorner[1] = new PointF(point.X + (product.Width / 2) + move_x, point.Y - (product.Length / 2) + move_y);   //{205 ; 205}
+            pointCorner[2] = new PointF(point.X + (product.Width / 2) + move_x, point.Y + (product.Length / 2) + move_y);   //{205 ; 215}
+            pointCorner[3] = new PointF(point.X - (product.Width / 2) + move_x, point.Y + (product.Length / 2) + move_y);   //{195 ; 215}
 
 
 
@@ -143,10 +143,10 @@ namespace KantoorInrichting_Test.Models.Placement
             int move_y = 0;
 
             PointF[] pointCorner = new PointF[4];
-            pointCorner[0] = new PointF(point.X - (product.width / 2) + move_x, point.Y - (product.length / 2) + move_y);   //{195 ; 205}
-            pointCorner[1] = new PointF(point.X + (product.width / 2) + move_x, point.Y - (product.length / 2) + move_y);   //{205 ; 205}
-            pointCorner[2] = new PointF(point.X + (product.width / 2) + move_x, point.Y + (product.length / 2) + move_y);   //{205 ; 215}
-            pointCorner[3] = new PointF(point.X - (product.width / 2) + move_x, point.Y + (product.length / 2) + move_y);   //{195 ; 215}
+            pointCorner[0] = new PointF(point.X - (product.Width / 2) + move_x, point.Y - (product.Length / 2) + move_y);   //{195 ; 205}
+            pointCorner[1] = new PointF(point.X + (product.Width / 2) + move_x, point.Y - (product.Length / 2) + move_y);   //{205 ; 205}
+            pointCorner[2] = new PointF(point.X + (product.Width / 2) + move_x, point.Y + (product.Length / 2) + move_y);   //{205 ; 215}
+            pointCorner[3] = new PointF(point.X - (product.Width / 2) + move_x, point.Y + (product.Length / 2) + move_y);   //{195 ; 215}
 
 
 
@@ -182,10 +182,10 @@ namespace KantoorInrichting_Test.Models.Placement
             int move_y = -10;
 
             PointF[] pointCorner = new PointF[4];
-            pointCorner[0] = new PointF(point.X - (product.width / 2) + move_x, point.Y - (product.length / 2) + move_y);   //{195 ; 205}
-            pointCorner[1] = new PointF(point.X + (product.width / 2) + move_x, point.Y - (product.length / 2) + move_y);   //{205 ; 205}
-            pointCorner[2] = new PointF(point.X + (product.width / 2) + move_x, point.Y + (product.length / 2) + move_y);   //{205 ; 215}
-            pointCorner[3] = new PointF(point.X - (product.width / 2) + move_x, point.Y + (product.length / 2) + move_y);   //{195 ; 215}
+            pointCorner[0] = new PointF(point.X - (product.Width / 2) + move_x, point.Y - (product.Length / 2) + move_y);   //{195 ; 205}
+            pointCorner[1] = new PointF(point.X + (product.Width / 2) + move_x, point.Y - (product.Length / 2) + move_y);   //{205 ; 205}
+            pointCorner[2] = new PointF(point.X + (product.Width / 2) + move_x, point.Y + (product.Length / 2) + move_y);   //{205 ; 215}
+            pointCorner[3] = new PointF(point.X - (product.Width / 2) + move_x, point.Y + (product.Length / 2) + move_y);   //{195 ; 215}
 
 
 
@@ -223,10 +223,10 @@ namespace KantoorInrichting_Test.Models.Placement
             int move_y = -10;
 
             PointF[] pointCorner = new PointF[4];
-            pointCorner[0] = new PointF(point.X - (product.width / 2) + move_x, point.Y - (product.length / 2) + move_y);   //{195 ; 205}
-            pointCorner[1] = new PointF(point.X + (product.width / 2) + move_x, point.Y - (product.length / 2) + move_y);   //{205 ; 205}
-            pointCorner[2] = new PointF(point.X + (product.width / 2) + move_x, point.Y + (product.length / 2) + move_y);   //{205 ; 215}
-            pointCorner[3] = new PointF(point.X - (product.width / 2) + move_x, point.Y + (product.length / 2) + move_y);   //{195 ; 215}
+            pointCorner[0] = new PointF(point.X - (product.Width / 2) + move_x, point.Y - (product.Length / 2) + move_y);   //{195 ; 205}
+            pointCorner[1] = new PointF(point.X + (product.Width / 2) + move_x, point.Y - (product.Length / 2) + move_y);   //{205 ; 205}
+            pointCorner[2] = new PointF(point.X + (product.Width / 2) + move_x, point.Y + (product.Length / 2) + move_y);   //{205 ; 215}
+            pointCorner[3] = new PointF(point.X - (product.Width / 2) + move_x, point.Y + (product.Length / 2) + move_y);   //{195 ; 215}
 
 
 
@@ -268,10 +268,10 @@ namespace KantoorInrichting_Test.Models.Placement
             int move_y = -5;
 
             PointF[] pointCorner = new PointF[4];
-            pointCorner[0] = new PointF(point.X - (product.width / 2) + move_x, point.Y - (product.length / 2) + move_y);   //{195 ; 205}
-            pointCorner[1] = new PointF(point.X + (product.width / 2) + move_x, point.Y - (product.length / 2) + move_y);   //{205 ; 205}
-            pointCorner[2] = new PointF(point.X + (product.width / 2) + move_x, point.Y + (product.length / 2) + move_y);   //{205 ; 215}
-            pointCorner[3] = new PointF(point.X - (product.width / 2) + move_x, point.Y + (product.length / 2) + move_y);   //{195 ; 215}
+            pointCorner[0] = new PointF(point.X - (product.Width / 2) + move_x, point.Y - (product.Length / 2) + move_y);   //{195 ; 205}
+            pointCorner[1] = new PointF(point.X + (product.Width / 2) + move_x, point.Y - (product.Length / 2) + move_y);   //{205 ; 205}
+            pointCorner[2] = new PointF(point.X + (product.Width / 2) + move_x, point.Y + (product.Length / 2) + move_y);   //{205 ; 215}
+            pointCorner[3] = new PointF(point.X - (product.Width / 2) + move_x, point.Y + (product.Length / 2) + move_y);   //{195 ; 215}
 
 
 
@@ -314,10 +314,10 @@ namespace KantoorInrichting_Test.Models.Placement
             int move_y = 15;
 
             PointF[] pointCorner = new PointF[4];
-            pointCorner[0] = new PointF(point.X + (product.width / 2) + move_x, point.Y - (product.length / 2) + move_y);   //{205 ; 210}
-            pointCorner[1] = new PointF(point.X + (product.width / 2) + move_x, point.Y + (product.length / 2) + move_y);   //{205 ; 220}
-            pointCorner[2] = new PointF(point.X - (product.width / 2) + move_x, point.Y + (product.length / 2) + move_y);   //{195 ; 220}
-            pointCorner[3] = new PointF(point.X - (product.width / 2) + move_x, point.Y - (product.length / 2) + move_y);   //{195 ; 210}
+            pointCorner[0] = new PointF(point.X + (product.Width / 2) + move_x, point.Y - (product.Length / 2) + move_y);   //{205 ; 210}
+            pointCorner[1] = new PointF(point.X + (product.Width / 2) + move_x, point.Y + (product.Length / 2) + move_y);   //{205 ; 220}
+            pointCorner[2] = new PointF(point.X - (product.Width / 2) + move_x, point.Y + (product.Length / 2) + move_y);   //{195 ; 220}
+            pointCorner[3] = new PointF(point.X - (product.Width / 2) + move_x, point.Y - (product.Length / 2) + move_y);   //{195 ; 210}
 
 
 
@@ -355,10 +355,10 @@ namespace KantoorInrichting_Test.Models.Placement
             int move_y = 15;
 
             PointF[] pointCorner = new PointF[4];
-            pointCorner[0] = new PointF(point.X + (product.width / 2) + move_x, point.Y - (product.length / 2) + move_y);   //{205 ; 210}
-            pointCorner[1] = new PointF(point.X + (product.width / 2) + move_x, point.Y + (product.length / 2) + move_y);   //{205 ; 220}
-            pointCorner[2] = new PointF(point.X - (product.width / 2) + move_x, point.Y + (product.length / 2) + move_y);   //{195 ; 220}
-            pointCorner[3] = new PointF(point.X - (product.width / 2) + move_x, point.Y - (product.length / 2) + move_y);   //{195 ; 210}
+            pointCorner[0] = new PointF(point.X + (product.Width / 2) + move_x, point.Y - (product.Length / 2) + move_y);   //{205 ; 210}
+            pointCorner[1] = new PointF(point.X + (product.Width / 2) + move_x, point.Y + (product.Length / 2) + move_y);   //{205 ; 220}
+            pointCorner[2] = new PointF(point.X - (product.Width / 2) + move_x, point.Y + (product.Length / 2) + move_y);   //{195 ; 220}
+            pointCorner[3] = new PointF(point.X - (product.Width / 2) + move_x, point.Y - (product.Length / 2) + move_y);   //{195 ; 210}
 
 
             //Do
