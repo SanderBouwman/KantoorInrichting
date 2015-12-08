@@ -132,7 +132,7 @@ namespace KantoorInrichting.Views.Assortment
             else
             {
                 errorCategoryLabel.Text = "";
-                category_ID = categoryComboBox.SelectedIndex + 1;
+                category_ID = categoryComboBox.SelectedIndex;
                 //Plus 1 to match the category number from the database, this might be needing change later, if changed -> also change in EditProductScreen FillComboBox() 
                 validationPassed--;
             }

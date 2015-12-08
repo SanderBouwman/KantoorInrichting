@@ -574,6 +574,8 @@ namespace KantoorInrichting {
             
             private global::System.Data.DataColumn columnsubcategory_of;
             
+            private global::System.Data.DataColumn columncolor;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public categoryDataTable() {
@@ -641,6 +643,14 @@ namespace KantoorInrichting {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn colorColumn {
+                get {
+                    return this.columncolor;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -676,13 +686,14 @@ namespace KantoorInrichting {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public categoryRow AddcategoryRow(int category_id, string name, bool removed, int subcategory_of) {
+            public categoryRow AddcategoryRow(int category_id, string name, bool removed, int subcategory_of, string color) {
                 categoryRow rowcategoryRow = ((categoryRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         category_id,
                         name,
                         removed,
-                        subcategory_of};
+                        subcategory_of,
+                        color};
                 rowcategoryRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowcategoryRow);
                 return rowcategoryRow;
@@ -716,6 +727,7 @@ namespace KantoorInrichting {
                 this.columnname = base.Columns["name"];
                 this.columnremoved = base.Columns["removed"];
                 this.columnsubcategory_of = base.Columns["subcategory_of"];
+                this.columncolor = base.Columns["color"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -729,6 +741,8 @@ namespace KantoorInrichting {
                 base.Columns.Add(this.columnremoved);
                 this.columnsubcategory_of = new global::System.Data.DataColumn("subcategory_of", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnsubcategory_of);
+                this.columncolor = new global::System.Data.DataColumn("color", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columncolor);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columncategory_id}, true));
                 this.columncategory_id.AllowDBNull = false;
@@ -736,6 +750,7 @@ namespace KantoorInrichting {
                 this.columnname.AllowDBNull = false;
                 this.columnname.MaxLength = 50;
                 this.columnremoved.AllowDBNull = false;
+                this.columncolor.MaxLength = 50;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3302,6 +3317,22 @@ namespace KantoorInrichting {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string color {
+                get {
+                    try {
+                        return ((string)(this[this.tablecategory.colorColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'color\' in table \'category\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablecategory.colorColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool Issubcategory_ofNull() {
                 return this.IsNull(this.tablecategory.subcategory_ofColumn);
             }
@@ -3310,6 +3341,18 @@ namespace KantoorInrichting {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void Setsubcategory_ofNull() {
                 this[this.tablecategory.subcategory_ofColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IscolorNull() {
+                return this.IsNull(this.tablecategory.colorColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetcolorNull() {
+                this[this.tablecategory.colorColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4509,43 +4552,46 @@ namespace KantoorInrichting.KantoorInrichtingDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("name", "name");
             tableMapping.ColumnMappings.Add("removed", "removed");
             tableMapping.ColumnMappings.Add("subcategory_of", "subcategory_of");
+            tableMapping.ColumnMappings.Add("color", "color");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[category] WHERE (([category_id] = @Original_category_id) AND (" +
-                "[name] = @Original_name) AND ([removed] = @Original_removed) AND ((@IsNull_subca" +
-                "tegory_of = 1 AND [subcategory_of] IS NULL) OR ([subcategory_of] = @Original_sub" +
-                "category_of)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [category] WHERE (([category_id] = @Original_category_id) AND ([name] = @Original_name) AND ([removed] = @Original_removed) AND ((@IsNull_subcategory_of = 1 AND [subcategory_of] IS NULL) OR ([subcategory_of] = @Original_subcategory_of)) AND ((@IsNull_color = 1 AND [color] IS NULL) OR ([color] = @Original_color)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_category_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "category_id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_removed", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "removed", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_subcategory_of", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "subcategory_of", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_subcategory_of", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "subcategory_of", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_color", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "color", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_color", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "color", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[category] ([category_id], [name], [removed], [subcategory_of])" +
-                " VALUES (@category_id, @name, @removed, @subcategory_of);\r\nSELECT category_id, n" +
-                "ame, removed, subcategory_of FROM category WHERE (category_id = @category_id)";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [category] ([category_id], [name], [removed], [subcategory_of], [color]) VALUES (@category_id, @name, @removed, @subcategory_of, @color);
+SELECT category_id, name, removed, subcategory_of, color FROM category WHERE (category_id = @category_id)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@category_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "category_id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@removed", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "removed", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@subcategory_of", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "subcategory_of", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@color", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "color", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[category] SET [category_id] = @category_id, [name] = @name, [removed] = @removed, [subcategory_of] = @subcategory_of WHERE (([category_id] = @Original_category_id) AND ([name] = @Original_name) AND ([removed] = @Original_removed) AND ((@IsNull_subcategory_of = 1 AND [subcategory_of] IS NULL) OR ([subcategory_of] = @Original_subcategory_of)));
-SELECT category_id, name, removed, subcategory_of FROM category WHERE (category_id = @category_id)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [category] SET [category_id] = @category_id, [name] = @name, [removed] = @removed, [subcategory_of] = @subcategory_of, [color] = @color WHERE (([category_id] = @Original_category_id) AND ([name] = @Original_name) AND ([removed] = @Original_removed) AND ((@IsNull_subcategory_of = 1 AND [subcategory_of] IS NULL) OR ([subcategory_of] = @Original_subcategory_of)) AND ((@IsNull_color = 1 AND [color] IS NULL) OR ([color] = @Original_color)));
+SELECT category_id, name, removed, subcategory_of, color FROM category WHERE (category_id = @category_id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@category_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "category_id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@removed", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "removed", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@subcategory_of", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "subcategory_of", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@color", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "color", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_category_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "category_id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_removed", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "removed", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_subcategory_of", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "subcategory_of", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_subcategory_of", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "subcategory_of", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_color", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "color", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_color", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "color", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4561,7 +4607,7 @@ SELECT category_id, name, removed, subcategory_of FROM category WHERE (category_
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT category_id, name, removed, subcategory_of FROM dbo.category";
+            this._commandCollection[0].CommandText = "SELECT category_id, name, removed, subcategory_of, color FROM category";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -4622,7 +4668,7 @@ SELECT category_id, name, removed, subcategory_of FROM category WHERE (category_
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_category_id, string Original_name, bool Original_removed, global::System.Nullable<int> Original_subcategory_of) {
+        public virtual int Delete(int Original_category_id, string Original_name, bool Original_removed, global::System.Nullable<int> Original_subcategory_of, string Original_color) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_category_id));
             if ((Original_name == null)) {
                 throw new global::System.ArgumentNullException("Original_name");
@@ -4638,6 +4684,14 @@ SELECT category_id, name, removed, subcategory_of FROM category WHERE (category_
             else {
                 this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            if ((Original_color == null)) {
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[6].Value = ((string)(Original_color));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -4659,7 +4713,7 @@ SELECT category_id, name, removed, subcategory_of FROM category WHERE (category_
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int category_id, string name, bool removed, global::System.Nullable<int> subcategory_of) {
+        public virtual int Insert(int category_id, string name, bool removed, global::System.Nullable<int> subcategory_of, string color) {
             this.Adapter.InsertCommand.Parameters[0].Value = ((int)(category_id));
             if ((name == null)) {
                 throw new global::System.ArgumentNullException("name");
@@ -4673,6 +4727,12 @@ SELECT category_id, name, removed, subcategory_of FROM category WHERE (category_
             }
             else {
                 this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            if ((color == null)) {
+                this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[4].Value = ((string)(color));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -4694,7 +4754,7 @@ SELECT category_id, name, removed, subcategory_of FROM category WHERE (category_
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int category_id, string name, bool removed, global::System.Nullable<int> subcategory_of, int Original_category_id, string Original_name, bool Original_removed, global::System.Nullable<int> Original_subcategory_of) {
+        public virtual int Update(int category_id, string name, bool removed, global::System.Nullable<int> subcategory_of, string color, int Original_category_id, string Original_name, bool Original_removed, global::System.Nullable<int> Original_subcategory_of, string Original_color) {
             this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(category_id));
             if ((name == null)) {
                 throw new global::System.ArgumentNullException("name");
@@ -4709,21 +4769,35 @@ SELECT category_id, name, removed, subcategory_of FROM category WHERE (category_
             else {
                 this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_category_id));
+            if ((color == null)) {
+                this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(color));
+            }
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Original_category_id));
             if ((Original_name == null)) {
                 throw new global::System.ArgumentNullException("Original_name");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(Original_name));
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(Original_name));
             }
-            this.Adapter.UpdateCommand.Parameters[6].Value = ((bool)(Original_removed));
+            this.Adapter.UpdateCommand.Parameters[7].Value = ((bool)(Original_removed));
             if ((Original_subcategory_of.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(Original_subcategory_of.Value));
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(Original_subcategory_of.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
+            }
+            if ((Original_color == null)) {
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(Original_color));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -4745,8 +4819,8 @@ SELECT category_id, name, removed, subcategory_of FROM category WHERE (category_
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string name, bool removed, global::System.Nullable<int> subcategory_of, int Original_category_id, string Original_name, bool Original_removed, global::System.Nullable<int> Original_subcategory_of) {
-            return this.Update(Original_category_id, name, removed, subcategory_of, Original_category_id, Original_name, Original_removed, Original_subcategory_of);
+        public virtual int Update(string name, bool removed, global::System.Nullable<int> subcategory_of, string color, int Original_category_id, string Original_name, bool Original_removed, global::System.Nullable<int> Original_subcategory_of, string Original_color) {
+            return this.Update(Original_category_id, name, removed, subcategory_of, color, Original_category_id, Original_name, Original_removed, Original_subcategory_of, Original_color);
         }
     }
     

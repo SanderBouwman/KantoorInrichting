@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Controllers\Algorithm\IDesignAlgorithm.cs" />
     <Compile Include="Controllers\Algorithm\TestSetup\TestSetupDesign.cs" />
+    <Compile Include="Controllers\Assortment\AssortmentController.cs" />
     <Compile Include="Controllers\DatabaseController.cs" />
     <Compile Include="Controllers\IController.cs" />
     <Compile Include="Controllers\Login\LoginController.cs" />
@@ -268,7 +269,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Controllers\Assortment\" />
     <Folder Include="Models\Assortment\" />
     <Folder Include="Models\Inventory\" />
     <Folder Include="Properties\DataSources\" />
