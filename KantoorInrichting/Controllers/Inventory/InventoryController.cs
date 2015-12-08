@@ -55,10 +55,6 @@ namespace KantoorInrichting.Controllers.Inventory
                    .Select(grp => grp.First())
                    .ToList();
 
-            var CategoryResult = ProductModel.list.GroupBy(product => product.category)
-                   .Select(grp => grp.First())
-                   .ToList();
-
             // insert default
             inventoryScreen.DropdownMerk.Items.Insert(0, "geen merkfilter");
             inventoryScreen.DropdownCategorie.Items.Insert(0, "geen categoriefilter");
@@ -71,15 +67,12 @@ namespace KantoorInrichting.Controllers.Inventory
                     inventoryScreen.DropdownMerk.Items.Add(product.Brand);
                 }
             }
-            // add the unique items to category dropdown
-            foreach (ProductModel product in CategoryResult)
+            // other method to add every category
+            DatabaseController dbc = DatabaseController.Instance;
+            foreach (var category in dbc.DataSet.category)
             {
-                if (product.category != null)
-                {
-                    inventoryScreen.DropdownCategorie.Items.Add(product.category);
-                }
+                inventoryScreen.DropdownCategorie.Items.Add(category.name);
             }
-
 
         }
 
