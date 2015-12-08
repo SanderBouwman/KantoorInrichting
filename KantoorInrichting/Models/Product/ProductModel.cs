@@ -23,6 +23,7 @@ namespace KantoorInrichting.Models.Product
         public int category_id { get; set; }
         public string imageFileName { get; set; }
         public string description { get; set; }
+        public CategoryModel ProductCategory { get; set; }
 
         public string name { get; set; }      
         public string type { get; set; }      
@@ -63,6 +64,8 @@ namespace KantoorInrichting.Models.Product
             type = t;
             category_id = c;
 
+            this.ProductCategory = CategoryModel.CheckCategories(category_id);
+
             length = l;
             width = w;
             height = h;
@@ -74,7 +77,6 @@ namespace KantoorInrichting.Models.Product
 
             list.Add(this);
         }
-
 
 
 

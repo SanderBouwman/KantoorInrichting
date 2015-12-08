@@ -48,6 +48,7 @@ namespace KantoorInrichting.Controllers
 
             FillProducts();
             FillSpaces();
+            FillCategory();
         }
 
         //This method makes sure there can only be one Instance of this Class, aka Singleton.
@@ -79,13 +80,14 @@ namespace KantoorInrichting.Controllers
             {
                 var s1 = new Space(space.space_number, space.floor, space.building, space.roomnumber);
             }
+        }
+        public void FillCategory()
         {
+            foreach (var category in this.Dataset.category)
+            {
+                var c1 = new CategoryModel(category.category_id, category.name, category.subcategory_of, "0x78FF0000");
+            }
         }
-        }
-
-
-
-
 
     }
 }
