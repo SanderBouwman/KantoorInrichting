@@ -70,6 +70,7 @@
     <Compile Include="Models\Space\Space.cs" />
     <Compile Include="Models\Placement\Polygon.cs" />
     <Compile Include="Models\Placement\Vector.cs" />
+    <Compile Include="Models\Product\CategoryModel.cs" />
     <Compile Include="Models\Product\ChairTablePair.cs" />
     <Compile Include="Models\Product\PlacedProduct.cs" />
     <Compile Include="Models\Product\ProductModel.cs" />

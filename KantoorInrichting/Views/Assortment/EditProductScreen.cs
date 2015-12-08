@@ -57,7 +57,7 @@ namespace KantoorInrichting.Views.Assortment
         //Fills the category combobox with categories from the database and selects the category
         public void FillComboBox()
         {
-            var categoryList = dbc.Dataset.category;
+            var categoryList = dbc.DataSet.category;
 
             foreach (var category in categoryList)
             {
@@ -199,11 +199,10 @@ namespace KantoorInrichting.Views.Assortment
         private void UpdateProductInDatabase()
         {
             //Fill the TableAdapter with data from the dataset
-            productTableAdapter.Fill(kantoorInrichtingDataSet.product);
             try
             {
                 //Search the tabel Product for a certain ProductID
-                var productRow = kantoorInrichtingDataSet.product.FindByproduct_id(product.product_id);
+                var productRow = dbc.DataSet.product.FindByproduct_id(product.product_id);
                 //Assign a new value to the Column Quantity
                 productRow.name = product.name;
                 productRow.brand = product.brand;
@@ -217,7 +216,7 @@ namespace KantoorInrichting.Views.Assortment
                 productRow.description = product.description;
 
                 //Update the database with the new Data
-                productTableAdapter.Update(kantoorInrichtingDataSet.product);
+                dbc.ProductTableAdapter.Update(dbc.DataSet.product);
                 if (isNewImage)
                 {
                     RemoveImage(currentImagePath);

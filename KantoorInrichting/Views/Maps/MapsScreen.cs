@@ -21,9 +21,7 @@ namespace KantoorInrichting.Views.Maps
 
             Space.result = Space.list;
             this.MapsGridView1.DataSource = Space.result;
-          
+
         }
-
-
     }
 }
