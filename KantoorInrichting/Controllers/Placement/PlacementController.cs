@@ -72,6 +72,7 @@ namespace KantoorInrichting.Controllers.Placement
         public void changeSelected(ProductInfo sender)
         {
             productAdding.productInfo1.setProduct(sender.product); //Sets a new product
+            currentProduct = null;
         }
 
 
@@ -180,7 +181,9 @@ namespace KantoorInrichting.Controllers.Placement
 
         public void btn_Delete()
         {
-            ppList.Remove(currentProduct);
+            try
+            { ppList.Remove(currentProduct); }
+            catch { }
         }
 
 
@@ -200,7 +203,9 @@ namespace KantoorInrichting.Controllers.Placement
 
         public void event_DeleteDrop(object sender, DragEventArgs e)
         {
-            ppList.Remove((PlacedProduct)e.Data.GetData(typeof(PlacedProduct)));
+            try
+            { ppList.Remove((PlacedProduct)e.Data.GetData(typeof(PlacedProduct))); }
+            catch { }
         }
 
         public void event_PanelMouseDown(object sender, MouseEventArgs e)
