@@ -19,8 +19,8 @@ namespace KantoorInrichting.Models.Product
         public int length { get; set; }
         public int width { get; set; }
         public int height { get; set; }
-        public int product_ID { get; }
-        public int category_ID { get; set; }
+        public int product_id { get; }
+        public int category_id { get; set; }
         public string imageFileName { get; set; }
         public string description { get; set; }
 
@@ -30,8 +30,8 @@ namespace KantoorInrichting.Models.Product
         public Image image { get; set; }   
         public int amount { get; set; }    
         public int id { get; }
-        public string category { get; set; }
-        public string subcategory { get; set; }
+        public string category { get; }
+
 
         //public Supplier supplier { get; private set; }
 
@@ -44,8 +44,6 @@ namespace KantoorInrichting.Models.Product
             name = n;
             brand = b;
             type = t;
-            category = c;
-            subcategory = s;
 
             length = l;
             width = w;
@@ -59,11 +57,11 @@ namespace KantoorInrichting.Models.Product
 
         public ProductModel(int i, string n, string b, string t, int c, int l, int w, int h, string d, int a, string im)
         {
-            product_ID = i;
+            product_id = i;
             name = n;
             brand = b;
             type = t;
-            category_ID = c;
+            category_id = c;
 
             length = l;
             width = w;
@@ -77,25 +75,6 @@ namespace KantoorInrichting.Models.Product
             list.Add(this);
         }
 
-        public ProductModel(int i, string n, string b, string t, string c, int l, int w, int h, string d, int a, string im)
-        {
-            product_ID = i;
-            name = n;
-            brand = b;
-            type = t;
-            category = c;
-
-            length = l;
-            width = w;
-            height = h;
-
-            description = d;
-            amount = a;
-            imageFileName = im;
-            SetProductImage();
-
-            list.Add(this);
-        }
 
 
 

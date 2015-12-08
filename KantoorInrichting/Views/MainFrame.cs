@@ -21,10 +21,10 @@ namespace KantoorInrichting
 
         public MainFrame()
         {
+            DatabaseController dbc = DatabaseController.Instance;
             AddPanels();
             InitializeComponent();
             OnBootup();
-            DatabaseController dbc = new DatabaseController();
         }
 
         public void AddPanels()
@@ -82,7 +82,7 @@ namespace KantoorInrichting
             this.MapsScreen.Anchor = ((AnchorStyles)((((AnchorStyles.Top | AnchorStyles.Bottom) | AnchorStyles.Left) | AnchorStyles.Right)));
             this.MapsScreen.Name = "Plattegronden";
             this.MapsScreen.TabIndex = 1;
-          
+
 
 
             AddPanelToMainscreen(assortmentScreen);
@@ -102,7 +102,7 @@ namespace KantoorInrichting
         private void AddPanelToMainscreen(UserControl panel)
         {
             // this method must be used for every panel!!
-            
+
             // start after menubar
             panel.Location = new System.Drawing.Point(0, 25);
 
