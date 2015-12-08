@@ -14,7 +14,7 @@ namespace KantoorInrichting.Models.Product
         public static SortableBindingList<ProductModel> list = new SortableBindingList<ProductModel>();
         public static SortableBindingList<ProductModel> result = new SortableBindingList<ProductModel>();  // list for filtering data
 
-        public Point location;
+        public PointF location;
 
         public int Length { get; set; }
         public int Width { get; set; }

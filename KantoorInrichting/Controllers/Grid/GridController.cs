@@ -19,24 +19,27 @@ using KantoorInrichting.Views.Grid;
 
 namespace KantoorInrichting.Controllers.Grid {
     public class GridController : IController {
-
         private readonly GridFieldModel _model;
         private readonly Panel _panel;
-        private readonly TrackBar _trackBar;
-        private ComboBox _comboBox;
-        private readonly IView _view;
+
         private readonly float _tileHeight,
             _tileWidth;
-        private ZoomView _zoomView;
-        private Bitmap _buffer;
-        private Rectangle _rectangle;
-        private int _tileX,
-            _tileY;
-        private bool _zoomCheckbox;
+
+        private readonly TrackBar _trackBar;
+        private readonly IView _view;
 
         private IDesignAlgorithm _algorithm;
+        private Bitmap _buffer;
+        private readonly ComboBox _comboBox;
 
         private List<ProductModel> _products;
+        private Rectangle _rectangle;
+
+        private int _tileX,
+            _tileY;
+
+        private bool _zoomCheckbox;
+        private ZoomView _zoomView;
 
         public GridController(IView view, GridFieldModel model) {
             _view = view;
@@ -82,7 +85,7 @@ namespace KantoorInrichting.Controllers.Grid {
         }
 
         public void ButtonClick(object sender, EventArgs e) {
-            switch( ( ( Button ) sender ).Text ) {
+            switch (((Button) sender).Text) {
                 case "Go":
                     AlgorithmClick(sender, e);
                     break;
@@ -201,15 +204,14 @@ namespace KantoorInrichting.Controllers.Grid {
         private void PaintModel(Bitmap b) {
 //            _model.Draw(b);
 
-            if (this._products != null) {
+            if (_products != null) {
                 using (Graphics g = Graphics.FromImage(b)) {
                     foreach (ProductModel product in _products) {
-
-                        Rectangle rect = new Rectangle() {
-                            X = ( int ) ( ( product.location.X / _model.Rows[ 0, 0 ].Width ) * _tileWidth ),
-                            Y = ( int ) ( ( product.location.Y / _model.Rows[ 0, 0 ].Height ) * _tileHeight ),
-                            Width = ( int ) ( ( product.Height / _model.Rows[ 0, 0 ].Height ) * _tileWidth ),
-                            Height = ( int ) ( ( product.Width / _model.Rows[ 0, 0 ].Width ) * _tileHeight )
+                        Rectangle rect = new Rectangle {
+                            X = (int) (product.location.X/_model.Rows[0, 0].Width*_tileWidth),
+                            Y = (int) (product.location.Y/_model.Rows[0, 0].Height*_tileHeight),
+                            Width = (int) (product.Height/_model.Rows[0, 0].Height*_tileWidth),
+                            Height = (int) (product.Width/_model.Rows[0, 0].Width*_tileHeight)
                         };
                         Pen pen = new Pen(Color.DarkBlue, 3f);
                         g.DrawRectangle(pen, rect);
@@ -218,7 +220,6 @@ namespace KantoorInrichting.Controllers.Grid {
             }
         }
 
-        
 
         /// <summary>
         /// Creates the background image using the dimensions given to the model.
@@ -269,7 +270,7 @@ namespace KantoorInrichting.Controllers.Grid {
 
         private void PopulateCombobox() {
             var dataSource = new List<Algorithm>();
-            dataSource.Add(new Algorithm() {Name = "Toets lokaal", Value = typeof(TestSetupDesign)});
+            dataSource.Add(new Algorithm {Name = "Toets lokaal", Value = typeof (TestSetupDesign)});
 
             _comboBox.DataSource = dataSource;
             _comboBox.DisplayMember = "Name";
@@ -278,26 +279,28 @@ namespace KantoorInrichting.Controllers.Grid {
             _comboBox.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
-        public void AlgorithmClick( object sender, EventArgs e ) {
+        public void AlgorithmClick(object sender, EventArgs e) {
             Type selectedType = ((Algorithm) _comboBox.SelectedItem).Value;
             _algorithm = (IDesignAlgorithm) Activator.CreateInstance(selectedType);
             // testing code
             ProductModel chair = new ProductModel {
                 Brand = "Ahrend",
                 Width = 1,
-                Height = 1
+                Height = 1,
+                Type = "Chair"
             };
             ProductModel table = new ProductModel {
                 Brand = "TableCompany",
                 Width = 2,
-                Height = 1
+                Height = 1,
+                Type = "Table"
             };
             _products = _algorithm.Design(chair, table, 7, _model.Rows.GetLength(0), _model.Rows.GetLength(1), 0.5f);
             _panel.Invalidate();
         }
 
         public void ClearField() {
-            this._products = null;
+            _products = null;
             _buffer = null;
             Resize(this, null);
             _panel.Invalidate();

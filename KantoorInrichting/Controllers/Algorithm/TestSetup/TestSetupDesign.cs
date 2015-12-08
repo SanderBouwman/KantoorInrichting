@@ -16,17 +16,17 @@ namespace KantoorInrichting.Controllers.Algorithm.TestSetup {
         private int _rows;
 
         public List<ProductModel> Design(ProductModel chair, ProductModel table,
-                                            int people, int width, int height, float margin) {
+            int people, int width, int height, float margin) {
             ChairTablePair pair = ChairTablePair.CreatePair(chair, table, margin);
             List<Rectangle> possibilities = CalculatePossibilities(pair, width, height, margin);
             List<ChairTablePair> result = FillRoom(people, pair, possibilities);
-            List<ProductModel> finalResult = CreateModelList(result);
-            
+            List<ProductModel> finalResult = CreateModelList(result, margin);
+
             return finalResult;
         }
 
         public List<Rectangle> CalculatePossibilities(ChairTablePair pair, int width,
-                                                        int height, float margin) {
+            int height, float margin) {
             List<Rectangle> possibilities = new List<Rectangle>();
             _columns = width/pair.Representation.Width;
             _rows = height/pair.Representation.Height;
@@ -42,7 +42,7 @@ namespace KantoorInrichting.Controllers.Algorithm.TestSetup {
         }
 
         public List<ChairTablePair> FillRoom(int people, ChairTablePair pair,
-                                                List<Rectangle> possibilities) {
+            List<Rectangle> possibilities) {
             List<ChairTablePair> result = new List<ChairTablePair>();
             int currentPossibility = 0;
             for (int i = 0; i < people; i++) {
@@ -76,37 +76,39 @@ namespace KantoorInrichting.Controllers.Algorithm.TestSetup {
             return result;
         }
 
-        public List<ProductModel> CreateModelList(List<ChairTablePair> pairs) {
+        public List<ProductModel> CreateModelList(List<ChairTablePair> pairs, float margin) {
             List<ProductModel> result = new List<ProductModel>();
             for (int i = 0; i < pairs.Count; i++) {
-                Point chairPoint, tablePoint;
                 ChairTablePair current = pairs[i];
 
-                ProductModel newChair = new ProductModel() {
+                ProductModel newChair = new ProductModel {
                     Brand = current.Chair.Brand,
                     Width = current.Chair.Width,
-                    Height = current.Chair.Height
+                    Height = current.Chair.Height,
+                    Type = current.Chair.Type
                 };
-                ProductModel newTable = new ProductModel() {
+                ProductModel newTable = new ProductModel {
                     Brand = current.Table.Brand,
                     Width = current.Table.Width,
-                    Height = current.Table.Height
+                    Height = current.Table.Height,
+                    Type = current.Table.Type
                 };
 
-                int chairX, chairY,
-                    tableX, tableY;
+                float chairX,
+                    chairY,
+                    tableX,
+                    tableY;
                 if (i == 0) {
                     chairX = 0;
                     tableX = current.Representation.X + newChair.Width;
                     chairY = current.Representation.Y + newChair.Height;
-                    tableY = current.Representation.Y;
-                    
+                    tableY = current.Representation.Y + margin;
                 }
                 else {
                     chairX = current.Representation.X + newTable.Height;
-                    chairY = current.Representation.Y + (newTable.Width/2);
+                    chairY = current.Representation.Y + newChair.Height;
                     tableX = current.Representation.X;
-                    tableY = current.Representation.Y;
+                    tableY = current.Representation.Y + margin;
                 }
                 SetLocation(newChair, chairX, chairY);
                 SetLocation(newTable, tableX, tableY);
@@ -116,8 +118,8 @@ namespace KantoorInrichting.Controllers.Algorithm.TestSetup {
             return result;
         }
 
-        public void SetLocation(ProductModel p, int x, int y) {
-            Point point = new Point(x, y);
+        public void SetLocation(ProductModel p, float x, float y) {
+            PointF point = new PointF(x, y);
             p.location = point;
         }
     }
