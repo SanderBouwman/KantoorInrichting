@@ -12,8 +12,8 @@ namespace KantoorInrichting.Models.Product
     {
         public static SortableBindingList<CategoryModel> list = new SortableBindingList<CategoryModel>();
 
-        public static SortableBindingList<CategoryModel> list = new SortableBindingList<CategoryModel>();
-        public static SortableBindingList<CategoryModel> list = new SortableBindingList<CategoryModel>();
+        public static SortableBindingList<CategoryModel> SubcategoryList = new SortableBindingList<CategoryModel>();
+        public static SortableBindingList<CategoryModel> CategoryList = new SortableBindingList<CategoryModel>();
 
         public int catID;
         public string name;
