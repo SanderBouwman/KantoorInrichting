@@ -35,7 +35,11 @@ namespace KantoorInrichting.Views.Placement
 
         protected override void OnPaint(PaintEventArgs e)
         {
-            placementController.redrawPanel(e.Graphics);
+            try
+            {
+                placementController.redrawPanel(e.Graphics);
+            }
+            catch { }
         }
     }
 }

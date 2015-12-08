@@ -35,7 +35,6 @@ namespace KantoorInrichting.Controllers.Placement
         private PlacedProduct currentProduct;
         private Point clickLocation;
         private int MovementSpeed = 5;
-        private Bitmap BackgroundGrid;
 
         private void ppList_CollectionChanged(object sender, EventArgs e)
         {
@@ -178,6 +177,32 @@ namespace KantoorInrichting.Controllers.Placement
             return;   
         }
 
+
+        public void btn_Delete()
+        {
+            ppList.Remove(currentProduct);
+        }
+
+
+        public void event_DeleteEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(typeof(PlacedProduct)))
+            {
+                e.Effect = e.AllowedEffect;
+            }
+            else
+            {
+                e.Effect = DragDropEffects.None;
+            }
+        }
+
+
+
+        public void event_DeleteDrop(object sender, DragEventArgs e)
+        {
+            ppList.Remove((PlacedProduct)e.Data.GetData(typeof(PlacedProduct)));
+        }
+
         public void event_PanelMouseDown(object sender, MouseEventArgs e)
         {
             foreach (PlacedProduct PlacedP in PlacementController.ppList)
@@ -203,7 +228,6 @@ namespace KantoorInrichting.Controllers.Placement
                 }
             }
         }
-
         public void event_PanelKeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.W || e.KeyCode == Keys.Up)
@@ -259,7 +283,6 @@ namespace KantoorInrichting.Controllers.Placement
             //Redraw
             productAdding.productPanel.Repaint();
         }
-
         private void MoveProduct(object sender, DragEventArgs e)
         {
             PlacedProduct product = (PlacedProduct)e.Data.GetData(typeof(PlacedProduct));
@@ -311,8 +334,5 @@ namespace KantoorInrichting.Controllers.Placement
             product.MoveTo(delta);
             productAdding.productPanel.Repaint();
         }
-
-
-        
     }
 }
