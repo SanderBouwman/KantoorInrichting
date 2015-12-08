@@ -72,10 +72,10 @@ namespace KantoorInrichting_Test.Models.Placement
             PlacedProduct placedP = new PlacedProduct(product, point);
 
             PointF[] pointCorner = new PointF[4];
-            pointCorner[0] = new PointF(point.X + product.width / 2, point.Y - product.length / 2); //now the top right
-            pointCorner[1] = new PointF(point.X + product.width / 2, point.Y + product.length / 2); //now the lower right
-            pointCorner[2] = new PointF(point.X - product.width / 2, point.Y + product.length / 2); //now the lower left
-            pointCorner[3] = new PointF(point.X - product.width / 2, point.Y - product.length / 2); //now the top left
+            pointCorner[0] = new PointF(point.X + product.Width / 2, point.Y - product.Length / 2); //now the top right
+            pointCorner[1] = new PointF(point.X + product.Width / 2, point.Y + product.Length / 2); //now the lower right
+            pointCorner[2] = new PointF(point.X - product.Width / 2, point.Y + product.Length / 2); //now the lower left
+            pointCorner[3] = new PointF(point.X - product.Width / 2, point.Y - product.Length / 2); //now the top left
 
 
             //Do
@@ -102,10 +102,10 @@ namespace KantoorInrichting_Test.Models.Placement
             PlacedProduct placedP = new PlacedProduct(product, point);
 
             PointF[] pointCorner = new PointF[4];
-            pointCorner[0] = new PointF(point.X + product.width / 2, point.Y + product.length / 2); //now the lower right
-            pointCorner[1] = new PointF(point.X - product.width / 2, point.Y + product.length / 2); //now the lower left
-            pointCorner[2] = new PointF(point.X - product.width / 2, point.Y - product.length / 2); //now the top left
-            pointCorner[3] = new PointF(point.X + product.width / 2, point.Y - product.length / 2); //now the top right
+            pointCorner[0] = new PointF(point.X + product.Width / 2, point.Y + product.Length / 2); //now the lower right
+            pointCorner[1] = new PointF(point.X - product.Width / 2, point.Y + product.Length / 2); //now the lower left
+            pointCorner[2] = new PointF(point.X - product.Width / 2, point.Y - product.Length / 2); //now the top left
+            pointCorner[3] = new PointF(point.X + product.Width / 2, point.Y - product.Length / 2); //now the top right
 
             //Do
             placedP.setAngle(180);
@@ -131,10 +131,10 @@ namespace KantoorInrichting_Test.Models.Placement
             PlacedProduct placedP = new PlacedProduct(product, point);
 
             PointF[] pointCorner = new PointF[4];
-            pointCorner[0] = new PointF(point.X - product.width / 2, point.Y - product.length / 2); //now the top left
-            pointCorner[1] = new PointF(point.X + product.width / 2, point.Y - product.length / 2); //now the top right
-            pointCorner[2] = new PointF(point.X + product.width / 2, point.Y + product.length / 2); //now the lower right
-            pointCorner[3] = new PointF(point.X - product.width / 2, point.Y + product.length / 2); //now the lower left
+            pointCorner[0] = new PointF(point.X - product.Width / 2, point.Y - product.Length / 2); //now the top left
+            pointCorner[1] = new PointF(point.X + product.Width / 2, point.Y - product.Length / 2); //now the top right
+            pointCorner[2] = new PointF(point.X + product.Width / 2, point.Y + product.Length / 2); //now the lower right
+            pointCorner[3] = new PointF(point.X - product.Width / 2, point.Y + product.Length / 2); //now the lower left
 
             //Do
             placedP.setAngle(360);
@@ -191,10 +191,10 @@ namespace KantoorInrichting_Test.Models.Placement
             PlacedProduct placedP = new PlacedProduct(product, point);
 
             PointF[] pointCorner = new PointF[4];
-            pointCorner[0] = new PointF(point.X + product.width / 2, point.Y - product.length / 2); //now the top right
-            pointCorner[1] = new PointF(point.X + product.width / 2, point.Y + product.length / 2); //now the lower right
-            pointCorner[2] = new PointF(point.X - product.width / 2, point.Y + product.length / 2); //now the lower left
-            pointCorner[3] = new PointF(point.X - product.width / 2, point.Y - product.length / 2); //now the top left
+            pointCorner[0] = new PointF(point.X + product.Width / 2, point.Y - product.Length / 2); //now the top right
+            pointCorner[1] = new PointF(point.X + product.Width / 2, point.Y + product.Length / 2); //now the lower right
+            pointCorner[2] = new PointF(point.X - product.Width / 2, point.Y + product.Length / 2); //now the lower left
+            pointCorner[3] = new PointF(point.X - product.Width / 2, point.Y - product.Length / 2); //now the top left
 
 
             //Do
@@ -223,10 +223,10 @@ namespace KantoorInrichting_Test.Models.Placement
             PlacedProduct placedP = new PlacedProduct(product, point);
 
             PointF[] pointCorner = new PointF[4];
-            pointCorner[0] = new PointF(point.X + product.width / 2, point.Y + product.length / 2); //now the lower right
-            pointCorner[1] = new PointF(point.X - product.width / 2, point.Y + product.length / 2); //now the lower left
-            pointCorner[2] = new PointF(point.X - product.width / 2, point.Y - product.length / 2); //now the top left
-            pointCorner[3] = new PointF(point.X + product.width / 2, point.Y - product.length / 2); //now the top right
+            pointCorner[0] = new PointF(point.X + product.Width / 2, point.Y + product.Length / 2); //now the lower right
+            pointCorner[1] = new PointF(point.X - product.Width / 2, point.Y + product.Length / 2); //now the lower left
+            pointCorner[2] = new PointF(point.X - product.Width / 2, point.Y - product.Length / 2); //now the top left
+            pointCorner[3] = new PointF(point.X + product.Width / 2, point.Y - product.Length / 2); //now the top right
 
             //Do
             placedP.addAngle(45);
@@ -253,10 +253,10 @@ namespace KantoorInrichting_Test.Models.Placement
             PlacedProduct placedP = new PlacedProduct(product, point);
 
             PointF[] pointCorner = new PointF[4];
-            pointCorner[0] = new PointF(point.X - product.width / 2, point.Y - product.length / 2); //now the top left
-            pointCorner[1] = new PointF(point.X + product.width / 2, point.Y - product.length / 2); //now the top right
-            pointCorner[2] = new PointF(point.X + product.width / 2, point.Y + product.length / 2); //now the lower right
-            pointCorner[3] = new PointF(point.X - product.width / 2, point.Y + product.length / 2); //now the lower left
+            pointCorner[0] = new PointF(point.X - product.Width / 2, point.Y - product.Length / 2); //now the top left
+            pointCorner[1] = new PointF(point.X + product.Width / 2, point.Y - product.Length / 2); //now the top right
+            pointCorner[2] = new PointF(point.X + product.Width / 2, point.Y + product.Length / 2); //now the lower right
+            pointCorner[3] = new PointF(point.X - product.Width / 2, point.Y + product.Length / 2); //now the lower left
 
             //Do
             placedP.addAngle(270);
@@ -283,10 +283,10 @@ namespace KantoorInrichting_Test.Models.Placement
             PlacedProduct placedP = new PlacedProduct(product, point);
 
             PointF[] pointCorner = new PointF[4];            
-            pointCorner[0] = new PointF(point.X - product.width / 2, point.Y + product.length / 2); //now the lower left
-            pointCorner[1] = new PointF(point.X - product.width / 2, point.Y - product.length / 2); //now the top left
-            pointCorner[2] = new PointF(point.X + product.width / 2, point.Y - product.length / 2); //now the top right
-            pointCorner[3] = new PointF(point.X + product.width / 2, point.Y + product.length / 2); //now the lower right
+            pointCorner[0] = new PointF(point.X - product.Width / 2, point.Y + product.Length / 2); //now the lower left
+            pointCorner[1] = new PointF(point.X - product.Width / 2, point.Y - product.Length / 2); //now the top left
+            pointCorner[2] = new PointF(point.X + product.Width / 2, point.Y - product.Length / 2); //now the top right
+            pointCorner[3] = new PointF(point.X + product.Width / 2, point.Y + product.Length / 2); //now the lower right
 
             //Do
             placedP.addAngle(-90);
@@ -312,10 +312,10 @@ namespace KantoorInrichting_Test.Models.Placement
             PlacedProduct placedP = new PlacedProduct(product, point);
 
             PointF[] pointCorner = new PointF[4];
-            pointCorner[0] = new PointF(point.X + product.width / 2, point.Y + product.length / 2); //now the lower right
-            pointCorner[1] = new PointF(point.X - product.width / 2, point.Y + product.length / 2); //now the lower left
-            pointCorner[2] = new PointF(point.X - product.width / 2, point.Y - product.length / 2); //now the top left
-            pointCorner[3] = new PointF(point.X + product.width / 2, point.Y - product.length / 2); //now the top right
+            pointCorner[0] = new PointF(point.X + product.Width / 2, point.Y + product.Length / 2); //now the lower right
+            pointCorner[1] = new PointF(point.X - product.Width / 2, point.Y + product.Length / 2); //now the lower left
+            pointCorner[2] = new PointF(point.X - product.Width / 2, point.Y - product.Length / 2); //now the top left
+            pointCorner[3] = new PointF(point.X + product.Width / 2, point.Y - product.Length / 2); //now the top right
 
             //Do
             placedP.addAngle(90);

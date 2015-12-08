@@ -47,7 +47,7 @@ namespace KantoorInrichting.Controllers
             UserTableAdapter.Fill(DataSet.user);
 
 
-            FillCategory();
+            GetCategories_FromDatabase();
             GetProducts_FromDatabase();
             GetSpaces_FromDatabase();
         }
@@ -82,7 +82,7 @@ namespace KantoorInrichting.Controllers
                 var s1 = new Space(space.space_number, space.floor, space.building, space.roomnumber);
             }
         }
-        public void FillCategory()
+        public void GetCategories_FromDatabase()
         {
             foreach (var category in this.DataSet.category)
             {
