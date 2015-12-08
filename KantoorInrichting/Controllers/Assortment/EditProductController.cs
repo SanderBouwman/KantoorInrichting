@@ -178,6 +178,8 @@ namespace KantoorInrichting.Controllers.Assortment
             product.Brand = brand;
             product.Type = type;
             product.Category_id = category_id;
+            product.ProductCategory = CategoryModel.list[category_id];
+            product.category = product.ProductCategory.name;
             product.Height = height;
             product.Width = width;
             product.Length = length;

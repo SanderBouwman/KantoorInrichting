@@ -207,7 +207,7 @@
             this.addButton.Name = "addButton";
             this.addButton.Size = new System.Drawing.Size(92, 32);
             this.addButton.TabIndex = 11;
-            this.addButton.Text = "Voeg toe";
+            this.addButton.Text = "Opslaan";
             this.addButton.UseVisualStyleBackColor = true;
             this.addButton.Click += new System.EventHandler(this.AddButton_Click);
             // 
