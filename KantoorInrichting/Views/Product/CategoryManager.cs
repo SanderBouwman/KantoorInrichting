@@ -29,8 +29,8 @@ namespace KantoorInrichting.Views.Product
             
             controller.fillcombobox(CategoryModel.CategoryList, categoryComboBox);
 
-            controller.fillcombobox(CategoryModel.SubcategoryList, subcategoryComboBox);
-            //categoryComboBox.SelectedItem = ;
+            controller.fillSubcombobox(CategoryModel.SubcategoryList, subcategoryComboBox, categoryComboBox);
+            //categoryComboBox.SelectedItem = null;
             //subcategoryComboBox.SelectedItem = ;
             
         }
@@ -62,7 +62,7 @@ namespace KantoorInrichting.Views.Product
 
         private void categoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            controller.fillSubcombobox(CategoryModel.SubcategoryList, subcategoryComboBox, categoryComboBox);
         }
 
         private void subcategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
