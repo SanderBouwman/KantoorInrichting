@@ -21,25 +21,18 @@ namespace KantoorInrichting.Views.Inventory
         {
             InitializeComponent();
             controller = new InventoryEditController(this, product);
-
-            productNameLabel.Text = "Productnaam: " + product.Name;
-            productAmount.Value = product.Amount;
-        }
-        //sets the amount from the product to the given value
-        private void button1_Click(object sender, EventArgs e)
-        {
-            //P.Amount = Convert.ToInt32(productAmount.Value);
-            this.Close();
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
+        //Edit product button
         private void editButton_Click(object sender, EventArgs e)
         {
+            controller.editButton();
+        }
 
+        //Cancel button
+        private void cancelButton_Click(object sender, EventArgs e)
+        {
+            controller.cancelButton();
         }
     }
 }

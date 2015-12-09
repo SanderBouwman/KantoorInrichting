@@ -380,7 +380,7 @@
             this.Controls.Add(this.nameLabel);
             this.Name = "EditProductScreen";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "EditProductScreen";
+            this.Text = "Wijzig product";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
