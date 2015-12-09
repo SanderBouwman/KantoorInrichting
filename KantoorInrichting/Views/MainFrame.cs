@@ -135,6 +135,7 @@ namespace KantoorInrichting
             assortmentScreen.Visible = false;
             placement.Visible = false;
             Active?.Dispose();
+            AddPanels();
             mainScreen1.BringToFront();
         }
 

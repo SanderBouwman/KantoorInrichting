@@ -45,6 +45,7 @@ namespace KantoorInrichting.Controllers.Grid {
             _view = view;
             _model = model;
             _zoomCheckbox = false;
+
             _view.SetController(this);
             _panel = (Panel) _view.Get("Panel");
             _trackBar = (TrackBar) _view.Get("Trackbar");
@@ -96,7 +97,7 @@ namespace KantoorInrichting.Controllers.Grid {
         }
 
         public void Dispose(object sender, EventArgs e) {
-            this._zoomView.Dispose();
+            this._zoomView?.Dispose();
         }
 
         /// <summary>
