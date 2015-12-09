@@ -44,7 +44,7 @@ namespace KantoorInrichting.Views
             hoofdscherm.Height = 670;
             hoofdscherm.gridFieldView.SetListView(ProductFactory.GetPossibilities());
             Application.DoEvents();
-
+            hoofdscherm.Active = hoofdscherm.gridFieldView;
             hoofdscherm.gridFieldView.Visible = true;
             hoofdscherm.gridFieldView.Enabled = true;
             this.Visible = false;

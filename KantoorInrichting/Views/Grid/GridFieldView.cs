@@ -73,6 +73,11 @@ namespace KantoorInrichting.Views.Grid {
             drawPanel.DragDrop += DrawPanel_DragDrop;
             algoButton.Click += AlgoButton_Click;
             clearFieldButton.Click += ClearFieldButton_Click;
+            this.Disposed += GridFieldView_Disposed;
+        }
+
+        private void GridFieldView_Disposed( object sender, EventArgs e ) {
+            _controller.Dispose(sender, e);
         }
 
         private void ClearFieldButton_Click( object sender, EventArgs e ) {

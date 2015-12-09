@@ -19,6 +19,8 @@ namespace KantoorInrichting
         public CategoryManagerController categoryManagerController;
         public CategoryManager categoryManager;
 
+        public UserControl Active { get; set; }
+
         public MainFrame()
         {
             DatabaseController dbc = DatabaseController.Instance;
@@ -132,6 +134,7 @@ namespace KantoorInrichting
             gridFieldView.Visible = false;
             assortmentScreen.Visible = false;
             placement.Visible = false;
+            Active?.Dispose();
             mainScreen1.BringToFront();
         }
 

@@ -15,6 +15,7 @@ namespace KantoorInrichting.Controllers {
         void CheckboxChanged( bool b );
         void Notify(object sender, EventArgs e);
         void ButtonClick(object sender, EventArgs e);
+        void Dispose(object sender, EventArgs e);
 
     }
 }

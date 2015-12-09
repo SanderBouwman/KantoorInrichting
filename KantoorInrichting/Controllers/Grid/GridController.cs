@@ -95,6 +95,10 @@ namespace KantoorInrichting.Controllers.Grid {
             }
         }
 
+        public void Dispose(object sender, EventArgs e) {
+            this._zoomView.Dispose();
+        }
+
         /// <summary>
         /// Handles the MouseDown event for the given view object.
         /// </summary>
