@@ -29,8 +29,8 @@ namespace KantoorInrichting_Test.Models.Placement
             PlacedProduct placedP = new PlacedProduct(product, point);
             PlacedProduct placedWall = new PlacedProduct(productWall, pointWall);
 
-            PlacementController.ppList.Add(placedP);
-            PlacementController.ppList.Add(placedWall);
+            PlacementController.placedProductList.Add(placedP);
+            PlacementController.placedProductList.Add(placedWall);
 
             int move_x = 60;
             int move_y = 0; 
@@ -84,8 +84,8 @@ namespace KantoorInrichting_Test.Models.Placement
             PlacedProduct placedP = new PlacedProduct(product, point);
             PlacedProduct placedWall = new PlacedProduct(productWall, pointWall);
 
-            PlacementController.ppList.Add(placedP);
-            PlacementController.ppList.Add(placedWall);
+            PlacementController.placedProductList.Add(placedP);
+            PlacementController.placedProductList.Add(placedWall);
             
 
             double radius = Math.Sqrt(Math.Pow(product.Width/2, 2) + Math.Pow(product.Length/2, 2));
@@ -145,8 +145,8 @@ namespace KantoorInrichting_Test.Models.Placement
             PlacedProduct placedP = new PlacedProduct(product, point);
             PlacedProduct placedWall = new PlacedProduct(productWall, pointWall);
 
-            PlacementController.ppList.Add(placedP);
-            PlacementController.ppList.Add(placedWall);
+            PlacementController.placedProductList.Add(placedP);
+            PlacementController.placedProductList.Add(placedWall);
 
 
             double radius = Math.Sqrt(Math.Pow(product.Width / 2, 2) + Math.Pow(product.Length / 2, 2));
@@ -212,8 +212,8 @@ namespace KantoorInrichting_Test.Models.Placement
             PlacedProduct placedP = new PlacedProduct(product, point);
             PlacedProduct placedWall = new PlacedProduct(productWall, pointWall);
 
-            PlacementController.ppList.Add(placedP);
-            PlacementController.ppList.Add(placedWall);
+            PlacementController.placedProductList.Add(placedP);
+            PlacementController.placedProductList.Add(placedWall);
 
 
             double radius = Math.Sqrt(Math.Pow(product.Width / 2, 2) + Math.Pow(product.Length / 2, 2));

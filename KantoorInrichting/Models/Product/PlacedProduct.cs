@@ -105,17 +105,6 @@ namespace KantoorInrichting.Models.Product
         }
 
 
-        /// <summary>
-        /// !! - Please do not use this method! - !!
-        /// </summary>
-        /// <param name="Velocity">The distance that the product covers. Can contain a negative value to go left/up</param>
-        /// <param name="X_Axis">Chooses the axis that the product moves on. True for X-axis. False for Y-axis</param>
-        public void Move(int Velocity, bool X_Axis)
-        {
-            gridSpace = Velocity;
-            MessageBox.Show("You are changing the gridSpace. Please use a different method to move the product. \nThank you.", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            Move(X_Axis);
-        }
 
         /// <summary>
         /// Moves the product a certain amount to a certain direction
@@ -211,6 +200,7 @@ namespace KantoorInrichting.Models.Product
             float deltaX = newLocation.X - location.X;
             float deltaY = newLocation.Y - location.Y;
 
+
             //Make new points/vectors
             Vector vectorTopLeft =      new Vector(cornerPoints[0].X + deltaX, cornerPoints[0].Y + deltaY);
             Vector vectorTopRight =     new Vector(cornerPoints[1].X + deltaX, cornerPoints[1].Y + deltaY);
@@ -232,6 +222,7 @@ namespace KantoorInrichting.Models.Product
 
 
         //This is only used when moving. It will check if it doesn't run into walls. That is it's only function. WALLS.
+        //This will be replaced with a full list of static objects, which will include walls.
         /// <summary>
         /// Gives a list of PlacedProduct as well as walls?
         /// </summary>
@@ -241,7 +232,7 @@ namespace KantoorInrichting.Models.Product
             {
                 //Make a polygon list and add all existing products' polygons to it.
                 List<Polygon> list = new List<Polygon>();
-                foreach (PlacedProduct pp in PlacementController.ppList)
+                foreach (PlacedProduct pp in PlacementController.placedProductList)
                 {
                     //Test if the selected polygon is himself
                     if (pp.Poly == this.Poly)
@@ -266,24 +257,24 @@ namespace KantoorInrichting.Models.Product
                 //Point pointBottomLeft = new Point(0, ProductAdding.productFieldPanel.Height);
                 //Point pointBottomRight = new Point(ProductAdding.productFieldPanel.Width, ProductAdding.productFieldPanel.Height);
 
-                Point pointTopLeft = new Point(0, 0);
-                Point pointTopRight = new Point(600, 0);
-                Point pointBottomLeft = new Point(0, 600);
-                Point pointBottomRight = new Point(600, 600);
+                Vector pointTopLeft = new Vector(0, 0);
+                Vector pointTopRight = new Vector(600, 0);
+                Vector pointBottomLeft = new Vector(0, 600);
+                Vector pointBottomRight = new Vector(600, 600);
                 
 
                 //Add points/vectors
-                pTop.Points.Add(new Vector(pointTopLeft.X, pointTopLeft.Y));
-                pTop.Points.Add(new Vector(pointTopRight.X, pointTopRight.Y));
+                pTop.Points.Add(pointTopLeft);
+                pTop.Points.Add(pointTopRight);
                 //
-                pRight.Points.Add(new Vector(pointTopRight.X, pointTopRight.Y));
-                pRight.Points.Add(new Vector(pointBottomRight.X, pointBottomRight.Y));
+                pRight.Points.Add(pointTopRight);
+                pRight.Points.Add(pointBottomRight);
                 //
-                pBottom.Points.Add(new Vector(pointBottomRight.X, pointBottomRight.Y));
-                pBottom.Points.Add(new Vector(pointBottomLeft.X,pointBottomLeft.Y));
+                pBottom.Points.Add(pointBottomRight);
+                pBottom.Points.Add(pointBottomLeft);
                 //
-                pLeft.Points.Add(new Vector(pointBottomLeft.X, pointBottomLeft.Y));
-                pLeft.Points.Add(new Vector(pointTopLeft.X,pointTopLeft.Y));
+                pLeft.Points.Add(pointBottomLeft);
+                pLeft.Points.Add(pointTopLeft);
 
 
                 //Build edges
