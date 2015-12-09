@@ -77,8 +77,7 @@ namespace KantoorInrichting.Views.Grid {
         }
 
         private void GridFieldView_Disposed( object sender, EventArgs e ) {
-            try { _controller.Dispose(sender, e);}
-            catch { }
+            _controller?.Dispose(sender, e);
         }
 
         private void ClearFieldButton_Click( object sender, EventArgs e ) {
