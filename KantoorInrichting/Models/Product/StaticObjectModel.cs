@@ -8,5 +8,6 @@ namespace KantoorInrichting.Models.Product
 {
     class StaticObjectModel
     {
+
     }
 }

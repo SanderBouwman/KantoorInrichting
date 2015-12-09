@@ -105,17 +105,6 @@ namespace KantoorInrichting.Models.Product
         }
 
 
-        /// <summary>
-        /// !! - Please do not use this method! - !!
-        /// </summary>
-        /// <param name="Velocity">The distance that the product covers. Can contain a negative value to go left/up</param>
-        /// <param name="X_Axis">Chooses the axis that the product moves on. True for X-axis. False for Y-axis</param>
-        public void Move(int Velocity, bool X_Axis)
-        {
-            gridSpace = Velocity;
-            MessageBox.Show("You are changing the gridSpace. Please use a different method to move the product. \nThank you.", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            Move(X_Axis);
-        }
 
         /// <summary>
         /// Moves the product a certain amount to a certain direction
@@ -210,6 +199,7 @@ namespace KantoorInrichting.Models.Product
 
             float deltaX = newLocation.X - location.X;
             float deltaY = newLocation.Y - location.Y;
+
 
             //Make new points/vectors
             Vector vectorTopLeft =      new Vector(cornerPoints[0].X + deltaX, cornerPoints[0].Y + deltaY);

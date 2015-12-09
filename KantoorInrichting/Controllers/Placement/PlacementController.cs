@@ -28,11 +28,10 @@ namespace KantoorInrichting.Controllers.Placement
 
         //List of all product currently placed on the screen.
         public static ObservableCollection<PlacedProduct> placedProductList = new ObservableCollection<PlacedProduct>();
-        //public static List<StaticProduct> staticlyPlacedProductList = new List<StaticProduct>;
+        public static List<StaticlyPlacedObject> staticlyPlacedObjectList;
 
         public MainFrame motherFrame;
         private ProductAdding productAdding;
-        private Graphics g;
         private PlacedProduct currentProduct;
         private Point clickLocation;
         private int MovementSpeed = 5;
