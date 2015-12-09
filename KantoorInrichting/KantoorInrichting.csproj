@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\Algorithm\IDesignAlgorithm.cs" />
+    <Compile Include="Controllers\Algorithm\RoomTooSmallException.cs" />
     <Compile Include="Controllers\Algorithm\TestSetup\TestSetupDesign.cs" />
     <Compile Include="Controllers\Assortment\AddNewProductController.cs" />
     <Compile Include="Controllers\Assortment\AssortmentController.cs" />

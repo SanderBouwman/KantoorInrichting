@@ -14,7 +14,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace KantoorInrichting_Test.Controllers.designalgorithm {
     [TestClass]
-    public class StandardDesign_Test {
+    public class TestSetup_Test {
         [TestMethod]
         public void ShouldCreateAPairOfProducts() {
             ProductModel chair = new ProductModel {

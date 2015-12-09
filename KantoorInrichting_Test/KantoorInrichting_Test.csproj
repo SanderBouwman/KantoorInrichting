@@ -57,7 +57,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Controllers\designalgorithm\DesignAlgorithm_Test.cs" />
+    <Compile Include="Controllers\DesignAlgorithm\IDesignAlgorithm_Test.cs" />
+    <Compile Include="Controllers\DesignAlgorithm\TestSetup_Test.cs" />
     <Compile Include="Models\Grid\GridField_Test.cs" />
     <Compile Include="Models\Placement\Collision_Tests.cs" />
     <Compile Include="Models\Placement\Rotation_Tests.cs" />
