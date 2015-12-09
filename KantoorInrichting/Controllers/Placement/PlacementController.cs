@@ -166,7 +166,7 @@ namespace KantoorInrichting.Controllers.Placement
             if(d == Direction.UP || d == Direction.DOWN){ x_Axis = false; }
 
             currentProduct.gridSpace = speed;
-            Move(currentProduct, x_Axis);
+            placement_Move(currentProduct, x_Axis);
 
             productAdding.productPanel.Repaint();
         }
@@ -209,12 +209,12 @@ namespace KantoorInrichting.Controllers.Placement
             //Returns if the data isn't a PlacedProduct or a ProductModel
             if (e.Data.GetDataPresent(typeof(ProductModel)))
             {
-                NewProduct(sender, e);
+                placement_NewProduct(sender, e);
             }
             
             if(e.Data.GetDataPresent(typeof(PlacedProduct)))
             {
-                MoveProduct(sender, e);
+                placement_MoveProduct(sender, e);
             }
             
             return;   
@@ -283,8 +283,8 @@ namespace KantoorInrichting.Controllers.Placement
 
 
 
-#region Product Handlers
-        private void NewProduct(object sender, DragEventArgs e)
+#region Placement Handlers
+        private void placement_NewProduct(object sender, DragEventArgs e)
         {
             ProductModel model = (ProductModel)e.Data.GetData(typeof(ProductModel));
             
@@ -321,7 +321,7 @@ namespace KantoorInrichting.Controllers.Placement
             //Redraw
             productAdding.productPanel.Repaint();
         }
-        private void MoveProduct(object sender, DragEventArgs e)
+        private void placement_MoveProduct(object sender, DragEventArgs e)
         {
             PlacedProduct product = (PlacedProduct)e.Data.GetData(typeof(PlacedProduct));
 
@@ -372,19 +372,16 @@ namespace KantoorInrichting.Controllers.Placement
             product.MoveTo(delta);
             productAdding.productPanel.Repaint();
         }
-        #endregion Product Handlers
+        #endregion Placement Handlers
 
 
 
-        #region Product Methods
-        
-
-
+#region Placement Methods
         /// <summary>
         /// Moves the product a certain amount to a certain direction
         /// </summary>
         /// <param name="X_Axis">Chooses the axis that the product moves on. True for X-axis. False for Y-axis</param>
-        public static void Move(PlacedProduct targetProduct, bool X_Axis)
+        public static void placement_Move(PlacedProduct targetProduct, bool X_Axis)
         {
             int x = 0;
             int y = 0;
@@ -458,14 +455,13 @@ namespace KantoorInrichting.Controllers.Placement
             targetProduct.location = new PointF(targetProduct.location.X + playerTranslation.X, targetProduct.location.Y + playerTranslation.Y);
 
         }
-
-
+        
 
         /// <summary>
         /// Issues the rotation of the product.
         /// </summary>
         /// <param name="fallbackAngle">The fallback angle to provide should the product not be able to rotate.</param>
-        public static void rotatePoints(PlacedProduct targetProduct, int fallbackAngle)
+        public static void placement_rotatePoints(PlacedProduct targetProduct, int fallbackAngle)
         {
             PointF[] fallbackPoints = new PointF[5];
             ProductModel product = targetProduct.product;
@@ -633,13 +629,12 @@ namespace KantoorInrichting.Controllers.Placement
                 }
             }
         }
-
-
+        
 
         /// <summary>
         /// Issues the rotation of the image of the product.
         /// </summary>
-        public static void rotateImg(PlacedProduct targetProduct)
+        public static void placement_rotateImg(PlacedProduct targetProduct)
         {
             Color bkColor = Color.Transparent;
             int angle = targetProduct.currentAngle;
@@ -698,12 +693,11 @@ namespace KantoorInrichting.Controllers.Placement
 
             targetProduct.rotatedMap = newImg;
         }
-        #endregion Product Methods
+        #endregion Placement Methods
 
 
 
-
-        #region Resize Images
+#region Resize Images
         //
         //Methods to resize an image, should it be to large for the container it is in.
         //
@@ -746,5 +740,6 @@ namespace KantoorInrichting.Controllers.Placement
             img.Save("IMAGELOCATION.png", System.Drawing.Imaging.ImageFormat.Gif);
         }
         #endregion Resize Images
+
     }
 }

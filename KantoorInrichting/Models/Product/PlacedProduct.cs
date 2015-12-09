@@ -77,8 +77,8 @@ namespace KantoorInrichting.Models.Product
             angle = angle % 360;
             currentAngle = angle;
 
-            PlacementController.rotatePoints(this, fallbackAngle);
-            PlacementController.rotateImg(this);
+            PlacementController.placement_rotatePoints(this, fallbackAngle);
+            PlacementController.placement_rotateImg(this);
         }
 
 
@@ -100,13 +100,13 @@ namespace KantoorInrichting.Models.Product
             {
                 currentAngle += 360;
             }
-            PlacementController.rotatePoints(this, fallbackAngle);
-            PlacementController.rotateImg(this);
+            PlacementController.placement_rotatePoints(this, fallbackAngle);
+            PlacementController.placement_rotateImg(this);
         }
         
         public void Move(bool X_Axis)
         {
-            PlacementController.Move(this, X_Axis);
+            PlacementController.placement_Move(this, X_Axis);
         }
 
         public void MoveTo(Point newLocation)
