@@ -391,57 +391,131 @@ namespace KantoorInrichting.Controllers.Placement
             else { y += targetProduct.gridSpace; }
 
             Vector velocity = new Vector(x, y);
-            Vector playerTranslation = velocity;
+            Vector playerTranslation1 = velocity;
+            Vector playerTranslation2 = velocity;
 
             //Resets the speed, after the velocity has been assigned.
             if (targetProduct.gridSpace < 0) { targetProduct.gridSpace *= -1; }
 
 
-            //Test all polygons for a collision
-            foreach (Polygon placedPoly in targetProduct.PolyList)
+            //Test all product polygons for a collision
+            foreach (PlacedProduct placedP in placedProductList)
             {
                 //Test if the selected polygon is himself
-                if (placedPoly == targetProduct.Poly)
+                if (placedP.Poly == targetProduct.Poly)
                 {
                     continue;
                 }
 
                 //Test if the polygon collides with others
-                PolygonCollisionController.PolygonCollisionResult r = PolygonCollisionController.PolygonCollision(targetProduct.Poly, placedPoly, velocity);
+                PolygonCollisionController.PolygonCollisionResult r = PolygonCollisionController.PolygonCollision(targetProduct.Poly, placedP.Poly, velocity);
 
                 //If it does, alter the speed
                 if (r.WillIntersect)
                 {
                     //
-                    playerTranslation = velocity + r.MinimumTranslationVector;
+                    playerTranslation1 = velocity + r.MinimumTranslationVector;
 
                     if (X_Axis) //Moving the x-axis, so set the y-axis velocity to 0
                     {
-                        playerTranslation.Y = 0;
+                        playerTranslation1.Y = 0;
                     }
                     else //Moving the y-axis, so set the x-axis velocity to 0
                     {
-                        playerTranslation.X = 0;
+                        playerTranslation1.X = 0;
                     }
 
                     //If there is any movement along the Y axis while moving along the X axis, then the polygon collision want to move around the other polygon. Can't let that happen. So set all movement to 0.
                     if (X_Axis && r.MinimumTranslationVector.Y != 0)
                     {
-                        playerTranslation.X = 0;
-                        playerTranslation.Y = 0;
+                        playerTranslation1.X = 0;
+                        playerTranslation1.Y = 0;
                     }
                     if (!X_Axis && r.MinimumTranslationVector.X != 0)
                     {
-                        playerTranslation.X = 0;
-                        playerTranslation.Y = 0;
+                        playerTranslation1.X = 0;
+                        playerTranslation1.Y = 0;
                     }
 
                     //Round down to the closest x pixels
-                    playerTranslation.X = ((int)playerTranslation.X / targetProduct.gridSpace) * targetProduct.gridSpace;
-                    playerTranslation.Y = ((int)playerTranslation.Y / targetProduct.gridSpace) * targetProduct.gridSpace;
-                    //MessageBox.Show("then " + playerTranslation.X.ToString() + " and " + playerTranslation.Y.ToString());
+                    playerTranslation1.X = ((int)playerTranslation1.X / targetProduct.gridSpace) * targetProduct.gridSpace;
+                    playerTranslation1.Y = ((int)playerTranslation1.Y / targetProduct.gridSpace) * targetProduct.gridSpace;
+                    //MessageBox.Show("then " + playerTranslation1.X.ToString() + " and " + playerTranslation1.Y.ToString());
                     break;
                 }
+            }
+
+
+            //Test all product polygons for a collision
+            foreach (StaticlyPlacedObject placedO in staticlyPlacedObjectList)
+            {
+                //Test if the selected polygon is himself
+                if (placedO.toPolygon() == targetProduct.Poly)
+                {
+                    continue;
+                }
+
+                //Test if the polygon collides with others
+                PolygonCollisionController.PolygonCollisionResult r = PolygonCollisionController.PolygonCollision(targetProduct.Poly, placedO.toPolygon(), velocity);
+
+                //If it does, alter the speed
+                if (r.WillIntersect)
+                {
+                    //
+                    playerTranslation2 = velocity + r.MinimumTranslationVector;
+
+                    if (X_Axis) //Moving the x-axis, so set the y-axis velocity to 0
+                    {
+                        playerTranslation2.Y = 0;
+                    }
+                    else //Moving the y-axis, so set the x-axis velocity to 0
+                    {
+                        playerTranslation2.X = 0;
+                    }
+
+                    //If there is any movement along the Y axis while moving along the X axis, then the polygon collision want to move around the other polygon. Can't let that happen. So set all movement to 0.
+                    if (X_Axis && r.MinimumTranslationVector.Y != 0)
+                    {
+                        playerTranslation2.X = 0;
+                        playerTranslation2.Y = 0;
+                    }
+                    if (!X_Axis && r.MinimumTranslationVector.X != 0)
+                    {
+                        playerTranslation2.X = 0;
+                        playerTranslation2.Y = 0;
+                    }
+
+                    //Round down to the closest x pixels
+                    playerTranslation2.X = ((int)playerTranslation2.X / targetProduct.gridSpace) * targetProduct.gridSpace;
+                    playerTranslation2.Y = ((int)playerTranslation2.Y / targetProduct.gridSpace) * targetProduct.gridSpace;
+                    //MessageBox.Show("then " + playerTranslation2.X.ToString() + " and " + playerTranslation2.Y.ToString());
+                    break;
+                }
+            }
+
+            //Compares the tanslations
+            /*
+            1. Makes a new vector
+            2. compares the two, and chooses the highest for the X and the highest for the Y (it looks for the highest number, even when negative. ie. -10 is higher than 4)
+            3. If one of the two is 0, then set that Axis to 0
+            */
+            //1
+            Vector playerTranslation = new Vector();
+            //2
+            playerTranslation.X = Math.Abs(playerTranslation1.X) > Math.Abs(playerTranslation2.X)
+                ? playerTranslation1.X
+                : playerTranslation2.X;
+            playerTranslation.Y = Math.Abs(playerTranslation1.Y) > Math.Abs(playerTranslation2.Y)
+                ? playerTranslation1.Y
+                : playerTranslation2.Y;
+            //3
+            if (playerTranslation1.X == 0 || playerTranslation2.X == 0)
+            {
+                playerTranslation.X = 0;
+            }
+            if (playerTranslation1.Y == 0 || playerTranslation2.Y == 0)
+            {
+                playerTranslation.Y = 0;
             }
 
             //Set the polygon points
