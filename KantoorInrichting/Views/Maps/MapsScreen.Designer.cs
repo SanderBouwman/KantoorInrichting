@@ -128,11 +128,11 @@
 
         #endregion
         private System.Windows.Forms.Label Titel;
-        private System.Windows.Forms.DataGridView MapsGridView1;
         private System.Windows.Forms.DataGridViewButtonColumn Show;
         private System.Windows.Forms.DataGridViewTextBoxColumn Building;
         private System.Windows.Forms.DataGridViewTextBoxColumn Floor;
         private System.Windows.Forms.DataGridViewTextBoxColumn Roomnumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn Room;
+        public System.Windows.Forms.DataGridView MapsGridView1;
     }
 }
