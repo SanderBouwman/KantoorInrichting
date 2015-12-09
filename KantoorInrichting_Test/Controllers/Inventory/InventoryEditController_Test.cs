@@ -21,7 +21,6 @@ namespace KantoorInrichting_Test.Controllers.Inventory
             t.UpdateProductModel();
 
             Assert.IsTrue(p.Amount == 0);
-
         }
     }
 }
