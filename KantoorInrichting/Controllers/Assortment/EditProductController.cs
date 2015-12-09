@@ -200,7 +200,6 @@ namespace KantoorInrichting.Controllers.Assortment
             {
                 //Search the tabel Product for a certain ProductID
                 var productRow = dbc.DataSet.product.FindByproduct_id(product.Product_id);
-                //Assign a new value to the Column Quantity
                 productRow.name = product.Name;
                 productRow.brand = product.Brand;
                 productRow.type = product.Type;
@@ -287,7 +286,7 @@ namespace KantoorInrichting.Controllers.Assortment
             File.Delete(imagePath);
         }
 
-        //Add new product button
+        //Edit product button
         public void AddButton()
         {
             if (ValitdateUserInput())

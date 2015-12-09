@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace KantoorInrichting.Controllers.Inventory
 {
@@ -12,22 +13,65 @@ namespace KantoorInrichting.Controllers.Inventory
     {
         private DatabaseController dbc;
         private InventoryEdit screen;
+        private ProductModel product;
+        private int amount;
 
-        public InventoryEditController(InventoryEdit screen , ProductModel product)
+        public InventoryEditController(InventoryEdit screen, ProductModel product)
         {
             dbc = DatabaseController.Instance;
+            this.product = product;
             this.screen = screen;
+            FillWithProductInfo();
         }
 
-        //sets the amount from the product to the given value
-        private void button1_Click(object sender, EventArgs e)
+        //Get the product info and set the matching labels/fields
+        private void FillWithProductInfo()
         {
-            //P.Amount = Convert.ToInt32(productAmount.Value);
+            screen.productNameLabel.Text = product.Name;
+            screen.productAmount.Value = product.Amount;
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        //Update the existing ProductModel
+        private void UpdateProductModel()
         {
-            //this.Close();
+            amount = (int)screen.productAmount.Value;
+            product.Amount = amount;
+        }
+
+        //Update the prodcut in the database
+        private void UpdateProductInDatabase()
+        {
+            //Fill the TableAdapter with data from the dataset
+            try
+            {
+                //Search the tabel Product for a certain ProductID
+                var productRow = dbc.DataSet.product.FindByproduct_id(product.Product_id);
+
+                productRow.amount = product.Amount;
+
+                //Update the database with the new Data
+                dbc.ProductTableAdapter.Update(dbc.DataSet.product);
+
+                MessageBox.Show("Update successful");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Update failed" + ex);
+            }
+        }
+
+        //Edit product button
+        public void editButton()
+        {
+            UpdateProductModel();
+            UpdateProductInDatabase();
+            screen.Close();
+        }
+
+        //Closes this form
+        public void cancelButton()
+        {
+            screen.Close();
         }
     }
 }
