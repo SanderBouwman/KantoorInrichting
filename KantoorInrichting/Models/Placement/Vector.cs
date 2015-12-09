@@ -30,6 +30,18 @@ namespace KantoorInrichting.Models.Placement
             this.Y = y;
         }
 
+        public Vector(Point p)
+        {
+            this.X = p.X;
+            this.Y = p.Y;
+        }
+
+        public Vector(PointF p)
+        {
+            this.X = p.X;
+            this.Y = p.Y;
+        }
+
         public float Magnitude
         {
             get { return (float)Math.Sqrt(X * X + Y * Y); }

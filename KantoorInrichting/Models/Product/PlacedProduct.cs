@@ -232,6 +232,7 @@ namespace KantoorInrichting.Models.Product
 
 
         //This is only used when moving. It will check if it doesn't run into walls. That is it's only function. WALLS.
+        //This will be replaced with a full list of static objects, which will include walls.
         /// <summary>
         /// Gives a list of PlacedProduct as well as walls?
         /// </summary>
@@ -241,7 +242,7 @@ namespace KantoorInrichting.Models.Product
             {
                 //Make a polygon list and add all existing products' polygons to it.
                 List<Polygon> list = new List<Polygon>();
-                foreach (PlacedProduct pp in PlacementController.ppList)
+                foreach (PlacedProduct pp in PlacementController.placedProductList)
                 {
                     //Test if the selected polygon is himself
                     if (pp.Poly == this.Poly)
@@ -266,24 +267,24 @@ namespace KantoorInrichting.Models.Product
                 //Point pointBottomLeft = new Point(0, ProductAdding.productFieldPanel.Height);
                 //Point pointBottomRight = new Point(ProductAdding.productFieldPanel.Width, ProductAdding.productFieldPanel.Height);
 
-                Point pointTopLeft = new Point(0, 0);
-                Point pointTopRight = new Point(600, 0);
-                Point pointBottomLeft = new Point(0, 600);
-                Point pointBottomRight = new Point(600, 600);
+                Vector pointTopLeft = new Vector(0, 0);
+                Vector pointTopRight = new Vector(600, 0);
+                Vector pointBottomLeft = new Vector(0, 600);
+                Vector pointBottomRight = new Vector(600, 600);
                 
 
                 //Add points/vectors
-                pTop.Points.Add(new Vector(pointTopLeft.X, pointTopLeft.Y));
-                pTop.Points.Add(new Vector(pointTopRight.X, pointTopRight.Y));
+                pTop.Points.Add(pointTopLeft);
+                pTop.Points.Add(pointTopRight);
                 //
-                pRight.Points.Add(new Vector(pointTopRight.X, pointTopRight.Y));
-                pRight.Points.Add(new Vector(pointBottomRight.X, pointBottomRight.Y));
+                pRight.Points.Add(pointTopRight);
+                pRight.Points.Add(pointBottomRight);
                 //
-                pBottom.Points.Add(new Vector(pointBottomRight.X, pointBottomRight.Y));
-                pBottom.Points.Add(new Vector(pointBottomLeft.X,pointBottomLeft.Y));
+                pBottom.Points.Add(pointBottomRight);
+                pBottom.Points.Add(pointBottomLeft);
                 //
-                pLeft.Points.Add(new Vector(pointBottomLeft.X, pointBottomLeft.Y));
-                pLeft.Points.Add(new Vector(pointTopLeft.X,pointTopLeft.Y));
+                pLeft.Points.Add(pointBottomLeft);
+                pLeft.Points.Add(pointTopLeft);
 
 
                 //Build edges

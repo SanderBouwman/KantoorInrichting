@@ -27,7 +27,8 @@ namespace KantoorInrichting.Controllers.Placement
 
 
         //List of all product currently placed on the screen.
-        public static ObservableCollection<PlacedProduct> ppList = new ObservableCollection<PlacedProduct>();
+        public static ObservableCollection<PlacedProduct> placedProductList = new ObservableCollection<PlacedProduct>();
+        //public static List<StaticProduct> staticlyPlacedProductList = new List<StaticProduct>;
 
         public MainFrame motherFrame;
         private ProductAdding productAdding;
@@ -64,7 +65,7 @@ namespace KantoorInrichting.Controllers.Placement
             
 
             //Make an event that triggers when the list is changed, so that it automatically repaints the screen.
-            ppList.CollectionChanged += ppList_CollectionChanged;
+            placedProductList.CollectionChanged += ppList_CollectionChanged;
         }
 
 
@@ -81,7 +82,18 @@ namespace KantoorInrichting.Controllers.Placement
         {
             Vector p1;
             Vector p2;
-            foreach (PlacedProduct pp in ppList)
+
+            /*
+
+            Draw the walls
+
+
+
+            */
+
+
+            //Draw the products
+            foreach (PlacedProduct pp in placedProductList)
             {
                 for (int i = 0; i < pp.Poly.Points.Count; i++)
                 {
@@ -181,7 +193,7 @@ namespace KantoorInrichting.Controllers.Placement
         public void btn_Delete()
         {
             try
-            { ppList.Remove(currentProduct); }
+            { placedProductList.Remove(currentProduct); }
             catch { }
         }
 
@@ -203,13 +215,13 @@ namespace KantoorInrichting.Controllers.Placement
         public void event_DeleteDrop(object sender, DragEventArgs e)
         {
             try
-            { ppList.Remove((PlacedProduct)e.Data.GetData(typeof(PlacedProduct))); }
+            { placedProductList.Remove((PlacedProduct)e.Data.GetData(typeof(PlacedProduct))); }
             catch { }
         }
 
         public void event_PanelMouseDown(object sender, MouseEventArgs e)
         {
-            foreach (PlacedProduct PlacedP in PlacementController.ppList)
+            foreach (PlacedProduct PlacedP in PlacementController.placedProductList)
             {
                 //Get the mouse location
                 var MouseLocation = new Point(e.X, e.Y);
@@ -280,7 +292,7 @@ namespace KantoorInrichting.Controllers.Placement
             }
 
             //The adding of the product
-            ppList.Add(product);
+            placedProductList.Add(product);
             //Set as current product
             productAdding.productInfo1.setProduct(product.product);
             currentProduct = product;

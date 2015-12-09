@@ -71,6 +71,8 @@
       <DependentUpon>KantoorInrichtingDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="Models\Grid\GridFieldModel.cs" />
+    <Compile Include="Models\Product\StaticlyPlacedObject.cs" />
+    <Compile Include="Models\Product\StaticObjectModel.cs" />
     <Compile Include="Models\Space\Space.cs" />
     <Compile Include="Models\Placement\Polygon.cs" />
     <Compile Include="Models\Placement\Vector.cs" />
