@@ -14,6 +14,7 @@ namespace KantoorInrichting.Views.Maps
     {
         public ShowSpaceScreen()
         {
+            DoubleBuffered = true;
             InitializeComponent();
         }
     }
