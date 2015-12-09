@@ -342,6 +342,7 @@ namespace KantoorInrichting.Controllers.Placement
             int deltaX = newLocation.X - clickLocation.X;
             int deltaY = newLocation.Y - clickLocation.Y;
 
+            //Round down to the closest spot on the grid (the movementspeed of an object)
             deltaX = ((deltaX / MovementSpeed) * MovementSpeed);
             deltaY = ((deltaY / MovementSpeed) * MovementSpeed);
 
@@ -362,7 +363,8 @@ namespace KantoorInrichting.Controllers.Placement
                 
                 if (r.WillIntersect)
                 {
-                    //At the collision, quit the method
+                    //At the collision, quit the method                    
+                    productAdding.productPanel.Repaint();
                     return;
                 }
 
@@ -608,8 +610,7 @@ namespace KantoorInrichting.Controllers.Placement
                 if (r.WillIntersect)
                 {
                     //Issue the fallback
-                    //targetProduct.currentangle = fallbackAngle;
-                    targetProduct.setAngle(fallbackAngle); //Might cause infinite loop??? Test it!
+                    targetProduct.currentAngle = fallbackAngle;
 
                     //Issue the fallback
                     for (int index = 0; index < targetProduct.cornerPoints.Length; index++)
@@ -701,7 +702,7 @@ namespace KantoorInrichting.Controllers.Placement
         //
         //Methods to resize an image, should it be to large for the container it is in.
         //
-        public static Image RezizeImage(Image img, int maxWidth, int maxHeight)
+        public static Image ResizeImage(Image img, int maxWidth, int maxHeight)
         {
             if (img.Height < maxHeight && img.Width < maxWidth) return img;
             using (img)
@@ -736,7 +737,7 @@ namespace KantoorInrichting.Controllers.Placement
 
         private void HandleImageUpload(byte[] binaryImage)
         {
-            Image img = RezizeImage(Image.FromStream(BytearrayToStream(binaryImage)), 103, 32);
+            Image img = ResizeImage(Image.FromStream(BytearrayToStream(binaryImage)), 103, 32);
             img.Save("IMAGELOCATION.png", System.Drawing.Imaging.ImageFormat.Gif);
         }
         #endregion Resize Images

@@ -94,7 +94,7 @@ namespace KantoorInrichting.Views.Product
 
         private void CategoryManager_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'kantoorInrichtingDataSet.Category' table. You can move, or remove it, as needed.
+            // TODO: This line of code loads data into the 'kantoorInrichtingDataSet.category' table. You can move, or remove it, as needed.
             this.categoryTableAdapter.Fill(this.kantoorInrichtingDataSet.category);
 
         }

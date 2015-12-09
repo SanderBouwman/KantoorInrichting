@@ -33,6 +33,7 @@ namespace KantoorInrichting.Models.Product
         public int Id { get; }
         public string category { get; set; }
         public string subcategory { get; set; }
+        public bool Removed { get; set; }
 
 
         //public Supplier supplier { get; private set; }
@@ -57,7 +58,7 @@ namespace KantoorInrichting.Models.Product
             if (n != "") { list.Add(this); } //If the name if empty, don't add it to the list. This is because the name is part of the primary key in the database.
         }
 
-        public ProductModel(int i, string n, string b, string t, int c, int l, int w, int h, string d, int a, string im)
+        public ProductModel(int i, string n, string b, string t, int c, int l, int w, int h, string d, int a, string im, bool r)
         {
             Product_id = i;
             Name = n;
@@ -66,7 +67,6 @@ namespace KantoorInrichting.Models.Product
             Category_id = c;
 
             this.ProductCategory = CategoryModel.list[Category_id];
-
             this.category = ProductCategory.name;
 
             Length = l;
@@ -77,7 +77,7 @@ namespace KantoorInrichting.Models.Product
             Amount = a;
             ImageFileName = im;
             SetProductImage();
-
+            Removed = r;
             list.Add(this);
         }
 

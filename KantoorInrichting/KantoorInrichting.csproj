@@ -36,6 +36,10 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Moq, Version=4.2.1510.2205, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>..\packages\Moq.4.2.1510.2205\lib\net40\Moq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.DirectoryServices" />
@@ -55,6 +59,7 @@
     <Compile Include="Controllers\Assortment\AddNewProductController.cs" />
     <Compile Include="Controllers\Assortment\AssortmentController.cs" />
     <Compile Include="Controllers\Assortment\EditProductController.cs" />
+    <Compile Include="Controllers\Assortment\RemoveProductController.cs" />
     <Compile Include="Controllers\DatabaseController.cs" />
     <Compile Include="Controllers\IController.cs" />
     <Compile Include="Controllers\Inventory\InventoryEditController.cs" />
@@ -109,6 +114,12 @@
     </Compile>
     <Compile Include="Views\Assortment\EditProductScreen.Designer.cs">
       <DependentUpon>EditProductScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Assortment\RemoveProductScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Assortment\RemoveProductScreen.Designer.cs">
+      <DependentUpon>RemoveProductScreen.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Grid\GridFieldPanel.cs">
       <SubType>Component</SubType>
@@ -235,6 +246,9 @@
     <EmbeddedResource Include="Views\Assortment\EditProductScreen.resx">
       <DependentUpon>EditProductScreen.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Assortment\RemoveProductScreen.resx">
+      <DependentUpon>RemoveProductScreen.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Grid\ZoomView.resx">
       <DependentUpon>ZoomView.cs</DependentUpon>
     </EmbeddedResource>
@@ -301,6 +315,7 @@
     <None Include="KantoorInrichtingDataSet.xss">
       <DependentUpon>KantoorInrichtingDataSet.xsd</DependentUpon>
     </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

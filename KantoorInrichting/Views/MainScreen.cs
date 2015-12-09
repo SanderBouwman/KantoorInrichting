@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using KantoorInrichting.Controllers.Grid;
 using KantoorInrichting.Controllers.Product;
 using KantoorInrichting.Models.Grid;
+using KantoorInrichting.Views.Grid;
 using KantoorInrichting.Views.Product;
 
 namespace KantoorInrichting.Views

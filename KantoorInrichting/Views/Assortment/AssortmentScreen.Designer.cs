@@ -250,9 +250,9 @@
             // 
             // delete
             // 
-            this.delete.HeaderText = "Delete";
+            this.delete.HeaderText = "Verwijder";
             this.delete.Name = "delete";
-            this.delete.Text = "Delete";
+            this.delete.Text = "Verwijder";
             this.delete.UseColumnTextForButtonValue = true;
             // 
             // AssortmentScreen

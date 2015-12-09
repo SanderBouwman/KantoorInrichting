@@ -146,7 +146,7 @@
             // 
             // categoryBindingSource
             // 
-            this.categoryBindingSource.DataMember = "Category";
+            this.categoryBindingSource.DataMember = "category";
             this.categoryBindingSource.DataSource = this.kantoorInrichtingDataSet;
             // 
             // categoryTableAdapter

@@ -57,7 +57,7 @@ namespace KantoorInrichting.Models.Product
             SolidBrush brush = new SolidBrush(color);
             gfx.FillRectangle(brush, 0, 0, product.Width, product.Length);
             
-            defaultBitMap = new Bitmap(PlacementController.RezizeImage(defaultBitMap, product.Width, product.Length));
+            defaultBitMap = new Bitmap(PlacementController.ResizeImage(defaultBitMap, product.Width, product.Length));
 
             rotatedMap = defaultBitMap;
 
@@ -117,10 +117,15 @@ namespace KantoorInrichting.Models.Product
 
         public Polygon getVirtualPolygon(Point newLocation)
         {
-            Polygon virtualPolygon = Poly;
+            Polygon virtualPolygon = new Polygon();
+            foreach (Vector v in Poly.Points)
+            {
+                virtualPolygon.Points.Add(v);
+            }
+
             Vector delta = new Vector(new Vector(newLocation) - new Vector(location));
 
-            Poly.Offset(delta);
+            virtualPolygon.Offset(delta);
             virtualPolygon.BuildEdges();
 
             return virtualPolygon;
