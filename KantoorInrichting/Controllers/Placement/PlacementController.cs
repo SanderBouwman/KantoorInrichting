@@ -46,7 +46,6 @@ namespace KantoorInrichting.Controllers.Placement
         {
             this.motherFrame = motherFrame;
             productAdding = pa;
-            motherFrame.Size = new Size(1500, 800);
             clickLocation = new Point(0, 0);
             productAdding.productPanel.knowYourController(this);
 
