@@ -28,25 +28,25 @@ namespace KantoorInrichting.Views
 
         private void LoginButton_Click(object sender, EventArgs e)
         {
+            // Method that managed login process
             controller.LoginMethod(UsernameTB.Text, PasswordTB.Text);
         }
 
-       
+       // To do: Remove this method when project is done
         private void LoginScreen_Load_1(object sender, EventArgs e)
         {
             UsernameTB.Text = "Rick";
             PasswordTB.Text = "rick";
         }
 
-
-
         private void PasswordTB_TextChanged_1(object sender, EventArgs e)
         {
+            // Hide the password text
             PasswordTB.PasswordChar = '*';
         }
-
+        
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
-        {
+        {//Check if enter has been pressed
             if (keyData == Keys.Enter)
             {
                 LoginButton.PerformClick();
