@@ -154,15 +154,15 @@
 
         #endregion
 
-        private System.Windows.Forms.Button LoginButton;
-        private System.Windows.Forms.TextBox UsernameTB;
-        private System.Windows.Forms.TextBox PasswordTB;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label UsernameError;
-        private System.Windows.Forms.Label PasswordError;
-        private System.Windows.Forms.Label GeneralLoginError;
-        private System.Windows.Forms.Panel panel1;
+        public System.Windows.Forms.Button LoginButton;
+        public System.Windows.Forms.TextBox UsernameTB;
+        public System.Windows.Forms.TextBox PasswordTB;
+        public System.Windows.Forms.Label label1;
+        public System.Windows.Forms.Label label2;
+        public System.Windows.Forms.Label label3;
+        public System.Windows.Forms.Label UsernameError;
+        public System.Windows.Forms.Label PasswordError;
+        public System.Windows.Forms.Label GeneralLoginError;
+        public System.Windows.Forms.Panel panel1;
     }
 }

@@ -59,6 +59,7 @@
     <Compile Include="Controllers\IController.cs" />
     <Compile Include="Controllers\Inventory\InventoryEditController.cs" />
     <Compile Include="Controllers\Login\LoginController.cs" />
+    <Compile Include="Controllers\Map\MapsController.cs" />
     <Compile Include="Controllers\Placement\PlacementController.cs" />
     <Compile Include="Controllers\Placement\PolygonPlacementController.cs" />
     <Compile Include="Controllers\Product\ProductFactory.cs" />
