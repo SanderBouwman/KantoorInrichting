@@ -192,10 +192,9 @@ namespace KantoorInrichting.Controllers.Assortment
             }
         }
 
-        //Update the prodcut in the database
+        //Update the product in the database
         private void UpdateProductInDatabase()
         {
-            //Fill the TableAdapter with data from the dataset
             try
             {
                 //Search the tabel Product for a certain ProductID

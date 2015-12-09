@@ -110,9 +110,8 @@
             this.productNameLabel.AutoSize = true;
             this.productNameLabel.Location = new System.Drawing.Point(97, 79);
             this.productNameLabel.Name = "productNameLabel";
-            this.productNameLabel.Size = new System.Drawing.Size(31, 13);
+            this.productNameLabel.Size = new System.Drawing.Size(0, 13);
             this.productNameLabel.TabIndex = 7;
-            this.productNameLabel.Text = "alksfj";
             // 
             // InventoryEdit
             // 

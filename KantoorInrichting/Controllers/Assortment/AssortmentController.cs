@@ -51,8 +51,11 @@ namespace KantoorInrichting.Controllers.Assortment
 
                 if (e.ColumnIndex == 11)
                 {
-                    // run delete screen here
-                    // make an Removescreen with current product as argument
+                    var removeProduct = new RemoveProductScreen(ProductModel.list[e.RowIndex]);
+                    removeProduct.ShowDialog();
+                    screen.assortmentGridView.DataSource = null;
+                    screen.assortmentGridView.DataSource = ProductModel.list;
+                    screen.assortmentGridView.Refresh();
                 }
             }
         }

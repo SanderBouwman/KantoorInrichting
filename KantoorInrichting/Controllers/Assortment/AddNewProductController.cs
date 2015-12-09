@@ -165,7 +165,7 @@ namespace KantoorInrichting.Controllers.Assortment
             var newProduct_ID = (int)maxProduct_ID[0]["Product_ID"] + 1;
 
             var product = new ProductModel(newProduct_ID, name, brand, type, category_ID, length, width, height,
-                description, amount, newImageFileName);
+                description, amount, newImageFileName, false);
             this.product = product;
         }
 
