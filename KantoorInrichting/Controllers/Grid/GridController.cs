@@ -97,7 +97,8 @@ namespace KantoorInrichting.Controllers.Grid {
         }
 
         public void Dispose(object sender, EventArgs e) {
-            this._zoomView?.Dispose();
+            CheckboxChanged(false);
+            ((CheckBox) this._view.Get("Checkbox")).Checked = false;
         }
 
         /// <summary>
@@ -171,7 +172,7 @@ namespace KantoorInrichting.Controllers.Grid {
                 _panel.Invalidate();
                 _trackBar.Enabled = false;
                 _view.Get("ListView").Enabled = true; // Enable listview when not zooming
-                _zoomView.Dispose();
+                _zoomView?.Dispose();
             }
         }
 

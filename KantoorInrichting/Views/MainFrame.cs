@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using KantoorInrichting.Views.Grid;
 
 namespace KantoorInrichting
 {
@@ -134,8 +135,9 @@ namespace KantoorInrichting
             gridFieldView.Visible = false;
             assortmentScreen.Visible = false;
             placement.Visible = false;
-            Active?.Dispose();
-            AddPanels();
+            if (Active == this.gridFieldView) {
+                ((GridFieldView)Active).GridFieldView_Disposed(this, null);
+            }
             mainScreen1.BringToFront();
         }
 

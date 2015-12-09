@@ -42,6 +42,9 @@ namespace KantoorInrichting.Views.Grid {
                 case "ComboBox":
                     toReturn = this.algoSelector;
                     break;
+                case "Checkbox":
+                    toReturn = this.zoomCheckbox;
+                    break;
             }
             return toReturn;
         }
@@ -76,8 +79,8 @@ namespace KantoorInrichting.Views.Grid {
             this.Disposed += GridFieldView_Disposed;
         }
 
-        private void GridFieldView_Disposed( object sender, EventArgs e ) {
-            _controller?.Dispose(sender, e);
+        public void GridFieldView_Disposed( object sender, EventArgs e ) {
+            _controller.Dispose(sender, e);
         }
 
         private void ClearFieldButton_Click( object sender, EventArgs e ) {
