@@ -18,7 +18,18 @@ namespace KantoorInrichting.Models.Product
             beginPoint = begin;
             endPoint = end;
         }
+        
+        public Polygon toPolygon()
+        {
+            //Make, add points, build and return.
+            Polygon p = new Polygon();
 
+            p.Points.Add(beginPoint);
+            p.Points.Add(endPoint);
 
+            p.BuildEdges();
+
+            return p;
+        }
     }
 }
