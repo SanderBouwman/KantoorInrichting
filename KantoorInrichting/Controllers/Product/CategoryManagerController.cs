@@ -35,8 +35,6 @@ namespace KantoorInrichting.Controllers.Product
                 categoryComboBox.Items.Add(category.name);
             }
         }
-        // insert default
-
 
         public void fillSubcombobox(SortableBindingList<CategoryModel> categoryList, ComboBox subcategoryComboBox, ComboBox categoryComboBox)
         {
@@ -79,6 +77,42 @@ namespace KantoorInrichting.Controllers.Product
        
 
 
+        }
+
+        public int checkAmountOfProducts(string CatName)
+        {
+            int amount =0;
+            foreach(ProductModel product in ProductModel.list)
+            {
+                if(product.ProductCategory.name == CatName)
+                {
+                    amount++;
+                }
+            }
+            return amount;
+        }
+
+        public int checkAmountOfSubs(string CatName)
+        {
+
+            int amount = 0;
+            int mainID = -1;
+            foreach (CategoryModel main in CategoryModel.list)
+            {
+                if (main.name == CatName)
+                {
+                    mainID = main.catID;
+                }
+            }
+
+            foreach (CategoryModel cat in CategoryModel.list)
+            {
+                if (mainID == cat.isSubcategoryFrom)
+                {
+                    amount++;
+                }
+            }
+                return amount;
         }
     }
 }

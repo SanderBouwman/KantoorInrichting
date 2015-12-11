@@ -32,59 +32,100 @@
             this.saveButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 34);
+            this.textBox1.Location = new System.Drawing.Point(16, 42);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(181, 20);
+            this.textBox1.Size = new System.Drawing.Size(308, 22);
             this.textBox1.TabIndex = 1;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // saveButton
             // 
             this.saveButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.saveButton.Location = new System.Drawing.Point(118, 60);
+            this.saveButton.Location = new System.Drawing.Point(224, 145);
+            this.saveButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(75, 23);
+            this.saveButton.Size = new System.Drawing.Size(100, 28);
             this.saveButton.TabIndex = 2;
-            this.saveButton.Text = "Save";
+            this.saveButton.Text = "Opslaan";
             this.saveButton.UseVisualStyleBackColor = true;
             this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
             // cancelButton
             // 
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelButton.Location = new System.Drawing.Point(12, 60);
+            this.cancelButton.Location = new System.Drawing.Point(13, 145);
+            this.cancelButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cancelButton.Name = "cancelButton";
-            this.cancelButton.Size = new System.Drawing.Size(75, 23);
+            this.cancelButton.Size = new System.Drawing.Size(100, 28);
             this.cancelButton.TabIndex = 3;
-            this.cancelButton.Text = "Cancel";
+            this.cancelButton.Text = "Annuleren";
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 15);
+            this.label1.Location = new System.Drawing.Point(17, 18);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(155, 13);
+            this.label1.Size = new System.Drawing.Size(203, 17);
             this.label1.TabIndex = 4;
             this.label1.Text = "Naam van de nieuwe categorie";
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(16, 72);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(173, 21);
+            this.checkBox1.TabIndex = 5;
+            this.checkBox1.Text = "dit is een subcategorie";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.comboBox1.Enabled = false;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(140, 99);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(184, 24);
+            this.comboBox1.TabIndex = 6;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(17, 102);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(117, 17);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "subcategorie van";
             // 
             // NewCategory
             // 
             this.AcceptButton = this.saveButton;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
-            this.ClientSize = new System.Drawing.Size(203, 95);
+            this.ClientSize = new System.Drawing.Size(337, 186);
             this.ControlBox = false;
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.textBox1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "NewCategory";
             this.Text = "Nieuwe categorie";
             this.ResumeLayout(false);
@@ -98,5 +139,8 @@
         private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label2;
     }
 }

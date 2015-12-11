@@ -14,7 +14,7 @@ namespace KantoorInrichting.Views.Product
 {
     public partial class CategoryManager : Form
     {
-        private CategoryManagerController controller;
+        public CategoryManagerController controller;
         public string tempcat;
         public string tempsubcat;
         public KantoorInrichtingDataSet tempdata;
@@ -63,11 +63,24 @@ namespace KantoorInrichting.Views.Product
         private void categoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             controller.fillSubcombobox(CategoryModel.SubcategoryList, subcategoryComboBox, categoryComboBox);
+
+            string selectedCategory = categoryComboBox.SelectedItem.ToString();
+
+            // check how much products have this category
+            int amount = controller.checkAmountOfProducts(selectedCategory);
+            int amountSubs = controller.checkAmountOfSubs(selectedCategory);
+            textBox1.Text = amount.ToString();
+            textBox2.Text = amountSubs.ToString();
+
+
         }
 
         private void subcategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            string selectedCategory = subcategoryComboBox.SelectedItem.ToString();
+            int amount = controller.checkAmountOfProducts(selectedCategory);
+            textBox1.Text = amount.ToString();
+            textBox2.Text = "niet mogelijk";
         }
 
         //saves the created categories
