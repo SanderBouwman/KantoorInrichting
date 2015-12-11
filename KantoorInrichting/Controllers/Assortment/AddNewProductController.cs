@@ -87,8 +87,17 @@ namespace KantoorInrichting.Controllers.Assortment
             else
             {
                 screen.errorHeightLabel.Text = "";
-                height = int.Parse(screen.heightTextBox.Text);
-                validationPassed--;
+
+                try
+                {
+                    height = int.Parse(screen.heightTextBox.Text);
+                    validationPassed--;
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("Te groot aantal bij Hoogte");
+                }
+                
             }
             if (!Regex.IsMatch(screen.widthTextBox.Text, @"^[0-9]+$"))
             {
@@ -97,8 +106,15 @@ namespace KantoorInrichting.Controllers.Assortment
             else
             {
                 screen.errorWidthLabel.Text = "";
-                width = int.Parse(screen.widthTextBox.Text);
-                validationPassed--;
+                try
+                {
+                    width = int.Parse(screen.widthTextBox.Text);
+                    validationPassed--;
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("Te groot aantal bij Breedte");
+                }
             }
             if (!Regex.IsMatch(screen.lengthTextBox.Text, @"^[0-9]+$"))
             {
@@ -107,8 +123,15 @@ namespace KantoorInrichting.Controllers.Assortment
             else
             {
                 screen.errorLengthLabel.Text = "";
-                length = int.Parse(screen.lengthTextBox.Text);
-                validationPassed--;
+                try
+                {
+                    length = int.Parse(screen.lengthTextBox.Text);
+                    validationPassed--;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Te groot aantal bij Lengte");
+                }
             }
             if (!Regex.IsMatch(screen.amountTextBox.Text, @"^[0-9]+$"))
             {
@@ -117,8 +140,15 @@ namespace KantoorInrichting.Controllers.Assortment
             else
             {
                 screen.errorAmountLabel.Text = "";
-                amount = int.Parse(screen.amountTextBox.Text);
-                validationPassed--;
+                try
+                {
+                    amount = int.Parse(screen.amountTextBox.Text);
+                    validationPassed--;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Te groot aantal bij Aantal");
+                }
             }
             if (screen.categoryComboBox.SelectedIndex < 0)
             {
@@ -199,6 +229,7 @@ namespace KantoorInrichting.Controllers.Assortment
             {
                 MessageBox.Show("Update failed" + ex);
                 RemoveImage();
+                this.product = null;
             }
         }
 
