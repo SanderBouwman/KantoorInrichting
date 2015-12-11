@@ -189,8 +189,7 @@ namespace KantoorInrichting.Controllers.Assortment
         //Create a new product
         private void CreateProductModel()
         {
-            //Fill the TableAdapter with data from the dataset, select MAX Product_ID, Create an in with MAX Product_ID + 1
-            dbc.ProductTableAdapter.Fill((dbc.DataSet.product));
+            //Fill the TableAdapter with data from the dataset, select MAX Product_ID, Create an int with MAX Product_ID + 1
             var maxProduct_ID = dbc.DataSet.product.Select("Product_ID = MAX(Product_ID)");
             var newProduct_ID = (int)maxProduct_ID[0]["Product_ID"] + 1;
 

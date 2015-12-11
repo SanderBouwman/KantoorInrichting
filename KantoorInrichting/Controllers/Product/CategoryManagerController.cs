@@ -90,13 +90,13 @@ namespace KantoorInrichting.Controllers.Product
         {
             
             //Fill the TableAdapter with data from the dataset, select MAX category_ID, Create an in with MAX category_ID + 1
-            dbc.CategoryTableAdapter.Fill((dbc.DataSet.category));
-            var maxCategory_ID = dbc.DataSet.category.Select("category_id = MAX(category_id");
+            var maxCategory_ID = dbc.DataSet.category.Select("category_id = MAX(category_id)");
+
             var newCategory_ID = (int)maxCategory_ID[0]["category_id"] + 1;
 
             // add the object
             var Category = new CategoryModel(newCategory_ID, text, -1, color);
-           
+            Console.WriteLine(newCategory_ID);
 
             //add in the database
 
@@ -111,7 +111,7 @@ namespace KantoorInrichting.Controllers.Product
             //Try to add the new product row in the database
             try
             {
-                dbc.DataSet.product.Rows.Add(newCategory);
+                dbc.DataSet.category.Rows.Add(newCategory);
                 dbc.CategoryTableAdapter.Update(dbc.DataSet.category);
                 MessageBox.Show("Update successful");
             }
