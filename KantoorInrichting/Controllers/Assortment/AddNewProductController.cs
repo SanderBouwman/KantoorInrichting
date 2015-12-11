@@ -184,7 +184,7 @@ namespace KantoorInrichting.Controllers.Assortment
             newProduct.length = product.Length;
             newProduct.amount = product.Amount;
             newProduct.image = product.ImageFileName;
-            newProduct.category_id = product.Category_id;
+            newProduct.category_id = product.ProductCategory.catID;
             newProduct.description = product.Description;
 
             //Try to add the new product row in the database

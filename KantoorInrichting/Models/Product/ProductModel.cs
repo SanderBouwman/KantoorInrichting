@@ -20,7 +20,6 @@ namespace KantoorInrichting.Models.Product
         public int Width { get; set; }
         public int Height { get; set; }
         public int Product_id { get; }
-        public int Category_id { get; set; }
         public string ImageFileName { get; set; }
         public string Description { get; set; }
         public CategoryModel ProductCategory { get; set; }
@@ -64,9 +63,8 @@ namespace KantoorInrichting.Models.Product
             Name = n;
             Brand = b;
             Type = t;
-            Category_id = c;
 
-            this.ProductCategory = CategoryModel.list[Category_id];
+            this.ProductCategory = CategoryModel.list[c];
             this.category = ProductCategory.name;
 
             Length = l;
@@ -80,8 +78,6 @@ namespace KantoorInrichting.Models.Product
             Removed = r;
             list.Add(this);
         }
-
-
 
         //This methods sets the Product image using the name of the image
         public void SetProductImage()

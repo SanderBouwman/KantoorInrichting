@@ -14,13 +14,15 @@ namespace KantoorInrichting.Controllers.Inventory
         private DatabaseController dbc;
         private InventoryEdit screen;
         private ProductModel product;
+        private InventoryScreen inventoryScreen;
         public int amount { get; set; }
 
-        public InventoryEditController(InventoryEdit screen, ProductModel product)
+        public InventoryEditController(InventoryEdit screen, ProductModel product, InventoryScreen inventoryScreen)
         {
             dbc = DatabaseController.Instance;
             this.product = product;
             this.screen = screen;
+            this.inventoryScreen = inventoryScreen;
             FillWithProductInfo();
         }
 
@@ -36,6 +38,11 @@ namespace KantoorInrichting.Controllers.Inventory
         {
             amount = (int)screen.productAmount.Value;
             product.Amount = amount;
+            //If the amount is 0, remove it from the result list.
+            if (product.Amount == 0 && inventoryScreen.checkBox1.Checked)
+            {
+                ProductModel.result.Remove(product);
+            }
         }
 
         //Update the prodcut in the database

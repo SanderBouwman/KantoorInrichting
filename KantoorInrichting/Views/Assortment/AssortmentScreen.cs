@@ -15,7 +15,11 @@ namespace KantoorInrichting.Views.Assortment
             InitializeComponent();
             this.hoofdscherm = hoofdscherm;
             controller = new AssortmentController(this);
+            checkBox1.Checked = true;
+            DropdownBrand.SelectedIndex = 0;
+            DropdownCategory.SelectedIndex = 0;
             Invalidate();
+            
         }
 
         //Opens AddNewProductScreen when this button is pressed
@@ -24,10 +28,31 @@ namespace KantoorInrichting.Views.Assortment
             controller.AddProduct();
         }
 
-        private void dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void DataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            controller.dataGridView_CellContentClick(sender, e);
+            controller.DataGridView_CellContentClick(sender, e);
 
+        }
+
+        private void DropdownBrand_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            controller.DropdownBrand();
+        }
+
+        private void DropdownCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            controller.DropdownCategory();
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            controller.CheckBox1();
+            this.Refresh();
+        }
+
+        private void DeleteCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            controller.DeleteCheckBox();
         }
     }
 }

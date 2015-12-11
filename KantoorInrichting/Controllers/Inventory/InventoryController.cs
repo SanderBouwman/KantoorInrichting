@@ -17,7 +17,6 @@ namespace KantoorInrichting.Controllers.Inventory
             this.inventoryScreen = inventoryScreen;
         }
 
-
         public void FillData()
         {
             inventoryScreen.dataGridView1.DataSource = null;
@@ -73,10 +72,6 @@ namespace KantoorInrichting.Controllers.Inventory
             {
                 inventoryScreen.DropdownCategorie.Items.Add(category.name);
             }
-
-
-
-
         }
 
         public void FilterBrand()
@@ -155,7 +150,7 @@ namespace KantoorInrichting.Controllers.Inventory
                     {
                         // if there are categories wich their "issubcategoryfrom"contains current ID
                         var filteredSubProducts =   from product in ProductModel.result
-                                                    where product.Category_id == cat.catID
+                                                    where product.ProductCategory.catID == cat.catID
                                                     select product;
 
                         foreach (var cari in filteredSubProducts)

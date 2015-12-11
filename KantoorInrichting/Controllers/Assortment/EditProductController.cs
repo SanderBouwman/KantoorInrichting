@@ -60,7 +60,7 @@ namespace KantoorInrichting.Controllers.Assortment
             foreach (var category in dbc.DataSet.category)
             {
                 screen.categoryComboBox.Items.Add(category.name);
-                if (category.category_id == product.Category_id)
+                if (category.category_id == product.ProductCategory.catID)
                 {
                     screen.categoryComboBox.SelectedIndex = category.category_id;
                 }
@@ -177,7 +177,7 @@ namespace KantoorInrichting.Controllers.Assortment
             product.Name = name;
             product.Brand = brand;
             product.Type = type;
-            product.Category_id = category_id;
+            product.ProductCategory.catID = category_id;
             product.ProductCategory = CategoryModel.list[category_id];
             product.category = product.ProductCategory.name;
             product.Height = height;
@@ -202,7 +202,7 @@ namespace KantoorInrichting.Controllers.Assortment
                 productRow.name = product.Name;
                 productRow.brand = product.Brand;
                 productRow.type = product.Type;
-                productRow.category_id = product.Category_id;
+                productRow.category_id = product.ProductCategory.catID;
                 productRow.height = product.Height;
                 productRow.width = product.Width;
                 productRow.length = product.Length;

@@ -16,7 +16,7 @@ namespace KantoorInrichting.Models.Product
         public static SortableBindingList<CategoryModel> CategoryList = new SortableBindingList<CategoryModel>();
 
         public int catID;
-        public string name;
+        public string name { get; set; }
         public int? isSubcategoryFrom;
         public Color colour;
 

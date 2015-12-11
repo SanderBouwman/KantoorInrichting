@@ -17,10 +17,10 @@ namespace KantoorInrichting.Views.Inventory
         private InventoryEditController controller;
 
         //makes sure the productnaam and amount are filled in correctly in the screen
-        public InventoryEdit(ProductModel product)
+        public InventoryEdit(ProductModel product, InventoryScreen screen)
         {
             InitializeComponent();
-            controller = new InventoryEditController(this, product);
+            controller = new InventoryEditController(this, product, screen);
         }
 
         //Edit product button

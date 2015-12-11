@@ -32,11 +32,6 @@
             this.PanelLeft = new System.Windows.Forms.Panel();
             this.addProductButton = new System.Windows.Forms.Button();
             this.assortmentGridView = new System.Windows.Forms.DataGridView();
-            this.PanelRight = new System.Windows.Forms.Panel();
-            this.DropdownCategorie = new System.Windows.Forms.ComboBox();
-            this.DropdownLeverancier = new System.Windows.Forms.ComboBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.Product_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Naam = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -49,6 +44,11 @@
             this.Afbeelding = new System.Windows.Forms.DataGridViewImageColumn();
             this.wijzig = new System.Windows.Forms.DataGridViewButtonColumn();
             this.delete = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.PanelRight = new System.Windows.Forms.Panel();
+            this.deleteCheckBox = new System.Windows.Forms.CheckBox();
+            this.DropdownCategory = new System.Windows.Forms.ComboBox();
+            this.DropdownBrand = new System.Windows.Forms.ComboBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.PanelLeft.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.assortmentGridView)).BeginInit();
             this.PanelRight.SuspendLayout();
@@ -121,60 +121,7 @@
             this.assortmentGridView.RowTemplate.Height = 50;
             this.assortmentGridView.Size = new System.Drawing.Size(450, 185);
             this.assortmentGridView.TabIndex = 3;
-            this.assortmentGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellContentClick);
-            // 
-            // PanelRight
-            // 
-            this.PanelRight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.PanelRight.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.PanelRight.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.PanelRight.Controls.Add(this.DropdownCategorie);
-            this.PanelRight.Controls.Add(this.DropdownLeverancier);
-            this.PanelRight.Controls.Add(this.checkBox1);
-            this.PanelRight.Controls.Add(this.label1);
-            this.PanelRight.Location = new System.Drawing.Point(234, 0);
-            this.PanelRight.Margin = new System.Windows.Forms.Padding(2);
-            this.PanelRight.MinimumSize = new System.Drawing.Size(210, 138);
-            this.PanelRight.Name = "PanelRight";
-            this.PanelRight.Size = new System.Drawing.Size(216, 138);
-            this.PanelRight.TabIndex = 4;
-            // 
-            // DropdownCategorie
-            // 
-            this.DropdownCategorie.FormattingEnabled = true;
-            this.DropdownCategorie.Location = new System.Drawing.Point(37, 34);
-            this.DropdownCategorie.Margin = new System.Windows.Forms.Padding(2);
-            this.DropdownCategorie.Name = "DropdownCategorie";
-            this.DropdownCategorie.Size = new System.Drawing.Size(92, 21);
-            this.DropdownCategorie.TabIndex = 0;
-            // 
-            // DropdownLeverancier
-            // 
-            this.DropdownLeverancier.FormattingEnabled = true;
-            this.DropdownLeverancier.Location = new System.Drawing.Point(37, 10);
-            this.DropdownLeverancier.Margin = new System.Windows.Forms.Padding(2);
-            this.DropdownLeverancier.Name = "DropdownLeverancier";
-            this.DropdownLeverancier.Size = new System.Drawing.Size(92, 21);
-            this.DropdownLeverancier.TabIndex = 1;
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoEllipsis = true;
-            this.checkBox1.Location = new System.Drawing.Point(37, 58);
-            this.checkBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(104, 32);
-            this.checkBox1.TabIndex = 2;
-            this.checkBox1.Text = "Toon afwezige producten";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(75, 19);
-            this.label1.TabIndex = 3;
+            this.assortmentGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_CellContentClick);
             // 
             // Product_ID
             // 
@@ -255,6 +202,65 @@
             this.delete.Text = "Verwijder";
             this.delete.UseColumnTextForButtonValue = true;
             // 
+            // PanelRight
+            // 
+            this.PanelRight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.PanelRight.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.PanelRight.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PanelRight.Controls.Add(this.deleteCheckBox);
+            this.PanelRight.Controls.Add(this.DropdownCategory);
+            this.PanelRight.Controls.Add(this.DropdownBrand);
+            this.PanelRight.Controls.Add(this.checkBox1);
+            this.PanelRight.Location = new System.Drawing.Point(234, 0);
+            this.PanelRight.Margin = new System.Windows.Forms.Padding(2);
+            this.PanelRight.MinimumSize = new System.Drawing.Size(210, 138);
+            this.PanelRight.Name = "PanelRight";
+            this.PanelRight.Size = new System.Drawing.Size(216, 138);
+            this.PanelRight.TabIndex = 4;
+            // 
+            // deleteCheckBox
+            // 
+            this.deleteCheckBox.AutoSize = true;
+            this.deleteCheckBox.Location = new System.Drawing.Point(37, 96);
+            this.deleteCheckBox.Name = "deleteCheckBox";
+            this.deleteCheckBox.Size = new System.Drawing.Size(159, 17);
+            this.deleteCheckBox.TabIndex = 4;
+            this.deleteCheckBox.Text = "Toon verwijderde producten";
+            this.deleteCheckBox.UseVisualStyleBackColor = true;
+            this.deleteCheckBox.CheckedChanged += new System.EventHandler(this.DeleteCheckBox_CheckedChanged);
+            // 
+            // DropdownCategory
+            // 
+            this.DropdownCategory.FormattingEnabled = true;
+            this.DropdownCategory.Location = new System.Drawing.Point(37, 34);
+            this.DropdownCategory.Margin = new System.Windows.Forms.Padding(2);
+            this.DropdownCategory.Name = "DropdownCategory";
+            this.DropdownCategory.Size = new System.Drawing.Size(92, 21);
+            this.DropdownCategory.TabIndex = 0;
+            this.DropdownCategory.SelectedIndexChanged += new System.EventHandler(this.DropdownCategory_SelectedIndexChanged);
+            // 
+            // DropdownBrand
+            // 
+            this.DropdownBrand.FormattingEnabled = true;
+            this.DropdownBrand.Location = new System.Drawing.Point(37, 10);
+            this.DropdownBrand.Margin = new System.Windows.Forms.Padding(2);
+            this.DropdownBrand.Name = "DropdownBrand";
+            this.DropdownBrand.Size = new System.Drawing.Size(92, 21);
+            this.DropdownBrand.TabIndex = 1;
+            this.DropdownBrand.SelectedIndexChanged += new System.EventHandler(this.DropdownBrand_SelectedIndexChanged);
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoEllipsis = true;
+            this.checkBox1.Location = new System.Drawing.Point(37, 59);
+            this.checkBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(159, 32);
+            this.checkBox1.TabIndex = 2;
+            this.checkBox1.Text = "Toon afwezige producten";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
             // AssortmentScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -267,6 +273,7 @@
             this.PanelLeft.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.assortmentGridView)).EndInit();
             this.PanelRight.ResumeLayout(false);
+            this.PanelRight.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -276,10 +283,6 @@
         private System.Windows.Forms.Label titel;
         private System.Windows.Forms.Panel PanelLeft;
         private System.Windows.Forms.Panel PanelRight;
-        private System.Windows.Forms.ComboBox DropdownCategorie;
-        private System.Windows.Forms.ComboBox DropdownLeverancier;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button addProductButton;
         public System.Windows.Forms.DataGridView assortmentGridView;
         private System.Windows.Forms.DataGridViewTextBoxColumn Product_ID;
@@ -294,5 +297,9 @@
         private System.Windows.Forms.DataGridViewImageColumn Afbeelding;
         private System.Windows.Forms.DataGridViewButtonColumn wijzig;
         private System.Windows.Forms.DataGridViewButtonColumn delete;
+        public System.Windows.Forms.ComboBox DropdownCategory;
+        public System.Windows.Forms.ComboBox DropdownBrand;
+        public System.Windows.Forms.CheckBox checkBox1;
+        public System.Windows.Forms.CheckBox deleteCheckBox;
     }
 }
