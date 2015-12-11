@@ -38,27 +38,11 @@ namespace KantoorInrichting.Views.Product
         private void newCategoryButton_Click(object sender, EventArgs e)
         {
             NewCategory newcat = new NewCategory(this);
-            newcat.ShowDialog(this);
-            if (newcat.DialogResult == DialogResult.OK)
-            {
-                tempcat = newcat.tempcat;
-                categoryComboBox.Items.Add(tempcat);
-                categoryComboBox.SelectedItem = tempcat;
-            }
+            newcat.Show(this);
+                controller.fillcombobox(CategoryModel.CategoryList, categoryComboBox);
+                controller.fillSubcombobox(CategoryModel.SubcategoryList, subcategoryComboBox, categoryComboBox);
         }
 
-        //uses the given data to create a new subcategory
-        private void newSubCategoryButton_Click(object sender, EventArgs e)
-        {
-            NewCategory newsubcat = new NewCategory(this);
-            newsubcat.ShowDialog(this);
-            if (newsubcat.DialogResult == DialogResult.OK)
-            {
-                tempsubcat = newsubcat.tempcat;
-                subcategoryComboBox.Items.Add(tempsubcat);
-                subcategoryComboBox.SelectedItem = tempsubcat;
-            }
-        }
 
         private void categoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {

@@ -7,6 +7,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -17,6 +18,7 @@ namespace KantoorInrichting.Views.Product
         private CategoryManager catman;
         public string tempcat;
         private DatabaseController controller;
+        bool NotDone = false;
 
         public NewCategory(CategoryManager catman)
         {
@@ -33,17 +35,22 @@ namespace KantoorInrichting.Views.Product
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-
+            
             string Text = UpperFirst(textBox1.Text);          
             bool exists = false;
             // check if there is some name filled in
-            if (Text == null || Text == "")
+            if (Text.Length < 3)
             {
-                MessageBox.Show("U heeft geen categorienaam ingevuld, kies een andere naam");
+                MessageBox.Show("U heeft geen categorienaam ingevuld van minstens 3 karakters, kies een andere naam");
+            } 
+            // check for special chars
+            if (!Regex.IsMatch(Text, @"^[a-zA-Z0-9_\s]+$"))
+                {
+                MessageBox.Show("Uw categorie bevat speciale tekens, kies een andere naam");
             }
 
             // check if text already exists
-            foreach(var category in controller.DataSet.category)
+            foreach (var category in controller.DataSet.category)
             {
                 if(category.name == Text)
                 {
@@ -51,17 +58,18 @@ namespace KantoorInrichting.Views.Product
                 }
             }
             
-            if (exists)
+            if (exists == true)
             {
                 // if exitst error rename
                 MessageBox.Show("Deze categorienaam bestaat al kies een andere naam");
+          
             } else
             {
                 // check if checkbox is checked
-                if (checkBox1.Checked)
+                if (checkBox1.Checked == false)
                 {
                     // insert category into database
-
+                    catman.controller.AddCategory(Text, "#FFFFFF");
 
                     this.Close();
                 }
@@ -69,12 +77,9 @@ namespace KantoorInrichting.Views.Product
                 {
                     // insert subcategory into database
 
-                    this.Close();
+                    //this.Close();
                 }
             }
-
-
-           
 
 
         }
