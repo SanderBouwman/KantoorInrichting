@@ -155,6 +155,7 @@ namespace KantoorInrichting.Controllers.Grid {
         }
 
         public void ButtonClick(object sender, EventArgs e) {
+            Console.WriteLine(sender + " " + e);
             if (e.GetType() == typeof (MouseEventArgs)) {
                 MouseEventArgs ev = (MouseEventArgs) e;
                 switch (ev.Button) {
@@ -165,7 +166,8 @@ namespace KantoorInrichting.Controllers.Grid {
                         MouseDown(sender, ev);
                         break;
                 }
-            } else {
+            }
+            if (sender.GetType() == typeof (Button)) {
                 switch (((Button) sender).Text) {
                     case "Go":
                         AlgorithmClick(sender, e);
