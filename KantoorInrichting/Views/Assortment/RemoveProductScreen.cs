@@ -25,6 +25,7 @@ namespace KantoorInrichting.Views.Assortment
         private void removeButton_Click(object sender, EventArgs e)
         {
             controller.RemoveButton();
+            
         }
 
         private void cancelButton_Click(object sender, EventArgs e)

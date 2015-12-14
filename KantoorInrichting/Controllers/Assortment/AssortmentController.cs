@@ -20,6 +20,10 @@ namespace KantoorInrichting.Controllers.Assortment
         //Fill the datagridview with data
         private void FillData()
         {
+            // delete datasource
+            screen.assortmentGridView.DataSource = null;
+            screen.assortmentGridView.Refresh();
+
             screen.assortmentGridView.AutoGenerateColumns = false;
             screen.assortmentGridView.DataSource = ProductModel.list;
             List<ProductModel> filterResult = FilterNoAmount();
@@ -27,6 +31,7 @@ namespace KantoorInrichting.Controllers.Assortment
             ProductModel.result = new SortableBindingList<ProductModel>(filterResult);
             // the datasource of the datagridview is the filterresult
             screen.assortmentGridView.DataSource = ProductModel.result;
+            screen.assortmentGridView.Refresh();
         }
 
         //Opens AddNewProductScreen when this button is pressed
@@ -44,7 +49,7 @@ namespace KantoorInrichting.Controllers.Assortment
         {
             // filter the data to only view products with an amount
             var filteredProducts = from product in ProductModel.list
-                                   where product.Amount >= 1
+                                   where product.Amount >= 1  && product.Removed == false
                                    select product;
 
             // return the filtered results.
@@ -196,11 +201,27 @@ namespace KantoorInrichting.Controllers.Assortment
 
                 if (e.ColumnIndex == 11)
                 {
+                    DialogResult dia = new DialogResult();
                     var removeProduct = new RemoveProductScreen(ProductModel.result[e.RowIndex]);
-                    removeProduct.ShowDialog();
-                    screen.assortmentGridView.DataSource = null;
-                    screen.assortmentGridView.DataSource = ProductModel.result;
-                    screen.assortmentGridView.Refresh();
+                    dia = removeProduct.ShowDialog();
+                    if (dia == DialogResult.OK)
+                    {
+                        screen.assortmentGridView.DataSource = null;
+                        screen.assortmentGridView.DataSource = ProductModel.result;
+                        FillData();
+                        screen.DropdownCategory.SelectedIndex = 0;
+                        screen.DropdownCategory.SelectedIndex = 0;
+                        screen.assortmentGridView.Refresh();
+                    } else
+                    {
+                        screen.assortmentGridView.DataSource = null;
+                        screen.assortmentGridView.DataSource = ProductModel.result;
+                        FillData();
+                        screen.DropdownCategory.SelectedIndex = 0;
+                        screen.DropdownCategory.SelectedIndex = 0;
+                        screen.assortmentGridView.Refresh();
+                    }
+
                 }
             }
         }
