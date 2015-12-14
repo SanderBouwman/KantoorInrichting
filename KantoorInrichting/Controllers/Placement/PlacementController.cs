@@ -107,6 +107,42 @@ namespace KantoorInrichting.Controllers.Placement
             productAdding.productInfo1.setProduct(productAdding.productInfo1.product);
         }
         //
+        public static Color GetMainCategoryColorIfNeeded(int CatId)
+        {
+            int? MainCategory = null;
+            Color usedColor;
+
+            // linq select category with the current id
+            var selectedcategory = CategoryModel.list
+                    .Where(c => c.catID == CatId)
+                    .Select(c => c)
+                    .ToList();
+
+
+            //check if the category is an subcategory
+            if (selectedcategory[0].isSubcategoryFrom > -1 || selectedcategory[0].isSubcategoryFrom == null)
+            {
+                MainCategory = selectedcategory[0].isSubcategoryFrom;
+
+
+                // linq select category with the current id
+                var selectedcategory2 = CategoryModel.list
+                        .Where(c => c.catID == MainCategory)
+                        .Select(c => c)
+                        .ToList();
+
+                // use the main category color
+                usedColor = selectedcategory2[0].colour;
+            }
+            else
+            {
+                // else if no subcategory just use the current category color
+                usedColor = selectedcategory[0].colour;
+
+            }
+            return usedColor;
+        }
+        //
         public void redrawPanel(Graphics g)
         {
             Vector p1;
@@ -266,24 +302,26 @@ namespace KantoorInrichting.Controllers.Placement
             newLocation.X /= MovementSpeed; newLocation.X *= MovementSpeed; //Round down to the movement speed. (AKA: Fit into the grid)
             newLocation.Y /= MovementSpeed; newLocation.Y *= MovementSpeed; //Round down to the movement speed.
             
-
-            Size drawImageSize = new Size(1,1);
-            Color drawImageColor = Color.White;
+            
+            Color drawImageColor;
 
             if (e.Data.GetDataPresent(typeof (ProductModel)))
             {
                 //Make a new model, size and color
                 ProductModel model = (ProductModel)e.Data.GetData(typeof (ProductModel));
-                drawImageSize = new Size(model.Width, model.Length);
-                drawImageColor = model.ProductCategory.colour;
+                drawImageColor = GetMainCategoryColorIfNeeded(model.ProductCategory.catID);
 
                 //Colour in the bitmap and resize it.
                 Graphics gfx = Graphics.FromImage(drawImageGhostBitmap);
                 SolidBrush brush = new SolidBrush(Color.FromArgb(128, drawImageColor.R, drawImageColor.G, drawImageColor.B));
-                gfx.FillRectangle(brush, new Rectangle(new Point(0, 0), drawImageSize));
-                drawImageGhostBitmap = new Bitmap(ResizeImage(drawImageGhostBitmap, drawImageSize.Width, drawImageSize.Height));
-
-                //Set the new location
+                gfx.FillRectangle(brush, new Rectangle(new Point(0, 0), new Size(1000,1000)));
+                
+                //Small dispose
+                brush.Dispose();
+                gfx.Dispose();
+                
+                //Set the Bitmap and new location
+                drawImageGhostBitmap = new Bitmap(drawImageGhostBitmap, model.Width, model.Length);
                 drawImageGhostPoint = new Point(newLocation.X - model.Width/2, newLocation.Y - model.Length/2); //Calculates the top left point for the Ghost.
             }
             else if (e.Data.GetDataPresent(typeof (PlacedProduct)))
@@ -302,6 +340,16 @@ namespace KantoorInrichting.Controllers.Placement
             }
 
             //And then repaint the panel
+            productAdding.productPanel.Repaint();
+        }
+
+        /// <summary>
+        /// When leave, repaint.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void event_DragLeave(object sender, EventArgs e)
+        {
             productAdding.productPanel.Repaint();
         }
 

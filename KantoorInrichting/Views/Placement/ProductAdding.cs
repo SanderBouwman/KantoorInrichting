@@ -54,6 +54,9 @@ namespace KantoorInrichting.Views.Placement
         //DragOver Event - GHOST
         private void Ghost_DragOver(object sender, DragEventArgs e)
         { controller.event_DragOver(sender, e); }
+        //DragLeave Event - GHOST
+        private void Ghost_DragLeave(object sender, EventArgs e)
+        { controller.event_DragLeave(sender, e); }
 
         //DragEnter Event - DELETE
         private void Delete_DragEnter(object sender, DragEventArgs e)

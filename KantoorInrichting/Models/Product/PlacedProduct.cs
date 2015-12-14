@@ -63,7 +63,7 @@ namespace KantoorInrichting.Models.Product
             defaultBitMap = new Bitmap(product.Width, product.Length);
             Graphics gfx = Graphics.FromImage(defaultBitMap);
             // check if this product is an subcategory and get the color
-            Color color = GetMainCategoryColorIfNeeded(product.ProductCategory.catID);
+            Color color = PlacementController.GetMainCategoryColorIfNeeded(product.ProductCategory.catID);
 
 
             SolidBrush brush = new SolidBrush(color);
@@ -80,41 +80,7 @@ namespace KantoorInrichting.Models.Product
             setAngle(currentAngle);
         }
 
-        public Color GetMainCategoryColorIfNeeded(int CatId)
-        {
-            int? MainCategory = null;
-            Color usedColor;
-
-            // linq select category with the current id
-            var selectedcategory = CategoryModel.list
-                    .Where(c => c.catID == CatId)
-                    .Select(c => c)
-                    .ToList();
-           
-
-            //check if the category is an subcategory
-            if (selectedcategory[0].isSubcategoryFrom > -1 || selectedcategory[0].isSubcategoryFrom == null)
-            {
-                MainCategory = selectedcategory[0].isSubcategoryFrom;
-
-                
-                // linq select category with the current id
-                var selectedcategory2 = CategoryModel.list
-                        .Where(c => c.catID == MainCategory)
-                        .Select(c => c)
-                        .ToList();
-
-                // use the main category color
-                usedColor = selectedcategory2[0].colour;
-            } 
-            else
-            {
-                // else if no subcategory just use the current category color
-                usedColor = selectedcategory[0].colour;
-
-            }
-            return usedColor;
-        }
+        
 
         /// <summary>
         /// Set the angle of the product.
