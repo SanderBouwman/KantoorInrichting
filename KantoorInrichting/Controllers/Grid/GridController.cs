@@ -155,7 +155,6 @@ namespace KantoorInrichting.Controllers.Grid {
         }
 
         public void ButtonClick(object sender, EventArgs e) {
-            Console.WriteLine(sender + " " + e);
             if (e.GetType() == typeof (MouseEventArgs)) {
                 MouseEventArgs ev = (MouseEventArgs) e;
                 switch (ev.Button) {
