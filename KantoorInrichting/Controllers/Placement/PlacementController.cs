@@ -237,6 +237,8 @@ namespace KantoorInrichting.Controllers.Placement
                 placement_MoveProduct(sender, e);
             }
             
+            //Repaint so that the ghost image is removed
+            productAdding.productPanel.Repaint();
             return;   
         }        
 
