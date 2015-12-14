@@ -148,6 +148,7 @@
             this.productPanel.TabIndex = 8;
             this.productPanel.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDrop_DragDrop);
             this.productPanel.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragDrop_DragEnter);
+            this.productPanel.DragOver += new System.Windows.Forms.DragEventHandler(this.Ghost_DragOver);
             this.productPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Mousedown_Panel);
             // 
             // productInfo1

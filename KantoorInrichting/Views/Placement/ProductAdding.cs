@@ -44,18 +44,21 @@ namespace KantoorInrichting.Views.Placement
         { controller.event_PanelMouseDown(sender, e); }
 
 
-        //DragEnter Event
+        //DragEnter Event - ADD
         private void DragDrop_DragEnter(object sender, DragEventArgs e)
         { controller.event_DragEnter(sender, e); }
-        //DragDrop Event
+        //DragDrop Event - ADD
         private void DragDrop_DragDrop(object sender, DragEventArgs e)
         { controller.event_DragDrop(sender, e); }
 
+        //DragOver Event - GHOST
+        private void Ghost_DragOver(object sender, DragEventArgs e)
+        { controller.event_DragOver(sender, e); }
 
-        //DragEnter Event
+        //DragEnter Event - DELETE
         private void Delete_DragEnter(object sender, DragEventArgs e)
         { controller.event_DeleteEnter(sender, e); }
-        //DragDrop Event
+        //DragDrop Event - DELETE
         private void Delete_DragDrop(object sender, DragEventArgs e)
         { controller.event_DeleteDrop(sender, e); }
 

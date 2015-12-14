@@ -41,6 +41,7 @@ namespace KantoorInrichting.Controllers.Placement
 
         private Bitmap drawImageGhostBitmap = new Bitmap(Properties.Resources.No_Image_Available, 50, 50);
         private Point drawImageGhostPoint = new Point(0,0);
+        private bool draggingItem = false;
         #endregion Variables
 
         private void ppList_CollectionChanged(object sender, EventArgs e)
@@ -144,7 +145,9 @@ namespace KantoorInrichting.Controllers.Placement
 
 
             //Draw the Ghost when dragdropping
+            if(draggingItem) { g.DrawImage(drawImageGhostBitmap, drawImageGhostPoint);}
 
+            draggingItem = false;
         }
 
 
@@ -240,17 +243,25 @@ namespace KantoorInrichting.Controllers.Placement
         public void event_DragOver(object sender, DragEventArgs e)
         {
             //If not ProductModel or PlacedProduct, then exit out, because you can only get the location from them
-            if (!e.Data.GetDataPresent(typeof(ProductModel)) || !e.Data.GetDataPresent((typeof(PlacedProduct))))
+            if (!(e.Data.GetDataPresent(typeof(ProductModel)) || e.Data.GetDataPresent((typeof(PlacedProduct)))))
             {
+                draggingItem = false;
                 return;
             }
+            else
+            {
+                draggingItem = true;
+            }
+
+            
+            //Gets the location of the mouse inside of the panel
             Point newLocation = new Point(e.X, e.Y);
             newLocation = motherFrame.PointToClient(newLocation);
             newLocation.X -= productAdding.productPanel.Left;
             newLocation.Y -= productAdding.productPanel.Top;
             newLocation.Y -= motherFrame.menuStrip1.Height;
 
-            newLocation.X /= MovementSpeed; newLocation.X *= MovementSpeed; //Round down to the movement speed.
+            newLocation.X /= MovementSpeed; newLocation.X *= MovementSpeed; //Round down to the movement speed. (AKA: Fit into the grid)
             newLocation.Y /= MovementSpeed; newLocation.Y *= MovementSpeed; //Round down to the movement speed.
             
 
@@ -266,7 +277,7 @@ namespace KantoorInrichting.Controllers.Placement
 
                 //Colour in the bitmap and resize it.
                 Graphics gfx = Graphics.FromImage(drawImageGhostBitmap);
-                SolidBrush brush = new SolidBrush(drawImageColor);
+                SolidBrush brush = new SolidBrush(Color.FromArgb(128, drawImageColor.R, drawImageColor.G, drawImageColor.B));
                 gfx.FillRectangle(brush, new Rectangle(new Point(0, 0), drawImageSize));
                 drawImageGhostBitmap = new Bitmap(ResizeImage(drawImageGhostBitmap, drawImageSize.Width, drawImageSize.Height));
 
@@ -282,8 +293,14 @@ namespace KantoorInrichting.Controllers.Placement
                 Vector clickOffsetVector = new Vector((clickLocation.X - placedP.location.X), (clickLocation.Y - placedP.location.Y)); //Get the click offset if the user clicked the bottom left of the image
 
                 //Set the new location
-                drawImageGhostPoint = new Point(newLocation.X - drawImageGhostBitmap.Width / 2, newLocation.Y - drawImageGhostBitmap.Height / 2); //Calculates the top left point for the Ghost.
+                drawImageGhostPoint = new Point(
+                    newLocation.X - drawImageGhostBitmap.Width/2 - (int) clickOffsetVector.X,
+                    newLocation.Y - drawImageGhostBitmap.Height/2 - (int) clickOffsetVector.Y);
+                    //Calculates the top left point for the Ghost.
             }
+
+            //And then repaint the panel
+            productAdding.productPanel.Repaint();
         }
 
         public void event_DeleteEnter(object sender, DragEventArgs e)
