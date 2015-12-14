@@ -196,6 +196,9 @@ namespace KantoorInrichting.Controllers.Assortment
                     editProduct.ShowDialog();
                     screen.assortmentGridView.DataSource = null;
                     screen.assortmentGridView.DataSource = ProductModel.result;
+                    FillData();
+                    screen.DropdownCategory.SelectedIndex = 0;
+                    screen.DropdownCategory.SelectedIndex = 0;
                     screen.assortmentGridView.Refresh();
                 }
 
@@ -226,9 +229,43 @@ namespace KantoorInrichting.Controllers.Assortment
             }
         }
 
-        public void DeleteCheckBox()
+        public void DeleteProductCheckBox()
         {
-            
+            if (screen.deleteCheckBox.Checked == true) {
+                // add the deleted products
+                foreach (ProductModel product in ProductModel.list)
+                {
+                    if (product.Removed == true)
+                    {
+                        ProductModel.result.Add(product);
+                    }
+                }
+
+            }
+            else
+            {
+                // remove the deleted products
+                foreach (ProductModel product in ProductModel.list)
+                {
+                    if (product.Removed == true)
+                    {
+                        ProductModel.result.Remove(product);
+                    }
+                }
+            }
+
+            // delete datasource
+            screen.assortmentGridView.DataSource = null;
+            screen.assortmentGridView.Refresh();
+
+            screen.DropdownCategory.SelectedIndex = 0;
+
+            screen.DropdownCategory.SelectedIndex = 0;
+            screen.DropdownBrand.Refresh();
+            screen.DropdownCategory.Refresh();
+            screen.assortmentGridView.DataSource = ProductModel.result;
+            screen.assortmentGridView.Refresh();
+            screen.Refresh();
         }
 
         public void CheckBox1()

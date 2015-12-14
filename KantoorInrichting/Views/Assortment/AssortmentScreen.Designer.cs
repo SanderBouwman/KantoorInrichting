@@ -59,10 +59,9 @@
             this.titel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.titel.Font = new System.Drawing.Font("Microsoft Sans Serif", 26F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.titel.Location = new System.Drawing.Point(2, 35);
-            this.titel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.titel.Location = new System.Drawing.Point(3, 43);
             this.titel.Name = "titel";
-            this.titel.Size = new System.Drawing.Size(372, 41);
+            this.titel.Size = new System.Drawing.Size(496, 50);
             this.titel.TabIndex = 0;
             this.titel.Text = "Assortiment";
             // 
@@ -72,17 +71,18 @@
             this.PanelLeft.Controls.Add(this.addProductButton);
             this.PanelLeft.Controls.Add(this.titel);
             this.PanelLeft.Location = new System.Drawing.Point(0, 0);
-            this.PanelLeft.Margin = new System.Windows.Forms.Padding(2);
-            this.PanelLeft.MinimumSize = new System.Drawing.Size(225, 138);
+            this.PanelLeft.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.PanelLeft.MinimumSize = new System.Drawing.Size(300, 170);
             this.PanelLeft.Name = "PanelLeft";
-            this.PanelLeft.Size = new System.Drawing.Size(378, 331);
+            this.PanelLeft.Size = new System.Drawing.Size(504, 407);
             this.PanelLeft.TabIndex = 1;
             // 
             // addProductButton
             // 
-            this.addProductButton.Location = new System.Drawing.Point(86, 109);
+            this.addProductButton.Location = new System.Drawing.Point(115, 134);
+            this.addProductButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.addProductButton.Name = "addProductButton";
-            this.addProductButton.Size = new System.Drawing.Size(140, 26);
+            this.addProductButton.Size = new System.Drawing.Size(187, 32);
             this.addProductButton.TabIndex = 1;
             this.addProductButton.Text = "Nieuw product toevoegen";
             this.addProductButton.UseVisualStyleBackColor = true;
@@ -115,11 +115,11 @@
             this.delete});
             this.assortmentGridView.Cursor = System.Windows.Forms.Cursors.Hand;
             this.assortmentGridView.GridColor = System.Drawing.SystemColors.ControlLight;
-            this.assortmentGridView.Location = new System.Drawing.Point(0, 140);
-            this.assortmentGridView.Margin = new System.Windows.Forms.Padding(2);
+            this.assortmentGridView.Location = new System.Drawing.Point(0, 172);
+            this.assortmentGridView.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.assortmentGridView.Name = "assortmentGridView";
             this.assortmentGridView.RowTemplate.Height = 50;
-            this.assortmentGridView.Size = new System.Drawing.Size(450, 185);
+            this.assortmentGridView.Size = new System.Drawing.Size(600, 228);
             this.assortmentGridView.TabIndex = 3;
             this.assortmentGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_CellContentClick);
             // 
@@ -185,7 +185,7 @@
             this.Afbeelding.HeaderText = "Afbeelding";
             this.Afbeelding.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Stretch;
             this.Afbeelding.Name = "Afbeelding";
-            this.Afbeelding.Width = 63;
+            this.Afbeelding.Width = 81;
             // 
             // wijzig
             // 
@@ -211,19 +211,20 @@
             this.PanelRight.Controls.Add(this.DropdownCategory);
             this.PanelRight.Controls.Add(this.DropdownBrand);
             this.PanelRight.Controls.Add(this.checkBox1);
-            this.PanelRight.Location = new System.Drawing.Point(234, 0);
-            this.PanelRight.Margin = new System.Windows.Forms.Padding(2);
-            this.PanelRight.MinimumSize = new System.Drawing.Size(210, 138);
+            this.PanelRight.Location = new System.Drawing.Point(312, 0);
+            this.PanelRight.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.PanelRight.MinimumSize = new System.Drawing.Size(279, 169);
             this.PanelRight.Name = "PanelRight";
-            this.PanelRight.Size = new System.Drawing.Size(216, 138);
+            this.PanelRight.Size = new System.Drawing.Size(287, 169);
             this.PanelRight.TabIndex = 4;
             // 
             // deleteCheckBox
             // 
             this.deleteCheckBox.AutoSize = true;
-            this.deleteCheckBox.Location = new System.Drawing.Point(37, 96);
+            this.deleteCheckBox.Location = new System.Drawing.Point(49, 118);
+            this.deleteCheckBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.deleteCheckBox.Name = "deleteCheckBox";
-            this.deleteCheckBox.Size = new System.Drawing.Size(159, 17);
+            this.deleteCheckBox.Size = new System.Drawing.Size(207, 21);
             this.deleteCheckBox.TabIndex = 4;
             this.deleteCheckBox.Text = "Toon verwijderde producten";
             this.deleteCheckBox.UseVisualStyleBackColor = true;
@@ -232,30 +233,30 @@
             // DropdownCategory
             // 
             this.DropdownCategory.FormattingEnabled = true;
-            this.DropdownCategory.Location = new System.Drawing.Point(37, 34);
-            this.DropdownCategory.Margin = new System.Windows.Forms.Padding(2);
+            this.DropdownCategory.Location = new System.Drawing.Point(49, 42);
+            this.DropdownCategory.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.DropdownCategory.Name = "DropdownCategory";
-            this.DropdownCategory.Size = new System.Drawing.Size(92, 21);
+            this.DropdownCategory.Size = new System.Drawing.Size(121, 24);
             this.DropdownCategory.TabIndex = 0;
             this.DropdownCategory.SelectedIndexChanged += new System.EventHandler(this.DropdownCategory_SelectedIndexChanged);
             // 
             // DropdownBrand
             // 
             this.DropdownBrand.FormattingEnabled = true;
-            this.DropdownBrand.Location = new System.Drawing.Point(37, 10);
-            this.DropdownBrand.Margin = new System.Windows.Forms.Padding(2);
+            this.DropdownBrand.Location = new System.Drawing.Point(49, 12);
+            this.DropdownBrand.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.DropdownBrand.Name = "DropdownBrand";
-            this.DropdownBrand.Size = new System.Drawing.Size(92, 21);
+            this.DropdownBrand.Size = new System.Drawing.Size(121, 24);
             this.DropdownBrand.TabIndex = 1;
             this.DropdownBrand.SelectedIndexChanged += new System.EventHandler(this.DropdownBrand_SelectedIndexChanged);
             // 
             // checkBox1
             // 
             this.checkBox1.AutoEllipsis = true;
-            this.checkBox1.Location = new System.Drawing.Point(37, 59);
-            this.checkBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.checkBox1.Location = new System.Drawing.Point(49, 73);
+            this.checkBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(159, 32);
+            this.checkBox1.Size = new System.Drawing.Size(212, 39);
             this.checkBox1.TabIndex = 2;
             this.checkBox1.Text = "Toon afwezige producten";
             this.checkBox1.UseVisualStyleBackColor = true;
@@ -263,13 +264,14 @@
             // 
             // AssortmentScreen
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.PanelRight);
             this.Controls.Add(this.assortmentGridView);
             this.Controls.Add(this.PanelLeft);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "AssortmentScreen";
-            this.Size = new System.Drawing.Size(450, 331);
+            this.Size = new System.Drawing.Size(600, 407);
             this.PanelLeft.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.assortmentGridView)).EndInit();
             this.PanelRight.ResumeLayout(false);

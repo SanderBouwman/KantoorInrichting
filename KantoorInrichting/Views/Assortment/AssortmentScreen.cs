@@ -50,9 +50,10 @@ namespace KantoorInrichting.Views.Assortment
             this.Refresh();
         }
 
+
         private void DeleteCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            controller.DeleteCheckBox();
+            controller.DeleteProductCheckBox();
         }
     }
 }
