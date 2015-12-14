@@ -63,6 +63,8 @@ namespace KantoorInrichting.Views.Product
                 // check if checkbox is checked
                 if (checkBox1.Checked == false)
                 {
+                            
+
                     // insert category into database
                     catman.controller.AddCategory(Text, textBox2.Text);
                     catman.categoryComboBox.SelectedIndex = 0;
@@ -135,7 +137,10 @@ namespace KantoorInrichting.Views.Product
                     // Get color
                     Color color = colordialog1.Color;
                     // Set TextBox properties.
-                    this.textBox2.Text = string.Format("{0}", color.Name);
+
+                    string text = String.Format("#{0:X2}{1:X2}{2:X2}", color.R, color.G, color.B);
+
+                    this.textBox2.Text = string.Format("{0}", text);
                     this.textBox2.ForeColor = color;
                 }
             }
