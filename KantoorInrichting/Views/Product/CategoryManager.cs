@@ -23,26 +23,32 @@ namespace KantoorInrichting.Views.Product
         {
             this.controller = controller;
             InitializeComponent();
+            refreshComboBox();
 
-            this.categoryTableAdapter.Fill(this.kantoorInrichtingDataSet.category);
-            var categoryList = kantoorInrichtingDataSet.category;
-            
-            controller.fillcombobox(CategoryModel.CategoryList, categoryComboBox);
-
-            controller.fillSubcombobox(CategoryModel.SubcategoryList, subcategoryComboBox, categoryComboBox);
             //categoryComboBox.SelectedItem = null;
             //subcategoryComboBox.SelectedItem = ;
             
         }
+
+
         //uses the given data to create a new category
         private void newCategoryButton_Click(object sender, EventArgs e)
         {
             NewCategory newcat = new NewCategory(this);
             newcat.Show(this);
-                controller.fillcombobox(CategoryModel.CategoryList, categoryComboBox);
-                controller.fillSubcombobox(CategoryModel.SubcategoryList, subcategoryComboBox, categoryComboBox);
+            refreshComboBox();
+            this.Invalidate();
+            this.Refresh();
         }
 
+        public void refreshComboBox()
+        {
+            this.categoryTableAdapter.Fill(this.kantoorInrichtingDataSet.category);
+            var categoryList = kantoorInrichtingDataSet.category;
+
+            controller.fillcombobox(CategoryModel.CategoryList, categoryComboBox);
+            controller.fillSubcombobox(CategoryModel.SubcategoryList, subcategoryComboBox, categoryComboBox);
+        }
 
         private void categoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -70,8 +76,6 @@ namespace KantoorInrichting.Views.Product
         //saves the created categories
         private void saveButton_Click(object sender, EventArgs e)
         {
-            tempcat = categoryComboBox.SelectedItem.ToString();
-            tempsubcat = subcategoryComboBox.SelectedItem.ToString();
             this.Close();
         }
 

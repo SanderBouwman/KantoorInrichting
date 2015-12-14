@@ -32,7 +32,6 @@ namespace KantoorInrichting.Views.Product
         {
             this.components = new System.ComponentModel.Container();
             this.saveButton = new System.Windows.Forms.Button();
-            this.cancelButton = new System.Windows.Forms.Button();
             this.newCategoryButton = new System.Windows.Forms.Button();
             this.categoryComboBox = new System.Windows.Forms.ComboBox();
             this.categoryLabel = new System.Windows.Forms.Label();
@@ -60,21 +59,9 @@ namespace KantoorInrichting.Views.Product
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(100, 28);
             this.saveButton.TabIndex = 0;
-            this.saveButton.Text = "Save";
+            this.saveButton.Text = "Sluiten";
             this.saveButton.UseVisualStyleBackColor = true;
             this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
-            // 
-            // cancelButton
-            // 
-            this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelButton.Location = new System.Drawing.Point(15, 239);
-            this.cancelButton.Margin = new System.Windows.Forms.Padding(4);
-            this.cancelButton.Name = "cancelButton";
-            this.cancelButton.Size = new System.Drawing.Size(100, 28);
-            this.cancelButton.TabIndex = 1;
-            this.cancelButton.Text = "Cancel";
-            this.cancelButton.UseVisualStyleBackColor = true;
-            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
             // newCategoryButton
             // 
@@ -208,7 +195,6 @@ namespace KantoorInrichting.Views.Product
             this.AcceptButton = this.saveButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.cancelButton;
             this.ClientSize = new System.Drawing.Size(468, 275);
             this.ControlBox = false;
             this.Controls.Add(this.groupBox1);
@@ -217,7 +203,6 @@ namespace KantoorInrichting.Views.Product
             this.Controls.Add(this.categoryLabel);
             this.Controls.Add(this.categoryComboBox);
             this.Controls.Add(this.newCategoryButton);
-            this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.saveButton);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
@@ -242,12 +227,11 @@ namespace KantoorInrichting.Views.Product
         #endregion
 
         private System.Windows.Forms.Button saveButton;
-        private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.Button newCategoryButton;
-        private System.Windows.Forms.ComboBox categoryComboBox;
+        public System.Windows.Forms.ComboBox categoryComboBox;
         private System.Windows.Forms.Label categoryLabel;
         private System.Windows.Forms.Label subCategoryLabel;
-        private System.Windows.Forms.ComboBox subcategoryComboBox;
+        public System.Windows.Forms.ComboBox subcategoryComboBox;
         private KantoorInrichtingDataSet kantoorInrichtingDataSet;
         private System.Windows.Forms.BindingSource categoryBindingSource;
         private KantoorInrichtingDataSetTableAdapters.categoryTableAdapter categoryTableAdapter;

@@ -28,11 +28,6 @@ namespace KantoorInrichting.Views.Product
             controller = DatabaseController.Instance;
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-            
-        }
-
         private void saveButton_Click(object sender, EventArgs e)
         {
             
@@ -69,15 +64,28 @@ namespace KantoorInrichting.Views.Product
                 if (checkBox1.Checked == false)
                 {
                     // insert category into database
-                    catman.controller.AddCategory(Text, "#FFFFFF");
-
+                    catman.controller.AddCategory(Text, textBox2.Text);
+                    catman.categoryComboBox.SelectedIndex = 0;
                     this.Close();
                 }
                 else
                 {
-                    // insert subcategory into database
+                    // get the mainCategory ID
 
-                    //this.Close();
+                    // linq select category with the current name
+                    var selectedcategory = CategoryModel.list
+                            .Where(c => c.name == comboBox1.SelectedItem.ToString())
+                            .Select(c => c)
+                            .ToList();
+
+                    // test the current iD
+                    //MessageBox.Show("geselecteerde categorie ID =" + selectedcategory[0].catID);
+                    
+
+                    // insert subcategory into database
+                    catman.controller.AddSubCategory(Text, textBox2.Text, selectedcategory[0].catID);
+                    catman.categoryComboBox.SelectedIndex = 0;
+                    this.Close();
                 }
             }
 
@@ -109,5 +117,29 @@ namespace KantoorInrichting.Views.Product
             return char.ToUpper(text[0]) +
                 ((text.Length > 1) ? text.Substring(1).ToLower() : string.Empty);
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked)
+            {
+                MessageBox.Show("een subcategorie heeft geen kleur, deze gebruikt de kleur van de hoofdcategorie");
+            }
+            else
+            {
+                ColorDialog colordialog1 = new ColorDialog();
+                //show the dialog.
+                DialogResult result = colordialog1.ShowDialog();
+                // See if OK was pressed.
+                if (result == DialogResult.OK)
+                {
+                    // Get color
+                    Color color = colordialog1.Color;
+                    // Set TextBox properties.
+                    this.textBox2.Text = string.Format("{0}", color.Name);
+                    this.textBox2.ForeColor = color;
+                }
+            }
+        }
+
     }
 }
