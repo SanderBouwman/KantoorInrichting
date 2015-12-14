@@ -35,6 +35,7 @@ namespace KantoorInrichting.Controllers.Assortment
             var addNewProduct = new AddNewProductScreen();
             addNewProduct.ShowDialog();
             screen.assortmentGridView.DataSource = null;
+            ProductModel.result = ProductModel.list;
             screen.assortmentGridView.DataSource = ProductModel.result;
             screen.assortmentGridView.Refresh();
         }
@@ -232,6 +233,58 @@ namespace KantoorInrichting.Controllers.Assortment
                     foreach (ProductModel product in ProductModel.list)
                     {
                         if (product.Amount < 1 && product.Brand == screen.DropdownBrand.SelectedItem.ToString())
+                        {
+                            ProductModel.result.Remove(product);
+                        }
+                    }
+                }
+            }
+            // if there is a category filter only
+            else if (screen.DropdownCategory.SelectedIndex > 0)
+            {
+                // add all product with amount of less than 1 and filtered on the brand
+                if (screen.checkBox1.Checked == false)
+                {
+                    foreach (ProductModel product in ProductModel.list)
+                    {
+                        if (product.Amount < 1 && product.category == screen.DropdownCategory.SelectedItem.ToString())
+                        {
+                            ProductModel.result.Add(product);
+                        }
+                    }
+                }
+                // remove all product with amount of less than 1 and filtered on the brand
+                if (screen.checkBox1.Checked == true)
+                {
+                    foreach (ProductModel product in ProductModel.list)
+                    {
+                        if (product.Amount < 1 && product.category == screen.DropdownCategory.SelectedItem.ToString())
+                        {
+                            ProductModel.result.Remove(product);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                // add all product with amount of less than 1
+                if (screen.checkBox1.Checked == false)
+                {
+                    foreach (ProductModel product in ProductModel.list)
+                    {
+                        if (product.Amount < 1)
+                        {
+
+                            ProductModel.result.Add(product);
+                        }
+                    }
+                }
+                // remove all product with amount of less than 1
+                if (screen.checkBox1.Checked == true)
+                {
+                    foreach (ProductModel product in ProductModel.list)
+                    {
+                        if (product.Amount < 1)
                         {
                             ProductModel.result.Remove(product);
                         }

@@ -38,6 +38,9 @@ namespace KantoorInrichting.Controllers.Placement
         private PlacedProduct currentProduct;
         private Point clickLocation;
         private int MovementSpeed = 5;
+
+        private Bitmap drawImageGhostBitmap = new Bitmap(Properties.Resources.No_Image_Available, 50, 50);
+        private Point drawImageGhostPoint = new Point(0,0);
         #endregion Variables
 
         private void ppList_CollectionChanged(object sender, EventArgs e)
@@ -93,6 +96,16 @@ namespace KantoorInrichting.Controllers.Placement
             currentProduct = null;
         }
         //
+        public void FixUserData()
+        {
+            foreach (PlacedProduct placedP in placedProductList)
+            {
+                placedP.resetImage();
+            }
+            productAdding.productList1.fixInformation();
+            productAdding.productInfo1.setProduct(productAdding.productInfo1.product);
+        }
+        //
         public void redrawPanel(Graphics g)
         {
             Vector p1;
@@ -128,6 +141,10 @@ namespace KantoorInrichting.Controllers.Placement
                 //Draw the image
                 g.DrawImage(pp.rotatedMap, pp.location.X - (pp.rotatedMap.Width / 2), pp.location.Y - (pp.rotatedMap.Height / 2));
             }
+
+
+            //Draw the Ghost when dragdropping
+
         }
 
 
@@ -219,6 +236,55 @@ namespace KantoorInrichting.Controllers.Placement
             
             return;   
         }        
+
+        public void event_DragOver(object sender, DragEventArgs e)
+        {
+            //If not ProductModel or PlacedProduct, then exit out, because you can only get the location from them
+            if (!e.Data.GetDataPresent(typeof(ProductModel)) || !e.Data.GetDataPresent((typeof(PlacedProduct))))
+            {
+                return;
+            }
+            Point newLocation = new Point(e.X, e.Y);
+            newLocation = motherFrame.PointToClient(newLocation);
+            newLocation.X -= productAdding.productPanel.Left;
+            newLocation.Y -= productAdding.productPanel.Top;
+            newLocation.Y -= motherFrame.menuStrip1.Height;
+
+            newLocation.X /= MovementSpeed; newLocation.X *= MovementSpeed; //Round down to the movement speed.
+            newLocation.Y /= MovementSpeed; newLocation.Y *= MovementSpeed; //Round down to the movement speed.
+            
+
+            Size drawImageSize = new Size(1,1);
+            Color drawImageColor = Color.White;
+
+            if (e.Data.GetDataPresent(typeof (ProductModel)))
+            {
+                //Make a new model, size and color
+                ProductModel model = (ProductModel)e.Data.GetData(typeof (ProductModel));
+                drawImageSize = new Size(model.Width, model.Length);
+                drawImageColor = model.ProductCategory.colour;
+
+                //Colour in the bitmap and resize it.
+                Graphics gfx = Graphics.FromImage(drawImageGhostBitmap);
+                SolidBrush brush = new SolidBrush(drawImageColor);
+                gfx.FillRectangle(brush, new Rectangle(new Point(0, 0), drawImageSize));
+                drawImageGhostBitmap = new Bitmap(ResizeImage(drawImageGhostBitmap, drawImageSize.Width, drawImageSize.Height));
+
+                //Set the new location
+                drawImageGhostPoint = new Point(newLocation.X - model.Width/2, newLocation.Y - model.Length/2); //Calculates the top left point for the Ghost.
+            }
+            else if (e.Data.GetDataPresent(typeof (PlacedProduct)))
+            {
+                //Get the rotated bitmap
+                PlacedProduct placedP = (PlacedProduct)e.Data.GetData(typeof(PlacedProduct));
+                drawImageGhostBitmap = placedP.rotatedMap;
+
+                Vector clickOffsetVector = new Vector((clickLocation.X - placedP.location.X), (clickLocation.Y - placedP.location.Y)); //Get the click offset if the user clicked the bottom left of the image
+
+                //Set the new location
+                drawImageGhostPoint = new Point(newLocation.X - drawImageGhostBitmap.Width / 2, newLocation.Y - drawImageGhostBitmap.Height / 2); //Calculates the top left point for the Ghost.
+            }
+        }
 
         public void event_DeleteEnter(object sender, DragEventArgs e)
         {

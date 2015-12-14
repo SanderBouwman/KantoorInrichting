@@ -32,6 +32,11 @@ namespace KantoorInrichting.Views.Placement
 
             //Invalidate();
         }
+
+        public void fixData()
+        {
+            controller.FixUserData();
+        }
         
         
         //When mouse is down on the panel

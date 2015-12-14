@@ -12,11 +12,13 @@ namespace KantoorInrichting.Controllers.Product
     public class CategoryManagerController
     {
         private CategoryManager catman;
-
+        public DatabaseController dbc;
         public CategoryManagerController()
         {
+            dbc = DatabaseController.Instance;
             catman = new CategoryManager(this);
             catman.ShowDialog();
+            
 
             if (catman.DialogResult == DialogResult.OK)
             {
@@ -78,6 +80,83 @@ namespace KantoorInrichting.Controllers.Product
 
 
         }
+
+
+        public void AddCategory(string text, string color)
+        {
+            
+            //Fill the TableAdapter with data from the dataset, select MAX category_ID, Create an in with MAX category_ID + 1
+            var maxCategory_ID = dbc.DataSet.category.Select("category_id = MAX(category_id)");
+
+            var newCategory_ID = (int)maxCategory_ID[0]["category_id"] + 1;
+
+            // add the object
+            var Category = new CategoryModel(newCategory_ID, text, -1, color);
+            Console.WriteLine(newCategory_ID);
+
+            //add in the database
+
+            //Create a newProductrow and fill the row for each corresponding column
+            var newCategory = dbc.DataSet.category.NewcategoryRow();
+            newCategory.name =Category.name;
+            newCategory.category_id = Category.catID;
+            newCategory.removed = false;
+            newCategory.subcategory_of = (int)Category.isSubcategoryFrom;
+            newCategory.color = color;
+
+            //Try to add the new product row in the database
+            try
+            {
+                dbc.DataSet.category.Rows.Add(newCategory);
+                dbc.CategoryTableAdapter.Update(dbc.DataSet.category);
+                MessageBox.Show("Update successful");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Update failed" + ex);
+                Category = null;
+            }
+
+        }
+
+        public void AddSubCategory(string text, string color, int mainId)
+        {
+
+            //Fill the TableAdapter with data from the dataset, select MAX category_ID, Create an in with MAX category_ID + 1
+            var maxCategory_ID = dbc.DataSet.category.Select("category_id = MAX(category_id)");
+
+            var newCategory_ID = (int)maxCategory_ID[0]["category_id"] + 1;
+
+            // add the object
+            var Category = new CategoryModel(newCategory_ID, text, mainId, color);
+            Console.WriteLine(newCategory_ID);
+
+            //add in the database
+
+            //Create a newProductrow and fill the row for each corresponding column
+            var newCategory = dbc.DataSet.category.NewcategoryRow();
+            newCategory.name = Category.name;
+            newCategory.category_id = Category.catID;
+            newCategory.removed = false;
+            newCategory.subcategory_of = (int)Category.isSubcategoryFrom;
+            newCategory.color = color;
+
+            //Try to add the new product row in the database
+            try
+            {
+                dbc.DataSet.category.Rows.Add(newCategory);
+                dbc.CategoryTableAdapter.Update(dbc.DataSet.category);
+                MessageBox.Show("Update successful");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Update failed" + ex);
+                Category = null;
+            }
+
+        }
+
+
 
         public int checkAmountOfProducts(string CatName)
         {

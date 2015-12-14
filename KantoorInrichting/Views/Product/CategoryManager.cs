@@ -23,41 +23,31 @@ namespace KantoorInrichting.Views.Product
         {
             this.controller = controller;
             InitializeComponent();
+            refreshComboBox();
 
-            this.categoryTableAdapter.Fill(this.kantoorInrichtingDataSet.category);
-            var categoryList = kantoorInrichtingDataSet.category;
-            
-            controller.fillcombobox(CategoryModel.CategoryList, categoryComboBox);
-
-            controller.fillSubcombobox(CategoryModel.SubcategoryList, subcategoryComboBox, categoryComboBox);
             //categoryComboBox.SelectedItem = null;
             //subcategoryComboBox.SelectedItem = ;
             
         }
+
+
         //uses the given data to create a new category
         private void newCategoryButton_Click(object sender, EventArgs e)
         {
             NewCategory newcat = new NewCategory(this);
-            newcat.ShowDialog(this);
-            if (newcat.DialogResult == DialogResult.OK)
-            {
-                tempcat = newcat.tempcat;
-                categoryComboBox.Items.Add(tempcat);
-                categoryComboBox.SelectedItem = tempcat;
-            }
+            newcat.Show(this);
+            refreshComboBox();
+            this.Invalidate();
+            this.Refresh();
         }
 
-        //uses the given data to create a new subcategory
-        private void newSubCategoryButton_Click(object sender, EventArgs e)
+        public void refreshComboBox()
         {
-            NewCategory newsubcat = new NewCategory(this);
-            newsubcat.ShowDialog(this);
-            if (newsubcat.DialogResult == DialogResult.OK)
-            {
-                tempsubcat = newsubcat.tempcat;
-                subcategoryComboBox.Items.Add(tempsubcat);
-                subcategoryComboBox.SelectedItem = tempsubcat;
-            }
+            this.categoryTableAdapter.Fill(this.kantoorInrichtingDataSet.category);
+            var categoryList = kantoorInrichtingDataSet.category;
+
+            controller.fillcombobox(CategoryModel.CategoryList, categoryComboBox);
+            controller.fillSubcombobox(CategoryModel.SubcategoryList, subcategoryComboBox, categoryComboBox);
         }
 
         private void categoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -86,8 +76,6 @@ namespace KantoorInrichting.Views.Product
         //saves the created categories
         private void saveButton_Click(object sender, EventArgs e)
         {
-            tempcat = categoryComboBox.SelectedItem.ToString();
-            tempsubcat = subcategoryComboBox.SelectedItem.ToString();
             this.Close();
         }
 

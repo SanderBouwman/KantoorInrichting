@@ -74,6 +74,17 @@ namespace KantoorInrichting.Controllers
                     product.amount, product.image, product.removed);
             }
         }
+
+        //all static products are collected from the database WILL NEED TO BE ENABLED
+        //public void GetStaticProducts_FromDatabase()
+        //{
+        //    foreach (var product in this.DataSet.static_product)
+        //    {
+        //        var sp1 = new StaticObjectModel(product.product_id, product.name, product.wall, 
+        //            product.description, product.width, product.height, product.length);
+        //    }
+        //}
+
         //all spaces are collected from the database
         public void GetSpaces_FromDatabase()
         {
