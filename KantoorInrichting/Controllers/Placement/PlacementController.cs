@@ -166,6 +166,9 @@ namespace KantoorInrichting.Controllers.Placement
             //Draw the products
             foreach (PlacedProduct pp in placedProductList)
             {
+                //Draw the image
+                g.DrawImage(pp.rotatedMap, pp.location.X - (pp.rotatedMap.Width / 2), pp.location.Y - (pp.rotatedMap.Height / 2));
+
                 for (int i = 0; i < pp.Poly.Points.Count; i++)
                 {
                     //Get the lines
@@ -175,8 +178,6 @@ namespace KantoorInrichting.Controllers.Placement
                     //Draw lines between every point
                     g.DrawLine(new Pen(Color.Black), p1, p2);
                 }
-                //Draw the image
-                g.DrawImage(pp.rotatedMap, pp.location.X - (pp.rotatedMap.Width / 2), pp.location.Y - (pp.rotatedMap.Height / 2));
             }
 
 
@@ -278,6 +279,11 @@ namespace KantoorInrichting.Controllers.Placement
             return;   
         }        
 
+        /// <summary>
+        /// Event that triggers when the dragdrop object is dragged  across the screen.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void event_DragOver(object sender, DragEventArgs e)
         {
             //If not ProductModel or PlacedProduct, then exit out, because you can only get the location from them
