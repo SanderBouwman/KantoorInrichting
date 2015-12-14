@@ -51,20 +51,31 @@ namespace KantoorInrichting.Models.Product
 
             //Corner and image
             cornerPoints = new PointF[5];
+            
+            resetImage();
+        }
+
+        /// <summary>
+        /// Resets the images, in the case that the products are updated
+        /// </summary>
+        public void resetImage()
+        {
             defaultBitMap = new Bitmap(product.Width, product.Length);
             Graphics gfx = Graphics.FromImage(defaultBitMap);
             Color color = product.ProductCategory.colour;
             SolidBrush brush = new SolidBrush(color);
             gfx.FillRectangle(brush, 0, 0, product.Width, product.Length);
-            
+
             defaultBitMap = new Bitmap(PlacementController.ResizeImage(defaultBitMap, product.Width, product.Length));
+            //MessageBox.Show(String.Format("Name: {0} -- Width: {1} -- Length: {2}", product.Name, product.Width, product.Length));
 
-            rotatedMap = defaultBitMap;
+            try { rotatedMap.Dispose(); }
+            catch { }
+            rotatedMap = new Bitmap(defaultBitMap, defaultBitMap.Width, defaultBitMap.Height);
+            //MessageBox.Show(String.Format("Name: {0} -- Width: {1} -- Length: {2}", "Rotated Map", product.Width, product.Length));
 
-            //Must be last. Set the angle and reset the points
-            setAngle(angle);
+            setAngle(currentAngle);
         }
-
 
 
         /// <summary>

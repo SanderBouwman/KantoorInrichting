@@ -15,21 +15,14 @@ namespace KantoorInrichting.Views.Placement
 
     public partial class ProductList : UserControl
     {
-        List<ProductModel> listOfProducts;
-        List<StaticObjectModel> listOfStaticProducts;
+        private List<ProductInfo> listOfInformation; 
         public event ProductSelectionChanged SelectionChanged;
 
         public ProductList()
         {
             InitializeComponent();
-
-            listOfProducts = new List<ProductModel>();
-
-            //FUTURE: Get all products from the 'Assortiment'
-            foreach (ProductModel product in ProductModel.list)
-            {
-                listOfProducts.Add(product);
-            }
+            
+            listOfInformation = new List<ProductInfo>();
             
             GenerateProducts(false);
         }
@@ -37,13 +30,9 @@ namespace KantoorInrichting.Views.Placement
         public ProductList(bool uselessparam)
         {
             InitializeComponent();
-
-            listOfStaticProducts = new List<StaticObjectModel>();
-
-            foreach (StaticObjectModel staticobject in StaticObjectModel.list)
-            {
-                listOfStaticProducts.Add(staticobject);
-            }
+            
+            listOfInformation = new List<ProductInfo>();
+            
             GenerateProducts(true);
         }
 
@@ -53,7 +42,7 @@ namespace KantoorInrichting.Views.Placement
             int y = 0;
             if (StaticOrNot == true)
             {
-                foreach (StaticObjectModel product in listOfStaticProducts)
+                foreach (StaticObjectModel product in StaticObjectModel.list)
                 {
                     ProductInfo pi = new ProductInfo();
                     pi.Location = new Point(0, y);
@@ -61,11 +50,12 @@ namespace KantoorInrichting.Views.Placement
                     pi.MouseClick += new MouseEventHandler(product_Selected); //The event
                     pi.pbx_Image.MouseDown += new MouseEventHandler(product_Selected); //The event
                     this.Controls.Add(pi);
+                    listOfInformation.Add(pi);
                     y += pi.Height;
                 }
             } else
             {
-                foreach (ProductModel product in listOfProducts)
+                foreach (ProductModel product in ProductModel.list)
                 {
                     ProductInfo pi = new ProductInfo();
                     pi.Location = new Point(0, y);
@@ -73,6 +63,7 @@ namespace KantoorInrichting.Views.Placement
                     pi.MouseClick += new MouseEventHandler(product_Selected); //The event
                     pi.pbx_Image.MouseDown += new MouseEventHandler(product_Selected); //The event
                     this.Controls.Add(pi);
+                    listOfInformation.Add(pi);
                     y += pi.Height;
                 }
             }
@@ -96,6 +87,20 @@ namespace KantoorInrichting.Views.Placement
                 product_Selected(pb.Parent, e);
             }
             catch { }
+        }
+
+        public void fixInformation()
+        {
+
+            try
+            {
+                this.Controls.Clear();
+                GenerateProducts(false);
+            }
+            catch
+            {
+                
+            }
         }
     }
 

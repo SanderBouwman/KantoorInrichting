@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using KantoorInrichting.Controllers.Grid;
+using KantoorInrichting.Controllers.Placement;
 using KantoorInrichting.Controllers.Product;
 using KantoorInrichting.Models.Grid;
 using KantoorInrichting.Views.Grid;
@@ -66,6 +67,10 @@ namespace KantoorInrichting.Views
             hoofdscherm.MinimumSize = new Size(1050,675);
             hoofdscherm.placement.Visible = true;
             hoofdscherm.placement.Enabled = true;
+
+            //Update the data (size and colour of the PlacedProduct, information of the ProductList and ProductInfo)
+            hoofdscherm.placement.fixData();
+
             this.Visible = false;
             hoofdscherm.placement.BringToFront();
         }
