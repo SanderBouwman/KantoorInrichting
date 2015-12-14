@@ -58,7 +58,9 @@ namespace KantoorInrichting.Views.Product
                 // if exitst error rename
                 MessageBox.Show("Deze categorienaam bestaat al kies een andere naam");
           
-            } else
+            }
+
+            if (exists == false && Text.Length >= 3 && Regex.IsMatch(Text, @"^[a-zA-Z0-9_\s]+$"))
             {
                 // check if checkbox is checked
                 if (checkBox1.Checked == false)
