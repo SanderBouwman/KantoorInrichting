@@ -138,7 +138,7 @@ namespace KantoorInrichting.Views.Product
                     Color color = colordialog1.Color;
                     // Set TextBox properties.
 
-                    string text = String.Format("#{0:X2}{1:X2}{2:X2}", color.R, color.G, color.B);
+                    string text = String.Format("#99{0:X2}{1:X2}{2:X2}", color.R, color.G, color.B);
 
                     this.textBox2.Text = string.Format("{0}", text);
                     this.textBox2.ForeColor = color;
