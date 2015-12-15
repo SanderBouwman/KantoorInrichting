@@ -185,6 +185,12 @@
     <Compile Include="Views\Maps\ShowSpaceScreen.Designer.cs">
       <DependentUpon>ShowSpaceScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Placement\Legend.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Placement\Legend.Designer.cs">
+      <DependentUpon>Legend.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Placement\ProductAdding.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -274,6 +280,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Maps\ShowSpaceScreen.resx">
       <DependentUpon>ShowSpaceScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Placement\Legend.resx">
+      <DependentUpon>Legend.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Placement\ProductAdding.resx">
       <DependentUpon>ProductAdding.cs</DependentUpon>

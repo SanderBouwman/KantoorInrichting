@@ -36,9 +36,11 @@
             this.btn_Left = new System.Windows.Forms.Button();
             this.btn_Down = new System.Windows.Forms.Button();
             this.btn_Right = new System.Windows.Forms.Button();
+            this.titel = new System.Windows.Forms.Label();
+            this.legend1 = new KantoorInrichting.Views.Placement.Legend();
             this.productPanel = new KantoorInrichting.Views.Placement.ProductFieldPanel();
-            this.productInfo1 = new KantoorInrichting.Views.Placement.ProductInfo();
             this.productList1 = new KantoorInrichting.Views.Placement.ProductList();
+            this.productInfo1 = new KantoorInrichting.Views.Placement.ProductInfo();
             this.ButtonControlPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,18 +54,20 @@
             this.ButtonControlPanel.Controls.Add(this.btn_Left);
             this.ButtonControlPanel.Controls.Add(this.btn_Down);
             this.ButtonControlPanel.Controls.Add(this.btn_Right);
-            this.ButtonControlPanel.Location = new System.Drawing.Point(877, 430);
+            this.ButtonControlPanel.Location = new System.Drawing.Point(1169, 529);
+            this.ButtonControlPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ButtonControlPanel.Name = "ButtonControlPanel";
-            this.ButtonControlPanel.Size = new System.Drawing.Size(216, 81);
+            this.ButtonControlPanel.Size = new System.Drawing.Size(288, 100);
             this.ButtonControlPanel.TabIndex = 7;
             // 
             // btn_Delete
             // 
             this.btn_Delete.AllowDrop = true;
             this.btn_Delete.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Delete.Location = new System.Drawing.Point(126, 3);
+            this.btn_Delete.Location = new System.Drawing.Point(168, 4);
+            this.btn_Delete.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_Delete.Name = "btn_Delete";
-            this.btn_Delete.Size = new System.Drawing.Size(87, 75);
+            this.btn_Delete.Size = new System.Drawing.Size(116, 92);
             this.btn_Delete.TabIndex = 11;
             this.btn_Delete.Text = "🗑";
             this.btn_Delete.UseVisualStyleBackColor = true;
@@ -74,9 +78,10 @@
             // btn_CW
             // 
             this.btn_CW.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_CW.Location = new System.Drawing.Point(85, 3);
+            this.btn_CW.Location = new System.Drawing.Point(113, 4);
+            this.btn_CW.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_CW.Name = "btn_CW";
-            this.btn_CW.Size = new System.Drawing.Size(35, 35);
+            this.btn_CW.Size = new System.Drawing.Size(47, 43);
             this.btn_CW.TabIndex = 10;
             this.btn_CW.Text = "↷";
             this.btn_CW.UseVisualStyleBackColor = true;
@@ -85,9 +90,10 @@
             // btn_Up
             // 
             this.btn_Up.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Up.Location = new System.Drawing.Point(44, 3);
+            this.btn_Up.Location = new System.Drawing.Point(59, 4);
+            this.btn_Up.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_Up.Name = "btn_Up";
-            this.btn_Up.Size = new System.Drawing.Size(35, 35);
+            this.btn_Up.Size = new System.Drawing.Size(47, 43);
             this.btn_Up.TabIndex = 9;
             this.btn_Up.Text = "↑";
             this.btn_Up.UseVisualStyleBackColor = true;
@@ -96,9 +102,10 @@
             // btn_CCW
             // 
             this.btn_CCW.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_CCW.Location = new System.Drawing.Point(3, 3);
+            this.btn_CCW.Location = new System.Drawing.Point(4, 4);
+            this.btn_CCW.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_CCW.Name = "btn_CCW";
-            this.btn_CCW.Size = new System.Drawing.Size(35, 35);
+            this.btn_CCW.Size = new System.Drawing.Size(47, 43);
             this.btn_CCW.TabIndex = 8;
             this.btn_CCW.Text = "↶";
             this.btn_CCW.UseVisualStyleBackColor = true;
@@ -107,9 +114,10 @@
             // btn_Left
             // 
             this.btn_Left.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Left.Location = new System.Drawing.Point(3, 43);
+            this.btn_Left.Location = new System.Drawing.Point(4, 53);
+            this.btn_Left.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_Left.Name = "btn_Left";
-            this.btn_Left.Size = new System.Drawing.Size(35, 35);
+            this.btn_Left.Size = new System.Drawing.Size(47, 43);
             this.btn_Left.TabIndex = 7;
             this.btn_Left.Text = "←";
             this.btn_Left.UseVisualStyleBackColor = true;
@@ -118,9 +126,10 @@
             // btn_Down
             // 
             this.btn_Down.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Down.Location = new System.Drawing.Point(44, 43);
+            this.btn_Down.Location = new System.Drawing.Point(59, 53);
+            this.btn_Down.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_Down.Name = "btn_Down";
-            this.btn_Down.Size = new System.Drawing.Size(35, 35);
+            this.btn_Down.Size = new System.Drawing.Size(47, 43);
             this.btn_Down.TabIndex = 6;
             this.btn_Down.Text = "↓";
             this.btn_Down.UseVisualStyleBackColor = true;
@@ -129,28 +138,59 @@
             // btn_Right
             // 
             this.btn_Right.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Right.Location = new System.Drawing.Point(85, 43);
+            this.btn_Right.Location = new System.Drawing.Point(113, 53);
+            this.btn_Right.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_Right.Name = "btn_Right";
-            this.btn_Right.Size = new System.Drawing.Size(35, 35);
+            this.btn_Right.Size = new System.Drawing.Size(47, 43);
             this.btn_Right.TabIndex = 5;
             this.btn_Right.Text = "→";
             this.btn_Right.UseVisualStyleBackColor = true;
             this.btn_Right.Click += new System.EventHandler(this.btn_Right_Click);
+            // 
+            // titel
+            // 
+            this.titel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left))));
+            this.titel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.titel.Location = new System.Drawing.Point(8, 741);
+            this.titel.Name = "titel";
+            this.titel.Size = new System.Drawing.Size(150, 41);
+            this.titel.TabIndex = 10;
+            this.titel.Text = "Legenda";
+            // 
+            // legend1
+            // 
+            this.legend1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left))));
+            this.legend1.AutoScroll = true;
+            this.legend1.Location = new System.Drawing.Point(154, 714);
+            this.legend1.Name = "legend1";
+            this.legend1.Size = new System.Drawing.Size(651, 106);
+            this.legend1.TabIndex = 9;
             // 
             // productPanel
             // 
             this.productPanel.AllowDrop = true;
             this.productPanel.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.productPanel.BackgroundImage = global::KantoorInrichting.Properties.Resources.Grid_Small;
-            this.productPanel.Location = new System.Drawing.Point(3, 3);
+            this.productPanel.Location = new System.Drawing.Point(4, 4);
+            this.productPanel.Margin = new System.Windows.Forms.Padding(4);
             this.productPanel.Name = "productPanel";
-            this.productPanel.Size = new System.Drawing.Size(601, 601);
+            this.productPanel.Size = new System.Drawing.Size(801, 703);
             this.productPanel.TabIndex = 8;
             this.productPanel.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDrop_DragDrop);
             this.productPanel.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragDrop_DragEnter);
             this.productPanel.DragOver += new System.Windows.Forms.DragEventHandler(this.Ghost_DragOver);
             this.productPanel.DragLeave += new System.EventHandler(this.Ghost_DragLeave);
             this.productPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Mousedown_Panel);
+            // 
+            // productList1
+            // 
+            this.productList1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.productList1.AutoScroll = true;
+            this.productList1.Location = new System.Drawing.Point(925, 0);
+            this.productList1.Margin = new System.Windows.Forms.Padding(5);
+            this.productList1.Name = "productList1";
+            this.productList1.Size = new System.Drawing.Size(560, 504);
+            this.productList1.TabIndex = 0;
             // 
             // productInfo1
             // 
@@ -159,33 +199,26 @@
             this.productInfo1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.productInfo1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.productInfo1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.productInfo1.Location = new System.Drawing.Point(716, 518);
-            this.productInfo1.Margin = new System.Windows.Forms.Padding(4);
+            this.productInfo1.Location = new System.Drawing.Point(955, 638);
+            this.productInfo1.Margin = new System.Windows.Forms.Padding(5);
             this.productInfo1.Name = "productInfo1";
-            this.productInfo1.Size = new System.Drawing.Size(398, 148);
+            this.productInfo1.Size = new System.Drawing.Size(530, 182);
             this.productInfo1.TabIndex = 6;
-            // 
-            // productList1
-            // 
-            this.productList1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.productList1.AutoScroll = true;
-            this.productList1.Location = new System.Drawing.Point(694, 0);
-            this.productList1.Margin = new System.Windows.Forms.Padding(4);
-            this.productList1.Name = "productList1";
-            this.productList1.Size = new System.Drawing.Size(420, 374);
-            this.productList1.TabIndex = 0;
             // 
             // ProductAdding
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.Controls.Add(this.titel);
+            this.Controls.Add(this.legend1);
             this.Controls.Add(this.productPanel);
             this.Controls.Add(this.productList1);
             this.Controls.Add(this.ButtonControlPanel);
             this.Controls.Add(this.productInfo1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "ProductAdding";
-            this.Size = new System.Drawing.Size(1120, 670);
+            this.Size = new System.Drawing.Size(1493, 825);
             this.ButtonControlPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -203,5 +236,7 @@
         private System.Windows.Forms.Button btn_Right;
         public ProductFieldPanel productPanel;
         private System.Windows.Forms.Button btn_Delete;
+        private Legend legend1;
+        private System.Windows.Forms.Label titel;
     }
 }
