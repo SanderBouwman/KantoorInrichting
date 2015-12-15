@@ -8,8 +8,10 @@ using KantoorInrichting.Models.Product;
 
 #endregion
 
-namespace KantoorInrichting.Controllers.Algorithm {
-    public interface IDesignAlgorithm {
+namespace KantoorInrichting.Controllers.Algorithm
+{
+    public interface IDesignAlgorithm
+    {
         /// <summary>
         /// This method is used to Design a template based on the width, height and margins of a pair of chairs and tables, 
         /// and the width and height of the room.
@@ -23,6 +25,6 @@ namespace KantoorInrichting.Controllers.Algorithm {
         /// <param name="margin"></param>
         /// <returns></returns>
         List<ProductModel> Design(ProductModel exampleChair, ProductModel exampleTable,
-                                    int people, int width, int height, float margin);
+            int people, int width, int height, float margin);
     }
 }
