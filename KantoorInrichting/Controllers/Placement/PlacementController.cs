@@ -448,6 +448,7 @@ namespace KantoorInrichting.Controllers.Placement
                 if (r.WillIntersect)
                 {
                     //At the collision, quit the method
+                    productAdding.productPanel.Repaint();
                     return;
                 }
             }
@@ -474,6 +475,7 @@ namespace KantoorInrichting.Controllers.Placement
             //Failsafe if user clicks the item and doesn't want to move it.
             if (Math.Abs(clickLocation.X - newLocation.X) == 0 || Math.Abs(clickLocation.Y - newLocation.Y) == 0)
             {
+                productAdding.productPanel.Repaint();
                 return;
             }
 
