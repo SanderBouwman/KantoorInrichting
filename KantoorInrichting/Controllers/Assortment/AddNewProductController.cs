@@ -263,7 +263,7 @@ namespace KantoorInrichting.Controllers.Assortment
         private bool CopySelectedImage()
         {
             newImagePath = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())) +
-                           @"\Resources\" + newImageFileName;
+                            @"\ICTSE1B5\Kantoor Inrichting\Resources\" + newImageFileName;
             try
             {
                 File.Copy(newImageSource, newImagePath);
