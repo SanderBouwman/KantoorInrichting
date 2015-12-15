@@ -272,7 +272,8 @@ namespace KantoorInrichting.Controllers.Assortment
             catch (IOException ex)
             {
                 string v = ex.Data.ToString();
-                MessageBox.Show("Er bestaat al een bestand met deze naam");
+                //MessageBox.Show("Er bestaat al een bestand met deze naam");
+                MessageBox.Show(v);
                 return false;
             }
         }
