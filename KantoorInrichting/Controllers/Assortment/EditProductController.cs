@@ -35,7 +35,7 @@ namespace KantoorInrichting.Controllers.Assortment
             dbc = DatabaseController.Instance;
             this.product = product;
             currentImagePath = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())) +
-                               @"ICTSE1B5\Kantoor Inrichting\Resources\" + product.ImageFileName;
+                               @"\Resources\" + product.ImageFileName;
             isNewImage = false;
             FillComboBox();
             FillTextBoxes();
@@ -262,7 +262,7 @@ namespace KantoorInrichting.Controllers.Assortment
             if (isNewImage)
             {
                 newImagePath = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())) +
-                                @"\ICTSE1B5\Kantoor Inrichting\Resources\" + newImageFileName;
+                               @"\Resources\" + newImageFileName;
                 try
                 {
                     File.Copy(newImageSource, newImagePath);
