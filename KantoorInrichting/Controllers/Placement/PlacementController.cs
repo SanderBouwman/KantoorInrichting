@@ -47,7 +47,7 @@ namespace KantoorInrichting.Controllers.Placement
         private void ppList_CollectionChanged(object sender, EventArgs e)
         {
             //The method to repaint the panel if the information stored inside the list has changed (ie. a product has moved).
-            productAdding.productPanel.Repaint();
+            doRepaint();
         }
         //
         public PlacementController(MainFrame motherFrame, ProductAdding pa)
@@ -143,6 +143,18 @@ namespace KantoorInrichting.Controllers.Placement
             return usedColor;
         }
         //
+        private void doRepaint()
+        {
+            draggingItem = false;
+            productAdding.productPanel.Repaint();
+        }
+
+        private void doRepaintWithGhost()
+        {
+            draggingItem = true;
+            productAdding.productPanel.Repaint();
+        }
+
         public void redrawPanel(Graphics g)
         {
             Vector p1;
@@ -182,9 +194,9 @@ namespace KantoorInrichting.Controllers.Placement
 
 
             //Draw the Ghost when dragdropping
-            if(draggingItem) { g.DrawImage(drawImageGhostBitmap, drawImageGhostPoint);}
+            if(draggingItem) { g.DrawImage(drawImageGhostBitmap, drawImageGhostPoint); draggingItem = false; }
 
-            draggingItem = false;
+            
         }
 
 
@@ -205,7 +217,7 @@ namespace KantoorInrichting.Controllers.Placement
 
             currentProduct.addAngle(angle);
 
-            productAdding.productPanel.Repaint();
+            doRepaint();
         }
 
         /// <summary>
@@ -225,7 +237,7 @@ namespace KantoorInrichting.Controllers.Placement
             currentProduct.gridSpace = speed;
             placement_Move(currentProduct, x_Axis);
 
-            productAdding.productPanel.Repaint();
+            doRepaint();
         }
 
         public void button_Delete()
@@ -275,7 +287,7 @@ namespace KantoorInrichting.Controllers.Placement
             }
             
             //Repaint so that the ghost image is removed
-            productAdding.productPanel.Repaint();
+            doRepaint();
             return;   
         }        
 
@@ -346,7 +358,7 @@ namespace KantoorInrichting.Controllers.Placement
             }
 
             //And then repaint the panel
-            productAdding.productPanel.Repaint();
+            doRepaintWithGhost();
         }
 
         /// <summary>
@@ -356,7 +368,7 @@ namespace KantoorInrichting.Controllers.Placement
         /// <param name="e"></param>
         public void event_DragLeave(object sender, EventArgs e)
         {
-            productAdding.productPanel.Repaint();
+            doRepaint();
         }
 
         public void event_DeleteEnter(object sender, DragEventArgs e)
@@ -448,7 +460,7 @@ namespace KantoorInrichting.Controllers.Placement
                 if (r.WillIntersect)
                 {
                     //At the collision, quit the method
-                    productAdding.productPanel.Repaint();
+                    doRepaint();
                     return;
                 }
             }
@@ -459,7 +471,7 @@ namespace KantoorInrichting.Controllers.Placement
             productAdding.productInfo1.setProduct(product.product);
             currentProduct = product;
             //Redraw
-            productAdding.productPanel.Repaint();
+            doRepaint();
         }
         private void placement_MoveProduct(object sender, DragEventArgs e)
         {
@@ -475,7 +487,7 @@ namespace KantoorInrichting.Controllers.Placement
             //Failsafe if user clicks the item and doesn't want to move it.
             if (Math.Abs(clickLocation.X - newLocation.X) == 0 || Math.Abs(clickLocation.Y - newLocation.Y) == 0)
             {
-                productAdding.productPanel.Repaint();
+                doRepaint();
                 return;
             }
 
@@ -505,7 +517,7 @@ namespace KantoorInrichting.Controllers.Placement
                 if (r.WillIntersect)
                 {
                     //At the collision, quit the method                    
-                    productAdding.productPanel.Repaint();
+                    doRepaint();
                     return;
                 }
 
@@ -513,7 +525,7 @@ namespace KantoorInrichting.Controllers.Placement
 
             //The moving of the product
             product.MoveTo(delta);
-            productAdding.productPanel.Repaint();
+            doRepaint();
         }
         #endregion Placement Handlers
 
