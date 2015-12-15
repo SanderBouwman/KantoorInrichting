@@ -82,7 +82,7 @@ namespace KantoorInrichting.Models.Product
         //This methods sets the Product image using the name of the image
         public void SetProductImage()
         {
-            string imagePath = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())) + @"\Resources\" + ImageFileName;
+            string imagePath = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())) + @"\ICTSE1B5\Kantoor Inrichting\Resources\" + ImageFileName;
             try
             {
                 Image = Image.FromStream(new MemoryStream(File.ReadAllBytes(imagePath)));
