@@ -273,7 +273,7 @@ namespace KantoorInrichting.Controllers.Assortment
             {
                 string v = ex.Data.ToString();
                 //MessageBox.Show("Er bestaat al een bestand met deze naam");
-                MessageBox.Show(v);
+                MessageBox.Show(ex.ToString());
                 return false;
             }
         }
