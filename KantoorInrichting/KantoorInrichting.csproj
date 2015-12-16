@@ -240,6 +240,12 @@
     <Compile Include="Views\Product\NewCategory.Designer.cs">
       <DependentUpon>NewCategory.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\SpaceChoice\SpaceChoice.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\SpaceChoice\SpaceChoice.Designer.cs">
+      <DependentUpon>SpaceChoice.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -317,6 +323,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Product\NewCategory.resx">
       <DependentUpon>NewCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\SpaceChoice\SpaceChoice.resx">
+      <DependentUpon>SpaceChoice.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

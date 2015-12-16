@@ -140,6 +140,7 @@ namespace KantoorInrichting
         public Views.Maps.MapsScreen MapsScreen;
         public Views.Grid.GridFieldView gridFieldView;
         public Views.Placement.ProductAdding placement;
+        public Views.SpaceChoice.SpaceChoice spaceChoice;
         private System.Windows.Forms.ToolStripMenuItem inrichterToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem navigatieToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem afsluitenToolStripMenuItem;

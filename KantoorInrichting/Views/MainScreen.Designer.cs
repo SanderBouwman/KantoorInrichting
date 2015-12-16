@@ -38,7 +38,7 @@
             // 
             // VooraadButton
             // 
-            this.VooraadButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.VooraadButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.VooraadButton.AutoEllipsis = true;
             this.VooraadButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
@@ -60,7 +60,7 @@
             // 
             // mapButton
             // 
-            this.mapButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.mapButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.mapButton.AutoEllipsis = true;
             this.mapButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
@@ -82,7 +82,7 @@
             // 
             // assortmentButton
             // 
-            this.assortmentButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.assortmentButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.assortmentButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.assortmentButton.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
@@ -103,7 +103,7 @@
             // 
             // ProductAddingButton
             // 
-            this.ProductAddingButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.ProductAddingButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ProductAddingButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ProductAddingButton.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
@@ -118,13 +118,13 @@
             this.ProductAddingButton.Name = "ProductAddingButton";
             this.ProductAddingButton.Size = new System.Drawing.Size(549, 50);
             this.ProductAddingButton.TabIndex = 3;
-            this.ProductAddingButton.Text = "Product Toevoegen";
+            this.ProductAddingButton.Text = "Ruimte indelen";
             this.ProductAddingButton.UseVisualStyleBackColor = false;
             this.ProductAddingButton.Click += new System.EventHandler(this.ProductAddingButton_Click);
             // 
             // CategoryManager
             // 
-            this.CategoryManager.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.CategoryManager.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.CategoryManager.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.CategoryManager.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
@@ -145,7 +145,7 @@
             // 
             // MapsButton
             // 
-            this.MapsButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.MapsButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MapsButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.MapsButton.BackColor = System.Drawing.SystemColors.GradientActiveCaption;

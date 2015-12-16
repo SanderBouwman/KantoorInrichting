@@ -40,6 +40,7 @@ namespace KantoorInrichting
             this.placement = new Views.Placement.ProductAdding(this);
             this.loginScreen1 = new Views.LoginScreen(this);
             this.MapsScreen = new Views.Maps.MapsScreen(this);
+            this.spaceChoice = new Views.SpaceChoice.SpaceChoice(this);
             //
             // assortmentScreen
             //
@@ -86,6 +87,13 @@ namespace KantoorInrichting
             this.MapsScreen.Name = "Plattegronden";
             this.MapsScreen.TabIndex = 1;
 
+            // 
+            // spaceChoice
+            // 
+            this.spaceChoice.Anchor = ((AnchorStyles)((((AnchorStyles.Top | AnchorStyles.Bottom) | AnchorStyles.Left) | AnchorStyles.Right)));
+            this.spaceChoice.Name = "Kies een ruimte";
+            this.spaceChoice.TabIndex = 1;
+
 
 
             AddPanelToMainscreen(assortmentScreen);
@@ -95,6 +103,7 @@ namespace KantoorInrichting
             AddPanelToMainscreen(loginScreen1);
             AddPanelToMainscreen(placement);
             AddPanelToMainscreen(MapsScreen);
+            AddPanelToMainscreen(spaceChoice);
 
             //after adding the panels make the loginscreen visisble (other then default)
 
