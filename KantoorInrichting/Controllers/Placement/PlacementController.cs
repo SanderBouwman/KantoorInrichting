@@ -32,6 +32,8 @@ namespace KantoorInrichting.Controllers.Placement
 
         //List of all product currently placed on the screen.
         public static ObservableCollection<PlacedProduct> placedProductList = new ObservableCollection<PlacedProduct>();
+        // above has to be static because it is used in alot of other classes, still needs to be fixed
+        public ObservableCollection<PlacedProduct> placedProducts = new ObservableCollection<PlacedProduct>();
         public static List<StaticlyPlacedObject> staticlyPlacedObjectList;
 
         public MainFrame motherFrame;
@@ -39,6 +41,7 @@ namespace KantoorInrichting.Controllers.Placement
         private PlacedProduct currentProduct;
         private Point clickLocation;
         private int MovementSpeed = 5;
+        DatabaseController dbc = DatabaseController.Instance;
 
         private Bitmap drawImageGhostBitmap = new Bitmap(Properties.Resources.No_Image_Available, 50, 50);
         private Point drawImageGhostPoint = new Point(0,0);
@@ -200,6 +203,25 @@ namespace KantoorInrichting.Controllers.Placement
 
             
         }
+        //
+        public void placeProducts()
+        {  
+            foreach (var placedProduct in dbc.DataSet.placement)
+            {
+                if (placedProduct.space_number == productAdding.space.Room)
+                {
+                    // get placed productID product
+                    foreach (ProductModel product in ProductModel.list)
+                    {
+                        if (product.Product_id == placedProduct.product_id)
+                        {
+
+                            Point point = new Point(placedProduct.x_position,placedProduct.y_position);
+                            PlacedProduct p1 = new PlacedProduct(product, point);
+
+                           placedProductList.Add(p1);
+                        }
+                    }
 
         public static int PlacementCount(ProductModel model)
         {
@@ -213,6 +235,15 @@ namespace KantoorInrichting.Controllers.Placement
                     
             }
             return count;
+        }
+
+                    // placedProducts.Add(placedProduct);
+
+                    
+                }
+               
+            }
+
         }
 
 

@@ -1,4 +1,5 @@
 ﻿using KantoorInrichting.Controllers;
+using KantoorInrichting.Models.Product;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,7 @@ namespace KantoorInrichting.Models.Maps
         public string Room { get; private set; }
         public string Roomnumber { get; private set; }
 
+
         public Space(string Lokaal, string Verdieping, string Gebouw, string Kamernumber, int length, int width, bool final)
         {
             Building = Gebouw;
@@ -28,7 +30,6 @@ namespace KantoorInrichting.Models.Maps
             this.length = length;
             this.width = width;
             this.final = final;
-
 
             list.Add(this);
         }
