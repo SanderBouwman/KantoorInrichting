@@ -269,7 +269,7 @@ namespace KantoorInrichting.Controllers.Placement
 
             String fileName = Path.Combine(resourcesFolderPath, ""+space_number + ".bmp");
             bmp.Save(fileName);
-            MessageBox.Show(resourcesFolderPath);
+            MessageBox.Show("Opgeslagen");
         }
         #endregion Button Events
 
