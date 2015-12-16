@@ -71,7 +71,7 @@ namespace KantoorInrichting.Controllers
             {
                 var p1 = new ProductModel(product.product_id, product.name, product.brand, product.type,
                     product.category_id, product.length, product.width, product.height, product.description,
-                    product.amount, product.image, product.removed);
+                    product.amount, product.image, product.removed, product.price);
             }
         }
 
@@ -90,7 +90,7 @@ namespace KantoorInrichting.Controllers
         {
             foreach (var space in this.DataSet.space)
             {
-                var s1 = new Space(space.space_number, space.floor, space.building, space.roomnumber);
+                var s1 = new Space(space.space_number, space.floor, space.building, space.roomnumber,space.length,space.width,space.final);
             }
         }
         public void GetCategories_FromDatabase()

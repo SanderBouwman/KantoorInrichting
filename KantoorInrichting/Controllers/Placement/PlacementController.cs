@@ -9,6 +9,7 @@ using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -250,15 +251,25 @@ namespace KantoorInrichting.Controllers.Placement
 
         public void button_Save()
         {
+            string space_number = "D2.38";
             foreach (PlacedProduct product in placedProductList)
             {
                 string X = product.location.X.ToString();
                 string Y = product.location.Y.ToString();
                 int product_id = product.product.Product_id;
                 int staticPlacementID = 1;
-                string space_number = "D2-38";
-                MessageBox.Show("X-waarde: " + X + ", Y-waarde: " + Y + "product-id: " + product_id + "staticPlacementID: " + staticPlacementID + "Lokaal: " + space_number);
+               
+               // MessageBox.Show("X-waarde: " + X + ", Y-waarde: " + Y + "product-id: " + product_id + "staticPlacementID: " + staticPlacementID + "Lokaal: " + space_number);
             }
+            string appFolderPath = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+            string resourcesFolderPath = Path.Combine(
+    Directory.GetParent(appFolderPath).Parent.FullName, "Resources");
+            Bitmap bmp = new Bitmap(productAdding.productPanel.Width, productAdding.productPanel.Height);
+            productAdding.productPanel.DrawToBitmap(bmp, productAdding.productPanel.Bounds);
+
+            String fileName = Path.Combine(resourcesFolderPath, ""+space_number + ".bmp");
+            bmp.Save(fileName);
+            MessageBox.Show("Opgeslagen");
         }
         #endregion Button Events
 

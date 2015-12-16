@@ -26,6 +26,7 @@ namespace KantoorInrichting.Controllers.Assortment
         private ProductModel product;
         private string type;
         private int width;
+        private decimal price;
 
         public AddNewProductController(AddNewProductScreen screen)
         {
@@ -48,7 +49,7 @@ namespace KantoorInrichting.Controllers.Assortment
         {
             //There are 10 checks the validation has to pass, every check it passes there is -1, 
             //when this number reaches 0 it is equal to passing the checks.
-            var validationPassed = 10;
+            var validationPassed = 11;
 
             if (!Regex.IsMatch(_screen.nameTextBox.Text, @"^[a-zA-Z0-9_\s]+$"))
             {
@@ -60,7 +61,7 @@ namespace KantoorInrichting.Controllers.Assortment
                 name = _screen.nameTextBox.Text;
                 validationPassed--;
             }
-            if (!Regex.IsMatch(_screen.typeTextBox.Text, @"^[a-zA-Z0-9_\s]+$"))
+            if (!Regex.IsMatch(_screen.typeTextBox.Text, @"^[a-zA-Z0-9_\s{0,500}]+$"))
             {
                 _screen.errorTypeLabel.Text = "Ongeldige invoer";
             }
@@ -87,7 +88,6 @@ namespace KantoorInrichting.Controllers.Assortment
             else
             {
                 _screen.errorHeightLabel.Text = "";
-
                 try
                 {
                     height = int.Parse(_screen.heightTextBox.Text);
@@ -97,7 +97,6 @@ namespace KantoorInrichting.Controllers.Assortment
                 {
                     MessageBox.Show("Te groot aantal bij Hoogte");
                 }
-                
             }
             if (!Regex.IsMatch(_screen.widthTextBox.Text, @"^[0-9]+$"))
             {
@@ -150,6 +149,16 @@ namespace KantoorInrichting.Controllers.Assortment
                     MessageBox.Show("Te groot aantal bij Aantal");
                 }
             }
+            if (!Regex.IsMatch(_screen.priceTextBox.Text, @"^[\d][0 - 9][.,][\d][0 - 9]{ 1,2}$"))
+            {
+                _screen.errorPriceLabel.Text = "Ongeldige invoer";
+            }
+            else
+            {
+                _screen.errorPriceLabel.Text = "";
+                price = decimal.Parse(_screen.priceTextBox.Text);
+                validationPassed--;
+            }
             if (_screen.categoryComboBox.SelectedIndex < 0)
             {
                 _screen.errorCategoryLabel.Text = "Ongeldige invoer";
@@ -194,7 +203,7 @@ namespace KantoorInrichting.Controllers.Assortment
             var newProduct_ID = (int)maxProduct_ID[0]["Product_ID"] + 1;
 
             var product = new ProductModel(newProduct_ID, name, brand, type, category_ID, length, width, height,
-                description, amount, newImageFileName, false);
+                description, amount, newImageFileName, false, price);
             this.product = product;
         }
 
