@@ -261,9 +261,9 @@ namespace KantoorInrichting.Controllers.Placement
             catch { }
         }
 
-        public void button_Save()
+        public void button_Save(string spacenumber)
         {
-            string space_number = "D2.38";
+            string space_number = spacenumber;
             foreach (PlacedProduct product in placedProductList)
             {
                 string X = product.location.X.ToString();

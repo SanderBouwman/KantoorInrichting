@@ -116,7 +116,7 @@ namespace KantoorInrichting.Views.Placement
 
         private void button1_Click(object sender, EventArgs e)
         {
-            controller.button_Save();
+            controller.button_Save(space.Room);
         }
     }
 }
