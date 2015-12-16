@@ -78,7 +78,8 @@ namespace KantoorInrichting.Models.Product
             SetProductImage();
             Removed = r;
             Price = p;
-            list.Add(this);
+            //list.Add(this);
+            if (n != "") { list.Add(this); } //If the name if empty, don't add it to the list. This is because the name is part of the primary key in the database.
         }
 
         //This methods sets the Product image using the name of the image
@@ -99,10 +100,11 @@ namespace KantoorInrichting.Models.Product
         /// <summary>
         /// Return a default Product
         /// </summary>
-        public ProductModel() : this("", "", "", "", "", 1, 1, 1, "", 1) { }
+        //public ProductModel() : this("", "", "", "", "", 1, 1, 1, "", 1) { }
+        public ProductModel() : this(1, 1, 1) { }
 
 
         //Contructor if you only want to make models that have a size
-        public ProductModel(int length, int width, int height) : this(0, "", "", "", 0, length, width, height, "", 1, "No_Image_Found", false) { }
+        public ProductModel(int length, int width, int height) : this(0, "", "", "", 0, length, width, height, "", 1, "No_Image_Found", false, 0.01m) { }
     }
 }
