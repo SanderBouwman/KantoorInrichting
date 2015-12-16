@@ -43,6 +43,7 @@ namespace KantoorInrichting.Views.Placement
         {
             PlacementController.placedProductList.Clear();
             hoofdscherm.placement.space = spacenr;
+            //this.SpaceNumberTitle.Text = space.Room;
             this.SpaceNumberTextbox.Text = space.Room;
             this.SpaceDimensionsTextbox.Text = space.length + " + " + space.width;
 
