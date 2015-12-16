@@ -101,5 +101,8 @@ namespace KantoorInrichting.Models.Product
         /// </summary>
         public ProductModel() : this("", "", "", "", "", 1, 1, 1, "", 1) { }
 
+
+        //Contructor if you only want to make models that have a size
+        public ProductModel(int length, int width, int height) : this(0, "", "", "", 0, length, width, height, "", 1, "No_Image_Found", false) { }
     }
 }

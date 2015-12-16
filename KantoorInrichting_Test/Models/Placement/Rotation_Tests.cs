@@ -13,7 +13,7 @@ namespace KantoorInrichting_Test.Models.Placement
         {
             //Make
             PointF point = new PointF(200, 200);
-            ProductModel product = new ProductModel("", "", "", "", "", 10, 10, 50, "", 1);
+            ProductModel product = new ProductModel(10, 10, 50);
             PlacedProduct placedP = new PlacedProduct(product, point);
 
             PointF[] pointCorner = new PointF[4];
@@ -68,7 +68,7 @@ namespace KantoorInrichting_Test.Models.Placement
         {
             //Make
             PointF point = new PointF(200, 200);
-            ProductModel product = new ProductModel("", "", "", "", "", 10, 10, 50, "", 1);
+            ProductModel product = new ProductModel(10, 10, 50);
             PlacedProduct placedP = new PlacedProduct(product, point);
 
             PointF[] pointCorner = new PointF[4];
@@ -98,7 +98,7 @@ namespace KantoorInrichting_Test.Models.Placement
         {
             //Make
             PointF point = new PointF(200, 200);
-            ProductModel product = new ProductModel("", "", "", "", "", 10, 10, 50, "", 1);
+            ProductModel product = new ProductModel(10, 10, 50);
             PlacedProduct placedP = new PlacedProduct(product, point);
 
             PointF[] pointCorner = new PointF[4];
@@ -127,7 +127,7 @@ namespace KantoorInrichting_Test.Models.Placement
         {
             //Make
             PointF point = new PointF(200, 200);
-            ProductModel product = new ProductModel("", "", "", "", "", 10, 10, 50, "", 1);
+            ProductModel product = new ProductModel(10, 10, 50);
             PlacedProduct placedP = new PlacedProduct(product, point);
 
             PointF[] pointCorner = new PointF[4];
@@ -156,7 +156,7 @@ namespace KantoorInrichting_Test.Models.Placement
         {
             //Make
             PointF point = new PointF(200, 200);
-            ProductModel product = new ProductModel("", "", "", "", "", 10, 10, 50, "", 1);
+            ProductModel product = new ProductModel(10, 10, 50);
             PlacedProduct placedP = new PlacedProduct(product, point);
 
             PointF[] pointCorner = new PointF[4];
@@ -187,7 +187,7 @@ namespace KantoorInrichting_Test.Models.Placement
         {
             //Make
             PointF point = new PointF(200, 200);
-            ProductModel product = new ProductModel("", "", "", "", "", 10, 10, 50, "", 1);
+            ProductModel product = new ProductModel(10, 10, 50);
             PlacedProduct placedP = new PlacedProduct(product, point);
 
             PointF[] pointCorner = new PointF[4];
@@ -219,7 +219,7 @@ namespace KantoorInrichting_Test.Models.Placement
         {
             //Make
             PointF point = new PointF(200, 200);
-            ProductModel product = new ProductModel("", "", "", "", "", 10, 10, 50, "", 1);
+            ProductModel product = new ProductModel(10, 10, 50);
             PlacedProduct placedP = new PlacedProduct(product, point);
 
             PointF[] pointCorner = new PointF[4];
@@ -249,7 +249,7 @@ namespace KantoorInrichting_Test.Models.Placement
         {
             //Make
             PointF point = new PointF(200, 200);
-            ProductModel product = new ProductModel("", "", "", "", "", 10, 10, 50, "", 1);
+            ProductModel product = new ProductModel(10, 10, 50);
             PlacedProduct placedP = new PlacedProduct(product, point);
 
             PointF[] pointCorner = new PointF[4];
@@ -279,7 +279,7 @@ namespace KantoorInrichting_Test.Models.Placement
         {
             //Make
             PointF point = new PointF(200, 200);
-            ProductModel product = new ProductModel("", "", "", "", "", 10, 10, 50, "", 1);
+            ProductModel product = new ProductModel(10, 10, 50);
             PlacedProduct placedP = new PlacedProduct(product, point);
 
             PointF[] pointCorner = new PointF[4];            
@@ -308,7 +308,7 @@ namespace KantoorInrichting_Test.Models.Placement
         {
             //Make
             PointF point = new PointF(200, 200);
-            ProductModel product = new ProductModel("", "", "", "", "", 10, 10, 50, "", 1);
+            ProductModel product = new ProductModel(10, 10, 50);
             PlacedProduct placedP = new PlacedProduct(product, point);
 
             PointF[] pointCorner = new PointF[4];
