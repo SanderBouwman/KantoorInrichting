@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace KantoorInrichting.Models.Maps
 {
-    class Space
+    public class Space
     {
         public static SortableBindingList<Space> list = new SortableBindingList<Space>();
         public static SortableBindingList<Space> result = new SortableBindingList<Space>();
