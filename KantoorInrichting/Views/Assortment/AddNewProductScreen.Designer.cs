@@ -202,14 +202,14 @@
             this.descriptionTextBox.Multiline = true;
             this.descriptionTextBox.Name = "descriptionTextBox";
             this.descriptionTextBox.Size = new System.Drawing.Size(372, 81);
-            this.descriptionTextBox.TabIndex = 9;
+            this.descriptionTextBox.TabIndex = 10;
             // 
             // addButton
             // 
             this.addButton.Location = new System.Drawing.Point(267, 335);
             this.addButton.Name = "addButton";
             this.addButton.Size = new System.Drawing.Size(92, 32);
-            this.addButton.TabIndex = 11;
+            this.addButton.TabIndex = 12;
             this.addButton.Text = "Opslaan";
             this.addButton.UseVisualStyleBackColor = true;
             this.addButton.Click += new System.EventHandler(this.AddButton_Click);
@@ -219,7 +219,7 @@
             this.cancelButton.Location = new System.Drawing.Point(365, 335);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(92, 32);
-            this.cancelButton.TabIndex = 12;
+            this.cancelButton.TabIndex = 13;
             this.cancelButton.Text = "Annuleer";
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.CancelButton_Click);
@@ -230,9 +230,8 @@
             this.errorNameLabel.ForeColor = System.Drawing.Color.Red;
             this.errorNameLabel.Location = new System.Drawing.Point(191, 11);
             this.errorNameLabel.Name = "errorNameLabel";
-            this.errorNameLabel.Size = new System.Drawing.Size(87, 13);
+            this.errorNameLabel.Size = new System.Drawing.Size(0, 13);
             this.errorNameLabel.TabIndex = 22;
-            this.errorNameLabel.Text = "Ongeldige invoer";
             // 
             // errorTypeLabel
             // 
@@ -293,7 +292,7 @@
             this.selectImageButton.Location = new System.Drawing.Point(361, 202);
             this.selectImageButton.Name = "selectImageButton";
             this.selectImageButton.Size = new System.Drawing.Size(92, 32);
-            this.selectImageButton.TabIndex = 10;
+            this.selectImageButton.TabIndex = 11;
             this.selectImageButton.Text = "Afbeelding";
             this.selectImageButton.UseVisualStyleBackColor = true;
             this.selectImageButton.Click += new System.EventHandler(this.SelectImageButton_Click);
@@ -314,7 +313,7 @@
             this.categoryComboBox.Location = new System.Drawing.Point(85, 216);
             this.categoryComboBox.Name = "categoryComboBox";
             this.categoryComboBox.Size = new System.Drawing.Size(100, 21);
-            this.categoryComboBox.TabIndex = 8;
+            this.categoryComboBox.TabIndex = 9;
             // 
             // pictureBox
             // 
@@ -359,7 +358,7 @@
             this.priceTextBox.Location = new System.Drawing.Point(85, 190);
             this.priceTextBox.Name = "priceTextBox";
             this.priceTextBox.Size = new System.Drawing.Size(100, 20);
-            this.priceTextBox.TabIndex = 35;
+            this.priceTextBox.TabIndex = 8;
             // 
             // errorPriceLabel
             // 

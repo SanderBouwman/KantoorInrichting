@@ -192,14 +192,22 @@ namespace KantoorInrichting.Controllers.Assortment
                 {
                     // run edit screen here
                     // make an editscreen with current product as argument
+                    DialogResult dia = new DialogResult();
                     var editProduct = new EditProductScreen(ProductModel.result[e.RowIndex]);
-                    editProduct.ShowDialog();
-                    screen.assortmentGridView.DataSource = null;
-                    screen.assortmentGridView.DataSource = ProductModel.result;
-                    FillData();
-                    screen.DropdownCategory.SelectedIndex = 0;
-                    screen.DropdownCategory.SelectedIndex = 0;
-                    screen.assortmentGridView.Refresh();
+                    dia = editProduct.ShowDialog();
+                    if (dia == DialogResult.OK)
+                    {
+                        screen.assortmentGridView.DataSource = null;
+                        screen.assortmentGridView.DataSource = ProductModel.result;
+                        FillData();
+                        screen.DropdownCategory.SelectedIndex = 0;
+                        screen.DropdownBrand.SelectedIndex = 0;
+                        screen.assortmentGridView.Refresh();
+                    }
+                    else
+                    {
+                        screen.assortmentGridView.Refresh();
+                    }
                 }
 
                 if (e.ColumnIndex == 11)
@@ -213,7 +221,7 @@ namespace KantoorInrichting.Controllers.Assortment
                         screen.assortmentGridView.DataSource = ProductModel.result;
                         FillData();
                         screen.DropdownCategory.SelectedIndex = 0;
-                        screen.DropdownCategory.SelectedIndex = 0;
+                        screen.DropdownBrand.SelectedIndex = 0;
                         screen.assortmentGridView.Refresh();
                     } else
                     {
@@ -221,7 +229,7 @@ namespace KantoorInrichting.Controllers.Assortment
                         screen.assortmentGridView.DataSource = ProductModel.result;
                         FillData();
                         screen.DropdownCategory.SelectedIndex = 0;
-                        screen.DropdownCategory.SelectedIndex = 0;
+                        screen.DropdownBrand.SelectedIndex = 0;
                         screen.assortmentGridView.Refresh();
                     }
 
@@ -257,10 +265,8 @@ namespace KantoorInrichting.Controllers.Assortment
             // delete datasource
             screen.assortmentGridView.DataSource = null;
             screen.assortmentGridView.Refresh();
-
             screen.DropdownCategory.SelectedIndex = 0;
-
-            screen.DropdownCategory.SelectedIndex = 0;
+            screen.DropdownBrand.SelectedIndex = 0;
             screen.DropdownBrand.Refresh();
             screen.DropdownCategory.Refresh();
             screen.assortmentGridView.DataSource = ProductModel.result;

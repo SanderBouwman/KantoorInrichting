@@ -14,7 +14,7 @@ namespace KantoorInrichting.Controllers.Assortment
         private DatabaseController dbc;
         private int amount;
         private string brand;
-        private int category_ID;
+        private int category_id;
         private string description;
         private int height;
         private int length;
@@ -61,7 +61,7 @@ namespace KantoorInrichting.Controllers.Assortment
                 name = screen.nameTextBox.Text;
                 validationPassed--;
             }
-            if (!Regex.IsMatch(screen.typeTextBox.Text, @"^[a-zA-Z0-9_\s{0,500}]+$"))
+            if (!Regex.IsMatch(screen.typeTextBox.Text, @"^[a-zA-Z0-9_-]{0,500}$"))
             {
                 screen.errorTypeLabel.Text = "Ongeldige invoer";
             }
@@ -149,7 +149,7 @@ namespace KantoorInrichting.Controllers.Assortment
                     MessageBox.Show("Te groot aantal bij Aantal");
                 }
             }
-            if (!Regex.IsMatch(screen.priceTextBox.Text, @"^[\d][0 - 9][.,][\d][0 - 9]{ 1,2}$"))
+            if (!Regex.IsMatch(screen.priceTextBox.Text, @"[\d]{1,12}([.,][\d]{1,2})?"))
             {
                 screen.errorPriceLabel.Text = "Ongeldige invoer";
             }
@@ -166,7 +166,7 @@ namespace KantoorInrichting.Controllers.Assortment
             else
             {
                 screen.errorCategoryLabel.Text = "";
-                category_ID = screen.categoryComboBox.SelectedIndex;
+                category_id = screen.categoryComboBox.SelectedIndex;
                 validationPassed--;
             }
             if (!Regex.IsMatch(screen.descriptionTextBox.Text, @"^[a-zA-Z0-9\s\p{P}\d]+$"))
@@ -202,7 +202,7 @@ namespace KantoorInrichting.Controllers.Assortment
             var maxProduct_ID = dbc.DataSet.product.Select("Product_ID = MAX(Product_ID)");
             var newProduct_ID = (int)maxProduct_ID[0]["Product_ID"] + 1;
 
-            var product = new ProductModel(newProduct_ID, name, brand, type, category_ID, length, width, height,
+            var product = new ProductModel(newProduct_ID, name, brand, type, category_id, length, width, height,
                 description, amount, newImageFileName, false, price);
             this.product = product;
         }
@@ -224,6 +224,7 @@ namespace KantoorInrichting.Controllers.Assortment
             newProduct.image = product.ImageFileName;
             newProduct.category_id = product.ProductCategory.catID;
             newProduct.description = product.Description;
+            newProduct.price = product.Price;
 
             //Try to add the new product row in the database
             try

@@ -60,6 +60,9 @@
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.categoryComboBox = new System.Windows.Forms.ComboBox();
             this.errorCategoryLabel = new System.Windows.Forms.Label();
+            this.errorPriceLabel = new System.Windows.Forms.Label();
+            this.priceTextBox = new System.Windows.Forms.TextBox();
+            this.priceLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -67,7 +70,7 @@
             // 
             this.errorImageLabel.AutoSize = true;
             this.errorImageLabel.ForeColor = System.Drawing.Color.Red;
-            this.errorImageLabel.Location = new System.Drawing.Point(368, 161);
+            this.errorImageLabel.Location = new System.Drawing.Point(367, 188);
             this.errorImageLabel.Name = "errorImageLabel";
             this.errorImageLabel.Size = new System.Drawing.Size(0, 13);
             this.errorImageLabel.TabIndex = 64;
@@ -76,17 +79,17 @@
             // 
             this.errorDescriptionLabel.AutoSize = true;
             this.errorDescriptionLabel.ForeColor = System.Drawing.Color.Red;
-            this.errorDescriptionLabel.Location = new System.Drawing.Point(80, 304);
+            this.errorDescriptionLabel.Location = new System.Drawing.Point(80, 335);
             this.errorDescriptionLabel.Name = "errorDescriptionLabel";
             this.errorDescriptionLabel.Size = new System.Drawing.Size(0, 13);
             this.errorDescriptionLabel.TabIndex = 63;
             // 
             // selectImageButton
             // 
-            this.selectImageButton.Location = new System.Drawing.Point(359, 179);
+            this.selectImageButton.Location = new System.Drawing.Point(363, 205);
             this.selectImageButton.Name = "selectImageButton";
             this.selectImageButton.Size = new System.Drawing.Size(92, 32);
-            this.selectImageButton.TabIndex = 51;
+            this.selectImageButton.TabIndex = 11;
             this.selectImageButton.Text = "Afbeelding";
             this.selectImageButton.UseVisualStyleBackColor = true;
             this.selectImageButton.Click += new System.EventHandler(this.SelectImageButton_Click);
@@ -156,45 +159,45 @@
             // 
             // cancelButton
             // 
-            this.cancelButton.Location = new System.Drawing.Point(363, 304);
+            this.cancelButton.Location = new System.Drawing.Point(363, 335);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(92, 32);
-            this.cancelButton.TabIndex = 53;
+            this.cancelButton.TabIndex = 13;
             this.cancelButton.Text = "Annuleer";
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // addButton
             // 
-            this.addButton.Location = new System.Drawing.Point(265, 304);
+            this.addButton.Location = new System.Drawing.Point(265, 335);
             this.addButton.Name = "addButton";
             this.addButton.Size = new System.Drawing.Size(92, 32);
-            this.addButton.TabIndex = 52;
+            this.addButton.TabIndex = 12;
             this.addButton.Text = "Voeg toe";
             this.addButton.UseVisualStyleBackColor = true;
             this.addButton.Click += new System.EventHandler(this.AddButton_Click);
             // 
             // descriptionTextBox
             // 
-            this.descriptionTextBox.Location = new System.Drawing.Point(83, 217);
+            this.descriptionTextBox.Location = new System.Drawing.Point(83, 248);
             this.descriptionTextBox.Multiline = true;
             this.descriptionTextBox.Name = "descriptionTextBox";
             this.descriptionTextBox.Size = new System.Drawing.Size(372, 81);
-            this.descriptionTextBox.TabIndex = 50;
+            this.descriptionTextBox.TabIndex = 10;
             // 
             // amountTextBox
             // 
             this.amountTextBox.Location = new System.Drawing.Point(83, 164);
             this.amountTextBox.Name = "amountTextBox";
             this.amountTextBox.Size = new System.Drawing.Size(100, 20);
-            this.amountTextBox.TabIndex = 47;
+            this.amountTextBox.TabIndex = 7;
             // 
             // lengthTextBox
             // 
             this.lengthTextBox.Location = new System.Drawing.Point(83, 138);
             this.lengthTextBox.Name = "lengthTextBox";
             this.lengthTextBox.Size = new System.Drawing.Size(100, 20);
-            this.lengthTextBox.TabIndex = 45;
+            this.lengthTextBox.TabIndex = 6;
             // 
             // lengthLabel
             // 
@@ -210,40 +213,40 @@
             this.widthTextBox.Location = new System.Drawing.Point(83, 112);
             this.widthTextBox.Name = "widthTextBox";
             this.widthTextBox.Size = new System.Drawing.Size(100, 20);
-            this.widthTextBox.TabIndex = 43;
+            this.widthTextBox.TabIndex = 5;
             // 
             // heightTextBox
             // 
             this.heightTextBox.Location = new System.Drawing.Point(83, 86);
             this.heightTextBox.Name = "heightTextBox";
             this.heightTextBox.Size = new System.Drawing.Size(100, 20);
-            this.heightTextBox.TabIndex = 42;
+            this.heightTextBox.TabIndex = 4;
             // 
             // brandTextBox
             // 
             this.brandTextBox.Location = new System.Drawing.Point(83, 60);
             this.brandTextBox.Name = "brandTextBox";
             this.brandTextBox.Size = new System.Drawing.Size(100, 20);
-            this.brandTextBox.TabIndex = 40;
+            this.brandTextBox.TabIndex = 3;
             // 
             // typeTextBox
             // 
             this.typeTextBox.Location = new System.Drawing.Point(83, 34);
             this.typeTextBox.Name = "typeTextBox";
             this.typeTextBox.Size = new System.Drawing.Size(100, 20);
-            this.typeTextBox.TabIndex = 38;
+            this.typeTextBox.TabIndex = 2;
             // 
             // nameTextBox
             // 
             this.nameTextBox.Location = new System.Drawing.Point(83, 8);
             this.nameTextBox.Name = "nameTextBox";
             this.nameTextBox.Size = new System.Drawing.Size(100, 20);
-            this.nameTextBox.TabIndex = 35;
+            this.nameTextBox.TabIndex = 1;
             // 
             // categoryLabel
             // 
             this.categoryLabel.AutoSize = true;
-            this.categoryLabel.Location = new System.Drawing.Point(7, 193);
+            this.categoryLabel.Location = new System.Drawing.Point(7, 219);
             this.categoryLabel.Name = "categoryLabel";
             this.categoryLabel.Size = new System.Drawing.Size(52, 13);
             this.categoryLabel.TabIndex = 49;
@@ -261,7 +264,7 @@
             // descriptionLabel
             // 
             this.descriptionLabel.AutoSize = true;
-            this.descriptionLabel.Location = new System.Drawing.Point(7, 220);
+            this.descriptionLabel.Location = new System.Drawing.Point(7, 251);
             this.descriptionLabel.Name = "descriptionLabel";
             this.descriptionLabel.Size = new System.Drawing.Size(67, 13);
             this.descriptionLabel.TabIndex = 44;
@@ -316,9 +319,9 @@
             // 
             this.pictureBox.Image = global::KantoorInrichting.Properties.Resources.No_Image_Available;
             this.pictureBox.InitialImage = null;
-            this.pictureBox.Location = new System.Drawing.Point(301, 8);
+            this.pictureBox.Location = new System.Drawing.Point(288, 8);
             this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(150, 150);
+            this.pictureBox.Size = new System.Drawing.Size(169, 172);
             this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox.TabIndex = 62;
             this.pictureBox.TabStop = false;
@@ -327,25 +330,53 @@
             // 
             this.categoryComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.categoryComboBox.FormattingEnabled = true;
-            this.categoryComboBox.Location = new System.Drawing.Point(83, 190);
+            this.categoryComboBox.Location = new System.Drawing.Point(83, 216);
             this.categoryComboBox.Name = "categoryComboBox";
             this.categoryComboBox.Size = new System.Drawing.Size(100, 21);
-            this.categoryComboBox.TabIndex = 48;
+            this.categoryComboBox.TabIndex = 9;
             // 
             // errorCategoryLabel
             // 
             this.errorCategoryLabel.AutoSize = true;
             this.errorCategoryLabel.ForeColor = System.Drawing.Color.Red;
-            this.errorCategoryLabel.Location = new System.Drawing.Point(189, 193);
+            this.errorCategoryLabel.Location = new System.Drawing.Point(189, 219);
             this.errorCategoryLabel.Name = "errorCategoryLabel";
             this.errorCategoryLabel.Size = new System.Drawing.Size(0, 13);
             this.errorCategoryLabel.TabIndex = 65;
+            // 
+            // errorPriceLabel
+            // 
+            this.errorPriceLabel.AutoSize = true;
+            this.errorPriceLabel.ForeColor = System.Drawing.Color.Red;
+            this.errorPriceLabel.Location = new System.Drawing.Point(189, 193);
+            this.errorPriceLabel.Name = "errorPriceLabel";
+            this.errorPriceLabel.Size = new System.Drawing.Size(0, 13);
+            this.errorPriceLabel.TabIndex = 68;
+            // 
+            // priceTextBox
+            // 
+            this.priceTextBox.Location = new System.Drawing.Point(83, 190);
+            this.priceTextBox.Name = "priceTextBox";
+            this.priceTextBox.Size = new System.Drawing.Size(100, 20);
+            this.priceTextBox.TabIndex = 8;
+            // 
+            // priceLabel
+            // 
+            this.priceLabel.AutoSize = true;
+            this.priceLabel.Location = new System.Drawing.Point(7, 193);
+            this.priceLabel.Name = "priceLabel";
+            this.priceLabel.Size = new System.Drawing.Size(26, 13);
+            this.priceLabel.TabIndex = 66;
+            this.priceLabel.Text = "Prijs";
             // 
             // EditProductScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(469, 344);
+            this.ClientSize = new System.Drawing.Size(469, 375);
+            this.Controls.Add(this.errorPriceLabel);
+            this.Controls.Add(this.priceTextBox);
+            this.Controls.Add(this.priceLabel);
             this.Controls.Add(this.errorCategoryLabel);
             this.Controls.Add(this.categoryComboBox);
             this.Controls.Add(this.errorImageLabel);
@@ -421,5 +452,8 @@
         public System.Windows.Forms.Label nameLabel;
         public System.Windows.Forms.ComboBox categoryComboBox;
         public System.Windows.Forms.Label errorCategoryLabel;
+        public System.Windows.Forms.Label errorPriceLabel;
+        public System.Windows.Forms.TextBox priceTextBox;
+        private System.Windows.Forms.Label priceLabel;
     }
 }

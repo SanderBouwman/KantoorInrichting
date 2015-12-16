@@ -28,6 +28,7 @@ namespace KantoorInrichting.Controllers.Assortment
         private string newImageSource = "";
         private string type;
         private int width;
+        private decimal price;
 
         public EditProductController(EditProductScreen screen, ProductModel product)
         {
@@ -67,12 +68,12 @@ namespace KantoorInrichting.Controllers.Assortment
             }
         }
 
-        //This method checks if the user inputs is correct. When everything is correct it will return True
+        //Validates the input from the textboxes
         private bool ValitdateUserInput()
         {
-            //There are 9 checks the validation has to pass, every check it passes there is -1, 
+            //There are 10 checks the validation has to pass, every check it passes there is -1, 
             //when this number reaches 0 it is equal to passing the checks.
-            var validationPassed = 9;
+            var validationPassed = 10;
 
             if (!Regex.IsMatch(screen.nameTextBox.Text, @"^[a-zA-Z0-9_\s]+$"))
             {
@@ -84,7 +85,7 @@ namespace KantoorInrichting.Controllers.Assortment
                 name = screen.nameTextBox.Text;
                 validationPassed--;
             }
-            if (!Regex.IsMatch(screen.typeTextBox.Text, @"^[a-zA-Z0-9_\s]+$"))
+            if (!Regex.IsMatch(screen.typeTextBox.Text, @"^[a-zA-Z0-9_-]{0,500}$"))
             {
                 screen.errorTypeLabel.Text = "Ongeldige invoer";
             }
@@ -111,8 +112,15 @@ namespace KantoorInrichting.Controllers.Assortment
             else
             {
                 screen.errorHeightLabel.Text = "";
-                height = int.Parse(screen.heightTextBox.Text);
-                validationPassed--;
+                try
+                {
+                    height = int.Parse(screen.heightTextBox.Text);
+                    validationPassed--;
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("Te groot aantal bij Hoogte");
+                }
             }
             if (!Regex.IsMatch(screen.widthTextBox.Text, @"^[0-9]+$"))
             {
@@ -121,8 +129,15 @@ namespace KantoorInrichting.Controllers.Assortment
             else
             {
                 screen.errorWidthLabel.Text = "";
-                width = int.Parse(screen.widthTextBox.Text);
-                validationPassed--;
+                try
+                {
+                    width = int.Parse(screen.widthTextBox.Text);
+                    validationPassed--;
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("Te groot aantal bij Breedte");
+                }
             }
             if (!Regex.IsMatch(screen.lengthTextBox.Text, @"^[0-9]+$"))
             {
@@ -131,8 +146,15 @@ namespace KantoorInrichting.Controllers.Assortment
             else
             {
                 screen.errorLengthLabel.Text = "";
-                length = int.Parse(screen.lengthTextBox.Text);
-                validationPassed--;
+                try
+                {
+                    length = int.Parse(screen.lengthTextBox.Text);
+                    validationPassed--;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Te groot aantal bij Lengte");
+                }
             }
             if (!Regex.IsMatch(screen.amountTextBox.Text, @"^[0-9]+$"))
             {
@@ -141,7 +163,24 @@ namespace KantoorInrichting.Controllers.Assortment
             else
             {
                 screen.errorAmountLabel.Text = "";
-                amount = int.Parse(screen.amountTextBox.Text);
+                try
+                {
+                    amount = int.Parse(screen.amountTextBox.Text);
+                    validationPassed--;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Te groot aantal bij Aantal");
+                }
+            }
+            if (!Regex.IsMatch(screen.priceTextBox.Text, @"[\d]{1,12}([.,][\d]{1,2})?"))
+            {
+                screen.errorPriceLabel.Text = "Ongeldige invoer";
+            }
+            else
+            {
+                screen.errorPriceLabel.Text = "";
+                price = decimal.Parse(screen.priceTextBox.Text);
                 validationPassed--;
             }
             if (screen.categoryComboBox.SelectedIndex < 0)
@@ -185,6 +224,7 @@ namespace KantoorInrichting.Controllers.Assortment
             product.Length = length;
             product.Description = description;
             product.Amount = amount;
+            product.Price = price;
             if (isNewImage)
             {
                 product.ImageFileName = newImageFileName;
@@ -209,7 +249,7 @@ namespace KantoorInrichting.Controllers.Assortment
                 productRow.amount = product.Amount;
                 productRow.image = product.ImageFileName;
                 productRow.description = product.Description;
-
+                productRow.price = product.Price;
                 //Update the database with the new Data
                 dbc.ProductTableAdapter.Update(dbc.DataSet.product);
                 if (isNewImage)
