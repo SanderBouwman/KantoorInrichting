@@ -99,8 +99,10 @@ namespace KantoorInrichting.Views.Placement
 
             try
             {
-                this.Controls.Clear();
-                GenerateProducts(false);
+                foreach(ProductInfo info in listOfInformation)
+                {
+                    info.ReloadInfo();
+                }
             }
             catch
             {

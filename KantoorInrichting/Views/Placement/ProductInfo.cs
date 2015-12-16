@@ -57,6 +57,11 @@ namespace KantoorInrichting.Views.Placement
             pbx_Image.Image = staticProduct.Image;
         }
 
+        public void ReloadInfo()
+        {
+            setProduct(this.product);
+        }
+
         private void pbx_Image_MouseDown(object sender, MouseEventArgs e)
         {
             pbx_Image.DoDragDrop(product, DragDropEffects.Copy);

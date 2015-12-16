@@ -257,7 +257,11 @@ namespace KantoorInrichting.Controllers.Placement
         public void button_Delete()
         {
             try
-            { placedProductList.Remove(currentProduct); }
+            {
+                placedProductList.Remove(currentProduct);
+                productAdding.productList1.fixInformation();
+                productAdding.productInfo1.ReloadInfo();
+            }
             catch { }
         }
 
@@ -505,8 +509,8 @@ namespace KantoorInrichting.Controllers.Placement
             //The adding of the product
             placedProductList.Add(product);
             //Set as current product
-            //productAdding.productInfo1.setProduct(product.product);
             currentProduct = product;
+            productAdding.productList1.fixInformation();
             //Redraw
             DoRepaint();
         }
