@@ -1,4 +1,6 @@
-﻿namespace KantoorInrichting.Views.Placement
+﻿using KantoorInrichting.Models.Maps;
+
+namespace KantoorInrichting.Views.Placement
 {
     partial class ProductAdding
     {
@@ -298,5 +300,6 @@
         private System.Windows.Forms.TextBox SpaceNumberTextbox;
         private System.Windows.Forms.Label SpaceNumberLabel;
         private System.Windows.Forms.Button button1;
+
     }
 }

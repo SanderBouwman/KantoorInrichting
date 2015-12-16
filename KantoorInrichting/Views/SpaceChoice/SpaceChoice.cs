@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using KantoorInrichting.Models.Maps;
 
 namespace KantoorInrichting.Views.SpaceChoice
 {
@@ -16,22 +17,50 @@ namespace KantoorInrichting.Views.SpaceChoice
 
         public SpaceChoice(MainFrame hoofdscherm)
         {
-            this.hoofdscherm = hoofdscherm;
+            this.hoofdscherm = hoofdscherm;      
             InitializeComponent();
+            FillComboBox(comboBox1);
+            Invalidate();
+        }
+
+        private void FillComboBox(ComboBox dropdown)
+        {
+            // clear dropdown
+            dropdown.Items.Clear();
+            // Select all the items in de spaces list
+            var SpaceResult = Models.Maps.Space.list.GroupBy(space => space.Room)
+                   .Select(grp => grp.First())
+                   .ToList();
+            // add the unique items to space dropdown
+            foreach (Space space in SpaceResult)
+            {
+                if (space.Room != null)
+                {
+                    dropdown.Items.Add(space.Room);
+                }
+            }
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            hoofdscherm.Size = new Size(1150, 750);
-            hoofdscherm.MinimumSize = new Size(1100, 720);
-            hoofdscherm.placement.Visible = true;
-            hoofdscherm.placement.Enabled = true;
+            // select dropdown selected item
+            var selected = comboBox1.SelectedItem;
 
-            //Update the data (size and colour of the PlacedProduct, information of the ProductList and ProductInfo)
-            hoofdscherm.placement.fixData();
+            // check which object to open
 
+            // linq select space with the current ID
+            var selectedSpace = Space.list
+                    .Where(s => s.Room == (string)selected)
+                    .Select(t => t)
+                    .ToList();
+
+            // give the design panel the current space
+            hoofdscherm.placement.space = selectedSpace[0];
+
+            hoofdscherm.placement.OpenPanel(selectedSpace[0]);
             this.Visible = false;
-            hoofdscherm.placement.BringToFront();
+           
         }
     }
 }
