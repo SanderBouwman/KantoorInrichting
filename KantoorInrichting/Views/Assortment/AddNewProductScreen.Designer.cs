@@ -60,6 +60,9 @@
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.errorCategoryLabel = new System.Windows.Forms.Label();
             this.errorImageLabel = new System.Windows.Forms.Label();
+            this.priceLabel = new System.Windows.Forms.Label();
+            this.priceTextBox = new System.Windows.Forms.TextBox();
+            this.errorPriceLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -111,7 +114,7 @@
             // descriptionLabel
             // 
             this.descriptionLabel.AutoSize = true;
-            this.descriptionLabel.Location = new System.Drawing.Point(9, 220);
+            this.descriptionLabel.Location = new System.Drawing.Point(9, 251);
             this.descriptionLabel.Name = "descriptionLabel";
             this.descriptionLabel.Size = new System.Drawing.Size(67, 13);
             this.descriptionLabel.TabIndex = 6;
@@ -129,7 +132,7 @@
             // categoryLabel
             // 
             this.categoryLabel.AutoSize = true;
-            this.categoryLabel.Location = new System.Drawing.Point(9, 193);
+            this.categoryLabel.Location = new System.Drawing.Point(9, 219);
             this.categoryLabel.Name = "categoryLabel";
             this.categoryLabel.Size = new System.Drawing.Size(52, 13);
             this.categoryLabel.TabIndex = 8;
@@ -195,7 +198,7 @@
             // 
             // descriptionTextBox
             // 
-            this.descriptionTextBox.Location = new System.Drawing.Point(85, 217);
+            this.descriptionTextBox.Location = new System.Drawing.Point(85, 248);
             this.descriptionTextBox.Multiline = true;
             this.descriptionTextBox.Name = "descriptionTextBox";
             this.descriptionTextBox.Size = new System.Drawing.Size(372, 81);
@@ -203,7 +206,7 @@
             // 
             // addButton
             // 
-            this.addButton.Location = new System.Drawing.Point(267, 304);
+            this.addButton.Location = new System.Drawing.Point(267, 335);
             this.addButton.Name = "addButton";
             this.addButton.Size = new System.Drawing.Size(92, 32);
             this.addButton.TabIndex = 11;
@@ -213,7 +216,7 @@
             // 
             // cancelButton
             // 
-            this.cancelButton.Location = new System.Drawing.Point(365, 304);
+            this.cancelButton.Location = new System.Drawing.Point(365, 335);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(92, 32);
             this.cancelButton.TabIndex = 12;
@@ -227,8 +230,9 @@
             this.errorNameLabel.ForeColor = System.Drawing.Color.Red;
             this.errorNameLabel.Location = new System.Drawing.Point(191, 11);
             this.errorNameLabel.Name = "errorNameLabel";
-            this.errorNameLabel.Size = new System.Drawing.Size(0, 13);
+            this.errorNameLabel.Size = new System.Drawing.Size(87, 13);
             this.errorNameLabel.TabIndex = 22;
+            this.errorNameLabel.Text = "Ongeldige invoer";
             // 
             // errorTypeLabel
             // 
@@ -286,7 +290,7 @@
             // 
             // selectImageButton
             // 
-            this.selectImageButton.Location = new System.Drawing.Point(361, 179);
+            this.selectImageButton.Location = new System.Drawing.Point(361, 202);
             this.selectImageButton.Name = "selectImageButton";
             this.selectImageButton.Size = new System.Drawing.Size(92, 32);
             this.selectImageButton.TabIndex = 10;
@@ -298,7 +302,7 @@
             // 
             this.errorDescriptionLabel.AutoSize = true;
             this.errorDescriptionLabel.ForeColor = System.Drawing.Color.Red;
-            this.errorDescriptionLabel.Location = new System.Drawing.Point(82, 304);
+            this.errorDescriptionLabel.Location = new System.Drawing.Point(88, 335);
             this.errorDescriptionLabel.Name = "errorDescriptionLabel";
             this.errorDescriptionLabel.Size = new System.Drawing.Size(0, 13);
             this.errorDescriptionLabel.TabIndex = 31;
@@ -307,7 +311,7 @@
             // 
             this.categoryComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.categoryComboBox.FormattingEnabled = true;
-            this.categoryComboBox.Location = new System.Drawing.Point(85, 190);
+            this.categoryComboBox.Location = new System.Drawing.Point(85, 216);
             this.categoryComboBox.Name = "categoryComboBox";
             this.categoryComboBox.Size = new System.Drawing.Size(100, 21);
             this.categoryComboBox.TabIndex = 8;
@@ -316,9 +320,9 @@
             // 
             this.pictureBox.Image = global::KantoorInrichting.Properties.Resources.No_Image_Available;
             this.pictureBox.InitialImage = null;
-            this.pictureBox.Location = new System.Drawing.Point(303, 8);
+            this.pictureBox.Location = new System.Drawing.Point(284, 8);
             this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(150, 150);
+            this.pictureBox.Size = new System.Drawing.Size(169, 172);
             this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox.TabIndex = 30;
             this.pictureBox.TabStop = false;
@@ -327,7 +331,7 @@
             // 
             this.errorCategoryLabel.AutoSize = true;
             this.errorCategoryLabel.ForeColor = System.Drawing.Color.Red;
-            this.errorCategoryLabel.Location = new System.Drawing.Point(191, 193);
+            this.errorCategoryLabel.Location = new System.Drawing.Point(191, 220);
             this.errorCategoryLabel.Name = "errorCategoryLabel";
             this.errorCategoryLabel.Size = new System.Drawing.Size(0, 13);
             this.errorCategoryLabel.TabIndex = 33;
@@ -336,16 +340,44 @@
             // 
             this.errorImageLabel.AutoSize = true;
             this.errorImageLabel.ForeColor = System.Drawing.Color.Red;
-            this.errorImageLabel.Location = new System.Drawing.Point(370, 161);
+            this.errorImageLabel.Location = new System.Drawing.Point(365, 186);
             this.errorImageLabel.Name = "errorImageLabel";
             this.errorImageLabel.Size = new System.Drawing.Size(0, 13);
             this.errorImageLabel.TabIndex = 32;
+            // 
+            // priceLabel
+            // 
+            this.priceLabel.AutoSize = true;
+            this.priceLabel.Location = new System.Drawing.Point(9, 193);
+            this.priceLabel.Name = "priceLabel";
+            this.priceLabel.Size = new System.Drawing.Size(26, 13);
+            this.priceLabel.TabIndex = 34;
+            this.priceLabel.Text = "Prijs";
+            // 
+            // priceTextBox
+            // 
+            this.priceTextBox.Location = new System.Drawing.Point(85, 190);
+            this.priceTextBox.Name = "priceTextBox";
+            this.priceTextBox.Size = new System.Drawing.Size(100, 20);
+            this.priceTextBox.TabIndex = 35;
+            // 
+            // errorPriceLabel
+            // 
+            this.errorPriceLabel.AutoSize = true;
+            this.errorPriceLabel.ForeColor = System.Drawing.Color.Red;
+            this.errorPriceLabel.Location = new System.Drawing.Point(192, 193);
+            this.errorPriceLabel.Name = "errorPriceLabel";
+            this.errorPriceLabel.Size = new System.Drawing.Size(0, 13);
+            this.errorPriceLabel.TabIndex = 36;
             // 
             // AddNewProductScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(466, 342);
+            this.ClientSize = new System.Drawing.Size(466, 371);
+            this.Controls.Add(this.errorPriceLabel);
+            this.Controls.Add(this.priceTextBox);
+            this.Controls.Add(this.priceLabel);
             this.Controls.Add(this.errorCategoryLabel);
             this.Controls.Add(this.categoryComboBox);
             this.Controls.Add(this.errorImageLabel);
@@ -381,6 +413,7 @@
             this.Name = "AddNewProductScreen";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Voeg een nieuw product toe";
+            this.Load += new System.EventHandler(this.AddNewProductScreen_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -388,21 +421,11 @@
         }
 
         #endregion
-
-        public System.Windows.Forms.Label nameLabel;
-        public System.Windows.Forms.Label typeLabel;
-        public System.Windows.Forms.Label brandLabel;
-        public System.Windows.Forms.Label heightLabel;
-        public System.Windows.Forms.Label widthLabel;
-        public System.Windows.Forms.Label descriptionLabel;
-        public System.Windows.Forms.Label amountLabel;
-        public System.Windows.Forms.Label categoryLabel;
         public System.Windows.Forms.TextBox nameTextBox;
         public System.Windows.Forms.TextBox typeTextBox;
         public System.Windows.Forms.TextBox brandTextBox;
         public System.Windows.Forms.TextBox heightTextBox;
         public System.Windows.Forms.TextBox widthTextBox;
-        public System.Windows.Forms.Label lengthLabel;
         public System.Windows.Forms.TextBox lengthTextBox;
         public System.Windows.Forms.TextBox amountTextBox;
         public System.Windows.Forms.TextBox descriptionTextBox;
@@ -421,5 +444,17 @@
         public System.Windows.Forms.ComboBox categoryComboBox;
         public System.Windows.Forms.Label errorCategoryLabel;
         public System.Windows.Forms.Label errorImageLabel;
+        public System.Windows.Forms.TextBox priceTextBox;
+        private System.Windows.Forms.Label priceLabel;
+        private System.Windows.Forms.Label lengthLabel;
+        private System.Windows.Forms.Label categoryLabel;
+        private System.Windows.Forms.Label amountLabel;
+        private System.Windows.Forms.Label descriptionLabel;
+        private System.Windows.Forms.Label widthLabel;
+        private System.Windows.Forms.Label heightLabel;
+        private System.Windows.Forms.Label brandLabel;
+        private System.Windows.Forms.Label typeLabel;
+        private System.Windows.Forms.Label nameLabel;
+        public System.Windows.Forms.Label errorPriceLabel;
     }
 }

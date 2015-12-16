@@ -1248,6 +1248,8 @@ namespace KantoorInrichting {
             
             private global::System.Data.DataColumn columncategory_id;
             
+            private global::System.Data.DataColumn columnprice;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public productDataTable() {
@@ -1379,6 +1381,14 @@ namespace KantoorInrichting {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn priceColumn {
+                get {
+                    return this.columnprice;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1414,7 +1424,7 @@ namespace KantoorInrichting {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public productRow AddproductRow(int product_id, string name, string type, string brand, int height, int width, int length, string image, string description, int amount, bool removed, categoryRow parentcategoryRowByFK_product_category) {
+            public productRow AddproductRow(int product_id, string name, string type, string brand, int height, int width, int length, string image, string description, int amount, bool removed, categoryRow parentcategoryRowByFK_product_category, decimal price) {
                 productRow rowproductRow = ((productRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         product_id,
@@ -1428,7 +1438,8 @@ namespace KantoorInrichting {
                         description,
                         amount,
                         removed,
-                        null};
+                        null,
+                        price};
                 if ((parentcategoryRowByFK_product_category != null)) {
                     columnValuesArray[11] = parentcategoryRowByFK_product_category[0];
                 }
@@ -1473,6 +1484,7 @@ namespace KantoorInrichting {
                 this.columnamount = base.Columns["amount"];
                 this.columnremoved = base.Columns["removed"];
                 this.columncategory_id = base.Columns["category_id"];
+                this.columnprice = base.Columns["price"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1502,6 +1514,8 @@ namespace KantoorInrichting {
                 base.Columns.Add(this.columnremoved);
                 this.columncategory_id = new global::System.Data.DataColumn("category_id", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columncategory_id);
+                this.columnprice = new global::System.Data.DataColumn("price", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnprice);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnproduct_id}, true));
                 this.columnproduct_id.AllowDBNull = false;
@@ -1521,6 +1535,7 @@ namespace KantoorInrichting {
                 this.columnamount.AllowDBNull = false;
                 this.columnremoved.AllowDBNull = false;
                 this.columncategory_id.AllowDBNull = false;
+                this.columnprice.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1936,6 +1951,12 @@ namespace KantoorInrichting {
             
             private global::System.Data.DataColumn columnroomnumber;
             
+            private global::System.Data.DataColumn columnfinal;
+            
+            private global::System.Data.DataColumn columnlength;
+            
+            private global::System.Data.DataColumn columnwidth;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public spaceDataTable() {
@@ -2003,6 +2024,30 @@ namespace KantoorInrichting {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn finalColumn {
+                get {
+                    return this.columnfinal;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn lengthColumn {
+                get {
+                    return this.columnlength;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn widthColumn {
+                get {
+                    return this.columnwidth;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -2038,13 +2083,16 @@ namespace KantoorInrichting {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public spaceRow AddspaceRow(string space_number, string floor, string building, string roomnumber) {
+            public spaceRow AddspaceRow(string space_number, string floor, string building, string roomnumber, bool final, int length, int width) {
                 spaceRow rowspaceRow = ((spaceRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         space_number,
                         floor,
                         building,
-                        roomnumber};
+                        roomnumber,
+                        final,
+                        length,
+                        width};
                 rowspaceRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowspaceRow);
                 return rowspaceRow;
@@ -2078,6 +2126,9 @@ namespace KantoorInrichting {
                 this.columnfloor = base.Columns["floor"];
                 this.columnbuilding = base.Columns["building"];
                 this.columnroomnumber = base.Columns["roomnumber"];
+                this.columnfinal = base.Columns["final"];
+                this.columnlength = base.Columns["length"];
+                this.columnwidth = base.Columns["width"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2091,6 +2142,12 @@ namespace KantoorInrichting {
                 base.Columns.Add(this.columnbuilding);
                 this.columnroomnumber = new global::System.Data.DataColumn("roomnumber", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnroomnumber);
+                this.columnfinal = new global::System.Data.DataColumn("final", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnfinal);
+                this.columnlength = new global::System.Data.DataColumn("length", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnlength);
+                this.columnwidth = new global::System.Data.DataColumn("width", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnwidth);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnspace_number}, true));
                 this.columnspace_number.AllowDBNull = false;
@@ -2102,6 +2159,9 @@ namespace KantoorInrichting {
                 this.columnbuilding.MaxLength = 50;
                 this.columnroomnumber.AllowDBNull = false;
                 this.columnroomnumber.MaxLength = 50;
+                this.columnfinal.AllowDBNull = false;
+                this.columnlength.AllowDBNull = false;
+                this.columnwidth.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3623,6 +3683,17 @@ namespace KantoorInrichting {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal price {
+                get {
+                    return ((decimal)(this[this.tableproduct.priceColumn]));
+                }
+                set {
+                    this[this.tableproduct.priceColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public categoryRow categoryRow {
                 get {
                     return ((categoryRow)(this.GetParentRow(this.Table.ParentRelations["FK_product_category"])));
@@ -3759,6 +3830,39 @@ namespace KantoorInrichting {
                 }
                 set {
                     this[this.tablespace.roomnumberColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool final {
+                get {
+                    return ((bool)(this[this.tablespace.finalColumn]));
+                }
+                set {
+                    this[this.tablespace.finalColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int length {
+                get {
+                    return ((int)(this[this.tablespace.lengthColumn]));
+                }
+                set {
+                    this[this.tablespace.lengthColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int width {
+                get {
+                    return ((int)(this[this.tablespace.widthColumn]));
+                }
+                set {
+                    this[this.tablespace.widthColumn] = value;
                 }
             }
             
@@ -5312,10 +5416,11 @@ SELECT placement_id, space_number, product_id, x_position, y_position, angle FRO
             tableMapping.ColumnMappings.Add("amount", "amount");
             tableMapping.ColumnMappings.Add("removed", "removed");
             tableMapping.ColumnMappings.Add("category_id", "category_id");
+            tableMapping.ColumnMappings.Add("price", "price");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[product] WHERE (([product_id] = @Original_product_id) AND ([name] = @Original_name) AND ((@IsNull_type = 1 AND [type] IS NULL) OR ([type] = @Original_type)) AND ([brand] = @Original_brand) AND ([height] = @Original_height) AND ([width] = @Original_width) AND ([length] = @Original_length) AND ([image] = @Original_image) AND ([description] = @Original_description) AND ([amount] = @Original_amount) AND ([removed] = @Original_removed) AND ([category_id] = @Original_category_id))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [product] WHERE (([product_id] = @Original_product_id) AND ([name] = @Original_name) AND ((@IsNull_type = 1 AND [type] IS NULL) OR ([type] = @Original_type)) AND ([brand] = @Original_brand) AND ([height] = @Original_height) AND ([width] = @Original_width) AND ([length] = @Original_length) AND ([image] = @Original_image) AND ([description] = @Original_description) AND ([amount] = @Original_amount) AND ([removed] = @Original_removed) AND ([category_id] = @Original_category_id) AND ([price] = @Original_price))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_product_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "product_id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -5330,10 +5435,11 @@ SELECT placement_id, space_number, product_id, x_position, y_position, angle FRO
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_amount", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "amount", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_removed", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "removed", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_category_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "category_id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_price", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 19, 2, "price", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[product] ([product_id], [name], [type], [brand], [height], [width], [length], [image], [description], [amount], [removed], [category_id]) VALUES (@product_id, @name, @type, @brand, @height, @width, @length, @image, @description, @amount, @removed, @category_id);
-SELECT product_id, name, type, brand, height, width, length, image, description, amount, removed, category_id FROM product WHERE (product_id = @product_id)";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [product] ([product_id], [name], [type], [brand], [height], [width], [length], [image], [description], [amount], [removed], [category_id], [price]) VALUES (@product_id, @name, @type, @brand, @height, @width, @length, @image, @description, @amount, @removed, @category_id, @price);
+SELECT product_id, name, type, brand, height, width, length, image, description, amount, removed, category_id, price FROM product WHERE (product_id = @product_id)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@product_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "product_id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -5347,10 +5453,11 @@ SELECT product_id, name, type, brand, height, width, length, image, description,
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@amount", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "amount", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@removed", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "removed", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@category_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "category_id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@price", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 19, 2, "price", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[product] SET [product_id] = @product_id, [name] = @name, [type] = @type, [brand] = @brand, [height] = @height, [width] = @width, [length] = @length, [image] = @image, [description] = @description, [amount] = @amount, [removed] = @removed, [category_id] = @category_id WHERE (([product_id] = @Original_product_id) AND ([name] = @Original_name) AND ((@IsNull_type = 1 AND [type] IS NULL) OR ([type] = @Original_type)) AND ([brand] = @Original_brand) AND ([height] = @Original_height) AND ([width] = @Original_width) AND ([length] = @Original_length) AND ([image] = @Original_image) AND ([description] = @Original_description) AND ([amount] = @Original_amount) AND ([removed] = @Original_removed) AND ([category_id] = @Original_category_id));
-SELECT product_id, name, type, brand, height, width, length, image, description, amount, removed, category_id FROM product WHERE (product_id = @product_id)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [product] SET [product_id] = @product_id, [name] = @name, [type] = @type, [brand] = @brand, [height] = @height, [width] = @width, [length] = @length, [image] = @image, [description] = @description, [amount] = @amount, [removed] = @removed, [category_id] = @category_id, [price] = @price WHERE (([product_id] = @Original_product_id) AND ([name] = @Original_name) AND ((@IsNull_type = 1 AND [type] IS NULL) OR ([type] = @Original_type)) AND ([brand] = @Original_brand) AND ([height] = @Original_height) AND ([width] = @Original_width) AND ([length] = @Original_length) AND ([image] = @Original_image) AND ([description] = @Original_description) AND ([amount] = @Original_amount) AND ([removed] = @Original_removed) AND ([category_id] = @Original_category_id) AND ([price] = @Original_price));
+SELECT product_id, name, type, brand, height, width, length, image, description, amount, removed, category_id, price FROM product WHERE (product_id = @product_id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@product_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "product_id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -5364,6 +5471,7 @@ SELECT product_id, name, type, brand, height, width, length, image, description,
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@amount", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "amount", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@removed", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "removed", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@category_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "category_id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@price", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 19, 2, "price", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_product_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "product_id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_type", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "type", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
@@ -5377,6 +5485,7 @@ SELECT product_id, name, type, brand, height, width, length, image, description,
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_amount", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "amount", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_removed", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "removed", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_category_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "category_id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_price", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 19, 2, "price", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5393,7 +5502,7 @@ SELECT product_id, name, type, brand, height, width, length, image, description,
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT product_id, name, type, brand, height, width, length, image, description, " +
-                "amount, removed, category_id FROM dbo.product";
+                "amount, removed, category_id, price FROM product";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -5454,7 +5563,7 @@ SELECT product_id, name, type, brand, height, width, length, image, description,
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_product_id, string Original_name, string Original_type, string Original_brand, int Original_height, int Original_width, int Original_length, string Original_image, string Original_description, int Original_amount, bool Original_removed, int Original_category_id) {
+        public virtual int Delete(int Original_product_id, string Original_name, string Original_type, string Original_brand, int Original_height, int Original_width, int Original_length, string Original_image, string Original_description, int Original_amount, bool Original_removed, int Original_category_id, decimal Original_price) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_product_id));
             if ((Original_name == null)) {
                 throw new global::System.ArgumentNullException("Original_name");
@@ -5494,6 +5603,7 @@ SELECT product_id, name, type, brand, height, width, length, image, description,
             this.Adapter.DeleteCommand.Parameters[10].Value = ((int)(Original_amount));
             this.Adapter.DeleteCommand.Parameters[11].Value = ((bool)(Original_removed));
             this.Adapter.DeleteCommand.Parameters[12].Value = ((int)(Original_category_id));
+            this.Adapter.DeleteCommand.Parameters[13].Value = ((decimal)(Original_price));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -5514,7 +5624,7 @@ SELECT product_id, name, type, brand, height, width, length, image, description,
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int product_id, string name, string type, string brand, int height, int width, int length, string image, string description, int amount, bool removed, int category_id) {
+        public virtual int Insert(int product_id, string name, string type, string brand, int height, int width, int length, string image, string description, int amount, bool removed, int category_id, decimal price) {
             this.Adapter.InsertCommand.Parameters[0].Value = ((int)(product_id));
             if ((name == null)) {
                 throw new global::System.ArgumentNullException("name");
@@ -5552,6 +5662,7 @@ SELECT product_id, name, type, brand, height, width, length, image, description,
             this.Adapter.InsertCommand.Parameters[9].Value = ((int)(amount));
             this.Adapter.InsertCommand.Parameters[10].Value = ((bool)(removed));
             this.Adapter.InsertCommand.Parameters[11].Value = ((int)(category_id));
+            this.Adapter.InsertCommand.Parameters[12].Value = ((decimal)(price));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -5585,6 +5696,7 @@ SELECT product_id, name, type, brand, height, width, length, image, description,
                     int amount, 
                     bool removed, 
                     int category_id, 
+                    decimal price, 
                     int Original_product_id, 
                     string Original_name, 
                     string Original_type, 
@@ -5596,7 +5708,8 @@ SELECT product_id, name, type, brand, height, width, length, image, description,
                     string Original_description, 
                     int Original_amount, 
                     bool Original_removed, 
-                    int Original_category_id) {
+                    int Original_category_id, 
+                    decimal Original_price) {
             this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(product_id));
             if ((name == null)) {
                 throw new global::System.ArgumentNullException("name");
@@ -5634,45 +5747,47 @@ SELECT product_id, name, type, brand, height, width, length, image, description,
             this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(amount));
             this.Adapter.UpdateCommand.Parameters[10].Value = ((bool)(removed));
             this.Adapter.UpdateCommand.Parameters[11].Value = ((int)(category_id));
-            this.Adapter.UpdateCommand.Parameters[12].Value = ((int)(Original_product_id));
+            this.Adapter.UpdateCommand.Parameters[12].Value = ((decimal)(price));
+            this.Adapter.UpdateCommand.Parameters[13].Value = ((int)(Original_product_id));
             if ((Original_name == null)) {
                 throw new global::System.ArgumentNullException("Original_name");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((string)(Original_name));
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((string)(Original_name));
             }
             if ((Original_type == null)) {
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[15].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[16].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[15].Value = ((string)(Original_type));
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((string)(Original_type));
             }
             if ((Original_brand == null)) {
                 throw new global::System.ArgumentNullException("Original_brand");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[16].Value = ((string)(Original_brand));
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((string)(Original_brand));
             }
-            this.Adapter.UpdateCommand.Parameters[17].Value = ((int)(Original_height));
-            this.Adapter.UpdateCommand.Parameters[18].Value = ((int)(Original_width));
-            this.Adapter.UpdateCommand.Parameters[19].Value = ((int)(Original_length));
+            this.Adapter.UpdateCommand.Parameters[18].Value = ((int)(Original_height));
+            this.Adapter.UpdateCommand.Parameters[19].Value = ((int)(Original_width));
+            this.Adapter.UpdateCommand.Parameters[20].Value = ((int)(Original_length));
             if ((Original_image == null)) {
                 throw new global::System.ArgumentNullException("Original_image");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[20].Value = ((string)(Original_image));
+                this.Adapter.UpdateCommand.Parameters[21].Value = ((string)(Original_image));
             }
             if ((Original_description == null)) {
                 throw new global::System.ArgumentNullException("Original_description");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[21].Value = ((string)(Original_description));
+                this.Adapter.UpdateCommand.Parameters[22].Value = ((string)(Original_description));
             }
-            this.Adapter.UpdateCommand.Parameters[22].Value = ((int)(Original_amount));
-            this.Adapter.UpdateCommand.Parameters[23].Value = ((bool)(Original_removed));
-            this.Adapter.UpdateCommand.Parameters[24].Value = ((int)(Original_category_id));
+            this.Adapter.UpdateCommand.Parameters[23].Value = ((int)(Original_amount));
+            this.Adapter.UpdateCommand.Parameters[24].Value = ((bool)(Original_removed));
+            this.Adapter.UpdateCommand.Parameters[25].Value = ((int)(Original_category_id));
+            this.Adapter.UpdateCommand.Parameters[26].Value = ((decimal)(Original_price));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -5705,6 +5820,7 @@ SELECT product_id, name, type, brand, height, width, length, image, description,
                     int amount, 
                     bool removed, 
                     int category_id, 
+                    decimal price, 
                     int Original_product_id, 
                     string Original_name, 
                     string Original_type, 
@@ -5716,8 +5832,9 @@ SELECT product_id, name, type, brand, height, width, length, image, description,
                     string Original_description, 
                     int Original_amount, 
                     bool Original_removed, 
-                    int Original_category_id) {
-            return this.Update(Original_product_id, name, type, brand, height, width, length, image, description, amount, removed, category_id, Original_product_id, Original_name, Original_type, Original_brand, Original_height, Original_width, Original_length, Original_image, Original_description, Original_amount, Original_removed, Original_category_id);
+                    int Original_category_id, 
+                    decimal Original_price) {
+            return this.Update(Original_product_id, name, type, brand, height, width, length, image, description, amount, removed, category_id, price, Original_product_id, Original_name, Original_type, Original_brand, Original_height, Original_width, Original_length, Original_image, Original_description, Original_amount, Original_removed, Original_category_id, Original_price);
         }
     }
     
@@ -6166,40 +6283,52 @@ SELECT product_id, name, type, brand, height, width, length, image, description,
             tableMapping.ColumnMappings.Add("floor", "floor");
             tableMapping.ColumnMappings.Add("building", "building");
             tableMapping.ColumnMappings.Add("roomnumber", "roomnumber");
+            tableMapping.ColumnMappings.Add("final", "final");
+            tableMapping.ColumnMappings.Add("length", "length");
+            tableMapping.ColumnMappings.Add("width", "width");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[space] WHERE (([space_number] = @Original_space_number) AND ([" +
-                "floor] = @Original_floor) AND ([building] = @Original_building) AND ([roomnumber" +
-                "] = @Original_roomnumber))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [space] WHERE (([space_number] = @Original_space_number) AND ([floor] = @Original_floor) AND ([building] = @Original_building) AND ([roomnumber] = @Original_roomnumber) AND ([final] = @Original_final) AND ([length] = @Original_length) AND ([width] = @Original_width))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_space_number", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "space_number", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_floor", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "floor", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_building", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "building", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_roomnumber", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "roomnumber", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_final", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "final", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_length", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "length", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_width", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "width", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[space] ([space_number], [floor], [building], [roomnumber]) VAL" +
-                "UES (@space_number, @floor, @building, @roomnumber);\r\nSELECT space_number, floor" +
-                ", building, roomnumber FROM space WHERE (space_number = @space_number)";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [space] ([space_number], [floor], [building], [roomnumber], [final], [length], [width]) VALUES (@space_number, @floor, @building, @roomnumber, @final, @length, @width);
+SELECT space_number, floor, building, roomnumber, final, length, width FROM space WHERE (space_number = @space_number)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@space_number", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "space_number", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@floor", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "floor", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@building", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "building", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@roomnumber", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "roomnumber", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@final", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "final", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@length", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "length", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@width", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "width", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[space] SET [space_number] = @space_number, [floor] = @floor, [building] = @building, [roomnumber] = @roomnumber WHERE (([space_number] = @Original_space_number) AND ([floor] = @Original_floor) AND ([building] = @Original_building) AND ([roomnumber] = @Original_roomnumber));
-SELECT space_number, floor, building, roomnumber FROM space WHERE (space_number = @space_number)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [space] SET [space_number] = @space_number, [floor] = @floor, [building] = @building, [roomnumber] = @roomnumber, [final] = @final, [length] = @length, [width] = @width WHERE (([space_number] = @Original_space_number) AND ([floor] = @Original_floor) AND ([building] = @Original_building) AND ([roomnumber] = @Original_roomnumber) AND ([final] = @Original_final) AND ([length] = @Original_length) AND ([width] = @Original_width));
+SELECT space_number, floor, building, roomnumber, final, length, width FROM space WHERE (space_number = @space_number)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@space_number", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "space_number", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@floor", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "floor", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@building", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "building", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@roomnumber", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "roomnumber", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@final", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "final", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@length", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "length", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@width", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "width", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_space_number", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "space_number", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_floor", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "floor", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_building", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "building", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_roomnumber", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "roomnumber", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_final", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "final", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_length", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "length", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_width", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "width", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6215,7 +6344,8 @@ SELECT space_number, floor, building, roomnumber FROM space WHERE (space_number 
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT space_number, floor, building, roomnumber FROM dbo.space";
+            this._commandCollection[0].CommandText = "SELECT space_number, floor, building, roomnumber, final, length, width FROM space" +
+                "";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -6276,7 +6406,7 @@ SELECT space_number, floor, building, roomnumber FROM space WHERE (space_number 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(string Original_space_number, string Original_floor, string Original_building, string Original_roomnumber) {
+        public virtual int Delete(string Original_space_number, string Original_floor, string Original_building, string Original_roomnumber, bool Original_final, int Original_length, int Original_width) {
             if ((Original_space_number == null)) {
                 throw new global::System.ArgumentNullException("Original_space_number");
             }
@@ -6301,6 +6431,9 @@ SELECT space_number, floor, building, roomnumber FROM space WHERE (space_number 
             else {
                 this.Adapter.DeleteCommand.Parameters[3].Value = ((string)(Original_roomnumber));
             }
+            this.Adapter.DeleteCommand.Parameters[4].Value = ((bool)(Original_final));
+            this.Adapter.DeleteCommand.Parameters[5].Value = ((int)(Original_length));
+            this.Adapter.DeleteCommand.Parameters[6].Value = ((int)(Original_width));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -6321,7 +6454,7 @@ SELECT space_number, floor, building, roomnumber FROM space WHERE (space_number 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string space_number, string floor, string building, string roomnumber) {
+        public virtual int Insert(string space_number, string floor, string building, string roomnumber, bool final, int length, int width) {
             if ((space_number == null)) {
                 throw new global::System.ArgumentNullException("space_number");
             }
@@ -6346,6 +6479,9 @@ SELECT space_number, floor, building, roomnumber FROM space WHERE (space_number 
             else {
                 this.Adapter.InsertCommand.Parameters[3].Value = ((string)(roomnumber));
             }
+            this.Adapter.InsertCommand.Parameters[4].Value = ((bool)(final));
+            this.Adapter.InsertCommand.Parameters[5].Value = ((int)(length));
+            this.Adapter.InsertCommand.Parameters[6].Value = ((int)(width));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -6366,7 +6502,7 @@ SELECT space_number, floor, building, roomnumber FROM space WHERE (space_number 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string space_number, string floor, string building, string roomnumber, string Original_space_number, string Original_floor, string Original_building, string Original_roomnumber) {
+        public virtual int Update(string space_number, string floor, string building, string roomnumber, bool final, int length, int width, string Original_space_number, string Original_floor, string Original_building, string Original_roomnumber, bool Original_final, int Original_length, int Original_width) {
             if ((space_number == null)) {
                 throw new global::System.ArgumentNullException("space_number");
             }
@@ -6391,30 +6527,36 @@ SELECT space_number, floor, building, roomnumber FROM space WHERE (space_number 
             else {
                 this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(roomnumber));
             }
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((bool)(final));
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(length));
+            this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(width));
             if ((Original_space_number == null)) {
                 throw new global::System.ArgumentNullException("Original_space_number");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(Original_space_number));
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(Original_space_number));
             }
             if ((Original_floor == null)) {
                 throw new global::System.ArgumentNullException("Original_floor");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(Original_floor));
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Original_floor));
             }
             if ((Original_building == null)) {
                 throw new global::System.ArgumentNullException("Original_building");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(Original_building));
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(Original_building));
             }
             if ((Original_roomnumber == null)) {
                 throw new global::System.ArgumentNullException("Original_roomnumber");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(Original_roomnumber));
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(Original_roomnumber));
             }
+            this.Adapter.UpdateCommand.Parameters[11].Value = ((bool)(Original_final));
+            this.Adapter.UpdateCommand.Parameters[12].Value = ((int)(Original_length));
+            this.Adapter.UpdateCommand.Parameters[13].Value = ((int)(Original_width));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -6435,8 +6577,8 @@ SELECT space_number, floor, building, roomnumber FROM space WHERE (space_number 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string floor, string building, string roomnumber, string Original_space_number, string Original_floor, string Original_building, string Original_roomnumber) {
-            return this.Update(Original_space_number, floor, building, roomnumber, Original_space_number, Original_floor, Original_building, Original_roomnumber);
+        public virtual int Update(string floor, string building, string roomnumber, bool final, int length, int width, string Original_space_number, string Original_floor, string Original_building, string Original_roomnumber, bool Original_final, int Original_length, int Original_width) {
+            return this.Update(Original_space_number, floor, building, roomnumber, final, length, width, Original_space_number, Original_floor, Original_building, Original_roomnumber, Original_final, Original_length, Original_width);
         }
     }
     

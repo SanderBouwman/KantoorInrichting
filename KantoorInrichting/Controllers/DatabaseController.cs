@@ -71,7 +71,7 @@ namespace KantoorInrichting.Controllers
             {
                 var p1 = new ProductModel(product.product_id, product.name, product.brand, product.type,
                     product.category_id, product.length, product.width, product.height, product.description,
-                    product.amount, product.image, product.removed);
+                    product.amount, product.image, product.removed, product.price);
             }
         }
 
