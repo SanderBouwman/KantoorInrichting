@@ -47,7 +47,7 @@ namespace KantoorInrichting.Controllers.Placement
         private void ppList_CollectionChanged(object sender, EventArgs e)
         {
             //The method to repaint the panel if the information stored inside the list has changed (ie. a product has moved).
-            doRepaint();
+            DoRepaint();
         }
         //
         public PlacementController(MainFrame motherFrame, ProductAdding pa)
@@ -58,7 +58,7 @@ namespace KantoorInrichting.Controllers.Placement
             productAdding.productPanel.knowYourController(this);
 
             //Make an event when the selection of the ASSORTMENT or INVENTORY has changed
-            productAdding.productList1.SelectionChanged += new ProductSelectionChanged(this.changeSelected);
+            productAdding.productList1.SelectionChanged += new ProductSelectionChanged(this.ChangeSelected);
 
 
             //Select the first product from the product list, and display it in the default info
@@ -66,7 +66,7 @@ namespace KantoorInrichting.Controllers.Placement
             {
                 ProductInfo defaultInfo = new ProductInfo();
                 defaultInfo.setProduct(ProductModel.list[0]);
-                changeSelected(defaultInfo);
+                ChangeSelected(defaultInfo);
             }
             catch { }
             
@@ -91,10 +91,11 @@ namespace KantoorInrichting.Controllers.Placement
             staticlyPlacedObjectList.Add(new StaticlyPlacedObject(pointBottomLeft, pointTopLeft)); //Left
         }
         //
-        public void changeSelected(ProductInfo sender)
+        public void ChangeSelected(ProductInfo sender)
         {
             productAdding.productInfo1.setProduct(sender.product); //Sets a new product
-            currentProduct = null;
+            if(currentProduct.product.Name != sender.product.Name) { currentProduct = null; }
+            //Seing as name is an identifier in the database, this can be used to compare the two: Look if the names are the same, if not, then a different product is the currentProduct. Therefore the currentProduct needs to be set to null.
         }
         //
         public void FixUserData()
@@ -143,19 +144,19 @@ namespace KantoorInrichting.Controllers.Placement
             return usedColor;
         }
         //
-        private void doRepaint()
+        private void DoRepaint()
         {
             draggingItem = false;
             productAdding.productPanel.Repaint();
         }
-
-        private void doRepaintWithGhost()
+        //
+        private void DoRepaintWithGhost()
         {
             draggingItem = true;
             productAdding.productPanel.Repaint();
         }
-
-        public void redrawPanel(Graphics g)
+        //
+        public void RedrawPanel(Graphics g)
         {
             Vector p1;
             Vector p2;
@@ -217,7 +218,7 @@ namespace KantoorInrichting.Controllers.Placement
 
             currentProduct.addAngle(angle);
 
-            doRepaint();
+            DoRepaint();
         }
 
         /// <summary>
@@ -237,7 +238,7 @@ namespace KantoorInrichting.Controllers.Placement
             currentProduct.gridSpace = speed;
             placement_Move(currentProduct, x_Axis);
 
-            doRepaint();
+            DoRepaint();
         }
 
         public void button_Delete()
@@ -287,7 +288,7 @@ namespace KantoorInrichting.Controllers.Placement
             }
             
             //Repaint so that the ghost image is removed
-            doRepaint();
+            DoRepaint();
             return;   
         }        
 
@@ -358,7 +359,7 @@ namespace KantoorInrichting.Controllers.Placement
             }
 
             //And then repaint the panel
-            doRepaintWithGhost();
+            DoRepaintWithGhost();
         }
 
         /// <summary>
@@ -368,7 +369,7 @@ namespace KantoorInrichting.Controllers.Placement
         /// <param name="e"></param>
         public void event_DragLeave(object sender, EventArgs e)
         {
-            doRepaint();
+            DoRepaint();
         }
 
         public void event_DeleteEnter(object sender, DragEventArgs e)
@@ -460,7 +461,7 @@ namespace KantoorInrichting.Controllers.Placement
                 if (r.WillIntersect)
                 {
                     //At the collision, quit the method
-                    doRepaint();
+                    DoRepaint();
                     return;
                 }
             }
@@ -468,10 +469,10 @@ namespace KantoorInrichting.Controllers.Placement
             //The adding of the product
             placedProductList.Add(product);
             //Set as current product
-            productAdding.productInfo1.setProduct(product.product);
+            //productAdding.productInfo1.setProduct(product.product);
             currentProduct = product;
             //Redraw
-            doRepaint();
+            DoRepaint();
         }
         private void placement_MoveProduct(object sender, DragEventArgs e)
         {
@@ -487,7 +488,7 @@ namespace KantoorInrichting.Controllers.Placement
             //Failsafe if user clicks the item and doesn't want to move it.
             if (Math.Abs(clickLocation.X - newLocation.X) == 0 || Math.Abs(clickLocation.Y - newLocation.Y) == 0)
             {
-                doRepaint();
+                DoRepaint();
                 return;
             }
 
@@ -517,7 +518,7 @@ namespace KantoorInrichting.Controllers.Placement
                 if (r.WillIntersect)
                 {
                     //At the collision, quit the method                    
-                    doRepaint();
+                    DoRepaint();
                     return;
                 }
 
@@ -525,7 +526,7 @@ namespace KantoorInrichting.Controllers.Placement
 
             //The moving of the product
             product.MoveTo(delta);
-            doRepaint();
+            DoRepaint();
         }
         #endregion Placement Handlers
 
