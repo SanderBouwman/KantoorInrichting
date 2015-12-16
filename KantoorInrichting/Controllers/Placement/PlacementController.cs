@@ -4,6 +4,7 @@ using KantoorInrichting.Views.Placement;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
@@ -300,25 +301,55 @@ namespace KantoorInrichting.Controllers.Placement
 
         public void button_Save(string spacenumber)
         {
-            string space_number = spacenumber;
-            foreach (PlacedProduct product in placedProductList)
-            {
-                string X = product.location.X.ToString();
-                string Y = product.location.Y.ToString();
-                int product_id = product.product.Product_id;
-                int staticPlacementID = 1;
-               
-               // MessageBox.Show("X-waarde: " + X + ", Y-waarde: " + Y + "product-id: " + product_id + "staticPlacementID: " + staticPlacementID + "Lokaal: " + space_number);
-            }
+
             string appFolderPath = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
-            string resourcesFolderPath = Path.Combine(
-    Directory.GetParent(appFolderPath).Parent.FullName, "Resources");
+            string resourcesFolderPath = Path.Combine(Directory.GetParent(appFolderPath).Parent.FullName, "Resources");
             Bitmap bmp = new Bitmap(productAdding.productPanel.Width, productAdding.productPanel.Height);
             productAdding.productPanel.DrawToBitmap(bmp, productAdding.productPanel.Bounds);
 
-            String fileName = Path.Combine(resourcesFolderPath, ""+space_number + ".bmp");
+            String fileName = Path.Combine(resourcesFolderPath, "" + spacenumber + ".bmp");
             bmp.Save(fileName);
+            DeleteRows(spacenumber);
+            SaveSpace(spacenumber);
             MessageBox.Show("Opgeslagen");
+
+        }
+
+        public void DeleteRows(string spacenumber)
+        {
+            var rows = dbc.DataSet.placement.Select("space_number = '" + spacenumber + "'");
+            foreach (var row in rows)
+            {
+                row.Delete();
+                dbc.PlacementTableAdapter.Update(dbc.DataSet.placement);
+            }
+        }
+
+        public void SaveSpace(string spacenumber)
+        {
+
+            foreach (PlacedProduct product in placedProductList)
+            {
+                DataRow anyRow = dbc.DataSet.placement.NewRow();
+                var hoi2 = dbc.DataSet.placement.Rows[dbc.DataSet.placement.Rows.Count - 1]["placement_id"]; ;
+                string hoi = hoi2.ToString();
+                int x = Int32.Parse(hoi) + 1;
+                string X = product.location.X.ToString();
+                string Y = product.location.Y.ToString();
+                int product_id = product.product.Product_id;
+
+                anyRow["placement_id"] = x;
+                anyRow["space_number"] = spacenumber;
+                anyRow["product_id"] = product_id;
+                anyRow["x_position"] = X;
+                anyRow["y_position"] = Y;
+                anyRow["angle"] = 0;
+
+                dbc.DataSet.placement.Rows.Add(anyRow);
+                dbc.PlacementTableAdapter.Update(dbc.DataSet.placement);
+              
+            }
+
         }
         #endregion Button Events
 
