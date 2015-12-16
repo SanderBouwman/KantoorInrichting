@@ -14,10 +14,10 @@ namespace KantoorInrichting.Models.Maps
         public int length;
         public int width;
         public bool final;
-        public string Building;
-        public string Floor;
-        public string Room;
-        public string Roomnumber;
+        public string Building { get; private set; }
+        public string Floor { get; private set; }
+        public string Room { get; private set; }
+        public string Roomnumber { get; private set; }
 
         public Space(string Lokaal, string Verdieping, string Gebouw, string Kamernumber, int length, int width, bool final)
         {
