@@ -90,7 +90,7 @@ namespace KantoorInrichting.Controllers
         {
             foreach (var space in this.DataSet.space)
             {
-                var s1 = new Space(space.space_number, space.floor, space.building, space.roomnumber);
+                var s1 = new Space(space.space_number, space.floor, space.building, space.roomnumber,space.length,space.width,space.final);
             }
         }
         public void GetCategories_FromDatabase()

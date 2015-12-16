@@ -39,7 +39,9 @@ namespace KantoorInrichting.Views.Placement
 
         public void OpenPanel(Space spacenr)
         {
+            hoofdscherm.placement.space = spacenr;
             this.SpaceNumberTextbox.Text = space.Room;
+            this.SpaceDimensionsTextbox.Text = space.length + " + " + space.width;
 
             hoofdscherm.Size = new Size(1150, 750);
             hoofdscherm.MinimumSize = new Size(1100, 720);
