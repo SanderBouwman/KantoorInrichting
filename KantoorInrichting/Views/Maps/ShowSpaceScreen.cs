@@ -15,7 +15,7 @@ namespace KantoorInrichting.Views.Maps
         public ShowSpaceScreen()
         {
             DoubleBuffered = true;
-            this.MinimumSize = new Size(1000, 600);
+            this.MinimumSize = new Size(600, 600);
             InitializeComponent();
         }
     }

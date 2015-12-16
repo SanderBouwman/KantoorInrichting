@@ -37,12 +37,22 @@ namespace KantoorInrichting.Controllers.Assortment
         //Opens AddNewProductScreen when this button is pressed
         public void AddProduct()
         {
+            DialogResult dia = new DialogResult();
             var addNewProduct = new AddNewProductScreen();
-            addNewProduct.ShowDialog();
-            screen.assortmentGridView.DataSource = null;
-            ProductModel.result = ProductModel.list;
-            screen.assortmentGridView.DataSource = ProductModel.result;
-            screen.assortmentGridView.Refresh();
+            dia = addNewProduct.ShowDialog();
+            if (dia == DialogResult.OK)
+            {
+                screen.assortmentGridView.DataSource = null;
+                screen.assortmentGridView.DataSource = ProductModel.result;
+                FillData();
+                screen.DropdownCategory.SelectedIndex = 0;
+                screen.DropdownBrand.SelectedIndex = 0;
+                screen.assortmentGridView.Refresh();
+            }
+            else
+            {
+                screen.assortmentGridView.Refresh();
+            }
         }
 
         public List<ProductModel> FilterNoAmount()
@@ -338,10 +348,10 @@ namespace KantoorInrichting.Controllers.Assortment
                     {
                         if (product.Amount < 1)
                         {
-
                             ProductModel.result.Add(product);
                         }
                     }
+
                 }
                 // remove all product with amount of less than 1
                 if (screen.checkBox1.Checked == true)

@@ -9,7 +9,10 @@ namespace KantoorInrichting.Controllers.CreateSpace
     class CreateSpaceController
     {
 
-
+        public CreateSpaceController()
+        {
+            
+        }
 
 
     }

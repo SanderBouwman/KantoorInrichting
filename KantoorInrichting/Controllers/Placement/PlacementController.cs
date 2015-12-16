@@ -201,10 +201,22 @@ namespace KantoorInrichting.Controllers.Placement
             
         }
 
+        public static int PlacementCount(ProductModel model)
+        {
+            int count = 0;
+            foreach (PlacedProduct placedproduct in placedProductList)
+            {
+                if (placedproduct.product.Product_id == model.Product_id)
+                {
+                    count++;
+                }
+                    
+            }
+            return count;
+        }
 
 
-
-#region Button Events
+        #region Button Events
         /// <summary>
         /// Turn a product
         /// </summary>
@@ -245,13 +257,17 @@ namespace KantoorInrichting.Controllers.Placement
         public void button_Delete()
         {
             try
-            { placedProductList.Remove(currentProduct); }
+            {
+                placedProductList.Remove(currentProduct);
+                productAdding.productList1.fixInformation();
+                productAdding.productInfo1.ReloadInfo();
+            }
             catch { }
         }
 
-        public void button_Save()
+        public void button_Save(string spacenumber)
         {
-            string space_number = "T5.35";
+            string space_number = spacenumber;
             foreach (PlacedProduct product in placedProductList)
             {
                 string X = product.location.X.ToString();
@@ -269,7 +285,7 @@ namespace KantoorInrichting.Controllers.Placement
 
             String fileName = Path.Combine(resourcesFolderPath, ""+space_number + ".bmp");
             bmp.Save(fileName);
-            MessageBox.Show(resourcesFolderPath);
+            MessageBox.Show("Opgeslagen");
         }
         #endregion Button Events
 
@@ -493,8 +509,8 @@ namespace KantoorInrichting.Controllers.Placement
             //The adding of the product
             placedProductList.Add(product);
             //Set as current product
-            //productAdding.productInfo1.setProduct(product.product);
             currentProduct = product;
+            productAdding.productList1.fixInformation();
             //Redraw
             DoRepaint();
         }

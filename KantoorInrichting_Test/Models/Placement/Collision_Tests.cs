@@ -22,8 +22,8 @@ namespace KantoorInrichting_Test.Models.Placement
             PointF point = new PointF(200, 200); //Right end = 350 (200+150)
             PointF pointWall = new PointF(440, 200); //Left end = 430 (440-10)
 
-            ProductModel product = new ProductModel("", "", "", "", "", 100, 300, 50, "", 1); //Width = 300, so it's 150 + 150
-            ProductModel productWall = new ProductModel("", "", "", "", "", 20, 20, 50, "", 1); //Width = 20, so it's 10 + 10
+            ProductModel product = new ProductModel(100, 300, 50); //Width = 300, so it's 150 + 150
+            ProductModel productWall = new ProductModel(20, 20, 50); //Width = 20, so it's 10 + 10
             
 
             PlacedProduct placedP = new PlacedProduct(product, point);
@@ -78,8 +78,8 @@ namespace KantoorInrichting_Test.Models.Placement
             PointF point = new PointF(400, 200);
             PointF pointWall = new PointF(400, 50);
 
-            ProductModel product = new ProductModel("", "", "", "", "", 100, 300, 50, "", 1);
-            ProductModel productWall = new ProductModel("", "", "", "", "", 100, 50, 50, "", 1);
+            ProductModel product = new ProductModel(100, 300, 50);
+            ProductModel productWall = new ProductModel(100, 50, 50);
 
             PlacedProduct placedP = new PlacedProduct(product, point);
             PlacedProduct placedWall = new PlacedProduct(productWall, pointWall);
@@ -139,8 +139,8 @@ namespace KantoorInrichting_Test.Models.Placement
             PointF point = new PointF(200, 200);
             PointF pointWall = new PointF(400, 50);
 
-            ProductModel product = new ProductModel("", "", "", "", "", 100, 300, 50, "", 1);
-            ProductModel productWall = new ProductModel("", "", "", "", "", 100, 50, 50, "", 1);
+            ProductModel product = new ProductModel(100, 300, 50);
+            ProductModel productWall = new ProductModel(100, 50, 50);
 
             PlacedProduct placedP = new PlacedProduct(product, point);
             PlacedProduct placedWall = new PlacedProduct(productWall, pointWall);
@@ -206,8 +206,8 @@ namespace KantoorInrichting_Test.Models.Placement
             PointF point = new PointF(200, 200);
             PointF pointWall = new PointF(400, 50);
 
-            ProductModel product = new ProductModel("", "", "", "", "", 100, 300, 50, "", 1);
-            ProductModel productWall = new ProductModel("", "", "", "", "", 100, 50, 50, "", 1);
+            ProductModel product = new ProductModel(100, 300, 50);
+            ProductModel productWall = new ProductModel(100, 50, 50);
 
             PlacedProduct placedP = new PlacedProduct(product, point);
             PlacedProduct placedWall = new PlacedProduct(productWall, pointWall);

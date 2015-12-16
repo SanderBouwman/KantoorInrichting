@@ -139,7 +139,7 @@
             this.CategoryManager.Name = "CategoryManager";
             this.CategoryManager.Size = new System.Drawing.Size(549, 50);
             this.CategoryManager.TabIndex = 4;
-            this.CategoryManager.Text = "Categorie manager";
+            this.CategoryManager.Text = "Categorie beheerder";
             this.CategoryManager.UseVisualStyleBackColor = false;
             this.CategoryManager.Click += new System.EventHandler(this.CategoryManager_Click);
             // 

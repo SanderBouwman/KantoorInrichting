@@ -66,7 +66,7 @@ namespace KantoorInrichting.Views.Placement
             this.ButtonControlPanel.Controls.Add(this.btn_Left);
             this.ButtonControlPanel.Controls.Add(this.btn_Down);
             this.ButtonControlPanel.Controls.Add(this.btn_Right);
-            this.ButtonControlPanel.Location = new System.Drawing.Point(716, 430);
+            this.ButtonControlPanel.Location = new System.Drawing.Point(716, 417);
             this.ButtonControlPanel.Name = "ButtonControlPanel";
             this.ButtonControlPanel.Size = new System.Drawing.Size(398, 81);
             this.ButtonControlPanel.TabIndex = 7;
@@ -75,7 +75,7 @@ namespace KantoorInrichting.Views.Placement
             // 
             this.SpaceDimensionsTextbox.BackColor = System.Drawing.SystemColors.InactiveBorder;
             this.SpaceDimensionsTextbox.Location = new System.Drawing.Point(257, 58);
-            this.SpaceDimensionsTextbox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SpaceDimensionsTextbox.Margin = new System.Windows.Forms.Padding(2);
             this.SpaceDimensionsTextbox.Name = "SpaceDimensionsTextbox";
             this.SpaceDimensionsTextbox.ReadOnly = true;
             this.SpaceDimensionsTextbox.Size = new System.Drawing.Size(131, 20);
@@ -95,7 +95,7 @@ namespace KantoorInrichting.Views.Placement
             // 
             this.SpaceNumberTextbox.BackColor = System.Drawing.SystemColors.InactiveBorder;
             this.SpaceNumberTextbox.Location = new System.Drawing.Point(257, 20);
-            this.SpaceNumberTextbox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SpaceNumberTextbox.Margin = new System.Windows.Forms.Padding(2);
             this.SpaceNumberTextbox.Name = "SpaceNumberTextbox";
             this.SpaceNumberTextbox.ReadOnly = true;
             this.SpaceNumberTextbox.Size = new System.Drawing.Size(131, 20);
@@ -244,7 +244,7 @@ namespace KantoorInrichting.Views.Placement
             this.productList1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.productList1.AutoScroll = true;
             this.productList1.Location = new System.Drawing.Point(694, 0);
-            this.productList1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.productList1.Margin = new System.Windows.Forms.Padding(4);
             this.productList1.Name = "productList1";
             this.productList1.Size = new System.Drawing.Size(420, 410);
             this.productList1.TabIndex = 0;
@@ -256,10 +256,10 @@ namespace KantoorInrichting.Views.Placement
             this.productInfo1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.productInfo1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.productInfo1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.productInfo1.Location = new System.Drawing.Point(716, 518);
-            this.productInfo1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.productInfo1.Location = new System.Drawing.Point(694, 505);
+            this.productInfo1.Margin = new System.Windows.Forms.Padding(4);
             this.productInfo1.Name = "productInfo1";
-            this.productInfo1.Size = new System.Drawing.Size(398, 148);
+            this.productInfo1.Size = new System.Drawing.Size(420, 148);
             this.productInfo1.TabIndex = 6;
             // 
             // ProductAdding

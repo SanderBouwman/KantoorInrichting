@@ -11,11 +11,15 @@ using System.Drawing.Imaging;
 using System.Drawing.Drawing2D;
 using KantoorInrichting.Views.Placement;
 using System.Windows.Forms;
+using KantoorInrichting.Controllers;
 
 namespace KantoorInrichting.Models.Product
 {
     public class PlacedProduct
     {
+
+        public static SortableBindingList<PlacedProduct> list = new SortableBindingList<PlacedProduct>();
+
         public ProductModel product { get; private set; }
         public PointF location { get; set; }
         public PointF[] cornerPoints { get; private set; }
@@ -51,7 +55,7 @@ namespace KantoorInrichting.Models.Product
 
             //Corner and image
             cornerPoints = new PointF[5];
-            
+            list.Add(this);
             resetImage();
         }
 
