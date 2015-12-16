@@ -13,6 +13,7 @@ using KantoorInrichting.Models.Product;
 using System.Collections.ObjectModel;
 using System.Drawing.Drawing2D;
 using KantoorInrichting.Controllers.Placement;
+using KantoorInrichting.Models.Maps;
 
 namespace KantoorInrichting.Views.Placement
 {
@@ -20,17 +21,37 @@ namespace KantoorInrichting.Views.Placement
     {
         public MainFrame hoofdscherm;
         private PlacementController controller;
-        
+        public Space space;
+
         public ProductAdding(MainFrame hoofdscherm)
         {
             this.hoofdscherm = hoofdscherm;
 
             InitializeComponent();
+            
+            Invalidate();
 
             //Needs to be after initializeComponents to prevent NULL errors
             controller = new PlacementController(hoofdscherm, this);
 
             //Invalidate();
+        }
+
+        public void OpenPanel(Space spacenr)
+        {
+            hoofdscherm.placement.space = spacenr;
+            this.SpaceNumberTextbox.Text = space.Room;
+            this.SpaceDimensionsTextbox.Text = space.length + " + " + space.width;
+
+            hoofdscherm.Size = new Size(1150, 750);
+            hoofdscherm.MinimumSize = new Size(1100, 720);
+            hoofdscherm.placement.Visible = true;
+            hoofdscherm.placement.Enabled = true;
+
+            //Update the data (size and colour of the PlacedProduct, information of the ProductList and ProductInfo)
+            hoofdscherm.placement.fixData();
+
+            hoofdscherm.placement.BringToFront();
         }
 
         public void fixData()
@@ -92,5 +113,10 @@ namespace KantoorInrichting.Views.Placement
         //Deletes the current selected product
         private void btn_Delete_Click(object sender, EventArgs e)
         { controller.button_Delete(); }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            controller.button_Save();
+        }
     }
 }

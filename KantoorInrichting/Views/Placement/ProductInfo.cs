@@ -38,16 +38,6 @@ namespace KantoorInrichting.Views.Placement
         {
             product = p;
 
-            //int count = 0;
-            //foreach (PlacedProduct placedproduct in PlacedProduct.list)
-            //{
-            //    if (placedproduct.product.Id == product.Id)
-            //    {
-            //        count++;
-            //    }
-
-            //}
-
             txt_Name.Text = product.Name;
             txt_Brand.Text = product.Brand;
             txt_Type.Text = product.Type;

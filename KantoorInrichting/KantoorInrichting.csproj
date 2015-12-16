@@ -56,6 +56,7 @@
     <Compile Include="Controllers\Assortment\AssortmentController.cs" />
     <Compile Include="Controllers\Assortment\EditProductController.cs" />
     <Compile Include="Controllers\Assortment\RemoveProductController.cs" />
+    <Compile Include="Controllers\CreateSpace\CreateSpaceController.cs" />
     <Compile Include="Controllers\DatabaseController.cs" />
     <Compile Include="Controllers\IController.cs" />
     <Compile Include="Controllers\Inventory\InventoryEditController.cs" />
@@ -116,6 +117,18 @@
     </Compile>
     <Compile Include="Views\Assortment\RemoveProductScreen.Designer.cs">
       <DependentUpon>RemoveProductScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CreateSpace\SpaceDesign.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\CreateSpace\SpaceDesign.Designer.cs">
+      <DependentUpon>SpaceDesign.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CreateSpace\SpaceInfoDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\CreateSpace\SpaceInfoDialog.Designer.cs">
+      <DependentUpon>SpaceInfoDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Grid\GridFieldPanel.cs">
       <SubType>Component</SubType>
@@ -227,6 +240,12 @@
     <Compile Include="Views\Product\NewCategory.Designer.cs">
       <DependentUpon>NewCategory.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\SpaceChoice\SpaceChoice.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\SpaceChoice\SpaceChoice.Designer.cs">
+      <DependentUpon>SpaceChoice.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -250,6 +269,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Assortment\RemoveProductScreen.resx">
       <DependentUpon>RemoveProductScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CreateSpace\SpaceInfoDialog.resx">
+      <DependentUpon>SpaceInfoDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Grid\ZoomView.resx">
       <DependentUpon>ZoomView.cs</DependentUpon>
@@ -301,6 +323,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Product\NewCategory.resx">
       <DependentUpon>NewCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\SpaceChoice\SpaceChoice.resx">
+      <DependentUpon>SpaceChoice.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

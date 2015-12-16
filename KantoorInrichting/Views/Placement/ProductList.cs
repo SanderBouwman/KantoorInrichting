@@ -17,7 +17,7 @@ namespace KantoorInrichting.Views.Placement
     {
         private List<ProductInfo> listOfInformation; 
         public event ProductSelectionChanged SelectionChanged;
-
+        
         public ProductList()
         {
             InitializeComponent();
@@ -36,11 +36,16 @@ namespace KantoorInrichting.Views.Placement
             GenerateProducts(true);
         }
 
-        private void GenerateProducts(bool StaticOrNot)
+        private void GenerateProducts(bool staticOrNot)
         {
+            var onlyAvailibleProducts =
+                from products in ProductModel.list
+                where products.Removed == false
+                select products;
+
             //Make generate all the products currently in the list, to display them to the user
             int y = 0;
-            if (StaticOrNot == true)
+            if (staticOrNot == true)
             {
                 foreach (StaticObjectModel product in StaticObjectModel.list)
                 {
@@ -55,7 +60,7 @@ namespace KantoorInrichting.Views.Placement
                 }
             } else
             {
-                foreach (ProductModel product in ProductModel.list)
+                foreach (ProductModel product in onlyAvailibleProducts)
                 {
                     ProductInfo pi = new ProductInfo();
                     pi.Location = new Point(0, y);

@@ -37,5 +37,10 @@ namespace KantoorInrichting.Views.Assortment
         {
             controller.CancelButton();
         }
+
+        private void AddNewProductScreen_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using KantoorInrichting.Controllers;
-using KantoorInrichting.Controllers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,32 +7,28 @@ using System.Threading.Tasks;
 
 namespace KantoorInrichting.Models.Maps
 {
-    class Space
+    public class Space
     {
         public static SortableBindingList<Space> list = new SortableBindingList<Space>();
         public static SortableBindingList<Space> result = new SortableBindingList<Space>();
+        public int length;
+        public int width;
+        public bool final;
+        public string Building;
+        public string Floor;
+        public string Room;
+        public string Roomnumber;
 
-        public string Building { get; private set; }
-        public int Floor { get; private set; }
-        public string Room { get; private set; }
-        public string Roomnumber { get; private set; }
-
-        public Space(string Lokaal, int Verdieping, string Gebouw, string Kamernumber )
-        {
-            Building = Gebouw;
-            Floor = Verdieping;
-            Room = Lokaal;
-            Roomnumber = Kamernumber;
-
-            list.Add(this);
-        }
-
-        //contstructor for wrong parameters
-        public Space(string Lokaal, string Verdieping, string Gebouw, string Kamernumber)
+        public Space(string Lokaal, string Verdieping, string Gebouw, string Kamernumber, int length, int width, bool final)
         {
             Building = Gebouw;
             Room = Lokaal;
+            Floor = Verdieping;         // why is floor a string? should be integer -- Edwin
             Roomnumber = Kamernumber;
+            this.length = length;
+            this.width = width;
+            this.final = final;
+
 
             list.Add(this);
         }

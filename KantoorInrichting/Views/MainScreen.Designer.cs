@@ -38,7 +38,7 @@
             // 
             // VooraadButton
             // 
-            this.VooraadButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.VooraadButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.VooraadButton.AutoEllipsis = true;
             this.VooraadButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
@@ -49,7 +49,7 @@
             this.VooraadButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.MenuHighlight;
             this.VooraadButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.VooraadButton.Font = new System.Drawing.Font("Maiandra GD", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.VooraadButton.Location = new System.Drawing.Point(21, 15);
+            this.VooraadButton.Location = new System.Drawing.Point(26, 346);
             this.VooraadButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.VooraadButton.Name = "VooraadButton";
             this.VooraadButton.Size = new System.Drawing.Size(549, 52);
@@ -60,7 +60,7 @@
             // 
             // mapButton
             // 
-            this.mapButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.mapButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.mapButton.AutoEllipsis = true;
             this.mapButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
@@ -71,7 +71,7 @@
             this.mapButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.MenuHighlight;
             this.mapButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mapButton.Font = new System.Drawing.Font("Maiandra GD", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mapButton.Location = new System.Drawing.Point(21, 84);
+            this.mapButton.Location = new System.Drawing.Point(26, 83);
             this.mapButton.Margin = new System.Windows.Forms.Padding(4);
             this.mapButton.Name = "mapButton";
             this.mapButton.Size = new System.Drawing.Size(549, 50);
@@ -82,7 +82,7 @@
             // 
             // assortmentButton
             // 
-            this.assortmentButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.assortmentButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.assortmentButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.assortmentButton.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
@@ -92,7 +92,7 @@
             this.assortmentButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.MenuHighlight;
             this.assortmentButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.assortmentButton.Font = new System.Drawing.Font("Maiandra GD", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.assortmentButton.Location = new System.Drawing.Point(21, 151);
+            this.assortmentButton.Location = new System.Drawing.Point(26, 16);
             this.assortmentButton.Margin = new System.Windows.Forms.Padding(4);
             this.assortmentButton.Name = "assortmentButton";
             this.assortmentButton.Size = new System.Drawing.Size(549, 50);
@@ -103,7 +103,7 @@
             // 
             // ProductAddingButton
             // 
-            this.ProductAddingButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.ProductAddingButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ProductAddingButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ProductAddingButton.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
@@ -113,18 +113,18 @@
             this.ProductAddingButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.MenuHighlight;
             this.ProductAddingButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ProductAddingButton.Font = new System.Drawing.Font("Maiandra GD", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ProductAddingButton.Location = new System.Drawing.Point(21, 219);
+            this.ProductAddingButton.Location = new System.Drawing.Point(26, 152);
             this.ProductAddingButton.Margin = new System.Windows.Forms.Padding(4);
             this.ProductAddingButton.Name = "ProductAddingButton";
             this.ProductAddingButton.Size = new System.Drawing.Size(549, 50);
             this.ProductAddingButton.TabIndex = 3;
-            this.ProductAddingButton.Text = "Product Toevoegen";
+            this.ProductAddingButton.Text = "Ruimte indelen";
             this.ProductAddingButton.UseVisualStyleBackColor = false;
             this.ProductAddingButton.Click += new System.EventHandler(this.ProductAddingButton_Click);
             // 
             // CategoryManager
             // 
-            this.CategoryManager.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.CategoryManager.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.CategoryManager.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.CategoryManager.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
@@ -134,18 +134,18 @@
             this.CategoryManager.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.MenuHighlight;
             this.CategoryManager.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CategoryManager.Font = new System.Drawing.Font("Maiandra GD", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CategoryManager.Location = new System.Drawing.Point(21, 285);
+            this.CategoryManager.Location = new System.Drawing.Point(26, 218);
             this.CategoryManager.Margin = new System.Windows.Forms.Padding(4);
             this.CategoryManager.Name = "CategoryManager";
             this.CategoryManager.Size = new System.Drawing.Size(549, 50);
             this.CategoryManager.TabIndex = 4;
-            this.CategoryManager.Text = "Categorie manager";
+            this.CategoryManager.Text = "Categorie beheerder";
             this.CategoryManager.UseVisualStyleBackColor = false;
             this.CategoryManager.Click += new System.EventHandler(this.CategoryManager_Click);
             // 
             // MapsButton
             // 
-            this.MapsButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.MapsButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MapsButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.MapsButton.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
@@ -155,7 +155,7 @@
             this.MapsButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.MenuHighlight;
             this.MapsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.MapsButton.Font = new System.Drawing.Font("Maiandra GD", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MapsButton.Location = new System.Drawing.Point(21, 346);
+            this.MapsButton.Location = new System.Drawing.Point(26, 279);
             this.MapsButton.Margin = new System.Windows.Forms.Padding(4);
             this.MapsButton.Name = "MapsButton";
             this.MapsButton.Size = new System.Drawing.Size(549, 50);

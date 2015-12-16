@@ -63,16 +63,11 @@ namespace KantoorInrichting.Views
 
         private void ProductAddingButton_Click(object sender, EventArgs e)
         {
-            hoofdscherm.Size = new Size(1150, 750);
-            hoofdscherm.MinimumSize = new Size(1050,675);
-            hoofdscherm.placement.Visible = true;
-            hoofdscherm.placement.Enabled = true;
 
-            //Update the data (size and colour of the PlacedProduct, information of the ProductList and ProductInfo)
-            hoofdscherm.placement.fixData();
-
+            hoofdscherm.spaceChoice.Visible = true;
+            hoofdscherm.spaceChoice.Enabled = true;
             this.Visible = false;
-            hoofdscherm.placement.BringToFront();
+            hoofdscherm.spaceChoice.BringToFront();
         }
 
         private void CategoryManager_Click(object sender, EventArgs e)

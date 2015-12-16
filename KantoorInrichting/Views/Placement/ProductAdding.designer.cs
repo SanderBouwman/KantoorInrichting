@@ -1,4 +1,6 @@
-﻿namespace KantoorInrichting.Views.Placement
+﻿using KantoorInrichting.Models.Maps;
+
+namespace KantoorInrichting.Views.Placement
 {
     partial class ProductAdding
     {
@@ -29,6 +31,11 @@
         private void InitializeComponent()
         {
             this.ButtonControlPanel = new System.Windows.Forms.Panel();
+            this.SpaceDimensionsTextbox = new System.Windows.Forms.TextBox();
+            this.SpaceDimensionsLabel = new System.Windows.Forms.Label();
+            this.SpaceNumberTextbox = new System.Windows.Forms.TextBox();
+            this.SpaceNumberLabel = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.btn_Delete = new System.Windows.Forms.Button();
             this.btn_CW = new System.Windows.Forms.Button();
             this.btn_Up = new System.Windows.Forms.Button();
@@ -47,6 +54,11 @@
             // ButtonControlPanel
             // 
             this.ButtonControlPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ButtonControlPanel.Controls.Add(this.SpaceDimensionsTextbox);
+            this.ButtonControlPanel.Controls.Add(this.SpaceDimensionsLabel);
+            this.ButtonControlPanel.Controls.Add(this.SpaceNumberTextbox);
+            this.ButtonControlPanel.Controls.Add(this.SpaceNumberLabel);
+            this.ButtonControlPanel.Controls.Add(this.button1);
             this.ButtonControlPanel.Controls.Add(this.btn_Delete);
             this.ButtonControlPanel.Controls.Add(this.btn_CW);
             this.ButtonControlPanel.Controls.Add(this.btn_Up);
@@ -54,18 +66,72 @@
             this.ButtonControlPanel.Controls.Add(this.btn_Left);
             this.ButtonControlPanel.Controls.Add(this.btn_Down);
             this.ButtonControlPanel.Controls.Add(this.btn_Right);
-            this.ButtonControlPanel.Location = new System.Drawing.Point(877, 430);
+
+            this.ButtonControlPanel.Location = new System.Drawing.Point(716, 430);
             this.ButtonControlPanel.Name = "ButtonControlPanel";
-            this.ButtonControlPanel.Size = new System.Drawing.Size(216, 81);
+            this.ButtonControlPanel.Size = new System.Drawing.Size(398, 81);
+
             this.ButtonControlPanel.TabIndex = 7;
+            // 
+            // SpaceDimensionsTextbox
+            // 
+            this.SpaceDimensionsTextbox.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            this.SpaceDimensionsTextbox.Location = new System.Drawing.Point(257, 58);
+            this.SpaceDimensionsTextbox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SpaceDimensionsTextbox.Name = "SpaceDimensionsTextbox";
+            this.SpaceDimensionsTextbox.ReadOnly = true;
+            this.SpaceDimensionsTextbox.Size = new System.Drawing.Size(131, 20);
+            this.SpaceDimensionsTextbox.TabIndex = 16;
+            // 
+            // SpaceDimensionsLabel
+            // 
+            this.SpaceDimensionsLabel.AutoSize = true;
+            this.SpaceDimensionsLabel.Location = new System.Drawing.Point(255, 41);
+            this.SpaceDimensionsLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.SpaceDimensionsLabel.Name = "SpaceDimensionsLabel";
+            this.SpaceDimensionsLabel.Size = new System.Drawing.Size(79, 13);
+            this.SpaceDimensionsLabel.TabIndex = 15;
+            this.SpaceDimensionsLabel.Text = "Afmeting ruimte";
+            // 
+            // SpaceNumberTextbox
+            // 
+            this.SpaceNumberTextbox.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            this.SpaceNumberTextbox.Location = new System.Drawing.Point(257, 20);
+            this.SpaceNumberTextbox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SpaceNumberTextbox.Name = "SpaceNumberTextbox";
+            this.SpaceNumberTextbox.ReadOnly = true;
+            this.SpaceNumberTextbox.Size = new System.Drawing.Size(131, 20);
+            this.SpaceNumberTextbox.TabIndex = 14;
+            // 
+            // SpaceNumberLabel
+            // 
+            this.SpaceNumberLabel.AutoSize = true;
+            this.SpaceNumberLabel.Location = new System.Drawing.Point(255, 4);
+            this.SpaceNumberLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.SpaceNumberLabel.Name = "SpaceNumberLabel";
+            this.SpaceNumberLabel.Size = new System.Drawing.Size(40, 13);
+            this.SpaceNumberLabel.TabIndex = 13;
+            this.SpaceNumberLabel.Text = "Ruimte";
+            // 
+            // button1
+            // 
+            this.button1.AllowDrop = true;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(191, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(60, 75);
+            this.button1.TabIndex = 12;
+            this.button1.Text = "💾";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // btn_Delete
             // 
             this.btn_Delete.AllowDrop = true;
-            this.btn_Delete.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Delete.Font = new System.Drawing.Font("Microsoft Sans Serif", 40.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Delete.Location = new System.Drawing.Point(126, 3);
             this.btn_Delete.Name = "btn_Delete";
-            this.btn_Delete.Size = new System.Drawing.Size(87, 75);
+            this.btn_Delete.Size = new System.Drawing.Size(59, 75);
             this.btn_Delete.TabIndex = 11;
             this.btn_Delete.Text = "🗑";
             this.btn_Delete.UseVisualStyleBackColor = true;
@@ -180,7 +246,7 @@
             this.productList1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.productList1.AutoScroll = true;
             this.productList1.Location = new System.Drawing.Point(694, 0);
-            this.productList1.Margin = new System.Windows.Forms.Padding(4);
+            this.productList1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.productList1.Name = "productList1";
             this.productList1.Size = new System.Drawing.Size(420, 410);
             this.productList1.TabIndex = 0;
@@ -192,10 +258,10 @@
             this.productInfo1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.productInfo1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.productInfo1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.productInfo1.Location = new System.Drawing.Point(694, 518);
-            this.productInfo1.Margin = new System.Windows.Forms.Padding(4);
+            this.productInfo1.Location = new System.Drawing.Point(716, 518);
+            this.productInfo1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.productInfo1.Name = "productInfo1";
-            this.productInfo1.Size = new System.Drawing.Size(420, 148);
+            this.productInfo1.Size = new System.Drawing.Size(398, 148);
             this.productInfo1.TabIndex = 6;
             // 
             // ProductAdding
@@ -212,6 +278,7 @@
             this.Name = "ProductAdding";
             this.Size = new System.Drawing.Size(1120, 670);
             this.ButtonControlPanel.ResumeLayout(false);
+            this.ButtonControlPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -230,5 +297,11 @@
         private System.Windows.Forms.Button btn_Delete;
         private Legend legend1;
         private System.Windows.Forms.Label titel;
+        private System.Windows.Forms.TextBox SpaceDimensionsTextbox;
+        private System.Windows.Forms.Label SpaceDimensionsLabel;
+        private System.Windows.Forms.TextBox SpaceNumberTextbox;
+        private System.Windows.Forms.Label SpaceNumberLabel;
+        private System.Windows.Forms.Button button1;
+
     }
 }
