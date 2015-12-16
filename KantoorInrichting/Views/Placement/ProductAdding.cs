@@ -92,5 +92,10 @@ namespace KantoorInrichting.Views.Placement
         //Deletes the current selected product
         private void btn_Delete_Click(object sender, EventArgs e)
         { controller.button_Delete(); }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            controller.button_Save();
+        }
     }
 }

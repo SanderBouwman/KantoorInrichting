@@ -247,11 +247,24 @@ namespace KantoorInrichting.Controllers.Placement
             { placedProductList.Remove(currentProduct); }
             catch { }
         }
+
+        public void button_Save()
+        {
+            foreach (PlacedProduct product in placedProductList)
+            {
+                string X = product.location.X.ToString();
+                string Y = product.location.Y.ToString();
+                int product_id = product.product.Product_id;
+                int staticPlacementID = 1;
+                string space_number = "D2-38";
+                MessageBox.Show("X-waarde: " + X + ", Y-waarde: " + Y + "product-id: " + product_id + "staticPlacementID: " + staticPlacementID + "Lokaal: " + space_number);
+            }
+        }
         #endregion Button Events
 
 
 
-#region Event Handlers
+        #region Event Handlers
         /// <summary>
         /// Event that allows the object to be dropped
         /// </summary>
