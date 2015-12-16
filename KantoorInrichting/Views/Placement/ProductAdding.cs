@@ -14,6 +14,7 @@ using System.Collections.ObjectModel;
 using System.Drawing.Drawing2D;
 using KantoorInrichting.Controllers.Placement;
 using KantoorInrichting.Models.Maps;
+using KantoorInrichting.Controllers;
 
 namespace KantoorInrichting.Views.Placement
 {
@@ -21,7 +22,8 @@ namespace KantoorInrichting.Views.Placement
     {
         public MainFrame hoofdscherm;
         private PlacementController controller;
-        public Space space;
+        public Space space;       
+
 
         public ProductAdding(MainFrame hoofdscherm)
         {
@@ -39,6 +41,7 @@ namespace KantoorInrichting.Views.Placement
 
         public void OpenPanel(Space spacenr)
         {
+            PlacementController.placedProductList.Clear();
             hoofdscherm.placement.space = spacenr;
             this.SpaceNumberTextbox.Text = space.Room;
             this.SpaceDimensionsTextbox.Text = space.length + " + " + space.width;
@@ -50,7 +53,7 @@ namespace KantoorInrichting.Views.Placement
 
             //Update the data (size and colour of the PlacedProduct, information of the ProductList and ProductInfo)
             hoofdscherm.placement.fixData();
-
+            hoofdscherm.placement.controller.placeProducts();
             hoofdscherm.placement.BringToFront();
         }
 
