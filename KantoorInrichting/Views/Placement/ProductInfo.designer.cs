@@ -37,40 +37,42 @@
             this.txt_Type = new System.Windows.Forms.TextBox();
             this.txt_Dimension = new System.Windows.Forms.TextBox();
             this.pbx_Image = new System.Windows.Forms.PictureBox();
+            this.lbl_4 = new System.Windows.Forms.Label();
+            this.txt_Stock = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbx_Image)).BeginInit();
             this.SuspendLayout();
             // 
             // lbl_1
             // 
             this.lbl_1.AutoSize = true;
-            this.lbl_1.Location = new System.Drawing.Point(5, 6);
+            this.lbl_1.Location = new System.Drawing.Point(5, 16);
             this.lbl_1.Name = "lbl_1";
             this.lbl_1.Size = new System.Drawing.Size(41, 13);
             this.lbl_1.TabIndex = 0;
-            this.lbl_1.Text = "Name: ";
+            this.lbl_1.Text = "Naam: ";
             // 
             // lbl_2
             // 
             this.lbl_2.AutoSize = true;
-            this.lbl_2.Location = new System.Drawing.Point(3, 32);
+            this.lbl_2.Location = new System.Drawing.Point(3, 42);
             this.lbl_2.Name = "lbl_2";
-            this.lbl_2.Size = new System.Drawing.Size(38, 13);
+            this.lbl_2.Size = new System.Drawing.Size(34, 13);
             this.lbl_2.TabIndex = 2;
-            this.lbl_2.Text = "Brand:";
+            this.lbl_2.Text = "Merk:";
             // 
             // lbl_5
             // 
             this.lbl_5.AutoSize = true;
-            this.lbl_5.Location = new System.Drawing.Point(3, 110);
+            this.lbl_5.Location = new System.Drawing.Point(3, 120);
             this.lbl_5.Name = "lbl_5";
-            this.lbl_5.Size = new System.Drawing.Size(59, 13);
+            this.lbl_5.Size = new System.Drawing.Size(63, 13);
             this.lbl_5.TabIndex = 6;
-            this.lbl_5.Text = "Dimension:";
+            this.lbl_5.Text = "Afmetingen:";
             // 
             // lbl_3
             // 
             this.lbl_3.AutoSize = true;
-            this.lbl_3.Location = new System.Drawing.Point(3, 58);
+            this.lbl_3.Location = new System.Drawing.Point(3, 68);
             this.lbl_3.Name = "lbl_3";
             this.lbl_3.Size = new System.Drawing.Size(34, 13);
             this.lbl_3.TabIndex = 13;
@@ -79,7 +81,7 @@
             // txt_Name
             // 
             this.txt_Name.Enabled = false;
-            this.txt_Name.Location = new System.Drawing.Point(61, 3);
+            this.txt_Name.Location = new System.Drawing.Point(72, 13);
             this.txt_Name.Name = "txt_Name";
             this.txt_Name.ReadOnly = true;
             this.txt_Name.Size = new System.Drawing.Size(150, 20);
@@ -88,7 +90,7 @@
             // txt_Brand
             // 
             this.txt_Brand.Enabled = false;
-            this.txt_Brand.Location = new System.Drawing.Point(61, 29);
+            this.txt_Brand.Location = new System.Drawing.Point(72, 39);
             this.txt_Brand.Name = "txt_Brand";
             this.txt_Brand.ReadOnly = true;
             this.txt_Brand.Size = new System.Drawing.Size(150, 20);
@@ -97,7 +99,7 @@
             // txt_Type
             // 
             this.txt_Type.Enabled = false;
-            this.txt_Type.Location = new System.Drawing.Point(61, 55);
+            this.txt_Type.Location = new System.Drawing.Point(72, 65);
             this.txt_Type.Name = "txt_Type";
             this.txt_Type.ReadOnly = true;
             this.txt_Type.Size = new System.Drawing.Size(150, 20);
@@ -106,7 +108,7 @@
             // txt_Dimension
             // 
             this.txt_Dimension.Enabled = false;
-            this.txt_Dimension.Location = new System.Drawing.Point(61, 107);
+            this.txt_Dimension.Location = new System.Drawing.Point(72, 117);
             this.txt_Dimension.Name = "txt_Dimension";
             this.txt_Dimension.ReadOnly = true;
             this.txt_Dimension.Size = new System.Drawing.Size(150, 20);
@@ -124,6 +126,24 @@
             this.pbx_Image.TabStop = false;
             this.pbx_Image.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbx_Image_MouseDown);
             // 
+            // lbl_4
+            // 
+            this.lbl_4.AutoSize = true;
+            this.lbl_4.Location = new System.Drawing.Point(5, 94);
+            this.lbl_4.Name = "lbl_4";
+            this.lbl_4.Size = new System.Drawing.Size(47, 13);
+            this.lbl_4.TabIndex = 24;
+            this.lbl_4.Text = "Vorraad:";
+            // 
+            // txt_Stock
+            // 
+            this.txt_Stock.Enabled = false;
+            this.txt_Stock.Location = new System.Drawing.Point(72, 91);
+            this.txt_Stock.Name = "txt_Stock";
+            this.txt_Stock.ReadOnly = true;
+            this.txt_Stock.Size = new System.Drawing.Size(150, 20);
+            this.txt_Stock.TabIndex = 25;
+            // 
             // ProductInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -131,6 +151,8 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Controls.Add(this.txt_Stock);
+            this.Controls.Add(this.lbl_4);
             this.Controls.Add(this.pbx_Image);
             this.Controls.Add(this.txt_Dimension);
             this.Controls.Add(this.txt_Type);
@@ -140,7 +162,7 @@
             this.Controls.Add(this.lbl_5);
             this.Controls.Add(this.lbl_2);
             this.Controls.Add(this.lbl_1);
-            this.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Cursor = System.Windows.Forms.Cursors.Default;
             this.Name = "ProductInfo";
             this.Size = new System.Drawing.Size(398, 148);
             ((System.ComponentModel.ISupportInitialize)(this.pbx_Image)).EndInit();
@@ -160,5 +182,7 @@
         private System.Windows.Forms.TextBox txt_Type;
         private System.Windows.Forms.TextBox txt_Dimension;
         public System.Windows.Forms.PictureBox pbx_Image;
+        private System.Windows.Forms.Label lbl_4;
+        private System.Windows.Forms.TextBox txt_Stock;
     }
 }

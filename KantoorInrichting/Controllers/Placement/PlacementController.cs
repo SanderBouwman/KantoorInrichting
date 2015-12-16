@@ -199,10 +199,22 @@ namespace KantoorInrichting.Controllers.Placement
             
         }
 
+        public static int PlacementCount(ProductModel model)
+        {
+            int count = 0;
+            foreach (PlacedProduct placedproduct in placedProductList)
+            {
+                if (placedproduct.product.Product_id == model.Product_id)
+                {
+                    count++;
+                }
+                    
+            }
+            return count;
+        }
 
 
-
-#region Button Events
+        #region Button Events
         /// <summary>
         /// Turn a product
         /// </summary>

@@ -100,6 +100,26 @@ namespace KantoorInrichting.Controllers
                 var c1 = new CategoryModel(category.category_id, category.name, category.subcategory_of, category.color);
             }
         }
+        public void GetPlacements_FromDatabase()
+        {
+            foreach (var placement in this.DataSet.placement)
+            {
+                var p1 = new PlacedProduct(GetSpecificProduct_FromDatabase(placement.product_id), new System.Drawing.PointF(placement.x_position, placement.y_position));
+            }
+        }
+
+        public ProductModel GetSpecificProduct_FromDatabase(int id)
+        {
+            foreach (ProductModel product in ProductModel.list)
+            {
+                if(product.Id == id)
+                {
+                    return product;
+                }
+            }
+            return null;
+
+        }
 
     }
 }

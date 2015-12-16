@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using KantoorInrichting;
 using KantoorInrichting.Models.Product;
+using KantoorInrichting.Controllers.Placement;
 
 namespace KantoorInrichting.Views.Placement
 {
@@ -19,7 +20,9 @@ namespace KantoorInrichting.Views.Placement
 
         public ProductInfo()
         {
+
             InitializeComponent();
+
             
             setProduct(new ProductModel());
         }
@@ -35,9 +38,20 @@ namespace KantoorInrichting.Views.Placement
         {
             product = p;
 
+            //int count = 0;
+            //foreach (PlacedProduct placedproduct in PlacedProduct.list)
+            //{
+            //    if (placedproduct.product.Id == product.Id)
+            //    {
+            //        count++;
+            //    }
+
+            //}
+
             txt_Name.Text = product.Name;
             txt_Brand.Text = product.Brand;
             txt_Type.Text = product.Type;
+            txt_Stock.Text = product.Amount.ToString() + " (" + PlacementController.PlacementCount(product)  + " in gebruik)";
             txt_Dimension.Text = product.Length.ToString() + "x" + product.Width.ToString() + "x" + product.Height.ToString();
 
             pbx_Image.Image = product.Image;
@@ -57,5 +71,6 @@ namespace KantoorInrichting.Views.Placement
         {
             pbx_Image.DoDragDrop(product, DragDropEffects.Copy);
         }
+
     }
 }
