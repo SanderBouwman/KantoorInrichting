@@ -149,7 +149,7 @@ namespace KantoorInrichting.Controllers.Assortment
                     MessageBox.Show("Te groot aantal bij Aantal");
                 }
             }
-            if (!Regex.IsMatch(_screen.priceTextBox.Text, @"[\d]{1,12}([.,][\d]{1,2})?"))
+            if (!Regex.IsMatch(_screen.priceTextBox.Text, @"[\d]{1,12}([,][\d]{1,2})?"))
             {
                 _screen.errorPriceLabel.Text = "Ongeldige invoer";
             }

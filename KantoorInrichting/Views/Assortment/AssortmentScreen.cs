@@ -15,11 +15,12 @@ namespace KantoorInrichting.Views.Assortment
             InitializeComponent();
             this.hoofdscherm = hoofdscherm;
             controller = new AssortmentController(this);
-            checkBox1.Checked = true;
+            noAmountCheckBox.Checked = true;
+            deleteCheckBox.Checked = true;
             DropdownBrand.SelectedIndex = 0;
             DropdownCategory.SelectedIndex = 0;
             Invalidate();
-            
+
         }
 
         //Opens AddNewProductScreen when this button is pressed
@@ -44,16 +45,20 @@ namespace KantoorInrichting.Views.Assortment
             controller.DropdownCategory();
         }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        private void noAmountCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            controller.CheckBox1();
+            controller.NoAmountProductCheckBox();
             this.Refresh();
         }
-
 
         private void DeleteCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             controller.DeleteProductCheckBox();
+        }
+
+        private void removeFiltersButton_Click(object sender, EventArgs e)
+        {
+            controller.RemoveFilters();
         }
     }
 }

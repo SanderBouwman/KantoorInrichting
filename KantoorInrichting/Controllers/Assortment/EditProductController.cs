@@ -53,6 +53,7 @@ namespace KantoorInrichting.Controllers.Assortment
             screen.amountTextBox.Text = product.Amount.ToString();
             screen.descriptionTextBox.Text = product.Description;
             screen.pictureBox.Image = product.Image;
+            screen.priceTextBox.Text = product.Price.ToString();
         }
 
         //Fills the category combobox with categories from the database and selects the category
@@ -173,7 +174,7 @@ namespace KantoorInrichting.Controllers.Assortment
                     MessageBox.Show("Te groot aantal bij Aantal");
                 }
             }
-            if (!Regex.IsMatch(screen.priceTextBox.Text, @"[\d]{1,12}([.,][\d]{1,2})?"))
+            if (!Regex.IsMatch(screen.priceTextBox.Text, @"[\d]{1,12}([,][\d]{1,2})?"))
             {
                 screen.errorPriceLabel.Text = "Ongeldige invoer";
             }

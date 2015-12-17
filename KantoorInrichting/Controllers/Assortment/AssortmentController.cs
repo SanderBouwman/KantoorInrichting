@@ -34,32 +34,12 @@ namespace KantoorInrichting.Controllers.Assortment
             screen.assortmentGridView.Refresh();
         }
 
-        //Opens AddNewProductScreen when this button is pressed
-        public void AddProduct()
-        {
-            DialogResult dia = new DialogResult();
-            var addNewProduct = new AddNewProductScreen();
-            dia = addNewProduct.ShowDialog();
-            if (dia == DialogResult.OK)
-            {
-                screen.assortmentGridView.DataSource = null;
-                screen.assortmentGridView.DataSource = ProductModel.result;
-                FillData();
-                screen.DropdownCategory.SelectedIndex = 0;
-                screen.DropdownBrand.SelectedIndex = 0;
-                screen.assortmentGridView.Refresh();
-            }
-            else
-            {
-                screen.assortmentGridView.Refresh();
-            }
-        }
-
+        //This method generates a list with products that have 1 or more amount
         public List<ProductModel> FilterNoAmount()
         {
             // filter the data to only view products with an amount
             var filteredProducts = from product in ProductModel.list
-                                   where product.Amount >= 1  && product.Removed == false
+                                   where product.Amount >= 1 && product.Removed == false
                                    select product;
 
             // return the filtered results.
@@ -68,6 +48,7 @@ namespace KantoorInrichting.Controllers.Assortment
             return filterResult;
         }
 
+        //This mehtod will fill the dropdown boxes
         public void FillDropdown()
         {
             // clear both dropdowns
@@ -99,6 +80,7 @@ namespace KantoorInrichting.Controllers.Assortment
             }
         }
 
+        //This method will filter on a specific Brand that has been selected
         public void FilterBrand()
         {
             // filter the data
@@ -131,6 +113,7 @@ namespace KantoorInrichting.Controllers.Assortment
 
         }
 
+        //This method will filter on a specific Category that has been selected
         public void FilterCategory()
         {
             // filter the data
@@ -192,73 +175,19 @@ namespace KantoorInrichting.Controllers.Assortment
             screen.assortmentGridView.Refresh();
         }
 
-        //This methods checks which cell has been clicked and then opens a dialog to edit or remove a specific product 
-        public void DataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            var senderGrid = (DataGridView)sender;
-            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
-            {
-                if (e.ColumnIndex == 10)
-                {
-                    // run edit screen here
-                    // make an editscreen with current product as argument
-                    DialogResult dia = new DialogResult();
-                    var editProduct = new EditProductScreen(ProductModel.result[e.RowIndex]);
-                    dia = editProduct.ShowDialog();
-                    if (dia == DialogResult.OK)
-                    {
-                        screen.assortmentGridView.DataSource = null;
-                        screen.assortmentGridView.DataSource = ProductModel.result;
-                        FillData();
-                        screen.DropdownCategory.SelectedIndex = 0;
-                        screen.DropdownBrand.SelectedIndex = 0;
-                        screen.assortmentGridView.Refresh();
-                    }
-                    else
-                    {
-                        screen.assortmentGridView.Refresh();
-                    }
-                }
-
-                if (e.ColumnIndex == 11)
-                {
-                    DialogResult dia = new DialogResult();
-                    var removeProduct = new RemoveProductScreen(ProductModel.result[e.RowIndex]);
-                    dia = removeProduct.ShowDialog();
-                    if (dia == DialogResult.OK)
-                    {
-                        screen.assortmentGridView.DataSource = null;
-                        screen.assortmentGridView.DataSource = ProductModel.result;
-                        FillData();
-                        screen.DropdownCategory.SelectedIndex = 0;
-                        screen.DropdownBrand.SelectedIndex = 0;
-                        screen.assortmentGridView.Refresh();
-                    } else
-                    {
-                        screen.assortmentGridView.DataSource = null;
-                        screen.assortmentGridView.DataSource = ProductModel.result;
-                        FillData();
-                        screen.DropdownCategory.SelectedIndex = 0;
-                        screen.DropdownBrand.SelectedIndex = 0;
-                        screen.assortmentGridView.Refresh();
-                    }
-
-                }
-            }
-        }
-
+        //This method checks if the checkbox is checked and will add or remove products from the list
         public void DeleteProductCheckBox()
         {
-            if (screen.deleteCheckBox.Checked == true) {
+            if (screen.deleteCheckBox.Checked)
+            {
                 // add the deleted products
                 foreach (ProductModel product in ProductModel.list)
                 {
-                    if (product.Removed == true)
+                    if (product.Removed)
                     {
-                        ProductModel.result.Add(product);
+                        ProductModel.result.Remove(product);
                     }
                 }
-
             }
             else
             {
@@ -267,14 +196,12 @@ namespace KantoorInrichting.Controllers.Assortment
                 {
                     if (product.Removed == true)
                     {
-                        ProductModel.result.Remove(product);
+                        ProductModel.result.Add(product);
                     }
                 }
             }
-
-            // delete datasource
+            //Refresh the screen with the new Data
             screen.assortmentGridView.DataSource = null;
-            screen.assortmentGridView.Refresh();
             screen.DropdownCategory.SelectedIndex = 0;
             screen.DropdownBrand.SelectedIndex = 0;
             screen.DropdownBrand.Refresh();
@@ -284,14 +211,15 @@ namespace KantoorInrichting.Controllers.Assortment
             screen.Refresh();
         }
 
-        public void CheckBox1()
+        //This method checks if the checkbox is checked and will add or remove products from the list
+        public void NoAmountProductCheckBox()
         {
             // if the checkbox has changed 
             // check if there is an brand filter
             if (screen.DropdownBrand.SelectedIndex > 0)
             {
                 // add all product with amount of less than 1 and filtered on the brand
-                if (screen.checkBox1.Checked == false)
+                if (screen.noAmountCheckBox.Checked == false)
                 {
                     foreach (ProductModel product in ProductModel.list)
                     {
@@ -302,7 +230,7 @@ namespace KantoorInrichting.Controllers.Assortment
                     }
                 }
                 // remove all product with amount of less than 1 and filtered on the brand
-                if (screen.checkBox1.Checked == true)
+                if (screen.noAmountCheckBox.Checked == true)
                 {
                     foreach (ProductModel product in ProductModel.list)
                     {
@@ -317,7 +245,7 @@ namespace KantoorInrichting.Controllers.Assortment
             else if (screen.DropdownCategory.SelectedIndex > 0)
             {
                 // add all product with amount of less than 1 and filtered on the brand
-                if (screen.checkBox1.Checked == false)
+                if (screen.noAmountCheckBox.Checked == false)
                 {
                     foreach (ProductModel product in ProductModel.list)
                     {
@@ -328,7 +256,7 @@ namespace KantoorInrichting.Controllers.Assortment
                     }
                 }
                 // remove all product with amount of less than 1 and filtered on the brand
-                if (screen.checkBox1.Checked == true)
+                if (screen.noAmountCheckBox.Checked == true)
                 {
                     foreach (ProductModel product in ProductModel.list)
                     {
@@ -342,7 +270,7 @@ namespace KantoorInrichting.Controllers.Assortment
             else
             {
                 // add all product with amount of less than 1
-                if (screen.checkBox1.Checked == false)
+                if (screen.noAmountCheckBox.Checked == false)
                 {
                     foreach (ProductModel product in ProductModel.list)
                     {
@@ -354,7 +282,7 @@ namespace KantoorInrichting.Controllers.Assortment
 
                 }
                 // remove all product with amount of less than 1
-                if (screen.checkBox1.Checked == true)
+                if (screen.noAmountCheckBox.Checked == true)
                 {
                     foreach (ProductModel product in ProductModel.list)
                     {
@@ -367,20 +295,79 @@ namespace KantoorInrichting.Controllers.Assortment
             }
         }
 
+        //Dropdown handler for the DropDown menu brand
         public void DropdownBrand()
         {
             // if the brand dropdown is changed, the checkbox is set to true.
-            screen.checkBox1.Checked = true;
+            screen.noAmountCheckBox.Checked = true;
             // filter the datagridview with the selected brand
             FilterBrand();
         }
 
+        //Dropdown handler for the DropDown menu category
         public void DropdownCategory()
         {
             // if the category dropdown is changed, the checkbox is set to true.
-            screen.checkBox1.Checked = true;
+            screen.noAmountCheckBox.Checked = true;
             // filter the datagridview with the selected category
             FilterCategory();
+        }
+
+        //Opens AddNewProductScreen when this button is pressed
+        public void AddProduct()
+        {
+            var addNewProduct = new AddNewProductScreen();
+            addNewProduct.ShowDialog();
+            screen.assortmentGridView.DataSource = null;
+            screen.assortmentGridView.DataSource = ProductModel.result;
+            FillData();
+            screen.DropdownCategory.SelectedIndex = 0;
+            screen.DropdownBrand.SelectedIndex = 0;
+            screen.assortmentGridView.Refresh();
+        }
+
+        public void RemoveFilters()
+        {
+            // if button 1 is clicked, all filters are reset
+            screen.deleteCheckBox.Checked = true;
+            screen.noAmountCheckBox.Checked = true;
+            screen.DropdownBrand.SelectedIndex = 0;
+            screen.DropdownCategory.SelectedIndex = 0;
+            screen.assortmentGridView.Refresh();
+        }
+
+        //This methods checks which cell has been clicked and then opens a dialog to edit or remove a specific product 
+        public void DataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var senderGrid = (DataGridView)sender;
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
+            {
+                if (e.ColumnIndex == 11)
+                {
+                    // run edit screen here
+                    // make an editscreen with current product as argument
+                    var editProduct = new EditProductScreen(ProductModel.result[e.RowIndex]);
+                    editProduct.ShowDialog();
+                    screen.assortmentGridView.DataSource = null;
+                    screen.assortmentGridView.DataSource = ProductModel.result;
+                    FillData();
+                    screen.DropdownCategory.SelectedIndex = 0;
+                    screen.DropdownBrand.SelectedIndex = 0;
+                    screen.assortmentGridView.Refresh();
+                }
+
+                if (e.ColumnIndex == 12)
+                {
+                    var removeProduct = new RemoveProductScreen(ProductModel.result[e.RowIndex]);
+                    removeProduct.ShowDialog();
+                    screen.assortmentGridView.DataSource = null;
+                    screen.assortmentGridView.DataSource = ProductModel.result;
+                    FillData();
+                    screen.DropdownCategory.SelectedIndex = 0;
+                    screen.DropdownBrand.SelectedIndex = 0;
+                    screen.assortmentGridView.Refresh();
+                }
+            }
         }
     }
 }
