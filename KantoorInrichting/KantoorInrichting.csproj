@@ -216,6 +216,12 @@
     <Compile Include="Views\Placement\ProductFieldPanel.Designer.cs">
       <DependentUpon>ProductFieldPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Placement\ProductGrid.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Placement\ProductGrid.Designer.cs">
+      <DependentUpon>ProductGrid.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Placement\ProductInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -311,6 +317,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Placement\ProductFieldPanel.resx">
       <DependentUpon>ProductFieldPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Placement\ProductGrid.resx">
+      <DependentUpon>ProductGrid.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Placement\ProductInfo.resx">
       <DependentUpon>ProductInfo.cs</DependentUpon>
