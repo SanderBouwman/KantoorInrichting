@@ -37,10 +37,12 @@
             this.buttonLeft = new System.Windows.Forms.Button();
             this.buttonCCW = new System.Windows.Forms.Button();
             this.legendLabel = new System.Windows.Forms.Label();
+            this.controlDock = new System.Windows.Forms.Panel();
+            this.productList = new KantoorInrichting.Views.Placement.ProductList();
             this.gridFieldPanel = new KantoorInrichting.Models.Grid.GridFieldPanel();
             this.legend = new KantoorInrichting.Views.Placement.Legend();
-            this.productList = new KantoorInrichting.Views.Placement.ProductList();
             this.controlPanel.SuspendLayout();
+            this.controlDock.SuspendLayout();
             this.SuspendLayout();
             // 
             // controlPanel
@@ -58,7 +60,7 @@
             this.controlPanel.Controls.Add(this.buttonUp);
             this.controlPanel.Controls.Add(this.buttonLeft);
             this.controlPanel.Controls.Add(this.buttonCCW);
-            this.controlPanel.Location = new System.Drawing.Point(745, 426);
+            this.controlPanel.Location = new System.Drawing.Point(62, 473);
             this.controlPanel.Name = "controlPanel";
             this.controlPanel.Size = new System.Drawing.Size(372, 80);
             this.controlPanel.TabIndex = 1;
@@ -186,8 +188,31 @@
             this.legendLabel.TabIndex = 3;
             this.legendLabel.Text = "Legenda";
             // 
+            // controlDock
+            // 
+            this.controlDock.Controls.Add(this.productList);
+            this.controlDock.Controls.Add(this.controlPanel);
+            this.controlDock.Dock = System.Windows.Forms.DockStyle.Right;
+            this.controlDock.Location = new System.Drawing.Point(683, 0);
+            this.controlDock.Name = "controlDock";
+            this.controlDock.Size = new System.Drawing.Size(437, 670);
+            this.controlDock.TabIndex = 5;
+            // 
+            // productList
+            // 
+            this.productList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.productList.AutoScroll = true;
+            this.productList.Location = new System.Drawing.Point(14, 0);
+            this.productList.Name = "productList";
+            this.productList.Size = new System.Drawing.Size(420, 420);
+            this.productList.TabIndex = 0;
+            // 
             // gridFieldPanel
             // 
+            this.gridFieldPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gridFieldPanel.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.gridFieldPanel.Location = new System.Drawing.Point(3, 3);
             this.gridFieldPanel.Name = "gridFieldPanel";
             this.gridFieldPanel.Size = new System.Drawing.Size(600, 550);
@@ -203,28 +228,19 @@
             this.legend.Size = new System.Drawing.Size(403, 86);
             this.legend.TabIndex = 2;
             // 
-            // productList
-            // 
-            this.productList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.productList.AutoScroll = true;
-            this.productList.Location = new System.Drawing.Point(700, 0);
-            this.productList.Name = "productList";
-            this.productList.Size = new System.Drawing.Size(420, 420);
-            this.productList.TabIndex = 0;
-            // 
             // ProductGrid
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.controlDock);
             this.Controls.Add(this.gridFieldPanel);
             this.Controls.Add(this.legendLabel);
             this.Controls.Add(this.legend);
-            this.Controls.Add(this.controlPanel);
-            this.Controls.Add(this.productList);
             this.Name = "ProductGrid";
             this.Size = new System.Drawing.Size(1120, 670);
             this.controlPanel.ResumeLayout(false);
             this.controlPanel.PerformLayout();
+            this.controlDock.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -249,5 +265,6 @@
         private System.Windows.Forms.TextBox spaceSizeTextbox;
         private System.Windows.Forms.TextBox spaceNumberTextbox;
         private Models.Grid.GridFieldPanel gridFieldPanel;
+        private System.Windows.Forms.Panel controlDock;
     }
 }

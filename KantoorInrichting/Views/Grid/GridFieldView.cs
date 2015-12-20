@@ -13,7 +13,7 @@ using KantoorInrichting.Controllers;
 
 namespace KantoorInrichting.Views.Grid
 {
-    public partial class GridFieldView : UserControl, IView
+    public partial class GridFieldView : UserControl//, IView
     {
         private IController _controller;
 
@@ -154,7 +154,7 @@ namespace KantoorInrichting.Views.Grid
 
         private void DrawPanel_Resize(object sender, EventArgs e)
         {
-            _controller.Resize(sender, e);
+            //_controller.Resize(sender, e);
         }
 
         private void DrawPanel_Paint(object sender, PaintEventArgs e)

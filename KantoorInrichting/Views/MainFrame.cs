@@ -37,11 +37,11 @@ namespace KantoorInrichting
             this.mainScreen1 = new KantoorInrichting.Views.MainScreen(this);
             this.gridFieldView = new KantoorInrichting.Views.Grid.GridFieldView();
             this.assortmentScreen = new Views.Assortment.AssortmentScreen(this);
-            this.placement = new Views.Placement.ProductAdding(this);
+//            this.placement = new Views.Placement.ProductAdding(this);
             this.loginScreen1 = new Views.LoginScreen(this);
             this.MapsScreen = new Views.Maps.MapsScreen(this);
             this.spaceChoice = new Views.SpaceChoice.SpaceChoice(this);
-            this.productGrid = new KantoorInrichting.Views.Placement.ProductGrid();
+//            this.productGrid = new KantoorInrichting.Views.Placement.ProductGrid();
             //
             // assortmentScreen
             //
@@ -65,9 +65,9 @@ namespace KantoorInrichting
             // 
             // productGrid
             // 
-            this.productGrid.Anchor = ( ( AnchorStyles ) ( ( ( ( AnchorStyles.Top | AnchorStyles.Bottom ) | AnchorStyles.Left ) | AnchorStyles.Right ) ) );
-            this.productGrid.Name = "productGrid";
-            this.productGrid.TabIndex = 2;
+//            this.productGrid.Anchor = ( ( AnchorStyles ) ( ( ( ( AnchorStyles.Top | AnchorStyles.Bottom ) | AnchorStyles.Left ) | AnchorStyles.Right ) ) );
+//            this.productGrid.Name = "productGrid";
+//            this.productGrid.TabIndex = 2;
 
             // 
             // mainScreen1
@@ -108,10 +108,10 @@ namespace KantoorInrichting
             AddPanelToMainscreen(gridFieldView);
             AddPanelToMainscreen(mainScreen1);
             AddPanelToMainscreen(loginScreen1);
-            AddPanelToMainscreen(placement);
+//            AddPanelToMainscreen(placement);
             AddPanelToMainscreen(MapsScreen);
             AddPanelToMainscreen(spaceChoice);
-            AddPanelToMainscreen(productGrid);
+//            AddPanelToMainscreen(productGrid);
 
             //after adding the panels make the loginscreen visisble (other then default)
 
@@ -119,7 +119,7 @@ namespace KantoorInrichting
             this.loginScreen1.Visible = true;
         }
 
-        private void AddPanelToMainscreen(UserControl panel)
+        public void AddPanelToMainscreen(UserControl panel)
         {
             // this method must be used for every panel!!
 

@@ -1,33 +1,63 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿// created by: Robin
+// on: 19-12-2015
+
+#region
+
+using System;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using KantoorInrichting.Controllers;
 
-namespace KantoorInrichting.Views.Placement {
-    public partial class ProductGrid : UserControl, IView
+#endregion
+
+namespace KantoorInrichting.Views.Placement
+{
+    public partial class ProductGrid : UserControl, IView<ProductGrid.PropertyEnum>
     {
-        private IController controller;
 
-        public static Size PanelSize = new Size(1280, 720);
-
-        public ProductGrid() {
-            InitializeComponent();
+        public enum PropertyEnum
+        {
+            panel
         }
+        public static Size PanelSize = new Size(1280, 720);
+        private IController controller;
+        public PropertyEnum Properties { get; set; }
+
+        public ProductGrid()
+        {
+            InitializeComponent();
+            SetEvents();
+        }
+
 
         public void SetController(IController c)
         {
             controller = c;
         }
 
-        public Control Get(string property)
+        public Control Get(PropertyEnum property)
         {
-            throw new NotImplementedException();
+            Control result;
+            switch( property ) {
+                case PropertyEnum.panel:
+                    result = this.gridFieldPanel;
+                    break;
+                default:
+                    result = null;
+                    break;
+            }
+            return result;
+        }
+
+        public void SetEvents()
+        {
+            Layout += ProductGrid_Layout;
+        }
+
+        private void ProductGrid_Layout(object sender, LayoutEventArgs e)
+        {
+            controller.Notify(sender, e);
         }
     }
+    
 }

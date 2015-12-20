@@ -10,9 +10,10 @@ using KantoorInrichting.Controllers;
 
 namespace KantoorInrichting.Views
 {
-    public interface IView
+    public interface IView<T>
     {
+        T Properties { get; set; }
         void SetController(IController c);
-        Control Get(string property);
+        Control Get(T property);
     }
 }

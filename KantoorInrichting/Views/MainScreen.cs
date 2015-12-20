@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using KantoorInrichting.Controllers;
 using KantoorInrichting.Controllers.Grid;
 using KantoorInrichting.Controllers.Placement;
 using KantoorInrichting.Controllers.Product;
@@ -52,6 +53,9 @@ namespace KantoorInrichting.Views
 //            hoofdscherm.gridFieldView.Enabled = true;
 //            this.Visible = false;
 //            hoofdscherm.gridFieldView.BringToFront();
+            hoofdscherm.productGrid = new ProductGrid();
+            IController controller = new ProductGridController(hoofdscherm.productGrid, 10, 10, 0.5f);
+            hoofdscherm.AddPanelToMainscreen(hoofdscherm.productGrid);
             hoofdscherm.Size = ProductGrid.PanelSize;
             hoofdscherm.productGrid.Visible = true;
             hoofdscherm.productGrid.Enabled = true;
