@@ -11,7 +11,6 @@ using System.Windows.Forms;
 namespace KantoorInrichting.Controllers {
     public interface IController {
         void Paint(object sender, PaintEventArgs e);
-        void CheckboxChanged(bool b);
         void Notify(object sender, EventArgs e);
         void Dispose(object sender, EventArgs e);
     }

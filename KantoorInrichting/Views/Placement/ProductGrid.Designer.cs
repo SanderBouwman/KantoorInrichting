@@ -24,6 +24,8 @@
         /// </summary>
         private void InitializeComponent() {
             this.controlPanel = new System.Windows.Forms.Panel();
+            this.zoomCheckbox = new System.Windows.Forms.CheckBox();
+            this.zoomTrackbar = new System.Windows.Forms.TrackBar();
             this.spaceSizeTextbox = new System.Windows.Forms.TextBox();
             this.spaceNumberTextbox = new System.Windows.Forms.TextBox();
             this.spaceSizeLabel = new System.Windows.Forms.Label();
@@ -42,12 +44,15 @@
             this.gridFieldPanel = new KantoorInrichting.Models.Grid.GridFieldPanel();
             this.legend = new KantoorInrichting.Views.Placement.Legend();
             this.controlPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.zoomTrackbar)).BeginInit();
             this.controlDock.SuspendLayout();
             this.SuspendLayout();
             // 
             // controlPanel
             // 
             this.controlPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.controlPanel.Controls.Add(this.zoomCheckbox);
+            this.controlPanel.Controls.Add(this.zoomTrackbar);
             this.controlPanel.Controls.Add(this.spaceSizeTextbox);
             this.controlPanel.Controls.Add(this.spaceNumberTextbox);
             this.controlPanel.Controls.Add(this.spaceSizeLabel);
@@ -62,8 +67,31 @@
             this.controlPanel.Controls.Add(this.buttonCCW);
             this.controlPanel.Location = new System.Drawing.Point(62, 473);
             this.controlPanel.Name = "controlPanel";
-            this.controlPanel.Size = new System.Drawing.Size(372, 80);
+            this.controlPanel.Size = new System.Drawing.Size(372, 145);
             this.controlPanel.TabIndex = 1;
+            // 
+            // zoomCheckbox
+            // 
+            this.zoomCheckbox.AutoSize = true;
+            this.zoomCheckbox.Location = new System.Drawing.Point(3, 95);
+            this.zoomCheckbox.Name = "zoomCheckbox";
+            this.zoomCheckbox.Size = new System.Drawing.Size(53, 17);
+            this.zoomCheckbox.TabIndex = 13;
+            this.zoomCheckbox.Text = "Zoom";
+            this.zoomCheckbox.UseVisualStyleBackColor = true;
+            // 
+            // zoomTrackbar
+            // 
+            this.zoomTrackbar.Enabled = false;
+            this.zoomTrackbar.LargeChange = 25;
+            this.zoomTrackbar.Location = new System.Drawing.Point(89, 95);
+            this.zoomTrackbar.Maximum = 300;
+            this.zoomTrackbar.Minimum = 50;
+            this.zoomTrackbar.Name = "zoomTrackbar";
+            this.zoomTrackbar.Size = new System.Drawing.Size(104, 42);
+            this.zoomTrackbar.SmallChange = 10;
+            this.zoomTrackbar.TabIndex = 12;
+            this.zoomTrackbar.Value = 50;
             // 
             // spaceSizeTextbox
             // 
@@ -240,6 +268,7 @@
             this.Size = new System.Drawing.Size(1120, 670);
             this.controlPanel.ResumeLayout(false);
             this.controlPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.zoomTrackbar)).EndInit();
             this.controlDock.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -266,5 +295,7 @@
         private System.Windows.Forms.TextBox spaceNumberTextbox;
         private Models.Grid.GridFieldPanel gridFieldPanel;
         private System.Windows.Forms.Panel controlDock;
+        private System.Windows.Forms.CheckBox zoomCheckbox;
+        private System.Windows.Forms.TrackBar zoomTrackbar;
     }
 }

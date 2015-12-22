@@ -139,7 +139,7 @@ namespace KantoorInrichting.Views.Grid
 
         private void ZoomCheckbox_CheckedChanged(object sender, EventArgs e)
         {
-            _controller.CheckboxChanged(zoomCheckbox.Checked);
+//            _controller.CheckboxChanged(zoomCheckbox.Checked);
         }
 
         private void DrawPanel_MouseMove(object sender, MouseEventArgs e)
