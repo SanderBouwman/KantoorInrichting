@@ -17,7 +17,9 @@ namespace KantoorInrichting.Views.Placement
         public enum PropertyEnum
         {
             Panel,
-            Trackbar
+            Trackbar,
+            AlgorithmComboBox,
+            Legend
         }
 
         public static Size PanelSize = new Size(1280, 720);
@@ -47,6 +49,12 @@ namespace KantoorInrichting.Views.Placement
                 case PropertyEnum.Trackbar:
                     result = zoomTrackbar;
                     break;
+                case PropertyEnum.AlgorithmComboBox:
+                    result = algorithmComboBox;
+                    break;
+                case PropertyEnum.Legend:
+                    result = this.legend;
+                    break;
                 default:
                     result = null;
                     break;
@@ -66,6 +74,11 @@ namespace KantoorInrichting.Views.Placement
             gridFieldPanel.MouseMove += GridFieldPanel_MouseMove;
             zoomCheckbox.CheckedChanged += ZoomCheckbox_CheckedChanged;
             zoomTrackbar.ValueChanged += ZoomTrackbar_ValueChanged;
+            algorithmButton.Click += AlgorithmButton_Click;
+        }
+
+        private void AlgorithmButton_Click( object sender, EventArgs e ) {
+            controller.Notify(sender, e);
         }
 
         private void ZoomTrackbar_ValueChanged(object sender, EventArgs e)

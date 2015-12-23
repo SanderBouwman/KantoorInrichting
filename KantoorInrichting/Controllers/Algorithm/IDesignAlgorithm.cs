@@ -25,6 +25,6 @@ namespace KantoorInrichting.Controllers.Algorithm
         /// <param name="margin"></param>
         /// <returns></returns>
         List<ProductModel> Design(ProductModel exampleChair, ProductModel exampleTable,
-            int people, int width, int height, float margin);
+            int people, float width, float height, float margin);
     }
 }

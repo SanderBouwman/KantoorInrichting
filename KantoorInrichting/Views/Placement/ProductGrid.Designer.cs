@@ -43,6 +43,9 @@
             this.productList = new KantoorInrichting.Views.Placement.ProductList();
             this.gridFieldPanel = new KantoorInrichting.Models.Grid.GridFieldPanel();
             this.legend = new KantoorInrichting.Views.Placement.Legend();
+            this.algorithmComboBox = new System.Windows.Forms.ComboBox();
+            this.algorithmLabel = new System.Windows.Forms.Label();
+            this.algorithmButton = new System.Windows.Forms.Button();
             this.controlPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.zoomTrackbar)).BeginInit();
             this.controlDock.SuspendLayout();
@@ -51,6 +54,9 @@
             // controlPanel
             // 
             this.controlPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.controlPanel.Controls.Add(this.algorithmButton);
+            this.controlPanel.Controls.Add(this.algorithmLabel);
+            this.controlPanel.Controls.Add(this.algorithmComboBox);
             this.controlPanel.Controls.Add(this.zoomCheckbox);
             this.controlPanel.Controls.Add(this.zoomTrackbar);
             this.controlPanel.Controls.Add(this.spaceSizeTextbox);
@@ -67,7 +73,7 @@
             this.controlPanel.Controls.Add(this.buttonCCW);
             this.controlPanel.Location = new System.Drawing.Point(62, 473);
             this.controlPanel.Name = "controlPanel";
-            this.controlPanel.Size = new System.Drawing.Size(372, 145);
+            this.controlPanel.Size = new System.Drawing.Size(372, 194);
             this.controlPanel.TabIndex = 1;
             // 
             // zoomCheckbox
@@ -84,7 +90,7 @@
             // 
             this.zoomTrackbar.Enabled = false;
             this.zoomTrackbar.LargeChange = 25;
-            this.zoomTrackbar.Location = new System.Drawing.Point(89, 95);
+            this.zoomTrackbar.Location = new System.Drawing.Point(0, 114);
             this.zoomTrackbar.Maximum = 300;
             this.zoomTrackbar.Minimum = 50;
             this.zoomTrackbar.Name = "zoomTrackbar";
@@ -256,6 +262,32 @@
             this.legend.Size = new System.Drawing.Size(403, 86);
             this.legend.TabIndex = 2;
             // 
+            // algorithmComboBox
+            // 
+            this.algorithmComboBox.FormattingEnabled = true;
+            this.algorithmComboBox.Location = new System.Drawing.Point(114, 114);
+            this.algorithmComboBox.Name = "algorithmComboBox";
+            this.algorithmComboBox.Size = new System.Drawing.Size(121, 21);
+            this.algorithmComboBox.TabIndex = 14;
+            // 
+            // algorithmLabel
+            // 
+            this.algorithmLabel.AutoSize = true;
+            this.algorithmLabel.Location = new System.Drawing.Point(127, 95);
+            this.algorithmLabel.Name = "algorithmLabel";
+            this.algorithmLabel.Size = new System.Drawing.Size(72, 13);
+            this.algorithmLabel.TabIndex = 15;
+            this.algorithmLabel.Text = "Kies algoritme";
+            // 
+            // algorithmButton
+            // 
+            this.algorithmButton.Location = new System.Drawing.Point(242, 114);
+            this.algorithmButton.Name = "algorithmButton";
+            this.algorithmButton.Size = new System.Drawing.Size(75, 23);
+            this.algorithmButton.TabIndex = 16;
+            this.algorithmButton.Text = "Start";
+            this.algorithmButton.UseVisualStyleBackColor = true;
+            // 
             // ProductGrid
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -297,5 +329,8 @@
         private System.Windows.Forms.Panel controlDock;
         private System.Windows.Forms.CheckBox zoomCheckbox;
         private System.Windows.Forms.TrackBar zoomTrackbar;
+        private System.Windows.Forms.Button algorithmButton;
+        private System.Windows.Forms.Label algorithmLabel;
+        private System.Windows.Forms.ComboBox algorithmComboBox;
     }
 }
