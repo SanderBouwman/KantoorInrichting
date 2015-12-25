@@ -71,7 +71,10 @@ namespace KantoorInrichting.Views.Placement
 
         //DragEnter Event - ADD
         private void DragDrop_DragEnter(object sender, DragEventArgs e)
-        { controller.event_DragEnter(sender, e); }
+        {
+            Console.WriteLine("DRAGENTER");
+            controller.event_DragEnter(sender, e);
+        }
         //DragDrop Event - ADD
         private void DragDrop_DragDrop(object sender, DragEventArgs e)
         { controller.event_DragDrop(sender, e); }

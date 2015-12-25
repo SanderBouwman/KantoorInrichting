@@ -5,8 +5,10 @@
 
 using System;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using KantoorInrichting.Controllers;
+using KantoorInrichting.Models.Product;
 
 #endregion
 
@@ -28,7 +30,6 @@ namespace KantoorInrichting.Views.Placement
         public ProductGrid()
         {
             InitializeComponent();
-            VisibleChanged += ProductGrid_VisibleChanged;
         }
 
         public PropertyEnum Properties { get; set; }
@@ -36,6 +37,7 @@ namespace KantoorInrichting.Views.Placement
         public void SetController(IController c)
         {
             controller = c;
+            SetEvents();
         }
 
         public Control Get(PropertyEnum property)
@@ -62,11 +64,6 @@ namespace KantoorInrichting.Views.Placement
             return result;
         }
 
-        private void ProductGrid_VisibleChanged(object sender, EventArgs e)
-        {
-            SetEvents();
-        }
-
         public void SetEvents()
         {
             Layout += ProductGrid_Layout;
@@ -75,6 +72,48 @@ namespace KantoorInrichting.Views.Placement
             zoomCheckbox.CheckedChanged += ZoomCheckbox_CheckedChanged;
             zoomTrackbar.ValueChanged += ZoomTrackbar_ValueChanged;
             algorithmButton.Click += AlgorithmButton_Click;
+
+            // DragDrop events
+            gridFieldPanel.DragDrop += GridFieldPanel_DragDrop;
+            gridFieldPanel.DragEnter += GridFieldPanel_DragEnter;
+            gridFieldPanel.DragLeave += GridFieldPanel_DragLeave;
+            gridFieldPanel.DragOver += GridFieldPanel_DragOver;
+            gridFieldPanel.MouseDown += GridFieldPanel_MouseDown;
+        }
+
+        private void GridFieldPanel_MouseDown( object sender, MouseEventArgs e ) {
+            Console.WriteLine("PRESSED ON PANEL");
+        }
+
+        private void GridFieldPanel_DragOver( object sender, DragEventArgs e ) {
+//            Console.WriteLine("DragOver");
+//            throw new NotImplementedException();
+        }
+
+        private void GridFieldPanel_DragLeave( object sender, EventArgs e ) {
+//            Console.WriteLine("DragLeave");
+//            throw new NotImplementedException();
+        }
+
+        private void GridFieldPanel_DragEnter( object sender, DragEventArgs e ) {
+            if( e.Data.GetDataPresent(typeof(PlacedProduct)) || e.Data.GetDataPresent(typeof(ProductModel)) )
+            {
+                e.Effect = e.AllowedEffect;
+            } 
+            else 
+            {
+                e.Effect = DragDropEffects.None;
+            }
+        }
+
+        private void GridFieldPanel_DragDrop( object sender, DragEventArgs e )
+        {
+            // Have to translate the mouseposition to the position on the panel
+            // since the default is based on the resolution of your screen
+            Point pointInPanel = gridFieldPanel.PointToClient(new Point(e.X, e.Y));
+            DragEventArgs newEvent = new DragEventArgs(e.Data, e.KeyState, 
+                pointInPanel.X, pointInPanel.Y, e.AllowedEffect, e.Effect);
+            controller.Notify(sender, newEvent);
         }
 
         private void AlgorithmButton_Click( object sender, EventArgs e ) {

@@ -74,7 +74,8 @@ namespace KantoorInrichting.Controllers.Placement
             {
                 {typeof (EventArgs), () => HandleOtherEvent(sender, e)},
                 {typeof (LayoutEventArgs), () => LayoutChanged(sender, (LayoutEventArgs) e)},
-                {typeof (MouseEventArgs), () => HandleMouseEvent(sender, (MouseEventArgs) e)}
+                {typeof (MouseEventArgs), () => HandleMouseEvent(sender, (MouseEventArgs) e)},
+                {typeof (DragEventArgs), () =>  HandleDragEvents(sender, (DragEventArgs) e)}
             };
             Type typeToCheck = e.GetType();
             @switch[typeToCheck]();
@@ -86,6 +87,40 @@ namespace KantoorInrichting.Controllers.Placement
         }
 
         #region Event methods
+
+        public void HandleDragEvents(object sender, DragEventArgs e)
+        {
+            ProductModel model;
+            if ((model = (ProductModel) e.Data.GetData(typeof (ProductModel))) != null) // if so, this is a new product
+            {
+                AddNewProduct(model, e.X, e.Y);
+                view.Get(ProductGrid.PropertyEnum.Panel).Invalidate();
+            }
+            else // selected item is a PlacedProduct, and so is already in the field
+            {
+                PlacedProduct temp = (PlacedProduct) e.Data.GetData(typeof (PlacedProduct));
+                Console.WriteLine(temp);
+            }
+        }
+
+        public void AddNewProduct(ProductModel model, int x, int y)
+        {
+            float viewWidth = view.Get(ProductGrid.PropertyEnum.Panel).Width,
+                viewHeight = view.Get(ProductGrid.PropertyEnum.Panel).Height;
+            float newX = (x/viewWidth)*meterWidth,
+                newY = (y/viewHeight)*meterHeight,
+                newWidth = (float) model.Width/100,
+                newHeight = (float) model.Height/100;
+            PointF center = new PointF()
+            {
+                X = newX-(newWidth/2),
+                Y = newY-(newHeight/2)
+            };
+
+            SizeF size = new SizeF(newWidth, newHeight);
+            model.Size = size;
+            this.placedProducts.Add(new PlacedProduct(model, center));
+        }
 
         public void HandleMouseEvent(object sender, MouseEventArgs e)
         {
@@ -116,15 +151,23 @@ namespace KantoorInrichting.Controllers.Placement
             Button button = (Button) sender;
             if (button.Text == "Start")
             {
+
+                int people;
+                float margin;
+
+                using (AlgorithmDialog dialog = new AlgorithmDialog())
+                {
+                    dialog.ShowDialog();
+                    people = (int) dialog.Result["People"];
+                    margin = dialog.Result["Margin"];
+                }
+
                 ComboBox algorithmComboBox = (ComboBox) view.Get(ProductGrid.PropertyEnum.AlgorithmComboBox);
                 Algorithm selectedAlgorithm = (Algorithm) algorithmComboBox.SelectedItem;
                 // Example chair and table
                 ProductModel chair = ProductFactory.CreateProduct("Ahrend", 1, 1, "Stoelen");
                 ProductModel table = ProductFactory.CreateProduct("TableCompany", 2, 1, "Tafels");
-
-                // TODO open dialog to ask for amount of people and the margin
-                int people = 7;
-                float margin = 0.5f;
+                
                 StartAlgorithm(selectedAlgorithm, chair, table, people, margin);
 
                 view.Get(ProductGrid.PropertyEnum.Panel).Invalidate();
@@ -157,36 +200,71 @@ namespace KantoorInrichting.Controllers.Placement
 
         private void PaintProducts(Graphics g)
         {
-            int x = 0,
-                y = 0;
             foreach (PlacedProduct product in placedProducts)
                 PaintProduct(product, g);
         }
 
+
         private void PaintProduct(PlacedProduct product, Graphics g)
         {
-            Rectangle rectangle = new Rectangle
-            {
-                Height = (int) (product.product.Height/tileSize*tileHeight),
-                Width = (int) (product.product.Width/tileSize*tileWidth),
-                X = (int) ((product.location.X - product.product.Width/2)/tileSize*tileWidth),
-                Y = (int) ((product.location.Y - product.product.Height/2)/tileSize*tileHeight)
-            };
-
+            Rectangle rectangle = GetProductRectangle(product);
             SolidBrush brush = SelectBrush(product);
 
-            if (brush != null)
-                g.FillRectangle(brush, rectangle);
+            g.FillRectangle(brush, rectangle);
         }
 
+        public Rectangle GetProductRectangle(PlacedProduct product)
+        {
+            Rectangle rectangle;
+            if( product.product.Size.IsEmpty ) {
+                rectangle = new Rectangle {
+                    Height = ( int ) ( ( product.product.Height / tileSize ) * tileHeight ),
+                    Width = ( int ) ( ( product.product.Width / tileSize ) * tileWidth ),
+                    X = ( int ) ( ( ( product.location.X - ( product.product.Width / 2 ) ) / tileSize ) * tileWidth ),
+                    Y = ( int ) ( ( ( product.location.Y - ( product.product.Height / 2 ) ) / tileSize ) * tileHeight )
+                };
+            } else {
+                rectangle = new Rectangle() {
+                    Height = ( int ) ( ( product.product.Size.Height / tileSize ) * tileHeight ),
+                    Width = ( int ) ( ( product.product.Size.Width / tileSize ) * tileWidth ),
+                    X = ( int ) ( ( product.location.X / tileSize ) * tileWidth ),
+                    Y = ( int ) ( ( product.location.Y / tileSize ) * tileHeight )
+                };
+            }
+            return rectangle;
+        }
+
+        /// <summary>
+        /// Selects the brush where the type matches from the Dictionary kept in the Legend.
+        /// </summary>
+        /// <param name="product"></param>
+        /// <returns></returns>
         public SolidBrush SelectBrush(PlacedProduct product)
         {
             Dictionary<string, SolidBrush> legendDictionary =
                 ((Legend) view.Get(ProductGrid.PropertyEnum.Legend)).categoryColors;
-            SolidBrush brush = legendDictionary.Single(pair => pair.Key.Equals(product.product.Type)).Value;
+
+            SolidBrush brush;
+            try
+            {
+                brush = legendDictionary.Single(pair => pair.Key.Equals(product.product.Type)).Value;
+            }
+            catch (InvalidOperationException e)
+            {
+                // This means that the type is not found in the dictionary, and so I will set the brush to Black
+                brush = new SolidBrush(Color.Black);
+            }
             return brush;
         }
 
+        /// <summary>
+        /// Starts the selected algorithm.
+        /// </summary>
+        /// <param name="algorithm"></param>
+        /// <param name="model1"></param>
+        /// <param name="model2"></param>
+        /// <param name="people"></param>
+        /// <param name="margin"></param>
         public void StartAlgorithm(Algorithm algorithm, ProductModel model1, ProductModel model2, int people,
             float margin)
         {

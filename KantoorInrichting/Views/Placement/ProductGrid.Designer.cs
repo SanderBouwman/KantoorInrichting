@@ -250,6 +250,7 @@
             this.gridFieldPanel.Location = new System.Drawing.Point(3, 3);
             this.gridFieldPanel.Name = "gridFieldPanel";
             this.gridFieldPanel.Size = new System.Drawing.Size(600, 550);
+            this.gridFieldPanel.AllowDrop = true;
             this.gridFieldPanel.TabIndex = 4;
             // 
             // legend
