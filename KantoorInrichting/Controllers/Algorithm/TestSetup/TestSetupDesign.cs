@@ -143,7 +143,7 @@ namespace KantoorInrichting.Controllers.Algorithm.TestSetup
                     chairX = 0;
                     tableX = current.Representation.X + newChair.Width;
                     chairY = current.Representation.Y + newChair.Height;
-                    tableY = current.Representation.Y + margin;
+                    tableY = current.Representation.Y - margin;
                 }
                 else
                 {
@@ -151,7 +151,7 @@ namespace KantoorInrichting.Controllers.Algorithm.TestSetup
                     chairX = current.Representation.X + newTable.Height;
                     chairY = current.Representation.Y + newChair.Height;
                     tableX = current.Representation.X;
-                    tableY = current.Representation.Y + margin;
+                    tableY = current.Representation.Y - margin;
                 }
                 SetLocation(newChair, chairX, chairY);
                 SetLocation(newTable, tableX, tableY);

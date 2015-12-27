@@ -11,6 +11,8 @@ using System.Windows.Forms;
 using KantoorInrichting.Controllers.Algorithm;
 using KantoorInrichting.Controllers.Algorithm.TestSetup;
 using KantoorInrichting.Models.Product;
+using KantoorInrichting.Models.Algorithm;
+using KantoorInrichting.Models.Grid;
 using KantoorInrichting.Views;
 using KantoorInrichting.Views.Placement;
 
@@ -20,7 +22,7 @@ namespace KantoorInrichting.Controllers.Placement
 {
     public class ProductGridController : IController
     {
-        private readonly List<Algorithm> comboBoxAlgorithms;
+        private readonly List<AlgorithmModel> comboBoxAlgorithms;
         private readonly float meterHeight;
         private readonly float meterWidth;
 
@@ -53,7 +55,7 @@ namespace KantoorInrichting.Controllers.Placement
             zoomSize = 50;
             zoomArea = new Rectangle(0, 0, zoomSize, zoomSize);
             placedProducts = new List<PlacedProduct>();
-            comboBoxAlgorithms = new List<Algorithm>();
+            comboBoxAlgorithms = new List<AlgorithmModel>();
 
             // Init algorithm combobox
             PopulateAlgorithms();
@@ -124,8 +126,14 @@ namespace KantoorInrichting.Controllers.Placement
 
         public void HandleMouseEvent(object sender, MouseEventArgs e)
         {
-            if (sender.GetType() == typeof (Button))
+            if (sender is Button)
                 HandleButtonEvent(sender, e);
+            if (sender is GridFieldPanel && e.Clicks > 0)
+            {
+                PlacedProduct product = GetProductFromField(e.Location);
+                if (product != null)
+                    Console.WriteLine(product.product.Brand);
+            }
             if (zoomCheckboxChecked)
             {
                 UpdateRectangle(e.X, e.Y, view.Get(ProductGrid.PropertyEnum.Panel).Width,
@@ -158,12 +166,21 @@ namespace KantoorInrichting.Controllers.Placement
                 using (AlgorithmDialog dialog = new AlgorithmDialog())
                 {
                     dialog.ShowDialog();
-                    people = (int) dialog.Result["People"];
-                    margin = dialog.Result["Margin"];
+                    if (dialog.Result.Count > 0)
+                    {
+                        people = (int) dialog.Result["People"];
+                        margin = dialog.Result["Margin"];
+                    }
+                    else
+                    {
+                        people = 0;
+                        margin = 0;
+                    }
+                    
                 }
 
                 ComboBox algorithmComboBox = (ComboBox) view.Get(ProductGrid.PropertyEnum.AlgorithmComboBox);
-                Algorithm selectedAlgorithm = (Algorithm) algorithmComboBox.SelectedItem;
+                AlgorithmModel selectedAlgorithm = (AlgorithmModel) algorithmComboBox.SelectedItem;
                 // Example chair and table
                 ProductModel chair = ProductFactory.CreateProduct("Ahrend", 1, 1, "Stoelen");
                 ProductModel table = ProductFactory.CreateProduct("TableCompany", 2, 1, "Tafels");
@@ -216,12 +233,12 @@ namespace KantoorInrichting.Controllers.Placement
         public Rectangle GetProductRectangle(PlacedProduct product)
         {
             Rectangle rectangle;
-            if( product.product.Size.IsEmpty ) {
+            if( product.product.Size.IsEmpty ) { // this is a product that came from the algorithm
                 rectangle = new Rectangle {
                     Height = ( int ) ( ( product.product.Height / tileSize ) * tileHeight ),
                     Width = ( int ) ( ( product.product.Width / tileSize ) * tileWidth ),
-                    X = ( int ) ( ( ( product.location.X - ( product.product.Width / 2 ) ) / tileSize ) * tileWidth ),
-                    Y = ( int ) ( ( ( product.location.Y - ( product.product.Height / 2 ) ) / tileSize ) * tileHeight )
+                    X = ( int ) ( ( ( product.location.X ) / tileSize ) * tileWidth ),
+                    Y = ( int ) ( ( ( product.location.Y  ) / tileSize ) * tileHeight )
                 };
             } else {
                 rectangle = new Rectangle() {
@@ -257,6 +274,38 @@ namespace KantoorInrichting.Controllers.Placement
             return brush;
         }
 
+        private PlacedProduct GetProductFromField( Point point ) {
+            PlacedProduct result = null;
+            PointF realPoint = TransformToRealWorld(point);
+            foreach( PlacedProduct current in placedProducts ) {
+                
+                PointF currentLocation = ( current.location.IsEmpty ) ? current.product.location : current.location;
+                float widthInMeters = (current.product.Size.Width == 0) ? current.product.Width : ( float ) current.product.Width / 100,
+                    heightInMeters = (current.product.Size.Height == 0) ? current.product.Height : ( float ) current.product.Height / 100;
+
+                bool xOnPoint = ( ( currentLocation.X <= realPoint.X ) &&
+                                 ( ( currentLocation.X + widthInMeters ) >= realPoint.X ) ),
+                    yOnPoint = ( ( currentLocation.Y <= realPoint.Y ) &&
+                                ( currentLocation.Y + heightInMeters ) >= realPoint.Y );
+                if( xOnPoint && yOnPoint ) {
+                    result = current;
+                    break;
+                }
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// Returns a Point with the X and Y in real world measurements.
+        /// </summary>
+        /// <param name="point"></param>
+        /// <returns></returns>
+        private PointF TransformToRealWorld( Point point ) {
+            float resultX = ( point.X / tileWidth ) * tileSize,
+                resultY = ( point.Y / tileHeight ) * tileSize;
+            return new PointF(resultX, resultY);
+        }
+
         /// <summary>
         /// Starts the selected algorithm.
         /// </summary>
@@ -265,7 +314,7 @@ namespace KantoorInrichting.Controllers.Placement
         /// <param name="model2"></param>
         /// <param name="people"></param>
         /// <param name="margin"></param>
-        public void StartAlgorithm(Algorithm algorithm, ProductModel model1, ProductModel model2, int people,
+        public void StartAlgorithm(AlgorithmModel algorithm, ProductModel model1, ProductModel model2, int people,
             float margin)
         {
             // clear current placed products
@@ -349,10 +398,10 @@ namespace KantoorInrichting.Controllers.Placement
         public void PopulateAlgorithms()
         {
             // Standard test setup algorithm
-            AddToComboBox(Algorithm.CreateAlgorithm("Toets lokaal", typeof (TestSetupDesign)));
+            AddToComboBox(AlgorithmModel.CreateAlgorithm("Toets lokaal", typeof (TestSetupDesign)));
         }
 
-        public void AddToComboBox(Algorithm algorithm)
+        public void AddToComboBox(AlgorithmModel algorithm)
         {
             comboBoxAlgorithms.Add(algorithm);
             ComboBox comboBox = (ComboBox) view.Get(ProductGrid.PropertyEnum.AlgorithmComboBox);
@@ -363,20 +412,5 @@ namespace KantoorInrichting.Controllers.Placement
         }
 
         #endregion
-    }
-
-    public class Algorithm
-    {
-        public string Name { get; set; }
-        public Type Value { get; set; }
-
-        public static Algorithm CreateAlgorithm(string name, Type value)
-        {
-            return new Algorithm
-            {
-                Name = name,
-                Value = value
-            };
-        }
     }
 }

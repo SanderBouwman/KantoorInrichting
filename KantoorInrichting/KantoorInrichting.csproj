@@ -75,6 +75,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>KantoorInrichtingDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Models\Algorithm\AlgorithmModel.cs" />
     <Compile Include="Models\Grid\GridFieldModel.cs" />
     <Compile Include="Models\Product\ProductFactory.cs" />
     <Compile Include="Models\Product\StaticlyPlacedObject.cs" />

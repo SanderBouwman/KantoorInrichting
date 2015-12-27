@@ -82,7 +82,7 @@ namespace KantoorInrichting.Views.Placement
         }
 
         private void GridFieldPanel_MouseDown( object sender, MouseEventArgs e ) {
-            Console.WriteLine("PRESSED ON PANEL");
+            controller.Notify(sender, e);
         }
 
         private void GridFieldPanel_DragOver( object sender, DragEventArgs e ) {
