@@ -78,7 +78,7 @@ namespace KantoorInrichting.Controllers.Grid
         }
 
 
-        public void Notify(object sender, EventArgs e)
+        public void Notify(object sender, EventArgs e, string eventName)
         {
             // Made a switch using lambda expressions in a dictionary, since you can not do a switch on types
             var @switch = new Dictionary<Type, Action>

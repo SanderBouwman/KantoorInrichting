@@ -79,14 +79,18 @@ namespace KantoorInrichting.Views.Placement
             gridFieldPanel.DragLeave += GridFieldPanel_DragLeave;
             gridFieldPanel.DragOver += GridFieldPanel_DragOver;
             gridFieldPanel.MouseDown += GridFieldPanel_MouseDown;
+            gridFieldPanel.MouseMove += GridFieldPanel_MouseMove1;
+        }
+
+        private void GridFieldPanel_MouseMove1( object sender, MouseEventArgs e ) {
+            controller.Notify(sender, e, "PanelMouseMove");
         }
 
         private void GridFieldPanel_MouseDown( object sender, MouseEventArgs e ) {
-            controller.Notify(sender, e);
+            controller.Notify(sender, e, "PanelMouseDown");
         }
 
         private void GridFieldPanel_DragOver( object sender, DragEventArgs e ) {
-//            Console.WriteLine("DragOver");
 //            throw new NotImplementedException();
         }
 
@@ -96,14 +100,7 @@ namespace KantoorInrichting.Views.Placement
         }
 
         private void GridFieldPanel_DragEnter( object sender, DragEventArgs e ) {
-            if( e.Data.GetDataPresent(typeof(PlacedProduct)) || e.Data.GetDataPresent(typeof(ProductModel)) )
-            {
-                e.Effect = e.AllowedEffect;
-            } 
-            else 
-            {
-                e.Effect = DragDropEffects.None;
-            }
+            controller.Notify(sender, e, "PanelDragEnter");
         }
 
         private void GridFieldPanel_DragDrop( object sender, DragEventArgs e )
@@ -113,16 +110,16 @@ namespace KantoorInrichting.Views.Placement
             Point pointInPanel = gridFieldPanel.PointToClient(new Point(e.X, e.Y));
             DragEventArgs newEvent = new DragEventArgs(e.Data, e.KeyState, 
                 pointInPanel.X, pointInPanel.Y, e.AllowedEffect, e.Effect);
-            controller.Notify(sender, newEvent);
+            controller.Notify(sender, newEvent, "PanelDragDrop");
         }
 
         private void AlgorithmButton_Click( object sender, EventArgs e ) {
-            controller.Notify(sender, e);
+            controller.Notify(sender, e, "AlgorithmClick");
         }
 
         private void ZoomTrackbar_ValueChanged(object sender, EventArgs e)
         {
-            controller.Notify(sender, e);
+            controller.Notify(sender, e, "TrackbarValueChanged");
         }
 
         private void GridFieldPanel_Paint1(object sender, PaintEventArgs e)
@@ -132,17 +129,17 @@ namespace KantoorInrichting.Views.Placement
 
         private void GridFieldPanel_MouseMove(object sender, MouseEventArgs e)
         {
-            controller.Notify(sender, e);
+            controller.Notify(sender, e, "PanelMouseMove");
         }
 
         private void ZoomCheckbox_CheckedChanged(object sender, EventArgs e)
         {
-            controller.Notify(sender, e);
+            controller.Notify(sender, e, "CheckboxCheckedChanged");
         }
 
         private void ProductGrid_Layout(object sender, LayoutEventArgs e)
         {
-            controller.Notify(sender, e);
+            controller.Notify(sender, e, "GridLayout");
         }
     }
 }

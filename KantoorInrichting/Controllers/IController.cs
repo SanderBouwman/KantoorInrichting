@@ -11,7 +11,7 @@ using System.Windows.Forms;
 namespace KantoorInrichting.Controllers {
     public interface IController {
         void Paint(object sender, PaintEventArgs e);
-        void Notify(object sender, EventArgs e);
+        void Notify(object sender, EventArgs e, string eventName);
         void Dispose(object sender, EventArgs e);
     }
 }

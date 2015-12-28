@@ -6,13 +6,12 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
 using KantoorInrichting.Controllers.Algorithm;
 using KantoorInrichting.Controllers.Algorithm.TestSetup;
-using KantoorInrichting.Models.Product;
 using KantoorInrichting.Models.Algorithm;
 using KantoorInrichting.Models.Grid;
+using KantoorInrichting.Models.Product;
 using KantoorInrichting.Views;
 using KantoorInrichting.Views.Placement;
 
@@ -29,8 +28,11 @@ namespace KantoorInrichting.Controllers.Placement
         private readonly List<PlacedProduct> placedProducts;
 
         private readonly float tileSize;
+        private readonly ProductGridUtility utility;
 
         private readonly IView<ProductGrid.PropertyEnum> view;
+        private bool draggingProduct;
+        private PlacedProduct selectedProduct;
 
         private float tileWidth, tileHeight;
         private Rectangle zoomArea;
@@ -45,11 +47,13 @@ namespace KantoorInrichting.Controllers.Placement
             // set controller
             view.SetController(this);
 
+            utility = new ProductGridUtility();
             // Set parameters to fields
             this.meterWidth = meterWidth;
             this.meterHeight = meterHeight;
             this.tileSize = tileSize;
             this.view = view;
+            draggingProduct = false;
 
             // Init fields with default values
             zoomSize = 50;
@@ -69,15 +73,15 @@ namespace KantoorInrichting.Controllers.Placement
             PaintProducts(e.Graphics);
         }
 
-        public void Notify(object sender, EventArgs e)
+        public void Notify(object sender, EventArgs e, string eventName)
         {
             // Made a switch using lambda expressions in a dictionary, since you can not do a switch on types
             var @switch = new Dictionary<Type, Action>
             {
                 {typeof (EventArgs), () => HandleOtherEvent(sender, e)},
                 {typeof (LayoutEventArgs), () => LayoutChanged(sender, (LayoutEventArgs) e)},
-                {typeof (MouseEventArgs), () => HandleMouseEvent(sender, (MouseEventArgs) e)},
-                {typeof (DragEventArgs), () =>  HandleDragEvents(sender, (DragEventArgs) e)}
+                {typeof (MouseEventArgs), () => HandleMouseEvent(sender, (MouseEventArgs) e, eventName)},
+                {typeof (DragEventArgs), () => HandleDragEvents(sender, (DragEventArgs) e, eventName)}
             };
             Type typeToCheck = e.GetType();
             @switch[typeToCheck]();
@@ -90,7 +94,20 @@ namespace KantoorInrichting.Controllers.Placement
 
         #region Event methods
 
-        public void HandleDragEvents(object sender, DragEventArgs e)
+        public void HandleDragEvents(object sender, DragEventArgs e, string eventName)
+        {
+            switch (eventName)
+            {
+                case "PanelDragDrop":
+                    DragDrop(sender, e);
+                    break;
+                case "PanelDragEnter":
+                    DragEnter(sender, e);
+                    break;
+            }
+        }
+
+        public void DragDrop(object sender, DragEventArgs e)
         {
             ProductModel model;
             if ((model = (ProductModel) e.Data.GetData(typeof (ProductModel))) != null) // if so, this is a new product
@@ -105,35 +122,22 @@ namespace KantoorInrichting.Controllers.Placement
             }
         }
 
-        public void AddNewProduct(ProductModel model, int x, int y)
+        public void DragEnter(object sender, DragEventArgs e)
         {
-            float viewWidth = view.Get(ProductGrid.PropertyEnum.Panel).Width,
-                viewHeight = view.Get(ProductGrid.PropertyEnum.Panel).Height;
-            float newX = (x/viewWidth)*meterWidth,
-                newY = (y/viewHeight)*meterHeight,
-                newWidth = (float) model.Width/100,
-                newHeight = (float) model.Height/100;
-            PointF center = new PointF()
-            {
-                X = newX-(newWidth/2),
-                Y = newY-(newHeight/2)
-            };
-
-            SizeF size = new SizeF(newWidth, newHeight);
-            model.Size = size;
-            this.placedProducts.Add(new PlacedProduct(model, center));
+            if (e.Data.GetDataPresent(typeof (PlacedProduct)) || e.Data.GetDataPresent(typeof (ProductModel)))
+                e.Effect = e.AllowedEffect;
+            else
+                e.Effect = DragDropEffects.None;
         }
 
-        public void HandleMouseEvent(object sender, MouseEventArgs e)
+        public void HandleMouseEvent(object sender, MouseEventArgs e, string eventName)
         {
             if (sender is Button)
                 HandleButtonEvent(sender, e);
-            if (sender is GridFieldPanel && e.Clicks > 0)
-            {
-                PlacedProduct product = GetProductFromField(e.Location);
-                if (product != null)
-                    Console.WriteLine(product.product.Brand);
-            }
+            if (sender is GridFieldPanel && e.Clicks > 0 && eventName == "PanelMouseDown")
+                PanelMouseDown(sender, e);
+            if (sender is GridFieldPanel && e.Button == MouseButtons.Left && eventName == "PanelMouseMove")
+                PanelMouseMove(sender, e);
             if (zoomCheckboxChecked)
             {
                 UpdateRectangle(e.X, e.Y, view.Get(ProductGrid.PropertyEnum.Panel).Width,
@@ -143,15 +147,63 @@ namespace KantoorInrichting.Controllers.Placement
             }
         }
 
+        public void PanelMouseDown(object sender, MouseEventArgs e)
+        {
+            PlacedProduct product = utility.GetProductFromField(e.Location, placedProducts, tileWidth, tileHeight,
+                tileSize);
+            if (product != null)
+            {
+                selectedProduct = product;
+                draggingProduct = true;
+            }
+        }
+
+        public void PanelMouseMove(object sender, MouseEventArgs e)
+        {
+            bool xInField = e.X > 0 && e.X < view.Get(ProductGrid.PropertyEnum.Panel).Width,
+                yInField = e.Y > 0 && e.Y < view.Get(ProductGrid.PropertyEnum.Panel).Height,
+                validDrag = draggingProduct && selectedProduct != null;
+            if (validDrag && xInField && yInField)
+                MoveSelectedProduct(e.X, e.Y);
+        }
+
+        public void MoveSelectedProduct(int x, int y)
+        {
+            float selectedWidth = selectedProduct.product.Size.Width == 0
+                ? selectedProduct.product.Width
+                : (float) selectedProduct.product.Width/100,
+                selectedHeight = selectedProduct.product.Size.Height == 0
+                    ? selectedProduct.product.Height
+                    : (float) selectedProduct.product.Height/100;
+
+            int panelWidth = view.Get(ProductGrid.PropertyEnum.Panel).Width,
+                panelHeight = view.Get(ProductGrid.PropertyEnum.Panel).Height;
+
+            float newX = x/(float) panelWidth*meterWidth
+                         - selectedWidth/2,
+                newY = y/(float) panelHeight*meterHeight
+                       - selectedHeight/2;
+
+            if (newX <= 0)
+                newX = 0;
+            if (newX + selectedWidth/2 >= meterWidth)
+                newX = meterWidth - selectedWidth*2;
+            if (newY <= 0)
+                newY = selectedHeight/2;
+            if (newY + selectedHeight/2 >= meterHeight)
+                newY = meterHeight - selectedHeight;
+
+            PointF newLocation = new PointF(newX, newY);
+            selectedProduct.location = newLocation;
+            view.Get(ProductGrid.PropertyEnum.Panel).Invalidate();
+        }
+
         public void HandleOtherEvent(object sender, EventArgs e)
         {
             if (sender.GetType() == typeof (CheckBox))
                 HandleCheckBoxEvent(sender, e);
             if (sender.GetType() == typeof (TrackBar))
-            {
-                TrackBar trackBar = (TrackBar) sender;
-                zoomSize = trackBar.Value;
-            }
+                HandleTrackbarEvent(sender, e);
         }
 
         public void HandleButtonEvent(object sender, MouseEventArgs e)
@@ -159,7 +211,6 @@ namespace KantoorInrichting.Controllers.Placement
             Button button = (Button) sender;
             if (button.Text == "Start")
             {
-
                 int people;
                 float margin;
 
@@ -176,7 +227,6 @@ namespace KantoorInrichting.Controllers.Placement
                         people = 0;
                         margin = 0;
                     }
-                    
                 }
 
                 ComboBox algorithmComboBox = (ComboBox) view.Get(ProductGrid.PropertyEnum.AlgorithmComboBox);
@@ -184,7 +234,7 @@ namespace KantoorInrichting.Controllers.Placement
                 // Example chair and table
                 ProductModel chair = ProductFactory.CreateProduct("Ahrend", 1, 1, "Stoelen");
                 ProductModel table = ProductFactory.CreateProduct("TableCompany", 2, 1, "Tafels");
-                
+
                 StartAlgorithm(selectedAlgorithm, chair, table, people, margin);
 
                 view.Get(ProductGrid.PropertyEnum.Panel).Invalidate();
@@ -203,6 +253,12 @@ namespace KantoorInrichting.Controllers.Placement
             }
             else
                 view.Get(ProductGrid.PropertyEnum.Panel).Invalidate();
+        }
+
+        public void HandleTrackbarEvent(object sender, EventArgs e)
+        {
+            TrackBar trackBar = (TrackBar) sender;
+            zoomSize = trackBar.Value;
         }
 
         public void LayoutChanged(object sender, LayoutEventArgs e)
@@ -224,86 +280,32 @@ namespace KantoorInrichting.Controllers.Placement
 
         private void PaintProduct(PlacedProduct product, Graphics g)
         {
-            Rectangle rectangle = GetProductRectangle(product);
-            SolidBrush brush = SelectBrush(product);
+            Rectangle rectangle = utility.GetProductRectangle(product, tileWidth, tileHeight, tileSize);
+
+            Dictionary<string, SolidBrush> legendDictionary =
+                ((Legend) view.Get(ProductGrid.PropertyEnum.Legend)).CategoryColors;
+            SolidBrush brush = utility.SelectBrush(product, legendDictionary);
 
             g.FillRectangle(brush, rectangle);
         }
 
-        public Rectangle GetProductRectangle(PlacedProduct product)
+        public void AddNewProduct(ProductModel model, int x, int y)
         {
-            Rectangle rectangle;
-            if( product.product.Size.IsEmpty ) { // this is a product that came from the algorithm
-                rectangle = new Rectangle {
-                    Height = ( int ) ( ( product.product.Height / tileSize ) * tileHeight ),
-                    Width = ( int ) ( ( product.product.Width / tileSize ) * tileWidth ),
-                    X = ( int ) ( ( ( product.location.X ) / tileSize ) * tileWidth ),
-                    Y = ( int ) ( ( ( product.location.Y  ) / tileSize ) * tileHeight )
-                };
-            } else {
-                rectangle = new Rectangle() {
-                    Height = ( int ) ( ( product.product.Size.Height / tileSize ) * tileHeight ),
-                    Width = ( int ) ( ( product.product.Size.Width / tileSize ) * tileWidth ),
-                    X = ( int ) ( ( product.location.X / tileSize ) * tileWidth ),
-                    Y = ( int ) ( ( product.location.Y / tileSize ) * tileHeight )
-                };
-            }
-            return rectangle;
-        }
-
-        /// <summary>
-        /// Selects the brush where the type matches from the Dictionary kept in the Legend.
-        /// </summary>
-        /// <param name="product"></param>
-        /// <returns></returns>
-        public SolidBrush SelectBrush(PlacedProduct product)
-        {
-            Dictionary<string, SolidBrush> legendDictionary =
-                ((Legend) view.Get(ProductGrid.PropertyEnum.Legend)).categoryColors;
-
-            SolidBrush brush;
-            try
+            float viewWidth = view.Get(ProductGrid.PropertyEnum.Panel).Width,
+                viewHeight = view.Get(ProductGrid.PropertyEnum.Panel).Height;
+            float newX = x/viewWidth*meterWidth,
+                newY = y/viewHeight*meterHeight,
+                newWidth = (float) model.Width/100,
+                newHeight = (float) model.Height/100;
+            PointF center = new PointF
             {
-                brush = legendDictionary.Single(pair => pair.Key.Equals(product.product.Type)).Value;
-            }
-            catch (InvalidOperationException e)
-            {
-                // This means that the type is not found in the dictionary, and so I will set the brush to Black
-                brush = new SolidBrush(Color.Black);
-            }
-            return brush;
-        }
+                X = newX - newWidth/2,
+                Y = newY - newHeight/2
+            };
 
-        private PlacedProduct GetProductFromField( Point point ) {
-            PlacedProduct result = null;
-            PointF realPoint = TransformToRealWorld(point);
-            foreach( PlacedProduct current in placedProducts ) {
-                
-                PointF currentLocation = ( current.location.IsEmpty ) ? current.product.location : current.location;
-                float widthInMeters = (current.product.Size.Width == 0) ? current.product.Width : ( float ) current.product.Width / 100,
-                    heightInMeters = (current.product.Size.Height == 0) ? current.product.Height : ( float ) current.product.Height / 100;
-
-                bool xOnPoint = ( ( currentLocation.X <= realPoint.X ) &&
-                                 ( ( currentLocation.X + widthInMeters ) >= realPoint.X ) ),
-                    yOnPoint = ( ( currentLocation.Y <= realPoint.Y ) &&
-                                ( currentLocation.Y + heightInMeters ) >= realPoint.Y );
-                if( xOnPoint && yOnPoint ) {
-                    result = current;
-                    break;
-                }
-            }
-            return result;
-        }
-
-        /// <summary>
-        /// Returns a Point with the X and Y in real world measurements.
-        /// </summary>
-        /// <param name="point"></param>
-        /// <returns></returns>
-        private PointF TransformToRealWorld( Point point ) {
-            float resultX = ( point.X / tileWidth ) * tileSize,
-                resultY = ( point.Y / tileHeight ) * tileSize;
-            return new PointF(resultX, resultY);
+            SizeF size = new SizeF(newWidth, newHeight);
+            model.Size = size;
+            placedProducts.Add(new PlacedProduct(model, center));
         }
 
         /// <summary>

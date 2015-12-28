@@ -22,7 +22,7 @@ namespace KantoorInrichting.Views.Placement
 
         static int WidthHeight = 70;
 
-        public Dictionary<string, SolidBrush> categoryColors;
+        public Dictionary<string, SolidBrush> CategoryColors;
 
         public Legend()
         {
@@ -30,7 +30,7 @@ namespace KantoorInrichting.Views.Placement
 
 
 
-            this.categoryColors = new Dictionary<string, SolidBrush>();
+            this.CategoryColors = new Dictionary<string, SolidBrush>();
 
             foreach (CategoryModel category in CategoryModel.list)
             {
@@ -91,7 +91,7 @@ namespace KantoorInrichting.Views.Placement
             g.FillRectangle(brush, 0, 0, WidthHeight, WidthHeight);
 
             // add category and color to dictionary
-            this.categoryColors.Add(category.name, brush);
+            this.CategoryColors.Add(category.name, brush);
 
             //add image to picturebox
             this.pictureBox1.Image = img;

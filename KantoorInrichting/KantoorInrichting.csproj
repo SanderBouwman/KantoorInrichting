@@ -65,6 +65,7 @@
     <Compile Include="Controllers\Placement\PlacementController.cs" />
     <Compile Include="Controllers\Placement\PolygonPlacementController.cs" />
     <Compile Include="Controllers\Placement\ProductGridController.cs" />
+    <Compile Include="Controllers\Placement\ProductGridUtility.cs" />
     <Compile Include="Controllers\Product\ProductFactory.cs" />
     <Compile Include="Controllers\PropertyComparer.cs" />
     <Compile Include="Controllers\SortableBindingList.cs" />
