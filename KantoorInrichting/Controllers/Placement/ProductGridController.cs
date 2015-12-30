@@ -6,6 +6,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 using KantoorInrichting.Controllers.Algorithm;
 using KantoorInrichting.Controllers.Algorithm.TestSetup;
@@ -69,6 +70,7 @@ namespace KantoorInrichting.Controllers.Placement
 
         public void Paint(object sender, PaintEventArgs e)
         {
+            e.Graphics.SmoothingMode = SmoothingMode.HighQuality;
             if (zoomCheckboxChecked)
                 e.Graphics.DrawRectangle(Pens.Red, zoomArea);
 
@@ -109,33 +111,10 @@ namespace KantoorInrichting.Controllers.Placement
             }
         }
 
-        public void DragDrop(object sender, DragEventArgs e)
-        {
-            ProductModel model;
-            if ((model = (ProductModel) e.Data.GetData(typeof (ProductModel))) != null) // if so, this is a new product
-            {
-                AddNewProduct(model, e.X, e.Y, (float) model.Width/100, (float) model.Height/100, false);
-                view.Get(ProductGrid.PropertyEnum.Panel).Invalidate();
-            }
-            else // selected item is a PlacedProduct, and so is already in the field
-            {
-                PlacedProduct temp = (PlacedProduct) e.Data.GetData(typeof (PlacedProduct));
-                Console.WriteLine(temp);
-            }
-        }
-
-        public void DragEnter(object sender, DragEventArgs e)
-        {
-            if (e.Data.GetDataPresent(typeof (PlacedProduct)) || e.Data.GetDataPresent(typeof (ProductModel)))
-                e.Effect = e.AllowedEffect;
-            else
-                e.Effect = DragDropEffects.None;
-        }
-
         public void HandleMouseEvent(object sender, MouseEventArgs e, string eventName)
         {
             if (sender is Button)
-                HandleButtonEvent(sender, e);
+                HandleButtonEvent(sender, e, eventName);
             if (sender is GridFieldPanel && e.Clicks > 0 && eventName == "PanelMouseDown")
                 PanelMouseDown(sender, e);
             if (sender is GridFieldPanel && e.Button == MouseButtons.Left && eventName == "PanelMouseMove")
@@ -149,99 +128,66 @@ namespace KantoorInrichting.Controllers.Placement
             }
         }
 
-        public void PanelMouseDown(object sender, MouseEventArgs e)
-        {
-            PlacedProduct product = utility.GetProductFromField(e.Location, placedProducts, tileWidth, tileHeight,
-                tileSize);
-            
-            if (product != null)
-            {
-                selectedProduct = product;
-                draggingProduct = true;
-
-                selectedProduct.OriginalLocation = selectedProduct.location;
-            }
-        }
-
-        public void PanelMouseMove(object sender, MouseEventArgs e)
-        {
-            bool xInField = e.X > 0 && e.X < view.Get(ProductGrid.PropertyEnum.Panel).Width,
-                yInField = e.Y > 0 && e.Y < view.Get(ProductGrid.PropertyEnum.Panel).Height,
-                validDrag = draggingProduct && selectedProduct != null;
-            if (validDrag && xInField && yInField)
-                MoveSelectedProduct(e.X, e.Y);
-        }
-
-        public void MoveSelectedProduct(int x, int y)
-        {
-            float selectedWidth = selectedProduct.product.Size.Width,
-                selectedHeight = selectedProduct.product.Size.Height;
-
-            int panelWidth = view.Get(ProductGrid.PropertyEnum.Panel).Width,
-                panelHeight = view.Get(ProductGrid.PropertyEnum.Panel).Height;
-
-            float newX = x/(float) panelWidth*meterWidth
-                         - selectedWidth/2,
-                newY = y/(float) panelHeight*meterHeight
-                       - selectedHeight/2;
-
-            if (newX <= 0)
-                newX = 0;
-            if (newX + selectedWidth/2 >= meterWidth)
-                newX = meterWidth - selectedWidth*2;
-            if (newY <= 0)
-                newY = selectedHeight/2;
-            if (newY + selectedHeight/2 >= meterHeight)
-                newY = meterHeight - selectedHeight;
-            
-            PointF newLocation = new PointF(newX, newY);
-            selectedProduct.location = !utility.Collision(selectedProduct, placedProducts) 
-                ? newLocation 
-                : selectedProduct.OriginalLocation;
-            view.Get(ProductGrid.PropertyEnum.Panel).Invalidate();
-        }
-
         public void HandleOtherEvent(object sender, EventArgs e)
         {
-            if (sender.GetType() == typeof (CheckBox))
+            if (sender is CheckBox)
                 HandleCheckBoxEvent(sender, e);
-            if (sender.GetType() == typeof (TrackBar))
+            if (sender is TrackBar)
                 HandleTrackbarEvent(sender, e);
         }
 
-        public void HandleButtonEvent(object sender, MouseEventArgs e)
+        public void HandleButtonEvent(object sender, MouseEventArgs e, string eventName)
         {
-            Button button = (Button) sender;
-            if (button.Text == "Start")
+            switch (eventName)
             {
-                int people;
-                float margin;
-
-                using (AlgorithmDialog dialog = new AlgorithmDialog())
-                {
-                    dialog.ShowDialog();
-                    if (dialog.Result.Count > 0)
-                    {
-                        people = (int) dialog.Result["People"];
-                        margin = dialog.Result["Margin"];
-                    }
-                    else
-                    {
-                        people = 0;
-                        margin = 0;
-                    }
-                }
-
-                ComboBox algorithmComboBox = (ComboBox) view.Get(ProductGrid.PropertyEnum.AlgorithmComboBox);
-                AlgorithmModel selectedAlgorithm = (AlgorithmModel) algorithmComboBox.SelectedItem;
-                // Example chair and table
-                ProductModel chair = ProductFactory.CreateProduct("Ahrend", 1, 1, "Stoelen");
-                ProductModel table = ProductFactory.CreateProduct("TableCompany", 2, 1, "Tafels");
-
-                StartAlgorithm(selectedAlgorithm, chair, table, people, margin);
-
-                view.Get(ProductGrid.PropertyEnum.Panel).Invalidate();
+                case "AlgorithmClick":
+                    AlgorithmClicked();
+                    break;
+                case "ButtonCW":
+                    if(selectedProduct != null)
+                        RotateSelectedItem(15);
+                    break;
+                case "ButtonCCW":
+                    if( selectedProduct != null )
+                        RotateSelectedItem(-15);
+                    break;
             }
+        }
+
+        public void RotateSelectedItem(int degrees)
+        {
+            if (selectedProduct.currentAngle + degrees < 360 && selectedProduct.currentAngle + degrees > -360)
+                selectedProduct.currentAngle += degrees;
+            else
+                selectedProduct.currentAngle = 0;
+            view.Get(ProductGrid.PropertyEnum.Panel).Invalidate();
+        }
+
+        public void AlgorithmClicked()
+        {
+            int people;
+            float margin;
+
+            using( AlgorithmDialog dialog = new AlgorithmDialog() ) {
+                dialog.ShowDialog();
+                if( dialog.Result.Count > 0 ) {
+                    people = ( int ) dialog.Result[ "People" ];
+                    margin = dialog.Result[ "Margin" ];
+                } else {
+                    people = 0;
+                    margin = 0;
+                }
+            }
+
+            ComboBox algorithmComboBox = ( ComboBox ) view.Get(ProductGrid.PropertyEnum.AlgorithmComboBox);
+            AlgorithmModel selectedAlgorithm = ( AlgorithmModel ) algorithmComboBox.SelectedItem;
+            // Example chair and table
+            ProductModel chair = ProductFactory.CreateProduct("Ahrend", 1, 1, "Stoelen");
+            ProductModel table = ProductFactory.CreateProduct("TableCompany", 2, 1, "Tafels");
+
+            StartAlgorithm(selectedAlgorithm, chair, table, people, margin);
+
+            view.Get(ProductGrid.PropertyEnum.Panel).Invalidate();
         }
 
 
@@ -285,7 +231,71 @@ namespace KantoorInrichting.Controllers.Placement
         {
             Rectangle rectangle = utility.GetProductRectangle(product, tileWidth, tileHeight, tileSize);
             SolidBrush brush = utility.SelectBrush(product, legendDictionary);
-            g.FillRectangle(brush, rectangle);
+            int angle = product.currentAngle;
+            using( Matrix m = new Matrix() ) {
+                m.RotateAt(angle, new PointF(rectangle.Left + ( rectangle.Width / 2 ), rectangle.Top + ( rectangle.Height / 2 )));
+                g.Transform = m;
+                if (product == selectedProduct)
+                {
+                    Rectangle selectionRectangle = new Rectangle(rectangle.X, rectangle.Y, rectangle.Width, rectangle.Height);
+                    Pen pen = new Pen(Color.Red, 4);
+                    g.DrawRectangle(pen, selectionRectangle);
+                }
+                g.FillRectangle(brush, rectangle);
+                g.ResetTransform();
+            }
+        }
+
+
+
+        public void PanelMouseDown( object sender, MouseEventArgs e ) {
+            PlacedProduct product = utility.GetProductFromField(e.Location, placedProducts, tileWidth, tileHeight,
+                tileSize);
+
+            if( product != null ) {
+                selectedProduct = product;
+                draggingProduct = true;
+
+                selectedProduct.OriginalLocation = selectedProduct.location;
+            } else {
+                selectedProduct = null;
+                draggingProduct = false;
+            }
+            view.Get(ProductGrid.PropertyEnum.Panel).Invalidate();
+        }
+
+        public void PanelMouseMove(object sender, MouseEventArgs e)
+        {
+            bool xInField = e.X > 0 && e.X < view.Get(ProductGrid.PropertyEnum.Panel).Width,
+                yInField = e.Y > 0 && e.Y < view.Get(ProductGrid.PropertyEnum.Panel).Height,
+                validDrag = draggingProduct && selectedProduct != null;
+            if (validDrag && xInField && yInField)
+            {
+                int maxWidth = view.Get(ProductGrid.PropertyEnum.Panel).Width,
+                    maxHeight = view.Get(ProductGrid.PropertyEnum.Panel).Height;
+                utility.MoveProduct(selectedProduct, placedProducts, maxWidth, maxHeight, meterWidth, meterHeight, e.X, e.Y);
+                view.Get(ProductGrid.PropertyEnum.Panel).Invalidate();
+            }
+        }
+
+        public void DragDrop( object sender, DragEventArgs e ) {
+            ProductModel model;
+            if( ( model = ( ProductModel ) e.Data.GetData(typeof(ProductModel)) ) != null ) // if so, this is a new product
+            {
+                AddNewProduct(model, e.X, e.Y, ( float ) model.Width / 100, ( float ) model.Height / 100, false);
+                view.Get(ProductGrid.PropertyEnum.Panel).Invalidate();
+            } else // selected item is a PlacedProduct, and so is already in the field
+              {
+                PlacedProduct temp = ( PlacedProduct ) e.Data.GetData(typeof(PlacedProduct));
+                Console.WriteLine(temp);
+            }
+        }
+
+        public void DragEnter( object sender, DragEventArgs e ) {
+            if( e.Data.GetDataPresent(typeof(PlacedProduct)) || e.Data.GetDataPresent(typeof(ProductModel)) )
+                e.Effect = e.AllowedEffect;
+            else
+                e.Effect = DragDropEffects.None;
         }
 
         public void AddNewProduct(ProductModel model, float x, float y, float width, float height, bool realDimensions)
@@ -310,7 +320,6 @@ namespace KantoorInrichting.Controllers.Placement
             SizeF size = new SizeF(width, height);
             model.Size = size;
             PlacedProduct newProduct = new PlacedProduct(model, center);
-
 
             // Do not add product to field if it has collision
             if(!utility.Collision(newProduct, placedProducts))
@@ -414,7 +423,6 @@ namespace KantoorInrichting.Controllers.Placement
             comboBox.ValueMember = "Value";
             comboBox.DropDownStyle = ComboBoxStyle.DropDownList;
         }
-
         #endregion
     }
 }

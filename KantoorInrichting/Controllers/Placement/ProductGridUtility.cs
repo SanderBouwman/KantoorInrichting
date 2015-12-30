@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using KantoorInrichting.Models.Product;
+using KantoorInrichting.Views.Placement;
 
 #endregion
 
@@ -121,6 +122,32 @@ namespace KantoorInrichting.Controllers.Placement
             float resultX = point.X/width*size,
                 resultY = point.Y/height*size;
             return new PointF(resultX, resultY);
+        }
+
+        public void MoveProduct(PlacedProduct selectedProduct, List<PlacedProduct> placedProducts , int boundWidth, int boundHeight, 
+            float realWidth, float realHeight, int x, int y)
+        {
+            float selectedWidth = selectedProduct.product.Size.Width,
+                selectedHeight = selectedProduct.product.Size.Height;
+            
+            float newX = x / ( float ) boundWidth * realWidth
+                         - selectedWidth / 2,
+                newY = y / ( float ) boundHeight * realHeight
+                       - selectedHeight / 2;
+
+            if( newX <= 0 )
+                newX = 0;
+            if( newX + selectedWidth / 2 >= realWidth )
+                newX = realWidth - selectedWidth * 2;
+            if( newY <= 0 )
+                newY = selectedHeight / 2;
+            if( newY + selectedHeight / 2 >= realHeight )
+                newY = realHeight - selectedHeight;
+
+            PointF newLocation = new PointF(newX, newY);
+            selectedProduct.location = !Collision(selectedProduct, placedProducts)
+                ? newLocation
+                : selectedProduct.OriginalLocation;
         }
     }
 }

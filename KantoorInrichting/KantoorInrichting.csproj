@@ -79,7 +79,6 @@
     <Compile Include="Models\Algorithm\AlgorithmModel.cs" />
     <Compile Include="Models\Grid\GridFieldModel.cs" />
     <Compile Include="Models\Product\ProductFactory.cs" />
-    <Compile Include="Models\Product\ProductRectangle.cs" />
     <Compile Include="Models\Product\StaticlyPlacedObject.cs" />
     <Compile Include="Models\Product\StaticObjectModel.cs" />
     <Compile Include="Models\Space\Space.cs" />

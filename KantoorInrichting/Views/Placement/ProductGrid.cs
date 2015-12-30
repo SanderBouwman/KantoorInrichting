@@ -73,6 +73,9 @@ namespace KantoorInrichting.Views.Placement
             zoomTrackbar.ValueChanged += ZoomTrackbar_ValueChanged;
             algorithmButton.Click += AlgorithmButton_Click;
 
+            // Rotation buttons
+            buttonCW.Click += ButtonCW_Click;
+            buttonCCW.Click += ButtonCCW_Click;
             // DragDrop events
             gridFieldPanel.DragDrop += GridFieldPanel_DragDrop;
             gridFieldPanel.DragEnter += GridFieldPanel_DragEnter;
@@ -81,6 +84,14 @@ namespace KantoorInrichting.Views.Placement
             gridFieldPanel.MouseDown += GridFieldPanel_MouseDown;
             gridFieldPanel.MouseUp += GridFieldPanel_MouseUp;
             gridFieldPanel.MouseMove += GridFieldPanel_MouseMove1;
+        }
+
+        private void ButtonCCW_Click( object sender, EventArgs e ) {
+            controller.Notify(sender, e, "ButtonCCW");
+        }
+
+        private void ButtonCW_Click( object sender, EventArgs e ) {
+            controller.Notify(sender, e, "ButtonCW");
         }
 
         private void GridFieldPanel_MouseUp( object sender, MouseEventArgs e ) {
