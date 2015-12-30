@@ -79,7 +79,12 @@ namespace KantoorInrichting.Views.Placement
             gridFieldPanel.DragLeave += GridFieldPanel_DragLeave;
             gridFieldPanel.DragOver += GridFieldPanel_DragOver;
             gridFieldPanel.MouseDown += GridFieldPanel_MouseDown;
+            gridFieldPanel.MouseUp += GridFieldPanel_MouseUp;
             gridFieldPanel.MouseMove += GridFieldPanel_MouseMove1;
+        }
+
+        private void GridFieldPanel_MouseUp( object sender, MouseEventArgs e ) {
+            controller.Notify(sender, e, "PanelMouseUp");
         }
 
         private void GridFieldPanel_MouseMove1( object sender, MouseEventArgs e ) {

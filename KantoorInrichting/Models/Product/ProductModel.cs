@@ -36,6 +36,9 @@ namespace KantoorInrichting.Models.Product
         public bool Removed { get; set; }
         public decimal Price { get; set; }
 
+        public ProductRectangle Representation;
+        public bool Collidable = true;
+
         //public Supplier supplier { get; private set; }
 
         public static int IDnumber;

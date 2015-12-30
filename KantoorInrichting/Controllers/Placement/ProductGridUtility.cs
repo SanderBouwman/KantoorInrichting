@@ -15,6 +15,30 @@ namespace KantoorInrichting.Controllers.Placement
 {
     public class ProductGridUtility
     {
+
+        public bool Collision(PlacedProduct product, List<PlacedProduct> products)
+        {
+            for (int i = 0; i < products.Count; i++)
+            {
+                PlacedProduct current = products[i];
+
+                if(current == product)
+                    continue;
+
+                if (product.product.Collidable && current.product.Collidable)
+                {
+                    bool intersectLeft = (current.location.X < product.location.X + product.product.Size.Width),
+                        intersectRight = (current.location.X + current.product.Size.Width > product.location.X),
+                        intersectTop = (current.location.Y < product.location.Y + product.product.Size.Height),
+                        intersectBottom = (current.location.Y + current.product.Size.Height > product.location.Y);
+
+                    if (intersectLeft && intersectRight && intersectTop && intersectBottom)
+                        return true;
+                }
+            }
+            return false;
+        }
+
         public Rectangle GetProductRectangle(PlacedProduct product, float width, float height, float size)
         {
             Rectangle rectangle;
@@ -43,7 +67,7 @@ namespace KantoorInrichting.Controllers.Placement
         }
 
         /// <summary>
-        /// Selects the brush where the type matches from the Dictionary kept in the Legend.
+        /// Selects the Brush where the type matches from the Dictionary kept in the Legend.
         /// </summary>
         /// <param name="product"></param>
         /// <param name="dict"></param>
@@ -57,7 +81,7 @@ namespace KantoorInrichting.Controllers.Placement
             }
             catch (InvalidOperationException e)
             {
-                // This means that the type is not found in the dictionary, and so I will set the brush to Black
+                // This means that the type is not found in the dictionary, and so I will set the Brush to Black
                 brush = new SolidBrush(Color.Black);
             }
             return brush;
@@ -70,21 +94,13 @@ namespace KantoorInrichting.Controllers.Placement
             PointF realPoint = TransformToRealWorld(point, width, height, size);
             foreach (PlacedProduct current in products)
             {
-                PointF currentLocation = current.location.IsEmpty ? current.product.location : current.location;
-
-                float widthInMeters = current.product.Size.Width == 0
-                    ? current.product.Width
-                    : (float) current.product.Width/100,
-
-                    heightInMeters = current.product.Size.Height == 0
-                        ? current.product.Height
-                        : (float) current.product.Height/100;
-
+                PointF currentLocation = current.location;
+                
                 bool xOnPoint = (currentLocation.X <= realPoint.X) &&
-                                (currentLocation.X + widthInMeters >= realPoint.X),
+                                (currentLocation.X + current.product.Size.Width >= realPoint.X),
 
                     yOnPoint = (currentLocation.Y <= realPoint.Y) &&
-                               currentLocation.Y + heightInMeters >= realPoint.Y;
+                               currentLocation.Y + current.product.Size.Height >= realPoint.Y;
 
                 if (xOnPoint && yOnPoint)
                 {

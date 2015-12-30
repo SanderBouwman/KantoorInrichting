@@ -40,6 +40,8 @@ namespace KantoorInrichting.Controllers.Placement
         private bool zoomCheckboxChecked;
         private int zoomSize;
 
+        private readonly Dictionary<string, SolidBrush> legendDictionary;
+
 
         public ProductGridController(IView<ProductGrid.PropertyEnum> view,
             float meterWidth, float meterHeight, float tileSize)
@@ -60,7 +62,7 @@ namespace KantoorInrichting.Controllers.Placement
             zoomArea = new Rectangle(0, 0, zoomSize, zoomSize);
             placedProducts = new List<PlacedProduct>();
             comboBoxAlgorithms = new List<AlgorithmModel>();
-
+             legendDictionary = ( ( Legend ) view.Get(ProductGrid.PropertyEnum.Legend) ).CategoryColors;
             // Init algorithm combobox
             PopulateAlgorithms();
         }
@@ -112,7 +114,7 @@ namespace KantoorInrichting.Controllers.Placement
             ProductModel model;
             if ((model = (ProductModel) e.Data.GetData(typeof (ProductModel))) != null) // if so, this is a new product
             {
-                AddNewProduct(model, e.X, e.Y);
+                AddNewProduct(model, e.X, e.Y, (float) model.Width/100, (float) model.Height/100, false);
                 view.Get(ProductGrid.PropertyEnum.Panel).Invalidate();
             }
             else // selected item is a PlacedProduct, and so is already in the field
@@ -151,10 +153,13 @@ namespace KantoorInrichting.Controllers.Placement
         {
             PlacedProduct product = utility.GetProductFromField(e.Location, placedProducts, tileWidth, tileHeight,
                 tileSize);
+            
             if (product != null)
             {
                 selectedProduct = product;
                 draggingProduct = true;
+
+                selectedProduct.OriginalLocation = selectedProduct.location;
             }
         }
 
@@ -169,12 +174,8 @@ namespace KantoorInrichting.Controllers.Placement
 
         public void MoveSelectedProduct(int x, int y)
         {
-            float selectedWidth = selectedProduct.product.Size.Width == 0
-                ? selectedProduct.product.Width
-                : (float) selectedProduct.product.Width/100,
-                selectedHeight = selectedProduct.product.Size.Height == 0
-                    ? selectedProduct.product.Height
-                    : (float) selectedProduct.product.Height/100;
+            float selectedWidth = selectedProduct.product.Size.Width,
+                selectedHeight = selectedProduct.product.Size.Height;
 
             int panelWidth = view.Get(ProductGrid.PropertyEnum.Panel).Width,
                 panelHeight = view.Get(ProductGrid.PropertyEnum.Panel).Height;
@@ -192,9 +193,11 @@ namespace KantoorInrichting.Controllers.Placement
                 newY = selectedHeight/2;
             if (newY + selectedHeight/2 >= meterHeight)
                 newY = meterHeight - selectedHeight;
-
+            
             PointF newLocation = new PointF(newX, newY);
-            selectedProduct.location = newLocation;
+            selectedProduct.location = !utility.Collision(selectedProduct, placedProducts) 
+                ? newLocation 
+                : selectedProduct.OriginalLocation;
             view.Get(ProductGrid.PropertyEnum.Panel).Invalidate();
         }
 
@@ -281,31 +284,37 @@ namespace KantoorInrichting.Controllers.Placement
         private void PaintProduct(PlacedProduct product, Graphics g)
         {
             Rectangle rectangle = utility.GetProductRectangle(product, tileWidth, tileHeight, tileSize);
-
-            Dictionary<string, SolidBrush> legendDictionary =
-                ((Legend) view.Get(ProductGrid.PropertyEnum.Legend)).CategoryColors;
             SolidBrush brush = utility.SelectBrush(product, legendDictionary);
-
             g.FillRectangle(brush, rectangle);
         }
 
-        public void AddNewProduct(ProductModel model, int x, int y)
+        public void AddNewProduct(ProductModel model, float x, float y, float width, float height, bool realDimensions)
         {
             float viewWidth = view.Get(ProductGrid.PropertyEnum.Panel).Width,
                 viewHeight = view.Get(ProductGrid.PropertyEnum.Panel).Height;
-            float newX = x/viewWidth*meterWidth,
-                newY = y/viewHeight*meterHeight,
-                newWidth = (float) model.Width/100,
-                newHeight = (float) model.Height/100;
-            PointF center = new PointF
-            {
-                X = newX - newWidth/2,
-                Y = newY - newHeight/2
-            };
+            float newX = (realDimensions) ? x : x/viewWidth*meterWidth,
+                newY = (realDimensions) ? y : y/viewHeight*meterHeight;
+            PointF center;
 
-            SizeF size = new SizeF(newWidth, newHeight);
+            if(!realDimensions)
+                center = new PointF {
+                    X = newX - width / 2,
+                    Y = newY - height / 2
+                };
+            else
+                center = new PointF {
+                    X = x + model.Width / 2,
+                    Y = y + model.Height / 2
+                };
+
+            SizeF size = new SizeF(width, height);
             model.Size = size;
-            placedProducts.Add(new PlacedProduct(model, center));
+            PlacedProduct newProduct = new PlacedProduct(model, center);
+
+
+            // Do not add product to field if it has collision
+            if(!utility.Collision(newProduct, placedProducts))
+                placedProducts.Add(newProduct);
         }
 
         /// <summary>
@@ -330,14 +339,7 @@ namespace KantoorInrichting.Controllers.Placement
                 int width = model.Width;
                 model.Width = model.Height;
                 model.Height = width;
-                PointF modelLocation = model.location;
-                PointF center = new PointF
-                {
-                    X = modelLocation.X + model.Width/2,
-                    Y = modelLocation.Y + model.Height/2
-                };
-                PlacedProduct product = new PlacedProduct(model, center);
-                placedProducts.Add(product);
+                AddNewProduct(model, model.location.X, model.location.Y, model.Width, model.Height, true);
             }
         }
 

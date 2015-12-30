@@ -22,6 +22,7 @@ namespace KantoorInrichting.Models.Product
 
         public ProductModel product { get; private set; }
         public PointF location { get; set; }
+        public PointF OriginalLocation { get; set; }
         public PointF[] cornerPoints { get; private set; }
         public Bitmap defaultBitMap { get; private set; }
         public Bitmap rotatedMap { get; set; }
