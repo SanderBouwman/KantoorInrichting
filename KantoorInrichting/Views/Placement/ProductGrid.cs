@@ -5,10 +5,8 @@
 
 using System;
 using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
 using KantoorInrichting.Controllers;
-using KantoorInrichting.Models.Product;
 
 #endregion
 
@@ -55,7 +53,7 @@ namespace KantoorInrichting.Views.Placement
                     result = algorithmComboBox;
                     break;
                 case PropertyEnum.Legend:
-                    result = this.legend;
+                    result = legend;
                     break;
                 default:
                     result = null;
@@ -76,60 +74,71 @@ namespace KantoorInrichting.Views.Placement
             // Rotation buttons
             buttonCW.Click += ButtonCW_Click;
             buttonCCW.Click += ButtonCCW_Click;
+
+            // Delete and save buttons
+            buttonSave.Click += ButtonSave_Click;
+            buttonDelete.Click += ButtonDelete_Click;
+
             // DragDrop events
             gridFieldPanel.DragDrop += GridFieldPanel_DragDrop;
             gridFieldPanel.DragEnter += GridFieldPanel_DragEnter;
-            gridFieldPanel.DragLeave += GridFieldPanel_DragLeave;
-            gridFieldPanel.DragOver += GridFieldPanel_DragOver;
             gridFieldPanel.MouseDown += GridFieldPanel_MouseDown;
             gridFieldPanel.MouseUp += GridFieldPanel_MouseUp;
             gridFieldPanel.MouseMove += GridFieldPanel_MouseMove1;
         }
 
-        private void ButtonCCW_Click( object sender, EventArgs e ) {
+        private void ButtonDelete_Click(object sender, EventArgs e)
+        {
+            controller.Notify(sender, e, "ButtonDelete");
+        }
+
+        private void ButtonSave_Click(object sender, EventArgs e)
+        {
+            controller.Notify(sender, e, "ButtonSave");
+        }
+
+        private void ButtonCCW_Click(object sender, EventArgs e)
+        {
             controller.Notify(sender, e, "ButtonCCW");
         }
 
-        private void ButtonCW_Click( object sender, EventArgs e ) {
+        private void ButtonCW_Click(object sender, EventArgs e)
+        {
             controller.Notify(sender, e, "ButtonCW");
         }
 
-        private void GridFieldPanel_MouseUp( object sender, MouseEventArgs e ) {
+        private void GridFieldPanel_MouseUp(object sender, MouseEventArgs e)
+        {
             controller.Notify(sender, e, "PanelMouseUp");
         }
 
-        private void GridFieldPanel_MouseMove1( object sender, MouseEventArgs e ) {
+        private void GridFieldPanel_MouseMove1(object sender, MouseEventArgs e)
+        {
             controller.Notify(sender, e, "PanelMouseMove");
         }
 
-        private void GridFieldPanel_MouseDown( object sender, MouseEventArgs e ) {
+        private void GridFieldPanel_MouseDown(object sender, MouseEventArgs e)
+        {
             controller.Notify(sender, e, "PanelMouseDown");
         }
 
-        private void GridFieldPanel_DragOver( object sender, DragEventArgs e ) {
-//            throw new NotImplementedException();
-        }
-
-        private void GridFieldPanel_DragLeave( object sender, EventArgs e ) {
-//            Console.WriteLine("DragLeave");
-//            throw new NotImplementedException();
-        }
-
-        private void GridFieldPanel_DragEnter( object sender, DragEventArgs e ) {
+        private void GridFieldPanel_DragEnter(object sender, DragEventArgs e)
+        {
             controller.Notify(sender, e, "PanelDragEnter");
         }
 
-        private void GridFieldPanel_DragDrop( object sender, DragEventArgs e )
+        private void GridFieldPanel_DragDrop(object sender, DragEventArgs e)
         {
             // Have to translate the mouseposition to the position on the panel
             // since the default is based on the resolution of your screen
             Point pointInPanel = gridFieldPanel.PointToClient(new Point(e.X, e.Y));
-            DragEventArgs newEvent = new DragEventArgs(e.Data, e.KeyState, 
+            DragEventArgs newEvent = new DragEventArgs(e.Data, e.KeyState,
                 pointInPanel.X, pointInPanel.Y, e.AllowedEffect, e.Effect);
             controller.Notify(sender, newEvent, "PanelDragDrop");
         }
 
-        private void AlgorithmButton_Click( object sender, EventArgs e ) {
+        private void AlgorithmButton_Click(object sender, EventArgs e)
+        {
             controller.Notify(sender, e, "AlgorithmClick");
         }
 
