@@ -15,6 +15,7 @@ using KantoorInrichting.Models.Algorithm;
 using KantoorInrichting.Models.Grid;
 using KantoorInrichting.Models.Product;
 using KantoorInrichting.Views;
+using KantoorInrichting.Views.Grid;
 using KantoorInrichting.Views.Placement;
 
 #endregion
@@ -23,28 +24,30 @@ namespace KantoorInrichting.Controllers.Placement
 {
     public class ProductGridController : IController
     {
+        private readonly ICollisionHandler<PlacedProduct> collisionHandler;
         private readonly List<AlgorithmModel> comboBoxAlgorithms;
-
         private readonly Dictionary<string, SolidBrush> legendDictionary;
+
         private readonly float meterHeight;
         private readonly float meterWidth;
 
         private readonly List<PlacedProduct> placedProducts;
-
         private readonly float tileSize;
         private readonly ProductGridUtility utility;
 
         private readonly IView<ProductGrid.PropertyEnum> view;
-        private readonly ICollisionHandler<PlacedProduct> collisionHandler;
+
         private bool draggingProduct;
+        private int lastCount;
+
         private PlacedProduct selectedProduct;
-
-        private float tileWidth, tileHeight;
+        private float tileHeight;
+        private float tileWidth;
+        private Bitmap viewContent, zoomContent;
         private Rectangle zoomArea;
-
         private bool zoomCheckboxChecked;
         private int zoomSize;
-
+        private ZoomView zoomView;
 
         public ProductGridController(IView<ProductGrid.PropertyEnum> view,
             float meterWidth, float meterHeight, float tileSize)
@@ -67,18 +70,17 @@ namespace KantoorInrichting.Controllers.Placement
             placedProducts = new List<PlacedProduct>();
             comboBoxAlgorithms = new List<AlgorithmModel>();
             draggingProduct = false;
-
+            zoomContent = new Bitmap(zoomSize, zoomSize);
             // Init algorithm combobox
             PopulateAlgorithms();
         }
 
         public void Paint(object sender, PaintEventArgs e)
         {
-            e.Graphics.SmoothingMode = SmoothingMode.HighQuality;
             if (zoomCheckboxChecked)
                 e.Graphics.DrawRectangle(Pens.Red, zoomArea);
 
-            PaintProducts(e.Graphics);
+            e.Graphics.DrawImage(PaintProducts(), Point.Empty);
         }
 
         public void Notify(object sender, EventArgs e, string eventName)
@@ -100,19 +102,21 @@ namespace KantoorInrichting.Controllers.Placement
             throw new NotImplementedException();
         }
 
-        public void DeleteProduct(PlacedProduct product)
+        private Bitmap GetPanelImage()
         {
-            if (product == null)
-                return;
+            if (viewContent != null)
+            {
+                if (zoomSize > zoomContent.Width)
+                    zoomContent = new Bitmap(zoomSize, zoomSize);
 
-            placedProducts.Remove(product);
-            view.Get(ProductGrid.PropertyEnum.Panel).Invalidate();
-        }
-
-        private void SaveRoom()
-        {
-            // TODO save the current list to the database 
-            // ( problem as of 31/12/2015: There's no save method in the DatabaseController )
+                using (Graphics g = Graphics.FromImage(zoomContent))
+                {
+                    g.Clear(Color.Empty);
+                    g.DrawImage(viewContent, 0, 0, zoomArea, GraphicsUnit.Pixel);
+                    g.Dispose();
+                }
+            }
+            return zoomContent;
         }
 
         #region Event methods
@@ -136,14 +140,14 @@ namespace KantoorInrichting.Controllers.Placement
                 HandleButtonEvent(sender, e, eventName);
             if (sender is GridFieldPanel && e.Clicks > 0 && eventName == "PanelMouseDown")
                 PanelMouseDown(sender, e);
-            if (sender is GridFieldPanel && e.Button == MouseButtons.Left && eventName == "PanelMouseMove")
+            if (sender is GridFieldPanel && eventName == "PanelMouseMove" && e.Button == MouseButtons.Left)
+                PanelMouseDrag(sender, e);
+            if (sender is GridFieldPanel && eventName == "PanelMouseMove" && e.Button == MouseButtons.None)
                 PanelMouseMove(sender, e);
             if (zoomCheckboxChecked)
             {
                 UpdateRectangle(e.X, e.Y, view.Get(ProductGrid.PropertyEnum.Panel).Width,
                     view.Get(ProductGrid.PropertyEnum.Panel).Height);
-
-                view.Get(ProductGrid.PropertyEnum.Panel).Invalidate();
             }
         }
 
@@ -227,10 +231,16 @@ namespace KantoorInrichting.Controllers.Placement
             view.Get(ProductGrid.PropertyEnum.Trackbar).Enabled = zoomCheckboxChecked;
             if (zoomCheckboxChecked)
             {
-                // TODO open zoomview
+                if (zoomView == null)
+                    zoomView = new ZoomView();
+
+                zoomView?.Show();
             }
-            else
+            else if (!zoomCheckboxChecked)
+            {
+                zoomView?.Hide();
                 view.Get(ProductGrid.PropertyEnum.Panel).Invalidate();
+            }
         }
 
         public void HandleTrackbarEvent(object sender, EventArgs e)
@@ -249,10 +259,22 @@ namespace KantoorInrichting.Controllers.Placement
 
         #region Helper methods
 
-        private void PaintProducts(Graphics g)
+        private Image PaintProducts()
         {
-            foreach (PlacedProduct product in placedProducts)
-                PaintProduct(product, g);
+            if (viewContent == null)
+            {
+                viewContent = new Bitmap(view.Get(ProductGrid.PropertyEnum.Panel).Width,
+                    view.Get(ProductGrid.PropertyEnum.Panel).Height);
+            }
+
+            using (Graphics g = Graphics.FromImage(viewContent))
+            {
+                g.Clear(Color.Empty);
+                foreach (PlacedProduct product in placedProducts)
+                    PaintProduct(product, g);
+            }
+
+            return viewContent;
         }
 
 
@@ -277,6 +299,21 @@ namespace KantoorInrichting.Controllers.Placement
             }
         }
 
+        public void DeleteProduct(PlacedProduct product)
+        {
+            if (product == null)
+                return;
+
+            placedProducts.Remove(product);
+            view.Get(ProductGrid.PropertyEnum.Panel).Invalidate();
+        }
+
+        private void SaveRoom()
+        {
+            // TODO save the current list to the database 
+            // ( problem as of 31/12/2015: There's no save method in the DatabaseController )
+        }
+
 
         public void PanelMouseDown(object sender, MouseEventArgs e)
         {
@@ -299,6 +336,15 @@ namespace KantoorInrichting.Controllers.Placement
         }
 
         public void PanelMouseMove(object sender, MouseEventArgs e)
+        {
+            if (zoomCheckboxChecked)
+            {
+                zoomView?.SetArea(GetPanelImage());
+                view.Get(ProductGrid.PropertyEnum.Panel).Invalidate();
+            }
+        }
+
+        public void PanelMouseDrag(object sender, MouseEventArgs e)
         {
             bool xInField = e.X > 0 && e.X < view.Get(ProductGrid.PropertyEnum.Panel).Width,
                 yInField = e.Y > 0 && e.Y < view.Get(ProductGrid.PropertyEnum.Panel).Height,
@@ -400,20 +446,25 @@ namespace KantoorInrichting.Controllers.Placement
         {
             if (maxX.HasValue && maxY.HasValue && zoomCheckboxChecked)
             {
-                int boundX = (int) maxX;
-                int boundY = (int) maxY;
-                zoomArea.Width = zoomSize;
-                zoomArea.Height = zoomSize;
-                zoomArea.X = x - zoomArea.Width/2;
-                zoomArea.Y = y - zoomArea.Height/2;
-                if (zoomArea.Right > boundX)
-                    zoomArea.X = boundX - zoomArea.Width;
-                if (zoomArea.Bottom > boundY)
-                    zoomArea.Y = boundY - zoomArea.Height;
-                if (zoomArea.Top < 0)
-                    zoomArea.Y = 0;
-                if (zoomArea.Left < 0)
-                    zoomArea.X = 0;
+                int boundX = (int) maxX,
+                    boundY = (int) maxY,
+                    tempWidth = zoomSize,
+                    tempHeight = zoomSize,
+                    tempX = x - zoomArea.Width/2,
+                    tempY = y - zoomArea.Height/2;
+
+                if (tempX + tempWidth > boundX)
+                    tempX = boundX - tempWidth;
+                if (tempY + tempHeight > boundY)
+                    tempY = boundY - tempHeight;
+                if (tempY < 0)
+                    tempY = 0;
+                if (tempX < 0)
+                    tempX = 0;
+
+                Rectangle rectangle = new Rectangle(tempX, tempY, tempWidth, tempHeight);
+
+                zoomArea = rectangle;
             }
         }
 
