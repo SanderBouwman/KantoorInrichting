@@ -312,6 +312,7 @@ namespace KantoorInrichting.Controllers.Placement
         {
             // TODO save the current list to the database 
             // ( problem as of 31/12/2015: There's no save method in the DatabaseController )
+            Console.WriteLine("SAVE ROOM");
         }
 
 

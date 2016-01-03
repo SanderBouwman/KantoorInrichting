@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -53,6 +54,8 @@ namespace KantoorInrichting.Views
 //            hoofdscherm.gridFieldView.Enabled = true;
 //            this.Visible = false;
 //            hoofdscherm.gridFieldView.BringToFront();
+
+            Console.WriteLine("Open room selection and get data from there! -- MainScreen.cs Line 58");
             hoofdscherm.productGrid = new ProductGrid();
             IController controller = new ProductGridController(hoofdscherm.productGrid, 10, 10, 0.5f);
             hoofdscherm.AddPanelToMainscreen(hoofdscherm.productGrid);
