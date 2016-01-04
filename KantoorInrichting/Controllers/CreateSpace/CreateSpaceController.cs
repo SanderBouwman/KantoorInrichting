@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using KantoorInrichting.Views.CreateSpace;
-using KantoorInrichting.Models.Maps;
+using KantoorInrichting.Models.Space;
 
 namespace KantoorInrichting.Controllers.CreateSpace
 {
