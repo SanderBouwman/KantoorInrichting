@@ -184,6 +184,7 @@ namespace KantoorInrichting.Controllers.Placement
                 case "ButtonCCW":
                     if (selectedProduct != null)
                         RotateSelectedItem(-15);
+                    MessageBox.Show("test");
                     break;
                 case "ButtonSave":
                     SaveRoom(space.Room);

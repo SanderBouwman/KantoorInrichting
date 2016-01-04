@@ -77,7 +77,6 @@ namespace KantoorInrichting.Views.SpaceChoice
 
                 // ------------------------- new 
                 hoofdscherm.Size = ProductGrid.PanelSize;
-                IController controller = new ProductGridController(hoofdscherm.productGrid, 10, 10, 0.5f);
                 hoofdscherm.productGrid.controller.OpenPanel(hoofdscherm.productGrid, selectedSpace[0]);
                 hoofdscherm.productGrid.Visible = true;
                 hoofdscherm.productGrid.Enabled = true;

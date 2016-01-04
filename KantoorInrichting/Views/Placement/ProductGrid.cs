@@ -7,6 +7,7 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 using KantoorInrichting.Controllers;
+using KantoorInrichting.Controllers.Placement;
 
 #endregion
 
@@ -28,6 +29,7 @@ namespace KantoorInrichting.Views.Placement
         public ProductGrid()
         {
             InitializeComponent();
+            controller = new ProductGridController(this, 10, 10, 0.5f);
         }
 
         public PropertyEnum Properties { get; set; }
