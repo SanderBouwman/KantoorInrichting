@@ -125,12 +125,6 @@
     <Compile Include="Views\Assortment\RemoveProductScreen.Designer.cs">
       <DependentUpon>RemoveProductScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\CreateSpace\SpaceDesign.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Views\CreateSpace\SpaceDesign.Designer.cs">
-      <DependentUpon>SpaceDesign.cs</DependentUpon>
-    </Compile>
     <Compile Include="Views\CreateSpace\SpaceInfoDialog.cs">
       <SubType>Form</SubType>
     </Compile>

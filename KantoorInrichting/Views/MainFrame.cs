@@ -109,7 +109,7 @@ namespace KantoorInrichting
             AddPanelToMainscreen(gridFieldView);
             AddPanelToMainscreen(mainScreen1);
             AddPanelToMainscreen(loginScreen1);
-//            AddPanelToMainscreen(placement);
+            AddPanelToMainscreen(placement);
             AddPanelToMainscreen(MapsScreen);
             AddPanelToMainscreen(spaceChoice);
             AddPanelToMainscreen(productGrid);
