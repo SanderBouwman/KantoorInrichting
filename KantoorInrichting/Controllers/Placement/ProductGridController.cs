@@ -63,6 +63,7 @@ namespace KantoorInrichting.Controllers.Placement
         {
             utility = new ProductGridUtility();
             collisionHandler = new ProductGridCollisionHandler();
+            productGrid = new ProductGrid();
             // Set parameters to fields
             this.meterWidth = meterWidth;
             this.meterHeight = meterHeight;
@@ -324,8 +325,9 @@ namespace KantoorInrichting.Controllers.Placement
         {
             string appFolderPath = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
             string resourcesFolderPath = Path.Combine(Directory.GetParent(appFolderPath).Parent.FullName, "Resources");
-            Bitmap bmp = new Bitmap(ProductGrid.PanelSize.Width, ProductGrid.PanelSize.Height);
-           // productGrid.gridFieldPanel.DrawToBitmap(bmp, productGrid.gridFieldPanel.Bounds);
+            Bitmap bmp = new Bitmap(productGrid.gridFieldPanel.Width, productGrid.gridFieldPanel.Height);
+            productGrid.gridFieldPanel.DrawToBitmap(bmp, productGrid.gridFieldPanel.Bounds);
+           
 
             String fileName = Path.Combine(resourcesFolderPath, "" + spacenumber + ".bmp");
             bmp.Save(fileName);
