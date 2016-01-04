@@ -1,5 +1,5 @@
 ﻿
-using KantoorInrichting.Models.Maps;
+using KantoorInrichting.Models.Space;
 using KantoorInrichting.Models.Product;
 using System;
 using System.Collections.Generic;
@@ -19,8 +19,8 @@ namespace KantoorInrichting.Controllers
         public KantoorInrichtingDataSetTableAdapters.placementTableAdapter PlacementTableAdapter { get; set; }              //-- Not sure if we need te setters, might need to be removed later.
         public KantoorInrichtingDataSetTableAdapters.roleTableAdapter RoleTableAdapter { get; set; }
         public KantoorInrichtingDataSetTableAdapters.spaceTableAdapter SpaceTableAdapter { get; set; }
-        public KantoorInrichtingDataSetTableAdapters.static_placementTableAdapter Static_placementTableAdapter { get; set; }
-        public KantoorInrichtingDataSetTableAdapters.static_productTableAdapter Static_productTableAdapter { get; set; }
+        public KantoorInrichtingDataSetTableAdapters.static_placementTableAdapter StaticPlacementTableAdapter { get; set; }
+        public KantoorInrichtingDataSetTableAdapters.static_productTableAdapter StaticProductTableAdapter { get; set; }
         public KantoorInrichtingDataSetTableAdapters.userTableAdapter UserTableAdapter { get; set; }
 
         // this class is used to create objects from the data in the database, using the dataset
@@ -33,8 +33,8 @@ namespace KantoorInrichting.Controllers
             this.PlacementTableAdapter = new KantoorInrichtingDataSetTableAdapters.placementTableAdapter();
             this.RoleTableAdapter = new KantoorInrichtingDataSetTableAdapters.roleTableAdapter();
             this.SpaceTableAdapter = new KantoorInrichtingDataSetTableAdapters.spaceTableAdapter();
-            this.Static_placementTableAdapter = new KantoorInrichtingDataSetTableAdapters.static_placementTableAdapter();
-            this.Static_productTableAdapter = new KantoorInrichtingDataSetTableAdapters.static_productTableAdapter();
+            this.StaticPlacementTableAdapter = new KantoorInrichtingDataSetTableAdapters.static_placementTableAdapter();
+            this.StaticProductTableAdapter = new KantoorInrichtingDataSetTableAdapters.static_productTableAdapter();
             this.UserTableAdapter = new KantoorInrichtingDataSetTableAdapters.userTableAdapter();
 
             CategoryTableAdapter.Fill(DataSet.category);
@@ -42,8 +42,8 @@ namespace KantoorInrichting.Controllers
             PlacementTableAdapter.Fill(DataSet.placement);
             RoleTableAdapter.Fill(DataSet.role);
             SpaceTableAdapter.Fill(DataSet.space);
-            Static_placementTableAdapter.Fill(DataSet.static_placement);
-            Static_productTableAdapter.Fill(DataSet.static_product);
+            StaticPlacementTableAdapter.Fill(DataSet.static_placement);
+            StaticProductTableAdapter.Fill(DataSet.static_product);
             UserTableAdapter.Fill(DataSet.user);
 
 

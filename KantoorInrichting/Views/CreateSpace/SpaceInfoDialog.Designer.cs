@@ -41,6 +41,7 @@
             this.nud_Floor = new System.Windows.Forms.NumericUpDown();
             this.nud_Room = new System.Windows.Forms.NumericUpDown();
             this.lbl_CalculatedNumber = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.nud_Length)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nud_Width)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nud_Floor)).BeginInit();
@@ -50,9 +51,9 @@
             // btn_Cancel
             // 
             this.btn_Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btn_Cancel.Location = new System.Drawing.Point(220, 157);
+            this.btn_Cancel.Location = new System.Drawing.Point(12, 138);
             this.btn_Cancel.Name = "btn_Cancel";
-            this.btn_Cancel.Size = new System.Drawing.Size(75, 23);
+            this.btn_Cancel.Size = new System.Drawing.Size(75, 38);
             this.btn_Cancel.TabIndex = 0;
             this.btn_Cancel.Text = "Annuleer";
             this.btn_Cancel.UseVisualStyleBackColor = true;
@@ -60,11 +61,11 @@
             // btn_OK
             // 
             this.btn_OK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btn_OK.Location = new System.Drawing.Point(139, 157);
+            this.btn_OK.Location = new System.Drawing.Point(101, 138);
             this.btn_OK.Name = "btn_OK";
-            this.btn_OK.Size = new System.Drawing.Size(75, 23);
+            this.btn_OK.Size = new System.Drawing.Size(75, 38);
             this.btn_OK.TabIndex = 1;
-            this.btn_OK.Text = "Doorgaan";
+            this.btn_OK.Text = "Opslaan";
             this.btn_OK.UseVisualStyleBackColor = true;
             // 
             // lbl_Length
@@ -78,14 +79,15 @@
             // 
             // nud_Length
             // 
+            this.nud_Length.DecimalPlaces = 2;
             this.nud_Length.Location = new System.Drawing.Point(60, 12);
             this.nud_Length.Maximum = new decimal(new int[] {
-            200000,
+            200,
             0,
             0,
             0});
             this.nud_Length.Minimum = new decimal(new int[] {
-            100,
+            1,
             0,
             0,
             0});
@@ -93,21 +95,22 @@
             this.nud_Length.Size = new System.Drawing.Size(78, 20);
             this.nud_Length.TabIndex = 3;
             this.nud_Length.Value = new decimal(new int[] {
-            100,
+            1,
             0,
             0,
             0});
             // 
             // nud_Width
             // 
+            this.nud_Width.DecimalPlaces = 2;
             this.nud_Width.Location = new System.Drawing.Point(60, 38);
             this.nud_Width.Maximum = new decimal(new int[] {
-            200000,
+            200,
             0,
             0,
             0});
             this.nud_Width.Minimum = new decimal(new int[] {
-            100,
+            1,
             0,
             0,
             0});
@@ -115,7 +118,7 @@
             this.nud_Width.Size = new System.Drawing.Size(78, 20);
             this.nud_Width.TabIndex = 4;
             this.nud_Width.Value = new decimal(new int[] {
-            100,
+            1,
             0,
             0,
             0});
@@ -134,18 +137,18 @@
             this.lbl_Text1.AutoSize = true;
             this.lbl_Text1.Location = new System.Drawing.Point(144, 14);
             this.lbl_Text1.Name = "lbl_Text1";
-            this.lbl_Text1.Size = new System.Drawing.Size(21, 13);
+            this.lbl_Text1.Size = new System.Drawing.Size(33, 13);
             this.lbl_Text1.TabIndex = 6;
-            this.lbl_Text1.Text = "cm";
+            this.lbl_Text1.Text = "meter";
             // 
             // lbl_Text2
             // 
             this.lbl_Text2.AutoSize = true;
             this.lbl_Text2.Location = new System.Drawing.Point(144, 40);
             this.lbl_Text2.Name = "lbl_Text2";
-            this.lbl_Text2.Size = new System.Drawing.Size(21, 13);
+            this.lbl_Text2.Size = new System.Drawing.Size(33, 13);
             this.lbl_Text2.TabIndex = 7;
-            this.lbl_Text2.Text = "cm";
+            this.lbl_Text2.Text = "meter";
             // 
             // lbl_Numer
             // 
@@ -214,13 +217,23 @@
             this.lbl_CalculatedNumber.TabIndex = 12;
             this.lbl_CalculatedNumber.Text = "A0.0";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(183, 138);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 38);
+            this.button1.TabIndex = 13;
+            this.button1.Text = "Opslaan en bewerken";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // SpaceInfoDialog
             // 
             this.AcceptButton = this.btn_OK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btn_Cancel;
-            this.ClientSize = new System.Drawing.Size(307, 192);
+            this.ClientSize = new System.Drawing.Size(270, 188);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.lbl_CalculatedNumber);
             this.Controls.Add(this.nud_Room);
             this.Controls.Add(this.nud_Floor);
@@ -260,5 +273,6 @@
         private System.Windows.Forms.NumericUpDown nud_Room;
         private System.Windows.Forms.ComboBox cbx_Building;
         private System.Windows.Forms.Label lbl_CalculatedNumber;
+        private System.Windows.Forms.Button button1;
     }
 }

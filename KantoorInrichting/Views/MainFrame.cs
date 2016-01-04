@@ -16,9 +16,9 @@ namespace KantoorInrichting
 {
     public partial class MainFrame : Form
     {
-        static List<UserControl> panels = new List<UserControl>();
-        public CategoryManagerController categoryManagerController;
-        public CategoryManager categoryManager;
+        private static readonly List<UserControl> Panels = new List<UserControl>();
+        public CategoryManagerController CategoryManagerController;
+        public CategoryManager CategoryManager;
 
         public UserControl Active { get; set; }
 
@@ -32,7 +32,7 @@ namespace KantoorInrichting
 
         public void AddPanels()
         {
-            // make the panels
+            // make the Panels
             this.inventoryScreen1 = new KantoorInrichting.Views.Inventory.InventoryScreen(this);
             this.mainScreen1 = new KantoorInrichting.Views.MainScreen(this);
             this.gridFieldView = new KantoorInrichting.Views.Grid.GridFieldView();
@@ -109,12 +109,12 @@ namespace KantoorInrichting
             AddPanelToMainscreen(gridFieldView);
             AddPanelToMainscreen(mainScreen1);
             AddPanelToMainscreen(loginScreen1);
-//            AddPanelToMainscreen(placement);
+            AddPanelToMainscreen(placement);
             AddPanelToMainscreen(MapsScreen);
             AddPanelToMainscreen(spaceChoice);
             AddPanelToMainscreen(productGrid);
 
-            //after adding the panels make the loginscreen visisble (other then default)
+            //after adding the Panels make the loginscreen visisble (other then default)
 
             this.loginScreen1.Enabled = true;
             this.loginScreen1.Visible = true;
@@ -134,14 +134,14 @@ namespace KantoorInrichting
             panel.AutoSize = true;
             panel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
 
-            // default all panels are not visible and disabled
+            // default all Panels are not visible and disabled
             panel.Visible = false;
             panel.Enabled = false;
 
-            // add panels to the controls of MainFrame
+            // add Panels to the controls of MainFrame
             this.Controls.Add(panel);
-            // add panels to the panellist
-            panels.Add(panel);
+            // add Panels to the panellist
+            Panels.Add(panel);
         }
 
         //takes you back to the main screen
@@ -173,8 +173,8 @@ namespace KantoorInrichting
             Point size = new Point(width, height);
             Size panelsize = new Size(size);
 
-            // loop trough all panels in this form and resize.
-            foreach (UserControl control in panels)
+            // loop trough all Panels in this form and resize.
+            foreach (UserControl control in Panels)
             {
 
                 control.Size = panelsize;

@@ -12,6 +12,8 @@ namespace KantoorInrichting.Views.CreateSpace
 {
     public partial class SpaceInfoDialog : Form
     {
+        public Dictionary<string, string> SpaceInfo { get; private set; }
+
         public SpaceInfoDialog()
         {
             InitializeComponent();
@@ -22,7 +24,13 @@ namespace KantoorInrichting.Views.CreateSpace
         private void NumberChanged(object sender, EventArgs e)
         {
             //Update the label that displays the number of the space in full
-            lbl_CalculatedNumber.Text = cbx_Building.Text + nud_Floor.ToString() + "." + nud_Room.ToString();
+            SpaceInfo["Building"] = cbx_Building.Text;
+            SpaceInfo["Floor"] = nud_Floor.ToString();
+            SpaceInfo["Room"] = nud_Room.ToString();
+            SpaceInfo["Total"] = SpaceInfo["Building"] + SpaceInfo["Floor"] + "." + SpaceInfo["Room"];
+            SpaceInfo["Width"] = nud_Width.ToString();
+            SpaceInfo["Length"] = nud_Length.ToString();
+            lbl_CalculatedNumber.Text = SpaceInfo["Total"];
         }
     }
 }

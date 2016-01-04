@@ -11,15 +11,15 @@ namespace KantoorInrichting.Controllers.Product
 {
     public class PropertyComparer<T> : IComparer<T>
     {
-        private readonly IComparer comparer;
-        private PropertyDescriptor propertyDescriptor;
-        private int reverse;
+        private readonly IComparer _comparer;
+        private PropertyDescriptor _propertyDescriptor;
+        private int _reverse;
 
         public PropertyComparer(PropertyDescriptor property, ListSortDirection direction)
         {
-            this.propertyDescriptor = property;
+            this._propertyDescriptor = property;
             Type comparerForPropertyType = typeof(Comparer<>).MakeGenericType(property.PropertyType);
-            this.comparer = (IComparer)comparerForPropertyType.InvokeMember("Default", BindingFlags.Static | BindingFlags.GetProperty | BindingFlags.Public, null, null, null);
+            this._comparer = (IComparer)comparerForPropertyType.InvokeMember("Default", BindingFlags.Static | BindingFlags.GetProperty | BindingFlags.Public, null, null, null);
             this.SetListSortDirection(direction);
         }
 
@@ -27,19 +27,19 @@ namespace KantoorInrichting.Controllers.Product
 
         public int Compare(T x, T y)
         {
-            return this.reverse * this.comparer.Compare(this.propertyDescriptor.GetValue(x), this.propertyDescriptor.GetValue(y));
+            return this._reverse * this._comparer.Compare(this._propertyDescriptor.GetValue(x), this._propertyDescriptor.GetValue(y));
         }
 
         #endregion
 
         private void SetPropertyDescriptor(PropertyDescriptor descriptor)
         {
-            this.propertyDescriptor = descriptor;
+            this._propertyDescriptor = descriptor;
         }
 
         private void SetListSortDirection(ListSortDirection direction)
         {
-            this.reverse = direction == ListSortDirection.Ascending ? 1 : -1;
+            this._reverse = direction == ListSortDirection.Ascending ? 1 : -1;
         }
 
         public void SetPropertyAndDirection(PropertyDescriptor descriptor, ListSortDirection direction)

@@ -13,7 +13,7 @@ using KantoorInrichting.Models.Product;
 using System.Collections.ObjectModel;
 using System.Drawing.Drawing2D;
 using KantoorInrichting.Controllers.Placement;
-using KantoorInrichting.Models.Maps;
+using KantoorInrichting.Models.Space;
 using KantoorInrichting.Controllers;
 
 namespace KantoorInrichting.Views.Placement
@@ -45,7 +45,7 @@ namespace KantoorInrichting.Views.Placement
             hoofdscherm.placement.space = spacenr;
             //this.SpaceNumberTitle.Text = space.Room;
             this.SpaceNumberTextbox.Text = space.Room;
-            this.SpaceDimensionsTextbox.Text = space.length + " + " + space.width;
+            this.SpaceDimensionsTextbox.Text = space.Length + " + " + space.Width;
 
             hoofdscherm.Size = new Size(1150, 750);
             hoofdscherm.MinimumSize = new Size(1100, 720);

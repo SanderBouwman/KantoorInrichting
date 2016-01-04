@@ -10,21 +10,21 @@ namespace KantoorInrichting.Controllers
 {
     public class SortableBindingList<T> : BindingList<T>
     {
-        private readonly Dictionary<Type, PropertyComparer<T>> comparers;
-        private bool isSorted;
-        private ListSortDirection listSortDirection;
-        private PropertyDescriptor propertyDescriptor;
+        private readonly Dictionary<Type, PropertyComparer<T>> _comparers;
+        private bool _isSorted;
+        private ListSortDirection _listSortDirection;
+        private PropertyDescriptor _propertyDescriptor;
 
         public SortableBindingList()
             : base(new List<T>())
         {
-            this.comparers = new Dictionary<Type, PropertyComparer<T>>();
+            this._comparers = new Dictionary<Type, PropertyComparer<T>>();
         }
 
         public SortableBindingList(IEnumerable<T> enumeration)
             : base(new List<T>(enumeration))
         {
-            this.comparers = new Dictionary<Type, PropertyComparer<T>>();
+            this._comparers = new Dictionary<Type, PropertyComparer<T>>();
         }
 
         protected override bool SupportsSortingCore
@@ -34,17 +34,17 @@ namespace KantoorInrichting.Controllers
 
         protected override bool IsSortedCore
         {
-            get { return this.isSorted; }
+            get { return this._isSorted; }
         }
 
         protected override PropertyDescriptor SortPropertyCore
         {
-            get { return this.propertyDescriptor; }
+            get { return this._propertyDescriptor; }
         }
 
         protected override ListSortDirection SortDirectionCore
         {
-            get { return this.listSortDirection; }
+            get { return this._listSortDirection; }
         }
 
         protected override bool SupportsSearchingCore
@@ -59,18 +59,18 @@ namespace KantoorInrichting.Controllers
 
             Type propertyType = property.PropertyType;
             PropertyComparer<T> comparer;
-            if (!this.comparers.TryGetValue(propertyType, out comparer))
+            if (!this._comparers.TryGetValue(propertyType, out comparer))
             {
                 comparer = new PropertyComparer<T>(property, direction);
-                this.comparers.Add(propertyType, comparer);
+                this._comparers.Add(propertyType, comparer);
             }
 
             comparer.SetPropertyAndDirection(property, direction);
             itemsList.Sort(comparer);
 
-            this.propertyDescriptor = property;
-            this.listSortDirection = direction;
-            this.isSorted = true;
+            this._propertyDescriptor = property;
+            this._listSortDirection = direction;
+            this._isSorted = true;
 
             this.OnListChanged(new ListChangedEventArgs(ListChangedType.Reset, -1));
         }
@@ -78,9 +78,9 @@ namespace KantoorInrichting.Controllers
         //removes the capability to sort the items.
         protected override void RemoveSortCore()
         {
-            this.isSorted = false;
-            this.propertyDescriptor = base.SortPropertyCore;
-            this.listSortDirection = base.SortDirectionCore;
+            this._isSorted = false;
+            this._propertyDescriptor = base.SortPropertyCore;
+            this._listSortDirection = base.SortDirectionCore;
 
             this.OnListChanged(new ListChangedEventArgs(ListChangedType.Reset, -1));
         }
