@@ -10,61 +10,61 @@ namespace KantoorInrichting.Controllers.Assortment
 {
     class EditProductController
     {
-        private DatabaseController dbc;
-        private readonly ProductModel product;
-        private EditProductScreen screen;
-        private readonly string currentImagePath;
-        private int amount;
-        private string brand;
-        private int category_id;
-        private string description;
-        private int height;
-        private bool isNewImage;
-        private int length;
-        private string name;
-        private Image newImage;
-        private string newImageFileName;
-        private string newImagePath;
-        private string newImageSource = "";
-        private string type;
-        private int width;
-        private decimal price;
+        private readonly EditProductScreen _screen;
+        private readonly DatabaseController _dbc;
+        private readonly ProductModel _productModel;
+        private readonly string _currentImagePath;
+        private Image _newImage;
+        private bool _isNewImage;
+        private string _newImageFileName;
+        private string _newImagePath;
+        private string _newImageSource = "";
+        private string _type;
+        private string _description;
+        private string _brand;
+        private string _name;
+        private decimal _price;
+        private int _amount;
+        private int _categoryId;
+        private int _height;
+        private int _length;
+        private int _width;
 
-        public EditProductController(EditProductScreen screen, ProductModel product)
+        public EditProductController(EditProductScreen screen, ProductModel productModel)
         {
-            this.screen = screen;
-            dbc = DatabaseController.Instance;
-            this.product = product;
-            currentImagePath = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())) +
-                               @"\Resources\" + product.ImageFileName;
-            isNewImage = false;
+            this._screen = screen;
+            _dbc = DatabaseController.Instance;
+            this._productModel = productModel;
+            _currentImagePath = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())) +
+                               @"\Resources\" + productModel.ImageFileName;
+            _isNewImage = false;
             FillComboBox();
             FillTextBoxes();
         }
-        //Fills the textboxes with the values from the corresponding product object
+        //Fills the textboxes with the values from the corresponding _productModel object
         private void FillTextBoxes()
         {
-            screen.nameTextBox.Text = product.Name;
-            screen.typeTextBox.Text = product.Type;
-            screen.brandTextBox.Text = product.Brand;
-            screen.heightTextBox.Text = product.Height.ToString();
-            screen.widthTextBox.Text = product.Width.ToString();
-            screen.lengthTextBox.Text = product.Length.ToString();
-            screen.amountTextBox.Text = product.Amount.ToString();
-            screen.descriptionTextBox.Text = product.Description;
-            screen.pictureBox.Image = product.Image;
-            screen.priceTextBox.Text = product.Price.ToString();
+            _screen.nameTextBox.Text = _productModel.Name;
+            _screen.typeTextBox.Text = _productModel.Type;
+            _screen.brandTextBox.Text = _productModel.Brand;
+            _screen.heightTextBox.Text = _productModel.Height.ToString();
+            _screen.widthTextBox.Text = _productModel.Width.ToString();
+            _screen.lengthTextBox.Text = _productModel.Length.ToString();
+            _screen.amountTextBox.Text = _productModel.Amount.ToString();
+            _screen.descriptionTextBox.Text = _productModel.Description;
+            _screen.pictureBox.Image = _productModel.Image;
+            _screen.priceTextBox.Text = _productModel.Price.ToString();
         }
 
         //Fills the category combobox with categories from the database and selects the category
         private void FillComboBox()
         {
-            foreach (var category in dbc.DataSet.category)
+            foreach (var category in _dbc.DataSet.category)
             {
-                screen.categoryComboBox.Items.Add(category.name);
-                if (category.category_id == product.ProductCategory.catID)
+                _screen.categoryComboBox.Items.Add(category.name);
+                if (category.category_id == _productModel.ProductCategory.catID)
                 {
-                    screen.categoryComboBox.SelectedIndex = category.category_id;
+                    _screen.categoryComboBox.SelectedIndex = category.category_id;
                 }
             }
         }
@@ -76,46 +76,46 @@ namespace KantoorInrichting.Controllers.Assortment
             //when this number reaches 0 it is equal to passing the checks.
             var validationPassed = 10;
 
-            if (!Regex.IsMatch(screen.nameTextBox.Text, @"^[a-zA-Z0-9_\s]+$"))
+            if (!Regex.IsMatch(_screen.nameTextBox.Text, @"^[a-zA-Z0-9_\s]+$"))
             {
-                screen.errorNameLabel.Text = "Ongeldige invoer";
+                _screen.errorNameLabel.Text = "Ongeldige invoer";
             }
             else
             {
-                screen.errorNameLabel.Text = "";
-                name = screen.nameTextBox.Text;
+                _screen.errorNameLabel.Text = "";
+                _name = _screen.nameTextBox.Text;
                 validationPassed--;
             }
-            if (!Regex.IsMatch(screen.typeTextBox.Text, @"^[a-zA-Z0-9_-]{0,500}$"))
+            if (!Regex.IsMatch(_screen.typeTextBox.Text, @"^[a-zA-Z0-9_-]{0,500}$"))
             {
-                screen.errorTypeLabel.Text = "Ongeldige invoer";
+                _screen.errorTypeLabel.Text = "Ongeldige invoer";
             }
             else
             {
-                screen.errorTypeLabel.Text = "";
-                type = screen.typeTextBox.Text;
+                _screen.errorTypeLabel.Text = "";
+                _type = _screen.typeTextBox.Text;
                 validationPassed--;
             }
-            if (!Regex.IsMatch(screen.brandTextBox.Text, @"^[a-zA-Z0-9_\s]+$"))
+            if (!Regex.IsMatch(_screen.brandTextBox.Text, @"^[a-zA-Z0-9_\s]+$"))
             {
-                screen.errorBrandLabel.Text = "Ongeldige invoer";
+                _screen.errorBrandLabel.Text = "Ongeldige invoer";
             }
             else
             {
-                screen.errorBrandLabel.Text = "";
-                brand = screen.brandTextBox.Text;
+                _screen.errorBrandLabel.Text = "";
+                _brand = _screen.brandTextBox.Text;
                 validationPassed--;
             }
-            if (!Regex.IsMatch(screen.heightTextBox.Text, @"^[0-9]+$"))
+            if (!Regex.IsMatch(_screen.heightTextBox.Text, @"^[0-9]+$"))
             {
-                screen.errorHeightLabel.Text = "Ongeldige invoer";
+                _screen.errorHeightLabel.Text = "Ongeldige invoer";
             }
             else
             {
-                screen.errorHeightLabel.Text = "";
+                _screen.errorHeightLabel.Text = "";
                 try
                 {
-                    height = int.Parse(screen.heightTextBox.Text);
+                    _height = int.Parse(_screen.heightTextBox.Text);
                     validationPassed--;
                 }
                 catch (Exception e)
@@ -123,16 +123,16 @@ namespace KantoorInrichting.Controllers.Assortment
                     MessageBox.Show("Te groot aantal bij Hoogte");
                 }
             }
-            if (!Regex.IsMatch(screen.widthTextBox.Text, @"^[0-9]+$"))
+            if (!Regex.IsMatch(_screen.widthTextBox.Text, @"^[0-9]+$"))
             {
-                screen.errorWidthLabel.Text = "Ongeldige invoer";
+                _screen.errorWidthLabel.Text = "Ongeldige invoer";
             }
             else
             {
-                screen.errorWidthLabel.Text = "";
+                _screen.errorWidthLabel.Text = "";
                 try
                 {
-                    width = int.Parse(screen.widthTextBox.Text);
+                    _width = int.Parse(_screen.widthTextBox.Text);
                     validationPassed--;
                 }
                 catch (Exception e)
@@ -140,16 +140,16 @@ namespace KantoorInrichting.Controllers.Assortment
                     MessageBox.Show("Te groot aantal bij Breedte");
                 }
             }
-            if (!Regex.IsMatch(screen.lengthTextBox.Text, @"^[0-9]+$"))
+            if (!Regex.IsMatch(_screen.lengthTextBox.Text, @"^[0-9]+$"))
             {
-                screen.errorLengthLabel.Text = "Ongeldige invoer";
+                _screen.errorLengthLabel.Text = "Ongeldige invoer";
             }
             else
             {
-                screen.errorLengthLabel.Text = "";
+                _screen.errorLengthLabel.Text = "";
                 try
                 {
-                    length = int.Parse(screen.lengthTextBox.Text);
+                    _length = int.Parse(_screen.lengthTextBox.Text);
                     validationPassed--;
                 }
                 catch (Exception ex)
@@ -157,16 +157,16 @@ namespace KantoorInrichting.Controllers.Assortment
                     MessageBox.Show("Te groot aantal bij Lengte");
                 }
             }
-            if (!Regex.IsMatch(screen.amountTextBox.Text, @"^[0-9]+$"))
+            if (!Regex.IsMatch(_screen.amountTextBox.Text, @"^[0-9]+$"))
             {
-                screen.errorAmountLabel.Text = "Ongeldige invoer";
+                _screen.errorAmountLabel.Text = "Ongeldige invoer";
             }
             else
             {
-                screen.errorAmountLabel.Text = "";
+                _screen.errorAmountLabel.Text = "";
                 try
                 {
-                    amount = int.Parse(screen.amountTextBox.Text);
+                    _amount = int.Parse(_screen.amountTextBox.Text);
                     validationPassed--;
                 }
                 catch (Exception ex)
@@ -174,34 +174,34 @@ namespace KantoorInrichting.Controllers.Assortment
                     MessageBox.Show("Te groot aantal bij Aantal");
                 }
             }
-            if (!Regex.IsMatch(screen.priceTextBox.Text, @"[\d]{1,12}([,][\d]{1,2})?"))
+            if (!Regex.IsMatch(_screen.priceTextBox.Text, @"[\d]{1,12}([,][\d]{1,2})?"))
             {
-                screen.errorPriceLabel.Text = "Ongeldige invoer";
+                _screen.errorPriceLabel.Text = "Ongeldige invoer";
             }
             else
             {
-                screen.errorPriceLabel.Text = "";
-                price = decimal.Parse(screen.priceTextBox.Text);
+                _screen.errorPriceLabel.Text = "";
+                _price = decimal.Parse(_screen.priceTextBox.Text);
                 validationPassed--;
             }
-            if (screen.categoryComboBox.SelectedIndex < 0)
+            if (_screen.categoryComboBox.SelectedIndex < 0)
             {
-                screen.errorCategoryLabel.Text = "Ongeldige invoer";
+                _screen.errorCategoryLabel.Text = "Ongeldige invoer";
             }
             else
             {
-                screen.errorCategoryLabel.Text = "";
-                category_id = screen.categoryComboBox.SelectedIndex;
+                _screen.errorCategoryLabel.Text = "";
+                _categoryId = _screen.categoryComboBox.SelectedIndex;
                 validationPassed--;
             }
-            if (!Regex.IsMatch(screen.descriptionTextBox.Text, @"^[a-zA-Z0-9\s\p{P}\d]+$"))
+            if (!Regex.IsMatch(_screen.descriptionTextBox.Text, @"^[a-zA-Z0-9\s\p{P}\d]+$"))
             {
-                screen.errorDescriptionLabel.Text = "Ongeldige invoer";
+                _screen.errorDescriptionLabel.Text = "Ongeldige invoer";
             }
             else
             {
-                screen.errorDescriptionLabel.Text = "";
-                description = screen.descriptionTextBox.Text;
+                _screen.errorDescriptionLabel.Text = "";
+                _description = _screen.descriptionTextBox.Text;
                 validationPassed--;
             }
             if (validationPassed == 0)
@@ -214,56 +214,56 @@ namespace KantoorInrichting.Controllers.Assortment
         //Update the existing ProductModel
         private void UpdateProductModel()
         {
-            product.Name = name;
-            product.Brand = brand;
-            product.Type = type;
-            product.ProductCategory.catID = category_id;
-            product.ProductCategory = CategoryModel.list[category_id];
-            product.category = product.ProductCategory.name;
-            product.Height = height;
-            product.Width = width;
-            product.Length = length;
-            product.Description = description;
-            product.Amount = amount;
-            product.Price = price;
-            if (isNewImage)
+            _productModel.Name = _name;
+            _productModel.Brand = _brand;
+            _productModel.Type = _type;
+            _productModel.ProductCategory.catID = _categoryId;
+            _productModel.ProductCategory = CategoryModel.list[_categoryId];
+            _productModel.category = _productModel.ProductCategory.name;
+            _productModel.Height = _height;
+            _productModel.Width = _width;
+            _productModel.Length = _length;
+            _productModel.Description = _description;
+            _productModel.Amount = _amount;
+            _productModel.Price = _price;
+            if (_isNewImage)
             {
-                product.ImageFileName = newImageFileName;
-                product.Image = newImage;
+                _productModel.ImageFileName = _newImageFileName;
+                _productModel.Image = _newImage;
             }
         }
 
-        //Update the product in the database
+        //Update the _productModel in the database
         private void UpdateProductInDatabase()
         {
             try
             {
                 //Search the tabel Product for a certain ProductID
-                var productRow = dbc.DataSet.product.FindByproduct_id(product.Product_id);
-                productRow.name = product.Name;
-                productRow.brand = product.Brand;
-                productRow.type = product.Type;
-                productRow.category_id = product.ProductCategory.catID;
-                productRow.height = product.Height;
-                productRow.width = product.Width;
-                productRow.length = product.Length;
-                productRow.amount = product.Amount;
-                productRow.image = product.ImageFileName;
-                productRow.description = product.Description;
-                productRow.price = product.Price;
+                var productRow = _dbc.DataSet.product.FindByproduct_id(_productModel.Product_id);
+                productRow.name = _productModel.Name;
+                productRow.brand = _productModel.Brand;
+                productRow.type = _productModel.Type;
+                productRow.category_id = _productModel.ProductCategory.catID;
+                productRow.height = _productModel.Height;
+                productRow.width = _productModel.Width;
+                productRow.length = _productModel.Length;
+                productRow.amount = _productModel.Amount;
+                productRow.image = _productModel.ImageFileName;
+                productRow.description = _productModel.Description;
+                productRow.price = _productModel.Price;
                 //Update the database with the new Data
-                dbc.ProductTableAdapter.Update(dbc.DataSet.product);
-                if (isNewImage)
+                _dbc.ProductTableAdapter.Update(_dbc.DataSet.product);
+                if (_isNewImage)
                 {
-                    RemoveImage(currentImagePath);
+                    RemoveImage(_currentImagePath);
                 }
                 MessageBox.Show("Update successful");
             }
             catch (Exception ex)
             {
-                if (isNewImage)
+                if (_isNewImage)
                 {
-                    RemoveImage(newImagePath);
+                    RemoveImage(_newImagePath);
                 }
                 MessageBox.Show("Update failed" + ex);
             }
@@ -285,28 +285,28 @@ namespace KantoorInrichting.Controllers.Assortment
             if (ofd.ShowDialog() == DialogResult.OK)
             {
                 //Get the filename of the selected file
-                newImageFileName = ofd.SafeFileName;
+                _newImageFileName = ofd.SafeFileName;
                 //Get the path and the file selected file
-                newImageSource = ofd.FileName;
-                newImage = Image.FromStream(new MemoryStream(File.ReadAllBytes(ofd.FileName)));
+                _newImageSource = ofd.FileName;
+                _newImage = Image.FromStream(new MemoryStream(File.ReadAllBytes(ofd.FileName)));
                 //Resize the picture so it will be shown correctly in the picturebox
-                screen.pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+                _screen.pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
                 //Load the picture
-                screen.pictureBox.Image = newImage;
-                isNewImage = true;
+                _screen.pictureBox.Image = _newImage;
+                _isNewImage = true;
             }
         }
 
         //Copy the selected image to the resources folder
         private bool CopySelectedImage()
         {
-            if (isNewImage)
+            if (_isNewImage)
             {
-                newImagePath = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())) +
-                               @"\Resources\" + newImageFileName;
+                _newImagePath = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())) +
+                               @"\Resources\" + _newImageFileName;
                 try
                 {
-                    File.Copy(newImageSource, newImagePath);
+                    File.Copy(_newImageSource, _newImagePath);
                     return true;
                 }
                 catch (IOException ex)
@@ -326,7 +326,7 @@ namespace KantoorInrichting.Controllers.Assortment
             File.Delete(imagePath);
         }
 
-        //Edit product button
+        //Edit _productModel button
         public void AddButton()
         {
             if (ValitdateUserInput())
@@ -335,7 +335,7 @@ namespace KantoorInrichting.Controllers.Assortment
                 {
                     UpdateProductModel();
                     UpdateProductInDatabase();
-                    screen.Close();
+                    _screen.Close();
                 }
             }
         }
@@ -343,7 +343,7 @@ namespace KantoorInrichting.Controllers.Assortment
         //Closes this form
         public void CancelButton()
         {
-            screen.Close();
+            _screen.Close();
         }
     }
 }
