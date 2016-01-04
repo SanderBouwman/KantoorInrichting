@@ -7,22 +7,23 @@ namespace KantoorInrichting.Views.Assortment
 {
     public partial class RemoveProductScreen : Form
     {
-        private RemoveProductController controller;
+        private readonly RemoveProductController _controller;
 
         public RemoveProductScreen(ProductModel product)
         {
             InitializeComponent();
-            controller = new RemoveProductController(this, product);
+            _controller = new RemoveProductController(this, product);
         }
 
         private void removeButton_Click(object sender, EventArgs e)
         {
-            controller.RemoveButton();
+            _controller.RemoveButton();
+
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
         {
-            controller.CancelButton();
+            _controller.CancelButton();
         }
     }
 }

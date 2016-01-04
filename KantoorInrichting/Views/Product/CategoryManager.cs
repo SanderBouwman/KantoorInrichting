@@ -46,19 +46,19 @@ namespace KantoorInrichting.Views.Product
             this.categoryTableAdapter.Fill(this.kantoorInrichtingDataSet.category);
             var categoryList = kantoorInrichtingDataSet.category;
 
-            controller.fillcombobox(CategoryModel.CategoryList, categoryComboBox);
-            controller.fillSubcombobox(CategoryModel.SubcategoryList, subcategoryComboBox, categoryComboBox);
+            controller.Fillcombobox(CategoryModel.CategoryList, categoryComboBox);
+            controller.FillSubcombobox(CategoryModel.SubcategoryList, subcategoryComboBox, categoryComboBox);
         }
 
         private void categoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            controller.fillSubcombobox(CategoryModel.SubcategoryList, subcategoryComboBox, categoryComboBox);
+            controller.FillSubcombobox(CategoryModel.SubcategoryList, subcategoryComboBox, categoryComboBox);
 
             string selectedCategory = categoryComboBox.SelectedItem.ToString();
 
             // check how much products have this category
-            int amount = controller.checkAmountOfProducts(selectedCategory);
-            int amountSubs = controller.checkAmountOfSubs(selectedCategory);
+            int amount = controller.CheckAmountOfProducts(selectedCategory);
+            int amountSubs = controller.CheckAmountOfSubs(selectedCategory);
             textBox1.Text = amount.ToString();
             textBox2.Text = amountSubs.ToString();
 
@@ -68,7 +68,7 @@ namespace KantoorInrichting.Views.Product
         private void subcategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             string selectedCategory = subcategoryComboBox.SelectedItem.ToString();
-            int amount = controller.checkAmountOfProducts(selectedCategory);
+            int amount = controller.CheckAmountOfProducts(selectedCategory);
             textBox1.Text = amount.ToString();
             textBox2.Text = "niet mogelijk";
         }

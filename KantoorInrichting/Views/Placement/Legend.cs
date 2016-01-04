@@ -32,9 +32,9 @@ namespace KantoorInrichting.Views.Placement
 
             this.CategoryColors = new Dictionary<string, SolidBrush>();
 
-            foreach (CategoryModel category in CategoryModel.list)
+            foreach (CategoryModel category in CategoryModel.List)
             {
-                if (category.isSubcategoryFrom <= -1 || category.isSubcategoryFrom == null)
+                if (category.IsSubcategoryFrom <= -1 || category.IsSubcategoryFrom == null)
                 {
                     AddItemToScreen(category);
                 }
@@ -67,7 +67,7 @@ namespace KantoorInrichting.Views.Placement
             this.categoryLabel.Name = "categoryLabel";
             this.categoryLabel.Size = new System.Drawing.Size(WidthHeight, 15);
             this.categoryLabel.TabIndex = 0;
-            this.categoryLabel.Text = category.name;
+            this.categoryLabel.Text = category.Name;
 
             //add label
             this.Controls.Add(this.categoryLabel);
@@ -87,11 +87,11 @@ namespace KantoorInrichting.Views.Placement
             //create image from colour
             Bitmap img = new Bitmap(WidthHeight, WidthHeight);
             Graphics g = Graphics.FromImage(img);
-            SolidBrush brush = new SolidBrush(Color.FromArgb(128, category.colour.R, category.colour.G, category.colour.B));
+            SolidBrush brush = new SolidBrush(Color.FromArgb(128, category.Colour.R, category.Colour.G, category.Colour.B));
             g.FillRectangle(brush, 0, 0, WidthHeight, WidthHeight);
 
             // add category and color to dictionary
-            this.CategoryColors.Add(category.name, brush);
+            this.CategoryColors.Add(category.Name, brush);
 
             //add image to picturebox
             this.pictureBox1.Image = img;

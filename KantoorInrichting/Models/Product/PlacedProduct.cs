@@ -18,18 +18,18 @@ namespace KantoorInrichting.Models.Product
     public class PlacedProduct
     {
 
-        public static SortableBindingList<PlacedProduct> list = new SortableBindingList<PlacedProduct>();
+        public static SortableBindingList<PlacedProduct> List = new SortableBindingList<PlacedProduct>();
 
-        public ProductModel product { get; private set; }
-        public PointF location { get; set; }
+        public ProductModel Product { get; private set; }
+        public PointF Location { get; set; }
         public PointF OriginalLocation { get; set; }
-        public PointF[] cornerPoints { get; private set; }
-        public Bitmap defaultBitMap { get; private set; }
-        public Bitmap rotatedMap { get; set; }
-        public int currentAngle { get; set; }
+        public PointF[] CornerPoints { get; private set; }
+        public Bitmap DefaultBitMap { get; private set; }
+        public Bitmap RotatedMap { get; set; }
+        public int CurrentAngle { get; set; }
         public Polygon Poly { get; set; }
         
-        public int gridSpace = 5;
+        public int GridSpace = 5;
 
 
         /// <summary>
@@ -50,39 +50,39 @@ namespace KantoorInrichting.Models.Product
         public PlacedProduct(ProductModel product, PointF center, int angle)
         {
             //Core variables
-            this.product = product;
-            location = center;
+            this.Product = product;
+            Location = center;
 
 
             //Corner and image
-            cornerPoints = new PointF[5];
-            list.Add(this);
-            resetImage();
+            CornerPoints = new PointF[5];
+            List.Add(this);
+            ResetImage();
         }
 
         /// <summary>
         /// Resets the images, in the case that the products are updated
         /// </summary>
-        public void resetImage()
+        public void ResetImage()
         {
-            defaultBitMap = new Bitmap(product.Width, product.Length);
-            Graphics gfx = Graphics.FromImage(defaultBitMap);
+            DefaultBitMap = new Bitmap(Product.Width, Product.Length);
+            Graphics gfx = Graphics.FromImage(DefaultBitMap);
             // check if this product is an subcategory and get the color
-            Color color = PlacementController.GetMainCategoryColorIfNeeded(product.ProductCategory.catID);
+            Color color = PlacementController.GetMainCategoryColorIfNeeded(Product.ProductCategory.CatId);
 
 
             SolidBrush brush = new SolidBrush(color);
-            gfx.FillRectangle(brush, 0, 0, product.Width, product.Length);
+            gfx.FillRectangle(brush, 0, 0, Product.Width, Product.Length);
 
-            defaultBitMap = new Bitmap(PlacementController.ResizeImage(defaultBitMap, product.Width, product.Length));
+            DefaultBitMap = new Bitmap(PlacementController.ResizeImage(DefaultBitMap, Product.Width, Product.Length));
             //MessageBox.Show(String.Format("Name: {0} -- Width: {1} -- Length: {2}", product.Name, product.Width, product.Length));
 
-            try { rotatedMap.Dispose(); }
+            try { RotatedMap.Dispose(); }
             catch { }
-            rotatedMap = new Bitmap(defaultBitMap, defaultBitMap.Width, defaultBitMap.Height);
+            RotatedMap = new Bitmap(DefaultBitMap, DefaultBitMap.Width, DefaultBitMap.Height);
             //MessageBox.Show(String.Format("Name: {0} -- Width: {1} -- Length: {2}", "Rotated Map", product.Width, product.Length));
 
-            setAngle(currentAngle);
+            SetAngle(CurrentAngle);
         }
 
         
@@ -91,11 +91,11 @@ namespace KantoorInrichting.Models.Product
         /// Set the angle of the product.
         /// </summary>
         /// <param name="angle">Value must be between 0 and 360.</param>
-        public void setAngle(int angle)
+        public void SetAngle(int angle)
         {
-            int fallbackAngle = currentAngle;
+            int fallbackAngle = CurrentAngle;
             angle = angle % 360;
-            currentAngle = angle;
+            CurrentAngle = angle;
 
             PlacementController.placement_rotatePoints(this, fallbackAngle);
             PlacementController.placement_rotateImg(this);
@@ -107,35 +107,35 @@ namespace KantoorInrichting.Models.Product
         /// Turns the product a set amount of degrees.
         /// </summary>
         /// <param name="value">Amount of added degrees</param>
-        public void addAngle(int value)
+        public void AddAngle(int value)
         {
-            int fallbackAngle = currentAngle;
+            int fallbackAngle = CurrentAngle;
 
-            currentAngle += value;
-            while (currentAngle > 359)
+            CurrentAngle += value;
+            while (CurrentAngle > 359)
             {
-                currentAngle -= 360;
+                CurrentAngle -= 360;
             }
-            while (currentAngle < 0)
+            while (CurrentAngle < 0)
             {
-                currentAngle += 360;
+                CurrentAngle += 360;
             }
             PlacementController.placement_rotatePoints(this, fallbackAngle);
             PlacementController.placement_rotateImg(this);
         }
         
-        public void Move(bool X_Axis)
+        public void Move(bool xAxis)
         {
-            PlacementController.placement_Move(this, X_Axis);
+            PlacementController.placement_Move(this, xAxis);
         }
 
         public void MoveTo(Point newLocation)
         {
-            location = newLocation;
-            setAngle(currentAngle);
+            Location = newLocation;
+            SetAngle(CurrentAngle);
         }
 
-        public Polygon getVirtualPolygon(Point newLocation)
+        public Polygon GetVirtualPolygon(Point newLocation)
         {
             Polygon virtualPolygon = new Polygon();
             foreach (Vector v in Poly.Points)
@@ -143,7 +143,7 @@ namespace KantoorInrichting.Models.Product
                 virtualPolygon.Points.Add(v);
             }
 
-            Vector delta = new Vector(new Vector(newLocation) - new Vector(location));
+            Vector delta = new Vector(new Vector(newLocation) - new Vector(Location));
 
             virtualPolygon.Offset(delta);
             virtualPolygon.BuildEdges();

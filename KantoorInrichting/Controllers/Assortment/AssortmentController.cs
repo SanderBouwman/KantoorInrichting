@@ -8,11 +8,11 @@ namespace KantoorInrichting.Controllers.Assortment
 {
     class AssortmentController
     {
-        private AssortmentScreen screen;
+        private readonly AssortmentScreen _screen;
 
         public AssortmentController(AssortmentScreen screen)
         {
-            this.screen = screen;
+            this._screen = screen;
             FillData();
             FillDropdown();
         }
@@ -21,17 +21,17 @@ namespace KantoorInrichting.Controllers.Assortment
         private void FillData()
         {
             // delete datasource
-            screen.assortmentGridView.DataSource = null;
-            screen.assortmentGridView.Refresh();
+            _screen.assortmentGridView.DataSource = null;
+            _screen.assortmentGridView.Refresh();
 
-            screen.assortmentGridView.AutoGenerateColumns = false;
-            screen.assortmentGridView.DataSource = ProductModel.list;
+            _screen.assortmentGridView.AutoGenerateColumns = false;
+            _screen.assortmentGridView.DataSource = ProductModel.list;
             List<ProductModel> filterResult = FilterNoAmount();
             // add filterResult to new sortable list
             ProductModel.result = new SortableBindingList<ProductModel>(filterResult);
             // the datasource of the datagridview is the filterresult
-            screen.assortmentGridView.DataSource = ProductModel.result;
-            screen.assortmentGridView.Refresh();
+            _screen.assortmentGridView.DataSource = ProductModel.result;
+            _screen.assortmentGridView.Refresh();
         }
 
         //This method generates a list with products that have 1 or more amount
@@ -52,31 +52,31 @@ namespace KantoorInrichting.Controllers.Assortment
         public void FillDropdown()
         {
             // clear both dropdowns
-            screen.DropdownBrand.Items.Clear();
-            screen.DropdownCategory.Items.Clear();
+            _screen.DropdownBrand.Items.Clear();
+            _screen.DropdownCategory.Items.Clear();
 
             // distinct from all the items in the productlist
-            var BrandResult = ProductModel.list.GroupBy(product => product.Brand)
+            var brandResult = ProductModel.list.GroupBy(product => product.Brand)
                    .Select(grp => grp.First())
                    .ToList();
 
             // insert default
-            screen.DropdownBrand.Items.Insert(0, "geen merkfilter");
-            screen.DropdownCategory.Items.Insert(0, "geen categoriefilter");
+            _screen.DropdownBrand.Items.Insert(0, "geen merkfilter");
+            _screen.DropdownCategory.Items.Insert(0, "geen categoriefilter");
 
             // add the unique items to brand dropdown
-            foreach (ProductModel product in BrandResult)
+            foreach (ProductModel product in brandResult)
             {
                 if (product.Brand != null)
                 {
-                    screen.DropdownBrand.Items.Add(product.Brand);
+                    _screen.DropdownBrand.Items.Add(product.Brand);
                 }
             }
 
             // other method to add every category
-            foreach (var category in CategoryModel.list)
+            foreach (var category in CategoryModel.List)
             {
-                screen.DropdownCategory.Items.Add(category.name);
+                _screen.DropdownCategory.Items.Add(category.Name);
             }
         }
 
@@ -88,14 +88,14 @@ namespace KantoorInrichting.Controllers.Assortment
             ProductModel.result = new SortableBindingList<ProductModel>(filterResult1);
 
             // delete datasource
-            screen.assortmentGridView.DataSource = null;
-            screen.assortmentGridView.Refresh();
+            _screen.assortmentGridView.DataSource = null;
+            _screen.assortmentGridView.Refresh();
 
             // get selected brand
-            string selectedBrand = screen.DropdownBrand.SelectedItem.ToString();
+            string selectedBrand = _screen.DropdownBrand.SelectedItem.ToString();
 
             // if there is a brand selected and it is not default
-            if (screen.DropdownBrand.SelectedIndex != 0)
+            if (_screen.DropdownBrand.SelectedIndex != 0)
             {
                 // filter on the selected brand
                 var filteredProducts = from product in ProductModel.result
@@ -108,8 +108,8 @@ namespace KantoorInrichting.Controllers.Assortment
                 ProductModel.result = new SortableBindingList<ProductModel>(filterResult2);
             }
             // bind the datasource again
-            screen.assortmentGridView.DataSource = ProductModel.result;
-            screen.assortmentGridView.Refresh();
+            _screen.assortmentGridView.DataSource = ProductModel.result;
+            _screen.assortmentGridView.Refresh();
 
         }
 
@@ -120,16 +120,16 @@ namespace KantoorInrichting.Controllers.Assortment
             List<ProductModel> filterResult1 = FilterNoAmount();
             ProductModel.result = new SortableBindingList<ProductModel>(filterResult1);
             // delete datasource
-            screen.assortmentGridView.DataSource = null;
-            screen.assortmentGridView.Refresh();
+            _screen.assortmentGridView.DataSource = null;
+            _screen.assortmentGridView.Refresh();
 
             // get selected category
-            string selectedCategory = screen.DropdownCategory.SelectedItem.ToString();
+            string selectedCategory = _screen.DropdownCategory.SelectedItem.ToString();
             CategoryModel currentCategory;
-            int CurrentID = -1;
+            int currentId = -1;
 
             // if there is a category selected and it is not default
-            if (screen.DropdownCategory.SelectedIndex != 0)
+            if (_screen.DropdownCategory.SelectedIndex != 0)
             {
 
                 // filter on the selected category
@@ -142,23 +142,23 @@ namespace KantoorInrichting.Controllers.Assortment
                 filterResult = filteredProducts.ToList();
 
                 // get the current category object
-                foreach (CategoryModel cat in CategoryModel.list)
+                foreach (CategoryModel cat in CategoryModel.List)
                 {
-                    if (cat.name == selectedCategory)
+                    if (cat.Name == selectedCategory)
                     {
                         currentCategory = cat;
-                        CurrentID = currentCategory.catID;
+                        currentId = currentCategory.CatId;
                     }
                 }
 
                 // check if there are subcategories
-                foreach (CategoryModel cat in CategoryModel.list)
+                foreach (CategoryModel cat in CategoryModel.List)
                 {
-                    if (cat.isSubcategoryFrom == CurrentID)
+                    if (cat.IsSubcategoryFrom == currentId)
                     {
                         // if there are categories wich their "issubcategoryfrom"contains current ID
                         var filteredSubProducts = from product in ProductModel.result
-                                                  where product.ProductCategory.catID == cat.catID
+                                                  where product.ProductCategory.CatId == cat.CatId
                                                   select product;
 
                         foreach (var cari in filteredSubProducts)
@@ -171,14 +171,14 @@ namespace KantoorInrichting.Controllers.Assortment
                 ProductModel.result = new SortableBindingList<ProductModel>(filterResult);
             }
             // bind the datasource again
-            screen.assortmentGridView.DataSource = ProductModel.result;
-            screen.assortmentGridView.Refresh();
+            _screen.assortmentGridView.DataSource = ProductModel.result;
+            _screen.assortmentGridView.Refresh();
         }
 
         //This method checks if the checkbox is checked and will add or remove products from the list
         public void DeleteProductCheckBox()
         {
-            if (screen.deleteCheckBox.Checked)
+            if (_screen.deleteCheckBox.Checked)
             {
                 // add the deleted products
                 foreach (ProductModel product in ProductModel.list)
@@ -201,14 +201,14 @@ namespace KantoorInrichting.Controllers.Assortment
                 }
             }
             //Refresh the screen with the new Data
-            screen.assortmentGridView.DataSource = null;
-            screen.DropdownCategory.SelectedIndex = 0;
-            screen.DropdownBrand.SelectedIndex = 0;
-            screen.DropdownBrand.Refresh();
-            screen.DropdownCategory.Refresh();
-            screen.assortmentGridView.DataSource = ProductModel.result;
-            screen.assortmentGridView.Refresh();
-            screen.Refresh();
+            _screen.assortmentGridView.DataSource = null;
+            _screen.DropdownCategory.SelectedIndex = 0;
+            _screen.DropdownBrand.SelectedIndex = 0;
+            _screen.DropdownBrand.Refresh();
+            _screen.DropdownCategory.Refresh();
+            _screen.assortmentGridView.DataSource = ProductModel.result;
+            _screen.assortmentGridView.Refresh();
+            _screen.Refresh();
         }
 
         //This method checks if the checkbox is checked and will add or remove products from the list
@@ -216,25 +216,25 @@ namespace KantoorInrichting.Controllers.Assortment
         {
             // if the checkbox has changed 
             // check if there is an brand filter
-            if (screen.DropdownBrand.SelectedIndex > 0)
+            if (_screen.DropdownBrand.SelectedIndex > 0)
             {
                 // add all product with amount of less than 1 and filtered on the brand
-                if (screen.noAmountCheckBox.Checked == false)
+                if (_screen.noAmountCheckBox.Checked == false)
                 {
                     foreach (ProductModel product in ProductModel.list)
                     {
-                        if (product.Amount < 1 && product.Brand == screen.DropdownBrand.SelectedItem.ToString())
+                        if (product.Amount < 1 && product.Brand == _screen.DropdownBrand.SelectedItem.ToString())
                         {
                             ProductModel.result.Add(product);
                         }
                     }
                 }
                 // remove all product with amount of less than 1 and filtered on the brand
-                if (screen.noAmountCheckBox.Checked == true)
+                if (_screen.noAmountCheckBox.Checked == true)
                 {
                     foreach (ProductModel product in ProductModel.list)
                     {
-                        if (product.Amount < 1 && product.Brand == screen.DropdownBrand.SelectedItem.ToString())
+                        if (product.Amount < 1 && product.Brand == _screen.DropdownBrand.SelectedItem.ToString())
                         {
                             ProductModel.result.Remove(product);
                         }
@@ -242,25 +242,25 @@ namespace KantoorInrichting.Controllers.Assortment
                 }
             }
             // if there is a category filter only
-            else if (screen.DropdownCategory.SelectedIndex > 0)
+            else if (_screen.DropdownCategory.SelectedIndex > 0)
             {
                 // add all product with amount of less than 1 and filtered on the brand
-                if (screen.noAmountCheckBox.Checked == false)
+                if (_screen.noAmountCheckBox.Checked == false)
                 {
                     foreach (ProductModel product in ProductModel.list)
                     {
-                        if (product.Amount < 1 && product.category == screen.DropdownCategory.SelectedItem.ToString())
+                        if (product.Amount < 1 && product.category == _screen.DropdownCategory.SelectedItem.ToString())
                         {
                             ProductModel.result.Add(product);
                         }
                     }
                 }
                 // remove all product with amount of less than 1 and filtered on the brand
-                if (screen.noAmountCheckBox.Checked == true)
+                if (_screen.noAmountCheckBox.Checked == true)
                 {
                     foreach (ProductModel product in ProductModel.list)
                     {
-                        if (product.Amount < 1 && product.category == screen.DropdownCategory.SelectedItem.ToString())
+                        if (product.Amount < 1 && product.category == _screen.DropdownCategory.SelectedItem.ToString())
                         {
                             ProductModel.result.Remove(product);
                         }
@@ -270,7 +270,7 @@ namespace KantoorInrichting.Controllers.Assortment
             else
             {
                 // add all product with amount of less than 1
-                if (screen.noAmountCheckBox.Checked == false)
+                if (_screen.noAmountCheckBox.Checked == false)
                 {
                     foreach (ProductModel product in ProductModel.list)
                     {
@@ -282,7 +282,7 @@ namespace KantoorInrichting.Controllers.Assortment
 
                 }
                 // remove all product with amount of less than 1
-                if (screen.noAmountCheckBox.Checked == true)
+                if (_screen.noAmountCheckBox.Checked == true)
                 {
                     foreach (ProductModel product in ProductModel.list)
                     {
@@ -299,7 +299,7 @@ namespace KantoorInrichting.Controllers.Assortment
         public void DropdownBrand()
         {
             // if the brand dropdown is changed, the checkbox is set to true.
-            screen.noAmountCheckBox.Checked = true;
+            _screen.noAmountCheckBox.Checked = true;
             // filter the datagridview with the selected brand
             FilterBrand();
         }
@@ -308,7 +308,7 @@ namespace KantoorInrichting.Controllers.Assortment
         public void DropdownCategory()
         {
             // if the category dropdown is changed, the checkbox is set to true.
-            screen.noAmountCheckBox.Checked = true;
+            _screen.noAmountCheckBox.Checked = true;
             // filter the datagridview with the selected category
             FilterCategory();
         }
@@ -318,22 +318,22 @@ namespace KantoorInrichting.Controllers.Assortment
         {
             var addNewProduct = new AddNewProductScreen();
             addNewProduct.ShowDialog();
-            screen.assortmentGridView.DataSource = null;
-            screen.assortmentGridView.DataSource = ProductModel.result;
+            _screen.assortmentGridView.DataSource = null;
+            _screen.assortmentGridView.DataSource = ProductModel.result;
             FillData();
-            screen.DropdownCategory.SelectedIndex = 0;
-            screen.DropdownBrand.SelectedIndex = 0;
-            screen.assortmentGridView.Refresh();
+            _screen.DropdownCategory.SelectedIndex = 0;
+            _screen.DropdownBrand.SelectedIndex = 0;
+            _screen.assortmentGridView.Refresh();
         }
 
         public void RemoveFilters()
         {
             // if button 1 is clicked, all filters are reset
-            screen.deleteCheckBox.Checked = true;
-            screen.noAmountCheckBox.Checked = true;
-            screen.DropdownBrand.SelectedIndex = 0;
-            screen.DropdownCategory.SelectedIndex = 0;
-            screen.assortmentGridView.Refresh();
+            _screen.deleteCheckBox.Checked = true;
+            _screen.noAmountCheckBox.Checked = true;
+            _screen.DropdownBrand.SelectedIndex = 0;
+            _screen.DropdownCategory.SelectedIndex = 0;
+            _screen.assortmentGridView.Refresh();
         }
 
         //This methods checks which cell has been clicked and then opens a dialog to edit or remove a specific product 
@@ -348,24 +348,24 @@ namespace KantoorInrichting.Controllers.Assortment
                     // make an editscreen with current product as argument
                     var editProduct = new EditProductScreen(ProductModel.result[e.RowIndex]);
                     editProduct.ShowDialog();
-                    screen.assortmentGridView.DataSource = null;
-                    screen.assortmentGridView.DataSource = ProductModel.result;
+                    _screen.assortmentGridView.DataSource = null;
+                    _screen.assortmentGridView.DataSource = ProductModel.result;
                     FillData();
-                    screen.DropdownCategory.SelectedIndex = 0;
-                    screen.DropdownBrand.SelectedIndex = 0;
-                    screen.assortmentGridView.Refresh();
+                    _screen.DropdownCategory.SelectedIndex = 0;
+                    _screen.DropdownBrand.SelectedIndex = 0;
+                    _screen.assortmentGridView.Refresh();
                 }
 
                 if (e.ColumnIndex == 12)
                 {
                     var removeProduct = new RemoveProductScreen(ProductModel.result[e.RowIndex]);
                     removeProduct.ShowDialog();
-                    screen.assortmentGridView.DataSource = null;
-                    screen.assortmentGridView.DataSource = ProductModel.result;
+                    _screen.assortmentGridView.DataSource = null;
+                    _screen.assortmentGridView.DataSource = ProductModel.result;
                     FillData();
-                    screen.DropdownCategory.SelectedIndex = 0;
-                    screen.DropdownBrand.SelectedIndex = 0;
-                    screen.assortmentGridView.Refresh();
+                    _screen.DropdownCategory.SelectedIndex = 0;
+                    _screen.DropdownBrand.SelectedIndex = 0;
+                    _screen.assortmentGridView.Refresh();
                 }
             }
         }

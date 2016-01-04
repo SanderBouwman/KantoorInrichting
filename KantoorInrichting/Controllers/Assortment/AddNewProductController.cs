@@ -10,23 +10,23 @@ namespace KantoorInrichting.Controllers.Assortment
 {
     class AddNewProductController
     {
-        private AddNewProductScreen _screen;
-        private DatabaseController _dbc;
-        private int amount;
-        private string brand;
-        private int category_id;
-        private string description;
-        private int height;
-        private int length;
-        private string name;
-        private Image newImage;
-        private string newImageFileName;
-        private string newImagePath;
-        private string newImageSource = "";
-        private ProductModel product;
-        private string type;
-        private int width;
-        private decimal price;
+        private readonly AddNewProductScreen _screen;
+        private readonly DatabaseController _dbc;
+        private ProductModel _productModel;
+        private Image _newImage;
+        private string _brand;
+        private string _description;
+        private string _name;
+        private string _newImageFileName;
+        private string _newImagePath;
+        private string _newImageSource = "";
+        private string _type;
+        private decimal _price;
+        private int _amount;
+        private int _categoryId;
+        private int _height;
+        private int _length;
+        private int _width;
 
         public AddNewProductController(AddNewProductScreen screen)
         {
@@ -58,7 +58,7 @@ namespace KantoorInrichting.Controllers.Assortment
             else
             {
                 _screen.errorNameLabel.Text = "";
-                name = _screen.nameTextBox.Text;
+                _name = _screen.nameTextBox.Text;
                 validationPassed--;
             }
             if (!Regex.IsMatch(_screen.typeTextBox.Text, @"^[a-zA-Z0-9_-]{0,500}$"))
@@ -68,7 +68,7 @@ namespace KantoorInrichting.Controllers.Assortment
             else
             {
                 _screen.errorTypeLabel.Text = "";
-                type = _screen.typeTextBox.Text;
+                _type = _screen.typeTextBox.Text;
                 validationPassed--;
             }
             if (!Regex.IsMatch(_screen.brandTextBox.Text, @"^[a-zA-Z0-9_\s]+$"))
@@ -78,7 +78,7 @@ namespace KantoorInrichting.Controllers.Assortment
             else
             {
                 _screen.errorBrandLabel.Text = "";
-                brand = _screen.brandTextBox.Text;
+                _brand = _screen.brandTextBox.Text;
                 validationPassed--;
             }
             if (!Regex.IsMatch(_screen.heightTextBox.Text, @"^[0-9]+$"))
@@ -90,7 +90,7 @@ namespace KantoorInrichting.Controllers.Assortment
                 _screen.errorHeightLabel.Text = "";
                 try
                 {
-                    height = int.Parse(_screen.heightTextBox.Text);
+                    _height = int.Parse(_screen.heightTextBox.Text);
                     validationPassed--;
                 }
                 catch (Exception e)
@@ -107,7 +107,7 @@ namespace KantoorInrichting.Controllers.Assortment
                 _screen.errorWidthLabel.Text = "";
                 try
                 {
-                    width = int.Parse(_screen.widthTextBox.Text);
+                    _width = int.Parse(_screen.widthTextBox.Text);
                     validationPassed--;
                 }
                 catch (Exception e)
@@ -124,7 +124,7 @@ namespace KantoorInrichting.Controllers.Assortment
                 _screen.errorLengthLabel.Text = "";
                 try
                 {
-                    length = int.Parse(_screen.lengthTextBox.Text);
+                    _length = int.Parse(_screen.lengthTextBox.Text);
                     validationPassed--;
                 }
                 catch (Exception ex)
@@ -141,7 +141,7 @@ namespace KantoorInrichting.Controllers.Assortment
                 _screen.errorAmountLabel.Text = "";
                 try
                 {
-                    amount = int.Parse(_screen.amountTextBox.Text);
+                    _amount = int.Parse(_screen.amountTextBox.Text);
                     validationPassed--;
                 }
                 catch (Exception ex)
@@ -156,7 +156,7 @@ namespace KantoorInrichting.Controllers.Assortment
             else
             {
                 _screen.errorPriceLabel.Text = "";
-                price = decimal.Parse(_screen.priceTextBox.Text);
+                _price = decimal.Parse(_screen.priceTextBox.Text);
                 validationPassed--;
             }
             if (_screen.categoryComboBox.SelectedIndex < 0)
@@ -166,7 +166,7 @@ namespace KantoorInrichting.Controllers.Assortment
             else
             {
                 _screen.errorCategoryLabel.Text = "";
-                category_id = _screen.categoryComboBox.SelectedIndex;
+                _categoryId = _screen.categoryComboBox.SelectedIndex;
                 validationPassed--;
             }
             if (!Regex.IsMatch(_screen.descriptionTextBox.Text, @"^[a-zA-Z0-9\s\p{P}\d]+$"))
@@ -176,10 +176,10 @@ namespace KantoorInrichting.Controllers.Assortment
             else
             {
                 _screen.errorDescriptionLabel.Text = "";
-                description = _screen.descriptionTextBox.Text;
+                _description = _screen.descriptionTextBox.Text;
                 validationPassed--;
             }
-            if (newImageSource.Length == 0)
+            if (_newImageSource.Length == 0)
             {
                 _screen.errorImageLabel.Text = "Ongeldige invoer";
             }
@@ -199,12 +199,12 @@ namespace KantoorInrichting.Controllers.Assortment
         private void CreateProductModel()
         {
             //Fill the TableAdapter with data from the dataset, select MAX Product_ID, Create an int with MAX Product_ID + 1
-            var maxProduct_ID = _dbc.DataSet.product.Select("Product_ID = MAX(Product_ID)");
-            var newProduct_ID = (int)maxProduct_ID[0]["Product_ID"] + 1;
+            var maxProductId = _dbc.DataSet.product.Select("Product_ID = MAX(Product_ID)");
+            var newProductId = (int)maxProductId[0]["Product_ID"] + 1;
 
-            var product = new ProductModel(newProduct_ID, name, brand, type, category_id, length, width, height,
-                description, amount, newImageFileName, false, price);
-            this.product = product;
+            var product = new ProductModel(newProductId, _name, _brand, _type, _categoryId, _length, _width, _height,
+                _description, _amount, _newImageFileName, false, _price);
+            this._productModel = product;
         }
 
         //Add a new product to the database
@@ -212,19 +212,19 @@ namespace KantoorInrichting.Controllers.Assortment
         {
             //Create a newProductrow and fill the row for each corresponding column
             var newProduct = _dbc.DataSet.product.NewproductRow();
-            newProduct.name = product.Name;
-            newProduct.product_id = product.Product_id;
+            newProduct.name = _productModel.Name;
+            newProduct.product_id = _productModel.Product_id;
             newProduct.removed = false;
-            newProduct.type = product.Type;
-            newProduct.brand = product.Brand;
-            newProduct.height = product.Height;
-            newProduct.width = product.Width;
-            newProduct.length = product.Length;
-            newProduct.amount = product.Amount;
-            newProduct.image = product.ImageFileName;
-            newProduct.category_id = product.ProductCategory.catID;
-            newProduct.description = product.Description;
-            newProduct.price = product.Price;
+            newProduct.type = _productModel.Type;
+            newProduct.brand = _productModel.Brand;
+            newProduct.height = _productModel.Height;
+            newProduct.width = _productModel.Width;
+            newProduct.length = _productModel.Length;
+            newProduct.amount = _productModel.Amount;
+            newProduct.image = _productModel.ImageFileName;
+            newProduct.category_id = _productModel.ProductCategory.CatId;
+            newProduct.description = _productModel.Description;
+            newProduct.price = _productModel.Price;
 
             //Try to add the new product row in the database
             try
@@ -238,7 +238,7 @@ namespace KantoorInrichting.Controllers.Assortment
             {
                 MessageBox.Show("Update failed" + ex);
                 RemoveImage();
-                this.product = null;
+                this._productModel = null;
             }
         }
 
@@ -258,25 +258,25 @@ namespace KantoorInrichting.Controllers.Assortment
             if (ofd.ShowDialog() == DialogResult.OK)
             {
                 //Get the filename of the selected file
-                newImageFileName = ofd.SafeFileName;
+                _newImageFileName = ofd.SafeFileName;
                 //Get the path and the file selected file
-                newImageSource = ofd.FileName;
-                newImage = Image.FromStream(new MemoryStream(File.ReadAllBytes(ofd.FileName)));
+                _newImageSource = ofd.FileName;
+                _newImage = Image.FromStream(new MemoryStream(File.ReadAllBytes(ofd.FileName)));
                 //Resize the picture so it will be shown correctly in the picturebox
                 _screen.pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
                 //Load the picture
-                _screen.pictureBox.Image = newImage;
+                _screen.pictureBox.Image = _newImage;
             }
         }
 
         //Copy the selected image to the resources folder
         private bool CopySelectedImage()
         {
-            newImagePath = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())) +
-                           @"\Resources\" + newImageFileName;
+            _newImagePath = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())) +
+                           @"\Resources\" + _newImageFileName;
             try
             {
-                File.Copy(newImageSource, newImagePath);
+                File.Copy(_newImageSource, _newImagePath);
                 return true;
             }
             catch (IOException ex)
@@ -291,7 +291,7 @@ namespace KantoorInrichting.Controllers.Assortment
         //Remove image from folder
         private void RemoveImage()
         {
-            File.Delete(newImagePath);
+            File.Delete(_newImagePath);
         }
 
         //Add new product button

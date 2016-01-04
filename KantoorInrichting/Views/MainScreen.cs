@@ -55,8 +55,7 @@ namespace KantoorInrichting.Views
 //            this.Visible = false;
 //            hoofdscherm.gridFieldView.BringToFront();
 
-            Console.WriteLine("Open room selection and get data from there! -- MainScreen.cs Line 58");
-            hoofdscherm.productGrid = new ProductGrid();
+            Console.WriteLine("Open room selection and get data from there! -- MainScreen.cs Line 58"); 
             IController controller = new ProductGridController(hoofdscherm.productGrid, 10, 10, 0.5f);
             hoofdscherm.AddPanelToMainscreen(hoofdscherm.productGrid);
             hoofdscherm.Size = ProductGrid.PanelSize;

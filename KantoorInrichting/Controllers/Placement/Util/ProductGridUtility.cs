@@ -19,25 +19,25 @@ namespace KantoorInrichting.Controllers.Placement
         public Rectangle GetProductRectangle(PlacedProduct product, float width, float height, float size)
         {
             Rectangle rectangle;
-            if (product.product.Size.IsEmpty)
+            if (product.Product.Size.IsEmpty)
             {
                 // this is a product that came from the algorithm
                 rectangle = new Rectangle
                 {
-                    Height = (int) (product.product.Height/size*height),
-                    Width = (int) (product.product.Width/size*width),
-                    X = (int) (product.location.X/size*width),
-                    Y = (int) (product.location.Y/size*height)
+                    Height = (int) (product.Product.Height/size*height),
+                    Width = (int) (product.Product.Width/size*width),
+                    X = (int) (product.Location.X/size*width),
+                    Y = (int) (product.Location.Y/size*height)
                 };
             }
             else
             {
                 rectangle = new Rectangle
                 {
-                    Height = (int) (product.product.Size.Height/size*height),
-                    Width = (int) (product.product.Size.Width/size*width),
-                    X = (int) (product.location.X/size*width),
-                    Y = (int) (product.location.Y/size*height)
+                    Height = (int) (product.Product.Size.Height/size*height),
+                    Width = (int) (product.Product.Size.Width/size*width),
+                    X = (int) (product.Location.X/size*width),
+                    Y = (int) (product.Location.Y/size*height)
                 };
             }
             return rectangle;
@@ -54,7 +54,7 @@ namespace KantoorInrichting.Controllers.Placement
             SolidBrush brush;
             try
             {
-                brush = dict.Single(pair => pair.Key.Equals(product.product.Type)).Value;
+                brush = dict.Single(pair => pair.Key.Equals(product.Product.Type)).Value;
             }
             catch (InvalidOperationException e)
             {
@@ -71,12 +71,12 @@ namespace KantoorInrichting.Controllers.Placement
             PointF realPoint = TransformToRealWorld(point, width, height, size);
             foreach (PlacedProduct current in products)
             {
-                PointF currentLocation = current.location;
+                PointF currentLocation = current.Location;
 
                 bool xOnPoint = (currentLocation.X <= realPoint.X) &&
-                                (currentLocation.X + current.product.Size.Width >= realPoint.X),
+                                (currentLocation.X + current.Product.Size.Width >= realPoint.X),
                     yOnPoint = (currentLocation.Y <= realPoint.Y) &&
-                               currentLocation.Y + current.product.Size.Height >= realPoint.Y;
+                               currentLocation.Y + current.Product.Size.Height >= realPoint.Y;
 
                 if (xOnPoint && yOnPoint)
                 {
@@ -103,8 +103,8 @@ namespace KantoorInrichting.Controllers.Placement
             List<PlacedProduct> placedProducts, int boundWidth, int boundHeight,
             float realWidth, float realHeight, int x, int y)
         {
-            float selectedWidth = selectedProduct.product.Size.Width,
-                selectedHeight = selectedProduct.product.Size.Height;
+            float selectedWidth = selectedProduct.Product.Size.Width,
+                selectedHeight = selectedProduct.Product.Size.Height;
 
             float newX = x/(float) boundWidth*realWidth
                          - selectedWidth/2,
@@ -121,7 +121,7 @@ namespace KantoorInrichting.Controllers.Placement
                 newY = realHeight - selectedHeight;
 
             PointF newLocation = new PointF(newX, newY);
-            selectedProduct.location = !handler.Collision(selectedProduct, placedProducts)
+            selectedProduct.Location = !handler.Collision(selectedProduct, placedProducts)
                 ? newLocation
                 : selectedProduct.OriginalLocation;
         }

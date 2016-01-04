@@ -31,19 +31,19 @@ namespace KantoorInrichting_Test.Models.Placement
 
 
             //Do
-            placedP.gridSpace = 10;
+            placedP.GridSpace = 10;
             placedP.Move(true);
             point.X += move_x;
             point.Y += move_y;
 
             
             //Look
-            Assert.AreEqual(point.X, placedP.location.X, 0.1, "The horizontal location of the product is different!");
-            Assert.AreEqual(point.Y, placedP.location.Y, 0.1, "The vertical location of the product is different!");
+            Assert.AreEqual(point.X, placedP.Location.X, 0.1, "The horizontal location of the product is different!");
+            Assert.AreEqual(point.Y, placedP.Location.Y, 0.1, "The vertical location of the product is different!");
 
             for (int index = 0; index < pointCorner.Length; index++)
             {
-                Assert.AreEqual(pointCorner[index].ToString(), placedP.cornerPoints[index].ToString(), true, "Corner #" + index + " is in the wrong spot!");
+                Assert.AreEqual(pointCorner[index].ToString(), placedP.CornerPoints[index].ToString(), true, "Corner #" + index + " is in the wrong spot!");
             }
         }
 
@@ -70,19 +70,19 @@ namespace KantoorInrichting_Test.Models.Placement
 
 
             //Do
-            placedP.gridSpace = 10;
+            placedP.GridSpace = 10;
             placedP.Move(false);
             point.X += move_x;
             point.Y += move_y;
 
 
             //Look
-            Assert.AreEqual(point.X, placedP.location.X, 0.1, "The horizontal location of the product is different!");
-            Assert.AreEqual(point.Y, placedP.location.Y, 0.1, "The vertical location of the product is different!");
+            Assert.AreEqual(point.X, placedP.Location.X, 0.1, "The horizontal location of the product is different!");
+            Assert.AreEqual(point.Y, placedP.Location.Y, 0.1, "The vertical location of the product is different!");
 
             for (int index = 0; index < pointCorner.Length; index++)
             {
-                Assert.AreEqual(pointCorner[index].ToString(), placedP.cornerPoints[index].ToString(), true, "Corner #" + index + " is in the wrong spot!");
+                Assert.AreEqual(pointCorner[index].ToString(), placedP.CornerPoints[index].ToString(), true, "Corner #" + index + " is in the wrong spot!");
             }
         }
 
@@ -111,7 +111,7 @@ namespace KantoorInrichting_Test.Models.Placement
 
 
             //Do
-            placedP.gridSpace = 10;
+            placedP.GridSpace = 10;
             placedP.Move(true);
             placedP.Move(false);
             placedP.Move(true);
@@ -120,12 +120,12 @@ namespace KantoorInrichting_Test.Models.Placement
 
 
             //Look
-            Assert.AreEqual(point.X, placedP.location.X, 0.1, "The horizontal location of the product is different!");
-            Assert.AreEqual(point.Y, placedP.location.Y, 0.1, "The vertical location of the product is different!");
+            Assert.AreEqual(point.X, placedP.Location.X, 0.1, "The horizontal location of the product is different!");
+            Assert.AreEqual(point.Y, placedP.Location.Y, 0.1, "The vertical location of the product is different!");
 
             for (int index = 0; index < pointCorner.Length; index++)
             {
-                Assert.AreEqual(pointCorner[index].ToString(), placedP.cornerPoints[index].ToString(), true, "Corner #" + index + " is in the wrong spot!");
+                Assert.AreEqual(pointCorner[index].ToString(), placedP.CornerPoints[index].ToString(), true, "Corner #" + index + " is in the wrong spot!");
             }
         }
 
@@ -152,19 +152,19 @@ namespace KantoorInrichting_Test.Models.Placement
 
 
             //Do
-            placedP.gridSpace = -10;
+            placedP.GridSpace = -10;
             placedP.Move(true);
             point.X += move_x;
             point.Y += move_y;
 
 
             //Look
-            Assert.AreEqual(point.X, placedP.location.X, 0.1, "The horizontal location of the product is different!");
-            Assert.AreEqual(point.Y, placedP.location.Y, 0.1, "The vertical location of the product is different!");
+            Assert.AreEqual(point.X, placedP.Location.X, 0.1, "The horizontal location of the product is different!");
+            Assert.AreEqual(point.Y, placedP.Location.Y, 0.1, "The vertical location of the product is different!");
 
             for (int index = 0; index < pointCorner.Length; index++)
             {
-                Assert.AreEqual(pointCorner[index].ToString(), placedP.cornerPoints[index].ToString(), true, "Corner #" + index + " is in the wrong spot!");
+                Assert.AreEqual(pointCorner[index].ToString(), placedP.CornerPoints[index].ToString(), true, "Corner #" + index + " is in the wrong spot!");
             }
         }
 
@@ -191,19 +191,19 @@ namespace KantoorInrichting_Test.Models.Placement
 
 
             //Do
-            placedP.gridSpace = -10;
+            placedP.GridSpace = -10;
             placedP.Move(false);
             point.X += move_x;
             point.Y += move_y;
 
 
             //Look
-            Assert.AreEqual(point.X, placedP.location.X, 0.1, "The horizontal location of the product is different!");
-            Assert.AreEqual(point.Y, placedP.location.Y, 0.1, "The vertical location of the product is different!");
+            Assert.AreEqual(point.X, placedP.Location.X, 0.1, "The horizontal location of the product is different!");
+            Assert.AreEqual(point.Y, placedP.Location.Y, 0.1, "The vertical location of the product is different!");
 
             for (int index = 0; index < pointCorner.Length; index++)
             {
-                Assert.AreEqual(pointCorner[index].ToString(), placedP.cornerPoints[index].ToString(), true, "Corner #" + index + " is in the wrong spot!");
+                Assert.AreEqual(pointCorner[index].ToString(), placedP.CornerPoints[index].ToString(), true, "Corner #" + index + " is in the wrong spot!");
             }
         }
 
@@ -232,7 +232,7 @@ namespace KantoorInrichting_Test.Models.Placement
 
 
             //Do
-            placedP.gridSpace = -10;
+            placedP.GridSpace = -10;
             placedP.Move(true);
             placedP.Move(false);
             placedP.Move(true);
@@ -241,12 +241,12 @@ namespace KantoorInrichting_Test.Models.Placement
 
 
             //Look
-            Assert.AreEqual(point.X, placedP.location.X, 0.1, "The horizontal location of the product is different!");
-            Assert.AreEqual(point.Y, placedP.location.Y, 0.1, "The vertical location of the product is different!");
+            Assert.AreEqual(point.X, placedP.Location.X, 0.1, "The horizontal location of the product is different!");
+            Assert.AreEqual(point.Y, placedP.Location.Y, 0.1, "The vertical location of the product is different!");
 
             for (int index = 0; index < pointCorner.Length; index++)
             {
-                Assert.AreEqual(pointCorner[index].ToString(), placedP.cornerPoints[index].ToString(), true, "Corner #" + index + " is in the wrong spot!");
+                Assert.AreEqual(pointCorner[index].ToString(), placedP.CornerPoints[index].ToString(), true, "Corner #" + index + " is in the wrong spot!");
             }
         }
 
@@ -277,25 +277,25 @@ namespace KantoorInrichting_Test.Models.Placement
 
 
             //Do
-            placedP.gridSpace = 10;
+            placedP.GridSpace = 10;
             placedP.Move(true);
             placedP.Move(false);
-            placedP.gridSpace = -20;
+            placedP.GridSpace = -20;
             placedP.Move(true);
             placedP.Move(true);
-            placedP.gridSpace = -15;
+            placedP.GridSpace = -15;
             placedP.Move(false);
             point.X += move_x;
             point.Y += move_y;
 
 
             //Look
-            Assert.AreEqual(point.X, placedP.location.X, 0.1, "The horizontal location of the product is different!");
-            Assert.AreEqual(point.Y, placedP.location.Y, 0.1, "The vertical location of the product is different!");
+            Assert.AreEqual(point.X, placedP.Location.X, 0.1, "The horizontal location of the product is different!");
+            Assert.AreEqual(point.Y, placedP.Location.Y, 0.1, "The vertical location of the product is different!");
 
             for (int index = 0; index < pointCorner.Length; index++)
             {
-                Assert.AreEqual(pointCorner[index].ToString(), placedP.cornerPoints[index].ToString(), true, "Corner #" + index + " is in the wrong spot!");
+                Assert.AreEqual(pointCorner[index].ToString(), placedP.CornerPoints[index].ToString(), true, "Corner #" + index + " is in the wrong spot!");
             }
         }
 
@@ -323,20 +323,20 @@ namespace KantoorInrichting_Test.Models.Placement
 
 
             //Do
-            placedP.gridSpace = 15;
+            placedP.GridSpace = 15;
             placedP.Move(false);
-            placedP.addAngle(90);
+            placedP.AddAngle(90);
             point.X += move_x;
             point.Y += move_y;
 
 
             //Look
-            Assert.AreEqual(point.X, placedP.location.X, 0.1, "The horizontal location of the product is different!");
-            Assert.AreEqual(point.Y, placedP.location.Y, 0.1, "The vertical location of the product is different!");
+            Assert.AreEqual(point.X, placedP.Location.X, 0.1, "The horizontal location of the product is different!");
+            Assert.AreEqual(point.Y, placedP.Location.Y, 0.1, "The vertical location of the product is different!");
 
             for (int index = 0; index < pointCorner.Length; index++)
             {
-                Assert.AreEqual(pointCorner[index].ToString(), placedP.cornerPoints[index].ToString(), true, "Corner #" + index + " is in the wrong spot!");
+                Assert.AreEqual(pointCorner[index].ToString(), placedP.CornerPoints[index].ToString(), true, "Corner #" + index + " is in the wrong spot!");
             }
         }
 
@@ -362,20 +362,20 @@ namespace KantoorInrichting_Test.Models.Placement
 
 
             //Do
-            placedP.addAngle(90);
-            placedP.gridSpace = 15;
+            placedP.AddAngle(90);
+            placedP.GridSpace = 15;
             placedP.Move(false);
             point.X += move_x;
             point.Y += move_y;
 
 
             //Look
-            Assert.AreEqual(point.X, placedP.location.X, 0.1, "The horizontal location of the product is different!");
-            Assert.AreEqual(point.Y, placedP.location.Y, 0.1, "The vertical location of the product is different!");
+            Assert.AreEqual(point.X, placedP.Location.X, 0.1, "The horizontal location of the product is different!");
+            Assert.AreEqual(point.Y, placedP.Location.Y, 0.1, "The vertical location of the product is different!");
 
             for (int index = 0; index < pointCorner.Length; index++)
             {
-                Assert.AreEqual(pointCorner[index].ToString(), placedP.cornerPoints[index].ToString(), true, "Corner #" + index + " is in the wrong spot!");
+                Assert.AreEqual(pointCorner[index].ToString(), placedP.CornerPoints[index].ToString(), true, "Corner #" + index + " is in the wrong spot!");
             }
         }
     }

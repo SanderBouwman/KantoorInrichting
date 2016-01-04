@@ -1,4 +1,4 @@
-﻿// created by: Robin
+// created by: Robin
 // on: 20-12-2015
 
 #region
@@ -17,6 +17,10 @@ using KantoorInrichting.Models.Product;
 using KantoorInrichting.Views;
 using KantoorInrichting.Views.Grid;
 using KantoorInrichting.Views.Placement;
+using KantoorInrichting.Models.Maps;
+using System.Reflection;
+using System.IO;
+using System.Data;
 
 #endregion
 
@@ -48,6 +52,11 @@ namespace KantoorInrichting.Controllers.Placement
         private bool zoomCheckboxChecked;
         private int zoomSize;
         private ZoomView zoomView;
+        private Space space;
+
+        private ProductGrid productGrid;
+
+        DatabaseController dbc = DatabaseController.Instance;
 
         public ProductGridController(IView<ProductGrid.PropertyEnum> view,
             float meterWidth, float meterHeight, float tileSize)
@@ -88,7 +97,7 @@ namespace KantoorInrichting.Controllers.Placement
             // Made a switch using lambda expressions in a dictionary, since you can not do a switch on types
             var @switch = new Dictionary<Type, Action>
             {
-                {typeof (EventArgs), () => HandleOtherEvent(sender, e)},
+                {typeof (EventArgs), () => HandleOtherEvent(sender, e,eventName)},
                 {typeof (LayoutEventArgs), () => LayoutChanged(sender, (LayoutEventArgs) e)},
                 {typeof (MouseEventArgs), () => HandleMouseEvent(sender, (MouseEventArgs) e, eventName)},
                 {typeof (DragEventArgs), () => HandleDragEvents(sender, (DragEventArgs) e, eventName)}
@@ -151,15 +160,17 @@ namespace KantoorInrichting.Controllers.Placement
             }
         }
 
-        public void HandleOtherEvent(object sender, EventArgs e)
+        public void HandleOtherEvent(object sender, EventArgs e, string eventName)
         {
+            if (sender is Button)
+                HandleButtonEvent(sender, e, eventName);
             if (sender is CheckBox)
                 HandleCheckBoxEvent(sender, e);
             if (sender is TrackBar)
                 HandleTrackbarEvent(sender, e);
         }
 
-        public void HandleButtonEvent(object sender, MouseEventArgs e, string eventName)
+        public void HandleButtonEvent(object sender, EventArgs e, string eventName)
         {
             switch (eventName)
             {
@@ -175,7 +186,7 @@ namespace KantoorInrichting.Controllers.Placement
                         RotateSelectedItem(-15);
                     break;
                 case "ButtonSave":
-                    SaveRoom();
+                    SaveRoom(space.Room);
                     break;
                 case "ButtonDelete":
                     DeleteProduct(selectedProduct);
@@ -185,10 +196,10 @@ namespace KantoorInrichting.Controllers.Placement
 
         public void RotateSelectedItem(int degrees)
         {
-            if (selectedProduct.currentAngle + degrees < 360 && selectedProduct.currentAngle + degrees > -360)
-                selectedProduct.currentAngle += degrees;
+            if (selectedProduct.CurrentAngle + degrees < 360 && selectedProduct.CurrentAngle + degrees > -360)
+                selectedProduct.CurrentAngle += degrees;
             else
-                selectedProduct.currentAngle = 0;
+                selectedProduct.CurrentAngle = 0;
             view.Get(ProductGrid.PropertyEnum.Panel).Invalidate();
         }
 
@@ -282,7 +293,7 @@ namespace KantoorInrichting.Controllers.Placement
         {
             Rectangle rectangle = utility.GetProductRectangle(product, tileWidth, tileHeight, tileSize);
             SolidBrush brush = utility.SelectBrush(product, legendDictionary);
-            int angle = product.currentAngle;
+            int angle = product.CurrentAngle;
             using (Matrix m = new Matrix())
             {
                 m.RotateAt(angle, new PointF(rectangle.Left + rectangle.Width/2, rectangle.Top + rectangle.Height/2));
@@ -308,11 +319,99 @@ namespace KantoorInrichting.Controllers.Placement
             view.Get(ProductGrid.PropertyEnum.Panel).Invalidate();
         }
 
-        private void SaveRoom()
+        private void SaveRoom(string spacenumber)
         {
-            // TODO save the current list to the database 
-            // ( problem as of 31/12/2015: There's no save method in the DatabaseController )
-            Console.WriteLine("SAVE ROOM");
+            string appFolderPath = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+            string resourcesFolderPath = Path.Combine(Directory.GetParent(appFolderPath).Parent.FullName, "Resources");
+            Bitmap bmp = new Bitmap(ProductGrid.PanelSize.Width, ProductGrid.PanelSize.Height);
+           // productGrid.gridFieldPanel.DrawToBitmap(bmp, productGrid.gridFieldPanel.Bounds);
+
+            String fileName = Path.Combine(resourcesFolderPath, "" + spacenumber + ".bmp");
+            bmp.Save(fileName);
+            DeleteRows(spacenumber);
+            SaveSpace(spacenumber);
+            MessageBox.Show("Opgeslagen");
+        }
+
+        public void DeleteRows(string spacenumber)
+        {
+            var rows = dbc.DataSet.placement.Select("space_number = '" + spacenumber + "'");
+            foreach (var row in rows)
+            {
+                row.Delete();
+                dbc.PlacementTableAdapter.Update(dbc.DataSet.placement);
+            }
+        }
+
+        public void SaveSpace(string spacenumber)
+        {
+
+            foreach (PlacedProduct product in placedProducts)
+            {
+                DataRow anyRow = dbc.DataSet.placement.NewRow();
+                var hoi2 = dbc.DataSet.placement.Rows[dbc.DataSet.placement.Rows.Count - 1]["placement_id"]; ;
+                string hoi = hoi2.ToString();
+                int x = Int32.Parse(hoi) + 1;
+                float X = product.Location.X;
+                float Y = product.Location.Y;
+                int product_id = product.Product.Product_id;
+
+                anyRow["placement_id"] = x;
+                anyRow["space_number"] = spacenumber;
+                anyRow["product_id"] = product_id;
+                anyRow["x_position"] = X;
+                anyRow["y_position"] = Y;
+                anyRow["angle"] = 0;
+
+                dbc.DataSet.placement.Rows.Add(anyRow);
+                dbc.PlacementTableAdapter.Update(dbc.DataSet.placement);
+
+            }
+
+        }
+
+        public void OpenPanel(ProductGrid grid, Space spacenr)
+        {
+            placedProducts.Clear();
+            this.space = spacenr;
+            //this.SpaceNumberTitle.Text = space.Room;
+            grid.spaceNumberTextbox.Text = space.Room;
+            grid.spaceSizeTextbox.Text = space.length + " + " + space.width;
+
+            grid.Visible = true;
+            grid.Enabled = true;
+
+            //Update the data (size and colour of the PlacedProduct, information of the ProductList and ProductInfo)
+            this.placeProducts();
+            this.PaintProducts();
+            grid.Invalidate();
+            grid.BringToFront();
+
+        }
+
+        public void placeProducts()
+        {
+            foreach (var placedProduct in dbc.DataSet.placement)
+            {
+                // check if placedproduct belongs to current space
+                if (placedProduct.space_number == space.Room)
+                {
+                    
+                    foreach (ProductModel product in ProductModel.list)
+                    { // for each productmodel -> check if the id equals the placedproduct id
+                        if (product.Product_id == placedProduct.product_id)
+                        {
+                            // create placedproducts with a point and product reference
+                            Point point = new Point(placedProduct.x_position, placedProduct.y_position);
+                            PlacedProduct p1 = new PlacedProduct(product, point);
+
+                            // add the placedproduct to the list
+                            placedProducts.Add(p1);
+                        }
+                    }
+
+                }
+            }
         }
 
 
@@ -326,7 +425,7 @@ namespace KantoorInrichting.Controllers.Placement
                 selectedProduct = product;
                 draggingProduct = true;
 
-                selectedProduct.OriginalLocation = selectedProduct.location;
+                selectedProduct.OriginalLocation = selectedProduct.Location;
             }
             else
             {

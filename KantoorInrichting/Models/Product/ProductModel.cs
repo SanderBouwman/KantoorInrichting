@@ -68,8 +68,8 @@ namespace KantoorInrichting.Models.Product
             Brand = b;
             Type = t;
 
-            this.ProductCategory = CategoryModel.list[c];
-            this.category = ProductCategory.name;
+            this.ProductCategory = CategoryModel.List[c];
+            this.category = ProductCategory.Name;
 
             Length = l;
             Width = w;

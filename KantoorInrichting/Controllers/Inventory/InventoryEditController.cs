@@ -11,37 +11,37 @@ namespace KantoorInrichting.Controllers.Inventory
 {
     public class InventoryEditController
     {
-        private DatabaseController dbc;
-        private InventoryEdit screen;
-        private ProductModel product;
-        private InventoryScreen inventoryScreen;
-        public int amount { get; set; }
+        private readonly DatabaseController _dbc;
+        private readonly InventoryEdit _screen;
+        private readonly ProductModel _product;
+        private readonly InventoryScreen _inventoryScreen;
+        public int Amount { get; set; }
 
         public InventoryEditController(InventoryEdit screen, ProductModel product, InventoryScreen inventoryScreen)
         {
-            dbc = DatabaseController.Instance;
-            this.product = product;
-            this.screen = screen;
-            this.inventoryScreen = inventoryScreen;
+            _dbc = DatabaseController.Instance;
+            this._product = product;
+            this._screen = screen;
+            this._inventoryScreen = inventoryScreen;
             FillWithProductInfo();
         }
 
         //Get the product info and set the matching labels/fields
         private void FillWithProductInfo()
         {
-            screen.productNameLabel.Text = product.Name;
-            screen.productAmount.Value = product.Amount;
+            _screen.productNameLabel.Text = _product.Name;
+            _screen.productAmount.Value = _product.Amount;
         }
 
         //Update the existing ProductModel
         public void UpdateProductModel()
         {
-            amount = (int)screen.productAmount.Value;
-            product.Amount = amount;
+            Amount = (int)_screen.productAmount.Value;
+            _product.Amount = Amount;
             //If the amount is 0, remove it from the result list.
-            if (product.Amount == 0 && inventoryScreen.checkBox1.Checked)
+            if (_product.Amount == 0 && _inventoryScreen.checkBox1.Checked)
             {
-                ProductModel.result.Remove(product);
+                ProductModel.result.Remove(_product);
             }
         }
 
@@ -52,12 +52,12 @@ namespace KantoorInrichting.Controllers.Inventory
             try
             {
                 //Search the tabel Product for a certain ProductID
-                var productRow = dbc.DataSet.product.FindByproduct_id(product.Product_id);
+                var productRow = _dbc.DataSet.product.FindByproduct_id(_product.Product_id);
 
-                productRow.amount = product.Amount;
+                productRow.amount = _product.Amount;
 
                 //Update the database with the new Data
-                dbc.ProductTableAdapter.Update(dbc.DataSet.product);
+                _dbc.ProductTableAdapter.Update(_dbc.DataSet.product);
 
                 MessageBox.Show("Update successful");
             }
@@ -68,17 +68,17 @@ namespace KantoorInrichting.Controllers.Inventory
         }
 
         //Edit product button
-        public void editButton()
+        public void EditButton()
         {
             UpdateProductModel();
             UpdateProductInDatabase();
-            screen.Close();
+            _screen.Close();
         }
 
         //Closes this form
-        public void cancelButton()
+        public void CancelButton()
         {
-            screen.Close();
+            _screen.Close();
         }
     }
 }

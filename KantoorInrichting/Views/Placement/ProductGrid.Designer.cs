@@ -24,6 +24,9 @@
         /// </summary>
         private void InitializeComponent() {
             this.controlPanel = new System.Windows.Forms.Panel();
+            this.algorithmButton = new System.Windows.Forms.Button();
+            this.algorithmLabel = new System.Windows.Forms.Label();
+            this.algorithmComboBox = new System.Windows.Forms.ComboBox();
             this.zoomCheckbox = new System.Windows.Forms.CheckBox();
             this.zoomTrackbar = new System.Windows.Forms.TrackBar();
             this.spaceSizeTextbox = new System.Windows.Forms.TextBox();
@@ -43,9 +46,6 @@
             this.productList = new KantoorInrichting.Views.Placement.ProductList();
             this.gridFieldPanel = new KantoorInrichting.Models.Grid.GridFieldPanel();
             this.legend = new KantoorInrichting.Views.Placement.Legend();
-            this.algorithmComboBox = new System.Windows.Forms.ComboBox();
-            this.algorithmLabel = new System.Windows.Forms.Label();
-            this.algorithmButton = new System.Windows.Forms.Button();
             this.controlPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.zoomTrackbar)).BeginInit();
             this.controlDock.SuspendLayout();
@@ -76,6 +76,32 @@
             this.controlPanel.Size = new System.Drawing.Size(372, 194);
             this.controlPanel.TabIndex = 1;
             // 
+            // algorithmButton
+            // 
+            this.algorithmButton.Location = new System.Drawing.Point(242, 114);
+            this.algorithmButton.Name = "algorithmButton";
+            this.algorithmButton.Size = new System.Drawing.Size(75, 23);
+            this.algorithmButton.TabIndex = 16;
+            this.algorithmButton.Text = "Start";
+            this.algorithmButton.UseVisualStyleBackColor = true;
+            // 
+            // algorithmLabel
+            // 
+            this.algorithmLabel.AutoSize = true;
+            this.algorithmLabel.Location = new System.Drawing.Point(127, 95);
+            this.algorithmLabel.Name = "algorithmLabel";
+            this.algorithmLabel.Size = new System.Drawing.Size(72, 13);
+            this.algorithmLabel.TabIndex = 15;
+            this.algorithmLabel.Text = "Kies algoritme";
+            // 
+            // algorithmComboBox
+            // 
+            this.algorithmComboBox.FormattingEnabled = true;
+            this.algorithmComboBox.Location = new System.Drawing.Point(114, 114);
+            this.algorithmComboBox.Name = "algorithmComboBox";
+            this.algorithmComboBox.Size = new System.Drawing.Size(121, 21);
+            this.algorithmComboBox.TabIndex = 14;
+            // 
             // zoomCheckbox
             // 
             this.zoomCheckbox.AutoSize = true;
@@ -94,7 +120,7 @@
             this.zoomTrackbar.Maximum = 300;
             this.zoomTrackbar.Minimum = 50;
             this.zoomTrackbar.Name = "zoomTrackbar";
-            this.zoomTrackbar.Size = new System.Drawing.Size(104, 42);
+            this.zoomTrackbar.Size = new System.Drawing.Size(104, 45);
             this.zoomTrackbar.SmallChange = 10;
             this.zoomTrackbar.TabIndex = 12;
             this.zoomTrackbar.Value = 50;
@@ -243,6 +269,7 @@
             // 
             // gridFieldPanel
             // 
+            this.gridFieldPanel.AllowDrop = true;
             this.gridFieldPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -250,7 +277,6 @@
             this.gridFieldPanel.Location = new System.Drawing.Point(3, 3);
             this.gridFieldPanel.Name = "gridFieldPanel";
             this.gridFieldPanel.Size = new System.Drawing.Size(600, 550);
-            this.gridFieldPanel.AllowDrop = true;
             this.gridFieldPanel.TabIndex = 4;
             // 
             // legend
@@ -262,32 +288,6 @@
             this.legend.Name = "legend";
             this.legend.Size = new System.Drawing.Size(403, 86);
             this.legend.TabIndex = 2;
-            // 
-            // algorithmComboBox
-            // 
-            this.algorithmComboBox.FormattingEnabled = true;
-            this.algorithmComboBox.Location = new System.Drawing.Point(114, 114);
-            this.algorithmComboBox.Name = "algorithmComboBox";
-            this.algorithmComboBox.Size = new System.Drawing.Size(121, 21);
-            this.algorithmComboBox.TabIndex = 14;
-            // 
-            // algorithmLabel
-            // 
-            this.algorithmLabel.AutoSize = true;
-            this.algorithmLabel.Location = new System.Drawing.Point(127, 95);
-            this.algorithmLabel.Name = "algorithmLabel";
-            this.algorithmLabel.Size = new System.Drawing.Size(72, 13);
-            this.algorithmLabel.TabIndex = 15;
-            this.algorithmLabel.Text = "Kies algoritme";
-            // 
-            // algorithmButton
-            // 
-            this.algorithmButton.Location = new System.Drawing.Point(242, 114);
-            this.algorithmButton.Name = "algorithmButton";
-            this.algorithmButton.Size = new System.Drawing.Size(75, 23);
-            this.algorithmButton.TabIndex = 16;
-            this.algorithmButton.Text = "Start";
-            this.algorithmButton.UseVisualStyleBackColor = true;
             // 
             // ProductGrid
             // 
@@ -324,14 +324,14 @@
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.Label spaceSizeLabel;
         private System.Windows.Forms.Label spaceNumberLabel;
-        private System.Windows.Forms.TextBox spaceSizeTextbox;
-        private System.Windows.Forms.TextBox spaceNumberTextbox;
-        private Models.Grid.GridFieldPanel gridFieldPanel;
+        public System.Windows.Forms.TextBox spaceSizeTextbox;
+        public System.Windows.Forms.TextBox spaceNumberTextbox;
         private System.Windows.Forms.Panel controlDock;
         private System.Windows.Forms.CheckBox zoomCheckbox;
         private System.Windows.Forms.TrackBar zoomTrackbar;
         private System.Windows.Forms.Button algorithmButton;
         private System.Windows.Forms.Label algorithmLabel;
         private System.Windows.Forms.ComboBox algorithmComboBox;
+        public Models.Grid.GridFieldPanel gridFieldPanel;
     }
 }

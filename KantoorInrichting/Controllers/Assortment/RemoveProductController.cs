@@ -12,23 +12,23 @@ namespace KantoorInrichting.Controllers.Assortment
     
     class RemoveProductController
     {
-        private DatabaseController dbc;
-        private ProductModel product;
-        private RemoveProductScreen screen;
+        private readonly DatabaseController _dbc;
+        private readonly RemoveProductScreen _screen;
+        private readonly ProductModel _product;
 
 
         public RemoveProductController(RemoveProductScreen screen, ProductModel product)
         {
-            dbc = DatabaseController.Instance;
-            this.screen = screen;
-            this.product = product;
+            _dbc = DatabaseController.Instance;
+            this._screen = screen;
+            this._product = product;
             screen.productNameLabel.Text = product.Name;
         }
 
         //Update the existing ProductModel
         private void UpdateProductModel()
         {
-            product.Removed = true;
+            _product.Removed = true;
         }
 
         //Update the product in the database
@@ -37,11 +37,11 @@ namespace KantoorInrichting.Controllers.Assortment
             try
             {
                 //Search the tabel Product for a certain ProductID
-                var productRow = dbc.DataSet.product.FindByproduct_id(product.Product_id);
-                productRow.removed = product.Removed;
+                var productRow = _dbc.DataSet.product.FindByproduct_id(_product.Product_id);
+                productRow.removed = _product.Removed;
 
                 //Update the database with the new Data
-                dbc.ProductTableAdapter.Update(dbc.DataSet.product);
+                _dbc.ProductTableAdapter.Update(_dbc.DataSet.product);
                 MessageBox.Show("Update successful");
             }
             catch (Exception ex)
@@ -55,13 +55,13 @@ namespace KantoorInrichting.Controllers.Assortment
         {
             UpdateProductModel();
             UpdateProductInDatabase();
-            screen.Close();
+            _screen.Close();
         }
 
         //The cancel button
         public void CancelButton()
         {
-            screen.Close();
+            _screen.Close();
         }
     }
 }
