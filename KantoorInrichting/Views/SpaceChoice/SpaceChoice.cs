@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using KantoorInrichting.Models.Maps;
+using KantoorInrichting.Models.Space;
 using KantoorInrichting.Controllers;
 using KantoorInrichting.Controllers.Placement;
 using KantoorInrichting.Views.Placement;
@@ -31,7 +31,7 @@ namespace KantoorInrichting.Views.SpaceChoice
             // clear dropdown
             dropdown.Items.Clear();
             // Select all the items in de spaces list
-            var SpaceResult = Models.Maps.Space.list.GroupBy(space => space.Room)
+            var SpaceResult = Models.Space.Space.List.GroupBy(space => space.Room)
                    .Select(grp => grp.First())
                    .ToList();
             // add default 
@@ -66,7 +66,7 @@ namespace KantoorInrichting.Views.SpaceChoice
                 // check which object to open
 
                 // linq select space with the current ID
-                var selectedSpace = Space.list
+                var selectedSpace = Space.List
                         .Where(s => s.Room == (string)selected)
                         .Select(t => t)
                         .ToList();

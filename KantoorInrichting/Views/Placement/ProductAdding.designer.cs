@@ -1,4 +1,4 @@
-﻿using KantoorInrichting.Models.Maps;
+﻿using KantoorInrichting.Models.Space;
 
 namespace KantoorInrichting.Views.Placement
 {

@@ -1,4 +1,4 @@
-﻿using KantoorInrichting.Models.Maps;
+﻿using KantoorInrichting.Models.Space;
 using KantoorInrichting.Views.Maps;
 using System;
 using System.Collections.Generic;
@@ -20,8 +20,8 @@ namespace KantoorInrichting.Controllers.Map
         public MapsController(MapsScreen screen)
         {
             this._screen = screen;
-            Space.result = Space.list;
-            screen.MapsGridView1.DataSource = Space.result;
+            Space.Result = Space.List;
+            screen.MapsGridView1.DataSource = Space.Result;
         }
 
         

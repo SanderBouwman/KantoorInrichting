@@ -5,7 +5,7 @@
 
 using System;
 using System.Windows.Forms;
-using KantoorInrichting.Models.Maps;
+using KantoorInrichting.Models.Space;
 using KantoorInrichting.Views.Placement;
 
 #endregion

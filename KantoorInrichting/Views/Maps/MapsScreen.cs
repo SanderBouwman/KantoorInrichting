@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using KantoorInrichting.Models.Maps;
+using KantoorInrichting.Models.Space;
 using System.IO;
 using KantoorInrichting.Controllers.Map;
 

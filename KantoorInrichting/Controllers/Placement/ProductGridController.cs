@@ -17,7 +17,7 @@ using KantoorInrichting.Models.Product;
 using KantoorInrichting.Views;
 using KantoorInrichting.Views.Grid;
 using KantoorInrichting.Views.Placement;
-using KantoorInrichting.Models.Maps;
+using KantoorInrichting.Models.Space;
 using System.Reflection;
 using System.IO;
 using System.Data;
@@ -377,7 +377,7 @@ namespace KantoorInrichting.Controllers.Placement
             this.space = spacenr;
             //this.SpaceNumberTitle.Text = space.Room;
             grid.spaceNumberTextbox.Text = space.Room;
-            grid.spaceSizeTextbox.Text = space.length + " + " + space.width;
+            grid.spaceSizeTextbox.Text = space.Length + " + " + space.Width;
 
             grid.Visible = true;
             grid.Enabled = true;

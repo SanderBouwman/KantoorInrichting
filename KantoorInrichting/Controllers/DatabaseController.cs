@@ -1,5 +1,5 @@
 ﻿
-using KantoorInrichting.Models.Maps;
+using KantoorInrichting.Models.Space;
 using KantoorInrichting.Models.Product;
 using System;
 using System.Collections.Generic;

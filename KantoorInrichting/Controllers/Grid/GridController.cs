@@ -11,7 +11,7 @@ using System.Windows.Forms;
 using KantoorInrichting.Controllers.Algorithm;
 using KantoorInrichting.Controllers.Algorithm.TestSetup;
 using KantoorInrichting.Models.Grid;
-using KantoorInrichting.Models.Maps;
+using KantoorInrichting.Models.Space;
 using KantoorInrichting.Models.Product;
 using KantoorInrichting.Views;
 using KantoorInrichting.Views.Grid;
