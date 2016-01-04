@@ -17,6 +17,7 @@ using KantoorInrichting.Models.Product;
 using KantoorInrichting.Views;
 using KantoorInrichting.Views.Grid;
 using KantoorInrichting.Views.Placement;
+using KantoorInrichting.Models.Maps;
 
 #endregion
 
@@ -48,6 +49,7 @@ namespace KantoorInrichting.Controllers.Placement
         private bool zoomCheckboxChecked;
         private int zoomSize;
         private ZoomView zoomView;
+        private Space space;
 
         public ProductGridController(IView<ProductGrid.PropertyEnum> view,
             float meterWidth, float meterHeight, float tileSize)
@@ -315,6 +317,28 @@ namespace KantoorInrichting.Controllers.Placement
             // TODO save the current list to the database 
             // ( problem as of 31/12/2015: There's no save method in the DatabaseController )
             MessageBox.Show("Save Room");
+        }
+
+        public void OpenPanel(ProductGrid grid, Space spacenr)
+        {
+            PlacementController.placedProductList.Clear();
+            this.space = spacenr;
+            //this.SpaceNumberTitle.Text = space.Room;
+            grid.spaceNumberTextbox.Text = space.Room;
+            grid.spaceSizeTextbox.Text = space.length + " + " + space.width;
+
+            grid.Visible = true;
+            grid.Enabled = true;
+
+            //Update the data (size and colour of the PlacedProduct, information of the ProductList and ProductInfo)
+            this.fixData();
+           // hoofdscherm.placement.controller.placeProducts();
+            grid.BringToFront();
+        }
+
+        public void fixData()
+        {
+           // controller.FixUserData();
         }
 
 

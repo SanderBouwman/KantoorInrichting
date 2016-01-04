@@ -324,8 +324,8 @@
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.Label spaceSizeLabel;
         private System.Windows.Forms.Label spaceNumberLabel;
-        private System.Windows.Forms.TextBox spaceSizeTextbox;
-        private System.Windows.Forms.TextBox spaceNumberTextbox;
+        public System.Windows.Forms.TextBox spaceSizeTextbox;
+        public System.Windows.Forms.TextBox spaceNumberTextbox;
         private Models.Grid.GridFieldPanel gridFieldPanel;
         private System.Windows.Forms.Panel controlDock;
         private System.Windows.Forms.CheckBox zoomCheckbox;

@@ -11,9 +11,11 @@ using System.Windows.Forms;
 using KantoorInrichting.Controllers.Algorithm;
 using KantoorInrichting.Controllers.Algorithm.TestSetup;
 using KantoorInrichting.Models.Grid;
+using KantoorInrichting.Models.Maps;
 using KantoorInrichting.Models.Product;
 using KantoorInrichting.Views;
 using KantoorInrichting.Views.Grid;
+using KantoorInrichting.Views.Placement;
 
 #endregion
 
@@ -388,6 +390,11 @@ namespace KantoorInrichting.Controllers.Grid
             _buffer = null;
             Resize(this, null);
             _panel.Invalidate();
+        }
+
+        public void OpenPanel(ProductGrid productGrid, Space space)
+        {
+            throw new NotImplementedException();
         }
     }
 

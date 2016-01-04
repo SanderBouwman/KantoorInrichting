@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using KantoorInrichting.Models.Maps;
+using KantoorInrichting.Controllers;
+using KantoorInrichting.Controllers.Placement;
 
 namespace KantoorInrichting.Views.SpaceChoice
 {
@@ -56,13 +58,16 @@ namespace KantoorInrichting.Views.SpaceChoice
                     .ToList();
 
             // give the design panel the current space ------------old
-                //hoofdscherm.placement.OpenPanel(selectedSpace[0]);
+            //hoofdscherm.placement.OpenPanel(selectedSpace[0]);
 
 
             // ------------------------- new 
+            IController controller = new ProductGridController(hoofdscherm.productGrid, 10, 10, 0.5f);
+            hoofdscherm.productGrid.controller.OpenPanel(hoofdscherm.productGrid, selectedSpace[0]);
             hoofdscherm.productGrid.Visible=true;
             hoofdscherm.productGrid.Enabled = true;
             hoofdscherm.productGrid.BringToFront();
+
 
             //---------
             this.Visible = false;

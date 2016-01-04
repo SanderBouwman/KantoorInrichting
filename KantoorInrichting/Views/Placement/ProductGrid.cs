@@ -23,7 +23,7 @@ namespace KantoorInrichting.Views.Placement
         }
 
         public static Size PanelSize = new Size(1280, 720);
-        private IController controller;
+        public IController controller;
 
         public ProductGrid()
         {

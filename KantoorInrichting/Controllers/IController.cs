@@ -5,6 +5,8 @@
 
 using System;
 using System.Windows.Forms;
+using KantoorInrichting.Models.Maps;
+using KantoorInrichting.Views.Placement;
 
 #endregion
 
@@ -13,5 +15,6 @@ namespace KantoorInrichting.Controllers {
         void Paint(object sender, PaintEventArgs e);
         void Notify(object sender, EventArgs e, string eventName);
         void Dispose(object sender, EventArgs e);
+        void OpenPanel(ProductGrid productGrid, Space space);
     }
 }
