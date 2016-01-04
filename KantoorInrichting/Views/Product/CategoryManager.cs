@@ -108,8 +108,8 @@ namespace KantoorInrichting.Views.Product
             }
             else
             {
-                controller.changeNameButton(categoryComboBox.SelectedItem.ToString(), categoryComboBox.SelectedIndex);
-                refreshComboBox();
+                Controller.changeNameButton(categoryComboBox.SelectedItem.ToString(), categoryComboBox.SelectedIndex);
+                RefreshComboBox();
             }
         }
 
@@ -121,8 +121,8 @@ namespace KantoorInrichting.Views.Product
             }
             else
             {
-                controller.changeNameButton2(subcategoryComboBox.SelectedItem.ToString(), subcategoryComboBox.SelectedIndex);
-                refreshComboBox();
+                Controller.changeNameButton2(subcategoryComboBox.SelectedItem.ToString(), subcategoryComboBox.SelectedIndex);
+                RefreshComboBox();
             }
         }
     }
