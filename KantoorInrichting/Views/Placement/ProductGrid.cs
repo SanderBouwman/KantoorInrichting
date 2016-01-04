@@ -29,7 +29,7 @@ namespace KantoorInrichting.Views.Placement
         public ProductGrid()
         {
             InitializeComponent();
-            controller = new ProductGridController(this, 10, 10, 0.5f);
+            this.controller = new ProductGridController(this, 10, 10, 0.5f);
         }
 
         public PropertyEnum Properties { get; set; }

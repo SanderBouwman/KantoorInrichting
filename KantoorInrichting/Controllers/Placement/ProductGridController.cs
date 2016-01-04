@@ -32,11 +32,11 @@ namespace KantoorInrichting.Controllers.Placement
         private readonly List<AlgorithmModel> comboBoxAlgorithms;
         private readonly Dictionary<string, SolidBrush> legendDictionary;
 
-        private readonly float meterHeight;
-        private readonly float meterWidth;
+        private float meterHeight;
+        private float meterWidth;
 
         private readonly List<PlacedProduct> placedProducts;
-        private readonly float tileSize;
+        private float tileSize;
         private readonly ProductGridUtility utility;
 
         private readonly IView<ProductGrid.PropertyEnum> view;
@@ -379,12 +379,14 @@ namespace KantoorInrichting.Controllers.Placement
             grid.spaceNumberTextbox.Text = space.Room;
             grid.spaceSizeTextbox.Text = space.length + " + " + space.width;
 
-            grid.Visible = true;
-            grid.Enabled = true;
+            this.meterWidth = (float) space.width/100;
+            this.meterHeight = (float) space.length/100;
+            this.tileSize = meterWidth/10;
+
+            LayoutChanged(this, null);
 
             //Update the data (size and colour of the PlacedProduct, information of the ProductList and ProductInfo)
             this.placeProducts();
-            this.PaintProducts();
             grid.Invalidate();
             grid.BringToFront();
 
@@ -400,14 +402,15 @@ namespace KantoorInrichting.Controllers.Placement
                     
                     foreach (ProductModel product in ProductModel.List)
                     { // for each productmodel -> check if the id equals the placedproduct id
+                        
                         if (product.ProductId == placedProduct.product_id)
                         {
                             // create placedproducts with a point and product reference
-                            Point point = new Point(placedProduct.x_position, placedProduct.y_position);
+                            Point point = new Point(placedProduct.x_position/100, placedProduct.y_position/100);
                             PlacedProduct p1 = new PlacedProduct(product, point);
-
-                            // add the placedproduct to the list
-                            placedProducts.Add(p1);
+                            
+                            AddNewProduct(product, (float) placedProduct.x_position/100, (float) placedProduct.y_position/100, 
+                                (float) product.Width/100, (float) product.Height/100, true);
                         }
                     }
 
@@ -488,7 +491,7 @@ namespace KantoorInrichting.Controllers.Placement
             float viewWidth = view.Get(ProductGrid.PropertyEnum.Panel).Width,
                 viewHeight = view.Get(ProductGrid.PropertyEnum.Panel).Height;
             float newX = realDimensions ? x : x/viewWidth*meterWidth,
-                newY = realDimensions ? y : y/viewHeight*meterHeight;
+                    newY = realDimensions ? y : y/viewHeight*meterHeight;
             PointF center;
 
             if (!realDimensions)
@@ -503,10 +506,12 @@ namespace KantoorInrichting.Controllers.Placement
             {
                 center = new PointF
                 {
-                    X = x + model.Width/2,
-                    Y = y + model.Height/2
+                    X = x ,
+                    Y = y 
                 };
             }
+
+            
 
             SizeF size = new SizeF(width, height);
             model.Size = size;
