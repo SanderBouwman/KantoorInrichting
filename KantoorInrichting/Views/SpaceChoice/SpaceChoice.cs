@@ -62,6 +62,7 @@ namespace KantoorInrichting.Views.SpaceChoice
             // ------------------------- new 
             hoofdscherm.productGrid.Visible=true;
             hoofdscherm.productGrid.Enabled = true;
+            hoofdscherm.productGrid.BringToFront();
 
             //---------
             this.Visible = false;
