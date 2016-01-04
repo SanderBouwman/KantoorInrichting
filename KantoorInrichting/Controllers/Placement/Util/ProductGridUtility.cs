@@ -54,12 +54,14 @@ namespace KantoorInrichting.Controllers.Placement
             SolidBrush brush;
             try
             {
-                brush = dict.Single(pair => pair.Key.Equals(product.Product.Type)).Value;
+                    // we still need to add functionality that subcategories gain the color from the main category
+                    // -- Edwin
+                brush = dict.Single(pair => pair.Key.Equals(product.Product.Category)).Value;
             }
             catch (InvalidOperationException e)
             {
                 // This means that the type is not found in the dictionary, and so I will set the Brush to Black
-                brush = new SolidBrush(Color.Black);
+                brush = new SolidBrush(Color.Blue);
             }
             return brush;
         }

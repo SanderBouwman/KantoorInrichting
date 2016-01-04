@@ -28,8 +28,6 @@ namespace KantoorInrichting.Views.Placement
         {
             InitializeComponent();
 
-
-
             this.CategoryColors = new Dictionary<string, SolidBrush>();
 
             foreach (CategoryModel category in CategoryModel.List)
@@ -49,13 +47,11 @@ namespace KantoorInrichting.Views.Placement
         {
             AddLabel(category);
             AddColorImage(category);
-
         }
 
 
         private void AddLabel(CategoryModel category)
         {
-            
 
             // initialize label
             this.categoryLabel = new System.Windows.Forms.Label();

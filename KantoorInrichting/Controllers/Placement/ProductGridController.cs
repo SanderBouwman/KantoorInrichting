@@ -292,6 +292,7 @@ namespace KantoorInrichting.Controllers.Placement
 
         private void PaintProduct(PlacedProduct product, Graphics g)
         {
+
             Rectangle rectangle = utility.GetProductRectangle(product, tileWidth, tileHeight, tileSize);
             SolidBrush brush = utility.SelectBrush(product, legendDictionary);
             int angle = product.CurrentAngle;
