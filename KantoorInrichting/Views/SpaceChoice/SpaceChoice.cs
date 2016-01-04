@@ -55,8 +55,15 @@ namespace KantoorInrichting.Views.SpaceChoice
                     .Select(t => t)
                     .ToList();
 
-            // give the design panel the current space
-            hoofdscherm.placement.OpenPanel(selectedSpace[0]);
+            // give the design panel the current space ------------old
+                //hoofdscherm.placement.OpenPanel(selectedSpace[0]);
+
+
+            // ------------------------- new 
+            hoofdscherm.productGrid.Visible=true;
+            hoofdscherm.productGrid.Enabled = true;
+
+            //---------
             this.Visible = false;
            
         }

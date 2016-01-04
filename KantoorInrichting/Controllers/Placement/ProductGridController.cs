@@ -88,7 +88,7 @@ namespace KantoorInrichting.Controllers.Placement
             // Made a switch using lambda expressions in a dictionary, since you can not do a switch on types
             var @switch = new Dictionary<Type, Action>
             {
-                {typeof (EventArgs), () => HandleOtherEvent(sender, e)},
+                {typeof (EventArgs), () => HandleOtherEvent(sender, e,eventName)},
                 {typeof (LayoutEventArgs), () => LayoutChanged(sender, (LayoutEventArgs) e)},
                 {typeof (MouseEventArgs), () => HandleMouseEvent(sender, (MouseEventArgs) e, eventName)},
                 {typeof (DragEventArgs), () => HandleDragEvents(sender, (DragEventArgs) e, eventName)}
@@ -151,15 +151,17 @@ namespace KantoorInrichting.Controllers.Placement
             }
         }
 
-        public void HandleOtherEvent(object sender, EventArgs e)
+        public void HandleOtherEvent(object sender, EventArgs e, string eventName)
         {
+            if (sender is Button)
+                HandleButtonEvent(sender, e, eventName);
             if (sender is CheckBox)
                 HandleCheckBoxEvent(sender, e);
             if (sender is TrackBar)
                 HandleTrackbarEvent(sender, e);
         }
 
-        public void HandleButtonEvent(object sender, MouseEventArgs e, string eventName)
+        public void HandleButtonEvent(object sender, EventArgs e, string eventName)
         {
             switch (eventName)
             {
@@ -312,7 +314,7 @@ namespace KantoorInrichting.Controllers.Placement
         {
             // TODO save the current list to the database 
             // ( problem as of 31/12/2015: There's no save method in the DatabaseController )
-            Console.WriteLine("SAVE ROOM");
+            MessageBox.Show("Save Room");
         }
 
 
