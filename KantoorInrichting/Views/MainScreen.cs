@@ -21,10 +21,10 @@ namespace KantoorInrichting.Views
 {
     public partial class MainScreen : UserControl
     {
-        public MainFrame hoofdscherm;
-        public MainScreen(MainFrame hoofdscherm)
+        public MainFrame MainFrame;
+        public MainScreen(MainFrame mainFrame)
         {
-            this.hoofdscherm = hoofdscherm;
+            this.MainFrame = mainFrame;
             InitializeComponent();
         }
 
@@ -35,64 +35,64 @@ namespace KantoorInrichting.Views
 
         private void VooraadButton_Click(object sender, EventArgs e)
         {
-            hoofdscherm.inventoryScreen1.Visible = true;
-            hoofdscherm.inventoryScreen1.Enabled = true;
+            MainFrame.inventoryScreen1.Visible = true;
+            MainFrame.inventoryScreen1.Enabled = true;
             this.Visible = false;
-            hoofdscherm.inventoryScreen1.BringToFront();
+            MainFrame.inventoryScreen1.BringToFront();
         }
 
         private void MapButton_Click(object sender, EventArgs e)
         {
-//            GridController gc = new GridController(hoofdscherm.gridFieldView, new GridFieldModel(10, 10, 0.5f));
-//            // hoofdscherm overwrites my GridFieldView size, so I have to set the screen size like this
-//            hoofdscherm.Width = 800;
-//            hoofdscherm.Height = 670;
-//            hoofdscherm.gridFieldView.SetListView(ProductFactory.GetPossibilities());
+//            GridController gc = new GridController(MainFrame.gridFieldView, new GridFieldModel(10, 10, 0.5f));
+//            // MainFrame overwrites my GridFieldView size, so I have to set the screen size like this
+//            MainFrame.Width = 800;
+//            MainFrame.Height = 670;
+//            MainFrame.gridFieldView.SetListView(ProductFactory.GetPossibilities());
 //            Application.DoEvents();
-//            hoofdscherm.Active = hoofdscherm.gridFieldView;
-//            hoofdscherm.gridFieldView.Visible = true;
-//            hoofdscherm.gridFieldView.Enabled = true;
+//            MainFrame.Active = MainFrame.gridFieldView;
+//            MainFrame.gridFieldView.Visible = true;
+//            MainFrame.gridFieldView.Enabled = true;
 //            this.Visible = false;
-//            hoofdscherm.gridFieldView.BringToFront();
+//            MainFrame.gridFieldView.BringToFront();
 
             Console.WriteLine("Open room selection and get data from there! -- MainScreen.cs Line 58"); 
-            hoofdscherm.AddPanelToMainscreen(hoofdscherm.productGrid);
-            hoofdscherm.Size = ProductGrid.PanelSize;
-            hoofdscherm.productGrid.Visible = true;
-            hoofdscherm.productGrid.Enabled = true;
+            MainFrame.AddPanelToMainscreen(MainFrame.productGrid);
+            MainFrame.Size = ProductGrid.PanelSize;
+            MainFrame.productGrid.Visible = true;
+            MainFrame.productGrid.Enabled = true;
             this.Visible = false;
-            hoofdscherm.productGrid.BringToFront();
+            MainFrame.productGrid.BringToFront();
         }
 
         private void assortmentButton_Click(object sender, EventArgs e)
         {
-            hoofdscherm.assortmentScreen.Visible = true;
-            hoofdscherm.assortmentScreen.Enabled = true;
+            MainFrame.assortmentScreen.Visible = true;
+            MainFrame.assortmentScreen.Enabled = true;
             this.Visible = false;
-            hoofdscherm.assortmentScreen.BringToFront();
+            MainFrame.assortmentScreen.BringToFront();
         }
 
         private void ProductAddingButton_Click(object sender, EventArgs e)
         {
 
-            hoofdscherm.spaceChoice.Visible = true;
-            hoofdscherm.spaceChoice.Enabled = true;
+            MainFrame.spaceChoice.Visible = true;
+            MainFrame.spaceChoice.Enabled = true;
             this.Visible = false;
-            hoofdscherm.spaceChoice.BringToFront();
+            MainFrame.spaceChoice.BringToFront();
         }
 
         private void CategoryManager_Click(object sender, EventArgs e)
         {
-            hoofdscherm.categoryManagerController = new CategoryManagerController();
-            hoofdscherm.categoryManager = new CategoryManager(hoofdscherm.categoryManagerController);
+            MainFrame.CategoryManagerController = new CategoryManagerController();
+            MainFrame.CategoryManager = new CategoryManager(MainFrame.CategoryManagerController);
         }
 
         private void MapsButton_Click(object sender, EventArgs e)
         {
-            hoofdscherm.MapsScreen.Visible = true;
-            hoofdscherm.MapsScreen.Enabled = true;
+            MainFrame.MapsScreen.Visible = true;
+            MainFrame.MapsScreen.Enabled = true;
             this.Visible = false;
-            hoofdscherm.MapsScreen.BringToFront();
+            MainFrame.MapsScreen.BringToFront();
         }
     }
 }

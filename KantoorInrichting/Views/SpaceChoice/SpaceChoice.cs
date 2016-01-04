@@ -16,11 +16,11 @@ namespace KantoorInrichting.Views.SpaceChoice
 {
     public partial class SpaceChoice : UserControl
     {
-        public MainFrame hoofdscherm;
+        public MainFrame MainScreen;
 
-        public SpaceChoice(MainFrame hoofdscherm)
+        public SpaceChoice(MainFrame mainScreen)
         {
-            this.hoofdscherm = hoofdscherm;      
+            this.MainScreen = mainScreen;      
             InitializeComponent();
             FillComboBox(comboBox1);
             Invalidate();
@@ -31,7 +31,7 @@ namespace KantoorInrichting.Views.SpaceChoice
             // clear dropdown
             dropdown.Items.Clear();
             // Select all the items in de spaces list
-            var SpaceResult = Models.Space.Space.List.GroupBy(space => space.Room)
+            var spaceResult = Models.Space.Space.List.GroupBy(space => space.Room)
                    .Select(grp => grp.First())
                    .ToList();
             // add default 
@@ -39,7 +39,7 @@ namespace KantoorInrichting.Views.SpaceChoice
             dropdown.Items.Add("selecteer een ruimte");
             dropdown.SelectedIndex = 0;
             // add the unique items to space dropdown
-            foreach (Space space in SpaceResult)
+            foreach (Space space in spaceResult)
             {
                 if (space.Room != null)
                 {
@@ -72,15 +72,15 @@ namespace KantoorInrichting.Views.SpaceChoice
                         .ToList();
 
                 // give the design panel the current space ------------old
-                //hoofdscherm.placement.OpenPanel(selectedSpace[0]);
+                //MainScreen.placement.OpenPanel(selectedSpace[0]);
 
 
                 // ------------------------- new 
-                hoofdscherm.Size = ProductGrid.PanelSize;
-                hoofdscherm.productGrid.controller.OpenPanel(hoofdscherm.productGrid, selectedSpace[0]);
-                hoofdscherm.productGrid.Visible = true;
-                hoofdscherm.productGrid.Enabled = true;
-                hoofdscherm.productGrid.BringToFront();
+                MainScreen.Size = ProductGrid.PanelSize;
+                MainScreen.productGrid.controller.OpenPanel(MainScreen.productGrid, selectedSpace[0]);
+                MainScreen.productGrid.Visible = true;
+                MainScreen.productGrid.Enabled = true;
+                MainScreen.productGrid.BringToFront();
 
 
                 //---------
