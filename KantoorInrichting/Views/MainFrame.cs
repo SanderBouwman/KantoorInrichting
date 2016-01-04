@@ -37,7 +37,7 @@ namespace KantoorInrichting
             this.mainScreen1 = new KantoorInrichting.Views.MainScreen(this);
             this.gridFieldView = new KantoorInrichting.Views.Grid.GridFieldView();
             this.assortmentScreen = new Views.Assortment.AssortmentScreen(this);
-//            this.placement = new Views.Placement.ProductAdding(this);
+            this.placement = new Views.Placement.ProductAdding(this);
             this.loginScreen1 = new Views.LoginScreen(this);
             this.MapsScreen = new Views.Maps.MapsScreen(this);
             this.spaceChoice = new Views.SpaceChoice.SpaceChoice(this);
