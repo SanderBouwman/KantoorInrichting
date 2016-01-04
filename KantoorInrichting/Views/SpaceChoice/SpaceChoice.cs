@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using KantoorInrichting.Models.Maps;
 using KantoorInrichting.Controllers;
 using KantoorInrichting.Controllers.Placement;
+using KantoorInrichting.Views.Placement;
 
 namespace KantoorInrichting.Views.SpaceChoice
 {
@@ -62,6 +63,7 @@ namespace KantoorInrichting.Views.SpaceChoice
 
 
             // ------------------------- new 
+            hoofdscherm.Size = ProductGrid.PanelSize;
             IController controller = new ProductGridController(hoofdscherm.productGrid, 10, 10, 0.5f);
             hoofdscherm.productGrid.controller.OpenPanel(hoofdscherm.productGrid, selectedSpace[0]);
             hoofdscherm.productGrid.Visible=true;

@@ -50,6 +50,8 @@ namespace KantoorInrichting.Controllers.Placement
         private int zoomSize;
         private ZoomView zoomView;
         private Space space;
+            
+        DatabaseController dbc = DatabaseController.Instance;
 
         public ProductGridController(IView<ProductGrid.PropertyEnum> view,
             float meterWidth, float meterHeight, float tileSize)
@@ -321,7 +323,7 @@ namespace KantoorInrichting.Controllers.Placement
 
         public void OpenPanel(ProductGrid grid, Space spacenr)
         {
-            PlacementController.placedProductList.Clear();
+            placedProducts.Clear();
             this.space = spacenr;
             //this.SpaceNumberTitle.Text = space.Room;
             grid.spaceNumberTextbox.Text = space.Room;
@@ -331,14 +333,36 @@ namespace KantoorInrichting.Controllers.Placement
             grid.Enabled = true;
 
             //Update the data (size and colour of the PlacedProduct, information of the ProductList and ProductInfo)
-            this.fixData();
-           // hoofdscherm.placement.controller.placeProducts();
+            this.placeProducts();
+            this.PaintProducts();
+            grid.Invalidate();
             grid.BringToFront();
+
         }
 
-        public void fixData()
+        public void placeProducts()
         {
-           // controller.FixUserData();
+            foreach (var placedProduct in dbc.DataSet.placement)
+            {
+                // check if placedproduct belongs to current space
+                if (placedProduct.space_number == space.Room)
+                {
+                    
+                    foreach (ProductModel product in ProductModel.list)
+                    { // for each productmodel -> check if the id equals the placedproduct id
+                        if (product.Product_id == placedProduct.product_id)
+                        {
+                            // create placedproducts with a point and product reference
+                            Point point = new Point(placedProduct.x_position, placedProduct.y_position);
+                            PlacedProduct p1 = new PlacedProduct(product, point);
+
+                            // add the placedproduct to the list
+                            placedProducts.Add(p1);
+                        }
+                    }
+
+                }
+            }
         }
 
 
