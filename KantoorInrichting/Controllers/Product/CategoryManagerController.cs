@@ -76,9 +76,6 @@ namespace KantoorInrichting.Controllers.Product
                     }
                 }
             }
-       
-
-
         }
 
 
@@ -156,8 +153,6 @@ namespace KantoorInrichting.Controllers.Product
 
         }
 
-
-
         public int checkAmountOfProducts(string CatName)
         {
             int amount =0;
@@ -192,6 +187,19 @@ namespace KantoorInrichting.Controllers.Product
                 }
             }
                 return amount;
+        }
+
+        public void changeNameButton(string categoryName, int categoryId)
+        {
+            ChangeCategoryName changeCategoryName = new ChangeCategoryName(categoryName);
+            changeCategoryName.ShowDialog();
+        }
+
+        public void changeNameButton2(string subCategoryName, int subCategoryId)
+        {
+            ChangeCategoryName changeCategoryName = new ChangeCategoryName(subCategoryName);
+            changeCategoryName.ShowDialog();
+
         }
     }
 }

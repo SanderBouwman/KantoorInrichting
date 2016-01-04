@@ -99,5 +99,31 @@ namespace KantoorInrichting.Views.Product
             this.categoryTableAdapter.Fill(this.kantoorInrichtingDataSet.category);
 
         }
+
+        private void changeNameButton_Click(object sender, EventArgs e)
+        {
+            if (categoryComboBox.SelectedIndex == 0)
+            {
+                MessageBox.Show("Selecteer een categorie");
+            }
+            else
+            {
+                controller.changeNameButton(categoryComboBox.SelectedItem.ToString(), categoryComboBox.SelectedIndex);
+                refreshComboBox();
+            }
+        }
+
+        private void changeNameButton2_Click(object sender, EventArgs e)
+        {
+            if (subcategoryComboBox.SelectedIndex == -1)
+            {
+                MessageBox.Show("Selecteer een subcategorie");
+            }
+            else
+            {
+                controller.changeNameButton2(subcategoryComboBox.SelectedItem.ToString(), subcategoryComboBox.SelectedIndex);
+                refreshComboBox();
+            }
+        }
     }
 }

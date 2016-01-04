@@ -257,7 +257,7 @@ namespace KantoorInrichting.Controllers.Assortment
                 {
                     RemoveImage(currentImagePath);
                 }
-                MessageBox.Show("Update successful");
+                MessageBox.Show("Update gelukt");
             }
             catch (Exception ex)
             {
@@ -265,7 +265,7 @@ namespace KantoorInrichting.Controllers.Assortment
                 {
                     RemoveImage(newImagePath);
                 }
-                MessageBox.Show("Update failed" + ex);
+                MessageBox.Show("Update mislukt" + ex);
             }
         }
 

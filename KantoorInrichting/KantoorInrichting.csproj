@@ -68,6 +68,7 @@
     <Compile Include="Controllers\Placement\PolygonPlacementController.cs" />
     <Compile Include="Controllers\Placement\ProductGridController.cs" />
     <Compile Include="Controllers\Placement\Util\ProductGridUtility.cs" />
+    <Compile Include="Controllers\Product\ChangeCategoryNameController.cs" />
     <Compile Include="Controllers\Product\ProductFactory.cs" />
     <Compile Include="Controllers\PropertyComparer.cs" />
     <Compile Include="Controllers\SortableBindingList.cs" />
@@ -252,6 +253,12 @@
     <Compile Include="Views\Product\CategoryManager.Designer.cs">
       <DependentUpon>CategoryManager.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Product\ChangeCategoryName.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Product\ChangeCategoryName.Designer.cs">
+      <DependentUpon>ChangeCategoryName.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Product\NewCategory.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -344,6 +351,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Product\CategoryManager.resx">
       <DependentUpon>CategoryManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Product\ChangeCategoryName.resx">
+      <DependentUpon>ChangeCategoryName.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Product\NewCategory.resx">
       <DependentUpon>NewCategory.cs</DependentUpon>
