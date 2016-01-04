@@ -16,20 +16,20 @@ namespace KantoorInrichting.Views.Inventory
 {
     public partial class InventoryScreen : UserControl
     {
-        InventoryController controller; 
-        public MainFrame hoofdscherm;
+        readonly InventoryController _controller; 
+        public MainFrame Hoofdscherm;
 
 
         public InventoryScreen(MainFrame hoofdscherm ) 
         {
             //create new controller for this screen
-            this.controller = new InventoryController(this);                          
+            this._controller = new InventoryController(this);                          
   
-            this.hoofdscherm = hoofdscherm;             
+            this.Hoofdscherm = hoofdscherm;             
             // init screen and fill all the data
             InitializeComponent();
-            controller.FillData();
-            controller.FillDropdown();
+            _controller.FillData();
+            _controller.FillDropdown();
             Invalidate();
 
        
@@ -122,8 +122,8 @@ namespace KantoorInrichting.Views.Inventory
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            // when an cell is clicked
+        {                                   
+            // when an cell is clicked                                                      ///there is not supposed to be any logic in a view
             var senderGrid = (DataGridView)sender;
 
             // if the clicked cell is an column, and the row is not the header
@@ -165,7 +165,7 @@ namespace KantoorInrichting.Views.Inventory
             // if the brand dropdown is changed, the checkbox is set to true.
             checkBox1.Checked = true;
             // filter the datagridview with the selected brand
-            controller.FilterBrand();
+            _controller.FilterBrand();
         }
 
         private void DropdownCategorie_SelectedIndexChanged(object sender, EventArgs e)
@@ -173,7 +173,7 @@ namespace KantoorInrichting.Views.Inventory
             // if the category dropdown is changed, the checkbox is set to true.
             checkBox1.Checked = true;
             // filter the datagridview with the selected category
-            controller.FilterCategory();
+            _controller.FilterCategory();
         }
 
         private void button1_Click(object sender, EventArgs e)

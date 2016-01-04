@@ -13,15 +13,15 @@ namespace KantoorInrichting.Views.Inventory
     public partial class InventoryRemove : Form
     {
         public event EventHandler InventoryEditorScreenClick;
-        private string productname;
-        private UserControl U;
+        private readonly UserControl _userControl;
+        private readonly string _productname;
 
 
-        public InventoryRemove(Models.Product.ProductModel p, UserControl u)
+        public InventoryRemove(Models.Product.ProductModel p, UserControl userControl)
         {
             InitializeComponent();
-            this.productname = p.Name;
-            this.U = u;
+            this._productname = p.Name;
+            this._userControl = userControl;
         }
 
 
@@ -33,14 +33,14 @@ namespace KantoorInrichting.Views.Inventory
         private void button2_Click(object sender, EventArgs e)
         {
             this.Close();
-            U.Refresh();
+            _userControl.Refresh();
         }
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            MessageBox.Show("SQL query: \nDELETE FROM product \nWHERE productnaam = '" + productname + "'");
+            MessageBox.Show("SQL query: \nDELETE FROM product \nWHERE productnaam = '" + _productname + "'");
             this.Close();
-            U.Refresh();
+            _userControl.Refresh();
         }
     }
 }
