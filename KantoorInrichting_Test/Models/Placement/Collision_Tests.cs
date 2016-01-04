@@ -45,22 +45,22 @@ namespace KantoorInrichting_Test.Models.Placement
 
 
             //Do
-            placedP.gridSpace = 50; //Set grid (movement speed) to 50.
+            placedP.GridSpace = 50; //Set grid (movement speed) to 50.
             placedP.Move(true); //{250;200}
             placedP.Move(true); //{300;200}Cant perform this.
-            placedP.gridSpace = 10;
+            placedP.GridSpace = 10;
             placedP.Move(true); //{260;200} Now it can, because the grid was changed, and that allowed it to move 'slower'
             point.X += move_x;
             point.Y += move_y;
 
 
             //Look
-            Assert.AreEqual(point.X, placedP.location.X, 0.1, "The horizontal location of the product is different!");
-            Assert.AreEqual(point.Y, placedP.location.Y, 0.1, "The vertical location of the product is different!");
+            Assert.AreEqual(point.X, placedP.Location.X, 0.1, "The horizontal location of the product is different!");
+            Assert.AreEqual(point.Y, placedP.Location.Y, 0.1, "The vertical location of the product is different!");
 
             for (int index = 0; index < pointCorner.Length; index++)
             {
-                Assert.AreEqual(pointCorner[index].ToString(), placedP.cornerPoints[index].ToString(), true, "Corner #" + index + " is in the wrong spot!");
+                Assert.AreEqual(pointCorner[index].ToString(), placedP.CornerPoints[index].ToString(), true, "Corner #" + index + " is in the wrong spot!");
             }
         }
 
@@ -110,21 +110,21 @@ namespace KantoorInrichting_Test.Models.Placement
 
 
             //Do
-            placedP.addAngle(15); //after this it's 15
-            placedP.addAngle(15); //after this it's 30
-            placedP.addAngle(15); //after this it's 45
-            placedP.addAngle(15); //after this it's 60 -Can't perform this because of the collision.
-            placedP.addAngle(15); //after this it's 75 -Can't perform this.
-            placedP.addAngle(15); //after this it's 90 -Can't perform this.
+            placedP.AddAngle(15); //after this it's 15
+            placedP.AddAngle(15); //after this it's 30
+            placedP.AddAngle(15); //after this it's 45
+            placedP.AddAngle(15); //after this it's 60 -Can't perform this because of the collision.
+            placedP.AddAngle(15); //after this it's 75 -Can't perform this.
+            placedP.AddAngle(15); //after this it's 90 -Can't perform this.
 
 
             //Look
-            Assert.AreEqual(point.X, placedP.location.X, 0.1, "The horizontal location of the product is different!");
-            Assert.AreEqual(point.Y, placedP.location.Y, 0.1, "The vertical location of the product is different!");
+            Assert.AreEqual(point.X, placedP.Location.X, 0.1, "The horizontal location of the product is different!");
+            Assert.AreEqual(point.Y, placedP.Location.Y, 0.1, "The vertical location of the product is different!");
 
             for (int index = 1; index < pointCorner.Length; index++)
             {
-                Assert.AreEqual(pointCorner[index].ToString(), placedP.cornerPoints[index].ToString(), true, "Corner #" + index + " is in the wrong spot!");
+                Assert.AreEqual(pointCorner[index].ToString(), placedP.CornerPoints[index].ToString(), true, "Corner #" + index + " is in the wrong spot!");
             }
         }
 
@@ -173,26 +173,26 @@ namespace KantoorInrichting_Test.Models.Placement
 
 
             //Do
-            placedP.gridSpace = 100; //Set the grid to 100, so that it moves 100 pixels per move
+            placedP.GridSpace = 100; //Set the grid to 100, so that it moves 100 pixels per move
             placedP.Move(true); //Towards center = { 300 ; 200}
             placedP.Move(true); //Towards center = { 400 ; 200}
-            placedP.addAngle(15); //after this it's 15
-            placedP.addAngle(15); //after this it's 30
-            placedP.addAngle(15); //after this it's 45
-            placedP.addAngle(15); //after this it's 60 -Can't perform this because of the collision.
-            placedP.addAngle(15); //after this it's 75 -Can't perform this.
-            placedP.addAngle(15); //after this it's 90 -Can't perform this.
+            placedP.AddAngle(15); //after this it's 15
+            placedP.AddAngle(15); //after this it's 30
+            placedP.AddAngle(15); //after this it's 45
+            placedP.AddAngle(15); //after this it's 60 -Can't perform this because of the collision.
+            placedP.AddAngle(15); //after this it's 75 -Can't perform this.
+            placedP.AddAngle(15); //after this it's 90 -Can't perform this.
             point.X += move_x;
             point.Y += move_y;
 
 
             //Look
-            Assert.AreEqual(point.X, placedP.location.X, 0.1, "The horizontal location of the product is different!");
-            Assert.AreEqual(point.Y, placedP.location.Y, 0.1, "The vertical location of the product is different!");
+            Assert.AreEqual(point.X, placedP.Location.X, 0.1, "The horizontal location of the product is different!");
+            Assert.AreEqual(point.Y, placedP.Location.Y, 0.1, "The vertical location of the product is different!");
 
             for (int index = 1; index < pointCorner.Length; index++)
             {
-                Assert.AreEqual(pointCorner[index].ToString(), placedP.cornerPoints[index].ToString(), true, "Corner #" + index + " is in the wrong spot!");
+                Assert.AreEqual(pointCorner[index].ToString(), placedP.CornerPoints[index].ToString(), true, "Corner #" + index + " is in the wrong spot!");
             }
         }
 
@@ -240,10 +240,10 @@ namespace KantoorInrichting_Test.Models.Placement
 
 
             //Do
-            placedP.gridSpace = 50; //Set to 50
-            placedP.addAngle(15); //after this it's 15
-            placedP.addAngle(15); //after this it's 30
-            placedP.addAngle(15); //after this it's 45
+            placedP.GridSpace = 50; //Set to 50
+            placedP.AddAngle(15); //after this it's 15
+            placedP.AddAngle(15); //after this it's 30
+            placedP.AddAngle(15); //after this it's 45
             placedP.Move(true); //Towards center = { 250 ; 200}            
             placedP.Move(true); //Towards center = { 300 ; 200}
             placedP.Move(true); //Towards center = { 350 ; 200}
@@ -255,12 +255,12 @@ namespace KantoorInrichting_Test.Models.Placement
 
 
             //Look
-            Assert.AreEqual(point.X, placedP.location.X, 0.1, "The horizontal location of the product is different!");
-            Assert.AreEqual(point.Y, placedP.location.Y, 0.1, "The vertical location of the product is different!");
+            Assert.AreEqual(point.X, placedP.Location.X, 0.1, "The horizontal location of the product is different!");
+            Assert.AreEqual(point.Y, placedP.Location.Y, 0.1, "The vertical location of the product is different!");
 
             for (int index = 1; index < pointCorner.Length; index++)
             {
-                Assert.AreEqual(pointCorner[index].ToString(), placedP.cornerPoints[index].ToString(), true, "Corner #" + index + " is in the wrong spot!");
+                Assert.AreEqual(pointCorner[index].ToString(), placedP.CornerPoints[index].ToString(), true, "Corner #" + index + " is in the wrong spot!");
             }
         }
     }

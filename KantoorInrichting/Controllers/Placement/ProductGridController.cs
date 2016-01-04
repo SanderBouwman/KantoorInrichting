@@ -196,10 +196,10 @@ namespace KantoorInrichting.Controllers.Placement
 
         public void RotateSelectedItem(int degrees)
         {
-            if (selectedProduct.currentAngle + degrees < 360 && selectedProduct.currentAngle + degrees > -360)
-                selectedProduct.currentAngle += degrees;
+            if (selectedProduct.CurrentAngle + degrees < 360 && selectedProduct.CurrentAngle + degrees > -360)
+                selectedProduct.CurrentAngle += degrees;
             else
-                selectedProduct.currentAngle = 0;
+                selectedProduct.CurrentAngle = 0;
             view.Get(ProductGrid.PropertyEnum.Panel).Invalidate();
         }
 
@@ -293,7 +293,7 @@ namespace KantoorInrichting.Controllers.Placement
         {
             Rectangle rectangle = utility.GetProductRectangle(product, tileWidth, tileHeight, tileSize);
             SolidBrush brush = utility.SelectBrush(product, legendDictionary);
-            int angle = product.currentAngle;
+            int angle = product.CurrentAngle;
             using (Matrix m = new Matrix())
             {
                 m.RotateAt(angle, new PointF(rectangle.Left + rectangle.Width/2, rectangle.Top + rectangle.Height/2));
@@ -352,9 +352,9 @@ namespace KantoorInrichting.Controllers.Placement
                 var hoi2 = dbc.DataSet.placement.Rows[dbc.DataSet.placement.Rows.Count - 1]["placement_id"]; ;
                 string hoi = hoi2.ToString();
                 int x = Int32.Parse(hoi) + 1;
-                float X = product.location.X;
-                float Y = product.location.Y;
-                int product_id = product.product.Product_id;
+                float X = product.Location.X;
+                float Y = product.Location.Y;
+                int product_id = product.Product.Product_id;
 
                 anyRow["placement_id"] = x;
                 anyRow["space_number"] = spacenumber;
@@ -425,7 +425,7 @@ namespace KantoorInrichting.Controllers.Placement
                 selectedProduct = product;
                 draggingProduct = true;
 
-                selectedProduct.OriginalLocation = selectedProduct.location;
+                selectedProduct.OriginalLocation = selectedProduct.Location;
             }
             else
             {

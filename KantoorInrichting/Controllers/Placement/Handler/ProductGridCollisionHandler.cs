@@ -19,12 +19,12 @@ namespace KantoorInrichting.Controllers.Placement.Handler
                 if (current == t)
                     continue;
 
-                if (t.product.Collidable && current.product.Collidable)
+                if (t.Product.Collidable && current.Product.Collidable)
                 {
-                    bool intersectLeft = current.location.X < t.location.X + t.product.Size.Width,
-                        intersectRight = current.location.X + current.product.Size.Width > t.location.X,
-                        intersectTop = current.location.Y < t.location.Y + t.product.Size.Height,
-                        intersectBottom = current.location.Y + current.product.Size.Height > t.location.Y;
+                    bool intersectLeft = current.Location.X < t.Location.X + t.Product.Size.Width,
+                        intersectRight = current.Location.X + current.Product.Size.Width > t.Location.X,
+                        intersectTop = current.Location.Y < t.Location.Y + t.Product.Size.Height,
+                        intersectBottom = current.Location.Y + current.Product.Size.Height > t.Location.Y;
 
                     if (intersectLeft && intersectRight && intersectTop && intersectBottom)
                         return true;

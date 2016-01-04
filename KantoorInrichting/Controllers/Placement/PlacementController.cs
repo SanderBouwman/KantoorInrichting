@@ -99,7 +99,7 @@ namespace KantoorInrichting.Controllers.Placement
         public void ChangeSelected(ProductInfo sender)
         {
             productAdding.productInfo1.setProduct(sender.product); //Sets a new product
-            if(currentProduct.product.Name != sender.product.Name) { currentProduct = null; }
+            if(currentProduct.Product.Name != sender.product.Name) { currentProduct = null; }
             //Seing as name is an identifier in the database, this can be used to compare the two: Look if the names are the same, if not, then a different product is the currentProduct. Therefore the currentProduct needs to be set to null.
         }
         //
@@ -107,7 +107,7 @@ namespace KantoorInrichting.Controllers.Placement
         {
             foreach (PlacedProduct placedP in placedProductList)
             {
-                placedP.resetImage();
+                placedP.ResetImage();
             }
             productAdding.productList1.fixInformation();
             productAdding.productInfo1.setProduct(productAdding.productInfo1.product);
@@ -119,31 +119,31 @@ namespace KantoorInrichting.Controllers.Placement
             Color usedColor;
 
             // linq select category with the current id
-            var selectedcategory = CategoryModel.list
-                    .Where(c => c.catID == CatId)
+            var selectedcategory = CategoryModel.List
+                    .Where(c => c.CatId == CatId)
                     .Select(c => c)
                     .ToList();
 
 
             //check if the category is an subcategory
-            if (selectedcategory[0].isSubcategoryFrom > -1 || selectedcategory[0].isSubcategoryFrom == null)
+            if (selectedcategory[0].IsSubcategoryFrom > -1 || selectedcategory[0].IsSubcategoryFrom == null)
             {
-                MainCategory = selectedcategory[0].isSubcategoryFrom;
+                MainCategory = selectedcategory[0].IsSubcategoryFrom;
 
 
                 // linq select category with the current id
-                var selectedcategory2 = CategoryModel.list
-                        .Where(c => c.catID == MainCategory)
+                var selectedcategory2 = CategoryModel.List
+                        .Where(c => c.CatId == MainCategory)
                         .Select(c => c)
                         .ToList();
 
                 // use the main category color
-                usedColor = selectedcategory2[0].colour;
+                usedColor = selectedcategory2[0].Colour;
             }
             else
             {
                 // else if no subcategory just use the current category color
-                usedColor = selectedcategory[0].colour;
+                usedColor = selectedcategory[0].Colour;
 
             }
             return usedColor;
@@ -185,7 +185,7 @@ namespace KantoorInrichting.Controllers.Placement
             foreach (PlacedProduct pp in placedProductList)
             {
                 //Draw the image
-                g.DrawImage(pp.rotatedMap, pp.location.X - (pp.rotatedMap.Width / 2), pp.location.Y - (pp.rotatedMap.Height / 2));
+                g.DrawImage(pp.RotatedMap, pp.Location.X - (pp.RotatedMap.Width / 2), pp.Location.Y - (pp.RotatedMap.Height / 2));
 
                 for (int i = 0; i < pp.Poly.Points.Count; i++)
                 {
@@ -232,7 +232,7 @@ namespace KantoorInrichting.Controllers.Placement
             int count = 0;
             foreach (PlacedProduct placedproduct in placedProductList)
             {
-                if (placedproduct.product.Product_id == model.Product_id)
+                if (placedproduct.Product.Product_id == model.Product_id)
                 {
                     count++;
                 }
@@ -263,7 +263,7 @@ namespace KantoorInrichting.Controllers.Placement
 
             if (d == Direction.COUNTERCLOCKWISE) { angle *= -1; }
 
-            currentProduct.addAngle(angle);
+            currentProduct.AddAngle(angle);
 
             DoRepaint();
         }
@@ -282,7 +282,7 @@ namespace KantoorInrichting.Controllers.Placement
             if(d == Direction.UP || d == Direction.LEFT){ speed *= -1; }
             if(d == Direction.UP || d == Direction.DOWN){ x_Axis = false; }
 
-            currentProduct.gridSpace = speed;
+            currentProduct.GridSpace = speed;
             placement_Move(currentProduct, x_Axis);
 
             DoRepaint();
@@ -334,9 +334,9 @@ namespace KantoorInrichting.Controllers.Placement
                 var hoi2 = dbc.DataSet.placement.Rows[dbc.DataSet.placement.Rows.Count - 1]["placement_id"]; ;
                 string hoi = hoi2.ToString();
                 int x = Int32.Parse(hoi) + 1;
-                string X = product.location.X.ToString();
-                string Y = product.location.Y.ToString();
-                int product_id = product.product.Product_id;
+                string X = product.Location.X.ToString();
+                string Y = product.Location.Y.ToString();
+                int product_id = product.Product.Product_id;
 
                 anyRow["placement_id"] = x;
                 anyRow["space_number"] = spacenumber;
@@ -432,7 +432,7 @@ namespace KantoorInrichting.Controllers.Placement
             {
                 //Make a new model, size and color
                 ProductModel model = (ProductModel)e.Data.GetData(typeof (ProductModel));
-                drawImageColor = GetMainCategoryColorIfNeeded(model.ProductCategory.catID);
+                drawImageColor = GetMainCategoryColorIfNeeded(model.ProductCategory.CatId);
 
                 //Colour in the bitmap and resize it.
                 Graphics gfx = Graphics.FromImage(drawImageGhostBitmap);
@@ -451,9 +451,9 @@ namespace KantoorInrichting.Controllers.Placement
             {
                 //Get the rotated bitmap
                 PlacedProduct placedP = (PlacedProduct)e.Data.GetData(typeof(PlacedProduct));
-                drawImageGhostBitmap = placedP.rotatedMap;
+                drawImageGhostBitmap = placedP.RotatedMap;
 
-                Vector clickOffsetVector = new Vector((clickLocation.X - placedP.location.X), (clickLocation.Y - placedP.location.Y)); //Get the click offset if the user clicked the bottom left of the image
+                Vector clickOffsetVector = new Vector((clickLocation.X - placedP.Location.X), (clickLocation.Y - placedP.Location.Y)); //Get the click offset if the user clicked the bottom left of the image
 
                 //Set the new location
                 drawImageGhostPoint = new Point(
@@ -513,7 +513,7 @@ namespace KantoorInrichting.Controllers.Placement
                     clickLocation = MouseLocation;
                     productAdding.DoDragDrop(PlacedP, DragDropEffects.Copy);
                     //Set as current product
-                    productAdding.productInfo1.setProduct(PlacedP.product);
+                    productAdding.productInfo1.setProduct(PlacedP.Product);
                     currentProduct = PlacedP;
                     break;
                 }
@@ -605,8 +605,8 @@ namespace KantoorInrichting.Controllers.Placement
             deltaY = ((deltaY / MovementSpeed) * MovementSpeed);
 
 
-            Point delta = new Point((int)(product.location.X + deltaX), (int)(product.location.Y + deltaY));
-            Polygon movedProduct = product.getVirtualPolygon(delta);
+            Point delta = new Point((int)(product.Location.X + deltaX), (int)(product.Location.Y + deltaY));
+            Polygon movedProduct = product.GetVirtualPolygon(delta);
 
 
             foreach (Polygon placedP in product.PolyList)
@@ -645,15 +645,15 @@ namespace KantoorInrichting.Controllers.Placement
         {
             int x = 0;
             int y = 0;
-            if (X_Axis) { x += targetProduct.gridSpace; }
-            else { y += targetProduct.gridSpace; }
+            if (X_Axis) { x += targetProduct.GridSpace; }
+            else { y += targetProduct.GridSpace; }
 
             Vector velocity = new Vector(x, y);
             Vector playerTranslation1 = velocity;
             Vector playerTranslation2 = velocity;
 
             //Resets the speed, after the velocity has been assigned.
-            if (targetProduct.gridSpace < 0) { targetProduct.gridSpace *= -1; }
+            if (targetProduct.GridSpace < 0) { targetProduct.GridSpace *= -1; }
 
 
             //Test all product polygons for a collision
@@ -696,8 +696,8 @@ namespace KantoorInrichting.Controllers.Placement
                     }
 
                     //Round down to the closest x pixels
-                    playerTranslation1.X = ((int)playerTranslation1.X / targetProduct.gridSpace) * targetProduct.gridSpace;
-                    playerTranslation1.Y = ((int)playerTranslation1.Y / targetProduct.gridSpace) * targetProduct.gridSpace;
+                    playerTranslation1.X = ((int)playerTranslation1.X / targetProduct.GridSpace) * targetProduct.GridSpace;
+                    playerTranslation1.Y = ((int)playerTranslation1.Y / targetProduct.GridSpace) * targetProduct.GridSpace;
                     //MessageBox.Show("then " + playerTranslation1.X.ToString() + " and " + playerTranslation1.Y.ToString());
                     break;
                 }
@@ -744,8 +744,8 @@ namespace KantoorInrichting.Controllers.Placement
                     }
 
                     //Round down to the closest x pixels
-                    playerTranslation2.X = ((int)playerTranslation2.X / targetProduct.gridSpace) * targetProduct.gridSpace;
-                    playerTranslation2.Y = ((int)playerTranslation2.Y / targetProduct.gridSpace) * targetProduct.gridSpace;
+                    playerTranslation2.X = ((int)playerTranslation2.X / targetProduct.GridSpace) * targetProduct.GridSpace;
+                    playerTranslation2.Y = ((int)playerTranslation2.Y / targetProduct.GridSpace) * targetProduct.GridSpace;
                     //MessageBox.Show("then " + playerTranslation2.X.ToString() + " and " + playerTranslation2.Y.ToString());
                     break;
                 }
@@ -782,11 +782,11 @@ namespace KantoorInrichting.Controllers.Placement
             //Update the corner points
             for (int index = 0; index < targetProduct.Poly.Points.Count; index++)
             {
-                targetProduct.cornerPoints[index] = new PointF(targetProduct.Poly.Points[index].X, targetProduct.Poly.Points[index].Y);
+                targetProduct.CornerPoints[index] = new PointF(targetProduct.Poly.Points[index].X, targetProduct.Poly.Points[index].Y);
             }
 
             //Update the center point
-            targetProduct.location = new PointF(targetProduct.location.X + playerTranslation.X, targetProduct.location.Y + playerTranslation.Y);
+            targetProduct.Location = new PointF(targetProduct.Location.X + playerTranslation.X, targetProduct.Location.Y + playerTranslation.Y);
 
         }
         
@@ -798,16 +798,16 @@ namespace KantoorInrichting.Controllers.Placement
         public static void placement_rotatePoints(PlacedProduct targetProduct, int fallbackAngle)
         {
             PointF[] fallbackPoints = new PointF[5];
-            ProductModel product = targetProduct.product;
-            PointF location = targetProduct.location;
+            ProductModel product = targetProduct.Product;
+            PointF location = targetProduct.Location;
 
-            for (int index = 0; index < targetProduct.cornerPoints.Length; index++)
+            for (int index = 0; index < targetProduct.CornerPoints.Length; index++)
             {
-                fallbackPoints[index] = targetProduct.cornerPoints[index];
+                fallbackPoints[index] = targetProduct.CornerPoints[index];
             }
 
-            double angle_Even = (double)targetProduct.currentAngle;
-            double angle_Uneven = targetProduct.currentAngle;
+            double angle_Even = (double)targetProduct.CurrentAngle;
+            double angle_Uneven = targetProduct.CurrentAngle;
             double radius = Math.Sqrt(Math.Pow(0.5 * product.Width, 2) + Math.Pow(0.5 * product.Length, 2));
 
 
@@ -859,26 +859,26 @@ namespace KantoorInrichting.Controllers.Placement
             switch (directional_Even)
             {
                 case 0: //Total degree is between 0 and 89
-                    targetProduct.cornerPoints[0] = new PointF(location.X - Cos_Even, location.Y - Sin_Even);
-                    targetProduct.cornerPoints[2] = new PointF(location.X + Cos_Even, location.Y + Sin_Even);
+                    targetProduct.CornerPoints[0] = new PointF(location.X - Cos_Even, location.Y - Sin_Even);
+                    targetProduct.CornerPoints[2] = new PointF(location.X + Cos_Even, location.Y + Sin_Even);
                     break;
 
 
                 case 1: //Total degree is between 90 and 179
-                    targetProduct.cornerPoints[0] = new PointF(location.X + Sin_Even, location.Y - Cos_Even);
-                    targetProduct.cornerPoints[2] = new PointF(location.X - Sin_Even, location.Y + Cos_Even);
+                    targetProduct.CornerPoints[0] = new PointF(location.X + Sin_Even, location.Y - Cos_Even);
+                    targetProduct.CornerPoints[2] = new PointF(location.X - Sin_Even, location.Y + Cos_Even);
                     break;
 
 
                 case 2: //Total degree is between 180 and 269
-                    targetProduct.cornerPoints[0] = new PointF(location.X + Cos_Even, location.Y + Sin_Even);
-                    targetProduct.cornerPoints[2] = new PointF(location.X - Cos_Even, location.Y - Sin_Even);
+                    targetProduct.CornerPoints[0] = new PointF(location.X + Cos_Even, location.Y + Sin_Even);
+                    targetProduct.CornerPoints[2] = new PointF(location.X - Cos_Even, location.Y - Sin_Even);
                     break;
 
 
                 case 3: //Total degree is between 270 and 359
-                    targetProduct.cornerPoints[0] = new PointF(location.X - Sin_Even, location.Y + Cos_Even);
-                    targetProduct.cornerPoints[2] = new PointF(location.X + Sin_Even, location.Y - Cos_Even);
+                    targetProduct.CornerPoints[0] = new PointF(location.X - Sin_Even, location.Y + Cos_Even);
+                    targetProduct.CornerPoints[2] = new PointF(location.X + Sin_Even, location.Y - Cos_Even);
                     break;
                 default:
                     goto case 0;
@@ -886,38 +886,38 @@ namespace KantoorInrichting.Controllers.Placement
             switch (directional_Uneven)
             {
                 case 0: //Total degree is between 1 and 90
-                    targetProduct.cornerPoints[1] = new PointF(location.X + Cos_Uneven, location.Y + Sin_Uneven);
-                    targetProduct.cornerPoints[3] = new PointF(location.X - Cos_Uneven, location.Y - Sin_Uneven);
+                    targetProduct.CornerPoints[1] = new PointF(location.X + Cos_Uneven, location.Y + Sin_Uneven);
+                    targetProduct.CornerPoints[3] = new PointF(location.X - Cos_Uneven, location.Y - Sin_Uneven);
                     break;
 
 
                 case 1: //Total degree is between 91 and 180
-                    targetProduct.cornerPoints[1] = new PointF(location.X - Sin_Uneven, location.Y + Cos_Uneven);
-                    targetProduct.cornerPoints[3] = new PointF(location.X + Sin_Uneven, location.Y - Cos_Uneven);
+                    targetProduct.CornerPoints[1] = new PointF(location.X - Sin_Uneven, location.Y + Cos_Uneven);
+                    targetProduct.CornerPoints[3] = new PointF(location.X + Sin_Uneven, location.Y - Cos_Uneven);
                     break;
 
 
                 case 2: //Total degree is between 181 and 270
-                    targetProduct.cornerPoints[1] = new PointF(location.X - Cos_Uneven, location.Y - Sin_Uneven);
-                    targetProduct.cornerPoints[3] = new PointF(location.X + Cos_Uneven, location.Y + Sin_Uneven);
+                    targetProduct.CornerPoints[1] = new PointF(location.X - Cos_Uneven, location.Y - Sin_Uneven);
+                    targetProduct.CornerPoints[3] = new PointF(location.X + Cos_Uneven, location.Y + Sin_Uneven);
                     break;
 
 
                 case 3: //Total degree is between 271 and 360
-                    targetProduct.cornerPoints[1] = new PointF(location.X + Sin_Uneven, location.Y - Cos_Uneven);
-                    targetProduct.cornerPoints[3] = new PointF(location.X - Sin_Uneven, location.Y + Cos_Uneven);
+                    targetProduct.CornerPoints[1] = new PointF(location.X + Sin_Uneven, location.Y - Cos_Uneven);
+                    targetProduct.CornerPoints[3] = new PointF(location.X - Sin_Uneven, location.Y + Cos_Uneven);
                     break;
                 default:
                     goto case 0;
             }
             //Set the last angle to the first angle to complete the square
-            targetProduct.cornerPoints[4] = targetProduct.cornerPoints[0];
+            targetProduct.CornerPoints[4] = targetProduct.CornerPoints[0];
 
 
 
             //Setting the new points to the polygon
             targetProduct.Poly = new Polygon();
-            foreach (PointF point in targetProduct.cornerPoints)
+            foreach (PointF point in targetProduct.CornerPoints)
             {
                 targetProduct.Poly.Points.Add(new Vector(point.X, point.Y));
             }
@@ -942,17 +942,17 @@ namespace KantoorInrichting.Controllers.Placement
                 if (r.WillIntersect)
                 {
                     //Issue the fallback
-                    targetProduct.currentAngle = fallbackAngle;
+                    targetProduct.CurrentAngle = fallbackAngle;
 
                     //Issue the fallback
-                    for (int index = 0; index < targetProduct.cornerPoints.Length; index++)
+                    for (int index = 0; index < targetProduct.CornerPoints.Length; index++)
                     {
-                        targetProduct.cornerPoints[index] = fallbackPoints[index];
+                        targetProduct.CornerPoints[index] = fallbackPoints[index];
                     }
 
                     //Restate the polygon
                     targetProduct.Poly = new Polygon();
-                    foreach (PointF point in targetProduct.cornerPoints)
+                    foreach (PointF point in targetProduct.CornerPoints)
                     {
                         targetProduct.Poly.Points.Add(new Vector(point.X, point.Y));
                     }
@@ -970,8 +970,8 @@ namespace KantoorInrichting.Controllers.Placement
         public static void placement_rotateImg(PlacedProduct targetProduct)
         {
             Color bkColor = Color.Transparent;
-            int angle = targetProduct.currentAngle;
-            Bitmap defaultMap = targetProduct.defaultBitMap;
+            int angle = targetProduct.CurrentAngle;
+            Bitmap defaultMap = targetProduct.DefaultBitMap;
 
             angle = angle % 360;
             if (angle > 180)
@@ -1024,7 +1024,7 @@ namespace KantoorInrichting.Controllers.Placement
             g.DrawImageUnscaled(defaultMap, 0, 0); // draw the image at 0, 0
             g.Dispose();
 
-            targetProduct.rotatedMap = newImg;
+            targetProduct.RotatedMap = newImg;
         }
         #endregion Placement Methods
 

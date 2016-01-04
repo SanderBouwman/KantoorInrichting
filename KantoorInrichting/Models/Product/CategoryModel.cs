@@ -10,27 +10,27 @@ namespace KantoorInrichting.Models.Product
 {
     public class CategoryModel
     {
-        public static SortableBindingList<CategoryModel> list = new SortableBindingList<CategoryModel>();
+        public static SortableBindingList<CategoryModel> List = new SortableBindingList<CategoryModel>();
 
         public static SortableBindingList<CategoryModel> SubcategoryList = new SortableBindingList<CategoryModel>();
         public static SortableBindingList<CategoryModel> CategoryList = new SortableBindingList<CategoryModel>();
 
-        public int catID;
-        public string name { get; set; }
-        public int? isSubcategoryFrom;
-        public Color colour;
+        public int CatId;
+        public string Name { get; set; }
+        public int? IsSubcategoryFrom;
+        public Color Colour;
 
-        public CategoryModel(int catID, string name, int issub, string colour)
+        public CategoryModel(int catId, string name, int issub, string colour)
         {
-            this.catID = catID;
-            this.name = name;
-            this.isSubcategoryFrom = issub;
+            this.CatId = catId;
+            this.Name = name;
+            this.IsSubcategoryFrom = issub;
 
-            this.colour = System.Drawing.ColorTranslator.FromHtml(colour);
+            this.Colour = System.Drawing.ColorTranslator.FromHtml(colour);
 
-            list.Add(this);
+            List.Add(this);
 
-            if (this.isSubcategoryFrom >= 0)
+            if (this.IsSubcategoryFrom >= 0)
             { 
                 SubcategoryList.Add(this);
             }

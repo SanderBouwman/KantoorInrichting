@@ -68,9 +68,9 @@ namespace KantoorInrichting.Controllers.Inventory
             }
             // other method to add every category
             DatabaseController dbc = DatabaseController.Instance;
-            foreach (var category in CategoryModel.list)
+            foreach (var category in CategoryModel.List)
             {
-                _inventoryScreen.DropdownCategorie.Items.Add(category.name);
+                _inventoryScreen.DropdownCategorie.Items.Add(category.Name);
             }
         }
 
@@ -134,23 +134,23 @@ namespace KantoorInrichting.Controllers.Inventory
                 filterResult = filteredProducts.ToList();
 
                 // get the current category object
-                foreach (CategoryModel cat in CategoryModel.list)
+                foreach (CategoryModel cat in CategoryModel.List)
                 {
-                    if (cat.name == selectedCategory)
+                    if (cat.Name == selectedCategory)
                     {
                         currentCategory = cat;
-                        currentId = currentCategory.catID;
+                        currentId = currentCategory.CatId;
                     }
                 }
 
                 // check if there are subcategories
-                foreach (CategoryModel cat in CategoryModel.list)
+                foreach (CategoryModel cat in CategoryModel.List)
                     {
-                    if (cat.isSubcategoryFrom == currentId)
+                    if (cat.IsSubcategoryFrom == currentId)
                     {
                         // if there are categories wich their "issubcategoryfrom"contains current ID
                         var filteredSubProducts =   from product in ProductModel.result
-                                                    where product.ProductCategory.catID == cat.catID
+                                                    where product.ProductCategory.CatId == cat.CatId
                                                     select product;
 
                         foreach (var cari in filteredSubProducts)

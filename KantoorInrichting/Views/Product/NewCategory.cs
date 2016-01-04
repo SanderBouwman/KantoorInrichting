@@ -24,7 +24,7 @@ namespace KantoorInrichting.Views.Product
         {
             this.catman = catman;
             InitializeComponent();
-            catman.controller.fillcombobox(CategoryModel.CategoryList, comboBox1);
+            catman.controller.Fillcombobox(CategoryModel.CategoryList, comboBox1);
             controller = DatabaseController.Instance;
         }
 
@@ -77,8 +77,8 @@ namespace KantoorInrichting.Views.Product
                     // get the mainCategory ID
 
                     // linq select category with the current name
-                    var selectedcategory = CategoryModel.list
-                            .Where(c => c.name == comboBox1.SelectedItem.ToString())
+                    var selectedcategory = CategoryModel.List
+                            .Where(c => c.Name == comboBox1.SelectedItem.ToString())
                             .Select(c => c)
                             .ToList();
 
@@ -87,7 +87,7 @@ namespace KantoorInrichting.Views.Product
                     
 
                     // insert subcategory into database
-                    catman.controller.AddSubCategory(Text, textBox2.Text, selectedcategory[0].catID);
+                    catman.controller.AddSubCategory(Text, textBox2.Text, selectedcategory[0].CatId);
                     catman.categoryComboBox.SelectedIndex = 0;
                     this.Close();
                 }

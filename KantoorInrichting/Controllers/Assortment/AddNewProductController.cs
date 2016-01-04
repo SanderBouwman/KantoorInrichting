@@ -222,7 +222,7 @@ namespace KantoorInrichting.Controllers.Assortment
             newProduct.length = _productModel.Length;
             newProduct.amount = _productModel.Amount;
             newProduct.image = _productModel.ImageFileName;
-            newProduct.category_id = _productModel.ProductCategory.catID;
+            newProduct.category_id = _productModel.ProductCategory.CatId;
             newProduct.description = _productModel.Description;
             newProduct.price = _productModel.Price;
 

@@ -62,7 +62,7 @@ namespace KantoorInrichting.Controllers.Assortment
             foreach (var category in _dbc.DataSet.category)
             {
                 _screen.categoryComboBox.Items.Add(category.name);
-                if (category.category_id == _productModel.ProductCategory.catID)
+                if (category.category_id == _productModel.ProductCategory.CatId)
                 {
                     _screen.categoryComboBox.SelectedIndex = category.category_id;
                 }
@@ -217,9 +217,9 @@ namespace KantoorInrichting.Controllers.Assortment
             _productModel.Name = _name;
             _productModel.Brand = _brand;
             _productModel.Type = _type;
-            _productModel.ProductCategory.catID = _categoryId;
-            _productModel.ProductCategory = CategoryModel.list[_categoryId];
-            _productModel.category = _productModel.ProductCategory.name;
+            _productModel.ProductCategory.CatId = _categoryId;
+            _productModel.ProductCategory = CategoryModel.List[_categoryId];
+            _productModel.category = _productModel.ProductCategory.Name;
             _productModel.Height = _height;
             _productModel.Width = _width;
             _productModel.Length = _length;
@@ -243,7 +243,7 @@ namespace KantoorInrichting.Controllers.Assortment
                 productRow.name = _productModel.Name;
                 productRow.brand = _productModel.Brand;
                 productRow.type = _productModel.Type;
-                productRow.category_id = _productModel.ProductCategory.catID;
+                productRow.category_id = _productModel.ProductCategory.CatId;
                 productRow.height = _productModel.Height;
                 productRow.width = _productModel.Width;
                 productRow.length = _productModel.Length;
