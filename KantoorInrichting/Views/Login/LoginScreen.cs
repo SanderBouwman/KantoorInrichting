@@ -15,21 +15,20 @@ namespace KantoorInrichting.Views
 {
     public partial class LoginScreen : UserControl
     {
-        private DatabaseController dbc;
-        private LoginController controller;
-        public MainFrame mainFrame;
-        public LoginScreen(MainFrame mainFrame)                         // There's not supposed to be any logic in the view, so I'd move most of the methods in here to a controller
-        {                                                               // For an example, look at GridFieldView
-            dbc = DatabaseController.Instance;
-            this.mainFrame = mainFrame;
+        private readonly LoginController _controller;
+        public MainFrame MainFrame;
+        public LoginScreen(MainFrame mainFrame)   
+                                        // There's not supposed to be any logic in the view, so I'd move most of the methods in here to a controller
+        {                                      
+            this.MainFrame = mainFrame;
             InitializeComponent();
-            controller = new LoginController(mainFrame, this);
+            _controller = new LoginController(mainFrame, this);
         }
 
         private void LoginButton_Click(object sender, EventArgs e)
         {
             // Method that managed login process
-            controller.LoginMethod(UsernameTB.Text, PasswordTB.Text);
+            _controller.LoginMethod(UsernameTB.Text, PasswordTB.Text);
         }
 
        // To do: Remove this method when project is done

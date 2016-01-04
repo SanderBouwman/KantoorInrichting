@@ -10,19 +10,19 @@ namespace KantoorInrichting.Controllers.Login
 {
     class LoginController
     {
-        private DatabaseController dbc;
-        private LoginScreen screen;
-        public MainFrame mainFrame;
+        private readonly DatabaseController _dbc;
+        private readonly LoginScreen _screen;
+        public MainFrame MainFrame;
         public LoginController(MainFrame mainFrame, LoginScreen screen)
         {
-            this.screen = screen;
-            dbc = DatabaseController.Instance;
-            this.mainFrame = mainFrame;
+            this._screen = screen;
+            _dbc = DatabaseController.Instance;
+            this.MainFrame = mainFrame;
         }
-        public string GetSHA1(string Passwordt)
+        public string GetSha1(string password)
         {
             SHA1CryptoServiceProvider sh = new SHA1CryptoServiceProvider();
-            sh.ComputeHash(ASCIIEncoding.ASCII.GetBytes(Passwordt));
+            sh.ComputeHash(ASCIIEncoding.ASCII.GetBytes(password));
             byte[] re = sh.Hash;
             StringBuilder sb = new StringBuilder();
             foreach (byte b in re)
@@ -34,91 +34,91 @@ namespace KantoorInrichting.Controllers.Login
 
         }
 
-        public void LoginMethod(string UsernameField, string PasswordField)
+        public void LoginMethod(string usernameField, string passwordField)
         {
             // TODO: This line of code loads data into the 'kantoorInrichtingDataSet.User' table. You can move, or remove it, as needed.
-            dbc.UserTableAdapter.Fill(dbc.DataSet.user);
-            var INLOGGEN = dbc.DataSet.user;
-            string USERNAME = "";
-            string PASSWORD = "";
-            int ROLE;
+            _dbc.UserTableAdapter.Fill(_dbc.DataSet.user);
+            var login = _dbc.DataSet.user;
+            string username = "";
+            string password = "";
+            int role;
             int attempts = 0;
-            string hash = GetSHA1(PasswordField);
+            string hash = GetSha1(passwordField);
 
             // Get data only when password and username match
-            var linqInloggen =
-                       from inloggegevens in INLOGGEN
-                       where inloggegevens.username == UsernameField && inloggegevens.password == hash
+            var linqLogin =
+                       from inloggegevens in login
+                       where inloggegevens.username == usernameField && inloggegevens.password == hash
                        select inloggegevens;
 
-            foreach (var p in linqInloggen)
+            foreach (var p in linqLogin)
             {
-                USERNAME = p.username;
-                PASSWORD = p.password;
+                username = p.username;
+                password = p.password;
                 attempts = p.attempts;
-                ROLE = p.role_id;
+                role = p.role_id;
             }
 
             // UsernameField is empty
-            if (UsernameField == "")
+            if (usernameField == "")
             {
-                screen.UsernameError.Text = "Vul uw gebruikersnaam in";
+                _screen.UsernameError.Text = "Vul uw gebruikersnaam in";
             }
-            else { screen.UsernameError.Text = ""; }
+            else { _screen.UsernameError.Text = ""; }
 
             //PasswordField is empty
-            if (PasswordField == "")
+            if (passwordField == "")
             {
-                screen.PasswordError.Text = "Vul uw wachtwoord in";
+                _screen.PasswordError.Text = "Vul uw wachtwoord in";
             }
-            else { screen.PasswordError.Text = ""; }
+            else { _screen.PasswordError.Text = ""; }
 
             // Both fields are filled
-            if (PasswordField != "" && UsernameField != "")
+            if (passwordField != "" && usernameField != "")
             {
                 var linq =
-                       from inloggegevens in INLOGGEN
-                       where inloggegevens.username == UsernameField
+                       from inloggegevens in login
+                       where inloggegevens.username == usernameField
                        select inloggegevens;
 
                 foreach (var p in linq)
                 {
                     attempts = p.attempts;
-                    USERNAME = p.username;
+                    username = p.username;
                 }
 
                 if (attempts < 3)
                 {
                     // If username and password are still empty the combination is wrong
-                    if (USERNAME == "" || PASSWORD == "")
+                    if (username == "" || password == "")
                     {
-                        screen.GeneralLoginError.Text = "Deze inlogcombinatie is onjuist";
+                        _screen.GeneralLoginError.Text = "Deze inlogcombinatie is onjuist";
 
-                        KantoorInrichtingDataSet.userRow UserRow = dbc.DataSet.user.FindByusername(UsernameField);
-                        if (USERNAME != "")
+                        KantoorInrichtingDataSet.userRow userRow = _dbc.DataSet.user.FindByusername(usernameField);
+                        if (username != "")
                         {
-                            UserRow.attempts++;
-                            dbc.UserTableAdapter.Update(dbc.DataSet.user);
+                            userRow.attempts++;
+                            _dbc.UserTableAdapter.Update(_dbc.DataSet.user);
                         }
                     }
                     // Username and password are correct
                     else
                     {
                         //SHOWING MAIN MENU
-                        mainFrame.mainScreen1.Visible = true;
-                        mainFrame.mainScreen1.Enabled = true;
-                        screen.Visible = false;
-                        screen.Enabled = false;
+                        MainFrame.mainScreen1.Visible = true;
+                        MainFrame.mainScreen1.Enabled = true;
+                        _screen.Visible = false;
+                        _screen.Enabled = false;
 
                         //IF EVERYTHING IS CORRECT RESET ATTEMPTS TO 0
-                        KantoorInrichtingDataSet.userRow UserRow = dbc.DataSet.user.FindByusername(UsernameField);
-                        UserRow.attempts = 0;
-                        dbc.UserTableAdapter.Update(dbc.DataSet.user);
+                        KantoorInrichtingDataSet.userRow userRow = _dbc.DataSet.user.FindByusername(usernameField);
+                        userRow.attempts = 0;
+                        _dbc.UserTableAdapter.Update(_dbc.DataSet.user);
                     }
                 }
                 else
                 {
-                    screen.GeneralLoginError.Text = "Dit account is geblokkeerd";
+                    _screen.GeneralLoginError.Text = "Dit account is geblokkeerd";
                 }
             }
         }
