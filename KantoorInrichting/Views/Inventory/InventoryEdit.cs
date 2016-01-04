@@ -26,13 +26,13 @@ namespace KantoorInrichting.Views.Inventory
         //Edit product button
         private void editButton_Click(object sender, EventArgs e)
         {
-            controller.editButton();
+            controller.EditButton();
         }
 
         //Cancel button
         private void cancelButton_Click(object sender, EventArgs e)
         {
-            controller.cancelButton();
+            controller.CancelButton();
         }
     }
 }

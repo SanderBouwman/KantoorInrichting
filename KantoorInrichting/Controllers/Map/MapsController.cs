@@ -13,12 +13,13 @@ namespace KantoorInrichting.Controllers.Map
 {
     class MapsController
     {
-        public ShowSpaceScreen spacescreen;
-        private string currentImagePath;
-        private MapsScreen screen;
+        public ShowSpaceScreen Spacescreen;
+        private readonly MapsScreen _screen;
+        private string _currentImagePath;
+
         public MapsController(MapsScreen screen)
         {
-            this.screen = screen;
+            this._screen = screen;
             Space.result = Space.list;
             screen.MapsGridView1.DataSource = Space.result;
         }
@@ -31,19 +32,19 @@ namespace KantoorInrichting.Controllers.Map
             if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
             {
                 //puts the room in a variable.
-                var space = screen.MapsGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
-                currentImagePath = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
+                var space = _screen.MapsGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
+                _currentImagePath = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
 
-                spacescreen = new ShowSpaceScreen();
+                Spacescreen = new ShowSpaceScreen();
 
                 try
                 {
                     //checks if the image if present, if it is it will put it as the background and stretches out in the screen.
-                    Image imageCircle = Image.FromStream(new MemoryStream(File.ReadAllBytes(currentImagePath + "\\Resources\\" + space + ".bmp")));
-                    spacescreen.BackgroundImage = imageCircle;
-                    spacescreen.BackgroundImageLayout = ImageLayout.Stretch;
-                    spacescreen.Text = "Plattegrond van ruimte: " + space;
-                    spacescreen.Show();
+                    Image imageCircle = Image.FromStream(new MemoryStream(File.ReadAllBytes(_currentImagePath + "\\Resources\\" + space + ".bmp")));
+                    Spacescreen.BackgroundImage = imageCircle;
+                    Spacescreen.BackgroundImageLayout = ImageLayout.Stretch;
+                    Spacescreen.Text = "Plattegrond van ruimte: " + space;
+                    Spacescreen.Show();
                 }
                 catch (FileNotFoundException)
                 {

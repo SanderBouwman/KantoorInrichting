@@ -15,18 +15,18 @@ namespace KantoorInrichting.Views.Maps
 {
     public partial class MapsScreen : UserControl
     {
-        private MapsController controller;
-        public MainFrame mainFrame;
+        private readonly MapsController _controller;
+        public MainFrame MainFrame;
         public MapsScreen(MainFrame mainFrame)
         {
-            this.mainFrame = mainFrame;
+            this.MainFrame = mainFrame;
             InitializeComponent();
-            controller = new MapsController(this);
+            _controller = new MapsController(this);
         }
 
         private void MapsGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            controller.MapsGridView1_CellContentClick(sender, e);
+            _controller.MapsGridView1_CellContentClick(sender, e);
         }
     }
 }

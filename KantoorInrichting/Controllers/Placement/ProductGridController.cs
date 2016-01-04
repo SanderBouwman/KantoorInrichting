@@ -1,4 +1,4 @@
-﻿// created by: Robin
+// created by: Robin
 // on: 20-12-2015
 
 #region
@@ -18,6 +18,9 @@ using KantoorInrichting.Views;
 using KantoorInrichting.Views.Grid;
 using KantoorInrichting.Views.Placement;
 using KantoorInrichting.Models.Maps;
+using System.Reflection;
+using System.IO;
+using System.Data;
 
 #endregion
 
@@ -50,7 +53,9 @@ namespace KantoorInrichting.Controllers.Placement
         private int zoomSize;
         private ZoomView zoomView;
         private Space space;
-            
+
+        private ProductGrid productGrid;
+
         DatabaseController dbc = DatabaseController.Instance;
 
         public ProductGridController(IView<ProductGrid.PropertyEnum> view,
@@ -181,7 +186,7 @@ namespace KantoorInrichting.Controllers.Placement
                         RotateSelectedItem(-15);
                     break;
                 case "ButtonSave":
-                    SaveRoom();
+                    SaveRoom(space.Room);
                     break;
                 case "ButtonDelete":
                     DeleteProduct(selectedProduct);
@@ -314,11 +319,55 @@ namespace KantoorInrichting.Controllers.Placement
             view.Get(ProductGrid.PropertyEnum.Panel).Invalidate();
         }
 
-        private void SaveRoom()
+        private void SaveRoom(string spacenumber)
         {
-            // TODO save the current list to the database 
-            // ( problem as of 31/12/2015: There's no save method in the DatabaseController )
-            MessageBox.Show("Save Room");
+            string appFolderPath = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+            string resourcesFolderPath = Path.Combine(Directory.GetParent(appFolderPath).Parent.FullName, "Resources");
+            Bitmap bmp = new Bitmap(ProductGrid.PanelSize.Width, ProductGrid.PanelSize.Height);
+           // productGrid.gridFieldPanel.DrawToBitmap(bmp, productGrid.gridFieldPanel.Bounds);
+
+            String fileName = Path.Combine(resourcesFolderPath, "" + spacenumber + ".bmp");
+            bmp.Save(fileName);
+            DeleteRows(spacenumber);
+            SaveSpace(spacenumber);
+            MessageBox.Show("Opgeslagen");
+        }
+
+        public void DeleteRows(string spacenumber)
+        {
+            var rows = dbc.DataSet.placement.Select("space_number = '" + spacenumber + "'");
+            foreach (var row in rows)
+            {
+                row.Delete();
+                dbc.PlacementTableAdapter.Update(dbc.DataSet.placement);
+            }
+        }
+
+        public void SaveSpace(string spacenumber)
+        {
+
+            foreach (PlacedProduct product in placedProducts)
+            {
+                DataRow anyRow = dbc.DataSet.placement.NewRow();
+                var hoi2 = dbc.DataSet.placement.Rows[dbc.DataSet.placement.Rows.Count - 1]["placement_id"]; ;
+                string hoi = hoi2.ToString();
+                int x = Int32.Parse(hoi) + 1;
+                float X = product.location.X;
+                float Y = product.location.Y;
+                int product_id = product.product.Product_id;
+
+                anyRow["placement_id"] = x;
+                anyRow["space_number"] = spacenumber;
+                anyRow["product_id"] = product_id;
+                anyRow["x_position"] = X;
+                anyRow["y_position"] = Y;
+                anyRow["angle"] = 0;
+
+                dbc.DataSet.placement.Rows.Add(anyRow);
+                dbc.PlacementTableAdapter.Update(dbc.DataSet.placement);
+
+            }
+
         }
 
         public void OpenPanel(ProductGrid grid, Space spacenr)
