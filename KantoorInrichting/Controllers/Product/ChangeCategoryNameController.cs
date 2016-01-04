@@ -60,14 +60,14 @@ namespace KantoorInrichting.Controllers.Product
         public void UpdateCategoryModel()
         {
             //Select the correct Categorymodel
-            var selectedCategory = CategoryModel.list
-                           .Where(c => c.name == screen.name)
+            var selectedCategory = CategoryModel.List
+                           .Where(c => c.Name == screen.name)
                            .Select(c => c)
                            .ToList();
             //Update the Category with it's new name
-            selectedCategory[0].name = screen.categoryNameTextBox.Text;
+            selectedCategory[0].Name = screen.categoryNameTextBox.Text;
             //Retrieve the ID of Category
-            categoryId = selectedCategory[0].catID;
+            categoryId = selectedCategory[0].CatId;
 
         }
 
