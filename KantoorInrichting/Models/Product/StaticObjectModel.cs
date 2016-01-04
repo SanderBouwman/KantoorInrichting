@@ -10,10 +10,10 @@ namespace KantoorInrichting.Models.Product
 {
     public class StaticObjectModel
     {
-        public static SortableBindingList<StaticObjectModel> list = new SortableBindingList<StaticObjectModel>();
+        public static SortableBindingList<StaticObjectModel> List = new SortableBindingList<StaticObjectModel>();
 
         public PointF Location;
-        public int Product_id { get; set;}
+        public int ProductId { get; set;}
         public string Name { get; set; }
         public bool Wall { get; set; }
         public string Description { get; set; }
@@ -24,7 +24,7 @@ namespace KantoorInrichting.Models.Product
 
         public StaticObjectModel(int id, string n, bool w, string d, int wi, int h, int l, Image img)
         {
-            Product_id = id;
+            ProductId = id;
             Name = n;
             Wall = w;
             Description = d;
@@ -33,7 +33,7 @@ namespace KantoorInrichting.Models.Product
             Length = l;
             Image = img;
 
-            if (n != "") { list.Add(this); } //If the name if empty, don't add it to the list. This is because the name is part of the primary key in the database.
+            if (n != "") { List.Add(this); } //If the name if empty, don't add it to the list. This is because the name is part of the primary key in the database.
         }
     }
 }

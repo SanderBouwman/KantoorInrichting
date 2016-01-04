@@ -355,7 +355,7 @@ namespace KantoorInrichting.Controllers.Placement
                 int x = Int32.Parse(hoi) + 1;
                 float X = product.Location.X;
                 float Y = product.Location.Y;
-                int product_id = product.Product.Product_id;
+                int product_id = product.Product.ProductId;
 
                 anyRow["placement_id"] = x;
                 anyRow["space_number"] = spacenumber;
@@ -398,9 +398,9 @@ namespace KantoorInrichting.Controllers.Placement
                 if (placedProduct.space_number == space.Room)
                 {
                     
-                    foreach (ProductModel product in ProductModel.list)
+                    foreach (ProductModel product in ProductModel.List)
                     { // for each productmodel -> check if the id equals the placedproduct id
-                        if (product.Product_id == placedProduct.product_id)
+                        if (product.ProductId == placedProduct.product_id)
                         {
                             // create placedproducts with a point and product reference
                             Point point = new Point(placedProduct.x_position, placedProduct.y_position);
@@ -539,7 +539,7 @@ namespace KantoorInrichting.Controllers.Placement
                 int width = model.Width;
                 model.Width = model.Height;
                 model.Height = width;
-                AddNewProduct(model, model.location.X, model.location.Y, model.Width, model.Height, true);
+                AddNewProduct(model, model.Location.X, model.Location.Y, model.Width, model.Height, true);
             }
         }
 

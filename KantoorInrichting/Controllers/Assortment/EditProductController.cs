@@ -219,7 +219,7 @@ namespace KantoorInrichting.Controllers.Assortment
             _productModel.Type = _type;
             _productModel.ProductCategory.CatId = _categoryId;
             _productModel.ProductCategory = CategoryModel.List[_categoryId];
-            _productModel.category = _productModel.ProductCategory.Name;
+            _productModel.Category = _productModel.ProductCategory.Name;
             _productModel.Height = _height;
             _productModel.Width = _width;
             _productModel.Length = _length;
@@ -239,7 +239,7 @@ namespace KantoorInrichting.Controllers.Assortment
             try
             {
                 //Search the tabel Product for a certain ProductID
-                var productRow = _dbc.DataSet.product.FindByproduct_id(_productModel.Product_id);
+                var productRow = _dbc.DataSet.product.FindByproduct_id(_productModel.ProductId);
                 productRow.name = _productModel.Name;
                 productRow.brand = _productModel.Brand;
                 productRow.type = _productModel.Type;

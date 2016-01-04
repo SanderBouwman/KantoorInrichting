@@ -37,7 +37,7 @@ namespace KantoorInrichting.Controllers.Assortment
             try
             {
                 //Search the tabel Product for a certain ProductID
-                var productRow = _dbc.DataSet.product.FindByproduct_id(_product.Product_id);
+                var productRow = _dbc.DataSet.product.FindByproduct_id(_product.ProductId);
                 productRow.removed = _product.Removed;
 
                 //Update the database with the new Data

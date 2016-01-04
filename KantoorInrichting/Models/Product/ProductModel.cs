@@ -11,16 +11,16 @@ namespace KantoorInrichting.Models.Product
 {
     public class ProductModel
     {
-        public static SortableBindingList<ProductModel> list = new SortableBindingList<ProductModel>();
-        public static SortableBindingList<ProductModel> result = new SortableBindingList<ProductModel>();  // list for filtering data
+        public static SortableBindingList<ProductModel> List = new SortableBindingList<ProductModel>();
+        public static SortableBindingList<ProductModel> Result = new SortableBindingList<ProductModel>();  // list for filtering data
 
-        public PointF location;
+        public PointF Location;
 
         public int Length { get; set; }
         public int Width { get; set; }
         public int Height { get; set; }
         public SizeF Size { get; set; }
-        public int Product_id { get; }
+        public int ProductId { get; }
         public string ImageFileName { get; set; }
         public string Description { get; set; }
         public CategoryModel ProductCategory { get; set; }
@@ -31,8 +31,8 @@ namespace KantoorInrichting.Models.Product
         public Image Image { get; set; }   
         public int Amount { get; set; }    
         public int Id { get; }
-        public string category { get; set; }
-        public string subcategory { get; set; }
+        public string Category { get; set; }
+        public string Subcategory { get; set; }
         public bool Removed { get; set; }
         public decimal Price { get; set; }
         
@@ -40,12 +40,12 @@ namespace KantoorInrichting.Models.Product
 
         //public Supplier supplier { get; private set; }
 
-        public static int IDnumber;
+        public static int IdNumber;
 
         public ProductModel(string n, string b, string t, string c, string s, int l, int w, int h, string d, int a)
         {
-            Id = IDnumber;
-            IDnumber++;
+            Id = IdNumber;
+            IdNumber++;
             Name = n;
             Brand = b;
             Type = t;
@@ -57,19 +57,19 @@ namespace KantoorInrichting.Models.Product
             Description = d;
             Amount = a;
             this.Image = KantoorInrichting.Properties.Resources.No_Image_Available;
-            if (n != "") { list.Add(this); } //If the name if empty, don't add it to the list. This is because the name is part of the primary key in the database.
+            if (n != "") { List.Add(this); } //If the name if empty, don't add it to the list. This is because the name is part of the primary key in the database.
         }
 
         public ProductModel(int i, string n, string b, string t, int c, int l, int w, int h, string d, int a, string im,
             bool r, decimal p)
         {
-            Product_id = i;
+            ProductId = i;
             Name = n;
             Brand = b;
             Type = t;
 
             this.ProductCategory = CategoryModel.List[c];
-            this.category = ProductCategory.Name;
+            this.Category = ProductCategory.Name;
 
             Length = l;
             Width = w;
@@ -82,7 +82,7 @@ namespace KantoorInrichting.Models.Product
             Removed = r;
             Price = p;
             //list.Add(this);
-            if (n != "") { list.Add(this); } //If the name if empty, don't add it to the list. This is because the name is part of the primary key in the database.
+            if (n != "") { List.Add(this); } //If the name if empty, don't add it to the list. This is because the name is part of the primary key in the database.
         }
 
         //This methods sets the Product image using the name of the image

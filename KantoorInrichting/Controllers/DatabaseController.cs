@@ -110,7 +110,7 @@ namespace KantoorInrichting.Controllers
 
         public ProductModel GetSpecificProduct_FromDatabase(int id)
         {
-            foreach (ProductModel product in ProductModel.list)
+            foreach (ProductModel product in ProductModel.List)
             {
                 if(product.Id == id)
                 {

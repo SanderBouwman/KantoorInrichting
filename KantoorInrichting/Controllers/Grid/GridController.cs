@@ -275,8 +275,8 @@ namespace KantoorInrichting.Controllers.Grid
                     {
                         Rectangle rect = new Rectangle
                         {
-                            X = (int) (product.location.X/_model.Rows[0, 0].Width*_tileWidth),
-                            Y = (int) (product.location.Y/_model.Rows[0, 0].Height*_tileHeight),
+                            X = (int) (product.Location.X/_model.Rows[0, 0].Width*_tileWidth),
+                            Y = (int) (product.Location.Y/_model.Rows[0, 0].Height*_tileHeight),
                             Width = (int) (product.Height/_model.Rows[0, 0].Height*_tileWidth),
                             Height = (int) (product.Width/_model.Rows[0, 0].Width*_tileHeight)
                         };

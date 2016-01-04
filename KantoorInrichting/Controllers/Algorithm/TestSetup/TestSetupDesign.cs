@@ -170,7 +170,7 @@ namespace KantoorInrichting.Controllers.Algorithm.TestSetup
         public void SetLocation(ProductModel p, float x, float y)
         {
             PointF point = new PointF(x, y); // using a PointF instead of a Point to increase accuracy.
-            p.location = point;
+            p.Location = point;
         }
     }
 }

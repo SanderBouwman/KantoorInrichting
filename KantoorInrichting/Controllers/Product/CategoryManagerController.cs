@@ -156,7 +156,7 @@ namespace KantoorInrichting.Controllers.Product
         public int CheckAmountOfProducts(string catName)
         {
             int amount =0;
-            foreach(ProductModel product in ProductModel.list)
+            foreach(ProductModel product in ProductModel.List)
             {
                 if(product.ProductCategory.Name == catName)
                 {

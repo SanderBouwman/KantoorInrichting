@@ -213,7 +213,7 @@ namespace KantoorInrichting.Controllers.Assortment
             //Create a newProductrow and fill the row for each corresponding column
             var newProduct = _dbc.DataSet.product.NewproductRow();
             newProduct.name = _productModel.Name;
-            newProduct.product_id = _productModel.Product_id;
+            newProduct.product_id = _productModel.ProductId;
             newProduct.removed = false;
             newProduct.type = _productModel.Type;
             newProduct.brand = _productModel.Brand;

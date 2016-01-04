@@ -41,7 +41,7 @@ namespace KantoorInrichting.Controllers.Inventory
             //If the amount is 0, remove it from the result list.
             if (_product.Amount == 0 && _inventoryScreen.checkBox1.Checked)
             {
-                ProductModel.result.Remove(_product);
+                ProductModel.Result.Remove(_product);
             }
         }
 
@@ -52,7 +52,7 @@ namespace KantoorInrichting.Controllers.Inventory
             try
             {
                 //Search the tabel Product for a certain ProductID
-                var productRow = _dbc.DataSet.product.FindByproduct_id(_product.Product_id);
+                var productRow = _dbc.DataSet.product.FindByproduct_id(_product.ProductId);
 
                 productRow.amount = _product.Amount;
 

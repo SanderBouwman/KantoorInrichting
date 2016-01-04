@@ -15,17 +15,17 @@ namespace KantoorInrichting.Views.Product
 {
     public partial class NewCategory : Form
     {
-        private CategoryManager catman;
-        public string tempcat;
-        private DatabaseController controller;
+        private readonly DatabaseController _controller;
+        private readonly CategoryManager _catMan;
+        public string TempCat;
         bool NotDone = false;
 
-        public NewCategory(CategoryManager catman)
+        public NewCategory(CategoryManager catMan)
         {
-            this.catman = catman;
+            this._catMan = catMan;
             InitializeComponent();
-            catman.controller.Fillcombobox(CategoryModel.CategoryList, comboBox1);
-            controller = DatabaseController.Instance;
+            catMan.Controller.Fillcombobox(CategoryModel.CategoryList, comboBox1);
+            _controller = DatabaseController.Instance;
         }
 
         private void saveButton_Click(object sender, EventArgs e)
@@ -45,7 +45,7 @@ namespace KantoorInrichting.Views.Product
             }
 
             // check if text already exists
-            foreach (var category in controller.DataSet.category)
+            foreach (var category in _controller.DataSet.category)
             {
                 if(category.name == Text)
                 {
@@ -68,8 +68,8 @@ namespace KantoorInrichting.Views.Product
                             
 
                     // insert category into database
-                    catman.controller.AddCategory(Text, textBox2.Text);
-                    catman.categoryComboBox.SelectedIndex = 0;
+                    _catMan.Controller.AddCategory(Text, textBox2.Text);
+                    _catMan.categoryComboBox.SelectedIndex = 0;
                     this.Close();
                 }
                 else
@@ -87,8 +87,8 @@ namespace KantoorInrichting.Views.Product
                     
 
                     // insert subcategory into database
-                    catman.controller.AddSubCategory(Text, textBox2.Text, selectedcategory[0].CatId);
-                    catman.categoryComboBox.SelectedIndex = 0;
+                    _catMan.Controller.AddSubCategory(Text, textBox2.Text, selectedcategory[0].CatId);
+                    _catMan.categoryComboBox.SelectedIndex = 0;
                     this.Close();
                 }
             }

@@ -39,7 +39,7 @@ namespace KantoorInrichting.Views.Placement
         private void GenerateProducts(bool staticOrNot)
         {
             var onlyAvailibleProducts =
-                from products in ProductModel.list
+                from products in ProductModel.List
                 where products.Removed == false
                 select products;
 
@@ -47,7 +47,7 @@ namespace KantoorInrichting.Views.Placement
             int y = 0;
             if (staticOrNot == true)
             {
-                foreach (StaticObjectModel product in StaticObjectModel.list)
+                foreach (StaticObjectModel product in StaticObjectModel.List)
                 {
                     ProductInfo pi = new ProductInfo();
                     pi.Location = new Point(0, y);

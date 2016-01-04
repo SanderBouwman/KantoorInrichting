@@ -24,16 +24,16 @@ namespace KantoorInrichting.Controllers.Inventory
             // filter default no 0 values
             List<ProductModel> filterResult = FilterNoAmount();
             // add filterResult to new sortable list
-            ProductModel.result = new SortableBindingList<ProductModel>(filterResult);
+            ProductModel.Result = new SortableBindingList<ProductModel>(filterResult);
             // the datasource of the datagridview is the filterresult
-            _inventoryScreen.dataGridView1.DataSource = ProductModel.result;
+            _inventoryScreen.dataGridView1.DataSource = ProductModel.Result;
 
         }
 
         public List<ProductModel> FilterNoAmount()
         {
             // filter the data to only view products with an amount
-            var filteredProducts = from product in ProductModel.list
+            var filteredProducts = from product in ProductModel.List
                                    where product.Amount >= 1
                                    select product;
 
@@ -50,7 +50,7 @@ namespace KantoorInrichting.Controllers.Inventory
             _inventoryScreen.DropdownCategorie.Items.Clear();
 
             // distinct from all the items in the productlist
-            var BrandResult = ProductModel.list.GroupBy(product => product.Brand)
+            var BrandResult = ProductModel.List.GroupBy(product => product.Brand)
                    .Select(grp => grp.First())
                    .ToList();
 
@@ -78,7 +78,7 @@ namespace KantoorInrichting.Controllers.Inventory
         {
             // filter the data
             List<ProductModel> filterResult1 = FilterNoAmount();
-            ProductModel.result = new SortableBindingList<ProductModel>(filterResult1);
+            ProductModel.Result = new SortableBindingList<ProductModel>(filterResult1);
 
             // delete datasource
             _inventoryScreen.dataGridView1.DataSource = null;
@@ -91,17 +91,17 @@ namespace KantoorInrichting.Controllers.Inventory
             if (_inventoryScreen.DropdownMerk.SelectedIndex != 0)
             {
                 // filter on the selected brand
-                var filteredProducts = from product in ProductModel.result
+                var filteredProducts = from product in ProductModel.Result
                                        where product.Brand == selectedBrand
                                        select product;
 
                 // add filter list to result list
                 var filterResult2 = new List<ProductModel>();
                 filterResult2 = filteredProducts.ToList();
-                ProductModel.result = new SortableBindingList<ProductModel>(filterResult2);
+                ProductModel.Result = new SortableBindingList<ProductModel>(filterResult2);
             }
             // bind the datasource again
-            _inventoryScreen.dataGridView1.DataSource = ProductModel.result;
+            _inventoryScreen.dataGridView1.DataSource = ProductModel.Result;
             _inventoryScreen.dataGridView1.Refresh();
 
         }
@@ -110,7 +110,7 @@ namespace KantoorInrichting.Controllers.Inventory
         {
             // filter the data
             List<ProductModel> filterResult1 = FilterNoAmount();
-            ProductModel.result = new SortableBindingList<ProductModel>(filterResult1);
+            ProductModel.Result = new SortableBindingList<ProductModel>(filterResult1);
             // delete datasource
             _inventoryScreen.dataGridView1.DataSource = null;
             _inventoryScreen.dataGridView1.Refresh();
@@ -125,8 +125,8 @@ namespace KantoorInrichting.Controllers.Inventory
             {
 
                 // filter on the selected category
-                var filteredProducts = from product in ProductModel.result
-                                       where product.category == selectedCategory
+                var filteredProducts = from product in ProductModel.Result
+                                       where product.Category == selectedCategory
                                        select product;
 
                 // add filter list to result list
@@ -149,7 +149,7 @@ namespace KantoorInrichting.Controllers.Inventory
                     if (cat.IsSubcategoryFrom == currentId)
                     {
                         // if there are categories wich their "issubcategoryfrom"contains current ID
-                        var filteredSubProducts =   from product in ProductModel.result
+                        var filteredSubProducts =   from product in ProductModel.Result
                                                     where product.ProductCategory.CatId == cat.CatId
                                                     select product;
 
@@ -166,10 +166,10 @@ namespace KantoorInrichting.Controllers.Inventory
                 // if there are subcategories, add the items from sub also
 
 
-                ProductModel.result = new SortableBindingList<ProductModel>(filterResult);
+                ProductModel.Result = new SortableBindingList<ProductModel>(filterResult);
             }
             // bind the datasource again
-            _inventoryScreen.dataGridView1.DataSource = ProductModel.result;
+            _inventoryScreen.dataGridView1.DataSource = ProductModel.Result;
             _inventoryScreen.dataGridView1.Refresh();
         }
     }

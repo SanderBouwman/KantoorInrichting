@@ -14,16 +14,16 @@ namespace KantoorInrichting.Views.Product
 {
     public partial class CategoryManager : Form
     {
-        public CategoryManagerController controller;
-        public string tempcat;
-        public string tempsubcat;
-        public KantoorInrichtingDataSet tempdata;
+        public CategoryManagerController Controller;
+        public string TempCat;
+        public string TempSubCat;
+        public KantoorInrichtingDataSet TempData;
 
         public CategoryManager(CategoryManagerController controller)
         {
-            this.controller = controller;
+            this.Controller = controller;
             InitializeComponent();
-            refreshComboBox();
+            RefreshComboBox();
 
             //categoryComboBox.SelectedItem = null;
             //subcategoryComboBox.SelectedItem = ;
@@ -36,29 +36,29 @@ namespace KantoorInrichting.Views.Product
         {
             NewCategory newcat = new NewCategory(this);
             newcat.Show(this);
-            refreshComboBox();
+            RefreshComboBox();
             this.Invalidate();
             this.Refresh();
         }
 
-        public void refreshComboBox()
+        public void RefreshComboBox()
         {
             this.categoryTableAdapter.Fill(this.kantoorInrichtingDataSet.category);
             var categoryList = kantoorInrichtingDataSet.category;
 
-            controller.Fillcombobox(CategoryModel.CategoryList, categoryComboBox);
-            controller.FillSubcombobox(CategoryModel.SubcategoryList, subcategoryComboBox, categoryComboBox);
+            Controller.Fillcombobox(CategoryModel.CategoryList, categoryComboBox);
+            Controller.FillSubcombobox(CategoryModel.SubcategoryList, subcategoryComboBox, categoryComboBox);
         }
 
         private void categoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            controller.FillSubcombobox(CategoryModel.SubcategoryList, subcategoryComboBox, categoryComboBox);
+            Controller.FillSubcombobox(CategoryModel.SubcategoryList, subcategoryComboBox, categoryComboBox);
 
             string selectedCategory = categoryComboBox.SelectedItem.ToString();
 
             // check how much products have this category
-            int amount = controller.CheckAmountOfProducts(selectedCategory);
-            int amountSubs = controller.CheckAmountOfSubs(selectedCategory);
+            int amount = Controller.CheckAmountOfProducts(selectedCategory);
+            int amountSubs = Controller.CheckAmountOfSubs(selectedCategory);
             textBox1.Text = amount.ToString();
             textBox2.Text = amountSubs.ToString();
 
@@ -68,7 +68,7 @@ namespace KantoorInrichting.Views.Product
         private void subcategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             string selectedCategory = subcategoryComboBox.SelectedItem.ToString();
-            int amount = controller.CheckAmountOfProducts(selectedCategory);
+            int amount = Controller.CheckAmountOfProducts(selectedCategory);
             textBox1.Text = amount.ToString();
             textBox2.Text = "niet mogelijk";
         }

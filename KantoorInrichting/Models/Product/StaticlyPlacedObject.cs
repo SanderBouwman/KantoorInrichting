@@ -10,22 +10,22 @@ namespace KantoorInrichting.Models.Product
     public class StaticlyPlacedObject
     {
 
-        public Vector beginPoint { get; private set; }
-        public Vector endPoint { get; private set; }
+        public Vector BeginPoint { get; private set; }
+        public Vector EndPoint { get; private set; }
 
         public StaticlyPlacedObject(Vector begin, Vector end)
         {
-            beginPoint = begin;
-            endPoint = end;
+            BeginPoint = begin;
+            EndPoint = end;
         }
         
-        public Polygon toPolygon()
+        public Polygon ToPolygon()
         {
             //Make, add points, build and return.
             Polygon p = new Polygon();
 
-            p.Points.Add(beginPoint);
-            p.Points.Add(endPoint);
+            p.Points.Add(BeginPoint);
+            p.Points.Add(EndPoint);
 
             p.BuildEdges();
 

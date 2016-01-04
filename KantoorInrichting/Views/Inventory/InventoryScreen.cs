@@ -45,22 +45,22 @@ namespace KantoorInrichting.Views.Inventory
                 // add all product with amount of less than 1 and filtered on the brand
                 if (checkBox1.Checked == false)
                 {
-                    foreach (ProductModel product in ProductModel.list)
+                    foreach (ProductModel product in ProductModel.List)
                     {
                         if (product.Amount < 1 && product.Brand == DropdownMerk.SelectedItem.ToString())
                         {
-                            ProductModel.result.Add(product);
+                            ProductModel.Result.Add(product);
                         }
                     }
                 }
                 // remove all product with amount of less than 1 and filtered on the brand
                 if (checkBox1.Checked == true)
                 {
-                    foreach (ProductModel product in ProductModel.list)
+                    foreach (ProductModel product in ProductModel.List)
                     {
                         if (product.Amount < 1 && product.Brand == DropdownMerk.SelectedItem.ToString())
                         {
-                            ProductModel.result.Remove(product);
+                            ProductModel.Result.Remove(product);
                         }
                     }
                 }
@@ -71,22 +71,22 @@ namespace KantoorInrichting.Views.Inventory
                 // add all product with amount of less than 1 and filtered on the brand
                 if (checkBox1.Checked == false)
                 {
-                    foreach (ProductModel product in ProductModel.list)
+                    foreach (ProductModel product in ProductModel.List)
                     {
-                        if (product.Amount < 1 && product.category == DropdownCategorie.SelectedItem.ToString())
+                        if (product.Amount < 1 && product.Category == DropdownCategorie.SelectedItem.ToString())
                         {
-                            ProductModel.result.Add(product);
+                            ProductModel.Result.Add(product);
                         }
                     }
                 }
                 // remove all product with amount of less than 1 and filtered on the brand
                 if (checkBox1.Checked == true)
                 {
-                    foreach (ProductModel product in ProductModel.list)
+                    foreach (ProductModel product in ProductModel.List)
                     {
-                        if (product.Amount < 1 && product.category == DropdownCategorie.SelectedItem.ToString())
+                        if (product.Amount < 1 && product.Category == DropdownCategorie.SelectedItem.ToString())
                         {
-                            ProductModel.result.Remove(product);
+                            ProductModel.Result.Remove(product);
                         }
                     }
                 }
@@ -96,23 +96,23 @@ namespace KantoorInrichting.Views.Inventory
                 // add all product with amount of less than 1
                 if (checkBox1.Checked == false)
                 {
-                    foreach (ProductModel product in ProductModel.list)
+                    foreach (ProductModel product in ProductModel.List)
                     {
                         if (product.Amount < 1)
                         {
 
-                            ProductModel.result.Add(product);
+                            ProductModel.Result.Add(product);
                         }
                     }
                 }
                 // remove all product with amount of less than 1
                 if (checkBox1.Checked == true)
                 {
-                    foreach (ProductModel product in ProductModel.list)
+                    foreach (ProductModel product in ProductModel.List)
                     {
                         if (product.Amount < 1)
                         {
-                            ProductModel.result.Remove(product);
+                            ProductModel.Result.Remove(product);
                         }
                     }
                 }
@@ -144,8 +144,8 @@ namespace KantoorInrichting.Views.Inventory
 
  
                     // linq select product with the current ID
-                    var selectedproduct1 = ProductModel.list
-                            .Where(t => t.Product_id == currentProduct)
+                    var selectedproduct1 = ProductModel.List
+                            .Where(t => t.ProductId == currentProduct)
                             .Select(t => t)
                             .ToList();
 

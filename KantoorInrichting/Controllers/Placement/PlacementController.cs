@@ -70,7 +70,7 @@ namespace KantoorInrichting.Controllers.Placement
             try
             {
                 ProductInfo defaultInfo = new ProductInfo();
-                defaultInfo.setProduct(ProductModel.list[0]);
+                defaultInfo.setProduct(ProductModel.List[0]);
                 ChangeSelected(defaultInfo);
             }
             catch { }
@@ -176,7 +176,7 @@ namespace KantoorInrichting.Controllers.Placement
             foreach(StaticlyPlacedObject spo in staticlyPlacedObjectList)
             {
                 //Draw lines between every point
-                g.DrawLine(new Pen(Color.Black), spo.beginPoint, spo.endPoint);
+                g.DrawLine(new Pen(Color.Black), spo.BeginPoint, spo.EndPoint);
             }
 
 
@@ -212,9 +212,9 @@ namespace KantoorInrichting.Controllers.Placement
                 if (placedProduct.space_number == productAdding.space.Room)
                 {
                     // get placed productID product
-                    foreach (ProductModel product in ProductModel.list)
+                    foreach (ProductModel product in ProductModel.List)
                     {
-                        if (product.Product_id == placedProduct.product_id)
+                        if (product.ProductId == placedProduct.product_id)
                         {
 
                             Point point = new Point(placedProduct.x_position, placedProduct.y_position);
@@ -232,7 +232,7 @@ namespace KantoorInrichting.Controllers.Placement
             int count = 0;
             foreach (PlacedProduct placedproduct in placedProductList)
             {
-                if (placedproduct.Product.Product_id == model.Product_id)
+                if (placedproduct.Product.ProductId == model.ProductId)
                 {
                     count++;
                 }
@@ -336,7 +336,7 @@ namespace KantoorInrichting.Controllers.Placement
                 int x = Int32.Parse(hoi) + 1;
                 string X = product.Location.X.ToString();
                 string Y = product.Location.Y.ToString();
-                int product_id = product.Product.Product_id;
+                int product_id = product.Product.ProductId;
 
                 anyRow["placement_id"] = x;
                 anyRow["space_number"] = spacenumber;
@@ -708,13 +708,13 @@ namespace KantoorInrichting.Controllers.Placement
             foreach (StaticlyPlacedObject placedO in staticlyPlacedObjectList)
             {
                 //Test if the selected polygon is himself
-                if (placedO.toPolygon() == targetProduct.Poly)
+                if (placedO.ToPolygon() == targetProduct.Poly)
                 {
                     continue;
                 }
 
                 //Test if the polygon collides with others
-                PolygonCollisionController.PolygonCollisionResult r = PolygonCollisionController.PolygonCollision(targetProduct.Poly, placedO.toPolygon(), velocity);
+                PolygonCollisionController.PolygonCollisionResult r = PolygonCollisionController.PolygonCollision(targetProduct.Poly, placedO.ToPolygon(), velocity);
 
                 //If it does, alter the speed
                 if (r.WillIntersect)
