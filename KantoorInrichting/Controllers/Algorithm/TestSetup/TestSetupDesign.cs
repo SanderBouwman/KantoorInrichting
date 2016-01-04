@@ -18,7 +18,7 @@ namespace KantoorInrichting.Controllers.Algorithm.TestSetup
         private int _rows;
 
         public List<ProductModel> Design(ProductModel chair, ProductModel table,
-            int people, int width, int height, float margin)
+            int people, float width, float height, float margin)
         {
             ChairTablePair pair = ChairTablePair.CreatePair(chair, table, margin);
             List<Rectangle> possibilities = CalculatePossibilities(pair, width, height, margin);
@@ -41,12 +41,12 @@ namespace KantoorInrichting.Controllers.Algorithm.TestSetup
         /// <param name="height"></param>
         /// <param name="margin"></param>
         /// <returns></returns>
-        public List<Rectangle> CalculatePossibilities(ChairTablePair pair, int width,
-            int height, float margin)
+        public List<Rectangle> CalculatePossibilities(ChairTablePair pair, float width,
+            float height, float margin)
         {
             List<Rectangle> possibilities = new List<Rectangle>();
-            _columns = width/pair.Representation.Width; // We need to know how many columns and rows there are in a room
-            _rows = height/pair.Representation.Height; // to put the pairs in later.
+            _columns = (int) width/pair.Representation.Width; // We need to know how many columns and rows there are in a room
+            _rows = (int) height/pair.Representation.Height; // to put the pairs in later.
             for (int i = 0; i < _columns; i++)
             {
                 for (int j = 0; j < _rows; j++)
@@ -128,20 +128,10 @@ namespace KantoorInrichting.Controllers.Algorithm.TestSetup
                 ChairTablePair current = pairs[i];
 
                 // creating new chairs and tables from the current pair.
-                ProductModel newChair = new ProductModel
-                {
-                    Brand = current.Chair.Brand,
-                    Width = current.Chair.Width,
-                    Height = current.Chair.Height,
-                    Type = current.Chair.Type
-                };
-                ProductModel newTable = new ProductModel
-                {
-                    Brand = current.Table.Brand,
-                    Width = current.Table.Width,
-                    Height = current.Table.Height,
-                    Type = current.Table.Type
-                };
+                ProductModel newChair = ProductFactory.CreateProduct(current.Chair.Brand, current.Chair.Width,
+                                                                    current.Chair.Height, current.Chair.Type);
+                ProductModel newTable = ProductFactory.CreateProduct(current.Table.Brand, current.Table.Width,
+                                                                    current.Table.Height, current.Table.Type);
 
                 float chairX,
                     chairY,
@@ -153,7 +143,7 @@ namespace KantoorInrichting.Controllers.Algorithm.TestSetup
                     chairX = 0;
                     tableX = current.Representation.X + newChair.Width;
                     chairY = current.Representation.Y + newChair.Height;
-                    tableY = current.Representation.Y + margin;
+                    tableY = current.Representation.Y - margin;
                 }
                 else
                 {
@@ -161,7 +151,7 @@ namespace KantoorInrichting.Controllers.Algorithm.TestSetup
                     chairX = current.Representation.X + newTable.Height;
                     chairY = current.Representation.Y + newChair.Height;
                     tableX = current.Representation.X;
-                    tableY = current.Representation.Y + margin;
+                    tableY = current.Representation.Y - margin;
                 }
                 SetLocation(newChair, chairX, chairY);
                 SetLocation(newTable, tableX, tableY);

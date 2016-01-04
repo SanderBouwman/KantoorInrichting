@@ -10,10 +10,8 @@ using System.Windows.Forms;
 
 namespace KantoorInrichting.Controllers {
     public interface IController {
-        void Resize(object sender, EventArgs e);
         void Paint(object sender, PaintEventArgs e);
-        void CheckboxChanged(bool b);
-        void Notify(object sender, EventArgs e);
+        void Notify(object sender, EventArgs e, string eventName);
         void Dispose(object sender, EventArgs e);
     }
 }

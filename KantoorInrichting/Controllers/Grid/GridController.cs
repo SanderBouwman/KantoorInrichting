@@ -29,7 +29,7 @@ namespace KantoorInrichting.Controllers.Grid
             _tileWidth;
 
         private readonly TrackBar _trackBar;
-        private readonly IView _view;
+        private readonly IView<string> _view;
 
         private IDesignAlgorithm _algorithm;
         private Bitmap _buffer;
@@ -43,7 +43,7 @@ namespace KantoorInrichting.Controllers.Grid
         private bool _zoomCheckbox;
         private ZoomView _zoomView;
 
-        public GridController(IView view, GridFieldModel model)
+        public GridController(IView<string> view, GridFieldModel model)
         {
             _view = view;
             _model = model;
@@ -78,7 +78,7 @@ namespace KantoorInrichting.Controllers.Grid
         }
 
 
-        public void Notify(object sender, EventArgs e)
+        public void Notify(object sender, EventArgs e, string eventName)
         {
             // Made a switch using lambda expressions in a dictionary, since you can not do a switch on types
             var @switch = new Dictionary<Type, Action>

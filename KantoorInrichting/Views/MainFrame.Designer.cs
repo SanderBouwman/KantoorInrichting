@@ -150,5 +150,6 @@ namespace KantoorInrichting
         private System.Windows.Forms.ToolStripMenuItem afsluitenToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem terugNaarHoofdschermToolStripMenuItem1;
         public System.Windows.Forms.MenuStrip menuStrip1;
+        public Views.Placement.ProductGrid productGrid;
     }
 }

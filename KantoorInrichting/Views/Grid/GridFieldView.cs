@@ -13,7 +13,7 @@ using KantoorInrichting.Controllers;
 
 namespace KantoorInrichting.Views.Grid
 {
-    public partial class GridFieldView : UserControl, IView
+    public partial class GridFieldView : UserControl//, IView
     {
         private IController _controller;
 
@@ -95,17 +95,17 @@ namespace KantoorInrichting.Views.Grid
 
         private void ClearFieldButton_Click(object sender, EventArgs e)
         {
-            _controller.Notify(sender, e);
+            _controller.Notify(sender, e, "");
         }
 
         private void AlgoButton_Click(object sender, EventArgs e)
         {
-            _controller.Notify(sender, e);
+            _controller.Notify(sender, e, "");
         }
 
         private void DrawPanel_DragDrop(object sender, DragEventArgs e)
         {
-            _controller.Notify(sender, e);
+            _controller.Notify(sender, e, "");
         }
 
         private void ListView_GiveFeedback(object sender,
@@ -127,34 +127,34 @@ namespace KantoorInrichting.Views.Grid
 
         private void ListView_ItemDrag(object sender, ItemDragEventArgs e)
         {
-            _controller.Notify(sender, e);
+            _controller.Notify(sender, e, "");
             listView.DoDragDrop(listView.SelectedItems[0],
                 DragDropEffects.Copy);
         }
 
         private void TrackBar_Scroll(object sender, EventArgs e)
         {
-            _controller.Notify(sender, e);
+            _controller.Notify(sender, e, "");
         }
 
         private void ZoomCheckbox_CheckedChanged(object sender, EventArgs e)
         {
-            _controller.CheckboxChanged(zoomCheckbox.Checked);
+//            _controller.CheckboxChanged(zoomCheckbox.Checked);
         }
 
         private void DrawPanel_MouseMove(object sender, MouseEventArgs e)
         {
-            _controller.Notify(sender, e);
+            _controller.Notify(sender, e, "");
         }
 
         private void DrawPanel_MouseDown(object sender, MouseEventArgs e)
         {
-            _controller.Notify(sender, e);
+            _controller.Notify(sender, e, "");
         }
 
         private void DrawPanel_Resize(object sender, EventArgs e)
         {
-            _controller.Resize(sender, e);
+            //_controller.Resize(sender, e);
         }
 
         private void DrawPanel_Paint(object sender, PaintEventArgs e)

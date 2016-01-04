@@ -62,8 +62,12 @@
     <Compile Include="Controllers\Inventory\InventoryEditController.cs" />
     <Compile Include="Controllers\Login\LoginController.cs" />
     <Compile Include="Controllers\Map\MapsController.cs" />
+    <Compile Include="Controllers\Placement\Handler\ICollisionHandler.cs" />
+    <Compile Include="Controllers\Placement\Handler\ProductGridCollisionHandler.cs" />
     <Compile Include="Controllers\Placement\PlacementController.cs" />
     <Compile Include="Controllers\Placement\PolygonPlacementController.cs" />
+    <Compile Include="Controllers\Placement\ProductGridController.cs" />
+    <Compile Include="Controllers\Placement\Util\ProductGridUtility.cs" />
     <Compile Include="Controllers\Product\ProductFactory.cs" />
     <Compile Include="Controllers\PropertyComparer.cs" />
     <Compile Include="Controllers\SortableBindingList.cs" />
@@ -74,7 +78,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>KantoorInrichtingDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Models\Algorithm\AlgorithmModel.cs" />
     <Compile Include="Models\Grid\GridFieldModel.cs" />
+    <Compile Include="Models\Product\ProductFactory.cs" />
     <Compile Include="Models\Product\StaticlyPlacedObject.cs" />
     <Compile Include="Models\Product\StaticObjectModel.cs" />
     <Compile Include="Models\Space\Space.cs" />
@@ -198,6 +204,12 @@
     <Compile Include="Views\Maps\ShowSpaceScreen.Designer.cs">
       <DependentUpon>ShowSpaceScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Placement\AlgorithmDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Placement\AlgorithmDialog.Designer.cs">
+      <DependentUpon>AlgorithmDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Placement\Legend.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -215,6 +227,12 @@
     </Compile>
     <Compile Include="Views\Placement\ProductFieldPanel.Designer.cs">
       <DependentUpon>ProductFieldPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Placement\ProductGrid.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Placement\ProductGrid.Designer.cs">
+      <DependentUpon>ProductGrid.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Placement\ProductInfo.cs">
       <SubType>UserControl</SubType>
@@ -303,6 +321,9 @@
     <EmbeddedResource Include="Views\Maps\ShowSpaceScreen.resx">
       <DependentUpon>ShowSpaceScreen.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Placement\AlgorithmDialog.resx">
+      <DependentUpon>AlgorithmDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Placement\Legend.resx">
       <DependentUpon>Legend.cs</DependentUpon>
     </EmbeddedResource>
@@ -311,6 +332,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Placement\ProductFieldPanel.resx">
       <DependentUpon>ProductFieldPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Placement\ProductGrid.resx">
+      <DependentUpon>ProductGrid.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Placement\ProductInfo.resx">
       <DependentUpon>ProductInfo.cs</DependentUpon>

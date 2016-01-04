@@ -19,6 +19,7 @@ namespace KantoorInrichting.Models.Product
         public int Length { get; set; }
         public int Width { get; set; }
         public int Height { get; set; }
+        public SizeF Size { get; set; }
         public int Product_id { get; }
         public string ImageFileName { get; set; }
         public string Description { get; set; }
@@ -34,6 +35,8 @@ namespace KantoorInrichting.Models.Product
         public string subcategory { get; set; }
         public bool Removed { get; set; }
         public decimal Price { get; set; }
+        
+        public bool Collidable = true;
 
         //public Supplier supplier { get; private set; }
 
