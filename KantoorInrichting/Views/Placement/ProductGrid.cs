@@ -168,5 +168,6 @@ namespace KantoorInrichting.Views.Placement
         {
             controller.Notify(sender, e, "GridLayout");
         }
+
     }
 }

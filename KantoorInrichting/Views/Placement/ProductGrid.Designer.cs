@@ -72,7 +72,7 @@
             this.controlPanel.Controls.Add(this.buttonLeft);
             this.controlPanel.Controls.Add(this.buttonCCW);
             this.controlPanel.Location = new System.Drawing.Point(83, 582);
-            this.controlPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.controlPanel.Margin = new System.Windows.Forms.Padding(4);
             this.controlPanel.Name = "controlPanel";
             this.controlPanel.Size = new System.Drawing.Size(496, 239);
             this.controlPanel.TabIndex = 1;
@@ -80,7 +80,7 @@
             // algorithmButton
             // 
             this.algorithmButton.Location = new System.Drawing.Point(323, 140);
-            this.algorithmButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.algorithmButton.Margin = new System.Windows.Forms.Padding(4);
             this.algorithmButton.Name = "algorithmButton";
             this.algorithmButton.Size = new System.Drawing.Size(100, 28);
             this.algorithmButton.TabIndex = 16;
@@ -101,7 +101,7 @@
             // 
             this.algorithmComboBox.FormattingEnabled = true;
             this.algorithmComboBox.Location = new System.Drawing.Point(152, 140);
-            this.algorithmComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.algorithmComboBox.Margin = new System.Windows.Forms.Padding(4);
             this.algorithmComboBox.Name = "algorithmComboBox";
             this.algorithmComboBox.Size = new System.Drawing.Size(160, 24);
             this.algorithmComboBox.TabIndex = 14;
@@ -110,7 +110,7 @@
             // 
             this.zoomCheckbox.AutoSize = true;
             this.zoomCheckbox.Location = new System.Drawing.Point(4, 117);
-            this.zoomCheckbox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.zoomCheckbox.Margin = new System.Windows.Forms.Padding(4);
             this.zoomCheckbox.Name = "zoomCheckbox";
             this.zoomCheckbox.Size = new System.Drawing.Size(66, 21);
             this.zoomCheckbox.TabIndex = 13;
@@ -122,7 +122,7 @@
             this.zoomTrackbar.Enabled = false;
             this.zoomTrackbar.LargeChange = 25;
             this.zoomTrackbar.Location = new System.Drawing.Point(0, 140);
-            this.zoomTrackbar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.zoomTrackbar.Margin = new System.Windows.Forms.Padding(4);
             this.zoomTrackbar.Maximum = 300;
             this.zoomTrackbar.Minimum = 50;
             this.zoomTrackbar.Name = "zoomTrackbar";
@@ -134,7 +134,7 @@
             // spaceSizeTextbox
             // 
             this.spaceSizeTextbox.Location = new System.Drawing.Point(345, 69);
-            this.spaceSizeTextbox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.spaceSizeTextbox.Margin = new System.Windows.Forms.Padding(4);
             this.spaceSizeTextbox.Name = "spaceSizeTextbox";
             this.spaceSizeTextbox.Size = new System.Drawing.Size(132, 22);
             this.spaceSizeTextbox.TabIndex = 11;
@@ -142,7 +142,7 @@
             // spaceNumberTextbox
             // 
             this.spaceNumberTextbox.Location = new System.Drawing.Point(345, 21);
-            this.spaceNumberTextbox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.spaceNumberTextbox.Margin = new System.Windows.Forms.Padding(4);
             this.spaceNumberTextbox.Name = "spaceNumberTextbox";
             this.spaceNumberTextbox.Size = new System.Drawing.Size(132, 22);
             this.spaceNumberTextbox.TabIndex = 10;
@@ -171,7 +171,7 @@
             // 
             this.buttonSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 40F);
             this.buttonSave.Location = new System.Drawing.Point(247, 6);
-            this.buttonSave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonSave.Margin = new System.Windows.Forms.Padding(4);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(67, 86);
             this.buttonSave.TabIndex = 7;
@@ -182,7 +182,7 @@
             // 
             this.buttonDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 40F);
             this.buttonDelete.Location = new System.Drawing.Point(173, 6);
-            this.buttonDelete.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonDelete.Margin = new System.Windows.Forms.Padding(4);
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(67, 86);
             this.buttonDelete.TabIndex = 6;
@@ -193,7 +193,7 @@
             // 
             this.buttonCW.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F);
             this.buttonCW.Location = new System.Drawing.Point(113, 4);
-            this.buttonCW.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonCW.Margin = new System.Windows.Forms.Padding(4);
             this.buttonCW.Name = "buttonCW";
             this.buttonCW.Size = new System.Drawing.Size(47, 43);
             this.buttonCW.TabIndex = 5;
@@ -204,7 +204,7 @@
             // 
             this.buttonRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
             this.buttonRight.Location = new System.Drawing.Point(113, 53);
-            this.buttonRight.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonRight.Margin = new System.Windows.Forms.Padding(4);
             this.buttonRight.Name = "buttonRight";
             this.buttonRight.Size = new System.Drawing.Size(47, 43);
             this.buttonRight.TabIndex = 4;
@@ -215,7 +215,7 @@
             // 
             this.buttonDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
             this.buttonDown.Location = new System.Drawing.Point(59, 53);
-            this.buttonDown.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonDown.Margin = new System.Windows.Forms.Padding(4);
             this.buttonDown.Name = "buttonDown";
             this.buttonDown.Size = new System.Drawing.Size(47, 43);
             this.buttonDown.TabIndex = 4;
@@ -226,7 +226,7 @@
             // 
             this.buttonUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
             this.buttonUp.Location = new System.Drawing.Point(59, 4);
-            this.buttonUp.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonUp.Margin = new System.Windows.Forms.Padding(4);
             this.buttonUp.Name = "buttonUp";
             this.buttonUp.Size = new System.Drawing.Size(47, 43);
             this.buttonUp.TabIndex = 2;
@@ -237,7 +237,7 @@
             // 
             this.buttonLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
             this.buttonLeft.Location = new System.Drawing.Point(4, 53);
-            this.buttonLeft.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonLeft.Margin = new System.Windows.Forms.Padding(4);
             this.buttonLeft.Name = "buttonLeft";
             this.buttonLeft.Size = new System.Drawing.Size(47, 43);
             this.buttonLeft.TabIndex = 1;
@@ -248,7 +248,7 @@
             // 
             this.buttonCCW.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F);
             this.buttonCCW.Location = new System.Drawing.Point(4, 4);
-            this.buttonCCW.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonCCW.Margin = new System.Windows.Forms.Padding(4);
             this.buttonCCW.Name = "buttonCCW";
             this.buttonCCW.Size = new System.Drawing.Size(47, 43);
             this.buttonCCW.TabIndex = 0;
@@ -273,7 +273,7 @@
             this.controlDock.Controls.Add(this.controlPanel);
             this.controlDock.Dock = System.Windows.Forms.DockStyle.Right;
             this.controlDock.Location = new System.Drawing.Point(910, 0);
-            this.controlDock.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.controlDock.Margin = new System.Windows.Forms.Padding(4);
             this.controlDock.Name = "controlDock";
             this.controlDock.Size = new System.Drawing.Size(583, 825);
             this.controlDock.TabIndex = 5;
@@ -283,7 +283,7 @@
             this.productList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.productList.AutoScroll = true;
             this.productList.Location = new System.Drawing.Point(19, 0);
-            this.productList.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.productList.Margin = new System.Windows.Forms.Padding(5);
             this.productList.Name = "productList";
             this.productList.Size = new System.Drawing.Size(560, 517);
             this.productList.TabIndex = 0;
@@ -296,7 +296,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gridFieldPanel.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.gridFieldPanel.Location = new System.Drawing.Point(4, 4);
-            this.gridFieldPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gridFieldPanel.Margin = new System.Windows.Forms.Padding(4);
             this.gridFieldPanel.Name = "gridFieldPanel";
             this.gridFieldPanel.Size = new System.Drawing.Size(800, 677);
             this.gridFieldPanel.TabIndex = 4;
@@ -319,7 +319,7 @@
             this.Controls.Add(this.gridFieldPanel);
             this.Controls.Add(this.legendLabel);
             this.Controls.Add(this.legend);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ProductGrid";
             this.Size = new System.Drawing.Size(1493, 825);
             this.controlPanel.ResumeLayout(false);

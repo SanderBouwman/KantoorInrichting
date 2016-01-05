@@ -17,7 +17,7 @@ namespace KantoorInrichting.Views.Placement
         private System.Windows.Forms.Label categoryLabel;
         private System.Windows.Forms.PictureBox pictureBox1;
 
-        static int horizontally = 10;
+        static int horizontally;
         static int vertically = 0;
 
         static int WidthHeight = 70;
@@ -29,9 +29,10 @@ namespace KantoorInrichting.Views.Placement
             InitializeComponent();
 
             this.CategoryColors = new Dictionary<string, SolidBrush>();
-
+            horizontally = 0;
             foreach (CategoryModel category in CategoryModel.List)
             {
+                
                 if (category.IsSubcategoryFrom <= -1 || category.IsSubcategoryFrom == null)
                 {
                     AddItemToScreen(category);
@@ -48,17 +49,15 @@ namespace KantoorInrichting.Views.Placement
             AddLabel(category);
             AddColorImage(category);
         }
-
+        
 
         private void AddLabel(CategoryModel category)
         {
-
             // initialize label
             this.categoryLabel = new System.Windows.Forms.Label();
 
             // label specifications
             this.categoryLabel.AutoSize = true;
-
             this.categoryLabel.Location = new Point(horizontally,vertically);
             this.categoryLabel.Name = "categoryLabel";
             this.categoryLabel.Size = new System.Drawing.Size(WidthHeight, 15);
@@ -67,9 +66,6 @@ namespace KantoorInrichting.Views.Placement
 
             //add label
             this.Controls.Add(this.categoryLabel);
-
-            
-
         }
 
         private void AddColorImage(CategoryModel category)

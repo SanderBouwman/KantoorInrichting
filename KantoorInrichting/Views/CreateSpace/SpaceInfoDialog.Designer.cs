@@ -79,7 +79,12 @@
             // 
             // nud_Length
             // 
-            this.nud_Length.DecimalPlaces = 2;
+            this.nud_Length.DecimalPlaces = 1;
+            this.nud_Length.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
             this.nud_Length.Location = new System.Drawing.Point(60, 12);
             this.nud_Length.Maximum = new decimal(new int[] {
             200,
@@ -99,10 +104,16 @@
             0,
             0,
             0});
+            this.nud_Length.ValueChanged += new System.EventHandler(this.NumberChanged);
             // 
             // nud_Width
             // 
-            this.nud_Width.DecimalPlaces = 2;
+            this.nud_Width.DecimalPlaces = 1;
+            this.nud_Width.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
             this.nud_Width.Location = new System.Drawing.Point(60, 38);
             this.nud_Width.Maximum = new decimal(new int[] {
             200,
@@ -122,6 +133,7 @@
             0,
             0,
             0});
+            this.nud_Width.ValueChanged += new System.EventHandler(this.NumberChanged);
             // 
             // lbl_Width
             // 
@@ -186,7 +198,7 @@
             // 
             this.nud_Floor.Location = new System.Drawing.Point(144, 103);
             this.nud_Floor.Maximum = new decimal(new int[] {
-            15,
+            19,
             0,
             0,
             0});
@@ -219,6 +231,7 @@
             // 
             // button1
             // 
+            this.button1.DialogResult = System.Windows.Forms.DialogResult.Yes;
             this.button1.Location = new System.Drawing.Point(183, 138);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 38);
@@ -247,6 +260,7 @@
             this.Controls.Add(this.lbl_Length);
             this.Controls.Add(this.btn_OK);
             this.Controls.Add(this.btn_Cancel);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "SpaceInfoDialog";
             this.Text = "SpaceInfoDialog";
             ((System.ComponentModel.ISupportInitialize)(this.nud_Length)).EndInit();
