@@ -33,14 +33,14 @@ namespace KantoorInrichting
         private void InitializeComponent()
         {
             this.navigatieToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.afsluitenToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.hoofdmenuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.assortimentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.plattegrondToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ruimteIndelenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.categorieBeheerderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.plattegrondTonennToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.afsluitenToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.hoofdmenuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,35 +56,6 @@ namespace KantoorInrichting
             this.navigatieToolStripMenuItem1.Name = "navigatieToolStripMenuItem1";
             this.navigatieToolStripMenuItem1.Size = new System.Drawing.Size(85, 24);
             this.navigatieToolStripMenuItem1.Text = "Navigatie";
-            // 
-            // afsluitenToolStripMenuItem1
-            // 
-            this.afsluitenToolStripMenuItem1.Name = "afsluitenToolStripMenuItem1";
-            this.afsluitenToolStripMenuItem1.Size = new System.Drawing.Size(181, 26);
-            this.afsluitenToolStripMenuItem1.Text = "Afsluiten";
-            this.afsluitenToolStripMenuItem1.Click += new System.EventHandler(this.afsluitenToolStripMenuItem1_Click);
-            // 
-            // menuStrip1
-            // 
-            this.menuStrip1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.menuStrip1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.hoofdmenuToolStripMenuItem,
-            this.navigatieToolStripMenuItem1});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(686, 28);
-            this.menuStrip1.TabIndex = 2;
-            this.menuStrip1.Visible = false;
-            // 
-            // hoofdmenuToolStripMenuItem
-            // 
-            this.hoofdmenuToolStripMenuItem.Name = "hoofdmenuToolStripMenuItem";
-            this.hoofdmenuToolStripMenuItem.Size = new System.Drawing.Size(101, 24);
-            this.hoofdmenuToolStripMenuItem.Text = "Hoofdmenu";
-            this.hoofdmenuToolStripMenuItem.Click += new System.EventHandler(this.hoofdmenuToolStripMenuItem_Click);
             // 
             // assortimentToolStripMenuItem
             // 
@@ -119,18 +90,47 @@ namespace KantoorInrichting
             this.plattegrondTonennToolStripMenuItem.Name = "plattegrondTonennToolStripMenuItem";
             this.plattegrondTonennToolStripMenuItem.Size = new System.Drawing.Size(221, 26);
             this.plattegrondTonennToolStripMenuItem.Text = "Plattegrond tonen";
+            this.plattegrondTonennToolStripMenuItem.Click += new System.EventHandler(this.plattegrondTonennToolStripMenuItem_Click_1);
+            // 
+            // afsluitenToolStripMenuItem1
+            // 
+            this.afsluitenToolStripMenuItem1.Name = "afsluitenToolStripMenuItem1";
+            this.afsluitenToolStripMenuItem1.Size = new System.Drawing.Size(221, 26);
+            this.afsluitenToolStripMenuItem1.Text = "Afsluiten";
+            this.afsluitenToolStripMenuItem1.Click += new System.EventHandler(this.afsluitenToolStripMenuItem1_Click);
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.menuStrip1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.hoofdmenuToolStripMenuItem,
+            this.navigatieToolStripMenuItem1});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(802, 28);
+            this.menuStrip1.TabIndex = 2;
+            this.menuStrip1.Visible = false;
+            // 
+            // hoofdmenuToolStripMenuItem
+            // 
+            this.hoofdmenuToolStripMenuItem.Name = "hoofdmenuToolStripMenuItem";
+            this.hoofdmenuToolStripMenuItem.Size = new System.Drawing.Size(101, 24);
+            this.hoofdmenuToolStripMenuItem.Text = "Hoofdmenu";
+            this.hoofdmenuToolStripMenuItem.Click += new System.EventHandler(this.hoofdmenuToolStripMenuItem_Click);
             // 
             // MainFrame
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.ClientSize = new System.Drawing.Size(686, 596);
+            this.ClientSize = new System.Drawing.Size(802, 701);
             this.Controls.Add(this.menuStrip1);
-            this.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.MinimumSize = new System.Drawing.Size(702, 632);
+            this.Margin = new System.Windows.Forms.Padding(2);
+            this.MinimumSize = new System.Drawing.Size(500, 500);
             this.Name = "MainFrame";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MainFrame";
