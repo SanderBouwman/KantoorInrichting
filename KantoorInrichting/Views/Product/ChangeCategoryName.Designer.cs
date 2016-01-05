@@ -79,6 +79,7 @@
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.categoryNameLabel);
             this.Controls.Add(this.categoryNameTextBox);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "ChangeCategoryName";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Wijzig categorienaam";

@@ -262,7 +262,7 @@
             this.Controls.Add(this.btn_Cancel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "SpaceInfoDialog";
-            this.Text = "SpaceInfoDialog";
+            this.Text = "Nieuw lokaal";
             ((System.ComponentModel.ISupportInitialize)(this.nud_Length)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nud_Width)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nud_Floor)).EndInit();

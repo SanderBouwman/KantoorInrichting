@@ -228,6 +228,7 @@ namespace KantoorInrichting.Views.Product
             this.Controls.Add(this.categoryComboBox);
             this.Controls.Add(this.newCategoryButton);
             this.Controls.Add(this.saveButton);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "CategoryManager";
