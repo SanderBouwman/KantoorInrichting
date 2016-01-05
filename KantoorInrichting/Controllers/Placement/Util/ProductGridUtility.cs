@@ -54,14 +54,35 @@ namespace KantoorInrichting.Controllers.Placement
             SolidBrush brush;
             try
             {
-                    // we still need to add functionality that subcategories gain the color from the main category
-                    // -- Edwin
-                brush = dict.Single(pair => pair.Key.Equals(product.Product.Category)).Value;
+                CategoryModel Currentcat = product.Product.ProductCategory;
+
+                if (Currentcat.IsSubcategoryFrom > -1 || Currentcat.IsSubcategoryFrom == null) // is a subcategory
+                {
+
+                    // gets the main category id
+                    int MainId = (int)Currentcat.IsSubcategoryFrom;
+
+                    // linq select category with the current id
+                    var selectedcategory2 = CategoryModel.List
+                            .Where(c => c.CatId == MainId)
+                            .Select(c => c)
+                            .ToList();
+
+                    CategoryModel Main = selectedcategory2[0];
+
+                    // gets the value (color) from the Main productcategory
+                    brush = new SolidBrush(Main.Colour);
+                }
+                else // is a maincategory
+                {
+                    // give the color from the main category
+                    brush = dict.Single(pair => pair.Key.Equals(product.Product.Category)).Value;
+                }
             }
             catch (InvalidOperationException e)
             {
                 // This means that the type is not found in the dictionary, and so I will set the Brush to Black
-                brush = new SolidBrush(Color.Blue);
+                brush = new SolidBrush(Color.Gray);
             }
             return brush;
         }

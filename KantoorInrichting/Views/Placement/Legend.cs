@@ -19,7 +19,6 @@ namespace KantoorInrichting.Views.Placement
 
         static int horizontally;
         static int vertically = 0;
-
         static int WidthHeight = 70;
 
         public Dictionary<string, SolidBrush> CategoryColors;
