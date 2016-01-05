@@ -36,7 +36,7 @@ namespace KantoorInrichting.Models.Space
 
         public override string ToString()
         {
-            return "Lokaal: " + Room + " Dimenties: " + length + "x" + width;
+            return "Lokaal: " + Room + " Dimenties: " + Length + "x" + Width;
         }
     }
 }
