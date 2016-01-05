@@ -59,23 +59,38 @@ namespace KantoorInrichting.Controllers.CreateSpace
         
         private void CreateNewSpace(Dictionary<string, string> dict)
         {
+            //TODO
+            //If room already exists, give an message
+            foreach (var spaceCompare in dbc.DataSet.space)
+            {
+                if (spaceCompare.space_number == dict["Total"])
+                {
+                    //Found a duplicate -> quit
+                    MessageBox.Show("Het lokaal, " + dict["Total"] + ", is al in gebruik. Kies graag het lokaal in uit de lijst.");
+                    space = null;
+                    return;
+                }
+            }
+
+            
             //Multiplies Length and Width by 100 to convert Meters to Centimeters
-            space = new Space(dict["Total"], dict["Floor"], dict["Building"], dict["Room"],
+                space = new Space(dict["Total"], dict["Floor"], dict["Building"], dict["Room"],
                 (int)(Double.Parse(dict["Length"])*100), (int)(Double.Parse(dict["Width"])*100), false);
             
+            //To the database
             SaveNewSpace(space);
+
+            //Message to the user
+            MessageBox.Show(space.ToString(), "U heeft een nieuwe ruimte aangemaakt.");
+
 
             //TODO
             //Make a button to convert to final (set final to true)
             //And update it in the database
-
-            //TODO
-            //If room already exists, give an message
         }
 
         private void SaveNewSpace(Space space)
         {
-            //TODO
             //Add Space to database
             DataRow anyRow = dbc.DataSet.space.NewRow();
             
