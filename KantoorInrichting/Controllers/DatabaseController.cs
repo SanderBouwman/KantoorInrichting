@@ -104,7 +104,7 @@ namespace KantoorInrichting.Controllers
         {
             foreach (var placement in this.DataSet.placement)
             {
-                var p1 = new PlacedProduct(GetSpecificProduct_FromDatabase(placement.product_id), new System.Drawing.PointF(placement.x_position, placement.y_position));
+                var p1 = new PlacedProduct(GetSpecificProduct_FromDatabase(placement.product_id), new System.Drawing.PointF(placement.x_position, placement.y_position),placement.angle);
             }
         }
 
