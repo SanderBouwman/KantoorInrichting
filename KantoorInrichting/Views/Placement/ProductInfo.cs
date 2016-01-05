@@ -20,9 +20,7 @@ namespace KantoorInrichting.Views.Placement
 
         public ProductInfo()
         {
-
             InitializeComponent();
-
             
             setProduct(new ProductModel());
         }
@@ -30,7 +28,6 @@ namespace KantoorInrichting.Views.Placement
         public ProductInfo(bool uselessparam)
         {
             InitializeComponent();
-            
         }
        
 
