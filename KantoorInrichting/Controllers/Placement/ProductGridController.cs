@@ -36,7 +36,7 @@ namespace KantoorInrichting.Controllers.Placement
         private float meterHeight;
         private float meterWidth;
 
-        private readonly List<PlacedProduct> placedProducts;
+        private static List<PlacedProduct> placedProducts = new List<PlacedProduct>();
         private float tileSize;
         private readonly ProductGridUtility utility;
 
@@ -77,7 +77,6 @@ namespace KantoorInrichting.Controllers.Placement
             // Init fields with default values
             zoomSize = 50;
             zoomArea = new Rectangle(0, 0, zoomSize, zoomSize);
-            placedProducts = new List<PlacedProduct>();
             comboBoxAlgorithms = new List<AlgorithmModel>();
             draggingProduct = false;
             zoomContent = new Bitmap(zoomSize, zoomSize);
@@ -128,6 +127,21 @@ namespace KantoorInrichting.Controllers.Placement
             }
             return zoomContent;
         }
+
+        public static int PlacementCount(ProductModel model)
+        {
+            int count = 0;
+            foreach (PlacedProduct placedproduct in placedProducts)
+            {
+                if (placedproduct.Product.ProductId == model.ProductId)
+                {
+                    count++;
+                }
+
+            }
+            return count;
+        }
+
 
         #region Event methods
 
@@ -346,8 +360,9 @@ namespace KantoorInrichting.Controllers.Placement
                 spaceRow.final = true;
                 _dbc.SpaceTableAdapter.Adapter.Update(_dbc.DataSet.space);
 
-                //TODO
+                //todo
                 //Reload the placement screen so the user is now able to place non-static products, like chairs, sofas and lamps.
+
                 return;
             }
             MessageBox.Show("NOT EDIT");
@@ -361,6 +376,7 @@ namespace KantoorInrichting.Controllers.Placement
 
             placedProducts.Remove(product);
             view.Get(ProductGrid.PropertyEnum.Panel).Invalidate();
+            ((ProductGrid)view).productList.fixInformation();
         }
 
         private void SaveRoom(string spacenumber)
@@ -561,7 +577,12 @@ namespace KantoorInrichting.Controllers.Placement
 
             // Do not add product to field if it has collision
             if (!collisionHandler.Collision(newProduct, placedProducts))
+            {
                 placedProducts.Add(newProduct);
+                ((ProductGrid)view).productList.fixInformation();
+                
+
+            }
         }
 
         /// <summary>

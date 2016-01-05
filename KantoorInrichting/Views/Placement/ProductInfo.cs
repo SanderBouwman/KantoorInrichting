@@ -41,7 +41,7 @@ namespace KantoorInrichting.Views.Placement
             txt_Name.Text = product.Name;
             txt_Brand.Text = product.Brand;
             txt_Type.Text = product.Type;
-            txt_Stock.Text = product.Amount.ToString() + " (" + PlacementController.PlacementCount(product)  + " in gebruik)";
+            txt_Stock.Text = product.Amount.ToString() + " (" + ProductGridController.PlacementCount(product).ToString() + " in gebruik)";
             txt_Dimension.Text = product.Length.ToString() + "x" + product.Width.ToString() + "x" + product.Height.ToString();
 
             pbx_Image.Image = product.Image;
