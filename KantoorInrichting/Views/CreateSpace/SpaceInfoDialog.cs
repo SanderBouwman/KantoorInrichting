@@ -26,8 +26,9 @@ namespace KantoorInrichting.Views.CreateSpace
             SpaceInfo["Building"] = cbx_Building.Text;
             SpaceInfo["Floor"] = nud_Floor.Value.ToString();
 
+            //If the room is less than 10, it gets a 0 before the number. ex. 5 becomes 05 / 9 becomes 09.
             SpaceInfo["Room"] = "";
-            if (nud_Room.Value < 10) { SpaceInfo["Room"] = "0"; }            //If the room is less than 10, it gets a 0 before the number. ex. 5 becomes 05 / 9 becomes 09.
+            if (nud_Room.Value < 10) { SpaceInfo["Room"] = "0"; }            
             SpaceInfo["Room"] += nud_Room.Value.ToString();
             
             SpaceInfo["Width"] = nud_Width.Value.ToString();

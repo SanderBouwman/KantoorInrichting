@@ -260,6 +260,7 @@
             this.Controls.Add(this.lbl_Length);
             this.Controls.Add(this.btn_OK);
             this.Controls.Add(this.btn_Cancel);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "SpaceInfoDialog";
             this.Text = "SpaceInfoDialog";
             ((System.ComponentModel.ISupportInitialize)(this.nud_Length)).EndInit();
