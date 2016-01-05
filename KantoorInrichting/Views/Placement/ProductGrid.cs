@@ -4,6 +4,7 @@
 #region
 
 using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 using KantoorInrichting.Controllers;
@@ -67,6 +68,7 @@ namespace KantoorInrichting.Views.Placement
         public void SetEvents()
         {
             Layout += ProductGrid_Layout;
+            Resize += ProductGrid_Resize;
             gridFieldPanel.Paint += GridFieldPanel_Paint1;
             gridFieldPanel.MouseMove += GridFieldPanel_MouseMove;
             zoomCheckbox.CheckedChanged += ZoomCheckbox_CheckedChanged;
@@ -88,6 +90,10 @@ namespace KantoorInrichting.Views.Placement
             gridFieldPanel.MouseDown += GridFieldPanel_MouseDown;
             gridFieldPanel.MouseUp += GridFieldPanel_MouseUp;
             gridFieldPanel.MouseMove += GridFieldPanel_MouseMove1;
+        }
+
+        private void ProductGrid_Resize( object sender, EventArgs e ) {
+            ProductGrid_Layout(sender, new LayoutEventArgs((IComponent) sender, e.ToString()));
         }
 
         private void ButtonDelete_Click(object sender, EventArgs e)

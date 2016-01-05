@@ -9,7 +9,8 @@ using System.Windows.Forms;
 
 namespace KantoorInrichting.Models.Grid {
     public sealed class GridFieldPanel : Panel {
-        public GridFieldPanel() {
+        public GridFieldPanel()
+        {
             DoubleBuffered = true;
         }
     }

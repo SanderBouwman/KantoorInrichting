@@ -88,7 +88,7 @@ namespace KantoorInrichting.Controllers.Placement
         {
             if (zoomCheckboxChecked)
                 e.Graphics.DrawRectangle(Pens.Red, zoomArea);
-
+            
             e.Graphics.DrawImage(PaintProducts(), Point.Empty);
         }
 
@@ -291,6 +291,8 @@ namespace KantoorInrichting.Controllers.Placement
         {
             Control panel = view.Get(ProductGrid.PropertyEnum.Panel);
             panel.BackgroundImage = CreateBackground(panel.Size);
+            UpdateTileSize(panel.Size);
+            viewContent = null;
         }
 
         #endregion
@@ -311,7 +313,7 @@ namespace KantoorInrichting.Controllers.Placement
                 foreach (PlacedProduct product in placedProducts)
                     PaintProduct(product, g);
             }
-
+            
             return viewContent;
         }
 
@@ -444,13 +446,13 @@ namespace KantoorInrichting.Controllers.Placement
             LayoutChanged(this, null);
 
             //Update the data (size and colour of the PlacedProduct, information of the ProductList and ProductInfo)
-            this.placeProducts();
+            this.PlaceProducts();
             grid.Invalidate();
             grid.BringToFront();
 
         }
 
-        public void placeProducts()
+        public void PlaceProducts()
         {
             foreach (var placedProduct in dbc.DataSet.placement)
             {
@@ -516,8 +518,10 @@ namespace KantoorInrichting.Controllers.Placement
             {
                 int maxWidth = view.Get(ProductGrid.PropertyEnum.Panel).Width,
                     maxHeight = view.Get(ProductGrid.PropertyEnum.Panel).Height;
+                
                 utility.MoveProduct(collisionHandler, selectedProduct, placedProducts,
                     maxWidth, maxHeight, meterWidth, meterHeight, e.X, e.Y);
+                
                 view.Get(ProductGrid.PropertyEnum.Panel).Invalidate();
             }
         }
@@ -552,7 +556,7 @@ namespace KantoorInrichting.Controllers.Placement
             float newX = realDimensions ? x : x/viewWidth*meterWidth,
                     newY = realDimensions ? y : y/viewHeight*meterHeight;
             PointF center;
-            int Currentangle = angle;
+            int currentangle = angle;
 
             if (!realDimensions)
             {
@@ -571,13 +575,9 @@ namespace KantoorInrichting.Controllers.Placement
                 };
             }
 
-
-
-            
-
             SizeF size = new SizeF(width, height);
             model.Size = size;
-            PlacedProduct newProduct = new PlacedProduct(model, center,Currentangle);
+            PlacedProduct newProduct = new PlacedProduct(model, center,currentangle);
 
             // Do not add product to field if it has collision
             if (!collisionHandler.Collision(newProduct, placedProducts))

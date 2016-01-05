@@ -133,14 +133,15 @@ namespace KantoorInrichting.Controllers.Placement
                          - selectedWidth/2,
                 newY = y/(float) boundHeight*realHeight
                        - selectedHeight/2;
+            
 
             if (newX <= 0)
                 newX = 0;
-            if (newX + selectedWidth/2 >= realWidth)
-                newX = realWidth - selectedWidth*2;
+            if (newX + selectedWidth/2 >= realWidth-selectedWidth/2)
+                newX = realWidth - selectedWidth;
             if (newY <= 0)
-                newY = selectedHeight/2;
-            if (newY + selectedHeight/2 >= realHeight)
+                newY = 0;
+            if (newY + selectedHeight/2 >= realHeight-selectedHeight/2)
                 newY = realHeight - selectedHeight;
 
             PointF newLocation = new PointF(newX, newY);
