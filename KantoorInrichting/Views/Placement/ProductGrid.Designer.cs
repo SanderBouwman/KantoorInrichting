@@ -24,6 +24,7 @@
         /// </summary>
         private void InitializeComponent() {
             this.controlPanel = new System.Windows.Forms.Panel();
+            this.buttonLock = new System.Windows.Forms.Button();
             this.algorithmButton = new System.Windows.Forms.Button();
             this.algorithmLabel = new System.Windows.Forms.Label();
             this.algorithmComboBox = new System.Windows.Forms.ComboBox();
@@ -46,7 +47,6 @@
             this.productList = new KantoorInrichting.Views.Placement.ProductList();
             this.gridFieldPanel = new KantoorInrichting.Models.Grid.GridFieldPanel();
             this.legend = new KantoorInrichting.Views.Placement.Legend();
-            this.buttonLock = new System.Windows.Forms.Button();
             this.controlPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.zoomTrackbar)).BeginInit();
             this.controlDock.SuspendLayout();
@@ -77,6 +77,16 @@
             this.controlPanel.Name = "controlPanel";
             this.controlPanel.Size = new System.Drawing.Size(420, 194);
             this.controlPanel.TabIndex = 1;
+            // 
+            // buttonLock
+            // 
+            this.buttonLock.Font = new System.Drawing.Font("Microsoft Sans Serif", 40F);
+            this.buttonLock.Location = new System.Drawing.Point(241, 5);
+            this.buttonLock.Name = "buttonLock";
+            this.buttonLock.Size = new System.Drawing.Size(50, 70);
+            this.buttonLock.TabIndex = 17;
+            this.buttonLock.Text = "🔒";
+            this.buttonLock.UseVisualStyleBackColor = true;
             // 
             // algorithmButton
             // 
@@ -265,7 +275,7 @@
             this.productList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.productList.AutoScroll = true;
             this.productList.Location = new System.Drawing.Point(14, 0);
-            this.productList.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.productList.Margin = new System.Windows.Forms.Padding(4);
             this.productList.Name = "productList";
             this.productList.Size = new System.Drawing.Size(420, 420);
             this.productList.TabIndex = 0;
@@ -287,20 +297,10 @@
             this.legend.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.legend.AutoScroll = true;
             this.legend.Location = new System.Drawing.Point(136, 568);
-            this.legend.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.legend.Margin = new System.Windows.Forms.Padding(2);
             this.legend.Name = "legend";
             this.legend.Size = new System.Drawing.Size(467, 86);
             this.legend.TabIndex = 2;
-            // 
-            // buttonLock
-            // 
-            this.buttonLock.Font = new System.Drawing.Font("Microsoft Sans Serif", 40F);
-            this.buttonLock.Location = new System.Drawing.Point(241, 5);
-            this.buttonLock.Name = "buttonLock";
-            this.buttonLock.Size = new System.Drawing.Size(50, 70);
-            this.buttonLock.TabIndex = 17;
-            this.buttonLock.Text = "🔒";
-            this.buttonLock.UseVisualStyleBackColor = true;
             // 
             // ProductGrid
             // 
@@ -322,8 +322,6 @@
         }
 
         #endregion
-
-        private ProductList productList;
         private System.Windows.Forms.Panel controlPanel;
         private Legend legend;
         private System.Windows.Forms.Label legendLabel;
@@ -347,5 +345,6 @@
         private System.Windows.Forms.ComboBox algorithmComboBox;
         public Models.Grid.GridFieldPanel gridFieldPanel;
         private System.Windows.Forms.Button buttonLock;
+        public ProductList productList;
     }
 }

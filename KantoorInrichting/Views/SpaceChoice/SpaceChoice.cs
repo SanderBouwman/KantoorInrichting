@@ -124,7 +124,7 @@ namespace KantoorInrichting.Views.SpaceChoice
             int index = room.IndexOf("-");
             if (index > 0)
             {
-                return room.Substring(0, index-1);
+                return room.Substring(0, index - 1);
             }
             return "A0.00";
         }
