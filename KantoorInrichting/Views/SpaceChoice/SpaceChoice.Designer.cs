@@ -56,10 +56,10 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(565, 166);
+            this.button1.Location = new System.Drawing.Point(570, 166);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(99, 28);
+            this.button1.Size = new System.Drawing.Size(99, 26);
             this.button1.TabIndex = 3;
             this.button1.Text = "Open";
             this.button1.UseVisualStyleBackColor = true;
@@ -67,10 +67,10 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(671, 166);
+            this.button2.Location = new System.Drawing.Point(676, 166);
             this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(99, 28);
+            this.button2.Size = new System.Drawing.Size(99, 26);
             this.button2.TabIndex = 4;
             this.button2.Text = "Nieuw";
             this.button2.UseVisualStyleBackColor = true;
