@@ -169,6 +169,7 @@ namespace KantoorInrichting.Controllers.Placement
                 HandleCheckBoxEvent(sender, e);
             if (sender is TrackBar)
                 HandleTrackbarEvent(sender, e);
+            
         }
 
         public void HandleButtonEvent(object sender, EventArgs e, string eventName)
@@ -396,13 +397,14 @@ namespace KantoorInrichting.Controllers.Placement
                 float X = product.Location.X;
                 float Y = product.Location.Y;
                 int product_id = product.Product.ProductId;
+                int angle = product.CurrentAngle;
 
                 anyRow["placement_id"] = x;
                 anyRow["space_number"] = spacenumber;
                 anyRow["product_id"] = product_id;
-                anyRow["x_position"] = X;
-                anyRow["y_position"] = Y;
-                anyRow["angle"] = 0;
+                anyRow["x_position"] = X *100;
+                anyRow["y_position"] = Y *100;
+                anyRow["angle"] = angle;
 
                 dbc.DataSet.placement.Rows.Add(anyRow);
                 dbc.PlacementTableAdapter.Update(dbc.DataSet.placement);

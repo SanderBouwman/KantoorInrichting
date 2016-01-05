@@ -107,6 +107,7 @@ namespace KantoorInrichting.Controllers.Login
                         //SHOWING MAIN MENU
                         MainFrame.mainScreen1.Visible = true;
                         MainFrame.mainScreen1.Enabled = true;
+                        MainFrame.menuStrip1.Visible = true;
                         _screen.Visible = false;
                         _screen.Enabled = false;
 

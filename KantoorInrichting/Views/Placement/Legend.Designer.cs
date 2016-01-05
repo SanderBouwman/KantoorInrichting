@@ -28,18 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-          
-
             this.SuspendLayout();
-
             // 
             // Legend
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Legend";
-            this.Size = new System.Drawing.Size(743, 70);
+            this.Size = new System.Drawing.Size(557, 57);
             this.ResumeLayout(false);
 
         }
