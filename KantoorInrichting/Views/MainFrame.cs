@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using KantoorInrichting.Views.Grid;
+using KantoorInrichting.Views.Placement;
 
 namespace KantoorInrichting
 {
@@ -42,47 +43,54 @@ namespace KantoorInrichting
             this.MapsScreen = new Views.Maps.MapsScreen(this);
             this.spaceChoice = new Views.SpaceChoice.SpaceChoice(this);
             this.productGrid = new KantoorInrichting.Views.Placement.ProductGrid();
-            
+
             //
             // assortmentScreen
             //
 
-            this.assortmentScreen.Anchor = ((AnchorStyles)((((AnchorStyles.Top | AnchorStyles.Bottom) | AnchorStyles.Left) | AnchorStyles.Right)));
+            this.assortmentScreen.Anchor =
+                ((AnchorStyles) ((((AnchorStyles.Top | AnchorStyles.Bottom) | AnchorStyles.Left) | AnchorStyles.Right)));
             this.assortmentScreen.Name = "inventoryScreen1";
             this.assortmentScreen.TabIndex = 3;
             // 
             // inventoryScreen1
             // 
-            this.inventoryScreen1.Anchor = ((AnchorStyles)((((AnchorStyles.Top | AnchorStyles.Bottom) | AnchorStyles.Left) | AnchorStyles.Right)));
+            this.inventoryScreen1.Anchor =
+                ((AnchorStyles) ((((AnchorStyles.Top | AnchorStyles.Bottom) | AnchorStyles.Left) | AnchorStyles.Right)));
             this.inventoryScreen1.Name = "inventoryScreen1";
             this.inventoryScreen1.TabIndex = 1;
 
             //
             // gridFieldView
             //
-            this.gridFieldView.Anchor = ((AnchorStyles)((((AnchorStyles.Top | AnchorStyles.Bottom) | AnchorStyles.Left) | AnchorStyles.Right)));
+            this.gridFieldView.Anchor =
+                ((AnchorStyles) ((((AnchorStyles.Top | AnchorStyles.Bottom) | AnchorStyles.Left) | AnchorStyles.Right)));
             this.gridFieldView.Name = "gridFieldView";
             this.gridFieldView.TabIndex = 2;
             // 
             // productGrid
             // 
-            this.productGrid.Anchor = ((AnchorStyles)((((AnchorStyles.Top | AnchorStyles.Bottom) | AnchorStyles.Left) | AnchorStyles.Right)));
+            this.productGrid.Anchor =
+                ((AnchorStyles) ((((AnchorStyles.Top | AnchorStyles.Bottom) | AnchorStyles.Left) | AnchorStyles.Right)));
             this.productGrid.Name = "productGrid";
             this.productGrid.TabIndex = 2;
 
             // 
             // mainScreen1
             // 
-            this.mainScreen1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-| System.Windows.Forms.AnchorStyles.Left)
-| System.Windows.Forms.AnchorStyles.Right)));
+            this.mainScreen1.Anchor =
+                ((System.Windows.Forms.AnchorStyles)
+                    ((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                       | System.Windows.Forms.AnchorStyles.Left)
+                      | System.Windows.Forms.AnchorStyles.Right)));
             this.mainScreen1.Dock = System.Windows.Forms.DockStyle.Top;
             this.mainScreen1.Name = "mainScreen1";
             this.mainScreen1.TabIndex = 0;
 
             // loginScreen
             //
-            this.loginScreen1.Anchor = ((AnchorStyles)((((AnchorStyles.Top | AnchorStyles.Bottom) | AnchorStyles.Left) | AnchorStyles.Right)));
+            this.loginScreen1.Anchor =
+                ((AnchorStyles) ((((AnchorStyles.Top | AnchorStyles.Bottom) | AnchorStyles.Left) | AnchorStyles.Right)));
             this.loginScreen1.Dock = System.Windows.Forms.DockStyle.Fill;
 
             this.loginScreen1.Name = "inventoryScreen1";
@@ -91,14 +99,16 @@ namespace KantoorInrichting
             // 
             // inventoryScreen1
             // 
-            this.MapsScreen.Anchor = ((AnchorStyles)((((AnchorStyles.Top | AnchorStyles.Bottom) | AnchorStyles.Left) | AnchorStyles.Right)));
+            this.MapsScreen.Anchor =
+                ((AnchorStyles) ((((AnchorStyles.Top | AnchorStyles.Bottom) | AnchorStyles.Left) | AnchorStyles.Right)));
             this.MapsScreen.Name = "Plattegronden";
             this.MapsScreen.TabIndex = 1;
 
             // 
             // spaceChoice
             // 
-            this.spaceChoice.Anchor = ((AnchorStyles)((((AnchorStyles.Top | AnchorStyles.Bottom) | AnchorStyles.Left) | AnchorStyles.Right)));
+            this.spaceChoice.Anchor =
+                ((AnchorStyles) ((((AnchorStyles.Top | AnchorStyles.Bottom) | AnchorStyles.Left) | AnchorStyles.Right)));
             this.spaceChoice.Name = "Kies een ruimte";
             this.spaceChoice.TabIndex = 1;
 
@@ -144,30 +154,70 @@ namespace KantoorInrichting
             Panels.Add(panel);
         }
 
-        //takes you back to the main screen
-        private void terugNaarHoofdschermToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            mainScreen1.Visible = true;
-            mainScreen1.Enabled = true;
-            inventoryScreen1.Visible = false;
-            gridFieldView.Visible = false;
-            assortmentScreen.Visible = false;
-            placement.Visible = false;
-            if (Active == this.gridFieldView) {
-                ((GridFieldView)Active).GridFieldView_Disposed(this, null);
-            }
-            mainScreen1.BringToFront();
-        }
-
         private void OnBootup()
         {
             MainFrame_Resize(this, null);
         }
 
+
+        //methods for opening the different screens.
+        public void OpenAssortment()
+        {
+            this.assortmentScreen.Visible = true;
+            this.assortmentScreen.Enabled = true;
+            this.mainScreen1.Visible = false;
+            this.assortmentScreen.BringToFront();
+        }
+
+        public void OpenSpace()
+        {
+
+            //            GridController gc = new GridController(MainFrame.gridFieldView, new GridFieldModel(10, 10, 0.5f));
+            //            // MainFrame overwrites my GridFieldView size, so I have to set the screen size like this
+            //            MainFrame.Width = 800;
+            //            MainFrame.Height = 670;
+            //            MainFrame.gridFieldView.SetListView(ProductFactory.GetPossibilities());
+            //            Application.DoEvents();
+            //            MainFrame.Active = MainFrame.gridFieldView;
+            //            MainFrame.gridFieldView.Visible = true;
+            //            MainFrame.gridFieldView.Enabled = true;
+            //            this.Visible = false;
+            //            MainFrame.gridFieldView.BringToFront();
+            Console.WriteLine("Open room selection and get data from there! -- MainScreen.cs Line 58");
+            this.AddPanelToMainscreen(this.productGrid);
+            this.Size = ProductGrid.PanelSize;
+            this.productGrid.Visible = true;
+            this.productGrid.Enabled = true;
+            this.mainScreen1.Visible = false;
+            this.productGrid.BringToFront();
+        }
+
+        public void OpenProductAdding()
+        {
+            this.spaceChoice.Visible = true;
+            this.spaceChoice.Enabled = true;
+            this.mainScreen1.Visible = false;
+            this.spaceChoice.BringToFront();
+        }
+
+        public void OpenCategoryManager()
+        {
+            this.CategoryManagerController = new CategoryManagerController();
+            this.CategoryManager = new CategoryManager(this.CategoryManagerController);
+        }
+
+        public void OpenMaps()
+        {
+            this.MapsScreen.Visible = true;
+            this.MapsScreen.Enabled = true;
+            this.mainScreen1.Visible = false;
+            this.MapsScreen.BringToFront();
+        }
+
         private void MainFrame_Resize(object sender, EventArgs e)
         {
-            int height = (int)this.Height;
-            int width = (int)this.Width;
+            int height = (int) this.Height;
+            int width = (int) this.Width;
             height -= 50;
             width -= 15;
             Point size = new Point(width, height);
@@ -195,6 +245,46 @@ namespace KantoorInrichting
         private void afsluitenToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void hoofdmenuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mainScreen1.Visible = true;
+            mainScreen1.Enabled = true;
+            mainScreen1.BringToFront();
+            inventoryScreen1.Visible = false;
+            gridFieldView.Visible = false;
+            assortmentScreen.Visible = false;
+            placement.Visible = false;
+            if (Active == this.gridFieldView)
+            {
+                ((GridFieldView) Active).GridFieldView_Disposed(this, null);
+            }
+        }
+
+        private void assortimentToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.OpenAssortment();
+        }
+
+        private void plattegrondToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.OpenSpace();
+        }
+
+        private void ruimteIndelenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.OpenProductAdding();
+        }
+
+        private void categorieBeheerderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.OpenCategoryManager();
+        }
+
+        private void plattegrondTonennToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.OpenMaps();
         }
     }
 }

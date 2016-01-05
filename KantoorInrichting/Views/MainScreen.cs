@@ -43,55 +43,27 @@ namespace KantoorInrichting.Views
 
         private void MapButton_Click(object sender, EventArgs e)
         {
-//            GridController gc = new GridController(MainFrame.gridFieldView, new GridFieldModel(10, 10, 0.5f));
-//            // MainFrame overwrites my GridFieldView size, so I have to set the screen size like this
-//            MainFrame.Width = 800;
-//            MainFrame.Height = 670;
-//            MainFrame.gridFieldView.SetListView(ProductFactory.GetPossibilities());
-//            Application.DoEvents();
-//            MainFrame.Active = MainFrame.gridFieldView;
-//            MainFrame.gridFieldView.Visible = true;
-//            MainFrame.gridFieldView.Enabled = true;
-//            this.Visible = false;
-//            MainFrame.gridFieldView.BringToFront();
-            Console.WriteLine("Open room selection and get data from there! -- MainScreen.cs Line 58"); 
-            MainFrame.AddPanelToMainscreen(MainFrame.productGrid);
-            MainFrame.Size = ProductGrid.PanelSize;
-            MainFrame.productGrid.Visible = true;
-            MainFrame.productGrid.Enabled = true;
-            this.Visible = false;
-            MainFrame.productGrid.BringToFront();
+            MainFrame.OpenSpace();
         }
 
         private void assortmentButton_Click(object sender, EventArgs e)
         {
-            MainFrame.assortmentScreen.Visible = true;
-            MainFrame.assortmentScreen.Enabled = true;
-            this.Visible = false;
-            MainFrame.assortmentScreen.BringToFront();
+            MainFrame.OpenAssortment();
         }
 
         private void ProductAddingButton_Click(object sender, EventArgs e)
         {
-
-            MainFrame.spaceChoice.Visible = true;
-            MainFrame.spaceChoice.Enabled = true;
-            this.Visible = false;
-            MainFrame.spaceChoice.BringToFront();
+            MainFrame.OpenProductAdding();
         }
 
         private void CategoryManager_Click(object sender, EventArgs e)
         {
-            MainFrame.CategoryManagerController = new CategoryManagerController();
-            MainFrame.CategoryManager = new CategoryManager(MainFrame.CategoryManagerController);
+            MainFrame.OpenCategoryManager();
         }
 
         private void MapsButton_Click(object sender, EventArgs e)
         {
-            MainFrame.MapsScreen.Visible = true;
-            MainFrame.MapsScreen.Enabled = true;
-            this.Visible = false;
-            MainFrame.MapsScreen.BringToFront();
+            MainFrame.OpenMaps();
         }
     }
 }

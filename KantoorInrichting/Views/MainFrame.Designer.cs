@@ -34,15 +34,24 @@ namespace KantoorInrichting
         {
             this.navigatieToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.afsluitenToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.terugNaarHoofdschermToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.hoofdmenuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.assortimentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.plattegrondToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ruimteIndelenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.categorieBeheerderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.plattegrondTonennToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // navigatieToolStripMenuItem1
             // 
             this.navigatieToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.terugNaarHoofdschermToolStripMenuItem1,
+            this.assortimentToolStripMenuItem,
+            this.plattegrondToolStripMenuItem,
+            this.ruimteIndelenToolStripMenuItem,
+            this.categorieBeheerderToolStripMenuItem,
+            this.plattegrondTonennToolStripMenuItem,
             this.afsluitenToolStripMenuItem1});
             this.navigatieToolStripMenuItem1.Name = "navigatieToolStripMenuItem1";
             this.navigatieToolStripMenuItem1.Size = new System.Drawing.Size(85, 24);
@@ -55,35 +64,73 @@ namespace KantoorInrichting
             this.afsluitenToolStripMenuItem1.Text = "Afsluiten";
             this.afsluitenToolStripMenuItem1.Click += new System.EventHandler(this.afsluitenToolStripMenuItem1_Click);
             // 
-            // terugNaarHoofdschermToolStripMenuItem1
-            // 
-            this.terugNaarHoofdschermToolStripMenuItem1.Name = "terugNaarHoofdschermToolStripMenuItem1";
-            this.terugNaarHoofdschermToolStripMenuItem1.Size = new System.Drawing.Size(181, 26);
-            this.terugNaarHoofdschermToolStripMenuItem1.Text = "Hoofdscherm";
-            this.terugNaarHoofdschermToolStripMenuItem1.Click += new System.EventHandler(this.terugNaarHoofdschermToolStripMenuItem1_Click);
-            // 
             // menuStrip1
             // 
             this.menuStrip1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.menuStrip1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.hoofdmenuToolStripMenuItem,
             this.navigatieToolStripMenuItem1});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(784, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(686, 28);
             this.menuStrip1.TabIndex = 2;
+            this.menuStrip1.Visible = false;
+            // 
+            // hoofdmenuToolStripMenuItem
+            // 
+            this.hoofdmenuToolStripMenuItem.Name = "hoofdmenuToolStripMenuItem";
+            this.hoofdmenuToolStripMenuItem.Size = new System.Drawing.Size(101, 24);
+            this.hoofdmenuToolStripMenuItem.Text = "Hoofdmenu";
+            this.hoofdmenuToolStripMenuItem.Click += new System.EventHandler(this.hoofdmenuToolStripMenuItem_Click);
+            // 
+            // assortimentToolStripMenuItem
+            // 
+            this.assortimentToolStripMenuItem.Name = "assortimentToolStripMenuItem";
+            this.assortimentToolStripMenuItem.Size = new System.Drawing.Size(221, 26);
+            this.assortimentToolStripMenuItem.Text = "Assortiment";
+            this.assortimentToolStripMenuItem.Click += new System.EventHandler(this.assortimentToolStripMenuItem_Click);
+            // 
+            // plattegrondToolStripMenuItem
+            // 
+            this.plattegrondToolStripMenuItem.Name = "plattegrondToolStripMenuItem";
+            this.plattegrondToolStripMenuItem.Size = new System.Drawing.Size(221, 26);
+            this.plattegrondToolStripMenuItem.Text = "Plattegrond";
+            this.plattegrondToolStripMenuItem.Click += new System.EventHandler(this.plattegrondToolStripMenuItem_Click);
+            // 
+            // ruimteIndelenToolStripMenuItem
+            // 
+            this.ruimteIndelenToolStripMenuItem.Name = "ruimteIndelenToolStripMenuItem";
+            this.ruimteIndelenToolStripMenuItem.Size = new System.Drawing.Size(221, 26);
+            this.ruimteIndelenToolStripMenuItem.Text = "Ruimte indelen";
+            this.ruimteIndelenToolStripMenuItem.Click += new System.EventHandler(this.ruimteIndelenToolStripMenuItem_Click);
+            // 
+            // categorieBeheerderToolStripMenuItem
+            // 
+            this.categorieBeheerderToolStripMenuItem.Name = "categorieBeheerderToolStripMenuItem";
+            this.categorieBeheerderToolStripMenuItem.Size = new System.Drawing.Size(221, 26);
+            this.categorieBeheerderToolStripMenuItem.Text = "Categorie beheerder";
+            this.categorieBeheerderToolStripMenuItem.Click += new System.EventHandler(this.categorieBeheerderToolStripMenuItem_Click);
+            // 
+            // plattegrondTonennToolStripMenuItem
+            // 
+            this.plattegrondTonennToolStripMenuItem.Name = "plattegrondTonennToolStripMenuItem";
+            this.plattegrondTonennToolStripMenuItem.Size = new System.Drawing.Size(221, 26);
+            this.plattegrondTonennToolStripMenuItem.Text = "Plattegrond tonen";
             // 
             // MainFrame
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.ClientSize = new System.Drawing.Size(784, 561);
+            this.ClientSize = new System.Drawing.Size(686, 596);
             this.Controls.Add(this.menuStrip1);
+            this.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.MinimumSize = new System.Drawing.Size(799, 598);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.MinimumSize = new System.Drawing.Size(702, 632);
             this.Name = "MainFrame";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MainFrame";
@@ -106,8 +153,13 @@ namespace KantoorInrichting
         public Views.SpaceChoice.SpaceChoice spaceChoice;
         public Views.Placement.ProductGrid productGrid;
         private System.Windows.Forms.ToolStripMenuItem navigatieToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem terugNaarHoofdschermToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem afsluitenToolStripMenuItem1;
         public System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem hoofdmenuToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem assortimentToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem plattegrondToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ruimteIndelenToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem categorieBeheerderToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem plattegrondTonennToolStripMenuItem;
     }
 }
