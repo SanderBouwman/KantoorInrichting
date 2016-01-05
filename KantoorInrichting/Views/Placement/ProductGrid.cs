@@ -30,7 +30,7 @@ namespace KantoorInrichting.Views.Placement
         public ProductGrid()
         {
             InitializeComponent();
-            this.controller = new ProductGridController(this, 10, 10, 0.5f);
+            controller = new ProductGridController(this, 10, 10, 0.5f);
         }
 
         public PropertyEnum Properties { get; set; }
@@ -92,7 +92,8 @@ namespace KantoorInrichting.Views.Placement
             gridFieldPanel.MouseMove += GridFieldPanel_MouseMove1;
         }
 
-        private void ProductGrid_Resize( object sender, EventArgs e ) {
+        private void ProductGrid_Resize(object sender, EventArgs e)
+        {
             ProductGrid_Layout(sender, new LayoutEventArgs((IComponent) sender, e.ToString()));
         }
 
@@ -180,6 +181,5 @@ namespace KantoorInrichting.Views.Placement
         {
             controller.Notify(sender, e, "GridLayout");
         }
-
     }
 }

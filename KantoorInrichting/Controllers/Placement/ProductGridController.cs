@@ -5,8 +5,11 @@
 
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.IO;
+using System.Reflection;
 using System.Windows.Forms;
 using KantoorInrichting.Controllers.Algorithm;
 using KantoorInrichting.Controllers.Algorithm.TestSetup;
@@ -14,13 +17,10 @@ using KantoorInrichting.Controllers.Placement.Handler;
 using KantoorInrichting.Models.Algorithm;
 using KantoorInrichting.Models.Grid;
 using KantoorInrichting.Models.Product;
+using KantoorInrichting.Models.Space;
 using KantoorInrichting.Views;
 using KantoorInrichting.Views.Grid;
 using KantoorInrichting.Views.Placement;
-using KantoorInrichting.Models.Space;
-using System.Reflection;
-using System.IO;
-using System.Data;
 
 #endregion
 
@@ -28,36 +28,35 @@ namespace KantoorInrichting.Controllers.Placement
 {
     public class ProductGridController : IController
     {
+        private static readonly List<PlacedProduct> placedProducts = new List<PlacedProduct>();
+        private readonly DatabaseController _dbc = DatabaseController.Instance;
         private readonly ICollisionHandler<PlacedProduct> collisionHandler;
         private readonly List<AlgorithmModel> comboBoxAlgorithms;
         private readonly Dictionary<string, SolidBrush> legendDictionary;
-        private readonly DatabaseController _dbc = DatabaseController.Instance;
-
-        private float meterHeight;
-        private float meterWidth;
-
-        private static List<PlacedProduct> placedProducts = new List<PlacedProduct>();
-        private float tileSize;
         private readonly ProductGridUtility utility;
 
         private readonly IView<ProductGrid.PropertyEnum> view;
 
+        private readonly DatabaseController dbc = DatabaseController.Instance;
+
         private bool draggingProduct;
         private int lastCount;
 
+        private float meterHeight;
+        private float meterWidth;
+
+        private ProductGrid productGrid;
+
         private PlacedProduct selectedProduct;
+        private Space space;
         private float tileHeight;
+        private float tileSize;
         private float tileWidth;
         private Bitmap viewContent, zoomContent;
         private Rectangle zoomArea;
         private bool zoomCheckboxChecked;
         private int zoomSize;
         private ZoomView zoomView;
-        private Space space;
-
-        private ProductGrid productGrid;
-
-        DatabaseController dbc = DatabaseController.Instance;
 
         public ProductGridController(IView<ProductGrid.PropertyEnum> view,
             float meterWidth, float meterHeight, float tileSize)
@@ -88,7 +87,7 @@ namespace KantoorInrichting.Controllers.Placement
         {
             if (zoomCheckboxChecked)
                 e.Graphics.DrawRectangle(Pens.Red, zoomArea);
-            
+
             e.Graphics.DrawImage(PaintProducts(), Point.Empty);
         }
 
@@ -97,7 +96,7 @@ namespace KantoorInrichting.Controllers.Placement
             // Made a switch using lambda expressions in a dictionary, since you can not do a switch on types
             var @switch = new Dictionary<Type, Action>
             {
-                {typeof (EventArgs), () => HandleOtherEvent(sender, e,eventName)},
+                {typeof (EventArgs), () => HandleOtherEvent(sender, e, eventName)},
                 {typeof (LayoutEventArgs), () => LayoutChanged(sender, (LayoutEventArgs) e)},
                 {typeof (MouseEventArgs), () => HandleMouseEvent(sender, (MouseEventArgs) e, eventName)},
                 {typeof (DragEventArgs), () => HandleDragEvents(sender, (DragEventArgs) e, eventName)}
@@ -134,14 +133,10 @@ namespace KantoorInrichting.Controllers.Placement
             foreach (PlacedProduct placedproduct in placedProducts)
             {
                 if (placedproduct.Product.ProductId == model.ProductId)
-                {
                     count++;
-                }
-
             }
             return count;
         }
-
 
         #region Event methods
 
@@ -183,7 +178,6 @@ namespace KantoorInrichting.Controllers.Placement
                 HandleCheckBoxEvent(sender, e);
             if (sender is TrackBar)
                 HandleTrackbarEvent(sender, e);
-            
         }
 
         public void HandleButtonEvent(object sender, EventArgs e, string eventName)
@@ -203,14 +197,15 @@ namespace KantoorInrichting.Controllers.Placement
                     MessageBox.Show("test");
                     break;
                 case "ButtonSave":
-                    try {
+                    try
+                    {
                         SaveRoom(space.Room);
                     }
                     catch (NullReferenceException ex)
                     {
                         MessageBox.Show("Vergeet niet uw lokaal op te geven");
                     }
-                    
+
                     break;
                 case "ButtonDelete":
                     DeleteProduct(selectedProduct);
@@ -313,14 +308,13 @@ namespace KantoorInrichting.Controllers.Placement
                 foreach (PlacedProduct product in placedProducts)
                     PaintProduct(product, g);
             }
-            
+
             return viewContent;
         }
 
 
         private void PaintProduct(PlacedProduct product, Graphics g)
         {
-
             Rectangle rectangle = utility.GetProductRectangle(product, tileWidth, tileHeight, tileSize);
             SolidBrush brush = utility.SelectBrush(product, legendDictionary);
             int angle = product.CurrentAngle;
@@ -344,7 +338,8 @@ namespace KantoorInrichting.Controllers.Placement
         {
             if (space.Final)
             {
-                MessageBox.Show("Dit lokaal is al omgezet om alleen meubels te plaatsen.", "Lokaal: " + space.Room, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Dit lokaal is al omgezet om alleen meubels te plaatsen.", "Lokaal: " + space.Room,
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
@@ -368,7 +363,6 @@ namespace KantoorInrichting.Controllers.Placement
                 return;
             }
             MessageBox.Show("NOT EDIT");
-            
         }
 
         public void DeleteProduct(PlacedProduct product)
@@ -378,15 +372,15 @@ namespace KantoorInrichting.Controllers.Placement
 
             placedProducts.Remove(product);
             view.Get(ProductGrid.PropertyEnum.Panel).Invalidate();
-            ((ProductGrid)view).productList.fixInformation();
+            ((ProductGrid) view).productList.fixInformation();
         }
 
         private void SaveRoom(string spacenumber)
         {
             string appFolderPath = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
-            string resourcesFolderPath = Path.Combine(Directory.GetParent(appFolderPath).Parent.FullName, "Resources");   
+            string resourcesFolderPath = Path.Combine(Directory.GetParent(appFolderPath).Parent.FullName, "Resources");
 
-            String fileName = Path.Combine(resourcesFolderPath, "" + spacenumber + ".bmp");
+            string fileName = Path.Combine(resourcesFolderPath, "" + spacenumber + ".bmp");
             viewContent.Save(fileName);
             DeleteRows(spacenumber);
             SaveSpace(spacenumber);
@@ -405,13 +399,13 @@ namespace KantoorInrichting.Controllers.Placement
 
         public void SaveSpace(string spacenumber)
         {
-
             foreach (PlacedProduct product in placedProducts)
             {
                 DataRow anyRow = dbc.DataSet.placement.NewRow();
-                var hoi2 = dbc.DataSet.placement.Rows[dbc.DataSet.placement.Rows.Count - 1]["placement_id"]; ;
+                var hoi2 = dbc.DataSet.placement.Rows[dbc.DataSet.placement.Rows.Count - 1]["placement_id"];
+                ;
                 string hoi = hoi2.ToString();
-                int x = Int32.Parse(hoi) + 1;
+                int x = int.Parse(hoi) + 1;
                 float X = product.Location.X;
                 float Y = product.Location.Y;
                 int product_id = product.Product.ProductId;
@@ -420,36 +414,33 @@ namespace KantoorInrichting.Controllers.Placement
                 anyRow["placement_id"] = x;
                 anyRow["space_number"] = spacenumber;
                 anyRow["product_id"] = product_id;
-                anyRow["x_position"] = X *100;
-                anyRow["y_position"] = Y *100;
+                anyRow["x_position"] = X*100;
+                anyRow["y_position"] = Y*100;
                 anyRow["angle"] = angle;
 
                 dbc.DataSet.placement.Rows.Add(anyRow);
                 dbc.PlacementTableAdapter.Update(dbc.DataSet.placement);
-
             }
-
         }
 
         public void OpenPanel(ProductGrid grid, Space spacenr)
         {
             placedProducts.Clear();
-            this.space = spacenr;
+            space = spacenr;
             //this.SpaceNumberTitle.Text = space.Room;
             grid.spaceNumberTextbox.Text = space.Room;
             grid.spaceSizeTextbox.Text = space.Length + " + " + space.Width;
 
-            this.meterWidth = (float) space.Width/100;
-            this.meterHeight = (float) space.Length/100;
-            this.tileSize = meterWidth/10;
+            meterWidth = (float) space.Width/100;
+            meterHeight = (float) space.Length/100;
+            tileSize = meterWidth/10;
 
             LayoutChanged(this, null);
 
             //Update the data (size and colour of the PlacedProduct, information of the ProductList and ProductInfo)
-            this.PlaceProducts();
+            PlaceProducts();
             grid.Invalidate();
             grid.BringToFront();
-
         }
 
         public void PlaceProducts()
@@ -459,22 +450,22 @@ namespace KantoorInrichting.Controllers.Placement
                 // check if placedproduct belongs to current space
                 if (placedProduct.space_number == space.Room)
                 {
-                    
                     foreach (ProductModel product in ProductModel.List)
-                    { // for each productmodel -> check if the id equals the placedproduct id
-                        
+                    {
+                        // for each productmodel -> check if the id equals the placedproduct id
+
                         if (product.ProductId == placedProduct.product_id)
                         {
                             // create placedproducts with a point and product reference
                             Point point = new Point(placedProduct.x_position/100, placedProduct.y_position/100);
                             int angle = placedProduct.angle;
-                            PlacedProduct p1 = new PlacedProduct(product, point,angle);
-                            
-                            AddNewProduct(product, (float) placedProduct.x_position/100, (float) placedProduct.y_position/100, 
-                                (float) product.Width/100, (float) product.Height/100, true,angle);
+                            PlacedProduct p1 = new PlacedProduct(product, point, angle);
+
+                            AddNewProduct(product, (float) placedProduct.x_position/100,
+                                (float) placedProduct.y_position/100,
+                                (float) product.Width/100, (float) product.Height/100, true, angle);
                         }
                     }
-
                 }
             }
         }
@@ -518,10 +509,10 @@ namespace KantoorInrichting.Controllers.Placement
             {
                 int maxWidth = view.Get(ProductGrid.PropertyEnum.Panel).Width,
                     maxHeight = view.Get(ProductGrid.PropertyEnum.Panel).Height;
-                
+
                 utility.MoveProduct(collisionHandler, selectedProduct, placedProducts,
                     maxWidth, maxHeight, meterWidth, meterHeight, e.X, e.Y);
-                
+
                 view.Get(ProductGrid.PropertyEnum.Panel).Invalidate();
             }
         }
@@ -531,7 +522,7 @@ namespace KantoorInrichting.Controllers.Placement
             ProductModel model;
             if ((model = (ProductModel) e.Data.GetData(typeof (ProductModel))) != null) // if so, this is a new product
             {
-                AddNewProduct(model, e.X, e.Y, (float) model.Width/100, (float) model.Height/100, false,0);
+                AddNewProduct(model, e.X, e.Y, (float) model.Width/100, (float) model.Height/100, false, 0);
                 view.Get(ProductGrid.PropertyEnum.Panel).Invalidate();
             }
             else // selected item is a PlacedProduct, and so is already in the field
@@ -549,12 +540,13 @@ namespace KantoorInrichting.Controllers.Placement
                 e.Effect = DragDropEffects.None;
         }
 
-        public void AddNewProduct(ProductModel model, float x, float y, float width, float height, bool realDimensions, int angle)
+        public void AddNewProduct(ProductModel model, float x, float y, float width, float height, bool realDimensions,
+            int angle)
         {
             float viewWidth = view.Get(ProductGrid.PropertyEnum.Panel).Width,
                 viewHeight = view.Get(ProductGrid.PropertyEnum.Panel).Height;
             float newX = realDimensions ? x : x/viewWidth*meterWidth,
-                    newY = realDimensions ? y : y/viewHeight*meterHeight;
+                newY = realDimensions ? y : y/viewHeight*meterHeight;
             PointF center;
             int currentangle = angle;
 
@@ -570,22 +562,20 @@ namespace KantoorInrichting.Controllers.Placement
             {
                 center = new PointF
                 {
-                    X = x ,
-                    Y = y 
+                    X = x,
+                    Y = y
                 };
             }
 
             SizeF size = new SizeF(width, height);
             model.Size = size;
-            PlacedProduct newProduct = new PlacedProduct(model, center,currentangle);
+            PlacedProduct newProduct = new PlacedProduct(model, center, currentangle);
 
             // Do not add product to field if it has collision
             if (!collisionHandler.Collision(newProduct, placedProducts))
             {
                 placedProducts.Add(newProduct);
-                ((ProductGrid)view).productList.fixInformation();
-                
-
+                ((ProductGrid) view).productList.fixInformation();
             }
         }
 
@@ -611,7 +601,7 @@ namespace KantoorInrichting.Controllers.Placement
                 int width = model.Width;
                 model.Width = model.Height;
                 model.Height = width;
-                AddNewProduct(model, model.Location.X, model.Location.Y, model.Width, model.Height, true,0);
+                AddNewProduct(model, model.Location.X, model.Location.Y, model.Width, model.Height, true, 0);
             }
         }
 

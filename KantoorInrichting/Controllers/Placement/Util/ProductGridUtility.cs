@@ -1,5 +1,5 @@
 ﻿// created by: Robin
-// on: 31-12-2015
+// on: 04-01-2016
 
 #region
 
@@ -58,15 +58,14 @@ namespace KantoorInrichting.Controllers.Placement
 
                 if (Currentcat.IsSubcategoryFrom > -1 || Currentcat.IsSubcategoryFrom == null) // is a subcategory
                 {
-
                     // gets the main category id
-                    int MainId = (int)Currentcat.IsSubcategoryFrom;
+                    int MainId = (int) Currentcat.IsSubcategoryFrom;
 
                     // linq select category with the current id
                     var selectedcategory2 = CategoryModel.List
-                            .Where(c => c.CatId == MainId)
-                            .Select(c => c)
-                            .ToList();
+                        .Where(c => c.CatId == MainId)
+                        .Select(c => c)
+                        .ToList();
 
                     CategoryModel Main = selectedcategory2[0];
 
@@ -133,15 +132,15 @@ namespace KantoorInrichting.Controllers.Placement
                          - selectedWidth/2,
                 newY = y/(float) boundHeight*realHeight
                        - selectedHeight/2;
-            
+
 
             if (newX <= 0)
                 newX = 0;
-            if (newX + selectedWidth/2 >= realWidth-selectedWidth/2)
+            if (newX + selectedWidth/2 >= realWidth - selectedWidth/2)
                 newX = realWidth - selectedWidth;
             if (newY <= 0)
                 newY = 0;
-            if (newY + selectedHeight/2 >= realHeight-selectedHeight/2)
+            if (newY + selectedHeight/2 >= realHeight - selectedHeight/2)
                 newY = realHeight - selectedHeight;
 
             PointF newLocation = new PointF(newX, newY);
