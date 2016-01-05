@@ -324,12 +324,10 @@ namespace KantoorInrichting.Controllers.Placement
         private void SaveRoom(string spacenumber)
         {
             string appFolderPath = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
-            string resourcesFolderPath = Path.Combine(Directory.GetParent(appFolderPath).Parent.FullName, "Resources");
-            Bitmap bmp = new Bitmap(ProductGrid.PanelSize.Width, ProductGrid.PanelSize.Height);
-           // productGrid.gridFieldPanel.DrawToBitmap(bmp, productGrid.gridFieldPanel.Bounds);
+            string resourcesFolderPath = Path.Combine(Directory.GetParent(appFolderPath).Parent.FullName, "Resources");   
 
             String fileName = Path.Combine(resourcesFolderPath, "" + spacenumber + ".bmp");
-            bmp.Save(fileName);
+            viewContent.Save(fileName);
             DeleteRows(spacenumber);
             SaveSpace(spacenumber);
             MessageBox.Show("Opgeslagen");
