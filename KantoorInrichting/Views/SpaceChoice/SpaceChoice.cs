@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using KantoorInrichting.Models.Space;
 using KantoorInrichting.Controllers;
+using KantoorInrichting.Controllers.CreateSpace;
 using KantoorInrichting.Controllers.Placement;
 using KantoorInrichting.Views.Placement;
 
@@ -85,6 +86,28 @@ namespace KantoorInrichting.Views.SpaceChoice
 
                 //---------
                 this.Visible = false;
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            //Do new space
+            CreateSpaceController.NewSpace();
+            //Refill the combobox by sorting them into
+            FillComboBox(comboBox1);
+
+            //If there is no space saved, there is no space to load, thus quit now
+            if (CreateSpaceController.space == null) { return; }
+
+            //Find the Space
+            for (int counter = 0; counter < comboBox1.Items.Count; counter++)
+            {
+                if (CreateSpaceController.space.Room == (string)comboBox1.Items[counter])
+                {
+                    comboBox1.SelectedIndex = counter;
+                    button1_Click(sender, e);
+                    break;
+                }
             }
         }
     }

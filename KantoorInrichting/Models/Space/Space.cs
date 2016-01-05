@@ -33,5 +33,10 @@ namespace KantoorInrichting.Models.Space
 
             List.Add(this);
         }
+
+        public override string ToString()
+        {
+            return "Lokaal: " + Room + " Dimenties: " + length + "x" + width;
+        }
     }
 }

@@ -9,40 +9,42 @@ using KantoorInrichting.Models.Space;
 
 namespace KantoorInrichting.Controllers.CreateSpace
 {
-    class CreateSpaceController
+    static class CreateSpaceController
     {
-
-        public CreateSpaceController()
-        {
-            
-        }
+        public static Space space;
 
         //Activate when a new space is being made
-        public void NewSpace()
+        public static void NewSpace()
         {
             SpaceInfoDialog spaceInfoDialog = new SpaceInfoDialog();
             spaceInfoDialog.ShowDialog();
             switch (spaceInfoDialog.DialogResult)
             {
-                    case DialogResult.Yes:
+                case DialogResult.Yes:
                     CreateNewSpace(spaceInfoDialog.SpaceInfo);
-                    //TODO
-                    //Open emediately open the newly created space
                     break;
 
-                    case DialogResult.OK:
+                case DialogResult.OK:
                     CreateNewSpace(spaceInfoDialog.SpaceInfo);
-                    //TODO
-                    //Go back to MainScreen or SpaceChoice. Depends on where the 'Create A New Room' button is placed. 
+                    space = null;
+                    break;
+                default:
+                    space = null;
                     break;
             }
             //Dispose after use
             spaceInfoDialog.Dispose();
         }
 
-        private void CreateNewSpace(Dictionary<string, string> dict)
+        
+        private static void CreateNewSpace(Dictionary<string, string> dict)
         {
-            Space space = new Space(dict["Total"], dict["Floor"], dict["Building"], dict["Room"], Int32.Parse(dict["Length"]), Int32.Parse(dict["Width"]), false);
+            //Multiplies Length and Width by 100 to convert Meters to Centimeters
+            space = new Space(dict["Total"], dict["Floor"], dict["Building"], dict["Room"],
+                (int)(Double.Parse(dict["Length"])*100), (int)(Double.Parse(dict["Width"])*100), false);
+
+
+            MessageBox.Show(space.ToString());
         }
 
     }
