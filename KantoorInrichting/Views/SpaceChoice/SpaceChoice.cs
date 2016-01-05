@@ -59,7 +59,9 @@ namespace KantoorInrichting.Views.SpaceChoice
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        
+
+        private void OpenRoom(object sender, EventArgs e)
         {
             // select dropdown selected item
             var selected = Seperate((string)comboBox1.SelectedItem);
@@ -96,7 +98,7 @@ namespace KantoorInrichting.Views.SpaceChoice
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void NewRoom(object sender, EventArgs e)
         {
             //Do new space
             CreateSpaceController.Instance.NewSpace();
@@ -112,7 +114,7 @@ namespace KantoorInrichting.Views.SpaceChoice
                 if (CreateSpaceController.space.Room == Seperate((string)comboBox1.Items[counter]))
                 {
                     comboBox1.SelectedIndex = counter;
-                    button1_Click(sender, e);
+                    OpenRoom(sender, e);
                     break;
                 }
             }

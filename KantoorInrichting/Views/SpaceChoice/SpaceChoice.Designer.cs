@@ -51,31 +51,32 @@
             this.comboBox1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(133, 135);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(288, 23);
+            this.comboBox1.Size = new System.Drawing.Size(380, 23);
             this.comboBox1.TabIndex = 2;
             // 
             // buttonOpen
             // 
-            this.buttonOpen.Location = new System.Drawing.Point(428, 135);
-            this.buttonOpen.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonOpen.Location = new System.Drawing.Point(221, 162);
+            this.buttonOpen.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonOpen.Name = "buttonOpen";
-            this.buttonOpen.Size = new System.Drawing.Size(74, 21);
+            this.buttonOpen.Size = new System.Drawing.Size(99, 28);
             this.buttonOpen.TabIndex = 3;
             this.buttonOpen.Text = "Open";
             this.buttonOpen.UseVisualStyleBackColor = true;
-            this.buttonOpen.Click += new System.EventHandler(this.button1_Click);
+            this.buttonOpen.Click += new System.EventHandler(this.OpenRoom);
             // 
             // buttonNew
             // 
-            this.buttonNew.Location = new System.Drawing.Point(507, 135);
+            this.buttonNew.Location = new System.Drawing.Point(327, 162);
+            this.buttonNew.Margin = new System.Windows.Forms.Padding(4);
             this.buttonNew.Name = "buttonNew";
-            this.buttonNew.Size = new System.Drawing.Size(74, 21);
+            this.buttonNew.Size = new System.Drawing.Size(99, 28);
             this.buttonNew.TabIndex = 4;
             this.buttonNew.Text = "Nieuw";
             this.buttonNew.UseVisualStyleBackColor = true;
-            this.buttonNew.Click += new System.EventHandler(this.button2_Click);
+            this.buttonNew.Click += new System.EventHandler(this.NewRoom);
             // 
             // SpaceChoice
             // 
@@ -85,7 +86,7 @@
             this.Controls.Add(this.buttonOpen);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label2);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "SpaceChoice";
             this.Size = new System.Drawing.Size(630, 485);
             this.ResumeLayout(false);
