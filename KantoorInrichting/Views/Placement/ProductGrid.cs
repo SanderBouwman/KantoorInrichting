@@ -80,6 +80,7 @@ namespace KantoorInrichting.Views.Placement
             // Delete and save buttons
             buttonSave.Click += ButtonSave_Click;
             buttonDelete.Click += ButtonDelete_Click;
+            buttonLock.Click += ButtonLock_Click;
 
             // DragDrop events
             gridFieldPanel.DragDrop += GridFieldPanel_DragDrop;
@@ -97,6 +98,11 @@ namespace KantoorInrichting.Views.Placement
         private void ButtonSave_Click(object sender, EventArgs e)
         {
             controller.Notify(sender, e, "ButtonSave");
+        }
+
+        private void ButtonLock_Click(object sender, EventArgs e)
+        {
+            controller.Notify(sender, e, "ButtonLock");
         }
 
         private void ButtonCCW_Click(object sender, EventArgs e)

@@ -44,7 +44,16 @@ namespace KantoorInrichting.Views.SpaceChoice
             {
                 if (space.Room != null)
                 {
-                    dropdown.Items.Add(space.Room);
+                    string itemInput = space.Room + " - ";
+                    if (space.Final)
+                    {
+                        itemInput += "Inricht mode";
+                    }
+                    else
+                    {
+                        itemInput += "Bouw mode";
+                    }
+                    dropdown.Items.Add(itemInput);
                 }
             }
 
@@ -52,10 +61,8 @@ namespace KantoorInrichting.Views.SpaceChoice
 
         private void button1_Click(object sender, EventArgs e)
         {
-
-           
             // select dropdown selected item
-            var selected = comboBox1.SelectedItem;
+            var selected = Seperate((string)comboBox1.SelectedItem);
 
             // check if something is selected
             if (comboBox1.SelectedIndex == 0)
@@ -102,13 +109,24 @@ namespace KantoorInrichting.Views.SpaceChoice
             //Find the Space
             for (int counter = 0; counter < comboBox1.Items.Count; counter++)
             {
-                if (CreateSpaceController.space.Room == (string)comboBox1.Items[counter])
+                if (CreateSpaceController.space.Room == Seperate((string)comboBox1.Items[counter]))
                 {
                     comboBox1.SelectedIndex = counter;
                     button1_Click(sender, e);
                     break;
                 }
             }
+        }
+
+
+        private string Seperate(string room)
+        {
+            int index = room.IndexOf("-");
+            if (index > 0)
+            {
+                return room.Substring(0, index-1);
+            }
+            return "A0.00";
         }
     }
 }

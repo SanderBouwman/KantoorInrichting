@@ -31,6 +31,7 @@ namespace KantoorInrichting.Controllers.Placement
         private readonly ICollisionHandler<PlacedProduct> collisionHandler;
         private readonly List<AlgorithmModel> comboBoxAlgorithms;
         private readonly Dictionary<string, SolidBrush> legendDictionary;
+        private readonly DatabaseController _dbc = DatabaseController.Instance;
 
         private float meterHeight;
         private float meterWidth;
@@ -199,6 +200,9 @@ namespace KantoorInrichting.Controllers.Placement
                 case "ButtonDelete":
                     DeleteProduct(selectedProduct);
                     break;
+                case "ButtonLock":
+                    LockRoom();
+                    break;
             }
         }
 
@@ -317,6 +321,36 @@ namespace KantoorInrichting.Controllers.Placement
                 g.FillRectangle(brush, rectangle);
                 g.ResetTransform();
             }
+        }
+
+        public void LockRoom()
+        {
+            if (space.Final)
+            {
+                MessageBox.Show("Dit lokaal is al omgezet om alleen meubels te plaatsen.", "Lokaal: " + space.Room, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            DialogResult result =
+                MessageBox.Show(
+                    "Weet je zeker dat je deze kamer wilt inrichten?\nJe kan dan niet meer muren, ramen, etc. plaatsen.\n\nKlik 'Ja' om dit lokaal om te zetten. Klik 'Nee' om dit niet te doen.",
+                    "Pas op!", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+            if (result == DialogResult.Yes)
+            {
+                MessageBox.Show("EDITING");
+                //Model
+                space.Final = true;
+                //Database
+                var spaceRow = _dbc.DataSet.space.FindByspace_number(space.Room);
+                spaceRow.final = true;
+                _dbc.SpaceTableAdapter.Adapter.Update(_dbc.DataSet.space);
+
+                //TODO
+                //Reload the placement screen so the user is now able to place non-static products, like chairs, sofas and lamps.
+                return;
+            }
+            MessageBox.Show("NOT EDIT");
+            
         }
 
         public void DeleteProduct(PlacedProduct product)

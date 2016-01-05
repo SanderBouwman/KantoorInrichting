@@ -59,7 +59,6 @@ namespace KantoorInrichting.Controllers.CreateSpace
         
         private void CreateNewSpace(Dictionary<string, string> dict)
         {
-            //TODO
             //If room already exists, give an message
             foreach (var spaceCompare in dbc.DataSet.space)
             {
@@ -82,11 +81,6 @@ namespace KantoorInrichting.Controllers.CreateSpace
 
             //Message to the user
             MessageBox.Show(space.ToString(), "U heeft een nieuwe ruimte aangemaakt.");
-
-
-            //TODO
-            //Make a button to convert to final (set final to true)
-            //And update it in the database
         }
 
         private void SaveNewSpace(Space space)
