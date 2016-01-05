@@ -73,26 +73,29 @@
             this.controlPanel.Controls.Add(this.buttonUp);
             this.controlPanel.Controls.Add(this.buttonLeft);
             this.controlPanel.Controls.Add(this.buttonCCW);
-            this.controlPanel.Location = new System.Drawing.Point(14, 473);
+            this.controlPanel.Location = new System.Drawing.Point(19, 582);
+            this.controlPanel.Margin = new System.Windows.Forms.Padding(4);
             this.controlPanel.Name = "controlPanel";
-            this.controlPanel.Size = new System.Drawing.Size(420, 194);
+            this.controlPanel.Size = new System.Drawing.Size(560, 239);
             this.controlPanel.TabIndex = 1;
             // 
             // buttonLock
             // 
             this.buttonLock.Font = new System.Drawing.Font("Microsoft Sans Serif", 40F);
-            this.buttonLock.Location = new System.Drawing.Point(241, 5);
+            this.buttonLock.Location = new System.Drawing.Point(321, 6);
+            this.buttonLock.Margin = new System.Windows.Forms.Padding(4);
             this.buttonLock.Name = "buttonLock";
-            this.buttonLock.Size = new System.Drawing.Size(50, 70);
+            this.buttonLock.Size = new System.Drawing.Size(67, 86);
             this.buttonLock.TabIndex = 17;
             this.buttonLock.Text = "🔒";
             this.buttonLock.UseVisualStyleBackColor = true;
             // 
             // algorithmButton
             // 
-            this.algorithmButton.Location = new System.Drawing.Point(242, 114);
+            this.algorithmButton.Location = new System.Drawing.Point(323, 140);
+            this.algorithmButton.Margin = new System.Windows.Forms.Padding(4);
             this.algorithmButton.Name = "algorithmButton";
-            this.algorithmButton.Size = new System.Drawing.Size(75, 23);
+            this.algorithmButton.Size = new System.Drawing.Size(100, 28);
             this.algorithmButton.TabIndex = 16;
             this.algorithmButton.Text = "Start";
             this.algorithmButton.UseVisualStyleBackColor = true;
@@ -100,26 +103,29 @@
             // algorithmLabel
             // 
             this.algorithmLabel.AutoSize = true;
-            this.algorithmLabel.Location = new System.Drawing.Point(127, 95);
+            this.algorithmLabel.Location = new System.Drawing.Point(169, 117);
+            this.algorithmLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.algorithmLabel.Name = "algorithmLabel";
-            this.algorithmLabel.Size = new System.Drawing.Size(72, 13);
+            this.algorithmLabel.Size = new System.Drawing.Size(97, 17);
             this.algorithmLabel.TabIndex = 15;
             this.algorithmLabel.Text = "Kies algoritme";
             // 
             // algorithmComboBox
             // 
             this.algorithmComboBox.FormattingEnabled = true;
-            this.algorithmComboBox.Location = new System.Drawing.Point(114, 114);
+            this.algorithmComboBox.Location = new System.Drawing.Point(152, 140);
+            this.algorithmComboBox.Margin = new System.Windows.Forms.Padding(4);
             this.algorithmComboBox.Name = "algorithmComboBox";
-            this.algorithmComboBox.Size = new System.Drawing.Size(121, 21);
+            this.algorithmComboBox.Size = new System.Drawing.Size(160, 24);
             this.algorithmComboBox.TabIndex = 14;
             // 
             // zoomCheckbox
             // 
             this.zoomCheckbox.AutoSize = true;
-            this.zoomCheckbox.Location = new System.Drawing.Point(3, 95);
+            this.zoomCheckbox.Location = new System.Drawing.Point(4, 117);
+            this.zoomCheckbox.Margin = new System.Windows.Forms.Padding(4);
             this.zoomCheckbox.Name = "zoomCheckbox";
-            this.zoomCheckbox.Size = new System.Drawing.Size(53, 17);
+            this.zoomCheckbox.Size = new System.Drawing.Size(66, 21);
             this.zoomCheckbox.TabIndex = 13;
             this.zoomCheckbox.Text = "Zoom";
             this.zoomCheckbox.UseVisualStyleBackColor = true;
@@ -128,53 +134,59 @@
             // 
             this.zoomTrackbar.Enabled = false;
             this.zoomTrackbar.LargeChange = 25;
-            this.zoomTrackbar.Location = new System.Drawing.Point(0, 114);
+            this.zoomTrackbar.Location = new System.Drawing.Point(0, 140);
+            this.zoomTrackbar.Margin = new System.Windows.Forms.Padding(4);
             this.zoomTrackbar.Maximum = 300;
             this.zoomTrackbar.Minimum = 50;
             this.zoomTrackbar.Name = "zoomTrackbar";
-            this.zoomTrackbar.Size = new System.Drawing.Size(104, 45);
+            this.zoomTrackbar.Size = new System.Drawing.Size(139, 56);
             this.zoomTrackbar.SmallChange = 10;
             this.zoomTrackbar.TabIndex = 12;
             this.zoomTrackbar.Value = 50;
             // 
             // spaceSizeTextbox
             // 
-            this.spaceSizeTextbox.Location = new System.Drawing.Point(313, 56);
+            this.spaceSizeTextbox.Location = new System.Drawing.Point(417, 69);
+            this.spaceSizeTextbox.Margin = new System.Windows.Forms.Padding(4);
             this.spaceSizeTextbox.Name = "spaceSizeTextbox";
-            this.spaceSizeTextbox.Size = new System.Drawing.Size(100, 20);
+            this.spaceSizeTextbox.Size = new System.Drawing.Size(132, 22);
             this.spaceSizeTextbox.TabIndex = 11;
             // 
             // spaceNumberTextbox
             // 
-            this.spaceNumberTextbox.Location = new System.Drawing.Point(313, 17);
+            this.spaceNumberTextbox.Location = new System.Drawing.Point(417, 21);
+            this.spaceNumberTextbox.Margin = new System.Windows.Forms.Padding(4);
             this.spaceNumberTextbox.Name = "spaceNumberTextbox";
-            this.spaceNumberTextbox.Size = new System.Drawing.Size(100, 20);
+            this.spaceNumberTextbox.Size = new System.Drawing.Size(132, 22);
             this.spaceNumberTextbox.TabIndex = 10;
             // 
             // spaceSizeLabel
             // 
             this.spaceSizeLabel.AutoSize = true;
-            this.spaceSizeLabel.Location = new System.Drawing.Point(310, 41);
+            this.spaceSizeLabel.Location = new System.Drawing.Point(413, 50);
+            this.spaceSizeLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.spaceSizeLabel.Name = "spaceSizeLabel";
-            this.spaceSizeLabel.Size = new System.Drawing.Size(79, 13);
+            this.spaceSizeLabel.Size = new System.Drawing.Size(106, 17);
             this.spaceSizeLabel.TabIndex = 9;
             this.spaceSizeLabel.Text = "Afmeting ruimte";
             // 
             // spaceNumberLabel
             // 
             this.spaceNumberLabel.AutoSize = true;
-            this.spaceNumberLabel.Location = new System.Drawing.Point(310, 3);
+            this.spaceNumberLabel.Location = new System.Drawing.Point(413, 4);
+            this.spaceNumberLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.spaceNumberLabel.Name = "spaceNumberLabel";
-            this.spaceNumberLabel.Size = new System.Drawing.Size(40, 13);
+            this.spaceNumberLabel.Size = new System.Drawing.Size(52, 17);
             this.spaceNumberLabel.TabIndex = 8;
             this.spaceNumberLabel.Text = "Ruimte";
             // 
             // buttonSave
             // 
             this.buttonSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 40F);
-            this.buttonSave.Location = new System.Drawing.Point(185, 5);
+            this.buttonSave.Location = new System.Drawing.Point(247, 6);
+            this.buttonSave.Margin = new System.Windows.Forms.Padding(4);
             this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(50, 70);
+            this.buttonSave.Size = new System.Drawing.Size(67, 86);
             this.buttonSave.TabIndex = 7;
             this.buttonSave.Text = "💾";
             this.buttonSave.UseVisualStyleBackColor = true;
@@ -182,9 +194,10 @@
             // buttonDelete
             // 
             this.buttonDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 40F);
-            this.buttonDelete.Location = new System.Drawing.Point(130, 5);
+            this.buttonDelete.Location = new System.Drawing.Point(173, 6);
+            this.buttonDelete.Margin = new System.Windows.Forms.Padding(4);
             this.buttonDelete.Name = "buttonDelete";
-            this.buttonDelete.Size = new System.Drawing.Size(50, 70);
+            this.buttonDelete.Size = new System.Drawing.Size(67, 86);
             this.buttonDelete.TabIndex = 6;
             this.buttonDelete.Text = "🗑";
             this.buttonDelete.UseVisualStyleBackColor = true;
@@ -192,9 +205,10 @@
             // buttonCW
             // 
             this.buttonCW.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F);
-            this.buttonCW.Location = new System.Drawing.Point(85, 3);
+            this.buttonCW.Location = new System.Drawing.Point(113, 4);
+            this.buttonCW.Margin = new System.Windows.Forms.Padding(4);
             this.buttonCW.Name = "buttonCW";
-            this.buttonCW.Size = new System.Drawing.Size(35, 35);
+            this.buttonCW.Size = new System.Drawing.Size(47, 43);
             this.buttonCW.TabIndex = 5;
             this.buttonCW.Text = "↷";
             this.buttonCW.UseVisualStyleBackColor = true;
@@ -202,9 +216,10 @@
             // buttonRight
             // 
             this.buttonRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.buttonRight.Location = new System.Drawing.Point(85, 43);
+            this.buttonRight.Location = new System.Drawing.Point(113, 53);
+            this.buttonRight.Margin = new System.Windows.Forms.Padding(4);
             this.buttonRight.Name = "buttonRight";
-            this.buttonRight.Size = new System.Drawing.Size(35, 35);
+            this.buttonRight.Size = new System.Drawing.Size(47, 43);
             this.buttonRight.TabIndex = 4;
             this.buttonRight.Text = "→";
             this.buttonRight.UseVisualStyleBackColor = true;
@@ -212,9 +227,10 @@
             // buttonDown
             // 
             this.buttonDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.buttonDown.Location = new System.Drawing.Point(44, 43);
+            this.buttonDown.Location = new System.Drawing.Point(59, 53);
+            this.buttonDown.Margin = new System.Windows.Forms.Padding(4);
             this.buttonDown.Name = "buttonDown";
-            this.buttonDown.Size = new System.Drawing.Size(35, 35);
+            this.buttonDown.Size = new System.Drawing.Size(47, 43);
             this.buttonDown.TabIndex = 4;
             this.buttonDown.Text = "↓";
             this.buttonDown.UseVisualStyleBackColor = true;
@@ -222,9 +238,10 @@
             // buttonUp
             // 
             this.buttonUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.buttonUp.Location = new System.Drawing.Point(44, 3);
+            this.buttonUp.Location = new System.Drawing.Point(59, 4);
+            this.buttonUp.Margin = new System.Windows.Forms.Padding(4);
             this.buttonUp.Name = "buttonUp";
-            this.buttonUp.Size = new System.Drawing.Size(35, 35);
+            this.buttonUp.Size = new System.Drawing.Size(47, 43);
             this.buttonUp.TabIndex = 2;
             this.buttonUp.Text = "↑";
             this.buttonUp.UseVisualStyleBackColor = true;
@@ -232,9 +249,10 @@
             // buttonLeft
             // 
             this.buttonLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.buttonLeft.Location = new System.Drawing.Point(3, 43);
+            this.buttonLeft.Location = new System.Drawing.Point(4, 53);
+            this.buttonLeft.Margin = new System.Windows.Forms.Padding(4);
             this.buttonLeft.Name = "buttonLeft";
-            this.buttonLeft.Size = new System.Drawing.Size(35, 35);
+            this.buttonLeft.Size = new System.Drawing.Size(47, 43);
             this.buttonLeft.TabIndex = 1;
             this.buttonLeft.Text = "←";
             this.buttonLeft.UseVisualStyleBackColor = true;
@@ -242,9 +260,10 @@
             // buttonCCW
             // 
             this.buttonCCW.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F);
-            this.buttonCCW.Location = new System.Drawing.Point(3, 3);
+            this.buttonCCW.Location = new System.Drawing.Point(4, 4);
+            this.buttonCCW.Margin = new System.Windows.Forms.Padding(4);
             this.buttonCCW.Name = "buttonCCW";
-            this.buttonCCW.Size = new System.Drawing.Size(35, 35);
+            this.buttonCCW.Size = new System.Drawing.Size(47, 43);
             this.buttonCCW.TabIndex = 0;
             this.buttonCCW.Text = "↶";
             this.buttonCCW.UseVisualStyleBackColor = true;
@@ -254,9 +273,10 @@
             this.legendLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.legendLabel.AutoSize = true;
             this.legendLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.legendLabel.Location = new System.Drawing.Point(18, 587);
+            this.legendLabel.Location = new System.Drawing.Point(24, 722);
+            this.legendLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.legendLabel.Name = "legendLabel";
-            this.legendLabel.Size = new System.Drawing.Size(119, 31);
+            this.legendLabel.Size = new System.Drawing.Size(150, 39);
             this.legendLabel.TabIndex = 3;
             this.legendLabel.Text = "Legenda";
             // 
@@ -265,19 +285,20 @@
             this.controlDock.Controls.Add(this.productList);
             this.controlDock.Controls.Add(this.controlPanel);
             this.controlDock.Dock = System.Windows.Forms.DockStyle.Right;
-            this.controlDock.Location = new System.Drawing.Point(683, 0);
+            this.controlDock.Location = new System.Drawing.Point(910, 0);
+            this.controlDock.Margin = new System.Windows.Forms.Padding(4);
             this.controlDock.Name = "controlDock";
-            this.controlDock.Size = new System.Drawing.Size(437, 670);
+            this.controlDock.Size = new System.Drawing.Size(583, 825);
             this.controlDock.TabIndex = 5;
             // 
             // productList
             // 
             this.productList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.productList.AutoScroll = true;
-            this.productList.Location = new System.Drawing.Point(14, 0);
-            this.productList.Margin = new System.Windows.Forms.Padding(4);
+            this.productList.Location = new System.Drawing.Point(19, 0);
+            this.productList.Margin = new System.Windows.Forms.Padding(5);
             this.productList.Name = "productList";
-            this.productList.Size = new System.Drawing.Size(420, 420);
+            this.productList.Size = new System.Drawing.Size(560, 374);
             this.productList.TabIndex = 0;
             // 
             // gridFieldPanel
@@ -287,31 +308,32 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gridFieldPanel.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.gridFieldPanel.Location = new System.Drawing.Point(3, 3);
+            this.gridFieldPanel.Location = new System.Drawing.Point(4, 4);
+            this.gridFieldPanel.Margin = new System.Windows.Forms.Padding(4);
             this.gridFieldPanel.Name = "gridFieldPanel";
-            this.gridFieldPanel.Size = new System.Drawing.Size(600, 550);
+            this.gridFieldPanel.Size = new System.Drawing.Size(800, 677);
             this.gridFieldPanel.TabIndex = 4;
             // 
             // legend
             // 
             this.legend.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.legend.AutoScroll = true;
-            this.legend.Location = new System.Drawing.Point(136, 568);
-            this.legend.Margin = new System.Windows.Forms.Padding(2);
+            this.legend.Location = new System.Drawing.Point(181, 699);
+            this.legend.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.legend.Name = "legend";
-            this.legend.Size = new System.Drawing.Size(467, 86);
+            this.legend.Size = new System.Drawing.Size(623, 106);
             this.legend.TabIndex = 2;
             // 
             // ProductGrid
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.Controls.Add(this.controlDock);
             this.Controls.Add(this.gridFieldPanel);
             this.Controls.Add(this.legendLabel);
             this.Controls.Add(this.legend);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ProductGrid";
-            this.Size = new System.Drawing.Size(1120, 670);
+            this.Size = new System.Drawing.Size(1493, 825);
             this.controlPanel.ResumeLayout(false);
             this.controlPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.zoomTrackbar)).EndInit();
