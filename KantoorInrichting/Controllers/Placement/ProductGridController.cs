@@ -366,8 +366,8 @@ namespace KantoorInrichting.Controllers.Placement
                 anyRow["placement_id"] = x;
                 anyRow["space_number"] = spacenumber;
                 anyRow["product_id"] = product_id;
-                anyRow["x_position"] = X;
-                anyRow["y_position"] = Y;
+                anyRow["x_position"] = X *100;
+                anyRow["y_position"] = Y *100;
                 anyRow["angle"] = 0;
 
                 dbc.DataSet.placement.Rows.Add(anyRow);
