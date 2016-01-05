@@ -28,7 +28,10 @@ namespace KantoorInrichting.Models.Product
         public Bitmap RotatedMap { get; set; }
         public int CurrentAngle { get; set; }
         public Polygon Poly { get; set; }
-        
+
+        public string SpaceID { get; set; }
+        public int ProductID { get; set; }
+
         public int GridSpace = 5;
 
 
@@ -52,7 +55,13 @@ namespace KantoorInrichting.Models.Product
             //Core variables
             this.Product = product;
             Location = center;
+            this.ProductID = Product.Id;
 
+            //angle
+            CurrentAngle = angle;
+
+            //space
+            //this.SpaceID = space;
 
             //Corner and image
             CornerPoints = new PointF[5];

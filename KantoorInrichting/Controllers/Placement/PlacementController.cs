@@ -218,7 +218,7 @@ namespace KantoorInrichting.Controllers.Placement
                         {
 
                             Point point = new Point(placedProduct.x_position, placedProduct.y_position);
-                            PlacedProduct p1 = new PlacedProduct(product, point);
+                            PlacedProduct p1 = new PlacedProduct(product, point,0);
 
                             placedProductList.Add(p1);
                         }

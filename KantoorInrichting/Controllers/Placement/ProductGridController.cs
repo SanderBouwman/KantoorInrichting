@@ -449,10 +449,11 @@ namespace KantoorInrichting.Controllers.Placement
                         {
                             // create placedproducts with a point and product reference
                             Point point = new Point(placedProduct.x_position/100, placedProduct.y_position/100);
-                            PlacedProduct p1 = new PlacedProduct(product, point);
+                            int angle = placedProduct.angle;
+                            PlacedProduct p1 = new PlacedProduct(product, point,angle);
                             
                             AddNewProduct(product, (float) placedProduct.x_position/100, (float) placedProduct.y_position/100, 
-                                (float) product.Width/100, (float) product.Height/100, true);
+                                (float) product.Width/100, (float) product.Height/100, true,angle);
                         }
                     }
 
@@ -510,7 +511,7 @@ namespace KantoorInrichting.Controllers.Placement
             ProductModel model;
             if ((model = (ProductModel) e.Data.GetData(typeof (ProductModel))) != null) // if so, this is a new product
             {
-                AddNewProduct(model, e.X, e.Y, (float) model.Width/100, (float) model.Height/100, false);
+                AddNewProduct(model, e.X, e.Y, (float) model.Width/100, (float) model.Height/100, false,0);
                 view.Get(ProductGrid.PropertyEnum.Panel).Invalidate();
             }
             else // selected item is a PlacedProduct, and so is already in the field
@@ -528,13 +529,14 @@ namespace KantoorInrichting.Controllers.Placement
                 e.Effect = DragDropEffects.None;
         }
 
-        public void AddNewProduct(ProductModel model, float x, float y, float width, float height, bool realDimensions)
+        public void AddNewProduct(ProductModel model, float x, float y, float width, float height, bool realDimensions, int angle)
         {
             float viewWidth = view.Get(ProductGrid.PropertyEnum.Panel).Width,
                 viewHeight = view.Get(ProductGrid.PropertyEnum.Panel).Height;
             float newX = realDimensions ? x : x/viewWidth*meterWidth,
                     newY = realDimensions ? y : y/viewHeight*meterHeight;
             PointF center;
+            int Currentangle = angle;
 
             if (!realDimensions)
             {
@@ -553,11 +555,13 @@ namespace KantoorInrichting.Controllers.Placement
                 };
             }
 
+
+
             
 
             SizeF size = new SizeF(width, height);
             model.Size = size;
-            PlacedProduct newProduct = new PlacedProduct(model, center);
+            PlacedProduct newProduct = new PlacedProduct(model, center,Currentangle);
 
             // Do not add product to field if it has collision
             if (!collisionHandler.Collision(newProduct, placedProducts))
@@ -586,7 +590,7 @@ namespace KantoorInrichting.Controllers.Placement
                 int width = model.Width;
                 model.Width = model.Height;
                 model.Height = width;
-                AddNewProduct(model, model.Location.X, model.Location.Y, model.Width, model.Height, true);
+                AddNewProduct(model, model.Location.X, model.Location.Y, model.Width, model.Height, true,0);
             }
         }
 
