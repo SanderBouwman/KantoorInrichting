@@ -187,7 +187,14 @@ namespace KantoorInrichting.Controllers.Placement
                     MessageBox.Show("test");
                     break;
                 case "ButtonSave":
-                    SaveRoom(space.Room);
+                    try {
+                        SaveRoom(space.Room);
+                    }
+                    catch (NullReferenceException ex)
+                    {
+                        MessageBox.Show("Vergeet niet uw lokaal op te geven");
+                    }
+                    
                     break;
                 case "ButtonDelete":
                     DeleteProduct(selectedProduct);
