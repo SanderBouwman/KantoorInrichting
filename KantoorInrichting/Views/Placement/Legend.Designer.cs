@@ -28,10 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-          
-
             this.SuspendLayout();
-
             // 
             // Legend
             // 
@@ -39,7 +36,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.Name = "Legend";
-            this.Size = new System.Drawing.Size(743, 70);
+            this.Size = new System.Drawing.Size(12, 70);
             this.ResumeLayout(false);
 
         }
