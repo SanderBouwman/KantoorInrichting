@@ -240,8 +240,8 @@ namespace KantoorInrichting.Controllers.Placement
                 if (dialog.Result.Count > 0)
                 {
                     people = (int)dialog.Result["People"];
-                    margin = dialog.Result["Margin"];
-                }
+                    margin = (dialog.Result["Margin"]/100); // Margin is given in centimeters (so we don't have trouble parsing
+                }                                           // the result between OS').
                 else
                 {
                     people = 0;

@@ -46,9 +46,9 @@
             this.marginLabel.AutoSize = true;
             this.marginLabel.Location = new System.Drawing.Point(44, 129);
             this.marginLabel.Name = "marginLabel";
-            this.marginLabel.Size = new System.Drawing.Size(205, 13);
+            this.marginLabel.Size = new System.Drawing.Size(228, 13);
             this.marginLabel.TabIndex = 1;
-            this.marginLabel.Text = "Ruimte tussen stoel/tafel paren (in meters)";
+            this.marginLabel.Text = "Ruimte tussen stoel/tafel paren (in centimeters)";
             // 
             // marginBox
             // 
