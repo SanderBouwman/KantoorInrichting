@@ -29,7 +29,8 @@ namespace KantoorInrichting.Models.Product
         public string Type { get; set; }      
         public string Brand { get; set; }   
         public Image Image { get; set; }   
-        public int Amount { get; set; }    
+        public int Amount { get; set; }
+        public int AmountPlaced { get; set; }
         public int Id { get; }
         public string Category { get; set; }
         public string Subcategory { get; set; }
@@ -45,6 +46,7 @@ namespace KantoorInrichting.Models.Product
         public ProductModel(string n, string b, string t, string c, string s, int l, int w, int h, string d, int a)
         {
             Id = IdNumber;
+
             IdNumber++;
             Name = n;
             Brand = b;
@@ -64,6 +66,7 @@ namespace KantoorInrichting.Models.Product
             bool r, decimal p)
         {
             ProductId = i;
+
             Name = n;
             Brand = b;
             Type = t;
@@ -105,6 +108,7 @@ namespace KantoorInrichting.Models.Product
         /// </summary>
         //public ProductModel() : this("", "", "", "", "", 1, 1, 1, "", 1) { }
         public ProductModel() : this(1, 1, 1) { }
+
 
 
         //Contructor if you only want to make models that have a size

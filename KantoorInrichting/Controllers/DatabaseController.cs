@@ -72,7 +72,24 @@ namespace KantoorInrichting.Controllers
                 var p1 = new ProductModel(product.product_id, product.name, product.brand, product.type,
                     product.category_id, product.length, product.width, product.height, product.description,
                     product.amount, product.image, product.removed, product.price);
+                //checkAmountPlaced(p1);
             }
+
+        }
+        public int checkAmountPlaced(ProductModel product)
+        {
+            int Amount = 0;
+            DatabaseController dbc = DatabaseController.Instance;
+            foreach (var placedProduct in dbc.DataSet.placement)
+            {
+                if (placedProduct.product_id == product.ProductId)
+                {
+                    Amount++;
+                }
+
+            }
+
+            return Amount;
         }
 
         //all static products are collected from the database WILL NEED TO BE ENABLED
