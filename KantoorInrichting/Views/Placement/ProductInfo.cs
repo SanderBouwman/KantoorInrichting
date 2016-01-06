@@ -29,7 +29,7 @@ namespace KantoorInrichting.Views.Placement
         {
             InitializeComponent();
         }
-       
+
 
         public void setProduct(ProductModel p)
         {
@@ -38,7 +38,8 @@ namespace KantoorInrichting.Views.Placement
             txt_Name.Text = product.Name;
             txt_Brand.Text = product.Brand;
             txt_Type.Text = product.Type;
-            txt_Stock.Text = product.Amount.ToString() + " (" + ProductGridController.PlacementCount(product).ToString() + " in gebruik)";
+            txt_Stock.Text = product.Amount.ToString() + " (" + product.AmountPlaced + " in gebruik )";
+            CurrentlyPlaced.Text = ProductGridController.PlacementCount(product).ToString();
             txt_Dimension.Text = product.Length.ToString() + "x" + product.Width.ToString() + "x" + product.Height.ToString();
 
             pbx_Image.Image = product.Image;
@@ -64,5 +65,19 @@ namespace KantoorInrichting.Views.Placement
             pbx_Image.DoDragDrop(product, DragDropEffects.Copy);
         }
 
+        private void lbl_4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt_Stock_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbl_3_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
