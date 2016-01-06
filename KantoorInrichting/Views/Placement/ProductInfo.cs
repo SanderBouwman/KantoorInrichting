@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using KantoorInrichting;
 using KantoorInrichting.Models.Product;
 using KantoorInrichting.Controllers.Placement;
+using KantoorInrichting.Controllers;
 
 namespace KantoorInrichting.Views.Placement
 {
@@ -17,6 +18,7 @@ namespace KantoorInrichting.Views.Placement
     {
         public ProductModel product { get; private set; }
         public StaticObjectModel staticProduct { get; private set; }
+        DatabaseController dbc = DatabaseController.Instance;
 
         public ProductInfo()
         {
@@ -36,15 +38,15 @@ namespace KantoorInrichting.Views.Placement
 
         public void setProduct(ProductModel p)
         {
-            product = p;
 
+            product = p;
+            int count = dbc.CountProductsAmountPlaced(product);
             txt_Name.Text = product.Name;
             txt_Brand.Text = product.Brand;
             txt_Type.Text = product.Type;
-            txt_Stock.Text = product.Amount.ToString() + " (" + product.AmountPlaced + " in gebruik )";
+            txt_Stock.Text = product.Amount.ToString() + " (" + count + " in gebruik )";
             CurrentlyPlaced.Text = ProductGridController.PlacementCount(product).ToString();
-            txt_Dimension.Text = product.Length.ToString() + "x" + product.Width.ToString() + "x" + product.Height.ToString();
-
+            txt_Dimension.Text = product.Length.ToString() + " x " + product.Width.ToString() + " x " + product.Height.ToString();
             pbx_Image.Image = product.Image;
         }
 
@@ -53,7 +55,7 @@ namespace KantoorInrichting.Views.Placement
             staticProduct = p;
 
             txt_Name.Text = staticProduct.Name;
-            txt_Dimension.Text = staticProduct.Length.ToString() + "x" + staticProduct.Width.ToString() + "x" + staticProduct.Height.ToString();
+            txt_Dimension.Text = staticProduct.Length.ToString() + " x " + staticProduct.Width.ToString() + " x " + staticProduct.Height.ToString();
 
             pbx_Image.Image = staticProduct.Image;
         }

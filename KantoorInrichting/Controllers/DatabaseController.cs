@@ -73,13 +73,34 @@ namespace KantoorInrichting.Controllers
                            .Where(c => c.product_id == product.product_id)
                            .Select(c => c)
                            .ToList();
-                
+
                 var p1 = new ProductModel(product.product_id, product.name, product.brand, product.type,
                     product.category_id, product.length, product.width, product.height, product.description,
                     product.amount, product.image, product.removed, product.price, countPlacedProduct.Count);
                 //checkAmountPlaced(p1);
             }
 
+        }
+
+        public void CountProductsAmountPlaced(PlacedProduct product)
+        {
+            // get the current product
+            ProductModel productMod = product.Product;
+            // use method overload
+            CountProductsAmountPlaced(productMod);
+        }
+
+        public int CountProductsAmountPlaced(ProductModel product)
+        {
+            // get the amount of placed products from dataset
+            var countPlacedProduct = DataSet.placement
+                           .Where(c => c.product_id == product.ProductId)
+                           .Select(c => c)
+                           .ToList();
+
+            // give the current product the new count
+            product.AmountPlaced = countPlacedProduct.Count;
+            return countPlacedProduct.Count;
         }
 
         //all static products are collected from the database WILL NEED TO BE ENABLED

@@ -55,7 +55,7 @@ namespace KantoorInrichting.Models.Product
             //Core variables
             this.Product = product;
             Location = center;
-            this.ProductID = Product.Id;
+            this.ProductID = Product.ProductId;
 
             //angle
             CurrentAngle = angle;

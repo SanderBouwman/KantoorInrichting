@@ -414,6 +414,8 @@ namespace KantoorInrichting.Controllers.Placement
             DeleteRows(spacenumber);
             SaveSpace(spacenumber);
             MessageBox.Show("Opgeslagen");
+            view.Get(ProductGrid.PropertyEnum.Panel).Invalidate();
+            ((ProductGrid)view).productList.fixInformation();
         }
 
         public void DeleteRows(string spacenumber)
@@ -449,6 +451,9 @@ namespace KantoorInrichting.Controllers.Placement
 
                 dbc.DataSet.placement.Rows.Add(anyRow);
                 dbc.PlacementTableAdapter.Update(dbc.DataSet.placement);
+                
+                // count the new AmountPlaced for given product
+                dbc.CountProductsAmountPlaced(product);
             }
         }
 
