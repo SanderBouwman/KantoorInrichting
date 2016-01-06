@@ -63,7 +63,7 @@ namespace KantoorInrichting.Models.Product
         }
 
         public ProductModel(int i, string n, string b, string t, int c, int l, int w, int h, string d, int a, string im,
-            bool r, decimal p)
+            bool r, decimal p, int ap)
         {
             ProductId = i;
 
@@ -80,6 +80,7 @@ namespace KantoorInrichting.Models.Product
 
             Description = d;
             Amount = a;
+            AmountPlaced = ap;
             ImageFileName = im;
             SetProductImage();
             Removed = r;
@@ -112,6 +113,6 @@ namespace KantoorInrichting.Models.Product
 
 
         //Contructor if you only want to make models that have a size
-        public ProductModel(int length, int width, int height) : this(0, "", "", "", 0, length, width, height, "", 1, "No_Image_Found", false, 0.01m) { }
+        public ProductModel(int length, int width, int height) : this(0, "", "", "", 0, length, width, height, "", 1, "No_Image_Found", false, 0.01m, 0) { }
     }
 }

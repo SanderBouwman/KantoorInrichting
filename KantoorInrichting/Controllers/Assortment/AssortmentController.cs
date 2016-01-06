@@ -338,7 +338,7 @@ namespace KantoorInrichting.Controllers.Assortment
             var senderGrid = (DataGridView)sender;
             if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
             {
-                if (e.ColumnIndex == 11)
+                if (e.ColumnIndex == 12)
                 {
                     // run edit screen here
                     // make an editscreen with current product as argument
@@ -350,7 +350,7 @@ namespace KantoorInrichting.Controllers.Assortment
                     this.RemoveFilters();
                 }
 
-                if (e.ColumnIndex == 12)
+                if (e.ColumnIndex == 13)
                 {
                     var removeProduct = new RemoveProductScreen(ProductModel.Result[e.RowIndex]);
                     removeProduct.ShowDialog();
