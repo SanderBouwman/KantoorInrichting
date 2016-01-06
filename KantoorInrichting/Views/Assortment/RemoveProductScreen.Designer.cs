@@ -80,6 +80,7 @@
             this.Controls.Add(this.staticProductNameLabel);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.removeButton);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "RemoveProductScreen";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Verwijder product";

@@ -202,10 +202,6 @@ namespace KantoorInrichting.Controllers.Assortment
             }
             //Refresh the screen with the new Data
             _screen.assortmentGridView.DataSource = null;
-            _screen.DropdownCategory.SelectedIndex = 0;
-            _screen.DropdownBrand.SelectedIndex = 0;
-            _screen.DropdownBrand.Refresh();
-            _screen.DropdownCategory.Refresh();
             _screen.assortmentGridView.DataSource = ProductModel.Result;
             _screen.assortmentGridView.Refresh();
             _screen.Refresh();
@@ -300,6 +296,7 @@ namespace KantoorInrichting.Controllers.Assortment
         {
             // if the brand dropdown is changed, the checkbox is set to true.
             _screen.noAmountCheckBox.Checked = true;
+            _screen.deleteCheckBox.Checked = true;
             // filter the datagridview with the selected brand
             FilterBrand();
         }
@@ -309,6 +306,7 @@ namespace KantoorInrichting.Controllers.Assortment
         {
             // if the category dropdown is changed, the checkbox is set to true.
             _screen.noAmountCheckBox.Checked = true;
+            _screen.deleteCheckBox.Checked = true;
             // filter the datagridview with the selected category
             FilterCategory();
         }
@@ -321,9 +319,7 @@ namespace KantoorInrichting.Controllers.Assortment
             _screen.assortmentGridView.DataSource = null;
             _screen.assortmentGridView.DataSource = ProductModel.Result;
             FillData();
-            _screen.DropdownCategory.SelectedIndex = 0;
-            _screen.DropdownBrand.SelectedIndex = 0;
-            _screen.assortmentGridView.Refresh();
+            this.RemoveFilters();
         }
 
         public void RemoveFilters()
@@ -351,9 +347,7 @@ namespace KantoorInrichting.Controllers.Assortment
                     _screen.assortmentGridView.DataSource = null;
                     _screen.assortmentGridView.DataSource = ProductModel.Result;
                     FillData();
-                    _screen.DropdownCategory.SelectedIndex = 0;
-                    _screen.DropdownBrand.SelectedIndex = 0;
-                    _screen.assortmentGridView.Refresh();
+                    this.RemoveFilters();
                 }
 
                 if (e.ColumnIndex == 12)
@@ -363,9 +357,7 @@ namespace KantoorInrichting.Controllers.Assortment
                     _screen.assortmentGridView.DataSource = null;
                     _screen.assortmentGridView.DataSource = ProductModel.Result;
                     FillData();
-                    _screen.DropdownCategory.SelectedIndex = 0;
-                    _screen.DropdownBrand.SelectedIndex = 0;
-                    _screen.assortmentGridView.Refresh();
+                    this.RemoveFilters();
                 }
             }
         }

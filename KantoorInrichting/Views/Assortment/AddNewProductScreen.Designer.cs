@@ -409,6 +409,7 @@
             this.Controls.Add(this.brandLabel);
             this.Controls.Add(this.typeLabel);
             this.Controls.Add(this.nameLabel);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "AddNewProductScreen";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Voeg een nieuw product toe";
