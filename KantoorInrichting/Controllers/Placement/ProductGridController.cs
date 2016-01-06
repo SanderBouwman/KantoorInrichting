@@ -213,6 +213,9 @@ namespace KantoorInrichting.Controllers.Placement
                 case "ButtonLock":
                     LockRoom();
                     break;
+                case "ButtonCalculate":
+                    
+                    break;
             }
         }
 
@@ -311,8 +314,7 @@ namespace KantoorInrichting.Controllers.Placement
 
             return viewContent;
         }
-
-
+        
         private void PaintProduct(PlacedProduct product, Graphics g)
         {
             Rectangle rectangle = utility.GetProductRectangle(product, tileWidth, tileHeight, tileSize);
@@ -363,6 +365,11 @@ namespace KantoorInrichting.Controllers.Placement
                 return;
             }
             MessageBox.Show("NOT EDIT");
+        }
+
+        public void CalculatePrice()
+        {
+            
         }
 
         public void DeleteProduct(PlacedProduct product)
@@ -469,7 +476,6 @@ namespace KantoorInrichting.Controllers.Placement
                 }
             }
         }
-
 
         public void PanelMouseDown(object sender, MouseEventArgs e)
         {

@@ -47,6 +47,7 @@
             this.productList = new KantoorInrichting.Views.Placement.ProductList();
             this.gridFieldPanel = new KantoorInrichting.Models.Grid.GridFieldPanel();
             this.legend = new KantoorInrichting.Views.Placement.Legend();
+            this.buttonCalculate = new System.Windows.Forms.Button();
             this.controlPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.zoomTrackbar)).BeginInit();
             this.controlDock.SuspendLayout();
@@ -55,6 +56,7 @@
             // controlPanel
             // 
             this.controlPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.controlPanel.Controls.Add(this.buttonCalculate);
             this.controlPanel.Controls.Add(this.buttonLock);
             this.controlPanel.Controls.Add(this.algorithmButton);
             this.controlPanel.Controls.Add(this.algorithmLabel);
@@ -139,7 +141,7 @@
             this.zoomTrackbar.Maximum = 300;
             this.zoomTrackbar.Minimum = 50;
             this.zoomTrackbar.Name = "zoomTrackbar";
-            this.zoomTrackbar.Size = new System.Drawing.Size(139, 42);
+            this.zoomTrackbar.Size = new System.Drawing.Size(139, 45);
             this.zoomTrackbar.SmallChange = 10;
             this.zoomTrackbar.TabIndex = 12;
             this.zoomTrackbar.Value = 50;
@@ -324,6 +326,17 @@
             this.legend.Size = new System.Drawing.Size(623, 106);
             this.legend.TabIndex = 2;
             // 
+            // buttonCalculate
+            // 
+            this.buttonCalculate.Location = new System.Drawing.Point(6, 183);
+            this.buttonCalculate.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonCalculate.Name = "buttonCalculate";
+            this.buttonCalculate.Size = new System.Drawing.Size(100, 28);
+            this.buttonCalculate.TabIndex = 18;
+            this.buttonCalculate.Text = "Bereken prijs";
+            this.buttonCalculate.UseVisualStyleBackColor = true;
+            this.buttonCalculate.Click += new System.EventHandler(this.ButtonCalculate_Click);
+            // 
             // ProductGrid
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -368,5 +381,6 @@
         public Models.Grid.GridFieldPanel gridFieldPanel;
         private System.Windows.Forms.Button buttonLock;
         public ProductList productList;
+        private System.Windows.Forms.Button buttonCalculate;
     }
 }

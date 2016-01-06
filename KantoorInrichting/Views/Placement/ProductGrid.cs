@@ -94,7 +94,7 @@ namespace KantoorInrichting.Views.Placement
 
         private void ProductGrid_Resize(object sender, EventArgs e)
         {
-            ProductGrid_Layout(sender, new LayoutEventArgs((IComponent) sender, e.ToString()));
+            ProductGrid_Layout(sender, new LayoutEventArgs((IComponent)sender, e.ToString()));
         }
 
         private void ButtonDelete_Click(object sender, EventArgs e)
@@ -180,6 +180,11 @@ namespace KantoorInrichting.Views.Placement
         private void ProductGrid_Layout(object sender, LayoutEventArgs e)
         {
             controller.Notify(sender, e, "GridLayout");
+        }
+
+        private void ButtonCalculate_Click(object sender, EventArgs e)
+        {
+            controller.Notify(sender, e, "ButtonCalculate");
         }
     }
 }
