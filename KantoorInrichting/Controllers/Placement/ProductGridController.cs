@@ -9,6 +9,7 @@ using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
 using KantoorInrichting.Controllers.Algorithm;
@@ -367,15 +368,26 @@ namespace KantoorInrichting.Controllers.Placement
             MessageBox.Show("NOT EDIT");
         }
 
+        //Calculate the totalprice of a newly designed room.
         public void CalculatePrice()
         {
             decimal totalPrice = 0;
             int amountNeeded;
-            foreach (var product in placedProducts)
+
+            //Create a distinct list with all placed products
+            var distinctProducts = placedProducts
+                .GroupBy(p => p.Product.ProductId)
+                .Select(g => g.First())
+                .ToList();
+
+            //Loops through all placed products and calculate the price needed
+            foreach (var product in distinctProducts)
             {
-                amountNeeded = product.Product.AmountPlaced - product.Product.Amount;
-                totalPrice = +product.Product.Price * amountNeeded;
+                amountNeeded = (product.Product.AmountPlaced + PlacementCount(product.Product)) - product.Product.Amount;
+                if (amountNeeded > 0)
+                    totalPrice = totalPrice + product.Product.Price * amountNeeded;
             }
+
             if (totalPrice <= 0)
                 MessageBox.Show("Er zijn genoeg producten op voorraad.");
             else
