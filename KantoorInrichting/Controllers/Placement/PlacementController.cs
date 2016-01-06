@@ -69,8 +69,7 @@ namespace KantoorInrichting.Controllers.Placement
             //Select the first product from the product list, and display it in the default info
             try
             {
-                ProductInfo defaultInfo = new ProductInfo();
-                defaultInfo.setProduct(ProductModel.List[0]);
+                ProductInfo defaultInfo = new ProductInfo(ProductModel.List[0]);
                 ChangeSelected(defaultInfo);
             }
             catch { }

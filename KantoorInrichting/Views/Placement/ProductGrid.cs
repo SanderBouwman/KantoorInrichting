@@ -21,7 +21,8 @@ namespace KantoorInrichting.Views.Placement
             Panel,
             Trackbar,
             AlgorithmComboBox,
-            Legend
+            Legend,
+            List
         }
 
         public static Size PanelSize = new Size(1280, 720);
@@ -57,6 +58,9 @@ namespace KantoorInrichting.Views.Placement
                     break;
                 case PropertyEnum.Legend:
                     result = legend;
+                    break;
+                case PropertyEnum.List:
+                    result = productList;
                     break;
                 default:
                     result = null;

@@ -21,13 +21,16 @@ namespace KantoorInrichting.Views.Placement
         public ProductInfo()
         {
             InitializeComponent();
-            
-            setProduct(new ProductModel());
         }
 
-        public ProductInfo(bool uselessparam)
+        public ProductInfo(ProductModel model) : this()
+        {   
+            setProduct(model);
+        }
+
+        public ProductInfo(StaticObjectModel model) : this()
         {
-            InitializeComponent();
+            setProduct(model);
         }
 
 

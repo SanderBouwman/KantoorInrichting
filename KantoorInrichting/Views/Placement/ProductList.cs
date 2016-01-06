@@ -17,14 +17,15 @@ namespace KantoorInrichting.Views.Placement
     {
         private List<ProductInfo> listOfInformation; 
         public event ProductSelectionChanged SelectionChanged;
+        private bool _locked = false;
         
         public ProductList()
         {
             InitializeComponent();
             
             listOfInformation = new List<ProductInfo>();
-            
-            GenerateProducts(false);
+            _locked = true;
+            GenerateProducts();
         }
         
         public ProductList(bool uselessparam)
@@ -32,39 +33,28 @@ namespace KantoorInrichting.Views.Placement
             InitializeComponent();
             
             listOfInformation = new List<ProductInfo>();
-            
-            GenerateProducts(true);
+            _locked = false;
+            GenerateProducts();
         }
 
-        private void GenerateProducts(bool staticOrNot)
+        private void GenerateProducts()
         {
-            var onlyAvailibleProducts =
-                from products in ProductModel.List
-                where products.Removed == false
-                select products;
+            //remove all ProductInfos
+            foreach (Control a in Controls)
+            {
+               Controls.RemoveAt(Controls.Count-1); 
+            }
+            listOfInformation = new List<ProductInfo>();
+            
 
             //Make generate all the products currently in the list, to display them to the user
             int y = 0;
-            if (staticOrNot == true)
+            if (!_locked)
             {
                 foreach (StaticObjectModel product in StaticObjectModel.List)
                 {
-                    ProductInfo pi = new ProductInfo();
+                    ProductInfo pi = new ProductInfo(product);
                     pi.Location = new Point(0, y);
-                    pi.setProduct(product);
-                    pi.MouseClick += new MouseEventHandler(product_Selected); //The event
-                    pi.pbx_Image.MouseDown += new MouseEventHandler(product_Selected); //The event
-                    this.Controls.Add(pi);
-                    listOfInformation.Add(pi);
-                    y += pi.Height;
-                }
-            } else
-            {
-                foreach (ProductModel product in onlyAvailibleProducts)
-                {
-                    ProductInfo pi = new ProductInfo();
-                    pi.Location = new Point(0, y);
-                    pi.setProduct(product);
                     pi.MouseClick += new MouseEventHandler(product_Selected); //The event
                     pi.pbx_Image.MouseDown += new MouseEventHandler(product_Selected); //The event
                     this.Controls.Add(pi);
@@ -72,6 +62,26 @@ namespace KantoorInrichting.Views.Placement
                     y += pi.Height;
                 }
             }
+            else if(_locked)
+            {
+                var onlyAvailibleProducts =
+                from products in ProductModel.List
+                where products.Removed == false
+                select products;
+
+                foreach (ProductModel product in onlyAvailibleProducts)
+                {
+                    ProductInfo pi = new ProductInfo(product);
+                    pi.Location = new Point(0, y);
+                    pi.MouseClick += new MouseEventHandler(product_Selected); //The event
+                    pi.pbx_Image.MouseDown += new MouseEventHandler(product_Selected); //The event
+                    this.Controls.Add(pi);
+                    listOfInformation.Add(pi);
+                    y += pi.Height;
+                }
+            }
+
+            fixInformation();
             
         }
 
@@ -106,8 +116,24 @@ namespace KantoorInrichting.Views.Placement
             }
             catch
             {
-                
+                //There are no ProductInfos in the list.
             }
+        }
+
+        public void LockRoom()
+        {
+            //Now furniture can be placed
+            MessageBox.Show("Locked!");
+            _locked = true;
+            GenerateProducts();
+        }
+
+        public void UnlockRoom()
+        {
+            //Now Statics can be placed
+            MessageBox.Show("Unlocked");
+            _locked = false;
+            GenerateProducts();
         }
     }
 
