@@ -32,12 +32,6 @@
             this.PanelLeft = new System.Windows.Forms.Panel();
             this.addProductButton = new System.Windows.Forms.Button();
             this.assortmentGridView = new System.Windows.Forms.DataGridView();
-            this.PanelRight = new System.Windows.Forms.Panel();
-            this.noAmountCheckBox = new System.Windows.Forms.CheckBox();
-            this.removeFiltersButton = new System.Windows.Forms.Button();
-            this.deleteCheckBox = new System.Windows.Forms.CheckBox();
-            this.DropdownCategory = new System.Windows.Forms.ComboBox();
-            this.DropdownBrand = new System.Windows.Forms.ComboBox();
             this.Product_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Naam = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -52,6 +46,12 @@
             this.Afbeelding = new System.Windows.Forms.DataGridViewImageColumn();
             this.wijzig = new System.Windows.Forms.DataGridViewButtonColumn();
             this.delete = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.PanelRight = new System.Windows.Forms.Panel();
+            this.noAmountCheckBox = new System.Windows.Forms.CheckBox();
+            this.removeFiltersButton = new System.Windows.Forms.Button();
+            this.deleteCheckBox = new System.Windows.Forms.CheckBox();
+            this.DropdownCategory = new System.Windows.Forms.ComboBox();
+            this.DropdownBrand = new System.Windows.Forms.ComboBox();
             this.PanelLeft.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.assortmentGridView)).BeginInit();
             this.PanelRight.SuspendLayout();
@@ -132,81 +132,6 @@
             this.assortmentGridView.TabIndex = 3;
             this.assortmentGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_CellContentClick);
             // 
-            // PanelRight
-            // 
-            this.PanelRight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.PanelRight.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.PanelRight.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.PanelRight.Controls.Add(this.noAmountCheckBox);
-            this.PanelRight.Controls.Add(this.removeFiltersButton);
-            this.PanelRight.Controls.Add(this.deleteCheckBox);
-            this.PanelRight.Controls.Add(this.DropdownCategory);
-            this.PanelRight.Controls.Add(this.DropdownBrand);
-            this.PanelRight.Location = new System.Drawing.Point(512, 0);
-            this.PanelRight.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.PanelRight.MinimumSize = new System.Drawing.Size(293, 178);
-            this.PanelRight.Name = "PanelRight";
-            this.PanelRight.Size = new System.Drawing.Size(293, 178);
-            this.PanelRight.TabIndex = 4;
-            // 
-            // noAmountCheckBox
-            // 
-            this.noAmountCheckBox.AutoSize = true;
-            this.noAmountCheckBox.Location = new System.Drawing.Point(11, 71);
-            this.noAmountCheckBox.Margin = new System.Windows.Forms.Padding(4);
-            this.noAmountCheckBox.Name = "noAmountCheckBox";
-            this.noAmountCheckBox.Size = new System.Drawing.Size(225, 21);
-            this.noAmountCheckBox.TabIndex = 6;
-            this.noAmountCheckBox.Text = "Verberg verwijderde producten";
-            this.noAmountCheckBox.UseVisualStyleBackColor = true;
-            this.noAmountCheckBox.CheckedChanged += new System.EventHandler(this.noAmountCheckBox_CheckedChanged);
-            // 
-            // removeFiltersButton
-            // 
-            this.removeFiltersButton.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.removeFiltersButton.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaption;
-            this.removeFiltersButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.removeFiltersButton.Location = new System.Drawing.Point(11, 121);
-            this.removeFiltersButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.removeFiltersButton.Name = "removeFiltersButton";
-            this.removeFiltersButton.Size = new System.Drawing.Size(161, 44);
-            this.removeFiltersButton.TabIndex = 5;
-            this.removeFiltersButton.Text = "Verwijder filters";
-            this.removeFiltersButton.UseVisualStyleBackColor = false;
-            this.removeFiltersButton.Click += new System.EventHandler(this.removeFiltersButton_Click);
-            // 
-            // deleteCheckBox
-            // 
-            this.deleteCheckBox.AutoSize = true;
-            this.deleteCheckBox.Location = new System.Drawing.Point(11, 96);
-            this.deleteCheckBox.Margin = new System.Windows.Forms.Padding(4);
-            this.deleteCheckBox.Name = "deleteCheckBox";
-            this.deleteCheckBox.Size = new System.Drawing.Size(225, 21);
-            this.deleteCheckBox.TabIndex = 4;
-            this.deleteCheckBox.Text = "Verberg verwijderde producten";
-            this.deleteCheckBox.UseVisualStyleBackColor = true;
-            this.deleteCheckBox.CheckedChanged += new System.EventHandler(this.DeleteCheckBox_CheckedChanged);
-            // 
-            // DropdownCategory
-            // 
-            this.DropdownCategory.FormattingEnabled = true;
-            this.DropdownCategory.Location = new System.Drawing.Point(11, 36);
-            this.DropdownCategory.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.DropdownCategory.Name = "DropdownCategory";
-            this.DropdownCategory.Size = new System.Drawing.Size(121, 24);
-            this.DropdownCategory.TabIndex = 0;
-            this.DropdownCategory.SelectedIndexChanged += new System.EventHandler(this.DropdownCategory_SelectedIndexChanged);
-            // 
-            // DropdownBrand
-            // 
-            this.DropdownBrand.FormattingEnabled = true;
-            this.DropdownBrand.Location = new System.Drawing.Point(11, 6);
-            this.DropdownBrand.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.DropdownBrand.Name = "DropdownBrand";
-            this.DropdownBrand.Size = new System.Drawing.Size(121, 24);
-            this.DropdownBrand.TabIndex = 1;
-            this.DropdownBrand.SelectedIndexChanged += new System.EventHandler(this.DropdownBrand_SelectedIndexChanged);
-            // 
             // Product_ID
             // 
             this.Product_ID.DataPropertyName = "product_ID";
@@ -281,7 +206,7 @@
             this.Afbeelding.HeaderText = "Afbeelding";
             this.Afbeelding.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Stretch;
             this.Afbeelding.Name = "Afbeelding";
-            this.Afbeelding.Width = 81;
+            this.Afbeelding.Width = 63;
             // 
             // wijzig
             // 
@@ -297,6 +222,81 @@
             this.delete.Name = "delete";
             this.delete.Text = "Verwijder";
             this.delete.UseColumnTextForButtonValue = true;
+            // 
+            // PanelRight
+            // 
+            this.PanelRight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.PanelRight.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.PanelRight.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PanelRight.Controls.Add(this.noAmountCheckBox);
+            this.PanelRight.Controls.Add(this.removeFiltersButton);
+            this.PanelRight.Controls.Add(this.deleteCheckBox);
+            this.PanelRight.Controls.Add(this.DropdownCategory);
+            this.PanelRight.Controls.Add(this.DropdownBrand);
+            this.PanelRight.Location = new System.Drawing.Point(512, 0);
+            this.PanelRight.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.PanelRight.MinimumSize = new System.Drawing.Size(293, 178);
+            this.PanelRight.Name = "PanelRight";
+            this.PanelRight.Size = new System.Drawing.Size(293, 178);
+            this.PanelRight.TabIndex = 4;
+            // 
+            // noAmountCheckBox
+            // 
+            this.noAmountCheckBox.AutoSize = true;
+            this.noAmountCheckBox.Location = new System.Drawing.Point(11, 71);
+            this.noAmountCheckBox.Margin = new System.Windows.Forms.Padding(4);
+            this.noAmountCheckBox.Name = "noAmountCheckBox";
+            this.noAmountCheckBox.Size = new System.Drawing.Size(159, 17);
+            this.noAmountCheckBox.TabIndex = 6;
+            this.noAmountCheckBox.Text = "Verberg afwezige producten";
+            this.noAmountCheckBox.UseVisualStyleBackColor = true;
+            this.noAmountCheckBox.CheckedChanged += new System.EventHandler(this.noAmountCheckBox_CheckedChanged);
+            // 
+            // removeFiltersButton
+            // 
+            this.removeFiltersButton.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.removeFiltersButton.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaption;
+            this.removeFiltersButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.removeFiltersButton.Location = new System.Drawing.Point(11, 121);
+            this.removeFiltersButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.removeFiltersButton.Name = "removeFiltersButton";
+            this.removeFiltersButton.Size = new System.Drawing.Size(161, 44);
+            this.removeFiltersButton.TabIndex = 5;
+            this.removeFiltersButton.Text = "Verwijder filters";
+            this.removeFiltersButton.UseVisualStyleBackColor = false;
+            this.removeFiltersButton.Click += new System.EventHandler(this.removeFiltersButton_Click);
+            // 
+            // deleteCheckBox
+            // 
+            this.deleteCheckBox.AutoSize = true;
+            this.deleteCheckBox.Location = new System.Drawing.Point(11, 96);
+            this.deleteCheckBox.Margin = new System.Windows.Forms.Padding(4);
+            this.deleteCheckBox.Name = "deleteCheckBox";
+            this.deleteCheckBox.Size = new System.Drawing.Size(171, 17);
+            this.deleteCheckBox.TabIndex = 4;
+            this.deleteCheckBox.Text = "Verberg verwijderde producten";
+            this.deleteCheckBox.UseVisualStyleBackColor = true;
+            this.deleteCheckBox.CheckedChanged += new System.EventHandler(this.DeleteCheckBox_CheckedChanged);
+            // 
+            // DropdownCategory
+            // 
+            this.DropdownCategory.FormattingEnabled = true;
+            this.DropdownCategory.Location = new System.Drawing.Point(11, 36);
+            this.DropdownCategory.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.DropdownCategory.Name = "DropdownCategory";
+            this.DropdownCategory.Size = new System.Drawing.Size(121, 21);
+            this.DropdownCategory.TabIndex = 0;
+            this.DropdownCategory.SelectedIndexChanged += new System.EventHandler(this.DropdownCategory_SelectedIndexChanged);
+            // 
+            // DropdownBrand
+            // 
+            this.DropdownBrand.FormattingEnabled = true;
+            this.DropdownBrand.Location = new System.Drawing.Point(11, 6);
+            this.DropdownBrand.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.DropdownBrand.Name = "DropdownBrand";
+            this.DropdownBrand.Size = new System.Drawing.Size(121, 21);
+            this.DropdownBrand.TabIndex = 1;
+            this.DropdownBrand.SelectedIndexChanged += new System.EventHandler(this.DropdownBrand_SelectedIndexChanged);
             // 
             // AssortmentScreen
             // 

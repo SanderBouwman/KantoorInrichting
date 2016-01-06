@@ -71,7 +71,7 @@ namespace KantoorInrichting.Controllers.Placement
 
             // set controller
             this.view.SetController(this);
-            legendDictionary = ((Legend) view.Get(ProductGrid.PropertyEnum.Legend)).CategoryColors;
+            legendDictionary = ((Legend)view.Get(ProductGrid.PropertyEnum.Legend)).CategoryColors;
 
             // Init fields with default values
             zoomSize = 50;
@@ -214,7 +214,7 @@ namespace KantoorInrichting.Controllers.Placement
                     LockRoom();
                     break;
                 case "ButtonCalculate":
-                    
+                    CalculatePrice();
                     break;
             }
         }
@@ -238,7 +238,7 @@ namespace KantoorInrichting.Controllers.Placement
                 dialog.ShowDialog();
                 if (dialog.Result.Count > 0)
                 {
-                    people = (int) dialog.Result["People"];
+                    people = (int)dialog.Result["People"];
                     margin = dialog.Result["Margin"];
                 }
                 else
@@ -248,8 +248,8 @@ namespace KantoorInrichting.Controllers.Placement
                 }
             }
 
-            ComboBox algorithmComboBox = (ComboBox) view.Get(ProductGrid.PropertyEnum.AlgorithmComboBox);
-            AlgorithmModel selectedAlgorithm = (AlgorithmModel) algorithmComboBox.SelectedItem;
+            ComboBox algorithmComboBox = (ComboBox)view.Get(ProductGrid.PropertyEnum.AlgorithmComboBox);
+            AlgorithmModel selectedAlgorithm = (AlgorithmModel)algorithmComboBox.SelectedItem;
             // Example chair and table
             ProductModel chair = ProductFactory.CreateProduct("Ahrend", 1, 1, "Stoelen");
             ProductModel table = ProductFactory.CreateProduct("TableCompany", 2, 1, "Tafels");
@@ -262,7 +262,7 @@ namespace KantoorInrichting.Controllers.Placement
 
         public void HandleCheckBoxEvent(object sender, EventArgs e)
         {
-            CheckBox checkBox = (CheckBox) sender;
+            CheckBox checkBox = (CheckBox)sender;
             zoomCheckboxChecked = checkBox.Checked;
             view.Get(ProductGrid.PropertyEnum.Trackbar).Enabled = zoomCheckboxChecked;
             if (zoomCheckboxChecked)
@@ -281,7 +281,7 @@ namespace KantoorInrichting.Controllers.Placement
 
         public void HandleTrackbarEvent(object sender, EventArgs e)
         {
-            TrackBar trackBar = (TrackBar) sender;
+            TrackBar trackBar = (TrackBar)sender;
             zoomSize = trackBar.Value;
         }
 
@@ -314,7 +314,7 @@ namespace KantoorInrichting.Controllers.Placement
 
             return viewContent;
         }
-        
+
         private void PaintProduct(PlacedProduct product, Graphics g)
         {
             Rectangle rectangle = utility.GetProductRectangle(product, tileWidth, tileHeight, tileSize);
@@ -322,7 +322,7 @@ namespace KantoorInrichting.Controllers.Placement
             int angle = product.CurrentAngle;
             using (Matrix m = new Matrix())
             {
-                m.RotateAt(angle, new PointF(rectangle.Left + rectangle.Width/2, rectangle.Top + rectangle.Height/2));
+                m.RotateAt(angle, new PointF(rectangle.Left + rectangle.Width / 2, rectangle.Top + rectangle.Height / 2));
                 g.Transform = m;
                 if (product == selectedProduct)
                 {
@@ -369,7 +369,17 @@ namespace KantoorInrichting.Controllers.Placement
 
         public void CalculatePrice()
         {
-            
+            decimal totalPrice = 0;
+            int amountNeeded;
+            foreach (var product in placedProducts)
+            {
+                amountNeeded = product.Product.AmountPlaced - product.Product.Amount;
+                totalPrice = +product.Product.Price * amountNeeded;
+            }
+            if (totalPrice <= 0)
+                MessageBox.Show("Er zijn genoeg producten op voorraad.");
+            else
+                MessageBox.Show("De totaalprijs van deze ruimte is €" + totalPrice);
         }
 
         public void DeleteProduct(PlacedProduct product)
@@ -379,7 +389,7 @@ namespace KantoorInrichting.Controllers.Placement
 
             placedProducts.Remove(product);
             view.Get(ProductGrid.PropertyEnum.Panel).Invalidate();
-            ((ProductGrid) view).productList.fixInformation();
+            ((ProductGrid)view).productList.fixInformation();
         }
 
         private void SaveRoom(string spacenumber)
@@ -421,8 +431,8 @@ namespace KantoorInrichting.Controllers.Placement
                 anyRow["placement_id"] = x;
                 anyRow["space_number"] = spacenumber;
                 anyRow["product_id"] = product_id;
-                anyRow["x_position"] = X*100;
-                anyRow["y_position"] = Y*100;
+                anyRow["x_position"] = X * 100;
+                anyRow["y_position"] = Y * 100;
                 anyRow["angle"] = angle;
 
                 dbc.DataSet.placement.Rows.Add(anyRow);
@@ -438,9 +448,9 @@ namespace KantoorInrichting.Controllers.Placement
             grid.spaceNumberTextbox.Text = space.Room;
             grid.spaceSizeTextbox.Text = space.Length + " + " + space.Width;
 
-            meterWidth = (float) space.Width/100;
-            meterHeight = (float) space.Length/100;
-            tileSize = meterWidth/10;
+            meterWidth = (float)space.Width / 100;
+            meterHeight = (float)space.Length / 100;
+            tileSize = meterWidth / 10;
 
             LayoutChanged(this, null);
 
@@ -464,13 +474,13 @@ namespace KantoorInrichting.Controllers.Placement
                         if (product.ProductId == placedProduct.product_id)
                         {
                             // create placedproducts with a point and product reference
-                            Point point = new Point(placedProduct.x_position/100, placedProduct.y_position/100);
+                            Point point = new Point(placedProduct.x_position / 100, placedProduct.y_position / 100);
                             int angle = placedProduct.angle;
                             PlacedProduct p1 = new PlacedProduct(product, point, angle);
 
-                            AddNewProduct(product, (float) placedProduct.x_position/100,
-                                (float) placedProduct.y_position/100,
-                                (float) product.Width/100, (float) product.Height/100, true, angle);
+                            AddNewProduct(product, (float)placedProduct.x_position / 100,
+                                (float)placedProduct.y_position / 100,
+                                (float)product.Width / 100, (float)product.Height / 100, true, angle);
                         }
                     }
                 }
@@ -526,21 +536,21 @@ namespace KantoorInrichting.Controllers.Placement
         public void DragDrop(object sender, DragEventArgs e)
         {
             ProductModel model;
-            if ((model = (ProductModel) e.Data.GetData(typeof (ProductModel))) != null) // if so, this is a new product
+            if ((model = (ProductModel)e.Data.GetData(typeof(ProductModel))) != null) // if so, this is a new product
             {
-                AddNewProduct(model, e.X, e.Y, (float) model.Width/100, (float) model.Height/100, false, 0);
+                AddNewProduct(model, e.X, e.Y, (float)model.Width / 100, (float)model.Height / 100, false, 0);
                 view.Get(ProductGrid.PropertyEnum.Panel).Invalidate();
             }
             else // selected item is a PlacedProduct, and so is already in the field
             {
-                PlacedProduct temp = (PlacedProduct) e.Data.GetData(typeof (PlacedProduct));
+                PlacedProduct temp = (PlacedProduct)e.Data.GetData(typeof(PlacedProduct));
                 Console.WriteLine(temp);
             }
         }
 
         public void DragEnter(object sender, DragEventArgs e)
         {
-            if (e.Data.GetDataPresent(typeof (PlacedProduct)) || e.Data.GetDataPresent(typeof (ProductModel)))
+            if (e.Data.GetDataPresent(typeof(PlacedProduct)) || e.Data.GetDataPresent(typeof(ProductModel)))
                 e.Effect = e.AllowedEffect;
             else
                 e.Effect = DragDropEffects.None;
@@ -551,8 +561,8 @@ namespace KantoorInrichting.Controllers.Placement
         {
             float viewWidth = view.Get(ProductGrid.PropertyEnum.Panel).Width,
                 viewHeight = view.Get(ProductGrid.PropertyEnum.Panel).Height;
-            float newX = realDimensions ? x : x/viewWidth*meterWidth,
-                newY = realDimensions ? y : y/viewHeight*meterHeight;
+            float newX = realDimensions ? x : x / viewWidth * meterWidth,
+                newY = realDimensions ? y : y / viewHeight * meterHeight;
             PointF center;
             int currentangle = angle;
 
@@ -560,8 +570,8 @@ namespace KantoorInrichting.Controllers.Placement
             {
                 center = new PointF
                 {
-                    X = newX - width/2,
-                    Y = newY - height/2
+                    X = newX - width / 2,
+                    Y = newY - height / 2
                 };
             }
             else
@@ -581,7 +591,7 @@ namespace KantoorInrichting.Controllers.Placement
             if (!collisionHandler.Collision(newProduct, placedProducts))
             {
                 placedProducts.Add(newProduct);
-                ((ProductGrid) view).productList.fixInformation();
+                ((ProductGrid)view).productList.fixInformation();
             }
         }
 
@@ -599,7 +609,7 @@ namespace KantoorInrichting.Controllers.Placement
             // clear current placed products
             placedProducts.Clear();
             Type selectedType = algorithm.Value;
-            IDesignAlgorithm algoInstance = (IDesignAlgorithm) Activator.CreateInstance(selectedType);
+            IDesignAlgorithm algoInstance = (IDesignAlgorithm)Activator.CreateInstance(selectedType);
             List<ProductModel> result = algoInstance.Design(model1, model2, people, meterWidth, meterHeight, margin);
             foreach (ProductModel model in result)
             {
@@ -615,12 +625,12 @@ namespace KantoorInrichting.Controllers.Placement
         {
             if (maxX.HasValue && maxY.HasValue && zoomCheckboxChecked)
             {
-                int boundX = (int) maxX,
-                    boundY = (int) maxY,
+                int boundX = (int)maxX,
+                    boundY = (int)maxY,
                     tempWidth = zoomSize,
                     tempHeight = zoomSize,
-                    tempX = x - zoomArea.Width/2,
-                    tempY = y - zoomArea.Height/2;
+                    tempX = x - zoomArea.Width / 2,
+                    tempY = y - zoomArea.Height / 2;
 
                 if (tempX + tempWidth > boundX)
                     tempX = boundX - tempWidth;
@@ -662,8 +672,8 @@ namespace KantoorInrichting.Controllers.Placement
         /// <param name="size"></param>
         public void UpdateTileSize(Size size)
         {
-            tileWidth = size.Width/meterWidth*tileSize;
-            tileHeight = size.Height/meterHeight*tileSize;
+            tileWidth = size.Width / meterWidth * tileSize;
+            tileHeight = size.Height / meterHeight * tileSize;
         }
 
         #endregion
@@ -675,13 +685,13 @@ namespace KantoorInrichting.Controllers.Placement
         public void PopulateAlgorithms()
         {
             // Standard test setup algorithm
-            AddToComboBox(AlgorithmModel.CreateAlgorithm("Toets lokaal", typeof (TestSetupDesign)));
+            AddToComboBox(AlgorithmModel.CreateAlgorithm("Toets lokaal", typeof(TestSetupDesign)));
         }
 
         public void AddToComboBox(AlgorithmModel algorithm)
         {
             comboBoxAlgorithms.Add(algorithm);
-            ComboBox comboBox = (ComboBox) view.Get(ProductGrid.PropertyEnum.AlgorithmComboBox);
+            ComboBox comboBox = (ComboBox)view.Get(ProductGrid.PropertyEnum.AlgorithmComboBox);
             comboBox.DataSource = comboBoxAlgorithms;
             comboBox.DisplayMember = "Name";
             comboBox.ValueMember = "Value";
