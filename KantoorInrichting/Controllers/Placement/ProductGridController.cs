@@ -383,7 +383,14 @@ namespace KantoorInrichting.Controllers.Placement
             //Loops through all placed products and calculate the price needed
             foreach (var product in distinctProducts)
             {
-                amountNeeded = (product.Product.AmountPlaced + PlacementCount(product.Product)) - product.Product.Amount;
+                var oldPlacement = dbc.DataSet.placement
+                    .Where(p => p.space_number == space.Room && p.product_id == product.Product.ProductId)
+                    .Select(c => c)
+                    .ToList();
+
+                int newPlacement = PlacementCount(product.Product) - oldPlacement.Count;
+
+                amountNeeded = (product.Product.AmountPlaced + newPlacement) - product.Product.Amount;
                 if (amountNeeded > 0)
                     totalPrice = totalPrice + product.Product.Price * amountNeeded;
             }
