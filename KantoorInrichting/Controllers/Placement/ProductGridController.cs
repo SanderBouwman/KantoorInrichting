@@ -411,23 +411,35 @@ namespace KantoorInrichting.Controllers.Placement
             ((ProductGrid)view).productList.fixInformation();
         }
 
+        // Method to save the created Room
         private void SaveRoom(string spacenumber)
         {
+            // Strings used to get the path where the image have to be saved
             string appFolderPath = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
             string resourcesFolderPath = Path.Combine(Directory.GetParent(appFolderPath).Parent.FullName, "Resources");
-
             string fileName = Path.Combine(resourcesFolderPath, "" + spacenumber + ".bmp");
+
+            // Save the panel in fileName
             viewContent.Save(fileName);
+
+            // Method to delete the previous rows of the current row. You need to do this to save a new Room
             DeleteRows(spacenumber);
+
+            // Method to put the data in the database
             SaveSpace(spacenumber);
             MessageBox.Show("Opgeslagen");
+
             view.Get(ProductGrid.PropertyEnum.Panel).Invalidate();
             ((ProductGrid)view).productList.fixInformation();
         }
 
+        // Method to Delete the rows that belongs to the spacenumber to prevend that old furniture is getting showed
         public void DeleteRows(string spacenumber)
         {
+            // Get all rows of the current spacenumber
             var rows = dbc.DataSet.placement.Select("space_number = '" + spacenumber + "'");
+
+            // For each row delete the row, and update the database
             foreach (var row in rows)
             {
                 row.Delete();
@@ -435,27 +447,33 @@ namespace KantoorInrichting.Controllers.Placement
             }
         }
 
+        // Method to save the space into the database
         public void SaveSpace(string spacenumber)
         {
+            // For earch product in the list placedProducts the product is going to be saved into the database
             foreach (PlacedProduct product in placedProducts)
             {
                 DataRow anyRow = dbc.DataSet.placement.NewRow();
-                var hoi2 = dbc.DataSet.placement.Rows[dbc.DataSet.placement.Rows.Count - 1]["placement_id"];
-                ;
-                string hoi = hoi2.ToString();
-                int x = int.Parse(hoi) + 1;
+
+                //getting placementID convert it and +1
+                var placementID = dbc.DataSet.placement.Rows[dbc.DataSet.placement.Rows.Count - 1]["placement_id"];
+                string convertID = placementID.ToString();
+                int ID = int.Parse(convertID) + 1;
+
+                //get other data
                 float X = product.Location.X;
                 float Y = product.Location.Y;
                 int product_id = product.Product.ProductId;
                 int angle = product.CurrentAngle;
 
-                anyRow["placement_id"] = x;
+                anyRow["placement_id"] = ID;
                 anyRow["space_number"] = spacenumber;
                 anyRow["product_id"] = product_id;
                 anyRow["x_position"] = X * 100;
                 anyRow["y_position"] = Y * 100;
                 anyRow["angle"] = angle;
 
+                //update database
                 dbc.DataSet.placement.Rows.Add(anyRow);
                 dbc.PlacementTableAdapter.Update(dbc.DataSet.placement);
                 
