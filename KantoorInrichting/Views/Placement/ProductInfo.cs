@@ -62,12 +62,28 @@ namespace KantoorInrichting.Views.Placement
 
         public void ReloadInfo()
         {
-            setProduct(this.product);
+            if (product == null)
+            {
+                setProduct(this.staticProduct);
+            }
+            else
+            {
+                setProduct(this.product);
+            }
+            
         }
 
         private void pbx_Image_MouseDown(object sender, MouseEventArgs e)
         {
-            pbx_Image.DoDragDrop(product, DragDropEffects.Copy);
+            if (product == null)
+            {
+                pbx_Image.DoDragDrop(staticProduct, DragDropEffects.Copy);
+            }
+            else
+            {
+                pbx_Image.DoDragDrop(product, DragDropEffects.Copy);
+            }
+            
         }
 
         private void lbl_4_Click(object sender, EventArgs e)

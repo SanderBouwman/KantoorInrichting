@@ -15,23 +15,23 @@ namespace KantoorInrichting.Views.Placement
 
     public partial class ProductList : UserControl
     {
-        private List<ProductInfo> listOfInformation; 
+        private List<ProductInfo> listOfInformation;
         public event ProductSelectionChanged SelectionChanged;
         private bool _locked = false;
-        
+
         public ProductList()
         {
             InitializeComponent();
-            
+
             listOfInformation = new List<ProductInfo>();
             _locked = true;
             GenerateProducts();
         }
-        
+
         public ProductList(bool uselessparam)
         {
             InitializeComponent();
-            
+
             listOfInformation = new List<ProductInfo>();
             _locked = false;
             GenerateProducts();
@@ -40,12 +40,8 @@ namespace KantoorInrichting.Views.Placement
         private void GenerateProducts()
         {
             //remove all ProductInfos
-            foreach (Control a in Controls)
-            {
-               Controls.RemoveAt(Controls.Count-1); 
-            }
-            listOfInformation = new List<ProductInfo>();
-            
+            RemoveItems();
+
 
             //Make generate all the products currently in the list, to display them to the user
             int y = 0;
@@ -53,6 +49,7 @@ namespace KantoorInrichting.Views.Placement
             {
                 foreach (StaticObjectModel product in StaticObjectModel.List)
                 {
+                    //MessageBox.Show("Test Static");
                     ProductInfo pi = new ProductInfo(product);
                     pi.Location = new Point(0, y);
                     pi.MouseClick += new MouseEventHandler(product_Selected); //The event
@@ -62,15 +59,16 @@ namespace KantoorInrichting.Views.Placement
                     y += pi.Height;
                 }
             }
-            else if(_locked)
+            else if (_locked)
             {
                 var onlyAvailibleProducts =
-                from products in ProductModel.List
-                where products.Removed == false
-                select products;
+                    from products in ProductModel.List
+                    where products.Removed == false
+                    select products;
 
                 foreach (ProductModel product in onlyAvailibleProducts)
                 {
+                    //MessageBox.Show("Test Product");
                     ProductInfo pi = new ProductInfo(product);
                     pi.Location = new Point(0, y);
                     pi.MouseClick += new MouseEventHandler(product_Selected); //The event
@@ -82,7 +80,6 @@ namespace KantoorInrichting.Views.Placement
             }
 
             fixInformation();
-            
         }
 
         private void product_Selected(object sender, MouseEventArgs e)
@@ -90,26 +87,29 @@ namespace KantoorInrichting.Views.Placement
             try
             {
                 //If the ProductInfo has been clicked, change the product
-                ProductInfo pi = (ProductInfo)sender;
+                ProductInfo pi = (ProductInfo) sender;
                 SelectionChanged(pi);
             }
-            catch { }
-            
+            catch
+            {
+            }
+
             try
             {
                 //If the immage was selected
-                PictureBox pb = (PictureBox)sender;
+                PictureBox pb = (PictureBox) sender;
                 product_Selected(pb.Parent, e);
             }
-            catch { }
+            catch
+            {
+            }
         }
 
         public void fixInformation()
         {
-
             try
             {
-                foreach(ProductInfo info in listOfInformation)
+                foreach (ProductInfo info in listOfInformation)
                 {
                     info.ReloadInfo();
                 }
@@ -135,7 +135,22 @@ namespace KantoorInrichting.Views.Placement
             _locked = false;
             GenerateProducts();
         }
-    }
 
-    
+
+        public void RemoveItems()
+        {
+            listOfInformation = new List<ProductInfo>();
+            foreach (Control a in Controls)
+            {
+                Controls.Remove(a);
+            }
+            if (Controls.Count > 0)
+            {
+                RemoveItems();
+            }
+            Invalidate();
+        }
+
+
+    }
 }

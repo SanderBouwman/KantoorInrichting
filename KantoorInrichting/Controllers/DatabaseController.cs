@@ -49,6 +49,7 @@ namespace KantoorInrichting.Controllers
 
             GetCategories_FromDatabase();
             GetProducts_FromDatabase();
+            GetStaticProducts_FromDatabase();
             GetSpaces_FromDatabase();
         }
 
@@ -104,14 +105,15 @@ namespace KantoorInrichting.Controllers
         }
 
         //all static products are collected from the database WILL NEED TO BE ENABLED
-        //public void GetStaticProducts_FromDatabase()
-        //{
-        //    foreach (var product in this.DataSet.static_product)
-        //    {
-        //        var sp1 = new StaticObjectModel(product.product_id, product.name, product.wall, 
-        //            product.description, product.width, product.height, product.length);
-        //    }
-        //}
+        public void GetStaticProducts_FromDatabase()
+        {
+            foreach (var product in this.DataSet.static_product)
+            {
+                //TODO make a new Product. Scrap the StaticObject approach. All will need to be made in PlacedProduct and ProductModel.
+                var sp1 = new StaticObjectModel(product.product_id, product.name, product.wall,
+                    product.description, product.width, product.height, product.length, Properties.Resources.No_Image_Available);
+            }
+        }
 
         //all spaces are collected from the database
         public void GetSpaces_FromDatabase()
