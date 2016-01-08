@@ -265,9 +265,8 @@ namespace KantoorInrichting.Controllers.Placement
                 if (dialog.Result.Count > 0)
                 {
                     people = (int) dialog.Result["People"];
-                    margin = dialog.Result["Margin"]/100;
-                        // Margin is given in centimeters (so we don't have trouble parsing
-                } // the result between OS').
+                    margin = dialog.Result["Margin"]/100; // Margin is given in centimeters (so we don't have inconsistensies between system languages
+                }                                         // e.g in Dutch you use a comma to denote a floating point, while in English you would use a period).
                 else
                 {
                     people = 0;
@@ -648,28 +647,12 @@ namespace KantoorInrichting.Controllers.Placement
             int angle)
         {
             float viewWidth = view.Get(ProductGrid.PropertyEnum.Panel).Width,
-                viewHeight = view.Get(ProductGrid.PropertyEnum.Panel).Height;
-            float newX = realDimensions ? x : x/viewWidth*meterWidth,
+                viewHeight = view.Get(ProductGrid.PropertyEnum.Panel).Height,
+                newX = realDimensions ? x : x/viewWidth*meterWidth,
                 newY = realDimensions ? y : y/viewHeight*meterHeight;
-            PointF center;
-            int currentangle = angle;
 
-            if (!realDimensions)
-            {
-                center = new PointF
-                {
-                    X = newX - width/2,
-                    Y = newY - height/2
-                };
-            }
-            else
-            {
-                center = new PointF
-                {
-                    X = x,
-                    Y = y
-                };
-            }
+            PointF center = (realDimensions) ? new PointF(x, y) : new PointF(newX-width/2, newY-height/2);
+            int currentangle = angle;
 
             SizeF size = new SizeF(width, height);
             model.Size = size;
@@ -701,7 +684,7 @@ namespace KantoorInrichting.Controllers.Placement
             List<ProductModel> result = algoInstance.Design(model1, model2, people, meterWidth, meterHeight, margin);
             foreach (ProductModel model in result)
             {
-                // flip width and height, because the algorithm gives relative [width, height] according to the orientation
+                // flip width and height, because the algorithm flips those because products are turned sideways
                 int width = model.Width;
                 model.Width = model.Height;
                 model.Height = width;
