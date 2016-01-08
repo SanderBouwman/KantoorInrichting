@@ -87,7 +87,7 @@ namespace KantoorInrichting.Views.SpaceChoice
 
                 // ------------------------- new 
                 MainScreen.Size = ProductGrid.PanelSize;
-                MainScreen.productGrid.controller.OpenPanel(MainScreen.productGrid, selectedSpace[0]);
+                MainScreen.productGrid.controller.OpenPanel(selectedSpace[0]);
                 MainScreen.productGrid.Visible = true;
                 MainScreen.productGrid.Enabled = true;
                 MainScreen.productGrid.BringToFront();

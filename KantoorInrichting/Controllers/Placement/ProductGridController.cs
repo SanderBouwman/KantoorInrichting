@@ -510,8 +510,9 @@ namespace KantoorInrichting.Controllers.Placement
             }
         }
 
-        public void OpenPanel(ProductGrid grid, Space spacenr)
+        public void OpenPanel(Space spacenr)
         {
+            ProductGrid grid = (ProductGrid) view;
             placedProducts.Clear();
             space = spacenr;
             //this.SpaceNumberTitle.Text = space.Room;

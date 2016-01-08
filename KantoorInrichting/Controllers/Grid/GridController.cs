@@ -392,7 +392,7 @@ namespace KantoorInrichting.Controllers.Grid
             _panel.Invalidate();
         }
 
-        public void OpenPanel(ProductGrid productGrid, Space space)
+        public void OpenPanel(Space space)
         {
             throw new NotImplementedException();
         }
