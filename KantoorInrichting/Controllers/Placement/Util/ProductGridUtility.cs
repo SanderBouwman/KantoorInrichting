@@ -123,16 +123,16 @@ namespace KantoorInrichting.Controllers.Placement
 
         public void MoveProduct(ICollisionHandler<PlacedProduct> handler, PlacedProduct selectedProduct,
             List<PlacedProduct> placedProducts, int boundWidth, int boundHeight,
-            float realWidth, float realHeight, int x, int y)
+            float realWidth, float realHeight, float x, float y, bool real)
         {
             float selectedWidth = selectedProduct.Product.Size.Width,
                 selectedHeight = selectedProduct.Product.Size.Height;
 
-            float newX = x/(float) boundWidth*realWidth
+            float newX = (real) ? x : x/(float) boundWidth*realWidth
                          - selectedWidth/2,
-                newY = y/(float) boundHeight*realHeight
+                newY = (real) ? y : y/(float) boundHeight*realHeight
                        - selectedHeight/2;
-
+            
 
             if (newX <= 0)
                 newX = 0;

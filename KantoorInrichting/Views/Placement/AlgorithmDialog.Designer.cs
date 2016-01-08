@@ -87,11 +87,11 @@
             this.errorLabel.AutoSize = true;
             this.errorLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.errorLabel.ForeColor = System.Drawing.Color.Red;
-            this.errorLabel.Location = new System.Drawing.Point(3, 1);
+            this.errorLabel.Location = new System.Drawing.Point(1, 9);
             this.errorLabel.Name = "errorLabel";
-            this.errorLabel.Size = new System.Drawing.Size(290, 72);
+            this.errorLabel.Size = new System.Drawing.Size(89, 24);
             this.errorLabel.TabIndex = 7;
-            this.errorLabel.Text = "Één van de onderstaande velden\r\nis niet goed ingevuld\r\n(Alleen cijfers)";
+            this.errorLabel.Text = "ErrorText";
             // 
             // AlgorithmDialog
             // 

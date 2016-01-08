@@ -83,6 +83,12 @@ namespace KantoorInrichting.Views.Placement
             buttonCW.Click += ButtonCW_Click;
             buttonCCW.Click += ButtonCCW_Click;
 
+            // Movement buttons
+            buttonUp.Click += ButtonUp_Click;
+            buttonRight.Click += ButtonRight_Click;
+            buttonDown.Click += ButtonDown_Click;
+            buttonLeft.Click += ButtonLeft_Click;
+
             // Delete and save buttons
             buttonSave.Click += ButtonSave_Click;
             buttonDelete.Click += ButtonDelete_Click;
@@ -96,9 +102,29 @@ namespace KantoorInrichting.Views.Placement
             gridFieldPanel.MouseMove += GridFieldPanel_MouseMove1;
         }
 
+        private void ButtonLeft_Click(object sender, EventArgs e)
+        {
+            controller.Notify(sender, e, "ButtonLeft");
+        }
+
+        private void ButtonDown_Click(object sender, EventArgs e)
+        {
+            controller.Notify(sender, e, "ButtonDown");
+        }
+
+        private void ButtonRight_Click(object sender, EventArgs e)
+        {
+            controller.Notify(sender, e, "ButtonRight");
+        }
+
+        private void ButtonUp_Click(object sender, EventArgs e)
+        {
+            controller.Notify(sender, e, "ButtonUp");
+        }
+
         private void ProductGrid_Resize(object sender, EventArgs e)
         {
-            ProductGrid_Layout(sender, new LayoutEventArgs((IComponent)sender, e.ToString()));
+            ProductGrid_Layout(sender, new LayoutEventArgs((IComponent) sender, e.ToString()));
         }
 
         private void ButtonDelete_Click(object sender, EventArgs e)

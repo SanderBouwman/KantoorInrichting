@@ -22,6 +22,15 @@ namespace KantoorInrichting.Views.Placement {
             this.Result = new Dictionary<string, float>(2);
         }
 
+        public void OpenDialog(string text)
+        {
+            errorLabel.Text = text;
+            errorLabel.Visible = true;
+            if (errorLabel.Width > this.Width)
+                this.Width = errorLabel.Width + 5;
+            this.ShowDialog();
+        }
+
         private void SetEvents()
         {
             this.submitButton.Click += SubmitButton_Click;
