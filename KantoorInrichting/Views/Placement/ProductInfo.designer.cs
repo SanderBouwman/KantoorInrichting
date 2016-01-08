@@ -79,7 +79,6 @@
             this.lbl_3.Size = new System.Drawing.Size(34, 13);
             this.lbl_3.TabIndex = 13;
             this.lbl_3.Text = "Type:";
-            this.lbl_3.Click += new System.EventHandler(this.lbl_3_Click);
             // 
             // txt_Name
             // 
@@ -137,7 +136,6 @@
             this.lbl_4.Size = new System.Drawing.Size(53, 13);
             this.lbl_4.TabIndex = 24;
             this.lbl_4.Text = "Voorraad:";
-            this.lbl_4.Click += new System.EventHandler(this.lbl_4_Click);
             // 
             // txt_Stock
             // 
@@ -147,7 +145,6 @@
             this.txt_Stock.ReadOnly = true;
             this.txt_Stock.Size = new System.Drawing.Size(150, 20);
             this.txt_Stock.TabIndex = 25;
-            this.txt_Stock.TextChanged += new System.EventHandler(this.txt_Stock_TextChanged);
             // 
             // CurrentlyPlaced
             // 

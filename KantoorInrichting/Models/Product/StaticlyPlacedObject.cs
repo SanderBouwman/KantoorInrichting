@@ -13,11 +13,11 @@ namespace KantoorInrichting.Models.Product
         public Vector BeginPoint { get; private set; }
         public Vector EndPoint { get; private set; }
 
-        public StaticlyPlacedObject(Vector begin, Vector end)
-        {
-            BeginPoint = begin;
-            EndPoint = end;
-        }
+        //public StaticlyPlacedObject(Vector begin, Vector end)
+        //{
+        //    BeginPoint = begin;
+        //    EndPoint = end;
+        //}
         
         public Polygon ToPolygon()
         {

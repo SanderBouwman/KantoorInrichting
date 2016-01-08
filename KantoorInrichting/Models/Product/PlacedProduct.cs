@@ -17,11 +17,9 @@ namespace KantoorInrichting.Models.Product
 {
     public class PlacedProduct
     {
-        //TODO make a second list that only returns Static.
-        //TODO make a bool to know if it is static or not
 
-
-        public static SortableBindingList<PlacedProduct> List = new SortableBindingList<PlacedProduct>();
+        public static List<PlacedProduct> List = new List<PlacedProduct>();
+        public static List<PlacedProduct> StaticList = new List<PlacedProduct>(); 
 
         public ProductModel Product { get; private set; }
         public PointF Location { get; set; }
@@ -37,6 +35,7 @@ namespace KantoorInrichting.Models.Product
 
         public int GridSpace = 5;
 
+        public bool StaticProductBoolean { get; private set; }
 
         /// <summary>
         /// Make a product to be placed on the map
@@ -60,6 +59,10 @@ namespace KantoorInrichting.Models.Product
             Location = center;
             this.ProductID = Product.ProductId;
 
+            //static or not
+            StaticProductBoolean = product.StaticProduct;
+            ToList();
+
             //angle
             CurrentAngle = angle;
 
@@ -68,8 +71,16 @@ namespace KantoorInrichting.Models.Product
 
             //Corner and image
             CornerPoints = new PointF[5];
-            List.Add(this);
             ResetImage();
+        }
+
+
+        private void ToList()
+        {
+            if (StaticProductBoolean)
+                StaticList.Add(this);
+            else
+                List.Add(this);
         }
 
         /// <summary>

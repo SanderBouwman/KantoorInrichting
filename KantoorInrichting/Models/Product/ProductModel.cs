@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace KantoorInrichting.Models.Product
 {
@@ -13,6 +14,8 @@ namespace KantoorInrichting.Models.Product
     {
         public static SortableBindingList<ProductModel> List = new SortableBindingList<ProductModel>();
         public static SortableBindingList<ProductModel> Result = new SortableBindingList<ProductModel>();  // list for filtering data
+
+        public static SortableBindingList<ProductModel> StaticList = new SortableBindingList<ProductModel>(); 
 
         public PointF Location;
 
@@ -43,6 +46,8 @@ namespace KantoorInrichting.Models.Product
 
         public static int IdNumber;
 
+        public bool StaticProduct { get; private set; }
+
         public ProductModel(string n, string b, string t, string c, string s, int l, int w, int h, string d, int a)
         {
             Id = IdNumber;
@@ -59,7 +64,7 @@ namespace KantoorInrichting.Models.Product
             Description = d;
             Amount = a;
             this.Image = KantoorInrichting.Properties.Resources.No_Image_Available;
-            if (n != "") { List.Add(this); } //If the name if empty, don't add it to the list. This is because the name is part of the primary key in the database.
+            ToList(false);
         }
 
         public ProductModel(int i, string n, string b, string t, int c, int l, int w, int h, string d, int a, string im,
@@ -85,9 +90,49 @@ namespace KantoorInrichting.Models.Product
             SetProductImage();
             Removed = r;
             Price = p;
-            //list.Add(this);
-            if (n != "") { List.Add(this); } //If the name if empty, don't add it to the list. This is because the name is part of the primary key in the database.
+            ToList(false);
         }
+
+        /// <summary>
+        /// Use this for making Static Products
+        /// </summary>
+        public ProductModel(int id, string n, string d, int wi, int h, int l, bool isStatic)
+        {
+            if (!isStatic)
+            {
+                throw new Exception(
+                    "You tried to make a Non-Static Product in a Static Only Method.\nPlease change the boolean to true if you wanted to make a Static Object.\nIf you wanted to make a Non-Static Product, please use a different constructor");
+            }
+            ProductId = id;
+            Name = n;
+
+            Description = d;
+            Category = "Other";
+            ProductCategory = CategoryModel.List[0];
+
+            Width = wi;
+            Height = h;
+            Length = l;
+
+            ToList(true);
+        }
+
+        /// <summary>
+        /// A method to distinguish from Static and Non-Static
+        /// </summary>
+        private void ToList(bool isStatic)
+        {
+            StaticProduct = isStatic;
+            //return if name is empty
+            if (Name == "") { return;}
+
+            //If static, add to static list
+            if (StaticProduct)
+                StaticList.Add(this);
+            else
+                List.Add(this);
+        }
+
 
         //This methods sets the Product image using the name of the image
         public void SetProductImage()

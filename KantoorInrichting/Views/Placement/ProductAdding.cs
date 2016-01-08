@@ -22,7 +22,7 @@ namespace KantoorInrichting.Views.Placement
     {
         public MainFrame hoofdscherm;
         private PlacementController controller;
-        public Space space;       
+        public Space space;
 
 
         public ProductAdding(MainFrame hoofdscherm)
@@ -30,7 +30,7 @@ namespace KantoorInrichting.Views.Placement
             this.hoofdscherm = hoofdscherm;
 
             InitializeComponent();
-            
+
             Invalidate();
 
             //Needs to be after initializeComponents to prevent NULL errors

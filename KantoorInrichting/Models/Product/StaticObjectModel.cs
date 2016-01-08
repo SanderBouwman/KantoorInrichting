@@ -22,18 +22,18 @@ namespace KantoorInrichting.Models.Product
         public int Length { get; set; }
         public Image Image { get; set; }
 
-        public StaticObjectModel(int id, string n, bool w, string d, int wi, int h, int l, Image img)
-        {
-            ProductId = id;
-            Name = n;
-            Wall = w;
-            Description = d;
-            Width = wi;
-            Height = h;
-            Length = l;
-            Image = img;
+        //public StaticObjectModel(int id, string n, bool w, string d, int wi, int h, int l, Image img)
+        //{
+        //    ProductId = id;
+        //    Name = n;
+        //    Wall = w;
+        //    Description = d;
+        //    Width = wi;
+        //    Height = h;
+        //    Length = l;
+        //    Image = img;
 
-            if (n != "") { List.Add(this); } //If the name if empty, don't add it to the list. This is because the name is part of the primary key in the database.
-        }
+        //    if (n != "") { List.Add(this); } //If the name if empty, don't add it to the list. This is because the name is part of the primary key in the database.
+        //}
     }
 }

@@ -29,7 +29,7 @@ namespace KantoorInrichting.Controllers.Placement
 {
     public class ProductGridController : IController
     {
-        private static readonly List<PlacedProduct> placedProducts = new List<PlacedProduct>();
+        private static readonly List<PlacedProduct> placedProducts = new List<PlacedProduct>(); //A list of all products, static and non-static, that is used to keep track of them.
         private readonly DatabaseController _dbc = DatabaseController.Instance;
         private readonly ICollisionHandler<PlacedProduct> collisionHandler;
         private readonly List<AlgorithmModel> comboBoxAlgorithms;
@@ -465,22 +465,31 @@ namespace KantoorInrichting.Controllers.Placement
         public void DeleteRows(string spacenumber)
         {
             // Get all rows of the current spacenumber
-            var rows = dbc.DataSet.placement.Select("space_number = '" + spacenumber + "'");
+            var rowsProduct = dbc.DataSet.placement.Select("space_number = '" + spacenumber + "'");
+            var rowsStatic = dbc.DataSet.static_placement.Select("space_number = '" + spacenumber + "'");
 
             // For each row delete the row, and update the database
-            foreach (var row in rows)
+            foreach (var row in rowsProduct)
             {
                 row.Delete();
                 dbc.PlacementTableAdapter.Update(dbc.DataSet.placement);
+            }
+            //StaticPlacement
+            foreach (var row in rowsStatic)
+            {
+                row.Delete();
+                dbc.StaticPlacementTableAdapter.Update(dbc.DataSet.static_placement);
             }
         }
 
         // Method to save the space into the database
         public void SaveSpace(string spacenumber)
         {
-            // For earch product in the list placedProducts the product is going to be saved into the database
-            foreach (PlacedProduct product in placedProducts)
+            // For earch product in the non-static list of placedProducts, the product is going to be saved into the database
+            foreach (PlacedProduct product in PlacedProduct.List)
             {
+                //If the name of the product is empty, don't allow it to be added to the database
+                if(product.Product.Name == "") { continue;}
                 DataRow anyRow = dbc.DataSet.placement.NewRow();
 
                 //getting placementID convert it and +1
@@ -508,12 +517,58 @@ namespace KantoorInrichting.Controllers.Placement
                 // count the new AmountPlaced for given product
                 dbc.CountProductsAmountPlaced(product);
             }
+
+            // For earch product in the static list of placedProducts, the product is going to be saved into the database
+            foreach (PlacedProduct product in PlacedProduct.StaticList)
+            {
+                //If the name of the product is empty, don't allow it to be added to the database
+                if (product.Product.Name == "") { continue; }
+                DataRow anyRow = dbc.DataSet.static_placement.NewRow();
+
+                //getting placementID convert it and +1
+                //With an inplace measure if there are no items in the database to get the starter ID
+                int placementID;
+                try
+                {
+                    placementID = (int)dbc.DataSet.static_placement.Rows[dbc.DataSet.static_placement.Rows.Count - 1]["static_placement_id"];
+                }
+                catch (Exception)
+                {
+                    placementID = 0;
+                }
+                
+                string convertID = placementID.ToString();
+                int ID = int.Parse(convertID) + 1;
+
+                //get other data
+                float X = product.Location.X;
+                float Y = product.Location.Y;
+                int product_id = product.Product.ProductId;
+                int angle = product.CurrentAngle;
+
+                anyRow["static_placement_id"] = ID;
+                anyRow["space_number"] = spacenumber;
+                anyRow["product_id"] = product_id;
+                anyRow["x_start_position"] = X * 100;
+                anyRow["x_end_position"] = angle;
+                anyRow["y_start_position"] = Y * 100;
+                anyRow["y_end_position"] = 0;
+
+                //update database
+                dbc.DataSet.static_placement.Rows.Add(anyRow);
+                dbc.StaticPlacementTableAdapter.Update(dbc.DataSet.static_placement);
+
+                // count the new AmountPlaced for given product
+                dbc.CountProductsAmountPlaced(product);
+            }
         }
 
         public void OpenPanel(Space spacenr)
         {
             ProductGrid grid = (ProductGrid) view;
             placedProducts.Clear();
+            PlacedProduct.List.Clear();
+            PlacedProduct.StaticList.Clear();
             space = spacenr;
             //this.SpaceNumberTitle.Text = space.Room;
             grid.spaceNumberTextbox.Text = space.Room;
@@ -542,6 +597,7 @@ namespace KantoorInrichting.Controllers.Placement
 
         public void PlaceProducts()
         {
+            //Non-Static
             foreach (var placedProduct in dbc.DataSet.placement)
             {
                 // check if placedproduct belongs to current space
@@ -561,6 +617,32 @@ namespace KantoorInrichting.Controllers.Placement
                             AddNewProduct(product, (float) placedProduct.x_position/100,
                                 (float) placedProduct.y_position/100,
                                 (float) product.Width/100, (float) product.Height/100, true, angle);
+                        }
+                    }
+                }
+            }
+
+            //Static
+            foreach (var placedProduct in dbc.DataSet.static_placement)
+            {
+                // check if placedproduct belongs to current space
+                if (placedProduct.space_number == space.Room)   //TODO remove bug that it places this in every room
+                {
+                    foreach (ProductModel product in ProductModel.StaticList)
+                    {
+                        // for each productmodel -> check if the id equals the placedproduct id
+
+                        if (product.ProductId == placedProduct.static_placement_id)
+                        {
+                            // create placedproducts with a point and product reference
+                            Point point = new Point(placedProduct.x_start_position / 100, placedProduct.y_start_position / 100);
+                            int angle = placedProduct.x_end_position;
+                            PlacedProduct p1 = new PlacedProduct(product, point, angle);
+
+                            AddNewProduct(product, (float)placedProduct.x_start_position / 100,
+                                (float)placedProduct.y_start_position / 100,
+                                (float)product.Width / 100, (float)product.Height / 100, true, angle);
+                            break;
                         }
                     }
                 }

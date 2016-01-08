@@ -35,7 +35,7 @@ namespace KantoorInrichting.Controllers.Placement
         public static ObservableCollection<PlacedProduct> placedProductList = new ObservableCollection<PlacedProduct>();
         // above has to be static because it is used in alot of other classes, still needs to be fixed
         public ObservableCollection<PlacedProduct> placedProducts = new ObservableCollection<PlacedProduct>();
-        public static List<StaticlyPlacedObject> staticlyPlacedObjectList;
+        public static List<PlacedProduct> staticlyPlacedObjectList;
 
         public MainFrame motherFrame;
         private ProductAdding productAdding;
@@ -73,7 +73,7 @@ namespace KantoorInrichting.Controllers.Placement
                 ChangeSelected(defaultInfo);
             }
             catch { }
-            
+
 
             //Make an event that triggers when the list is changed, so that it automatically repaints the screen.
             placedProductList.CollectionChanged += ppList_CollectionChanged;
@@ -88,11 +88,32 @@ namespace KantoorInrichting.Controllers.Placement
             Vector pointBottomLeft = new Vector(0, productAdding.productPanel.Height - 1);
             Vector pointBottomRight = new Vector(productAdding.productPanel.Width - 1, productAdding.productPanel.Height - 1);
 
-            staticlyPlacedObjectList = new List<StaticlyPlacedObject>();
-            staticlyPlacedObjectList.Add(new StaticlyPlacedObject(pointTopLeft, pointTopRight)); //Top
-            staticlyPlacedObjectList.Add(new StaticlyPlacedObject(pointTopRight, pointBottomRight)); //Right
-            staticlyPlacedObjectList.Add(new StaticlyPlacedObject(pointBottomRight, pointBottomLeft)); //Bottom
-            staticlyPlacedObjectList.Add(new StaticlyPlacedObject(pointBottomLeft, pointTopLeft)); //Left
+            staticlyPlacedObjectList = new List<PlacedProduct>();
+
+            int length = (int)(pointBottomRight.Y - pointTopRight.Y);
+            int width = (int)(pointTopRight.X - pointTopLeft.X);
+
+            staticlyPlacedObjectList.Add(   //Top
+                new PlacedProduct(
+                    new ProductModel(0, "", "", width, 1, 1, true),
+                    new PointF(width / 2, 0)));
+
+            staticlyPlacedObjectList.Add(   //Right
+                new PlacedProduct(
+                    new ProductModel(0, "", "", 1, 1, length, true),
+                    new PointF(width, length / 2)));
+
+            staticlyPlacedObjectList.Add(   //Bottom
+                new PlacedProduct(
+                    new ProductModel(0, "", "", width, 1, 1, true),
+                    new PointF(width / 2, length)));
+
+            staticlyPlacedObjectList.Add(   //Left
+                new PlacedProduct(
+                    new ProductModel(0, "", "", 1, 1, length, true),
+                    new PointF(0, length / 2)));
+
+
         }
         //
         public void ChangeSelected(ProductInfo sender)
@@ -172,10 +193,18 @@ namespace KantoorInrichting.Controllers.Placement
             EDIT
 
             */
-            foreach(StaticlyPlacedObject spo in staticlyPlacedObjectList)
+            foreach(PlacedProduct spo in staticlyPlacedObjectList)
             {
                 //Draw lines between every point
-                g.DrawLine(new Pen(Color.Black), spo.BeginPoint, spo.EndPoint);
+                if (spo.Product.Width == 1)
+                {//Vertical Line (Left and Right)
+                    g.DrawLine(new Pen(Color.Black), new PointF(spo.Location.X - spo.Product.Width - spo.Product.Length + 1,  0), new PointF(spo.Location.X + spo.Product.Width + spo.Product.Length - 1, 0));
+                }
+                else
+                {//Horizontal Line (Top and Bottom)
+                    g.DrawLine(new Pen(Color.Black), new PointF(0, spo.Location.Y - spo.Product.Width - spo.Product.Length + 1), new PointF(0, spo.Location.Y + spo.Product.Width + spo.Product.Length - 1));
+                }
+                
             }
 
 
@@ -704,16 +733,16 @@ namespace KantoorInrichting.Controllers.Placement
 
 
             //Test all product polygons for a collision
-            foreach (StaticlyPlacedObject placedO in staticlyPlacedObjectList)
+            foreach (PlacedProduct placedO in staticlyPlacedObjectList)
             {
                 //Test if the selected polygon is himself
-                if (placedO.ToPolygon() == targetProduct.Poly)
+                if (placedO.Poly == targetProduct.Poly)
                 {
                     continue;
                 }
 
                 //Test if the polygon collides with others
-                PolygonCollisionController.PolygonCollisionResult r = PolygonCollisionController.PolygonCollision(targetProduct.Poly, placedO.ToPolygon(), velocity);
+                PolygonCollisionController.PolygonCollisionResult r = PolygonCollisionController.PolygonCollision(targetProduct.Poly, placedO.Poly, velocity);
 
                 //If it does, alter the speed
                 if (r.WillIntersect)

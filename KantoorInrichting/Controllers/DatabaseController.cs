@@ -109,9 +109,8 @@ namespace KantoorInrichting.Controllers
         {
             foreach (var product in this.DataSet.static_product)
             {
-                //TODO make a new Product. Scrap the StaticObject approach. All will need to be made in PlacedProduct and ProductModel.
-                var sp1 = new StaticObjectModel(product.product_id, product.name, product.wall,
-                    product.description, product.width, product.height, product.length, Properties.Resources.No_Image_Available);
+                var sp1 = new ProductModel(product.product_id, product.name, product.description, product.width,
+                    product.height, product.length, true);
             }
         }
 

@@ -47,7 +47,7 @@ namespace KantoorInrichting.Views.Placement
             int y = 0;
             if (!_locked)
             {
-                foreach (StaticObjectModel product in StaticObjectModel.List)
+                foreach (ProductModel product in ProductModel.StaticList)
                 {
                     //MessageBox.Show("Test Static");
                     ProductInfo pi = new ProductInfo(product);
