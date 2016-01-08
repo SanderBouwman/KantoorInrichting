@@ -24,6 +24,7 @@
         /// </summary>
         private void InitializeComponent() {
             this.controlPanel = new System.Windows.Forms.Panel();
+            this.buttonCalculate = new System.Windows.Forms.Button();
             this.buttonLock = new System.Windows.Forms.Button();
             this.algorithmButton = new System.Windows.Forms.Button();
             this.algorithmLabel = new System.Windows.Forms.Label();
@@ -47,7 +48,6 @@
             this.productList = new KantoorInrichting.Views.Placement.ProductList();
             this.gridFieldPanel = new KantoorInrichting.Models.Grid.GridFieldPanel();
             this.legend = new KantoorInrichting.Views.Placement.Legend();
-            this.buttonCalculate = new System.Windows.Forms.Button();
             this.controlPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.zoomTrackbar)).BeginInit();
             this.controlDock.SuspendLayout();
@@ -80,6 +80,17 @@
             this.controlPanel.Name = "controlPanel";
             this.controlPanel.Size = new System.Drawing.Size(560, 239);
             this.controlPanel.TabIndex = 1;
+            // 
+            // buttonCalculate
+            // 
+            this.buttonCalculate.Location = new System.Drawing.Point(6, 183);
+            this.buttonCalculate.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonCalculate.Name = "buttonCalculate";
+            this.buttonCalculate.Size = new System.Drawing.Size(100, 28);
+            this.buttonCalculate.TabIndex = 18;
+            this.buttonCalculate.Text = "Bereken prijs";
+            this.buttonCalculate.UseVisualStyleBackColor = true;
+            this.buttonCalculate.Click += new System.EventHandler(this.ButtonCalculate_Click);
             // 
             // buttonLock
             // 
@@ -151,6 +162,7 @@
             this.spaceSizeTextbox.Location = new System.Drawing.Point(417, 69);
             this.spaceSizeTextbox.Margin = new System.Windows.Forms.Padding(4);
             this.spaceSizeTextbox.Name = "spaceSizeTextbox";
+            this.spaceSizeTextbox.ReadOnly = true;
             this.spaceSizeTextbox.Size = new System.Drawing.Size(132, 20);
             this.spaceSizeTextbox.TabIndex = 11;
             // 
@@ -159,6 +171,7 @@
             this.spaceNumberTextbox.Location = new System.Drawing.Point(417, 21);
             this.spaceNumberTextbox.Margin = new System.Windows.Forms.Padding(4);
             this.spaceNumberTextbox.Name = "spaceNumberTextbox";
+            this.spaceNumberTextbox.ReadOnly = true;
             this.spaceNumberTextbox.Size = new System.Drawing.Size(132, 20);
             this.spaceNumberTextbox.TabIndex = 10;
             // 
@@ -325,17 +338,6 @@
             this.legend.Name = "legend";
             this.legend.Size = new System.Drawing.Size(623, 106);
             this.legend.TabIndex = 2;
-            // 
-            // buttonCalculate
-            // 
-            this.buttonCalculate.Location = new System.Drawing.Point(6, 183);
-            this.buttonCalculate.Margin = new System.Windows.Forms.Padding(4);
-            this.buttonCalculate.Name = "buttonCalculate";
-            this.buttonCalculate.Size = new System.Drawing.Size(100, 28);
-            this.buttonCalculate.TabIndex = 18;
-            this.buttonCalculate.Text = "Bereken prijs";
-            this.buttonCalculate.UseVisualStyleBackColor = true;
-            this.buttonCalculate.Click += new System.EventHandler(this.ButtonCalculate_Click);
             // 
             // ProductGrid
             // 
