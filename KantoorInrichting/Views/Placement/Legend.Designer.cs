@@ -32,12 +32,12 @@
             // 
             // Legend
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Legend";
-            this.Size = new System.Drawing.Size(557, 57);
+            this.Size = new System.Drawing.Size(535, 70);
             this.ResumeLayout(false);
 
         }
