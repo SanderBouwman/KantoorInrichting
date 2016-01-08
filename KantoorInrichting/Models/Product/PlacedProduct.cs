@@ -17,6 +17,9 @@ namespace KantoorInrichting.Models.Product
 {
     public class PlacedProduct
     {
+        //TODO make a second list that only returns Static.
+        //TODO make a bool to know if it is static or not
+
 
         public static SortableBindingList<PlacedProduct> List = new SortableBindingList<PlacedProduct>();
 

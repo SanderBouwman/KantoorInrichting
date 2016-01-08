@@ -389,6 +389,7 @@ namespace KantoorInrichting.Controllers.Placement
 
                 //todo
                 //Reload the placement screen so the user is now able to place non-static products, like chairs, sofas and lamps.
+                ((ProductList)((ProductGrid)view).Get(ProductGrid.PropertyEnum.List)).LockRoom();
 
                 return;
             }
@@ -521,6 +522,15 @@ namespace KantoorInrichting.Controllers.Placement
             meterWidth = (float) space.Width/100;
             meterHeight = (float) space.Length/100;
             tileSize = meterWidth/10;
+
+            if (spacenr.Final)
+            {
+                ((ProductList)grid.Get(ProductGrid.PropertyEnum.List)).LockRoom();
+            }
+            else
+            {
+                ((ProductList)grid.Get(ProductGrid.PropertyEnum.List)).UnlockRoom();
+            }
 
             LayoutChanged(this, null);
 
