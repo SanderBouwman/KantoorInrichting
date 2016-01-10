@@ -215,7 +215,7 @@ namespace KantoorInrichting.Controllers.Placement
                     }
                     catch (NullReferenceException ex)
                     {
-                        MessageBox.Show("Vergeet niet uw lokaal op te geven");
+                        MessageBox.Show("Vergeet niet uw lokaal op te geven", "Opslaan lokaal", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
 
                     break;
@@ -379,21 +379,15 @@ namespace KantoorInrichting.Controllers.Placement
                     "Pas op!", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
             if (result == DialogResult.Yes)
             {
-                MessageBox.Show("EDITING");
                 //Model
                 space.Final = true;
                 //Database
                 var spaceRow = _dbc.DataSet.space.FindByspace_number(space.Room);
                 spaceRow.final = true;
                 _dbc.SpaceTableAdapter.Adapter.Update(_dbc.DataSet.space);
-
-                //todo
-                //Reload the placement screen so the user is now able to place non-static products, like chairs, sofas and lamps.
+                
                 ((ProductList)((ProductGrid)view).Get(ProductGrid.PropertyEnum.List)).LockRoom();
-
-                return;
             }
-            MessageBox.Show("NOT EDIT");
         }
 
         //Calculate the totalprice of a newly designed room.
@@ -424,9 +418,9 @@ namespace KantoorInrichting.Controllers.Placement
             }
 
             if (totalPrice <= 0)
-                MessageBox.Show("Er zijn genoeg producten op voorraad.");
+                MessageBox.Show("Er zijn genoeg producten op voorraad.", "Totaalprijs", MessageBoxButtons.OK, MessageBoxIcon.Information);
             else
-                MessageBox.Show("De totaalprijs van deze ruimte is €" + totalPrice);
+                MessageBox.Show("De totaalprijs van deze ruimte is €" + totalPrice, "Totaalprijs", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         public void DeleteProduct(PlacedProduct product)
@@ -455,7 +449,7 @@ namespace KantoorInrichting.Controllers.Placement
 
             // Method to put the data in the database
             SaveSpace(spacenumber);
-            MessageBox.Show("Opgeslagen");
+            MessageBox.Show("De nieuwe wijzigingen zijn opgeslagen.", "Opslaan", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             view.Get(ProductGrid.PropertyEnum.Panel).Invalidate();
             ((ProductGrid) view).productList.fixInformation();
@@ -565,10 +559,12 @@ namespace KantoorInrichting.Controllers.Placement
 
         public void OpenPanel(Space spacenr)
         {
-            ProductGrid grid = (ProductGrid) view;
             placedProducts.Clear();
             PlacedProduct.List.Clear();
             PlacedProduct.StaticList.Clear();
+
+            ProductGrid grid = (ProductGrid) view;
+            
             space = spacenr;
             //this.SpaceNumberTitle.Text = space.Room;
             grid.spaceNumberTextbox.Text = space.Room;
@@ -612,7 +608,6 @@ namespace KantoorInrichting.Controllers.Placement
                             // create placedproducts with a point and product reference
                             Point point = new Point(placedProduct.x_position/100, placedProduct.y_position/100);
                             int angle = placedProduct.angle;
-                            PlacedProduct p1 = new PlacedProduct(product, point, angle);
 
                             AddNewProduct(product, (float) placedProduct.x_position/100,
                                 (float) placedProduct.y_position/100,
@@ -626,18 +621,17 @@ namespace KantoorInrichting.Controllers.Placement
             foreach (var placedProduct in dbc.DataSet.static_placement)
             {
                 // check if placedproduct belongs to current space
-                if (placedProduct.space_number == space.Room)   //TODO remove bug that it places this in every room
+                if (placedProduct.space_number == space.Room)
                 {
                     foreach (ProductModel product in ProductModel.StaticList)
                     {
                         // for each productmodel -> check if the id equals the placedproduct id
-
-                        if (product.ProductId == placedProduct.static_placement_id)
+                        
+                        if (product.ProductId == placedProduct.product_id)
                         {
                             // create placedproducts with a point and product reference
                             Point point = new Point(placedProduct.x_start_position / 100, placedProduct.y_start_position / 100);
                             int angle = placedProduct.x_end_position;
-                            PlacedProduct p1 = new PlacedProduct(product, point, angle);
 
                             AddNewProduct(product, (float)placedProduct.x_start_position / 100,
                                 (float)placedProduct.y_start_position / 100,

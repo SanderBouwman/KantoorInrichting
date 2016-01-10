@@ -69,7 +69,7 @@ namespace KantoorInrichting.Views.SpaceChoice
             // check if something is selected
             if (comboBox1.SelectedIndex == 0)
             {
-                MessageBox.Show("maak eerst een keuze uit een ruimte");
+                MessageBox.Show("Maak eerst een keuze uit een ruimte", "Open lokaal", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else
             {

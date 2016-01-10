@@ -9,6 +9,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using KantoorInrichting.Controllers;
 using KantoorInrichting.Controllers.Placement;
+using KantoorInrichting.Models.Product;
 
 #endregion
 

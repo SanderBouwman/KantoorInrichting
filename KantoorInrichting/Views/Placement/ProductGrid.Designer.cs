@@ -119,7 +119,7 @@
             this.algorithmLabel.Location = new System.Drawing.Point(169, 117);
             this.algorithmLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.algorithmLabel.Name = "algorithmLabel";
-            this.algorithmLabel.Size = new System.Drawing.Size(97, 17);
+            this.algorithmLabel.Size = new System.Drawing.Size(72, 13);
             this.algorithmLabel.TabIndex = 15;
             this.algorithmLabel.Text = "Kies algoritme";
             // 
@@ -129,7 +129,7 @@
             this.algorithmComboBox.Location = new System.Drawing.Point(152, 140);
             this.algorithmComboBox.Margin = new System.Windows.Forms.Padding(4);
             this.algorithmComboBox.Name = "algorithmComboBox";
-            this.algorithmComboBox.Size = new System.Drawing.Size(160, 24);
+            this.algorithmComboBox.Size = new System.Drawing.Size(160, 21);
             this.algorithmComboBox.TabIndex = 14;
             // 
             // zoomCheckbox
@@ -138,7 +138,7 @@
             this.zoomCheckbox.Location = new System.Drawing.Point(4, 117);
             this.zoomCheckbox.Margin = new System.Windows.Forms.Padding(4);
             this.zoomCheckbox.Name = "zoomCheckbox";
-            this.zoomCheckbox.Size = new System.Drawing.Size(66, 21);
+            this.zoomCheckbox.Size = new System.Drawing.Size(53, 17);
             this.zoomCheckbox.TabIndex = 13;
             this.zoomCheckbox.Text = "Zoom";
             this.zoomCheckbox.UseVisualStyleBackColor = true;
@@ -152,7 +152,7 @@
             this.zoomTrackbar.Maximum = 300;
             this.zoomTrackbar.Minimum = 50;
             this.zoomTrackbar.Name = "zoomTrackbar";
-            this.zoomTrackbar.Size = new System.Drawing.Size(139, 56);
+            this.zoomTrackbar.Size = new System.Drawing.Size(139, 45);
             this.zoomTrackbar.SmallChange = 10;
             this.zoomTrackbar.TabIndex = 12;
             this.zoomTrackbar.Value = 50;
@@ -162,8 +162,8 @@
             this.spaceSizeTextbox.Location = new System.Drawing.Point(417, 69);
             this.spaceSizeTextbox.Margin = new System.Windows.Forms.Padding(4);
             this.spaceSizeTextbox.Name = "spaceSizeTextbox";
-            this.spaceSizeTextbox.ReadOnly = true;         
-            this.spaceSizeTextbox.Size = new System.Drawing.Size(132, 22);
+            this.spaceSizeTextbox.ReadOnly = true;
+            this.spaceSizeTextbox.Size = new System.Drawing.Size(132, 20);
             this.spaceSizeTextbox.TabIndex = 11;
             // 
             // spaceNumberTextbox
@@ -172,7 +172,7 @@
             this.spaceNumberTextbox.Margin = new System.Windows.Forms.Padding(4);
             this.spaceNumberTextbox.Name = "spaceNumberTextbox";
             this.spaceNumberTextbox.ReadOnly = true;
-            this.spaceNumberTextbox.Size = new System.Drawing.Size(132, 22);
+            this.spaceNumberTextbox.Size = new System.Drawing.Size(132, 20);
             this.spaceNumberTextbox.TabIndex = 10;
             // 
             // spaceSizeLabel
@@ -181,7 +181,7 @@
             this.spaceSizeLabel.Location = new System.Drawing.Point(413, 50);
             this.spaceSizeLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.spaceSizeLabel.Name = "spaceSizeLabel";
-            this.spaceSizeLabel.Size = new System.Drawing.Size(106, 17);
+            this.spaceSizeLabel.Size = new System.Drawing.Size(79, 13);
             this.spaceSizeLabel.TabIndex = 9;
             this.spaceSizeLabel.Text = "Afmeting ruimte";
             // 
@@ -191,7 +191,7 @@
             this.spaceNumberLabel.Location = new System.Drawing.Point(413, 4);
             this.spaceNumberLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.spaceNumberLabel.Name = "spaceNumberLabel";
-            this.spaceNumberLabel.Size = new System.Drawing.Size(52, 17);
+            this.spaceNumberLabel.Size = new System.Drawing.Size(40, 13);
             this.spaceNumberLabel.TabIndex = 8;
             this.spaceNumberLabel.Text = "Ruimte";
             // 
@@ -291,7 +291,7 @@
             this.legendLabel.Location = new System.Drawing.Point(24, 722);
             this.legendLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.legendLabel.Name = "legendLabel";
-            this.legendLabel.Size = new System.Drawing.Size(150, 39);
+            this.legendLabel.Size = new System.Drawing.Size(119, 31);
             this.legendLabel.TabIndex = 3;
             this.legendLabel.Text = "Legenda";
             // 

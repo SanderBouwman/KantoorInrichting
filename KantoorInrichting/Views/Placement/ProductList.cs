@@ -49,7 +49,6 @@ namespace KantoorInrichting.Views.Placement
             {
                 foreach (ProductModel product in ProductModel.StaticList)
                 {
-                    //MessageBox.Show("Test Static");
                     ProductInfo pi = new ProductInfo(product);
                     pi.Location = new Point(0, y);
                     pi.MouseClick += new MouseEventHandler(product_Selected); //The event
@@ -68,7 +67,6 @@ namespace KantoorInrichting.Views.Placement
 
                 foreach (ProductModel product in onlyAvailibleProducts)
                 {
-                    //MessageBox.Show("Test Product");
                     ProductInfo pi = new ProductInfo(product);
                     pi.Location = new Point(0, y);
                     pi.MouseClick += new MouseEventHandler(product_Selected); //The event
@@ -123,7 +121,7 @@ namespace KantoorInrichting.Views.Placement
         public void LockRoom()
         {
             //Now furniture can be placed
-            MessageBox.Show("Locked!");
+            //MessageBox.Show("Locked!");
             _locked = true;
             GenerateProducts();
         }
@@ -131,7 +129,7 @@ namespace KantoorInrichting.Views.Placement
         public void UnlockRoom()
         {
             //Now Statics can be placed
-            MessageBox.Show("Unlocked");
+            //MessageBox.Show("Unlocked");
             _locked = false;
             GenerateProducts();
         }
