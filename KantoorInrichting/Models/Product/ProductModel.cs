@@ -114,6 +114,11 @@ namespace KantoorInrichting.Models.Product
             Height = h;
             Length = l;
 
+            if (Name == "Stopcontact")
+            {
+                Collidable = false;
+            }
+
             ToList(true);
         }
 

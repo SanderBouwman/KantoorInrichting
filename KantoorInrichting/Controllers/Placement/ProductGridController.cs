@@ -17,6 +17,7 @@ using KantoorInrichting.Controllers.Algorithm.TestSetup;
 using KantoorInrichting.Controllers.Placement.Handler;
 using KantoorInrichting.Models.Algorithm;
 using KantoorInrichting.Models.Grid;
+using KantoorInrichting.Models.Placement;
 using KantoorInrichting.Models.Product;
 using KantoorInrichting.Models.Space;
 using KantoorInrichting.Views;
@@ -648,7 +649,7 @@ namespace KantoorInrichting.Controllers.Placement
             PlacedProduct product = utility.GetProductFromField(e.Location, placedProducts, tileWidth, tileHeight,
                 tileSize);
 
-            if (product != null)
+            if (product != null && !(product.StaticProductBoolean && space.Final))
             {
                 selectedProduct = product;
                 draggingProduct = true;

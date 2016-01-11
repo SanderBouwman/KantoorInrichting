@@ -148,5 +148,64 @@ namespace KantoorInrichting.Controllers.Placement
                 ? newLocation
                 : selectedProduct.OriginalLocation;
         }
+
+        public void MoveProduct(PlacedProduct selectedProduct, List<PlacedProduct> placedProducts, Vector deltaVector, int panelWidth, int panelHeight)
+        {
+            //A variable to keep track of collision
+            bool collision = false;
+            
+
+            //The new location that the product is going towards
+            Point newLocationPoint = new Point(
+                (int)(selectedProduct.Location.X + deltaVector.X),
+                (int)(selectedProduct.Location.Y + deltaVector.Y)   );
+
+            
+
+
+            //Checkes the borders
+            foreach (Polygon wall in selectedProduct.PolyBorder(panelWidth, panelHeight))
+            {
+                PolygonCollisionController.PolygonCollisionResult result =
+                    PolygonCollisionController.PolygonCollision(selectedProduct.Poly, wall, deltaVector);
+
+                if (result.WillIntersect)
+                {
+                    collision = true;
+                    break;
+                }
+            }
+
+
+            //Loops through each item and determines if it collides with any of them
+            foreach (PlacedProduct collisionTarget in placedProducts)
+            {
+                if (collision)
+                { break; }
+                if (selectedProduct.Product.Collidable == false) //If the selected product is not collidable. For example an 'Energy Socket'. Break out the loop and place it.
+                { break; }
+                if (collisionTarget.Product.Collidable == false) //If the target is not collidable. For example an 'Energy Socket'. Skip this loop and go to the next target.
+                { continue; }
+
+                PolygonCollisionController.PolygonCollisionResult result =
+                    PolygonCollisionController.PolygonCollision(selectedProduct.Poly, collisionTarget.Poly, deltaVector);
+
+                if (result.WillIntersect)
+                {
+                    collision = true;
+                    break;
+                }
+            }
+
+            //Failsafe check at the end
+            if (!collision)
+            { /*selectedProduct.MoveTo(newLocationPoint); */}
+            else
+            {
+                MessageBox.Show("Fail");
+            }
+            MessageBox.Show(newLocationPoint.ToString());
+
+        }
     }
 }

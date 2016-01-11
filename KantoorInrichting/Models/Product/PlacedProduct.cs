@@ -249,6 +249,57 @@ namespace KantoorInrichting.Models.Product
 
                 return list;
             }
-        }        
+        }
+
+        public List<Polygon> PolyBorder(int width, int height)
+        {
+            //List to return
+            List<Polygon> list = new List<Polygon>();
+
+            //
+            //Add the 4 corners
+            //
+            Polygon pTop = new Polygon();
+            Polygon pRight = new Polygon();
+            Polygon pBottom = new Polygon();
+            Polygon pLeft = new Polygon();
+
+            //Points for corners
+            Vector pointTopLeft = new Vector(0, 0);
+            Vector pointTopRight = new Vector(width, 0);
+            Vector pointBottomLeft = new Vector(0, height);
+            Vector pointBottomRight = new Vector(width, height);
+
+
+            //Add points/vectors
+            pTop.Points.Add(pointTopLeft);
+            pTop.Points.Add(pointTopRight);
+            //
+            pRight.Points.Add(pointTopRight);
+            pRight.Points.Add(pointBottomRight);
+            //
+            pBottom.Points.Add(pointBottomRight);
+            pBottom.Points.Add(pointBottomLeft);
+            //
+            pLeft.Points.Add(pointBottomLeft);
+            pLeft.Points.Add(pointTopLeft);
+
+
+            //Build edges
+            pTop.BuildEdges();
+            pRight.BuildEdges();
+            pBottom.BuildEdges();
+            pLeft.BuildEdges();
+
+
+            //Add to the list
+            list.Add(pTop);
+            list.Add(pRight);
+            list.Add(pBottom);
+            list.Add(pLeft);
+
+
+            return list;
+        }       
     }
 }
