@@ -33,19 +33,6 @@ namespace KantoorInrichting.Views
             InitializeComponent();
         }
 
-        private void VooraadButton_Click(object sender, EventArgs e)
-        {
-            MainFrame.inventoryScreen1.Visible = true;
-            MainFrame.inventoryScreen1.Enabled = true;
-            this.Visible = false;
-            MainFrame.inventoryScreen1.BringToFront();
-        }
-
-        private void MapButton_Click(object sender, EventArgs e)
-        {
-            MainFrame.OpenSpace();
-        }
-
         private void assortmentButton_Click(object sender, EventArgs e)
         {
             MainFrame.OpenAssortment();

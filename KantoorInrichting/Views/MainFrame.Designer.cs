@@ -34,7 +34,6 @@ namespace KantoorInrichting
         {
             this.navigatieToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.assortimentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.plattegrondToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ruimteIndelenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.categorieBeheerderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.plattegrondTonennToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -48,7 +47,6 @@ namespace KantoorInrichting
             // 
             this.navigatieToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.assortimentToolStripMenuItem,
-            this.plattegrondToolStripMenuItem,
             this.ruimteIndelenToolStripMenuItem,
             this.categorieBeheerderToolStripMenuItem,
             this.plattegrondTonennToolStripMenuItem,
@@ -63,13 +61,6 @@ namespace KantoorInrichting
             this.assortimentToolStripMenuItem.Size = new System.Drawing.Size(221, 26);
             this.assortimentToolStripMenuItem.Text = "Assortiment";
             this.assortimentToolStripMenuItem.Click += new System.EventHandler(this.assortimentToolStripMenuItem_Click);
-            // 
-            // plattegrondToolStripMenuItem
-            // 
-            this.plattegrondToolStripMenuItem.Name = "plattegrondToolStripMenuItem";
-            this.plattegrondToolStripMenuItem.Size = new System.Drawing.Size(221, 26);
-            this.plattegrondToolStripMenuItem.Text = "Plattegrond";
-            this.plattegrondToolStripMenuItem.Click += new System.EventHandler(this.plattegrondToolStripMenuItem_Click);
             // 
             // ruimteIndelenToolStripMenuItem
             // 
@@ -157,7 +148,6 @@ namespace KantoorInrichting
         public System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem hoofdmenuToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem assortimentToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem plattegrondToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ruimteIndelenToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem categorieBeheerderToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem plattegrondTonennToolStripMenuItem;

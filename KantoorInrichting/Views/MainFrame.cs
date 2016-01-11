@@ -169,29 +169,6 @@ namespace KantoorInrichting
             this.assortmentScreen.BringToFront();
         }
 
-        public void OpenSpace()
-        {
-
-            //            GridController gc = new GridController(MainFrame.gridFieldView, new GridFieldModel(10, 10, 0.5f));
-            //            // MainFrame overwrites my GridFieldView size, so I have to set the screen size like this
-            //            MainFrame.Width = 800;
-            //            MainFrame.Height = 670;
-            //            MainFrame.gridFieldView.SetListView(ProductFactory.GetPossibilities());
-            //            Application.DoEvents();
-            //            MainFrame.Active = MainFrame.gridFieldView;
-            //            MainFrame.gridFieldView.Visible = true;
-            //            MainFrame.gridFieldView.Enabled = true;
-            //            this.Visible = false;
-            //            MainFrame.gridFieldView.BringToFront();
-            Console.WriteLine("Open room selection and get data from there! -- MainScreen.cs Line 58");
-            this.AddPanelToMainscreen(this.productGrid);
-            this.Size = ProductGrid.PanelSize;
-            this.productGrid.Visible = true;
-            this.productGrid.Enabled = true;
-            this.mainScreen1.Visible = false;
-            this.productGrid.BringToFront();
-        }
-
         public void OpenProductAdding()
         {
             this.spaceChoice.Visible = true;
@@ -266,11 +243,6 @@ namespace KantoorInrichting
         private void assortimentToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.OpenAssortment();
-        }
-
-        private void plattegrondToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.OpenSpace();
         }
 
         private void ruimteIndelenToolStripMenuItem_Click(object sender, EventArgs e)
