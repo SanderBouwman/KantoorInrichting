@@ -243,6 +243,9 @@ namespace KantoorInrichting.Controllers.Placement
 
         public void AlgorithmClicked()
         {
+            if (!space.Final) //If the space is not locked. (Build mode) It cannot use the Algorithms
+            {MessageBox.Show("Deze kamer kan niet gebruik maken van algoritmes, omdat het nog in bouw mode zit.\n\nOm algoritmes te gebruiken, druk op de knop met het slotje aan de rechterkant van het scherm.", "Pas op.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); return; }
+
             try
             {
                 BeginAlgorithm("");
