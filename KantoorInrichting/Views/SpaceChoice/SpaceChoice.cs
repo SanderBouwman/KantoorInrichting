@@ -91,7 +91,7 @@ namespace KantoorInrichting.Views.SpaceChoice
                 MainScreen.productGrid.Visible = true;
                 MainScreen.productGrid.Enabled = true;
                 MainScreen.productGrid.BringToFront();
-
+                ((Legend)MainScreen.productGrid.Get(ProductGrid.PropertyEnum.Legend)).ReloadCatagory();
 
                 //---------
                 this.Visible = false;
@@ -121,6 +121,10 @@ namespace KantoorInrichting.Views.SpaceChoice
         }
 
 
+        public void ReloadTable()
+        {
+            FillComboBox(comboBox1);
+        }
         private string Seperate(string room)
         {
             int index = room.IndexOf("-");

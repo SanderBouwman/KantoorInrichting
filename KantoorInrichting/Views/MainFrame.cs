@@ -198,6 +198,7 @@ namespace KantoorInrichting
             this.spaceChoice.Enabled = true;
             this.mainScreen1.Visible = false;
             this.spaceChoice.BringToFront();
+            this.spaceChoice.ReloadTable();
         }
 
         public void OpenCategoryManager()

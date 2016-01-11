@@ -225,6 +225,7 @@ namespace KantoorInrichting.Controllers.Placement
                     break;
                 case "ButtonLock":
                     LockRoom();
+                    
                     break;
                 case "ButtonCalculate":
                     CalculatePrice();

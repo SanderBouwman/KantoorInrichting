@@ -26,22 +26,26 @@ namespace KantoorInrichting.Views.Placement
         public Legend()
         {
             InitializeComponent();
+            
+            ReloadCatagory();
+        }
 
+        public void ReloadCatagory()
+        {
+            this.Controls.Clear();
             this.CategoryColors = new Dictionary<string, SolidBrush>();
             horizontally = 0;
             foreach (CategoryModel category in CategoryModel.List)
             {
-                
+
                 if (category.IsSubcategoryFrom <= -1 || category.IsSubcategoryFrom == null)
                 {
                     AddItemToScreen(category);
                 }
-                
+
             }
-
-            
-
         }
+
 
         public void AddItemToScreen(CategoryModel category)
         {
