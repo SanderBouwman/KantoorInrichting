@@ -133,7 +133,7 @@ namespace KantoorInrichting
             this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "MainFrame";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "MainFrame";
+            this.Text = "Kantoor Inrichting";
             this.Resize += new System.EventHandler(this.MainFrame_Resize);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
