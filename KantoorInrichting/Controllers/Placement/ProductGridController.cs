@@ -31,7 +31,6 @@ namespace KantoorInrichting.Controllers.Placement
     public class ProductGridController : IController
     {
         private static readonly List<PlacedProduct> placedProducts = new List<PlacedProduct>(); //A list of all products, static and non-static, that is used to keep track of them.
-        private readonly DatabaseController _dbc = DatabaseController.Instance;
         private readonly ICollisionHandler<PlacedProduct> collisionHandler;
         private readonly List<AlgorithmModel> comboBoxAlgorithms;
 
@@ -46,9 +45,7 @@ namespace KantoorInrichting.Controllers.Placement
 
         private float meterHeight;
         private float meterWidth;
-
-        private ProductGrid productGrid;
-
+        
         private PlacedProduct selectedProduct;
         private Space space;
         private float tileHeight;
@@ -383,9 +380,9 @@ namespace KantoorInrichting.Controllers.Placement
                 //Model
                 space.Final = true;
                 //Database
-                var spaceRow = _dbc.DataSet.space.FindByspace_number(space.Room);
+                var spaceRow = dbc.DataSet.space.FindByspace_number(space.Room);
                 spaceRow.final = true;
-                _dbc.SpaceTableAdapter.Adapter.Update(_dbc.DataSet.space);
+                dbc.SpaceTableAdapter.Adapter.Update(dbc.DataSet.space);
                 
                 ((ProductList)((ProductGrid)view).Get(ProductGrid.PropertyEnum.List)).LockRoom();
             }
