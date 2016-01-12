@@ -4,14 +4,15 @@ namespace KantoorInrichting.Models.Product
 {
     public class ProductFactory
     {
-        public static ProductModel CreateProduct(string brand, int width, int height, string type)
+        public static ProductModel CreateProduct(string brand, int width, int height, string type, CategoryModel category)
         {
             return new ProductModel()
             {
                 Brand = brand,
                 Width = width,
                 Height = height,
-                Type = type
+                Type = type,
+                ProductCategory = category
             };
         } 
     }

@@ -282,12 +282,8 @@ namespace KantoorInrichting.Controllers.Placement
             ComboBox algorithmComboBox = (ComboBox) view.Get(ProductGrid.PropertyEnum.AlgorithmComboBox);
             AlgorithmModel selectedAlgorithm = (AlgorithmModel) algorithmComboBox.SelectedItem;
             // Example chair and table
-            ProductModel chair = ProductFactory.CreateProduct("Ahrend", 1, 1, "Stoelen");
-            ProductModel table = ProductFactory.CreateProduct("TableCompany", 2, 1, "Tafels");
-
-            chair.ProductCategory = new CategoryModel(5, "Stoel", 0, "White"); // Setting category
-            table.ProductCategory = new CategoryModel(8, "Tafel", 2, "White");
-
+            ProductModel chair = ProductFactory.CreateProduct("Ahrend", 1, 1, "Stoelen", new CategoryModel(5, "Stoel", 0, "White"));
+            ProductModel table = ProductFactory.CreateProduct("TableCompany", 2, 1, "Tafels", new CategoryModel(8, "Tafel", 2, "White"));
 
             StartAlgorithm(selectedAlgorithm, chair, table, people, margin);
         }
@@ -769,7 +765,10 @@ namespace KantoorInrichting.Controllers.Placement
             float margin)
         {
             // clear current placed products
-            placedProducts.Clear();
+            placedProducts.RemoveAll(x => x.Product.Name != "Muur" ||
+                                          x.Product.Name != "Raam" ||
+                                          x.Product.Name != "Deur" ||
+                                          x.Product.Name != "Stopcontact");
             Type selectedType = algorithm.Value;
             IDesignAlgorithm algoInstance = (IDesignAlgorithm) Activator.CreateInstance(selectedType);
             List<ProductModel> result = algoInstance.Design(model1, model2, people, meterWidth, meterHeight, margin);

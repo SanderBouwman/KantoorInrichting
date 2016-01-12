@@ -129,9 +129,11 @@ namespace KantoorInrichting.Controllers.Algorithm.TestSetup
 
                 // creating new chairs and tables from the current pair.
                 ProductModel newChair = ProductFactory.CreateProduct(current.Chair.Brand, current.Chair.Width,
-                                                                    current.Chair.Height, current.Chair.Type);
+                                                                    current.Chair.Height, current.Chair.Type,
+                                                                    current.Chair.ProductCategory);
                 ProductModel newTable = ProductFactory.CreateProduct(current.Table.Brand, current.Table.Width,
-                                                                    current.Table.Height, current.Table.Type);
+                                                                    current.Table.Height, current.Table.Type,
+                                                                    current.Table.ProductCategory);
 
                 float chairX,
                     chairY,
