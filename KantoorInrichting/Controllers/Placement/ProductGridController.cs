@@ -812,16 +812,23 @@ namespace KantoorInrichting.Controllers.Placement
         /// <returns></returns>
         public Bitmap CreateBackground(Size size)
         {
-            UpdateTileSize(size);
-            Bitmap bitmap = new Bitmap(size.Width, size.Height);
-            using (Graphics gfx = Graphics.FromImage(bitmap))
+            try
             {
-                for (float x = 0; x < size.Width; x += tileWidth)
-                    gfx.DrawLine(Pens.Black, x, 0, x, size.Height);
-                for (float y = 0; y < size.Height; y += tileHeight)
-                    gfx.DrawLine(Pens.Black, 0, y, size.Width, y);
+                UpdateTileSize(size);
+                Bitmap bitmap = new Bitmap(size.Width, size.Height);
+                using (Graphics gfx = Graphics.FromImage(bitmap))
+                {
+                    for (float x = 0; x < size.Width; x += tileWidth)
+                        gfx.DrawLine(Pens.Black, x, 0, x, size.Height);
+                    for (float y = 0; y < size.Height; y += tileHeight)
+                        gfx.DrawLine(Pens.Black, 0, y, size.Width, y);
+                }
+                return bitmap;
             }
-            return bitmap;
+            catch (Exception e)
+            {
+                return null;
+            }
         }
 
         /// <summary>
