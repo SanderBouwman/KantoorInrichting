@@ -34,8 +34,8 @@ namespace KantoorInrichting.Views
        // To do: Remove this method when project is done
         private void LoginScreen_Load_1(object sender, EventArgs e)
         {
-            UsernameTB.Text = "Rick";
-            PasswordTB.Text = "rick";
+            UsernameTB.Text = "";
+            PasswordTB.Text = "";
         }
 
         private void PasswordTB_TextChanged_1(object sender, EventArgs e)

@@ -272,8 +272,8 @@ namespace KantoorInrichting.Controllers.Assortment
         //Copy the selected image to the resources folder
         private bool CopySelectedImage()
         {
-            _newImagePath = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())) +
-                           @"\Resources\" + _newImageFileName;
+            _newImagePath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) +
+                                @"\Kantoor Inrichting\Afbeeldingen producten\" + _newImageFileName;
             try
             {
                 File.Copy(_newImageSource, _newImagePath);

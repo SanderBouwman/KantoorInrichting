@@ -33,14 +33,15 @@ namespace KantoorInrichting.Controllers.Map
             {
                 //puts the room in a variable.
                 var space = _screen.MapsGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
-                _currentImagePath = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
+                _currentImagePath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) +
+                                @"\Kantoor Inrichting\Afbeeldingen plattegronden\";
 
                 Spacescreen = new ShowSpaceScreen();
 
                 try
                 {
                     //checks if the image if present, if it is it will put it as the background and stretches out in the screen.
-                    Image imageCircle = Image.FromStream(new MemoryStream(File.ReadAllBytes(_currentImagePath + "\\Resources\\" + space + ".bmp")));
+                    Image imageCircle = Image.FromStream(new MemoryStream(File.ReadAllBytes(_currentImagePath + space + ".bmp")));
                     Spacescreen.BackgroundImage = imageCircle;
                     Spacescreen.BackgroundImageLayout = ImageLayout.Stretch;
                     Spacescreen.Text = "Plattegrond van ruimte: " + space;

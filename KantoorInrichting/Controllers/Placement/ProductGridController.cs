@@ -435,9 +435,8 @@ namespace KantoorInrichting.Controllers.Placement
         private void SaveRoom(string spacenumber)
         {
             // Strings used to get the path where the image have to be saved
-            string appFolderPath = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
-            string resourcesFolderPath = Path.Combine(Directory.GetParent(appFolderPath).Parent.FullName, "Resources");
-            string fileName = Path.Combine(resourcesFolderPath, "" + spacenumber + ".bmp");
+            string fileName = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) +
+                                @"\Kantoor Inrichting\Afbeeldingen plattegronden\" + spacenumber + ".bmp";
 
             // Save the panel in fileName
             viewContent.Save(fileName);

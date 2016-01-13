@@ -35,8 +35,8 @@ namespace KantoorInrichting.Controllers.Assortment
             this._screen = screen;
             _dbc = DatabaseController.Instance;
             this._productModel = productModel;
-            _currentImagePath = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())) +
-                               @"\Resources\" + productModel.ImageFileName;
+            _currentImagePath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) +
+                                @"\Kantoor Inrichting\Afbeeldingen producten\" + productModel.ImageFileName;
             _isNewImage = false;
             FillComboBox();
             FillTextBoxes();
@@ -302,8 +302,8 @@ namespace KantoorInrichting.Controllers.Assortment
         {
             if (_isNewImage)
             {
-                _newImagePath = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())) +
-                               @"\Resources\" + _newImageFileName;
+                _newImagePath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) +
+                                @"\Kantoor Inrichting\Afbeeldingen producten\" + _newImageFileName;
                 try
                 {
                     File.Copy(_newImageSource, _newImagePath);
